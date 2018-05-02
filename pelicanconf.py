@@ -3,8 +3,8 @@
 from __future__ import unicode_literals
 
 AUTHOR = 'Pymiers'
-SITENAME = 'The Pymiers - People of Pymi.vn'
-SITEURL = ''
+SITENAME = 'The PyMiers'
+SITEURL = 'pp.pymi.vn'
 
 PATH = 'content'
 
