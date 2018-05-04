@@ -1,5 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers - Trang chủ</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/trang-chu.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2018-05-02T00:00:00+07:00</updated><entry><title>Blog chung của các Pymier</title><link href="http://pp.pymi.vn/first.html" rel="alternate"></link><published>2018-05-02T00:00:00+07:00</published><updated>2018-05-02T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-05-02:/first.html</id><summary type="html">&lt;p&gt;Bài viết đầu tiên&lt;/p&gt;</summary><content type="html">&lt;p&gt;Nơi các Pymier chia sẻ kiến thức cho nhau.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers - Trang chủ</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/trang-chu.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2018-05-04T00:00:00+07:00</updated><entry><title>python -i file.py</title><link href="http://pp.pymi.vn/pythoni.html" rel="alternate"></link><published>2018-05-04T00:00:00+07:00</published><updated>2018-05-04T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-05-04:/pythoni.html</id><summary type="html">&lt;p&gt;chạy lệnh python với option -i&lt;/p&gt;</summary><content type="html">&lt;p&gt;Với một lập trình viên Python, quá trình sản xuất code là liên tục vòng tuần
+hoàn:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;viết code -&amp;gt; python filename.py -&amp;gt; sửa code -&amp;gt; python filename.py ...
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;cho đến khi mệt nghỉ, hoặc vợ gọi.&lt;/p&gt;
+&lt;p&gt;Option &lt;code&gt;-i&lt;/code&gt; mang lại một khả năng khá thú vị khi cho phép tiếp tục tương tác
+với "đoạn code" sau khi đã chạy xong.&lt;/p&gt;
+&lt;p&gt;Ví dụ, đoạn code:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;
+&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;
+&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;
+&lt;span class="n"&gt;hot_links&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;https://pymi.vn&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;http://www.familug.org&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;http://pp.pymi.vn&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;link&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;hot_links&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;link&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Chạy&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ python3 get_data.py
+https://pymi.vn
+http://www.familug.org
+http://pp.pymi.vn
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Giờ muốn tải từng link về thì phải mở editor lên, sửa code và chạy thử tiếp...&lt;/p&gt;
+&lt;p&gt;Chạy với &lt;code&gt;-i&lt;/code&gt;, ta có:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ python3 -i get_data.py
+https://pymi.vn
+http://www.familug.org
+http://pp.pymi.vn
+&amp;gt;&amp;gt;&amp;gt; locals&lt;span class="o"&gt;()&lt;/span&gt;
+&lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;link&amp;#39;&lt;/span&gt;: &lt;span class="s1"&gt;&amp;#39;http://pp.pymi.vn&amp;#39;&lt;/span&gt;, &lt;span class="s1"&gt;&amp;#39;__doc__&amp;#39;&lt;/span&gt;: None, &lt;span class="s1"&gt;&amp;#39;c&amp;#39;&lt;/span&gt;: &lt;span class="m"&gt;15&lt;/span&gt;, &lt;span class="s1"&gt;&amp;#39;a&amp;#39;&lt;/span&gt;: &lt;span class="m"&gt;6&lt;/span&gt;, &lt;span class="s1"&gt;&amp;#39;__name__&amp;#39;&lt;/span&gt;: &lt;span class="s1"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;, &lt;span class="s1"&gt;&amp;#39;__builtins__&amp;#39;&lt;/span&gt;: &amp;lt;module &lt;span class="s1"&gt;&amp;#39;builtins&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;built-in&lt;span class="o"&gt;)&lt;/span&gt;&amp;gt;, &lt;span class="s1"&gt;&amp;#39;__spec__&amp;#39;&lt;/span&gt;: None, &lt;span class="s1"&gt;&amp;#39;b&amp;#39;&lt;/span&gt;: &lt;span class="m"&gt;9&lt;/span&gt;, &lt;span class="s1"&gt;&amp;#39;__cached__&amp;#39;&lt;/span&gt;: None, &lt;span class="s1"&gt;&amp;#39;__loader__&amp;#39;&lt;/span&gt;: &amp;lt;_frozen_importlib_external.SourceFileLoader object at 0x7f0bcaee7f28&amp;gt;, &lt;span class="s1"&gt;&amp;#39;hot_links&amp;#39;&lt;/span&gt;: &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;https://pymi.vn&amp;#39;&lt;/span&gt;, &lt;span class="s1"&gt;&amp;#39;http://www.familug.org&amp;#39;&lt;/span&gt;, &lt;span class="s1"&gt;&amp;#39;http://pp.pymi.vn&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;, &lt;span class="s1"&gt;&amp;#39;__package__&amp;#39;&lt;/span&gt;: None&lt;span class="o"&gt;}&lt;/span&gt;
+&amp;gt;&amp;gt;&amp;gt; c
+&lt;span class="m"&gt;15&lt;/span&gt;
+&amp;gt;&amp;gt;&amp;gt; hot_links
+&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;https://pymi.vn&amp;#39;&lt;/span&gt;, &lt;span class="s1"&gt;&amp;#39;http://www.familug.org&amp;#39;&lt;/span&gt;, &lt;span class="s1"&gt;&amp;#39;http://pp.pymi.vn&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Tất nhiên các Pymier chẳng ai dùng python chay cả, mà là ipython:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ ipython -i get_data.py
+Python &lt;span class="m"&gt;3&lt;/span&gt;.5.2 &lt;span class="o"&gt;(&lt;/span&gt;default, Nov &lt;span class="m"&gt;17&lt;/span&gt; &lt;span class="m"&gt;2016&lt;/span&gt;, &lt;span class="m"&gt;17&lt;/span&gt;:05:23&lt;span class="o"&gt;)&lt;/span&gt;
+Type &lt;span class="s1"&gt;&amp;#39;copyright&amp;#39;&lt;/span&gt;, &lt;span class="s1"&gt;&amp;#39;credits&amp;#39;&lt;/span&gt; or &lt;span class="s1"&gt;&amp;#39;license&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; more information
+IPython &lt;span class="m"&gt;6&lt;/span&gt;.2.1 -- An enhanced Interactive Python. Type &lt;span class="s1"&gt;&amp;#39;?&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; help.
+https://pymi.vn
+http://www.familug.org
+http://pp.pymi.vn
+
+In &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;: hot_links
+Out&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;: &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;https://pymi.vn&amp;#39;&lt;/span&gt;, &lt;span class="s1"&gt;&amp;#39;http://www.familug.org&amp;#39;&lt;/span&gt;, &lt;span class="s1"&gt;&amp;#39;http://pp.pymi.vn&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Một option đơn giản, nhưng vô cùng tiện lợi.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;-i     : inspect interactively after running script; forces a prompt even
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Hết.
+HVN at https://pymi.vn and http://www.familug.org&lt;/p&gt;</content><category term="python"></category><category term="tip"></category></entry><entry><title>Blog chung của các Pymier</title><link href="http://pp.pymi.vn/first.html" rel="alternate"></link><published>2018-05-02T00:00:00+07:00</published><updated>2018-05-02T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-05-02:/first.html</id><summary type="html">&lt;p&gt;Bài viết đầu tiên&lt;/p&gt;</summary><content type="html">&lt;p&gt;Nơi các Pymier chia sẻ kiến thức cho nhau.
 Để tạo một bài viết - hãy fork repo này và tạo một Pull Requests,
 sau khi review xong bài viết sẽ được xuất bản.&lt;/p&gt;
 &lt;ul&gt;

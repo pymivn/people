@@ -23,7 +23,94 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="http://pp.pymi.vn/first.html">Blog chung của các Pymier</a></h1>
+                    <h1 class="entry-title"><a href="http://pp.pymi.vn/pythoni.html">python -i file.py</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2018-05-04T00:00:00+07:00">
+                Published: Fri 04 May 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://pp.pymi.vn/author/hvnsweeting.html">hvnsweeting</a>
+        </address>
+<p>In <a href="http://pp.pymi.vn/category/trang-chu.html">Trang chủ</a>.</p>
+<p>tags: <a href="http://pp.pymi.vn/tag/python.html">python</a> <a href="http://pp.pymi.vn/tag/tip.html">tip</a> </p>
+</footer><!-- /.post-info --><p>Với một lập trình viên Python, quá trình sản xuất code là liên tục vòng tuần
+hoàn:</p>
+<div class="highlight"><pre><span></span>viết code -&gt; python filename.py -&gt; sửa code -&gt; python filename.py ...
+</pre></div>
+
+
+<p>cho đến khi mệt nghỉ, hoặc vợ gọi.</p>
+<p>Option <code>-i</code> mang lại một khả năng khá thú vị khi cho phép tiếp tục tương tác
+với "đoạn code" sau khi đã chạy xong.</p>
+<p>Ví dụ, đoạn code:</p>
+<div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+<span class="n">hot_links</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://pymi.vn&#39;</span><span class="p">,</span> <span class="s1">&#39;http://www.familug.org&#39;</span><span class="p">,</span> <span class="s1">&#39;http://pp.pymi.vn&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">hot_links</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Chạy</p>
+<div class="highlight"><pre><span></span>$ python3 get_data.py
+https://pymi.vn
+http://www.familug.org
+http://pp.pymi.vn
+</pre></div>
+
+
+<p>Giờ muốn tải từng link về thì phải mở editor lên, sửa code và chạy thử tiếp...</p>
+<p>Chạy với <code>-i</code>, ta có:</p>
+<div class="highlight"><pre><span></span>$ python3 -i get_data.py
+https://pymi.vn
+http://www.familug.org
+http://pp.pymi.vn
+&gt;&gt;&gt; locals<span class="o">()</span>
+<span class="o">{</span><span class="s1">&#39;link&#39;</span>: <span class="s1">&#39;http://pp.pymi.vn&#39;</span>, <span class="s1">&#39;__doc__&#39;</span>: None, <span class="s1">&#39;c&#39;</span>: <span class="m">15</span>, <span class="s1">&#39;a&#39;</span>: <span class="m">6</span>, <span class="s1">&#39;__name__&#39;</span>: <span class="s1">&#39;__main__&#39;</span>, <span class="s1">&#39;__builtins__&#39;</span>: &lt;module <span class="s1">&#39;builtins&#39;</span> <span class="o">(</span>built-in<span class="o">)</span>&gt;, <span class="s1">&#39;__spec__&#39;</span>: None, <span class="s1">&#39;b&#39;</span>: <span class="m">9</span>, <span class="s1">&#39;__cached__&#39;</span>: None, <span class="s1">&#39;__loader__&#39;</span>: &lt;_frozen_importlib_external.SourceFileLoader object at 0x7f0bcaee7f28&gt;, <span class="s1">&#39;hot_links&#39;</span>: <span class="o">[</span><span class="s1">&#39;https://pymi.vn&#39;</span>, <span class="s1">&#39;http://www.familug.org&#39;</span>, <span class="s1">&#39;http://pp.pymi.vn&#39;</span><span class="o">]</span>, <span class="s1">&#39;__package__&#39;</span>: None<span class="o">}</span>
+&gt;&gt;&gt; c
+<span class="m">15</span>
+&gt;&gt;&gt; hot_links
+<span class="o">[</span><span class="s1">&#39;https://pymi.vn&#39;</span>, <span class="s1">&#39;http://www.familug.org&#39;</span>, <span class="s1">&#39;http://pp.pymi.vn&#39;</span><span class="o">]</span>
+</pre></div>
+
+
+<p>Tất nhiên các Pymier chẳng ai dùng python chay cả, mà là ipython:</p>
+<div class="highlight"><pre><span></span>$ ipython -i get_data.py
+Python <span class="m">3</span>.5.2 <span class="o">(</span>default, Nov <span class="m">17</span> <span class="m">2016</span>, <span class="m">17</span>:05:23<span class="o">)</span>
+Type <span class="s1">&#39;copyright&#39;</span>, <span class="s1">&#39;credits&#39;</span> or <span class="s1">&#39;license&#39;</span> <span class="k">for</span> more information
+IPython <span class="m">6</span>.2.1 -- An enhanced Interactive Python. Type <span class="s1">&#39;?&#39;</span> <span class="k">for</span> help.
+https://pymi.vn
+http://www.familug.org
+http://pp.pymi.vn
+
+In <span class="o">[</span><span class="m">1</span><span class="o">]</span>: hot_links
+Out<span class="o">[</span><span class="m">1</span><span class="o">]</span>: <span class="o">[</span><span class="s1">&#39;https://pymi.vn&#39;</span>, <span class="s1">&#39;http://www.familug.org&#39;</span>, <span class="s1">&#39;http://pp.pymi.vn&#39;</span><span class="o">]</span>
+</pre></div>
+
+
+<p>Một option đơn giản, nhưng vô cùng tiện lợi.</p>
+<div class="highlight"><pre><span></span>-i     : inspect interactively after running script; forces a prompt even
+</pre></div>
+
+
+<p>Hết.
+HVN at https://pymi.vn and http://www.familug.org</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://pp.pymi.vn/first.html" rel="bookmark"
+                           title="Permalink to Blog chung của các Pymier">Blog chung của các Pymier</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2018-05-02T00:00:00+07:00">
                 Published: Wed 02 May 2018
@@ -34,16 +121,12 @@
         </address>
 <p>In <a href="http://pp.pymi.vn/category/trang-chu.html">Trang chủ</a>.</p>
 <p>tags: <a href="http://pp.pymi.vn/tag/memo.html">memo</a> <a href="http://pp.pymi.vn/tag/python.html">python</a> </p>
-</footer><!-- /.post-info --><p>Nơi các Pymier chia sẻ kiến thức cho nhau.
-Để tạo một bài viết - hãy fork repo này và tạo một Pull Requests,
-sau khi review xong bài viết sẽ được xuất bản.</p>
-<ul>
-<li>Các bài viết về Python nên đặt trong Category <code>Python</code>, và có tag <code>python</code></li>
-<li>Tên tác giả nên dùng GitHub username</li>
-<li>Bài viết sử dụng Markdown syntax</li>
-<li>Bài viết tuyển chọn sẽ được đưa vào category "Trang chủ"</li>
-</ul>                </article>
-            </aside><!-- /#featured -->
+</footer><!-- /.post-info -->                <p>Bài viết đầu tiên</p>
+                <a class="readmore" href="http://pp.pymi.vn/first.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+                </section><!-- /#content -->
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>links</h2>
