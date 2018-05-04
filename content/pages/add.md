@@ -9,3 +9,5 @@ Fork repo này: [pymivn/people](https://github.com/pymivn/people#fork-destinatio
 Viết bài vào thư mục `contents/`, sử dụng định dạng Markdown - `filename.md`
 
 Tạo Pull Request, sau khi review, bài viết sẽ được xuất bản.
+
+Hướng dẫn về Markdown, Pelican xem tại [đây](http://pymi.vn/blog/blog-markdown-pelican-githubpages/)
