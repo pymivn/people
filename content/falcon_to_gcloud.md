@@ -111,7 +111,7 @@ Enter password:
 **password mặc định mình hay để trống nên mình Enter luôn, sau khi đăng nhập vào mysql nó sẽ như này
 ![mysql](images/ftg_mysql.png)
 kiểm tra coi đang có bao nhiêu databases
-```
+```sql
 mysql> show databases;
 +----------------------+
 | Database             |
@@ -124,12 +124,12 @@ mysql> show databases;
 4 rows in set (0.00 sec)
 ```
 giờ mình tiến hành tạo database cho app của mình thôi
-```
+```sql
 mysql> create database example_api;
 Query OK, 1 row affected (0.01 sec)
 ```
 Kiểm tra lại phát nào
-```
+```sql
 mysql> show databases;
 +----------------------+
 | Database             |
@@ -143,7 +143,7 @@ mysql> show databases;
 5 rows in set (0.00 sec)
 ```
 đã có database rồi thì phải có tạo thêm table để lưu dữ liệu thôi
-```
+```sql
 mysql> use example_api;
 Database changed
 mysql> show tables;
@@ -164,12 +164,12 @@ mysql> show tables;
 1 row in set (0.00 sec)
 ```
 Giờ chúng ta đã có table tên là `songs`, thêm giữ liệu vào cho nó thôi. Sau khi thêm dữ liệu xong,kiểm tra trong table `songs` đã có dữ liệu chưa đã
-```
+```sql
 mysql> select * from songs;
 Empty set (0.00 sec)
 ```
 Chưa có rồi, tiến hành thêm dữ liệu vào thôi
-```
+```sql
 mysql> insert into songs (id, song_name, category, singer) 
     -> values (1, 'Đừng Như Thói Quen', 'Nhạc trẻ', 'JayKii; Sara Lưu'),
     -> (2, 'Tâm Sự Tuổi 30', 'Nhạc trẻ', 'Trịnh Thăng Bình'),
@@ -179,8 +179,8 @@ mysql> insert into songs (id, song_name, category, singer)
 Query OK, 5 rows affected (0.00 sec)
 Records: 5  Duplicates: 0  Warnings: 0
 ```
-Xong rồi nè, kiểm tra lại phát nữa
-```
+Xong rồi, kiểm tra lại phát nữa
+```sql
 mysql> select * from songs;
 +--------+-------------------------+--------------+----------------------+
 | id | song_name                | category     | singer               |
@@ -330,7 +330,7 @@ cd `tên_repository`
 pip install -r requirements.txt
 ```
 Các lib đã có, source đã có...giờ tới phần cũng không kém quan trọng là tạo database cho nó. Cũng giống phía trên mình đã hướng dẫn thôi à, nên mình đi nhanh xíu
-```
+```sql
 mysql -u root -p
 mysql> create database example_api;
 Query OK, 1 row affected (0.00 sec)
@@ -342,7 +342,7 @@ Trong thư mục vừa clone về đã có database sẵn (lúc nãy mình kêu 
 mysql -u root -p example_api < example_api.sql
 ```
 Vào kiểm tra lại lần nữa cho chắc
-```
+```sql
 mysql -u root -p
 mysql> use example_api;
 Reading table information for completion of table and column names
@@ -367,7 +367,7 @@ Mở file `app.py` để sửa lại config tí nào
 nano app.py
 ```
 Chỉ cần thay đổi thông số của `passwd` và `db` thôi nha
-```
+```python
 db = MySQLdb.connect(host='127.0.0.1',
                      user='root',
                      passwd='password của bạn',
@@ -408,7 +408,7 @@ Let's do it. Đầu tiên tạo mới một file bạn có thể thay thế `exa
 sudo nano /etc/nginx/sites-available/example-api
 ```
 Chép cái đống này vào và chỗ `server_name` thay thế bằng `External IP` của bạn.
-```
+```dns
 server {
     listen       80;
     server_name  35.197.138.174;
