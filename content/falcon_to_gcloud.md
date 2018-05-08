@@ -1,26 +1,27 @@
-Title: Cùng tạo và deploy ứng dụng API đơn giản lên Google Cloud Platform  
+Title: Tạo và deploy ứng dụng API đơn giản lên Google Cloud Platform  
 Category: python  
-Tags: python  
+Tags: python, gcp, falcon, api, deploy  
 Author: kubeitsme  
 
-Trong bài này, mình sử dụng Falcon framework để xây dựng API. Bạn có thể xem thêm tại [đây](http://falcon.readthedocs.io/en/stable/) hoặc bạn có thể sử dụng Flask cách làm cũng tương tự.
-# Chuẩn bị:
+Trong bài này, mình sử dụng [Falcon framework](http://falcon.readthedocs.io/en/stable/) để xây dựng API hoặc bạn có thể sử dụng Flask cách làm cũng tương tự.
+## Chuẩn bị:
 1. Tài khoản của [Google Cloud](https://cloud.google.com/)  
-Đừng lo Google cho mình $300 miễn phí và có thể sử dụng được trong 12 tháng. Nhớ là phải Enable Billing và trong thẻ Visa hoặc Credit Card phải còn tối thiểu 100k (vì khi đăng ký sẽ phải cần $1) nhé.  
-2. Tài khoản git  
+Đừng lo Google cho mình $300 miễn phí và có thể sử dụng được trong 12 tháng. Nhớ là phải Enable Billing và trong thẻ Visa hoặc Credit Card phải còn tối thiểu 100.000 VNĐ (vì khi đăng ký sẽ phải cần $1).  
+2. Tài khoản github, gitlab, bitbucket  
 3. Cài trên máy:
     - git
     - python 3 
     - mysql
     - virtualenv
-# Tạo ứng dụng API đơn giản
-Đầu tiên, tạo một `repositories` rỗng trên github, gitlab...bất cứ đâu cũng được và clone `repositories` về máy bạn.
-Trong thư mục vừa clone về, bạn tạo các file sau nhé:
-- app.py: ứng dụng API
+
+## Tạo ứng dụng API đơn giản
+Đầu tiên, tạo một `repository` rỗng trên github, gitlab...bất cứ đâu cũng được và clone `repository` về máy bạn.
+Trong thư mục vừa clone về, bạn tạo các file sau:
+- app.py: file chứa code
 - requirements.txt: quản lý lib python  
 
-Tạo một file `app.py` có nội dung như sau:
-```
+Mở file `app.py` vừa tạo và chép đoạn mã sau vào:
+```python
 # Let's get this party started!
 import falcon
 
@@ -46,7 +47,7 @@ things = ThingsResource()
 # things will handle all requests to the '/things' URL path
 api.add_route('/things', things)
 ```
-Tạo một file `requirements.txt` để quản lý các gói
+Tiếp tục mở file `requirements.txt` và chép đoạn text ở dưới vào
 ```
 mysqlclient
 falcon
@@ -59,11 +60,26 @@ python3 -m venv falcon-env
 source falcon-env/bin/activate
 pip install -r requirements.txt
 ```
-**Trên ubuntu có thể không install được lib `mysqlclient` thì bạn chạy lệnh này trước nhé
+**Trên ubuntu có thể không install được lib `mysqlclient` thì bạn chạy lệnh này trước.
 ```
 sudo apt-get update && sudo apt-get install libmysqlclient-dev
 ```
-và chạy lại lệnh này (nhớ là phải trong virtualenv)
+Nếu không may bạn bị thoát ra khỏi môi trường ảo, thì chạy lệnh sau để kích hoạt lại môi trường ảo. Vậy làm sao để biết mình có đang trong môi trường ảo hay không?
+Bạn để ý vào dấu nhắc lệnh (command prompt), mình lấy ví dụ ở Ubuntu. Đây là khi chưa kích hoạt môi trường ảo
+```
+username@ubuntu:~$
+```
+Sau khi chạy lệnh
+```
+source falcon-env/bin/activate
+```
+Môi trường ảo đã kích hoạt thì dấu nhắc lệnh (command prompt) của bạn sẽ như sau
+```
+(falcon-env)username@ubuntu:~$
+```
+- `falcon-env` là tên môi trường ảo mình đã tạo ở trên.
+
+Tiếp tục nào, chạy lại lệnh
 ```
 pip install -r requirements.txt
 ```
@@ -71,29 +87,28 @@ pip install -r requirements.txt
 ```
 gunicorn app:api
 ```
-3. Sau khi chạy lệnh trên terminal sẽ hiển thị như sau
 ```
 [2018-05-04 23:22:02 +0700] [4418] [INFO] Starting gunicorn 19.8.1
 [2018-05-04 23:22:02 +0700] [4418] [INFO] Listening at: http://127.0.0.1:8000 (4418)
 [2018-05-04 23:22:02 +0700] [4418] [INFO] Using worker: sync
 [2018-05-04 23:22:02 +0700] [4421] [INFO] Booting worker with pid: 4421
 ```
-4. Truy cập vào đường dẫn trên
-```
-http://127.0.0.1:8000/things
-```
-à tại sao lại có `/things` vì trong file `app.py` có dòng
+3. Truy cập vào đường dẫn trên [http://127.0.0.1:8000/things](http://127.0.0.1:8000/things)
+
+**Bạn có thắc mắc vì sau phải thêm `/things` vào không? Vì trong file `app.py` mình có dòng sau:
 ```
 api.add_route('/things', things)
 ```
-kết quả
+Chỉ cần hiểu đơn giản `route` có nhiệm vụ định hướng request (nôm na là URL) của mình tới một hành động (action) tự định nghĩa nào đó để xử lý.
+
+Kết quả
 ![first run app](images/ftg_first_run_app.png)
-OK bây giờ chúng ta đã có một API đơn giản rồi, giờ làm cho nó phức tạp thêm xíu. Bạn có nhớ bước trên mình có cài lib `mysqlclient` không, bây giờ chúng ta sẽ sử dụng nó thôi. Đầu tiên phải tạo database trước đã
+Bây giờ chúng ta đã có một API đơn giản rồi, giờ làm cho nó phức tạp thêm xíu. Đầu tiên phải tạo database trước đã
 ```
 mysql -u root -p
 Enter password: 
 ```
-password mặc định mình hay để trống nên mình Enter luôn, sau khi đăng nhập vào mysql nó sẽ như này
+**password mặc định mình hay để trống nên mình Enter luôn, sau khi đăng nhập vào mysql nó sẽ như này
 ![mysql](images/ftg_mysql.png)
 kiểm tra coi đang có bao nhiêu databases
 ```
@@ -108,12 +123,12 @@ mysql> show databases;
 +----------------------+
 4 rows in set (0.00 sec)
 ```
-giờ mình tiến hành tạo database cho app của mình nhé
+giờ mình tiến hành tạo database cho app của mình thôi
 ```
 mysql> create database example_api;
 Query OK, 1 row affected (0.01 sec)
 ```
-OK kiểm tra lại phát nào
+Kiểm tra lại phát nào
 ```
 mysql> show databases;
 +----------------------+
@@ -148,12 +163,12 @@ mysql> show tables;
 +-----------------------+
 1 row in set (0.00 sec)
 ```
-Giờ chúng ta đã có table tên là `Songs`, thêm giữ liệu vào cho nó thôi. À quên kiểm tra trong table `Songs` đã có dữ liệu chưa đã
+Giờ chúng ta đã có table tên là `Songs`, thêm giữ liệu vào cho nó thôi. Sau khi thêm dữ liệu xong,kiểm tra trong table `Songs` đã có dữ liệu chưa đã
 ```
 mysql> select * from Songs;
 Empty set (0.00 sec)
 ```
-chưa có rồi, tiến hành thêm dữ liệu vào thôi
+Chưa có rồi, tiến hành thêm dữ liệu vào thôi
 ```
 mysql> insert into Songs (SongID, SongName, Category, Singer) 
     -> values (1, 'Đừng Như Thói Quen', 'Nhạc trẻ', 'JayKii; Sara Lưu'),
@@ -164,7 +179,7 @@ mysql> insert into Songs (SongID, SongName, Category, Singer)
 Query OK, 5 rows affected (0.00 sec)
 Records: 5  Duplicates: 0  Warnings: 0
 ```
-xong rồi nè, kiểm tra lại phát nữa
+Xong rồi nè, kiểm tra lại phát nữa
 ```
 mysql> select * from Songs;
 +--------+-------------------------+--------------+----------------------+
@@ -178,13 +193,13 @@ mysql> select * from Songs;
 +--------+-------------------------+--------------+----------------------+
 5 rows in set (0.00 sec)
 ```
-OK bây giờ đã có dữ liệu rồi, thoát ra thôi
+Dữ liệu đã có rồi, thoát ra thôi
 ```
 mysql> \q
 Bye
 ```
 Mở lại file `app.py` và chép code này vào
-```
+```python
 # Let's get this party started!
 import falcon
 import json
@@ -249,21 +264,21 @@ http://127.0.0.1:8000/songs
 ```
 và kết quả
 ![response](images/ftg_response.png)
-Mọi thứ đã xong rồi, các bạn push lên git thôi nếu không muốn phải tạo lại table thì làm theo mình (nhớ là phải trong `repositories` của git mà ta đã tạo lúc đầu nha)
+Mọi thứ đã xong rồi, các bạn push lên git thôi nếu không muốn phải tạo lại table thì làm theo mình (nhớ là phải trong `repository` của git mà ta đã tạo lúc đầu nha)
 ```
 mysqldump -u root -p example_api > example_api.sql
 Enter password: 
 ```
 Xong rồi giờ mình đã có database, do đây là ví dụ thôi nên push file `example_api.sql` lên git luôn (trên thực tế chẳng ai làm vậy đâu hí hí).
-# Deploy ứng dụng
+## Deploy ứng dụng
 Và đây là phần hấp dẫn nhất, ở đây mình sử dụng Compute Engine (hay có thể gọi là Cloud VPS) để có thể quản lý database của mình hoặc các app khác nếu mình muốn.  
-Ở đây mình không hướng dẫn các bạn tạo tài khoản và `Enable Billing` nhé, bạn có thể google giúp mình vì đã có rất nhiều bài hướng dẫn rồi. Các bạn truy cập vào đường dẫn sau:
+Ở đây mình không hướng dẫn các bạn tạo tài khoản và `Enable Billing`, bạn có thể google giúp mình vì đã có rất nhiều bài hướng dẫn rồi. Các bạn truy cập vào đường dẫn sau:
 ```
 https://console.cloud.google.com/
 ```
 Giao diện sẽ hiển thị như thế này
 ![menu](images/ftg_quick_start.png)
-Ngay trên cùng bên tay trái kế bên `Google Cloud Platform` bạn click vào `Select a project` nhé, một Pop-up sẽ xuất hiện
+Ngay trên cùng bên tay trái kế bên `Google Cloud Platform` bạn click vào `Select a project`, một Pop-up sẽ xuất hiện
 ![pop-up](images/ftg_select_project.png)
 Click vào dấu `+` bên tay phải, bạn sẽ được chuyển qua một trang khác
 ![create-project](images/ftg_create_project.png)
@@ -271,16 +286,16 @@ Click vào dấu `+` bên tay phải, bạn sẽ được chuyển qua một tra
 ![compute_engine](images/ftg_compute_engine.png)
 Bạn sẽ lại được chuyển tới một trang khác, click vào nút `GO TO COMPUTE ENGINIE` nha
 ![go_to_compute](images/ftg_go_to_compute.png)
-Bạn tiếp tục được chuyển tới một trang khác nữa rồi, haha mệt chưa? Thôi tiếp tục nào, click vào cái nút `Create` xanh xanh đó nhé
+Bạn tiếp tục được chuyển tới một trang khác nữa rồi, haha mệt chưa? Thôi tiếp tục nào, click vào cái nút `Create` xanh xanh đó
 ![compute_home](images/ftg_compute_home.png)
-Lại được chuyển qua trang khác nữa rồi, ở phần này bạn chọn giống mình nhé.
+Lại được chuyển qua trang khác nữa rồi, ở phần này bạn chọn giống mình.
 ![create_instance_2](images/ftg_create_instance_1.png)
 - `Name`: bạn điền vào gì cũng được
 - `Zone`: tuỳ bạn chọn thôi, mình thích `asia-southeast1-c` nên mình chọn. Bạn đổi zone khác tiền mỗi tháng sẽ khác nhau
 - `Machine type`: cứ để mặc định
-- `Boot disk`: mặc định là `Debian` bạn bấm vào nút `Change` để chọn OS mình thích nhé. Nhưng trong bài này mình sử dụng `Ubuntu` nên mình khuyên là nên đổi thành `Ubuntu 16.04 LTS` như hình
+- `Boot disk`: mặc định là `Debian` bạn bấm vào nút `Change` để chọn OS mình thích. Nhưng trong bài này mình sử dụng `Ubuntu` nên mình khuyên là nên đổi thành `Ubuntu 16.04 LTS` như hình
 ![create_instance_2](images/ftg_create_instance_2.png)
-Phần không kém quan trọng là `Firewall` bạn nhớ check vào 2 ô này nhé:
+Phần không kém quan trọng là `Firewall` bạn nhớ check vào 2 ô này:
 - Allow HTTP traffic
 - Allow HTTPS traffic
 Rồi nhấn nút `Create` thôi và xem thành quả thôi
@@ -309,9 +324,9 @@ OK đã có python 3, tạo môi trường ảo cho nó thôi
 python3 -m venv falcon-env
 source falcon-env/bin/activate
 ```
-OK lúc này mình đã trong môi trường ảo, bạn clone `repositories` vừa tạo ở trên về nha, và di chuyển vào thư mục của `repositories` vừa clone về
+OK lúc này mình đã trong môi trường ảo, bạn clone `repository` vừa tạo ở trên về nha, và di chuyển vào thư mục của `repository` vừa clone về
 ```
-cd `tên_repositories`
+cd `tên_repository`
 pip install -r requirements.txt
 ```
 Các lib đã có, source đã có...giờ tới phần cũng không kém quan trọng là tạo database cho nó. Cũng giống phía trên mình đã hướng dẫn thôi à, nên mình đi nhanh xíu
@@ -437,5 +452,5 @@ Thôi vào tiếp thằng `things` xem nào
 35.197.138.174/songs
 ```
 ![songs_ok](images/ftg_songs_ok.png)
-Yah cuối cùng đã xong hết rồi!!!  
-Chúc bạn thành công nhé.
+Yup cuối cùng cũng xong rồi, `beer` thôi !!!!  
+Chúc bạn thành công.
