@@ -148,29 +148,29 @@ mysql> use example_api;
 Database changed
 mysql> show tables;
 Empty set (0.00 sec)
-mysql> create table Songs(
-    -> SongID int,
-    -> SongName varchar(255),
-    -> Category varchar(255),
-    -> Singer varchar(255)
+mysql> create table songs(
+    -> id int,
+    -> song_name varchar(255),
+    -> category varchar(255),
+    -> singer varchar(255)
     -> );
 Query OK, 0 rows affected (0.03 sec)
 mysql> show tables;
 +-----------------------+
 | Tables_in_example_api |
 +-----------------------+
-| Songs                 |
+| songs                 |
 +-----------------------+
 1 row in set (0.00 sec)
 ```
-Giờ chúng ta đã có table tên là `Songs`, thêm giữ liệu vào cho nó thôi. Sau khi thêm dữ liệu xong,kiểm tra trong table `Songs` đã có dữ liệu chưa đã
+Giờ chúng ta đã có table tên là `songs`, thêm giữ liệu vào cho nó thôi. Sau khi thêm dữ liệu xong,kiểm tra trong table `songs` đã có dữ liệu chưa đã
 ```
-mysql> select * from Songs;
+mysql> select * from songs;
 Empty set (0.00 sec)
 ```
 Chưa có rồi, tiến hành thêm dữ liệu vào thôi
 ```
-mysql> insert into Songs (SongID, SongName, Category, Singer) 
+mysql> insert into songs (id, song_name, category, singer) 
     -> values (1, 'Đừng Như Thói Quen', 'Nhạc trẻ', 'JayKii; Sara Lưu'),
     -> (2, 'Tâm Sự Tuổi 30', 'Nhạc trẻ', 'Trịnh Thăng Bình'),
     -> (3, 'Chạm Đáy Nỗi Đau', 'Nhạc trẻ', 'Erik'),
@@ -181,9 +181,9 @@ Records: 5  Duplicates: 0  Warnings: 0
 ```
 Xong rồi nè, kiểm tra lại phát nữa
 ```
-mysql> select * from Songs;
+mysql> select * from songs;
 +--------+-------------------------+--------------+----------------------+
-| SongID | SongName                | Category     | Singer               |
+| id | song_name                | category     | singer               |
 +--------+-------------------------+--------------+----------------------+
 |      1 | Đừng Như Thói Quen      | Nhạc trẻ     | JayKii; Sara Lưu     |
 |      2 | Tâm Sự Tuổi 30          | Nhạc trẻ     | Trịnh Thăng Bình     |
@@ -215,13 +215,13 @@ class SongsResource(object):
                              use_unicode=True,
                              charset="utf8")
         c = db.cursor()
-        c.execute('select * from Songs')
+        c.execute('select * from songs')
         songs = c.fetchall()
         db.close()
         records = []
         for song in songs:
             records.append({
-                'song_id': song[0],
+                'id': song[0],
                 'song_name': song[1],
                 'category': song[2],
                 'singer': song[3],
@@ -348,9 +348,9 @@ mysql> use example_api;
 Reading table information for completion of table and column names
 You can turn off this feature to get a quicker startup with -A
 Database changed
-mysql> select * from Songs;
+mysql> select * from songs;
 +--------+-------------------------+--------------+----------------------+
-| SongID | SongName                | Category     | Singer               |
+| id | song_name                | category     | singer               |
 +--------+-------------------------+--------------+----------------------+
 |      1 | Đừng Như Thói Quen      | Nhạc trẻ     | JayKii; Sara Lưu     |
 |      2 | Tâm Sự Tuổi 30          | Nhạc trẻ     | Trịnh Thăng Bình     |
