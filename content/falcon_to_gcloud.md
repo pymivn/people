@@ -103,14 +103,14 @@ Chỉ cần hiểu đơn giản `route` có nhiệm vụ định hướng reques
 
 Kết quả
 ![first run app](images/ftg_first_run_app.png)
-Bây giờ chúng ta đã có một API đơn giản rồi, giờ làm cho nó phức tạp thêm xíu. Đầu tiên phải tạo database trước đã
+Bây giờ chúng ta đã có một API đơn giản rồi giờ làm cho nó phức tạp thêm xíu. Đầu tiên phải tạo database trước đã
 ```
 mysql -u root -p
 Enter password: 
 ```
 **password mặc định mình hay để trống nên mình Enter luôn, sau khi đăng nhập vào mysql nó sẽ như này
 ![mysql](images/ftg_mysql.png)
-kiểm tra coi đang có bao nhiêu databases
+Kiểm tra coi đang có bao nhiêu databases
 ```sql
 mysql> show databases;
 +----------------------+
@@ -123,7 +123,7 @@ mysql> show databases;
 +----------------------+
 4 rows in set (0.00 sec)
 ```
-giờ mình tiến hành tạo database cho app của mình thôi
+Giờ mình tiến hành tạo database cho app của mình
 ```sql
 mysql> create database example_api;
 Query OK, 1 row affected (0.01 sec)
@@ -142,7 +142,7 @@ mysql> show databases;
 +----------------------+
 5 rows in set (0.00 sec)
 ```
-đã có database rồi thì phải có tạo thêm table để lưu dữ liệu thôi
+Đã có database rồi thì phải có tạo thêm table để lưu dữ liệu
 ```sql
 mysql> use example_api;
 Database changed
@@ -168,7 +168,7 @@ Giờ chúng ta đã có table tên là `songs`, thêm giữ liệu vào cho nó
 mysql> select * from songs;
 Empty set (0.00 sec)
 ```
-Chưa có rồi, tiến hành thêm dữ liệu vào thôi
+Chưa có rồi, tiến hành thêm dữ liệu vào
 ```sql
 mysql> insert into songs (id, song_name, category, singer) 
     -> values (1, 'Đừng Như Thói Quen', 'Nhạc trẻ', 'JayKii; Sara Lưu'),
@@ -258,18 +258,16 @@ songs = SongsResource()
 api.add_route('/things', things)
 api.add_route('/songs', songs)
 ```
-Tắt app đang chạy bằng cách `Control + C` (mình xài OSX), rồi chạy lại app như ở trên mình đã hướng dẫn. Truy cập vào đường dẫn:
-```
-http://127.0.0.1:8000/songs
-```
+Tắt app đang chạy bằng cách `Control + C` (mình xài OSX), rồi chạy lại app như ở trên mình đã hướng dẫn. Truy cập vào đường dẫn [http://127.0.0.1:8000/songs](http://127.0.0.1:8000/songs)
+
 và kết quả
 ![response](images/ftg_response.png)
-Mọi thứ đã xong rồi, các bạn push lên git thôi nếu không muốn phải tạo lại table thì làm theo mình (nhớ là phải trong `repository` của git mà ta đã tạo lúc đầu nha)
+Mọi thứ đã xong rồi, các bạn push lên thôi nếu không muốn phải tạo lại table thì làm theo mình (nhớ là phải trong `repository` của git mà ta đã tạo lúc đầu)
 ```
 mysqldump -u root -p example_api > example_api.sql
 Enter password: 
 ```
-Xong rồi giờ mình đã có database, do đây là ví dụ thôi nên push file `example_api.sql` lên git luôn (trên thực tế chẳng ai làm vậy đâu hí hí).
+Xong rồi giờ mình đã có database, do đây là ví dụ nên push file `example_api.sql` lên luôn (trên thực tế chẳng ai làm vậy đâu).
 ## Deploy ứng dụng
 Và đây là phần hấp dẫn nhất, ở đây mình sử dụng Compute Engine (hay có thể gọi là Cloud VPS) để có thể quản lý database của mình hoặc các app khác nếu mình muốn.  
 Ở đây mình không hướng dẫn các bạn tạo tài khoản và `Enable Billing`, bạn có thể google giúp mình vì đã có rất nhiều bài hướng dẫn rồi. Các bạn truy cập vào đường dẫn sau:
@@ -291,28 +289,31 @@ Bạn tiếp tục được chuyển tới một trang khác nữa rồi, haha m
 Lại được chuyển qua trang khác nữa rồi, ở phần này bạn chọn giống mình.
 ![create_instance_2](images/ftg_create_instance_1.png)
 - `Name`: bạn điền vào gì cũng được
-- `Zone`: tuỳ bạn chọn thôi, mình thích `asia-southeast1-c` nên mình chọn. Bạn đổi zone khác tiền mỗi tháng sẽ khác nhau
+- `Zone`: tuỳ bạn chọn thôi, mình thích `asia-southeast1-c` nên mình chọn. Bạn đổi zone khác giá tiền mỗi tháng sẽ khác nhau
 - `Machine type`: cứ để mặc định
 - `Boot disk`: mặc định là `Debian` bạn bấm vào nút `Change` để chọn OS mình thích. Nhưng trong bài này mình sử dụng `Ubuntu` nên mình khuyên là nên đổi thành `Ubuntu 16.04 LTS` như hình
+
 ![create_instance_2](images/ftg_create_instance_2.png)
+
 Phần không kém quan trọng là `Firewall` bạn nhớ check vào 2 ô này:
 - Allow HTTP traffic
 - Allow HTTPS traffic
+
 Rồi nhấn nút `Create` thôi và xem thành quả thôi
 ![create_instance_done](images/ftg_create_instance_done.png)
-Bạn nhớ để ý chỗ `External IP` nhé, quan trọng lắm đấy.
+Bạn nhớ để ý chỗ `External IP` (để mình có thể truy cập bằng trình duyệt web).
 Bạn có thấy `SSH` chứ, click vào đó đi sẽ hiển thị như hình dưới
 ![ssh_instance](images/ftg_ssh_instance.png)
 Bạn click vào dòng đầu tiên `Open in browser window` và một cửa sổ mới sẽ xuất hiện
 ![instance_screen](images/ftg_instance_screen.png)
-Gần xong rồi, cố lên nào (mình biết bài này hơi dài). Bạn chạy những lệnh này giúp mình nhé
+Gần xong rồi, cố lên nào (mình biết bài này hơi dài). Bạn chạy những lệnh này
 ```
 sudo apt-get update
 sudo apt-get -y install nginx git-core libmysqlclient-dev mysql-server python3-pip python3-venv
 ```
 Khi đang chạy sẽ có xuất hiện như hình dưới, bạn cứ gõ mật khẩu mong muốn vào và Enter
 ![mysql_password](images/ftg_mysql_password.png)
-Sau khi nhấn Enter, sẽ xuất hiện thêm màn hình nhập lại mật khẩu - bạn cứ nhập mật khẩu lúc nãy và nhấn Enter nhé
+Sau khi nhấn Enter, sẽ xuất hiện thêm màn hình nhập lại mật khẩu - bạn cứ nhập mật khẩu lúc nãy và nhấn Enter
 ![mysql_repeat_password](images/ftg_mysql_repeat_password.png)
 Sau khi chạy xong, kiểm tra coi đã có python 3 chưa
 ```
@@ -329,7 +330,7 @@ OK lúc này mình đã trong môi trường ảo, bạn clone `repository` vừ
 cd `tên_repository`
 pip install -r requirements.txt
 ```
-Các lib đã có, source đã có...giờ tới phần cũng không kém quan trọng là tạo database cho nó. Cũng giống phía trên mình đã hướng dẫn thôi à, nên mình đi nhanh xíu
+Các lib đã có, source đã có...giờ tới phần cũng không kém quan trọng là tạo database cho nó. Cũng giống phía trên mình đã hướng dẫn nên mình đi nhanh xíu
 ```sql
 mysql -u root -p
 mysql> create database example_api;
@@ -337,7 +338,7 @@ Query OK, 1 row affected (0.00 sec)
 mysql> \q
 Bye
 ```
-Trong thư mục vừa clone về đã có database sẵn (lúc nãy mình kêu push lên luôn ấy) nên mình chỉ cần import vào thôi
+Trong thư mục vừa clone về đã có database sẵn (lúc nãy mình kêu push lên luôn ấy) nên mình chỉ cần import vào
 ```
 mysql -u root -p example_api < example_api.sql
 ```
@@ -366,7 +367,7 @@ Mở file `app.py` để sửa lại config tí nào
 ```
 nano app.py
 ```
-Chỉ cần thay đổi thông số của `passwd` và `db` thôi nha
+Chỉ cần thay đổi thông số của `passwd` và `db`
 ```python
 db = MySQLdb.connect(host='127.0.0.1',
                      user='root',
@@ -391,7 +392,7 @@ OK không vấn đề gì rồi, nãy mình có nói nhớ lưu ý chỗ `Extern
 35.197.138.174
 ```
 ![first_view.png](images/ftg_first_view.png)
-Compute Engine của bạn đã chạy rồi, thử vào app của mình xem (nhớ thay bằng `External IP` của bạn nha)
+Compute Engine của bạn đã chạy rồi, thử vào app của mình xem (nhớ thay bằng `External IP` của bạn)
 ```
 35.197.138.174/things
 ```
@@ -400,9 +401,9 @@ Compute Engine của bạn đã chạy rồi, thử vào app của mình xem (nh
 35.197.138.174/songs
 ```
 ![songs_not_found](images/ftg_songs_not_found.png)
-Ủa ủa là sao rõ ràng là app đã chạy rồi nhưng sao lại báo không tìm thấy? Hi, không sao đâu do mình chưa config đó mà một vài bước nữa sẽ xong thôi.  
+Rõ ràng là app đã chạy rồi nhưng sao lại báo không tìm thấy? Không sao đâu do mình chưa config đó mà một vài bước nữa sẽ xong thôi.  
 Tắt app đang chạy đi bằng phím `Control + C`.  
-Giờ mình bắt đầu vào config `nginx` thôi. À mình không phải dân chuyên về bên mạng nên mình hiểu nôm na `nginx` là một web server thế thôi hehe.  
+Giờ mình bắt đầu vào config `nginx` thôi. Mình không phải dân chuyên về `network` nên mình hiểu nôm na `nginx` là một web server.  
 Let's do it. Đầu tiên tạo mới một file bạn có thể thay thế `example-api` nếu muốn.
 ```
 sudo nano /etc/nginx/sites-available/example-api
@@ -417,8 +418,8 @@ server {
     }
 }
 ```
-Không nhớ cách save lại thì lên trên coi lại nhé.  
-Sau đó chạy thêm lệnh này, bạn muốn hiểu thêm về lệnh của linux thì vào [đây](https://explainshell.com/) nhé 
+Không nhớ cách save lại thì lên trên coi lại.  
+Sau đó chạy thêm lệnh này, bạn muốn hiểu thêm về lệnh của linux thì vào [đây](https://explainshell.com/) 
 ```
 sudo ln -s /etc/nginx/sites-available/example-api /etc/nginx/sites-enabled/
 ```
