@@ -1,19 +1,18 @@
-Title: Requests + bs4 = Requests-HTML
+Title: Requests + bs4 <= Requests-HTML
 Date: 2018-05-09
 Author: tung491
 Tags: requests-html, bs4, requests, python, crawl
-Category:
-## Giới thiệu
-[Requests-HTML](http://html.python-requests.org/) được viết bởi Kenneth Reitz - tác giả của requests nổi tiếng, với mục đích cao cả là thay thế combo huyền thoại (với pymier) requests + bs4.  Trên trang chủ, requests-html tự mô tả như sau: `This library intends to make parsing HTML (e.g. scraping the web) as simple and intuitive as possible` và đặc biệt chỉ hỗ trợ python3.
-<br>
+Category: Python
 
-## Các tính năng nổi bật của requests-html:
-<ul>
-<li>Hỗ trợ đầy đủ JavaScript</li>
-<li>Bộ chọn CSS, Xpath </li>
-<li>Giả lập trình duyệt thực sự</li>
-<li>Tự động theo chuyển trang</li>
-</ul>
+## Giới thiệu
+[Requests-HTML](http://html.python-requests.org/) được viết bởi Kenneth Reitz - tác giả của `requests` nổi tiếng, với mục đích cao cả là thay thế combo huyền thoại (với pymier) requests + bs4.  Trên trang chủ, requests-html tự mô tả như sau: `This library intends to make parsing HTML (e.g. scraping the web) as simple and intuitive as possible` và đặc biệt chỉ hỗ trợ python3.
+
+## Các tính năng nổi bật của requests-html
+- Hỗ trợ đầy đủ JavaScript
+- Bộ chọn CSS, Xpath
+- Giả lập trình duyệt thực sự
+- Tự động theo chuyển trang
+
 
 ## Demo vài tính năng nổi bật
 Cách cài đặt và sử dụng cơ bản của requests-html đã được tác giả nói rẩt rõ ở trang chủ do đó mính sẽ không nói lại nữa.
@@ -32,7 +31,8 @@ In [6]: r.html.search('UEFI vs BIOS - tạo USB boot cài Windows {something} t�
 Out[6]: '10'
 ```
 
-<p>Khi bạn chạy render() lần đầu, nó sẽ tải về  Chromium về thư mục home của bạn</p>
+Khi bạn chạy render() lần đầu, nó sẽ tải về  Chromium về thư mục home của bạn
+
 
 ### XPath Selector
  Requests-html được hỗ trợ Xpath query như Scrapy
@@ -66,12 +66,14 @@ Out[27]: <Element 'h3' class=('post-title', 'entry-title') itemprop='name'>
 In [28]: r.html.find(sel, first=True).text
 Out[28]: 'UEFI vs BIOS - tạo USB boot cài Windows 10 từ Ubuntu'
 ```
- Cái selector bạn có thể copy từ developer tool của trình duyệt web của bạn
+ Cái selector có thể copy từ developer tool của trình duyệt web
 
 
 ## Tổng kết
-Đây là những gì mà mình thấy nổi bật về requests-html. Mình nghĩ đây sẽ là thư viện trung gian giúp bạn lên Scrapy. Hoặc cũng có thể dùng để `nháp` trước khi dùng scrapy<br>
+Requests-html là 1 thư viện tiện lời thay thế cho combo requests + bs4, dễ dàng chuyển lên scrapy nếu cần thực hiện dự án crawling lớn, chuyên nghiệp
+
 Chi tiết hơn xem tại: http://html.python-requests.org/
 
-<br>
 HẾT.
+
+TUNG491
