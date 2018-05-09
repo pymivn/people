@@ -12,7 +12,7 @@ Category:
 <li>Hỗ trợ đầy đủ JavaScript</li>
 <li>Bộ chọn CSS, Xpath </li>
 <li>Giả lập trình duyệt thực sự</li>
-<li>Tự động theo chuyển trang</li>=
+<li>Tự động theo chuyển trang</li>
 </ul>
 
 ## Demo vài tính năng nổi bật
