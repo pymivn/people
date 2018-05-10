@@ -19,8 +19,7 @@ Cách cài đặt và sử dụng cơ bản của requests-html đã được t�
 ### Render
  Nhặt một đoạn văn bản mà đã được render bởi JavaScript:
 
-```
-Python
+``` python
 In [4]: r = session.get('http://www.familug.org/')
 In [5]: r.html.render()
 [W:pyppeteer.chromium_downloader] start chromium download.
@@ -31,7 +30,7 @@ In [6]: r.html.search('UEFI vs BIOS - tạo USB boot cài Windows {something} t�
 Out[6]: '10'
 ```
 
-Khi bạn chạy render() lần đầu, method sẽ tải về  `Chromium headless`về thư mục `$HOME`
+Khi bạn chạy render() lần đầu, method sẽ tải về `Chromium headless` về thư mục `$HOME`.
 
 
 ### XPath Selector
@@ -66,13 +65,13 @@ Out[27]: <Element 'h3' class=('post-title', 'entry-title') itemprop='name'>
 In [28]: r.html.find(sel, first=True).text
 Out[28]: 'UEFI vs BIOS - tạo USB boot cài Windows 10 từ Ubuntu'
 ```
-CSS selector này có thể copy từ developer tool của trình duyệt web
+CSS selector này có thể copy từ developer tool của trình duyệt web.
 
 
 ## Tổng kết
-Requests-html là 1 thư viện tiện lợi thay thế cho combo requests + bs4, dễ dàng chuyển lên scrapy nếu cần thực hiện dự án crawling lớn, chuyên nghiệp
+Requests-html là 1 thư viện tiện lợi thay thế cho combo requests + bs4, dễ dàng chuyển lên scrapy nếu cần thực hiện dự án crawling lớn, chuyên nghiệp.
 
-Chi tiết hơn xem tại: http://html.python-requests.org/
+Chi tiết hơn xem tại: http://html.python-requests.org/.
 
 HẾT.
 
