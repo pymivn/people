@@ -2,7 +2,7 @@ Title: Requests + bs4 <= Requests-HTML
 Date: 2018-05-09
 Author: tung491
 Tags: requests-html, bs4, requests, python, crawl
-Category: Python
+Category: Trang chủ
 
 ## Giới thiệu
 [Requests-HTML](http://html.python-requests.org/) được viết bởi Kenneth Reitz - tác giả của `requests` nổi tiếng, với mục đích cao cả là thay thế combo huyền thoại (với pymier) requests + bs4.  Trên trang chủ, requests-html tự mô tả như sau: `This library intends to make parsing HTML (e.g. scraping the web) as simple and intuitive as possible` và đặc biệt chỉ hỗ trợ python3.
@@ -76,5 +76,3 @@ Chi tiết hơn xem tại: http://html.python-requests.org/.
 HẾT.
 
 TUNG491 at https://pymi.vn
-
-
