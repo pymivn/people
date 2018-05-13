@@ -6,8 +6,8 @@ Author: kubeitsme
 Trong bài này, mình sử dụng [Falcon framework](http://falcon.readthedocs.io/en/stable/) để xây dựng API hoặc bạn có thể sử dụng Flask cách làm cũng tương tự.
 ## Chuẩn bị:
 1. Tài khoản của [Google Cloud](https://cloud.google.com/)  
-Đừng lo Google cho mình $300 miễn phí và có thể sử dụng được trong 12 tháng. Nhớ là phải Enable Billing và trong thẻ Visa hoặc Credit Card phải còn tối thiểu 100.000 VNĐ (vì khi đăng ký sẽ phải cần $1).  
-2. Tài khoản github, gitlab, bitbucket  
+Google cho mỗi tài khoản $300 để sử dụng dịch vụ cloud trong vòng 12 tháng. Để đăng ký được thì cần phải có 1 thẻ tín dụng còn ít nhất 100.000 VNĐ trong tài khoản.
+2. Tài khoản github, gitlab, bitbucket...  
 3. Cài trên máy:
     - git
     - python 3 
@@ -18,7 +18,7 @@ Trong bài này, mình sử dụng [Falcon framework](http://falcon.readthedocs.
 Đầu tiên, tạo một `repository` rỗng trên github, gitlab...bất cứ đâu cũng được và clone `repository` về máy bạn.
 Trong thư mục vừa clone về, bạn tạo các file sau:
 - app.py: file chứa code
-- requirements.txt: quản lý lib python  
+- requirements.txt: quản lý lib (thư viện) python  
 
 Mở file `app.py` vừa tạo và chép đoạn mã sau vào:
 ```python
@@ -47,17 +47,24 @@ things = ThingsResource()
 # things will handle all requests to the '/things' URL path
 api.add_route('/things', things)
 ```
-Tiếp tục mở file `requirements.txt` và chép đoạn text ở dưới vào
+Tiếp theo mở file `requirements.txt` và chép đoạn text ở dưới vào
 ```
 mysqlclient
 falcon
 gunicorn
 ```
-Tiếp theo, chạy thử ứng dụng:
-1. Tạo môi trường ảo và cài đặt các gói cần thiết
+Cài đặt vào chạy ứng dụng trên local:  
+### 1. Cài đặt môi trường ảo
+Tạo môi trường ảo (virtualenv)
 ```
 python3 -m venv falcon-env
+```
+Kích hoạt môi trường ảo
+```
 source falcon-env/bin/activate
+```
+Cài đặt các lib (thư viện) cần thiết
+```
 pip install -r requirements.txt
 ```
 **Trên ubuntu có thể không install được lib `mysqlclient` thì bạn chạy lệnh này trước.
@@ -83,7 +90,7 @@ Tiếp tục nào, chạy lại lệnh
 ```
 pip install -r requirements.txt
 ```
-2. Chạy thử trên terminal
+### 2. Chạy thử ứng dụng
 ```
 gunicorn app:api
 ```
@@ -93,22 +100,20 @@ gunicorn app:api
 [2018-05-04 23:22:02 +0700] [4418] [INFO] Using worker: sync
 [2018-05-04 23:22:02 +0700] [4421] [INFO] Booting worker with pid: 4421
 ```
-3. Truy cập vào đường dẫn trên [http://127.0.0.1:8000/things](http://127.0.0.1:8000/things)
-
-**Bạn có thắc mắc vì sau phải thêm `/things` vào không? Vì trong file `app.py` mình có dòng sau:
-```
+Truy cập vào đường dẫn trên [http://127.0.0.1:8000/things](http://127.0.0.1:8000/things)
+![first run app](images/ftg_first_run_app.png)
+**Bạn có thắc mắc vì sao phải thêm `/things` vào không? Vì trong file `app.py` có dòng:
+```python
 api.add_route('/things', things)
 ```
-Chỉ cần hiểu đơn giản `route` có nhiệm vụ định hướng request (nôm na là URL) của mình tới một hành động (action) tự định nghĩa nào đó để xử lý.
-
-Kết quả
-![first run app](images/ftg_first_run_app.png)
-Bây giờ chúng ta đã có một API đơn giản rồi giờ làm cho nó phức tạp thêm xíu. Đầu tiên phải tạo database trước đã
+Hiểu đơn giản là `route` có nhiệm vụ định hướng request (nôm na là URL - ở đây là `/things`) của mình tới `resource` (ThingsResource) đã được định nghĩa sẵn.
+### 3. Tạo database
+Bây giờ chúng ta đã có một API đơn giản hãy giờ làm cho nó phức tạp thêm. Đầu tiên phải tạo database trước
 ```
 mysql -u root -p
 Enter password: 
 ```
-**password mặc định mình hay để trống nên mình Enter luôn, sau khi đăng nhập vào mysql nó sẽ như này
+**password mặc định mình hay để trống nên mình `Enter` luôn, sau khi đăng nhập vào mysql nó sẽ như này
 ![mysql](images/ftg_mysql.png)
 Kiểm tra coi đang có bao nhiêu databases
 ```sql
@@ -123,7 +128,7 @@ mysql> show databases;
 +----------------------+
 4 rows in set (0.00 sec)
 ```
-Giờ mình tiến hành tạo database cho app của mình
+Giờ mình tiến hành tạo database
 ```sql
 mysql> create database example_api;
 Query OK, 1 row affected (0.01 sec)
@@ -142,12 +147,18 @@ mysql> show databases;
 +----------------------+
 5 rows in set (0.00 sec)
 ```
-Đã có database rồi thì phải có tạo thêm table để lưu dữ liệu
+Đã có database `example_api`, muốn lưu trữ được dữ liệu thì cần phải tạo thêm table cho nó
 ```sql
 mysql> use example_api;
 Database changed
+```
+Xem trong database đã có tables nào chưa
+```sql
 mysql> show tables;
 Empty set (0.00 sec)
+```
+Chưa có tables nào hết, tạo mới một table mới thôi
+```sql
 mysql> create table songs(
     -> id int,
     -> song_name varchar(255),
@@ -155,6 +166,9 @@ mysql> create table songs(
     -> singer varchar(255)
     -> );
 Query OK, 0 rows affected (0.03 sec)
+```
+Đã tạo thành công table tên là `songs`, kiểm tra lại lần nữa
+```sql
 mysql> show tables;
 +-----------------------+
 | Tables_in_example_api |
@@ -163,7 +177,7 @@ mysql> show tables;
 +-----------------------+
 1 row in set (0.00 sec)
 ```
-Giờ chúng ta đã có table tên là `songs`, thêm giữ liệu vào cho nó thôi. Sau khi thêm dữ liệu xong,kiểm tra trong table `songs` đã có dữ liệu chưa đã
+Giờ tiến hành thêm giữ liệu vào cho nó, trước khi thêm kiểm tra xem đã có dữ liệu chưa
 ```sql
 mysql> select * from songs;
 Empty set (0.00 sec)
@@ -179,7 +193,7 @@ mysql> insert into songs (id, song_name, category, singer)
 Query OK, 5 rows affected (0.00 sec)
 Records: 5  Duplicates: 0  Warnings: 0
 ```
-Xong rồi, kiểm tra lại phát nữa
+Thêm dữ liệu thành công, kiểm tra lại phát nữa
 ```sql
 mysql> select * from songs;
 +--------+-------------------------+--------------+----------------------+
@@ -193,12 +207,13 @@ mysql> select * from songs;
 +--------+-------------------------+--------------+----------------------+
 5 rows in set (0.00 sec)
 ```
-Dữ liệu đã có rồi, thoát ra thôi
+Dữ liệu cũng đã có, sử dụng `\q` để thoát ra khỏi `mysql`
 ```
 mysql> \q
 Bye
 ```
-Mở lại file `app.py` và chép code này vào
+### 4. Kết nối database và thêm resource
+Mở lại file `app.py` và thay thế code cũ bằng code ở dưới
 ```python
 # Let's get this party started!
 import falcon
@@ -258,93 +273,362 @@ songs = SongsResource()
 api.add_route('/things', things)
 api.add_route('/songs', songs)
 ```
-Tắt app đang chạy bằng cách `Control + C` (mình xài OSX), rồi chạy lại app như ở trên mình đã hướng dẫn. Truy cập vào đường dẫn [http://127.0.0.1:8000/songs](http://127.0.0.1:8000/songs)
-
-và kết quả
+Tắt app đang chạy bằng cách `Control + C` (mình xài OSX), rồi chạy lại app
+```
+gunicorn app:api
+```
+Truy cập vào đường dẫn [http://127.0.0.1:8000/songs](http://127.0.0.1:8000/songs)
 ![response](images/ftg_response.png)
-Mọi thứ đã xong rồi, các bạn push lên thôi nếu không muốn phải tạo lại table thì làm theo mình (nhớ là phải trong `repository` của git mà ta đã tạo lúc đầu)
+Mọi thứ đã chạy ổn trên local, giờ dùng `git` để push lên thôi. Nếu không muốn tạo lại database nữa thì chạy lệnh này để `export` ra
 ```
 mysqldump -u root -p example_api > example_api.sql
 Enter password: 
 ```
-Xong rồi giờ mình đã có database, do đây là ví dụ nên push file `example_api.sql` lên luôn (trên thực tế chẳng ai làm vậy đâu).
+Xong giờ mình đã có database (để có thể mang đi khắp nơi), do đây là ví dụ nên để file `example_api.sql` trong `repository`  rồi push lên luôn (trên thực tế chẳng ai làm vậy cả vì vấn đề bảo mật).
 ## Deploy ứng dụng
-Và đây là phần hấp dẫn nhất, ở đây mình sử dụng Compute Engine (hay có thể gọi là Cloud VPS) để có thể quản lý database của mình hoặc các app khác nếu mình muốn.  
-Ở đây mình không hướng dẫn các bạn tạo tài khoản và `Enable Billing`, bạn có thể google giúp mình vì đã có rất nhiều bài hướng dẫn rồi. Các bạn truy cập vào đường dẫn sau:
+Đây là phần hấp dẫn nhất, trong phần này mình sử dụng `Compute Engine` (hay có thể gọi là Cloud VPS) để có thể quản lý database của mình hoặc các app khác nếu mình muốn.  
+Mình sẽ không hướng dẫn tạo tài khoản và `Enable Billing`, vì đã có rất nhiều bài hướng dẫn rồi hoặc bạn có thể coi từ trang [hỗ trợ](https://support.google.com/cloud/answer/6158867?hl=en) của Google.  
+Bạn cũng có thể coi hướng dẫn nhanh về cách tạo và sử dụng `Compute Engine` từ Google bằng hình ảnh ở [đây](https://cloud.google.com/compute/docs/quickstart-linux).
+ Dưới đây, mình sẽ hướng dẫn tạo và sử dụng `Compute Engine` bằng bộ Google Cloud SDK (gcloud).
+### 1. Tải và cài đặt gcloud
+Tải bộ [Google Cloud SDK](https://cloud.google.com/sdk/downloads) về và giải nén ra. Bật terminal lên và chạy lệnh
 ```
-https://console.cloud.google.com/
+./google-cloud-sdk/install.sh
 ```
-Giao diện sẽ hiển thị như thế này
-![menu](images/ftg_quick_start.png)
-Ngay trên cùng bên tay trái kế bên `Google Cloud Platform` bạn click vào `Select a project`, một Pop-up sẽ xuất hiện
-![pop-up](images/ftg_select_project.png)
-Click vào dấu `+` bên tay phải, bạn sẽ được chuyển qua một trang khác
-![create-project](images/ftg_create_project.png)
-Điền tên mà bạn muốn vào Project Name và click vào nút `CREATE`, lúc này bạn sẽ được quay lại trang ban đầu. Bạn kéo chuột xuống một chút sẽ thấy ở phần `Poppular solutions` có phần `Compute Engine` click vào phần đó đi
-![compute_engine](images/ftg_compute_engine.png)
-Bạn sẽ lại được chuyển tới một trang khác, click vào nút `GO TO COMPUTE ENGINIE` nha
-![go_to_compute](images/ftg_go_to_compute.png)
-Bạn tiếp tục được chuyển tới một trang khác nữa rồi, haha mệt chưa? Thôi tiếp tục nào, click vào cái nút `Create` xanh xanh đó
-![compute_home](images/ftg_compute_home.png)
-Lại được chuyển qua trang khác nữa rồi, ở phần này bạn chọn giống mình.
-![create_instance_2](images/ftg_create_instance_1.png)
-- `Name`: bạn điền vào gì cũng được
-- `Zone`: tuỳ bạn chọn thôi, mình thích `asia-southeast1-c` nên mình chọn. Bạn đổi zone khác giá tiền mỗi tháng sẽ khác nhau
-- `Machine type`: cứ để mặc định
-- `Boot disk`: mặc định là `Debian` bạn bấm vào nút `Change` để chọn OS mình thích. Nhưng trong bài này mình sử dụng `Ubuntu` nên mình khuyên là nên đổi thành `Ubuntu 16.04 LTS` như hình
+Tắt và mở lại terminal. Tiếp theo cấu hình tài khoản cho `gcloud`
+```
+gcloud init
+```
+Màn hình sẽ hiển thị chào mừng...
+```
+Welcome! This command will take you through the configuration of gcloud.
 
-![create_instance_2](images/ftg_create_instance_2.png)
+Your current configuration has been set to: [default]
 
-Phần không kém quan trọng là `Firewall` bạn nhớ check vào 2 ô này:
-- Allow HTTP traffic
-- Allow HTTPS traffic
+You can skip diagnostics next time by using the following flag:
+  gcloud init --skip-diagnostics
 
-Rồi nhấn nút `Create` thôi và xem thành quả thôi
-![create_instance_done](images/ftg_create_instance_done.png)
-Bạn nhớ để ý chỗ `External IP` (để mình có thể truy cập bằng trình duyệt web).
-Bạn có thấy `SSH` chứ, click vào đó đi sẽ hiển thị như hình dưới
-![ssh_instance](images/ftg_ssh_instance.png)
-Bạn click vào dòng đầu tiên `Open in browser window` và một cửa sổ mới sẽ xuất hiện
-![instance_screen](images/ftg_instance_screen.png)
-Gần xong rồi, cố lên nào (mình biết bài này hơi dài). Bạn chạy những lệnh này
+Network diagnostic detects and fixes local network connection issues.
+Checking network connection...done.                                                                                           
+Reachability Check passed.
+Network diagnostic (1/1 checks) passed.
+
+You must log in to continue. Would you like to log in (Y/n)?  
+```
+Nó bảo mình phải đăng nhập để tiếp tục, nhấn phím `Y` và `Enter`.
+Sau khi nhấn `Enter`, 1 tab của trình duyệt sẽ mở lên và yêu cầu chọn tài khoản (nếu có nhiều tài khoản đã đăng nhập).
+![choose-account](/images/ftg_choose_account.png)
+Sau khi chọn tài khoản thì nhấn nút `CHO PHÉP` để cấp quyền cho gcloud.
+![permission](/images/ftg_permission.png)
+Bạn sẽ được chuyển tới một trang với nội dung là đã xác thực thành công.
+![permission](/images/ftg_auth_success.png)
+Quay lại terminal bạn sẽ thấy như sau
+```
+Your browser has been opened to visit:
+
+    https://accounts.google.com/o/oauth2/auth?redirect_uri=http%3A%2F%2Flocalhost%3A8085%2F&prompt=select_account&response_type=code&client_id=*********.apps.googleusercontent.com&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fappengine.admin+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcompute+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Faccounts.reauth&access_type=offline
+
+
+You are logged in as: [*********@gmail.com].
+
+This account has no projects.
+
+Would you like to create one? (Y/n)?
+```
+Tiếp theo mình phải tạo một `project` để có thể sử dụng được `Compute Engine`. Nhấn `Y` và `Enter`
+```
+Enter a Project ID. Note that a Project ID CANNOT be changed later.
+Project IDs must be 6-30 characters (lowercase ASCII, digits, or
+hyphens) in length and start with a lowercase letter.
+```
+Đại khái là nó kêu bạn đặt tên cho `project`(chấp nhận ký tự ASCII thường, số và dấu gạch ngang)...trong bài này mình đặt tên cho `project` là `project-songs`. Sau khi đặt tên xong nhấn `Enter`
+```
+Your current project has been set to: [project-songs].
+
+Not setting default zone/region (this feature makes it easier to use
+[gcloud compute] by setting an appropriate default value for the
+--zone and --region flag).
+See https://cloud.google.com/compute/docs/gcloud-compute section on how to set
+default compute region and zone manually. If you would like [gcloud init] to be
+able to do this for you the next time you run it, make sure the
+Compute Engine API is enabled for your project on the
+https://console.developers.google.com/apis page.
+
+Your Google Cloud SDK is configured and ready to use!
+
+* Commands that require authentication will use *********@gmail.com by default
+* Commands will reference project `project-songs` by default
+Run `gcloud help config` to learn how to change individual settings
+
+This gcloud configuration is called [default]. You can create additional configurations if you work with multiple accounts and/or projects.
+Run `gcloud topic configurations` to learn more.
+
+Some things to try next:
+
+* Run `gcloud --help` to see the Cloud Platform services you can interact with. And run `gcloud help COMMAND` to get help on any gcloud command.
+* Run `gcloud topic -h` to learn about advanced features of the SDK like arg files and output formatting
+```
+Đã tạo `project` thành công, để xem danh sách các `projects`
+```
+gcloud projects list
+```
+```
+PROJECT_ID     NAME           PROJECT_NUMBER
+project-songs  project-songs  579008193409
+```
+Tiếp theo mình sẽ cần tạo 1 `instance` (Compute Engine có thể tạo được nhiều instance), trước tiên phải kiểm tra xem có instances nào chưa
+```
+gcloud compute instances list
+```
+Và một thông báo lỗi sẽ xuất hiện
+```
+ERROR: (gcloud.compute.instances.list) Some requests did not succeed:
+ - Project 579008193409 is not found and cannot be used for API calls. If it is recently created, enable Compute Engine API by visiting https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=579008193409 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+```
+Bạn copy link ở trên và paste vào trình duyệt web, nó sẽ dẫn bạn đến trang để `Enable Compute Engine API`
+![enable-compute-api](images/ftg-enable-compute-api.png)
+Nhấn vào nút `ENABLE` một popup hiện ra yêu cầu bạn phải `Enable Billing`
+![enable_billing](images/ftg_enable_billing.png)
+Tiếp tục nhấn vào `ENABLE BILLING` một popup khác lại hiện ra yêu cầu bạn cài đặt tài khoản thanh toán cho `project` của mình
+![set_account](images/ftg_set_account.png)
+Và nhấn vào `SET ACCOUNT`, đợi một tí nó sẽ chuyển bạn đến 1 trang khác giống như vậy
+![enable_compute_api_done](images/enable_compute_api_done.png)
+Quay lại terminal và kiểm tra xem `Compute Engine API` đã hoạt động chưa
+```
+gcloud compute instances list
+```
+```
+Listed 0 items.
+```
+Mọi thứ đã hoạt động tốt tiến hành tạo `instance`
+```
+gcloud compute instances create [INSTANCE_NAME]
+    --image-family [IMAGE_FAMILY]
+    --image-project [IMAGE_PROJECT]
+    --zone [ZONE]
+    --tags http-server,https-server
+```
+Với:
+  - [INSTANCE_NAME] tên `instance`
+  - [IMAGE_FAMILY] và [IMAGE_PROJECT] nôm na là hệ điều hành để chạy trên `instance`, coi thêm ở [đây](https://cloud.google.com/compute/docs/images#os-compute-support)
+  - [ZONE] nơi đặt `instance`
+  - --tags http-server,https-server: cho phép truy cập bằng HTTP và HTTPS
+```
+gcloud compute instances create example-api --image-family ubuntu-1604-lts --image-project ubuntu-os-cloud --zone asia-southeast1-c --tags http-server,https-server
+```
+```
+Created [https://www.googleapis.com/compute/v1/projects/project-songs/zones/asia-southeast1-c/instances/example-api].
+NAME         ZONE               MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP     STATUS
+example-api  asia-southeast1-c  n1-standard-1               10.148.0.2   35.198.235.193  RUNNING
+```
+Đã tạo `intance` thành công, kiểm tra lại lần nữa cho chắc
+```
+gcloud compute instances list
+```
+```
+NAME         ZONE               MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP     STATUS
+example-api  asia-southeast1-c  n1-standard-1               10.148.0.2   35.198.235.193  RUNNING
+```
+`Instance` đã có và để truy cập vào `instance` bằng trình duyệt web thông qua giao thức HTTP mình cần phải cấu hình thêm một bước nữa, xem đã `port 80` đã mở chưa
+```
+gcloud compute firewall-rules list
+```
+```
+NAME                    NETWORK  DIRECTION  PRIORITY  ALLOW                         DENY
+default-allow-icmp      default  INGRESS    65534     icmp
+default-allow-internal  default  INGRESS    65534     tcp:0-65535,udp:0-65535,icmp
+default-allow-rdp       default  INGRESS    65534     tcp:3389
+default-allow-ssh       default  INGRESS    65534     tcp:22
+
+To show all fields of the firewall, please show in JSON format: --format=json
+To show all fields in table format, please see the examples in --help.
+```
+Chưa có rồi, thêm vào thôi
+```
+gcloud compute firewall-rules create rule-allow-tcp-80 --source-ranges 0.0.0.0/0 --target-tags allow-tcp-80 --allow tcp:80
+```
+```
+Creating firewall...-Created [https://www.googleapis.com/compute/v1/projects/project-songs/global/firewalls/rule-allow-tcp-80].
+Creating firewall...done.                                                                                                     
+NAME               NETWORK  DIRECTION  PRIORITY  ALLOW   DENY
+rule-allow-tcp-80  default  INGRESS    1000      tcp:80
+```
+Đã tạo xong, thêm vào `instance` nào
+```
+gcloud compute instances add-tags example-api --tags allow-tcp-80
+```
+
+```
+No zone specified. Using zone [asia-southeast1-c] for instance: [example-api].
+Updated [https://www.googleapis.com/compute/v1/projects/project-songs/zones/asia-southeast1-c/instances/example-api].
+```
+### 2. Đăng nhập và cài đặt cái gói cần thiết
+Đăng nhập vào `instance`
+```
+gcloud compute ssh [INSTANCE_NAME]
+```
+```
+gcloud compute ssh example-api
+```
+```
+WARNING: The public SSH key file for gcloud does not exist.
+WARNING: The private SSH key file for gcloud does not exist.
+WARNING: You do not have an SSH key for gcloud.
+WARNING: SSH keygen will be executed to generate a key.
+Generating public/private rsa key pair.
+Enter passphrase (empty for no passphrase): 
+```
+Do lần đầu đăng nhập chưa có `SSH key` - SDK sẽ tự tạo ra một `key` cho mình. Nhấn `Enter`
+```
+Enter same passphrase again: 
+```
+Nhấn `Enter` lần nữa, rồi đợi một tí
+```
+Your identification has been saved in /Users/kube/.ssh/google_compute_engine.
+Your public key has been saved in /Users/kube/.ssh/google_compute_engine.pub.
+The key fingerprint is:
+SHA256:VIc95umck9XFwT7qpEY14bQM2dGtTJiehPVYUy8rNFw kube@letri.local
+The key's randomart image is:
++---[RSA 2048]----+
+|          .==+E++|
+|         .o=BO.+=|
+|        .  =X**oo|
+|       .   .=B+=.|
+|        S  oo++ .|
+|           .*+   |
+|          . +.   |
+|           o .   |
+|          .      |
++----[SHA256]-----+
+No zone specified. Using zone [asia-southeast1-c] for instance: [example-api].
+Updating project ssh metadata...|Updated [https://www.googleapis.com/compute/v1/projects/project-songs].                      
+Updating project ssh metadata...done.                                                                                         
+Waiting for SSH key to propagate.
+Warning: Permanently added 'compute.6186573008226470554' (ECDSA) to the list of known hosts.
+Welcome to Ubuntu 16.04.4 LTS (GNU/Linux 4.13.0-1015-gcp x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  Get cloud support with Ubuntu Advantage Cloud Guest:
+    http://www.ubuntu.com/business/services/cloud
+
+0 packages can be updated.
+0 updates are security updates.
+
+
+_____________________________________________________________________
+WARNING! Your environment specifies an invalid locale.
+ The unknown environment variables are:
+   LC_CTYPE=UTF-8 LC_ALL=
+ This can affect your user experience significantly, including the
+ ability to manage packages. You may install the locales by running:
+
+   sudo apt-get install language-pack-UTF-8
+     or
+   sudo locale-gen UTF-8
+
+To see all available language packs, run:
+   apt-cache search "^language-pack-[a-z][a-z]$"
+To disable this message for all users, run:
+   sudo touch /var/lib/cloud/instance/locale-check.skip
+_____________________________________________________________________
+```
+Ở trên nó `CẢNH BÁO` mình cài đặt ngôn ngữ chưa hợp lệ nên làm thêm bước nữa
+```
+export LC_ALL="en_US.UTF-8"
+```
+```
+export LC_CTYPE="en_US.UTF-8"
+```
+```
+sudo dpkg-reconfigure locales
+```
+```
+Generating locales (this might take a while)...
+  en_US.UTF-8... done
+Generation complete.
+```
+Di chuyển vào thư mục `/`
+```
+cd /
+```
+Cập nhật và cài đặt thêm các gói (package) cần thiết
 ```
 sudo apt-get update
+```
+```
 sudo apt-get -y install nginx git-core libmysqlclient-dev mysql-server python3-pip python3-venv
 ```
-Khi đang chạy sẽ có xuất hiện như hình dưới, bạn cứ gõ mật khẩu mong muốn vào và Enter
+Khi đang chạy sẽ xuất hiện như hình dưới, bạn cứ gõ mật khẩu mong muốn vào và `Enter`
 ![mysql_password](images/ftg_mysql_password.png)
-Sau khi nhấn Enter, sẽ xuất hiện thêm màn hình nhập lại mật khẩu - bạn cứ nhập mật khẩu lúc nãy và nhấn Enter
+Sau khi nhấn `Enter`, sẽ xuất hiện thêm màn hình nhập lại mật khẩu - bạn cứ nhập mật khẩu lúc nãy và nhấn `Enter`
 ![mysql_repeat_password](images/ftg_mysql_repeat_password.png)
-Sau khi chạy xong, kiểm tra coi đã có python 3 chưa
+
+Sau khi đã cài đặt xong, kiểm tra xem đã có python 3 chưa
 ```
 python3 -V
+```
+```
 Python 3.5.2
 ```
-OK đã có python 3, tạo môi trường ảo cho nó thôi
+Lúc này bạn đang đứng ở thư mục `/`, nên di chuyển vào thư mục `/opt` 
+```
+cd opt/
+```
+Tạo một thư mục tên là `www`
+```
+sudo mkdir www
+```
+Di chuyển vào thư mục `www` vừa tạo
+```
+cd wwww
+```
+Đã có python 3 tiến hành tạo môi trường ảo cho nó
 ```
 python3 -m venv falcon-env
+```
+Set quyền cho thư mục `falcon-env`
+```
+sudo chmod -R 777 falcon-env/
+```
+Kích hoạt môi trường ảo
+```
 source falcon-env/bin/activate
 ```
-OK lúc này mình đã trong môi trường ảo, bạn clone `repository` vừa tạo ở trên về nha, và di chuyển vào thư mục của `repository` vừa clone về
+Nâng cấp `pip` lên phiên bản mới nhất
+```
+pip install --upgrade pip
+```
+Clone `repository` của bạn và di chuyển vào thư mục vừa clone về
 ```
 cd `tên_repository`
+```
+Cài đặt cái lib của python
+```
 pip install -r requirements.txt
 ```
-Các lib đã có, source đã có...giờ tới phần cũng không kém quan trọng là tạo database cho nó. Cũng giống phía trên mình đã hướng dẫn nên mình đi nhanh xíu
+Tạo database cho ứng dụng
 ```sql
 mysql -u root -p
+```
+
+```sql
 mysql> create database example_api;
 Query OK, 1 row affected (0.00 sec)
 mysql> \q
 Bye
 ```
-Trong thư mục vừa clone về đã có database sẵn (lúc nãy mình kêu push lên luôn ấy) nên mình chỉ cần import vào
+Trong thư mục vừa clone về đã có database nên chỉ cần import vào
 ```
 mysql -u root -p example_api < example_api.sql
 ```
 Vào kiểm tra lại lần nữa cho chắc
 ```sql
 mysql -u root -p
+```
+```sql
 mysql> use example_api;
 Reading table information for completion of table and column names
 You can turn off this feature to get a quicker startup with -A
@@ -363,7 +647,7 @@ mysql> select * from songs;
 mysql> \q
 Bye
 ```
-Mở file `app.py` để sửa lại config tí nào
+Mở file `app.py` sửa lại thông số
 ```
 nano app.py
 ```
@@ -377,7 +661,7 @@ db = MySQLdb.connect(host='127.0.0.1',
                      charset="utf8")
 ```
 Bấm `Control + X` sau đó `shift + Y` rồi `Enter` để lưu lại.
-Chạy thử app của mình xem nào
+Chạy thử app
 ```
 gunicorn app:api
 ```
@@ -387,38 +671,44 @@ gunicorn app:api
 [2018-05-05 16:29:12 +0000] [19408] [INFO] Using worker: sync
 [2018-05-05 16:29:12 +0000] [19411] [INFO] Booting worker with pid: 19411
 ```
-OK không vấn đề gì rồi, nãy mình có nói nhớ lưu ý chỗ `External IP` bạn nhớ chứ. Bây giờ là lúc sử dụng nó đây, mở trình duyệt web của bạn lên và gõ vào `External IP`
+Vậy là không có lỗi gì xảy ra, mở thêm một tab của terminal (OSX: Command + T)
 ```
-35.197.138.174
+gcloud compute instances list
 ```
+```
+NAME         ZONE               MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP     STATUS
+example-api  asia-southeast1-c  n1-standard-1               10.148.0.2   35.198.235.193  RUNNING
+```
+Mở trình duyệt web lên và nhập `EXTERNAL_IP` ở trên vào
 ![first_view.png](images/ftg_first_view.png)
-Compute Engine của bạn đã chạy rồi, thử vào app của mình xem (nhớ thay bằng `External IP` của bạn)
+`Compute Engine` đã chạy, thử vào app của mình xem
 ```
-35.197.138.174/things
+35.198.235.193/things
 ```
 ![things_not_found](images/ftg_things_not_found.png)
 ```
-35.197.138.174/songs
+35.198.235.193/songs
 ```
 ![songs_not_found](images/ftg_songs_not_found.png)
 Rõ ràng là app đã chạy rồi nhưng sao lại báo không tìm thấy? Không sao đâu do mình chưa config đó mà một vài bước nữa sẽ xong thôi.  
-Tắt app đang chạy đi bằng phím `Control + C`.  
+Tắt app đang chạy (`Control + C`).  
+### 3. Cấu hình nginx
 Giờ mình bắt đầu vào config `nginx` thôi. Mình không phải dân chuyên về `network` nên mình hiểu nôm na `nginx` là một web server.  
 Let's do it. Đầu tiên tạo mới một file bạn có thể thay thế `example-api` nếu muốn.
 ```
 sudo nano /etc/nginx/sites-available/example-api
 ```
-Chép cái đống này vào và chỗ `server_name` thay thế bằng `External IP` của bạn.
+Chép cái đống này vào và chỗ `server_name` thay thế bằng `External IP`
 ```dns
 server {
     listen       80;
-    server_name  35.197.138.174;
+    server_name  35.198.235.193;
     location / {
         proxy_pass http://127.0.0.1:8000;
     }
 }
 ```
-Không nhớ cách save lại thì lên trên coi lại.  
+`Control + X` và `Shift Y` rồi nhấn `Enter` để lưu lại.  
 Sau đó chạy thêm lệnh này, bạn muốn hiểu thêm về lệnh của linux thì vào [đây](https://explainshell.com/) 
 ```
 sudo ln -s /etc/nginx/sites-available/example-api /etc/nginx/sites-enabled/
@@ -441,16 +731,16 @@ Mọi thứ đã xong, à mà chưa xong đâu bạn phải chạy lại app c�
 gunicorn app:api
 ```
 Kiểm tra xem nào, gõ `External IP` lên trình duyệt web
-![no_route](images/ftg_no_route.png) 
-Á lúc này nó lại không hiển thị nginx như lúc đầu rồi, không sao hết. Để giải quyết vấn đề này: thì bạn có thể config lại file `nginx` hoặc bạn có thể `handle_404` lại trong app của mình `falcon` có hỗ trợ nhá.  
-Thôi vào tiếp thằng `things` xem nào
+![no_route](images/ftg_no_route.png)
+Khi truy cập vào `External IP` sẽ có thông báo không tìm thấy page. Để giải quyết vấn đề này thì bạn có thể config lại file `nginx` hoặc có thể dùng hàm `handle_404` (`falcon` có hỗ trợ). 
+Vào tiếp thằng `/things` xem nào
 ```
-35.197.138.174/things
+35.198.235.193/things
 ```
 ![things_ok](images/ftg_things_ok.png)
-Ổn rồi vào thằng `songs` xem
+Ổn rồi, vào thằng `/songs` xem
 ```
-35.197.138.174/songs
+35.198.235.193/songs
 ```
 ![songs_ok](images/ftg_songs_ok.png)
 Yup cuối cùng cũng xong rồi, `beer` thôi !!!!  
