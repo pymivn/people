@@ -321,11 +321,11 @@ You must log in to continue. Would you like to log in (Y/n)?
 ```
 Nó bảo mình phải đăng nhập để tiếp tục, nhấn phím `Y` và `Enter`.
 Sau khi nhấn `Enter`, 1 tab của trình duyệt sẽ mở lên và yêu cầu chọn tài khoản (nếu có nhiều tài khoản đã đăng nhập).
-![choose-account](/images/ftg_choose_account.png)
+![choose-account](images/ftg_choose_account.png)
 Sau khi chọn tài khoản thì nhấn nút `CHO PHÉP` để cấp quyền cho gcloud.
-![permission](/images/ftg_permission.png)
+![permission](images/ftg_permission.png)
 Bạn sẽ được chuyển tới một trang với nội dung là đã xác thực thành công.
-![permission](/images/ftg_auth_success.png)
+![permission](images/ftg_auth_success.png)
 Quay lại terminal bạn sẽ thấy như sau
 ```
 Your browser has been opened to visit:
