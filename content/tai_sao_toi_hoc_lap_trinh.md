@@ -12,9 +12,10 @@ Không ít người trong chúng ta từng thắc mắc về việc chúng ta h�
 
 Mình cũng giống các bạn trong clip trên, đều là học sinh cấp 3 đều có không ít thì nhiều kiến thức về lập trình nhưng mình thấy các bạn đang có phần ảo tưởng về cái ngành lập trình viên này. Có thể mình tiếp xúc khá nhiều lập trình viên nên mình có thể thấu hiểu được một phần nỗi khổ của ngành này: trĩ, mắt, cột sống, stress, deadline. Những người ngoài chỉ nhìn vào họ những lúc họ nhận lương nhưng đâu có được họ nhìn thấy được làm việc. Trên các loại báo xàm ke của Việt Nam và các bà hàng xóm, nghề `lập trình` được lập trình viên thường xuyên được nhắc đến trong các chủ đề như là: `Những công việc lương cao nhất`, `Những công việc không sợ thiếu việc làm lương cao trong 5 năm tới`, blabla ... ; nhưng sự thực có phải vậy không ? Công việc lập trình thực tế cũng chỉ giống bao nhiêu ngành nghề khác là bán sức lao động và giá trị của bản thân cho công ty và xã hội thôi.
 
-```
-Bố mình từng nói "Không có ngành nghề dễ kiếm việc hơn hay lương cao hơn ngành nghê nào. Tất cả công việc mày được trả lương là người ta trả cho giá trị và khả năng của mày mang lại chứ không phải trả cho cái ngành nghề của mày hay cái trường mày học."
-```
+`
+Bố mình từng nói "Không có ngành nghề dễ kiếm việc hơn hay lương cao hơn ngành nghê nào.
+Tất cả công việc mày được trả lương là người ta trả cho giá trị và khả năng của mày mang lại chứ không phải trả cho cái ngành nghề của mày hay cái trường mày học."
+`
 
 Lương 4000 USD/ tháng với lập trình không phải là không có nhưng những nguời như thế thuộc loại `hiếm` và thường có kinh nghiệm 5–7 năm đi làm. Còn về lương một cử nhân Bách Khoa ra trường thì "4k/năm thì hợp lý. Và cũng là cao hơn mặt bằng xã hội", "Xạo chó", "Ra trường 4k có cái củ cải" ... là những câu trả lời mình nhận được khi gửi bức ảnh trên và hỏi những người trong nghề và có mức lương >= 4000 USD.
 
