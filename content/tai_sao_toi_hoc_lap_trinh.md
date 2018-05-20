@@ -17,7 +17,7 @@ Bố mình từng nói "Không có ngành nghề dễ kiếm việc hơn hay lư
 Tất cả công việc mày được trả lương là người ta trả cho giá trị và khả năng của mày mang lại chứ không phải trả cho cái ngành nghề của mày hay cái trường mày học."
 `
 
-Lương 4000 USD/ tháng với lập trình không phải là không có nhưng những nguời như thế thuộc loại `hiếm` và thường có kinh nghiệm 5–7 năm đi làm. Còn về lương một cử nhân Bách Khoa ra trường thì "4000 USD/năm tương đương khoảng 7.5 triệu đồng/ tháng thì hợp lý, và cũng là cao hơn mặt bằng xã hội", "xạo chó", "Ra trường 4k có cái củ cải" ... là những câu trả lời mình nhận được khi gửi bức ảnh trên và hỏi những người trong nghề và có mức lương >= 4000 USD.
+Lương 4000 USD/ tháng với lập trình không phải là không có nhưng những nguời như thế thuộc loại `hiếm` và thường có kinh nghiệm 5–7 năm đi làm. Còn về lương một cử nhân Bách Khoa ra trường thì "4000 USD/năm tương đương khoảng 7.5 triệu đồng/ tháng thì hợp lý, và cũng là cao hơn mặt bằng xã hội", "xạo chó", "ra trường 4k có cái củ cải" ... là những câu trả lời mình nhận được khi gửi bức ảnh trên và hỏi những người trong nghề và có mức lương >= 4000 USD.
 
 Quay về vấn đề chính thôi, mình học lập trình để làm gì? Đơn giản thôi, mình học để hiểu về cách của mọi thứ trên Internet đang hoại động và để nó là công cụ cho mình để thực hiện được những gì mình muốn: Làm một trang web, vẽ bản đồ trà sữa, viết một con chatbot, blabla … Với mình, ngôn ngữ trong lập trình cũng giống như Tiếng Anh nó giúp bạn giao tiếp với các lập trình viên khác và thế giới.
 
