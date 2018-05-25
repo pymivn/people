@@ -34,7 +34,7 @@ Sau đó tạo một class Bot kế thừa Client:
 
 Tạo 1 function trong class Bot để thực hiện gửi tin nhắn, dưới đây là code của mình:
 
-`<script src="https://gist.github.com/tung491/102398d8599156c727b99e68c3680d8a.js"></script>`
+{% gist 102398d8599156c727b99e68c3680d8a %}
 
 Tham khảo thêm tại https://fbchat.readthedocs.io/en/master/
 
