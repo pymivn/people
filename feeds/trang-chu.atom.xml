@@ -1,5 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers - Trang chủ</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/trang-chu.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2018-05-20T00:00:00+07:00</updated><entry><title>Tôi học lập trình không phải vì lương 4000 USD</title><link href="http://pp.pymi.vn/toi-hoc-lap-trinh-khong-phai-vi-luong-4000-usd.html" rel="alternate"></link><published>2018-05-20T00:00:00+07:00</published><updated>2018-05-20T00:00:00+07:00</updated><author><name>tung491</name></author><id>tag:pp.pymi.vn,2018-05-20:/toi-hoc-lap-trinh-khong-phai-vi-luong-4000-usd.html</id><summary type="html">&lt;p&gt;Không ít học sinh phổ thông từng thắc mắc học môn lập trình để làm gì?
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers - Trang chủ</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/trang-chu.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2018-05-27T00:00:00+07:00</updated><entry><title>In ra màn hình số 1 - ngôn ngữ nào nhẹ nhất?</title><link href="http://pp.pymi.vn/dynamic.html" rel="alternate"></link><published>2018-05-27T00:00:00+07:00</published><updated>2018-05-27T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-05-27:/dynamic.html</id><summary type="html">&lt;p&gt;dash, bash, awk, perl, ruby, nodejs, python, elixir, guile - tất cả lên thớt!&lt;/p&gt;</summary><content type="html">&lt;p&gt;Nếu chỉ cần in ra mà hình số 1, ngôn ngữ lập trình nào sẽ chạy tốn ít RAM nhất?&lt;/p&gt;
+&lt;p&gt;Thí nghiệm sau sẽ cho ta thấy các chương trình cần bao nhiêu RAM để chạy và in ra số 1.&lt;/p&gt;
+&lt;p&gt;Ta dùng chương trình &lt;code&gt;/usr/bin/time&lt;/code&gt; để có cả thông số về RAM (&lt;code&gt;RSS&lt;/code&gt;) thay vì chỉ gõ time - lệnh builtin của bash.&lt;/p&gt;
+&lt;h2&gt;bash4.3&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time bash -c &lt;span class="s1"&gt;&amp;#39;echo 1&amp;#39;&lt;/span&gt;
+
+&lt;span class="m"&gt;1&lt;/span&gt;
+
+&lt;span class="m"&gt;0&lt;/span&gt;.00user &lt;span class="m"&gt;0&lt;/span&gt;.00system &lt;span class="m"&gt;0&lt;/span&gt;:00.00elapsed &lt;span class="m"&gt;100&lt;/span&gt;%CPU &lt;span class="o"&gt;(&lt;/span&gt;0avgtext+0avgdata 3064maxresident&lt;span class="o"&gt;)&lt;/span&gt;k
+
+0inputs+0outputs &lt;span class="o"&gt;(&lt;/span&gt;0major+136minor&lt;span class="o"&gt;)&lt;/span&gt;pagefaults 0swaps
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;dash&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time /bin/dash -c &lt;span class="s1"&gt;&amp;#39;echo 1&amp;#39;&lt;/span&gt;
+&lt;span class="m"&gt;1&lt;/span&gt;
+&lt;span class="m"&gt;0&lt;/span&gt;.00user &lt;span class="m"&gt;0&lt;/span&gt;.00system &lt;span class="m"&gt;0&lt;/span&gt;:00.00elapsed ?%CPU &lt;span class="o"&gt;(&lt;/span&gt;0avgtext+0avgdata 1492maxresident&lt;span class="o"&gt;)&lt;/span&gt;k
+0inputs+0outputs &lt;span class="o"&gt;(&lt;/span&gt;0major+67minor&lt;span class="o"&gt;)&lt;/span&gt;pagefaults 0swaps
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;mawk&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time mawk &lt;span class="s1"&gt;&amp;#39;BEGIN {print 1}&amp;#39;&lt;/span&gt;
+
+&lt;span class="m"&gt;1&lt;/span&gt;
+
+&lt;span class="m"&gt;0&lt;/span&gt;.00user &lt;span class="m"&gt;0&lt;/span&gt;.00system &lt;span class="m"&gt;0&lt;/span&gt;:00.00elapsed &lt;span class="m"&gt;100&lt;/span&gt;%CPU &lt;span class="o"&gt;(&lt;/span&gt;0avgtext+0avgdata 1932maxresident&lt;span class="o"&gt;)&lt;/span&gt;k
+
+0inputs+0outputs &lt;span class="o"&gt;(&lt;/span&gt;0major+86minor&lt;span class="o"&gt;)&lt;/span&gt;pagefaults 0swaps
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;gawk 4.1.3&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time gawk &lt;span class="s1"&gt;&amp;#39;BEGIN {print 1}&amp;#39;&lt;/span&gt;
+
+&lt;span class="m"&gt;1&lt;/span&gt;
+
+&lt;span class="m"&gt;0&lt;/span&gt;.00user &lt;span class="m"&gt;0&lt;/span&gt;.00system &lt;span class="m"&gt;0&lt;/span&gt;:00.00elapsed &lt;span class="m"&gt;42&lt;/span&gt;%CPU &lt;span class="o"&gt;(&lt;/span&gt;0avgtext+0avgdata 3632maxresident&lt;span class="o"&gt;)&lt;/span&gt;k
+
+552inputs+0outputs &lt;span class="o"&gt;(&lt;/span&gt;2major+173minor&lt;span class="o"&gt;)&lt;/span&gt;pagefaults 0swaps
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Python3.5.2&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time python3 -c &lt;span class="s1"&gt;&amp;#39;print(1)&amp;#39;&lt;/span&gt;
+
+&lt;span class="m"&gt;1&lt;/span&gt;
+
+&lt;span class="m"&gt;0&lt;/span&gt;.03user &lt;span class="m"&gt;0&lt;/span&gt;.01system &lt;span class="m"&gt;0&lt;/span&gt;:00.05elapsed &lt;span class="m"&gt;98&lt;/span&gt;%CPU &lt;span class="o"&gt;(&lt;/span&gt;0avgtext+0avgdata 9292maxresident&lt;span class="o"&gt;)&lt;/span&gt;k
+
+0inputs+0outputs &lt;span class="o"&gt;(&lt;/span&gt;0major+1100minor&lt;span class="o"&gt;)&lt;/span&gt;pagefaults 0swaps
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Python2.7.12&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time python2 -c &lt;span class="s1"&gt;&amp;#39;print(1)&amp;#39;&lt;/span&gt;
+
+&lt;span class="m"&gt;1&lt;/span&gt;
+
+&lt;span class="m"&gt;0&lt;/span&gt;.01user &lt;span class="m"&gt;0&lt;/span&gt;.00system &lt;span class="m"&gt;0&lt;/span&gt;:00.01elapsed &lt;span class="m"&gt;94&lt;/span&gt;%CPU &lt;span class="o"&gt;(&lt;/span&gt;0avgtext+0avgdata 6640maxresident&lt;span class="o"&gt;)&lt;/span&gt;k
+
+0inputs+0outputs &lt;span class="o"&gt;(&lt;/span&gt;0major+819minor&lt;span class="o"&gt;)&lt;/span&gt;pagefaults 0swaps
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Ruby 2.3.1&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time ruby -e &lt;span class="s1"&gt;&amp;#39;puts 1&amp;#39;&lt;/span&gt;
+&lt;span class="m"&gt;1&lt;/span&gt;
+&lt;span class="m"&gt;0&lt;/span&gt;.03user &lt;span class="m"&gt;0&lt;/span&gt;.01system &lt;span class="m"&gt;0&lt;/span&gt;:00.04elapsed &lt;span class="m"&gt;100&lt;/span&gt;%CPU &lt;span class="o"&gt;(&lt;/span&gt;0avgtext+0avgdata 10336maxresident&lt;span class="o"&gt;)&lt;/span&gt;k
+0inputs+0outputs &lt;span class="o"&gt;(&lt;/span&gt;0major+1595minor&lt;span class="o"&gt;)&lt;/span&gt;pagefaults 0swaps
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Perl v5.22.1&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time perl -e &lt;span class="s1"&gt;&amp;#39;print &amp;quot;1\n&amp;quot;&amp;#39;&lt;/span&gt;
+
+&lt;span class="m"&gt;1&lt;/span&gt;
+
+&lt;span class="m"&gt;0&lt;/span&gt;.00user &lt;span class="m"&gt;0&lt;/span&gt;.00system &lt;span class="m"&gt;0&lt;/span&gt;:00.00elapsed &lt;span class="m"&gt;100&lt;/span&gt;%CPU &lt;span class="o"&gt;(&lt;/span&gt;0avgtext+0avgdata 4144maxresident&lt;span class="o"&gt;)&lt;/span&gt;k
+
+0inputs+0outputs &lt;span class="o"&gt;(&lt;/span&gt;0major+176minor&lt;span class="o"&gt;)&lt;/span&gt;pagefaults 0swaps
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;NodeJS 6.11.2&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time node -p &lt;span class="s1"&gt;&amp;#39;1&amp;#39;&lt;/span&gt;
+
+&lt;span class="m"&gt;1&lt;/span&gt;
+
+&lt;span class="m"&gt;0&lt;/span&gt;.09user &lt;span class="m"&gt;0&lt;/span&gt;.00system &lt;span class="m"&gt;0&lt;/span&gt;:00.10elapsed &lt;span class="m"&gt;100&lt;/span&gt;%CPU &lt;span class="o"&gt;(&lt;/span&gt;0avgtext+0avgdata 24080maxresident&lt;span class="o"&gt;)&lt;/span&gt;k
+
+0inputs+0outputs &lt;span class="o"&gt;(&lt;/span&gt;0major+2920minor&lt;span class="o"&gt;)&lt;/span&gt;pagefaults 0swaps
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Elixir 1.6.3&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time elixir -e &lt;span class="s1"&gt;&amp;#39;IO.puts 1&amp;#39;&lt;/span&gt;
+
+&lt;span class="m"&gt;1&lt;/span&gt;
+
+&lt;span class="m"&gt;0&lt;/span&gt;.17user &lt;span class="m"&gt;0&lt;/span&gt;.04system &lt;span class="m"&gt;0&lt;/span&gt;:00.16elapsed &lt;span class="m"&gt;137&lt;/span&gt;%CPU &lt;span class="o"&gt;(&lt;/span&gt;0avgtext+0avgdata 29268maxresident&lt;span class="o"&gt;)&lt;/span&gt;k
+
+16inputs+0outputs &lt;span class="o"&gt;(&lt;/span&gt;1major+7837minor&lt;span class="o"&gt;)&lt;/span&gt;pagefaults 0swaps
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Guile 2.0.11&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time guile -c &lt;span class="s1"&gt;&amp;#39;(display 1) (newline)&amp;#39;&lt;/span&gt;
+
+&lt;span class="m"&gt;1&lt;/span&gt;
+
+&lt;span class="m"&gt;0&lt;/span&gt;.02user &lt;span class="m"&gt;0&lt;/span&gt;.00system &lt;span class="m"&gt;0&lt;/span&gt;:00.01elapsed &lt;span class="m"&gt;115&lt;/span&gt;%CPU &lt;span class="o"&gt;(&lt;/span&gt;0avgtext+0avgdata 7720maxresident&lt;span class="o"&gt;)&lt;/span&gt;k
+
+0inputs+0outputs &lt;span class="o"&gt;(&lt;/span&gt;0major+976minor&lt;span class="o"&gt;)&lt;/span&gt;pagefaults 0swaps
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;printf 8.25 - chương trình viết bằng C&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time &lt;span class="nb"&gt;printf&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;1&amp;#39;&lt;/span&gt;
+
+&lt;span class="m"&gt;10&lt;/span&gt;.00user &lt;span class="m"&gt;0&lt;/span&gt;.00system &lt;span class="m"&gt;0&lt;/span&gt;:00.00elapsed &lt;span class="m"&gt;100&lt;/span&gt;%CPU &lt;span class="o"&gt;(&lt;/span&gt;0avgtext+0avgdata 1844maxresident&lt;span class="o"&gt;)&lt;/span&gt;k
+
+0inputs+0outputs &lt;span class="o"&gt;(&lt;/span&gt;0major+72minor&lt;span class="o"&gt;)&lt;/span&gt;pagefaults 0swaps
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Làm lại toàn bộ bằng Python&lt;/h2&gt;
+&lt;p&gt;Tạo một một dictionary, chứa các tên ngôn ngữ - kèm với câu lệnh sẽ dùng để thử nghiệm&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;shlex&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;subprocess&lt;/span&gt;
+
+
+&lt;span class="n"&gt;programs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;bash&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;bash -c &amp;quot;echo 1&amp;quot;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;dash&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;dash -c &amp;quot;echo 1&amp;quot;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;mawk&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;mawk &amp;#39;BEGIN {print 1}&amp;#39;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;gawk&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;gawk &amp;#39;BEGIN {print 1}&amp;#39;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;python2.7&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;python2 -c &amp;quot;print(1)&amp;quot;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;python3.5&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;python3 -c &amp;quot;print(1)&amp;quot;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;ruby2.3&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;ruby -e &amp;quot;puts 1&amp;quot;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;node6&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;node -p 1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;perl5&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;perl -e &lt;/span&gt;&lt;span class="se"&gt;\&amp;quot;&lt;/span&gt;&lt;span class="s2"&gt;print &amp;#39;1&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\&amp;quot;&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;elixir&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;elixir -e &amp;quot;IO.puts 1&amp;quot;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;guile&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;guile -c &amp;quot;(display 1) (newline)&amp;quot;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;printf&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;printf &amp;quot;1&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s1"&gt;&amp;quot;&amp;#39;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;re&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_rss_from_stderr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stderr&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;match&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;compile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;(?P&amp;lt;rss&amp;gt;\d+)maxresident&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;err&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;decode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;match&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;group&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;rss&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+
+&lt;span class="n"&gt;languages&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="n"&gt;rsses&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;language&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cmd&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;programs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;cmd&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/usr/bin/time&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;shlex&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cmd&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;process&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;subprocess&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Popen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cmd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;stdout&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;subprocess&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PIPE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;stderr&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;subprocess&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PIPE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;out&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;err&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;communicate&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;decode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;1&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;
+    &lt;span class="n"&gt;rss&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_rss_from_stderr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;err&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;language&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;rss&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;languages&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;language&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;rsses&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rss&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;languages&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;rsses&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;RSS&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+
+&lt;span class="n"&gt;df_sorted_rss&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sort_values&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;by&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;RSS&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# run in Jupyter&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;matplotlib&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;pyplot&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;plt&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib&lt;/span&gt;
+&lt;span class="n"&gt;matplotlib&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;style&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;use&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;fivethirtyeight&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;matplotlib&lt;/span&gt; &lt;span class="n"&gt;inline&lt;/span&gt;
+&lt;span class="n"&gt;df_sorted_rss&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;RSS size in byte when print 1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="Dynamic typing languages" src="http://pp.pymi.vn/images/dynamic.png"&gt;&lt;/p&gt;
+&lt;h2&gt;Kết luận&lt;/h2&gt;
+&lt;p&gt;Khoan vội kết luận rằng cả thế giới nên chuyển hết về dùng dash cho đỡ tốn RAM hay xa lánh Elixir vì nó chạy tới 30 MB RAM để in số 1 ra màn hình.&lt;/p&gt;
+&lt;p&gt;Sử dụng đúng công cụ, cho đúng vấn đề thích hợp mới là điều quan trọng.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;dash được viết ra để dùng làm &lt;code&gt;shell (sh)&lt;/code&gt; cho Ubuntu, nó cần nhẹ, dù trả giá bằng việc không nhiều tính năng, và chỉ là một shell scripting language&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.familug.org/search/label/bash"&gt;bash&lt;/a&gt; là shell được dùng phổ biến nhất thế giới&lt;/li&gt;
+&lt;li&gt;awk là ngôn ngữ lập trình đã gắn liền với lịch sử của thế giới UNIX, rất tiện để tính toán dữ liệu cột / hàng. Với AWK cùng các CLI tool truyền thống, người ta có thể &lt;a href="https://adamdrake.com/command-line-tools-can-be-235x-faster-than-your-hadoop-cluster.html"&gt;giải quyết bài toán "big data" nhanh gấp 200 lần dùng Hadoop (EMR)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;mawk nhanh hơn gawk&lt;/li&gt;
+&lt;li&gt;perl5 luôn có chỗ đứng của nó, nó vẫn ở trên máy Ubuntu dù chưa bao giờ mình chủ ý cài&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.familug.org/search/label/guile"&gt;guile&lt;/a&gt; là extension language chính thức được lựa chọn bởi GNU, nó chính là ngôn ngữ scheme được mang vào ứng dụng thực tế&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://pymi.vn/"&gt;Python&lt;/a&gt; - ngôn ngữ dễ đọc, phổ biến nhất thế giới, đã đẩy ngành tính toán khoa học từ bộ môn trong phòng thí nghiệm trở thành ngành hot nhất trái đất. PS: Python khi bật lên đã dùng ~ 8MB RAM.&lt;/li&gt;
+&lt;li&gt;Ruby còn dùng nhiều RAM hơn nữa, dù về mặt tính năng thường được so ngang với Python, nhưng mặt ứng dụng vào khoa học thì là vực so với trời Python.&lt;/li&gt;
+&lt;li&gt;NodeJS là một JavaScript engine chuyển biến cả ngành web, cũng chưa rõ sao nó ngốn gần 25MB để bật lên, có khi đó vốn là bản chất của JavaScript.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://elixir.pymi.vn/"&gt;Elixir&lt;/a&gt; không chỉ bật lên một interpreter như bash, mà đó là cả hệ thống phân tán - chạy máy ảo BEAM của Erlang, nên con số 30MB thậm chí còn là hơi ... ít.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Bài này không xét các ngôn ngữ mà phải viết thành file, compile mới chạy, vì tác giả quá lười.&lt;/p&gt;
+&lt;p&gt;PS: học hết đống trên ở &lt;a href="http://www.familug.org/2016/12/free-ebook.html"&gt;đây&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Hết.&lt;/p&gt;
+&lt;p&gt;HVN at https://pymi.vn and https://www.familug.org&lt;/p&gt;</content><category term="python"></category><category term="tip"></category></entry><entry><title>Tôi học lập trình không phải vì lương 4000 USD</title><link href="http://pp.pymi.vn/toi-hoc-lap-trinh-khong-phai-vi-luong-4000-usd.html" rel="alternate"></link><published>2018-05-20T00:00:00+07:00</published><updated>2018-05-20T00:00:00+07:00</updated><author><name>tung491</name></author><id>tag:pp.pymi.vn,2018-05-20:/toi-hoc-lap-trinh-khong-phai-vi-luong-4000-usd.html</id><summary type="html">&lt;p&gt;Không ít học sinh phổ thông từng thắc mắc học môn lập trình để làm gì?
 Có phải vì mức lương 4000 USD của sinh viên mới ra trường mà nhiều người hay
 nhắc đến khi nói về lập trình viên.&lt;/p&gt;
 &lt;p&gt;Hôm nay mình đọc một bài trên Facebook nói …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Không ít học sinh phổ thông từng thắc mắc học môn lập trình để làm gì?
