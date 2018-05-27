@@ -152,17 +152,8 @@ Khi viết vào file thì viết mỗi câu lệnh 1 dòng, nhưng hoàn toàn c
 </pre></div>
 
 
-<h2>print</h2>
-<p><code>print</code>  và <code>printf</code> là 2 output statements (câu lệnh xử lý đầu ra), không phải function nên
-không sử dụng cú pháp gọi function <code>print(thing)</code></p>
-<div class="highlight"><pre><span></span>$ mawk <span class="s1">&#39;BEGIN { print &quot;hello&quot; }&#39;</span>
-hello
-</pre></div>
-
-
 <h2>parttern tìm kiếm</h2>
-<p>Một parttern quan trọng là khả năng tìm kiếm các record có chứa một regular expression
-và xử lý record đó.</p>
+<p>parttern này giúp tìm kiếm các record có chứa một regular expression (hoặc string cố định) và xử lý record đó.</p>
 <p>Đếm số dòng chứa từ <code>print</code>:</p>
 <div class="highlight"><pre><span></span>$ <span class="nb">echo</span> -e <span class="s2">&quot;printf print \nprintf&quot;</span>
 <span class="nb">printf</span> print
@@ -174,16 +165,26 @@ $ <span class="nb">echo</span> -e <span class="s2">&quot;printf print \nprintf&q
 </pre></div>
 
 
+<h2>print</h2>
+<p><code>print</code>  và <code>printf</code> là 2 output statements (câu lệnh xử lý đầu ra), không phải function nên
+không sử dụng cú pháp gọi function <code>print(thing)</code></p>
+<div class="highlight"><pre><span></span>$ mawk <span class="s1">&#39;BEGIN { print &quot;hello&quot; }&#39;</span>
+hello
+</pre></div>
+
+
 <h2>variable và field variable</h2>
 <p>Mỗi record chứa nhiều field, hãy tưởng tượng như 1 dòng spreadsheet/excel có nhiều ô ứng với các cột.
-Các variable có sẵn:
-- <code>$0</code> - toàn bộ 1 record (dòng) - chú ý <code>$X</code> là tên biến hợp lệ trong AWK, dấu $ dùng để truy cập giá trị của field
-- <code>$1</code> - field 1 (hay có thể nghĩ là cột số 1)
-- <code>$2</code> - field 2
-- ...
-- <code>$NF</code> - field cuối cùng
-- NF - số field
-- NR - thứ tự của record, tăng dần sau khi xử lý xong mỗi record</p>
+Các variable có sẵn:</p>
+<ul>
+<li><code>$0</code> - toàn bộ 1 record (dòng) - chú ý <code>$X</code> là tên biến hợp lệ trong AWK, dấu $ dùng để truy cập giá trị của field</li>
+<li><code>$1</code> - field 1 (hay có thể nghĩ là cột số 1)</li>
+<li><code>$2</code> - field 2</li>
+<li>...</li>
+<li><code>$NF</code> - field cuối cùng</li>
+<li>NF - số field</li>
+<li>NR - thứ tự của record, tăng dần sau khi xử lý xong mỗi record</li>
+</ul>
 <p>Khi truy cập biến, không sử dụng thêm bất cứ ký tự nào (khác với bash, bash phải thêm $varname).</p>
 <div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s1">&#39;1, Le Van Xe, 27, Ha Noi, 0990090090&#39;</span> <span class="p">|</span> mawk -F, <span class="s1">&#39;{ print $NF}&#39;</span>
  <span class="m">0990090090</span>

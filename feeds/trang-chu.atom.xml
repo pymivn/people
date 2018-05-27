@@ -112,17 +112,8 @@ Khi viết vào file thì viết mỗi câu lệnh 1 dòng, nhưng hoàn toàn c
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h2&gt;print&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;print&lt;/code&gt;  và &lt;code&gt;printf&lt;/code&gt; là 2 output statements (câu lệnh xử lý đầu ra), không phải function nên
-không sử dụng cú pháp gọi function &lt;code&gt;print(thing)&lt;/code&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ mawk &lt;span class="s1"&gt;&amp;#39;BEGIN { print &amp;quot;hello&amp;quot; }&amp;#39;&lt;/span&gt;
-hello
-&lt;/pre&gt;&lt;/div&gt;
-
-
 &lt;h2&gt;parttern tìm kiếm&lt;/h2&gt;
-&lt;p&gt;Một parttern quan trọng là khả năng tìm kiếm các record có chứa một regular expression
-và xử lý record đó.&lt;/p&gt;
+&lt;p&gt;parttern này giúp tìm kiếm các record có chứa một regular expression (hoặc string cố định) và xử lý record đó.&lt;/p&gt;
 &lt;p&gt;Đếm số dòng chứa từ &lt;code&gt;print&lt;/code&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nb"&gt;echo&lt;/span&gt; -e &lt;span class="s2"&gt;&amp;quot;printf print \nprintf&amp;quot;&lt;/span&gt;
 &lt;span class="nb"&gt;printf&lt;/span&gt; print
@@ -134,16 +125,26 @@ $ &lt;span class="nb"&gt;echo&lt;/span&gt; -e &lt;span class="s2"&gt;&amp;quot;p
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;h2&gt;print&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;print&lt;/code&gt;  và &lt;code&gt;printf&lt;/code&gt; là 2 output statements (câu lệnh xử lý đầu ra), không phải function nên
+không sử dụng cú pháp gọi function &lt;code&gt;print(thing)&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ mawk &lt;span class="s1"&gt;&amp;#39;BEGIN { print &amp;quot;hello&amp;quot; }&amp;#39;&lt;/span&gt;
+hello
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;h2&gt;variable và field variable&lt;/h2&gt;
 &lt;p&gt;Mỗi record chứa nhiều field, hãy tưởng tượng như 1 dòng spreadsheet/excel có nhiều ô ứng với các cột.
-Các variable có sẵn:
-- &lt;code&gt;$0&lt;/code&gt; - toàn bộ 1 record (dòng) - chú ý &lt;code&gt;$X&lt;/code&gt; là tên biến hợp lệ trong AWK, dấu $ dùng để truy cập giá trị của field
-- &lt;code&gt;$1&lt;/code&gt; - field 1 (hay có thể nghĩ là cột số 1)
-- &lt;code&gt;$2&lt;/code&gt; - field 2
-- ...
-- &lt;code&gt;$NF&lt;/code&gt; - field cuối cùng
-- NF - số field
-- NR - thứ tự của record, tăng dần sau khi xử lý xong mỗi record&lt;/p&gt;
+Các variable có sẵn:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;$0&lt;/code&gt; - toàn bộ 1 record (dòng) - chú ý &lt;code&gt;$X&lt;/code&gt; là tên biến hợp lệ trong AWK, dấu $ dùng để truy cập giá trị của field&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;$1&lt;/code&gt; - field 1 (hay có thể nghĩ là cột số 1)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;$2&lt;/code&gt; - field 2&lt;/li&gt;
+&lt;li&gt;...&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;$NF&lt;/code&gt; - field cuối cùng&lt;/li&gt;
+&lt;li&gt;NF - số field&lt;/li&gt;
+&lt;li&gt;NR - thứ tự của record, tăng dần sau khi xử lý xong mỗi record&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;Khi truy cập biến, không sử dụng thêm bất cứ ký tự nào (khác với bash, bash phải thêm $varname).&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;1, Le Van Xe, 27, Ha Noi, 0990090090&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; mawk -F, &lt;span class="s1"&gt;&amp;#39;{ print $NF}&amp;#39;&lt;/span&gt;
  &lt;span class="m"&gt;0990090090&lt;/span&gt;
