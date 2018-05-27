@@ -35,7 +35,8 @@
 <p>In <a href="http://pp.pymi.vn/category/trang-chu.html">Trang chủ</a>.</p>
 <p>tags: <a href="http://pp.pymi.vn/tag/python.html">python</a> <a href="http://pp.pymi.vn/tag/tip.html">tip</a> </p>
 </footer><!-- /.post-info --><p>Nếu chỉ cần in ra mà hình số 1, ngôn ngữ lập trình nào sẽ chạy tốn ít RAM nhất?</p>
-<p>Thí nghiệm sau sẽ cho ta thấy các chương trình cần bao nhiêu RAM để chạy và in ra số 1.</p>
+<p>Thí nghiệm sau sẽ cho ta thấy các chương trình cần bao nhiêu RAM để chạy và in
+ra số 1, kết thúc dòng bằng một dấu xuống dòng (newline <code>\n</code>).</p>
 <p>Ta dùng chương trình <code>/usr/bin/time</code> để có cả thông số về RAM (<code>RSS</code>) thay vì chỉ gõ time - lệnh builtin của bash.</p>
 <h2>bash4.3</h2>
 <div class="highlight"><pre><span></span>$ /usr/bin/time bash -c <span class="s1">&#39;echo 1&#39;</span>
@@ -162,7 +163,7 @@
 
 
 <h2>Làm lại toàn bộ bằng Python</h2>
-<p>Tạo một một dictionary, chứa các tên ngôn ngữ - kèm với câu lệnh sẽ dùng để thử nghiệm</p>
+<p>Tạo một dictionary, chứa các tên ngôn ngữ - kèm với câu lệnh sẽ dùng để thử nghiệm</p>
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">shlex</span>
 <span class="kn">import</span> <span class="nn">subprocess</span>
 
@@ -191,7 +192,6 @@
 
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
-<span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="n">languages</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">rsses</span> <span class="o">=</span> <span class="p">[]</span>

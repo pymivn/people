@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers - Trang chủ</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/trang-chu.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2018-05-27T00:00:00+07:00</updated><entry><title>In ra màn hình số 1 - ngôn ngữ nào nhẹ nhất?</title><link href="http://pp.pymi.vn/dynamic.html" rel="alternate"></link><published>2018-05-27T00:00:00+07:00</published><updated>2018-05-27T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-05-27:/dynamic.html</id><summary type="html">&lt;p&gt;dash, bash, awk, perl, ruby, nodejs, python, elixir, guile - tất cả lên thớt!&lt;/p&gt;</summary><content type="html">&lt;p&gt;Nếu chỉ cần in ra mà hình số 1, ngôn ngữ lập trình nào sẽ chạy tốn ít RAM nhất?&lt;/p&gt;
-&lt;p&gt;Thí nghiệm sau sẽ cho ta thấy các chương trình cần bao nhiêu RAM để chạy và in ra số 1.&lt;/p&gt;
+&lt;p&gt;Thí nghiệm sau sẽ cho ta thấy các chương trình cần bao nhiêu RAM để chạy và in
+ra số 1, kết thúc dòng bằng một dấu xuống dòng (newline &lt;code&gt;\n&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;Ta dùng chương trình &lt;code&gt;/usr/bin/time&lt;/code&gt; để có cả thông số về RAM (&lt;code&gt;RSS&lt;/code&gt;) thay vì chỉ gõ time - lệnh builtin của bash.&lt;/p&gt;
 &lt;h2&gt;bash4.3&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time bash -c &lt;span class="s1"&gt;&amp;#39;echo 1&amp;#39;&lt;/span&gt;
@@ -127,7 +128,7 @@
 
 
 &lt;h2&gt;Làm lại toàn bộ bằng Python&lt;/h2&gt;
-&lt;p&gt;Tạo một một dictionary, chứa các tên ngôn ngữ - kèm với câu lệnh sẽ dùng để thử nghiệm&lt;/p&gt;
+&lt;p&gt;Tạo một dictionary, chứa các tên ngôn ngữ - kèm với câu lệnh sẽ dùng để thử nghiệm&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;shlex&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;subprocess&lt;/span&gt;
 
@@ -156,7 +157,6 @@
 
 
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
-&lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
 
 &lt;span class="n"&gt;languages&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
 &lt;span class="n"&gt;rsses&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
