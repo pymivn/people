@@ -1,5 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2018-05-27T00:00:00+07:00</updated><entry><title>In ra màn hình số 1 - ngôn ngữ nào nhẹ nhất?</title><link href="http://pp.pymi.vn/dynamic.html" rel="alternate"></link><published>2018-05-27T00:00:00+07:00</published><updated>2018-05-27T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-05-27:/dynamic.html</id><summary type="html">&lt;p&gt;dash, bash, awk, perl, ruby, nodejs, python, elixir, guile - tất cả lên thớt!&lt;/p&gt;</summary><content type="html">&lt;p&gt;Nếu chỉ cần in ra mà hình số 1, ngôn ngữ lập trình nào sẽ chạy tốn ít RAM nhất?&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2018-05-27T00:00:00+07:00</updated><entry><title>Awk siêu tốc</title><link href="http://pp.pymi.vn/awk.html" rel="alternate"></link><published>2018-05-27T00:00:00+07:00</published><updated>2018-05-27T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-05-27:/awk.html</id><summary type="html">&lt;p&gt;học và dùng luôn trong 20 phút - yêu cầu dùng Ubuntu/OSX hay các hệ điều hành UNIX-like.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Nếu bạn đã biết 1 scripting language như Python hay Perl việc học AWK sẽ có vẻ hơi
+thừa/ hơi ngần ngại. Nhưng AWK - ngôn ngữ lập trình sinh ra từ những năm 1970 luôn
+có chỗ dùng, và sức mạnh đáng gờm.&lt;/p&gt;
+&lt;p&gt;Bài này giới thiệu các khái niệm cơ bản của ngôn ngữ lập trình AWK, một số cách dùng thông dụng, học xong có thể dùng ngay và vô cùng hữu ích với những người xử lý dữ liệu dạng cột/ bảng mà không biết Python.&lt;/p&gt;
+&lt;p&gt;Các lệnh trong bài này dùng &lt;code&gt;mawk&lt;/code&gt; vì nó được biết là nhanh hơn các bản awk khác, nhưng về tính năng cơ bản là giống nhau, người đọc dùng bản nào cũng được, VD gawk&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ whatis awk
+awk &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;              - pattern scanning and processing language
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Dùng trong các câu lệnh hàng ngày&lt;/h3&gt;
+&lt;p&gt;AWK rất thích hợp để nhét vào 1 pipe các câu lệnh UNIX, việc mà Python vốn không sinh ra để làm&lt;/p&gt;
+&lt;p&gt;Ví dụ: đếm số dòng trong file /etc/passwd&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ wc /etc/passwd
+  &lt;span class="m"&gt;57&lt;/span&gt;   &lt;span class="m"&gt;95&lt;/span&gt; &lt;span class="m"&gt;3193&lt;/span&gt; /etc/passwd
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Lệnh &lt;code&gt;wc&lt;/code&gt; vốn sinh ra để đếm: dòng, số từ, số ký tự. Bạn có thể viết 1 script Python 5-7 dòng
+làm chuyện này, nhưng 1 dòng? Hãy thử và nếu thành công, hãy comment!&lt;/p&gt;
+&lt;p&gt;Với AWK, làm việc này không khó khăn gì. Hãy bỏ qua nếu không hiểu gì, phần giải thích sẽ theo sau&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ cat /etc/passwd &lt;span class="p"&gt;|&lt;/span&gt; mawk &lt;span class="s1"&gt;&amp;#39;{ words += NF; chars += length($0) + 1;} END { print NR, words, chars}&amp;#39;&lt;/span&gt;
+&lt;span class="m"&gt;57&lt;/span&gt; &lt;span class="m"&gt;95&lt;/span&gt; &lt;span class="m"&gt;3193&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Một pipe (&lt;code&gt;cmd1 | cmd2 | cmd3&lt;/code&gt;) thường bắt đầu bằng &lt;code&gt;cat file&lt;/code&gt;, mặc dù nó không phải cách làm tốt (tốn thêm 1 câu lệnh cat - khi mà hầu hết các câu lệnh đều hỗ trợ đầu vào là 1 file), nhưng tiện, nên ta cứ bắt đầu với cat, khi nào cần tối ưu ta sẽ bỏ nó đi. Ở đây, &lt;code&gt;mawk&lt;/code&gt; có thể nhận file để xử lý, ta viết lại:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ mawk &lt;span class="s1"&gt;&amp;#39;{ words += NF; chars += length($0) + 1;} END { print NR, words, chars}&amp;#39;&lt;/span&gt; /etc/passwd
+&lt;span class="m"&gt;57&lt;/span&gt; &lt;span class="m"&gt;95&lt;/span&gt; &lt;span class="m"&gt;3193&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Một ví dụ khác&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ head /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Một yêu cầu quái dị có thể xuất hiện như: hãy tính tổng các số ở cột số 3, với các câu lệnh CLI truyền thống, ta làm như sau&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;cat /etc/passwd &lt;span class="p"&gt;|&lt;/span&gt; cut -d: -f3 &lt;span class="p"&gt;|&lt;/span&gt; xargs &lt;span class="nb"&gt;printf&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;%s +&amp;#39;&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; bc
+&lt;span class="m"&gt;75624&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;cut&lt;/code&gt; giúp lấy cột thứ 3, phân cách bằng dấu &lt;code&gt;:&lt;/code&gt;, dùng &lt;code&gt;printf&lt;/code&gt; để nối các số lại bằng dấu &lt;code&gt;+&lt;/code&gt;, vì thừa 1 dấu &lt;code&gt;+&lt;/code&gt; ở đuôi nên ta &lt;code&gt;echo&lt;/code&gt; thêm số 0 để cho hợp lệ rồi đưa vào lệnh &lt;code&gt;bc&lt;/code&gt; để tính.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ mawk -F: &lt;span class="s1"&gt;&amp;#39;{sum += $3} END { print sum }&amp;#39;&lt;/span&gt; /etc/passwd
+&lt;span class="m"&gt;75624&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Tương tự &lt;code&gt;cut&lt;/code&gt;, ta dùng &lt;code&gt;-F:&lt;/code&gt; để chỉ ra sẽ dùng &lt;code&gt;:&lt;/code&gt; để phân cách cột, lấy cột số 3 &lt;code&gt;$3&lt;/code&gt;, cộng
+lần lượt các giá trị vào biến &lt;code&gt;sum&lt;/code&gt; - khi ta không khai báo, AWK mặc định đó là số 0 nếu thực hiện phép toán với số. Làm như vậy với mỗi dòng (gọi là &lt;em&gt;record&lt;/em&gt; trong AWK):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;{ sum += $3 }
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Và khi hết các dòng (đánh dấu bằng END), ta print ra kết quả&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;END { print sum }
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Khó có thể đánh bại sự ngắn gọn, sạch sẽ này.&lt;/p&gt;
+&lt;h2&gt;Record và field&lt;/h2&gt;
+&lt;p&gt;AWK đọc text vào, mặc định sẽ cắt tại các dấu xuống dòng, tạo thành các record,
+sau đó mặc định cắt tại dấu space (khoảng trắng), tạo thành các field.
+Ta hoàn toàn có thể chỉ định AWK cắt ở ký tự khác.&lt;/p&gt;
+&lt;h2&gt;Cấu tạo một chương trình AWK&lt;/h2&gt;
+&lt;p&gt;Một chương trình AWK cấu tạo bởi các câu lệnh (statements) với cú pháp:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;              pattern   { action statements }
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Chỉ có vậy.
+Khi viết vào file thì viết mỗi câu lệnh 1 dòng, nhưng hoàn toàn có thể viết trên 1 dòng.&lt;/p&gt;
+&lt;h3&gt;partern&lt;/h3&gt;
+&lt;p&gt;Có nhiều partern, nhưng 3 partern phổ biến và hữu ích nhất là:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;BEGIN: theo sau là hành động / câu lệnh khi chương trình bắt đầu&lt;/li&gt;
+&lt;li&gt;END: theo sau là câu lệnh được chạy khi chương trình kết thúc&lt;/li&gt;
+&lt;li&gt;KHÔNG GHI PATTERN: thực hiện câu lệnh này cho mỗi record&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ví dụ&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;#39;{sum += $3} END { print sum }&amp;#39;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Không có BEGIN, với mỗi record ta sẽ cộng dồn, và khi đọc hết các record rồi, ta print ra tổng. Chú ý: dấu &lt;code&gt;\&lt;/code&gt; ở cuối dòng là cú pháp trong shell cho phép viết 1 dòng thành nhiều dòng, khi chạy chúng sẽ chỉ xem là 1 dòng.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="nx"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;pymi\npython\nfamilug&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="nx"&gt;mawk&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;\&lt;/span&gt;
+&lt;span class="s1"&gt; BEGIN { print &amp;quot;the begin&amp;quot; } \&lt;/span&gt;
+&lt;span class="s1"&gt; { printf &amp;quot;got line: %s has length %d\n&amp;quot;, $0, length($0) }\&lt;/span&gt;
+&lt;span class="s1"&gt; { print &amp;quot;done process line &amp;quot;, NR }\&lt;/span&gt;
+&lt;span class="s1"&gt; END {print &amp;quot;DONE&amp;quot;}&amp;#39;&lt;/span&gt;
+
+&lt;span class="nx"&gt;the&lt;/span&gt; &lt;span class="nx"&gt;begin&lt;/span&gt;
+&lt;span class="nx"&gt;got&lt;/span&gt; &lt;span class="nx"&gt;line&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;pymi&lt;/span&gt; &lt;span class="nx"&gt;has&lt;/span&gt; &lt;span class="kr"&gt;length&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;
+&lt;span class="nx"&gt;done&lt;/span&gt; &lt;span class="nx"&gt;process&lt;/span&gt; &lt;span class="nx"&gt;line&lt;/span&gt;  &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="nx"&gt;got&lt;/span&gt; &lt;span class="nx"&gt;line&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;python&lt;/span&gt; &lt;span class="nx"&gt;has&lt;/span&gt; &lt;span class="kr"&gt;length&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;
+&lt;span class="nx"&gt;done&lt;/span&gt; &lt;span class="nx"&gt;process&lt;/span&gt; &lt;span class="nx"&gt;line&lt;/span&gt;  &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="nx"&gt;got&lt;/span&gt; &lt;span class="nx"&gt;line&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;familug&lt;/span&gt; &lt;span class="nx"&gt;has&lt;/span&gt; &lt;span class="kr"&gt;length&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;
+&lt;span class="nx"&gt;done&lt;/span&gt; &lt;span class="nx"&gt;process&lt;/span&gt; &lt;span class="nx"&gt;line&lt;/span&gt;  &lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;span class="nx"&gt;DONE&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;print&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;print&lt;/code&gt;  và &lt;code&gt;printf&lt;/code&gt; là 2 output statements (câu lệnh xử lý đầu ra), không phải function nên
+không sử dụng cú pháp gọi function &lt;code&gt;print(thing)&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ mawk &lt;span class="s1"&gt;&amp;#39;BEGIN { print &amp;quot;hello&amp;quot; }&amp;#39;&lt;/span&gt;
+hello
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;parttern tìm kiếm&lt;/h2&gt;
+&lt;p&gt;Một parttern quan trọng là khả năng tìm kiếm các record có chứa một regular expression
+và xử lý record đó.&lt;/p&gt;
+&lt;p&gt;Đếm số dòng chứa từ &lt;code&gt;print&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nb"&gt;echo&lt;/span&gt; -e &lt;span class="s2"&gt;&amp;quot;printf print \nprintf&amp;quot;&lt;/span&gt;
+&lt;span class="nb"&gt;printf&lt;/span&gt; print
+&lt;span class="nb"&gt;printf&lt;/span&gt;
+$ &lt;span class="nb"&gt;echo&lt;/span&gt; -e &lt;span class="s2"&gt;&amp;quot;printf print \nprintf&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; grep -c print
+&lt;span class="m"&gt;2&lt;/span&gt;
+$ &lt;span class="nb"&gt;echo&lt;/span&gt; -e &lt;span class="s2"&gt;&amp;quot;printf print \nprintf&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; mawk &lt;span class="s1"&gt;&amp;#39;/print/ { count += 1 } END { print count }&amp;#39;&lt;/span&gt;
+&lt;span class="m"&gt;2&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;variable và field variable&lt;/h2&gt;
+&lt;p&gt;Mỗi record chứa nhiều field, hãy tưởng tượng như 1 dòng spreadsheet/excel có nhiều ô ứng với các cột.
+Các variable có sẵn:
+- &lt;code&gt;$0&lt;/code&gt; - toàn bộ 1 record (dòng) - chú ý &lt;code&gt;$X&lt;/code&gt; là tên biến hợp lệ trong AWK, dấu $ dùng để truy cập giá trị của field
+- &lt;code&gt;$1&lt;/code&gt; - field 1 (hay có thể nghĩ là cột số 1)
+- &lt;code&gt;$2&lt;/code&gt; - field 2
+- ...
+- &lt;code&gt;$NF&lt;/code&gt; - field cuối cùng
+- NF - số field
+- NR - thứ tự của record, tăng dần sau khi xử lý xong mỗi record&lt;/p&gt;
+&lt;p&gt;Khi truy cập biến, không sử dụng thêm bất cứ ký tự nào (khác với bash, bash phải thêm $varname).&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;1, Le Van Xe, 27, Ha Noi, 0990090090&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; mawk -F, &lt;span class="s1"&gt;&amp;#39;{ print $NF}&amp;#39;&lt;/span&gt;
+ &lt;span class="m"&gt;0990090090&lt;/span&gt;
+$ &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;1, Le Van Xe, 27, Ha Noi, 0990090090&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; mawk -F, &lt;span class="s1"&gt;&amp;#39;{ print $0}&amp;#39;&lt;/span&gt;
+&lt;span class="m"&gt;1&lt;/span&gt;, Le Van Xe, &lt;span class="m"&gt;27&lt;/span&gt;, Ha Noi, &lt;span class="m"&gt;0990090090&lt;/span&gt;
+$ &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;1, Le Van Xe, 27, Ha Noi, 0990090090&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; mawk -F, &lt;span class="s1"&gt;&amp;#39;{ print NF }&amp;#39;&lt;/span&gt;
+&lt;span class="m"&gt;5&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Chỉ cần nắm rõ tên các variable có sẵn này, ta đã có một tool cực mạnh để xử lý dữ liệu dạng bảng như Excel/CSV/SQL.&lt;/p&gt;
+&lt;h2&gt;Các kiểu dữ liệu&lt;/h2&gt;
+&lt;p&gt;AWK có string, số (chia làm float và integer), và array.
+Ta không bàn tới array ở đây, vì nếu cần lập trình gì phức tạp hơn một câu lệnh AWK đơn giản, ta  có thể sử dụng Python cho sạch sẽ, gọn gàng, tiện lợi.&lt;/p&gt;
+&lt;h2&gt;Control flow&lt;/h2&gt;
+&lt;p&gt;Là ngôn ngữ lập trình đầy đủ, AWK có if/else/for/while như các ngôn ngữ lập trình "giống C" khác. Ví dụ đếm số chẵn và số lẻ&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nb"&gt;echo&lt;/span&gt; -e &lt;span class="s1"&gt;&amp;#39;1\n2\n3\n4\n20\n30&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; mawk &lt;span class="s1"&gt;&amp;#39;\&lt;/span&gt;
+&lt;span class="s1"&gt;{ if ($1 % 2 == 0) \&lt;/span&gt;
+&lt;span class="s1"&gt;     { chan += 1 } \&lt;/span&gt;
+&lt;span class="s1"&gt;  else { le += 1 } \&lt;/span&gt;
+&lt;span class="s1"&gt;} \&lt;/span&gt;
+&lt;span class="s1"&gt;END { print chan, le }&amp;#39;&lt;/span&gt;
+
+&lt;span class="m"&gt;5&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Function&lt;/h2&gt;
+&lt;p&gt;AWK có sẵn các funtion xử lý string, số thì đủ các phép toán, các function sin cos ..., người dùng cũng có thể định nghĩa function của họ. Xem thêm ở &lt;a href="https://www.gnu.org/software/gawk/manual/gawk.html#Functions"&gt;đây&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Bonus - giải bài projecteuler 1&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://projecteuler.net/problem=1"&gt;Tính tổng các số nhỏ hơn 1000 chia hết cho 3 hoặc 5&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ seq &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="m"&gt;999&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; mawk &lt;span class="s1"&gt;&amp;#39;{ if ($1 % 3 == 0 || $i % 5 == 0) sum += $1 } END { print sum }&amp;#39;&lt;/span&gt;
+&lt;span class="m"&gt;233168&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Tham khảo&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://invisible-island.net/mawk/manpage/mawk.txt"&gt;mawk homepage manpage&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/mawk.1.html"&gt;ubuntu 16.04 man 1 mawk&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.gnu.org/software/gawk/manual/gawk.html#Top"&gt;GNU awk&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://adamdrake.com/command-line-tools-can-be-235x-faster-than-your-hadoop-cluster.html"&gt;AWK on big data&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Hết&lt;/p&gt;
+&lt;p&gt;HVN at &lt;a href="http://pymi.vn"&gt;http://pymi.vn&lt;/a&gt; and &lt;a href="https://www.familug.org"&gt;https://www.familug.org&lt;/a&gt;.&lt;/p&gt;</content><category term="awk"></category><category term="sysadmin"></category><category term="linux"></category><category term="csv"></category><category term="bigdata"></category></entry><entry><title>In ra màn hình số 1 - ngôn ngữ nào nhẹ nhất?</title><link href="http://pp.pymi.vn/dynamic.html" rel="alternate"></link><published>2018-05-27T00:00:00+07:00</published><updated>2018-05-27T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-05-27:/dynamic.html</id><summary type="html">&lt;p&gt;dash, bash, awk, perl, ruby, nodejs, python, elixir, guile - tất cả lên thớt!&lt;/p&gt;</summary><content type="html">&lt;p&gt;Nếu chỉ cần in ra mà hình số 1, ngôn ngữ lập trình nào sẽ chạy tốn ít RAM nhất?&lt;/p&gt;
 &lt;p&gt;Thí nghiệm sau sẽ cho ta thấy các chương trình cần bao nhiêu RAM để chạy và in
 ra số 1, kết thúc dòng bằng một dấu xuống dòng (newline &lt;code&gt;\n&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;Ta dùng chương trình &lt;code&gt;/usr/bin/time&lt;/code&gt; để có cả thông số về RAM (&lt;code&gt;RSS&lt;/code&gt;) thay vì chỉ gõ time - lệnh builtin của bash.&lt;/p&gt;
