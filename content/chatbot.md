@@ -30,11 +30,30 @@ Sau đó tạo một class `Bot` kế thừa `Client` :
 
 Tạo 1 function trong class `Bot` để thực hiện gửi tin nhắn, dưới đây là code của mình:
 
-<script src="https://gist.github.com/tung491/102398d8599156c727b99e68c3680d8a.js"></script>
+```
+class Bot(Client):
+    def do_something(self): 
+        #Đổi tên function cho phù hợp
+        logging.basicConfig(level=logging.INFO)
+        lst_id = [...] # List chứa fb id của những người bạn muốn gửi
+        for user_id in lst_id:    
+            self.send(Message(text="Chúc mừng năm mới"),
+                      thread_id=user_id, thread_type=ThreadType.USER)
+            self.sendLocalImage('/home/dosontung007/Pictures/wallpaper.png', message=Message(text='Chúc mừng năm mới'),
+                                thread_id=user_id, thread_type=ThreadType.USER)
+            logging.info('Sent success to %s' % str(user_id))
+```
 
 Và để nhận được tin nhắn từ những người gửi cho mình cho mình , ta viết function `onMessage` trong class `Bot` và xử lí các tin nhắn đó:
 
-<script src="https://gist.github.com/tung491/a88b859645c8926548ffbe3eb044959b.js"></script>
+```
+def onMessage(self, message_object, author_id, thread_id, thread_type, **kwargs):
+    lst_msg = list('Chúc mừng năm mới')
+    if author_id != self.uid and message_object.text in lst_msg:
+        self.send(Message(text='Năm mới chúc .....'),
+                  thread_id=author_id,
+                  thread_type=thread_type)
+```
 
 Tham khảo thêm tại https://fbchat.readthedocs.io/en/master/
 
@@ -48,21 +67,89 @@ Class `Bot` kế thừa `Client` do đó 2 args cần truyền vào đó là use
 
 Bây giờ còn một công việc duy nhất là hẹn giờ cho job làm việc thôi!
 
-<script src="https://gist.github.com/tung491/8ea57a2e68d620d2496d7534a1072fc3.js"></script>
-
+```
+def send_msg():
+    schedule.every().day.at('00:00').do(job_that_executes_once))
+    
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
+```
 Thay đổi `00:00` bằng thời gian mà bạn muốn hẹn giờ.
 
 Để nhận được message, ta sử dụng function `listen` từ `Client` , về cơ bản `listen` khi chạy sẽ truyền các arguments vào `onMessage` mỗi lần Facebook bạn có event mới (VD: có người nhắn cho bạn, bạn nhắn cho người khác hoặc tin nhắn trong nhóm, ...):
 
-<script src="https://gist.github.com/tung491/74c94628addd91c584c8ed216509ae7f.js"></script>
+```
+def reply_msg():
+    Bot(os.environ['USERNAME_'], os.environ['PASSWORD']).listen()
+```
 
 Ở function main, mình sử dụng lib threading để chạy song song 2 job là reply_msg và send_msg :
 
-<script src="https://gist.github.com/tung491/c591d1028b092966c893396e84fd043b.js"></script>
+```
+def main():
+    Thread(target=send_msg).start()
+    Thread(target=reply_msg).start()
+```
 
 Cuối cùng cũng xong 🎉.Sau tất cả, đây là một con chatbot hoàn chỉnh :
 
-<script src="https://gist.github.com/tung491/6e9fce902bbc90217b84e18fce231ef6.js"></script>
+```
+import logging
+import os
+import time
+from threading import Thread
+
+from fbchat import Client
+from fbchat.models import Message, ThreadType
+import schedule
+
+
+class Bot(Client):
+    def onMessage(self, message_object, author_id, thread_id, thread_type, **kwargs):
+        lst_msg = list('Chúc mừng năm mới')
+        if author_id != self.uid and message_object.text in lst_msg:
+            self.send(Message(text='Năm mới chúc .....'),
+                      thread_id=author_id,
+                      thread_type=ThreadType.USER)
+
+
+    def do_something(self):
+        logging.basicConfig(level=logging.INFO)
+        lst_id = ['100012610305665']
+        for user_id in lst_id:    
+            self.send(Message(text="Chúc mừng năm mới"),
+                      thread_id=user_id, thread_type=ThreadType.USER)
+            self.sendLocalImage('/home/dosontung007/Pictures/wallpaper.png', message=Message(text='Chúc mừng năm mới'),
+                                thread_id=user_id, thread_type=ThreadType.USER)
+            logging.info('Sent success to %s' % "100012610305665")
+
+
+def job_that_executes_once():
+    Bot(os.environ['USERNAME_'], os.environ['PASSWORD']).something()
+    return schedule.CancelJob
+
+
+def reply_msg():
+    Bot(os.environ['USERNAME_'], os.environ['PASSWORD']).listen()
+
+
+def send_msg():
+    schedule.every().day.at('00:00').do(job_that_executes_once))
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
+
+
+def main():
+    Thread(target=send_msg).start()
+    Thread(target=reply_msg).start()
+
+
+if __name__ == '__main__':
+    main()
+
+```
 
 Bây giờ chỉ cần chạy thôi. Và đây là thành quả:
 
