@@ -57,17 +57,20 @@ def onMessage(self, message_object, author_id, thread_id, thread_type, **kwargs)
 
 Tham khảo thêm tại https://fbchat.readthedocs.io/en/master/
 
-Tiếp đến, trong bài viết này mình sử dụng lib schedule để hẹn giờ chạy chương trình. Chương trình của mình chỉ chạy 1 lần duy nhất do đó đầu tiên chúng ta viết function `job_that_executes_once` :
-
-Job cần thực hiện trong này đó là:
+Job thực hiện việc gửi tin nhắn trong này đó là:
 
 `Bot(os.environ['USERNAME_'], os.environ['PASSWORD']).do_something()`
+
 
 Class `Bot` kế thừa `Client` do đó 2 args cần truyền vào đó là username và password của Facebook của bạn. Do đó bạn cần set value cho 2 var `USERNAME_` và `PASSWORD` bằng câu lệnh `export var=value`. Lưu ý `USERNAME_` chứ không phải `USERNAME`.
 
 Bây giờ còn một công việc duy nhất là hẹn giờ cho job làm việc thôi!
 
 ```
+def job():
+    Bot(os.environ['USERNAME_'], os.environ['PASSWORD']).do_something()
+
+
 def send_msg():
     schedule.every().day.at('00:00').do(job_that_executes_once))
     
@@ -75,6 +78,7 @@ def send_msg():
         schedule.run_pending()
         time.sleep(1)
 ```
+
 Thay đổi `00:00` bằng thời gian mà bạn muốn hẹn giờ.
 
 Để nhận được message, ta sử dụng function `listen` từ `Client` , về cơ bản `listen` khi chạy sẽ truyền các arguments vào `onMessage` mỗi lần Facebook bạn có event mới (VD: có người nhắn cho bạn, bạn nhắn cho người khác hoặc tin nhắn trong nhóm, ...):
