@@ -138,19 +138,9 @@ done process line  3
 DONE
 ```
 
-## print
-`print`  và `printf` là 2 output statements (câu lệnh xử lý đầu ra), không phải function nên
-không sử dụng cú pháp gọi function `print(thing)`
-
-```
-$ mawk 'BEGIN { print "hello" }'
-hello
-```
-
 ## parttern tìm kiếm
 
-Một parttern quan trọng là khả năng tìm kiếm các record có chứa một regular expression
-và xử lý record đó.
+parttern này giúp tìm kiếm các record có chứa một regular expression (hoặc string cố định) và xử lý record đó.
 
 Đếm số dòng chứa từ `print`:
 
@@ -163,12 +153,21 @@ $ echo -e "printf print \nprintf" | grep -c print
 $ echo -e "printf print \nprintf" | mawk '/print/ { count += 1 } END { print count }'
 2
 ```
+## print
+`print`  và `printf` là 2 output statements (câu lệnh xử lý đầu ra), không phải function nên
+không sử dụng cú pháp gọi function `print(thing)`
+
+```
+$ mawk 'BEGIN { print "hello" }'
+hello
+```
 
 
 ## variable và field variable
 
 Mỗi record chứa nhiều field, hãy tưởng tượng như 1 dòng spreadsheet/excel có nhiều ô ứng với các cột.
 Các variable có sẵn:
+
 - `$0` - toàn bộ 1 record (dòng) - chú ý `$X` là tên biến hợp lệ trong AWK, dấu $ dùng để truy cập giá trị của field
 - `$1` - field 1 (hay có thể nghĩ là cột số 1)
 - `$2` - field 2
