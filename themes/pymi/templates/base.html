@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="{{ DEFAULT_LANG }}">
+
+<head>
+  {% block head %}
+  <title>{% block title %}{{ SITENAME }}{% endblock title %} - {{ SITENAME }}</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="robots" content="{{ ROBOTS }}" />
+  <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/app.css">
+  {% block extra_css %}{% endblock %}
+  <link href="https://fonts.googleapis.com/css?family=Lora|Oswald" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> {% if BROWSER_COLOR %}
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="{{ BROWSER_COLOR }}">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="{{ BROWSER_COLOR }}">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"> {% endif %} {% block meta %}
+  <meta name="author" content="{{ AUTHOR }}" />
+  <meta name="description" content="{{ SITEDESCRIPTION }}" /> {% endblock %} {% if FEED_ALL_ATOM %}
+  <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Full Atom Feed" /> {% endif %} {% if FEED_ALL_RSS %}
+  <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Full RSS Feed" /> {% endif %} {% if FEED_ATOM %}
+  <link href="{{ FEED_DOMAIN }}/{{ FEED_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed" /> {% endif %} {% if FEED_RSS %}
+  <link href="{{ FEED_DOMAIN }}/{{ FEED_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" /> {% endif %} {% if CATEGORY_FEED_ATOM and category %}
+  <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_ATOM|format(category.slug) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Categories Atom Feed" /> {% endif %} {% if CATEGORY_FEED_RSS and category %}
+  <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_RSS|format(category.slug) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Categories RSS Feed" /> {% endif %} {% if TAG_FEED_ATOM and tag %}
+  <link href="{{ FEED_DOMAIN }}/{{ TAG_FEED_ATOM|format(tag.slug) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Tags Atom Feed" /> {% endif %} {% if TAG_FEED_RSS and tag %}
+  <link href="{{ FEED_DOMAIN }}/{{ TAG_FEED_RSS|format(tag.slug) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Tags RSS Feed" /> {% endif %} {% endblock head %}
+</head>
+
+<body>
+  <main class="wrapper">
+    <section class="container">
+      <header class='column'>
+        <h1 class='title'><a href="{{ SITEURL }}/">{{ SITENAME }}</a></h1>
+      </header>
+
+      <div class="section">
+        <div class="row navbar">
+          {% for cat, null in categories %}
+          <div class="column nav-item {% if cat == category %}is-active{% endif %}"><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></div>
+          {% endfor %} {% for p in pages %}
+          <div class="column nav-item {% if p == page %}is-active{% endif %}"><a href="{{ SITEURL }}/pages/{{ p.url }}">{{ p.title }}</a></div>
+          {% endfor %}
+          <div class="column nav-item"><a href="/archives">Archives</a></div>
+        </div>
+      </div>
+    </section>
+
+    {% block content %} {% endblock %}
+
+    <section class="container footer">
+      <footer>
+        <address>
+        Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+        which takes great advantage of <a href="http://python.org">Python</a>.
+        </address>
+        <address>
+          Học lập trình Python tại <a href="https://pymi.vn/">Pymi.vn</a>
+        </address>
+      </footer>
+    </section>
+  </main>
+
+  {% block additional_js %}{% endblock %}
+</body>
+
+</html>
