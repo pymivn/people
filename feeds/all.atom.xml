@@ -1,5 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2018-05-27T00:00:00+07:00</updated><entry><title>Awk siêu tốc</title><link href="http://pp.pymi.vn/article/awk/" rel="alternate"></link><published>2018-05-27T00:00:00+07:00</published><updated>2018-05-27T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-05-27:/article/awk/</id><summary type="html">&lt;p&gt;học và dùng luôn trong 20 phút - yêu cầu dùng Ubuntu/OSX hay các hệ điều hành UNIX-like.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Nếu bạn đã biết 1 scripting language như Python hay Perl việc học AWK sẽ có vẻ hơi
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2018-05-30T00:00:00+07:00</updated><entry><title>IronPython</title><link href="http://pp.pymi.vn/article/ironpython/" rel="alternate"></link><published>2018-05-30T00:00:00+07:00</published><updated>2018-05-30T00:00:00+07:00</updated><author><name>htlcnn</name></author><id>tag:pp.pymi.vn,2018-05-30:/article/ironpython/</id><summary type="html">&lt;p&gt;Guide to install, run IronPython on Windows. Basic examples on how to use both .NET assemblies and standard Python libraries in IronPython.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;IronPython là gì?&lt;/h2&gt;
+&lt;p&gt;Theo giới thiệu ở &lt;a href="http://ironpython.net/"&gt;trang chủ IronPython&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;IronPython is an open-source implementation of the Python programming language which is tightly integrated with the .NET Framework. IronPython can use the .NET Framework and Python libraries, and other .NET languages can use Python code just as easily.&lt;/p&gt;
+&lt;p&gt;Ironpython là 1 "implementation" mã nguồn mở của ngôn ngữ lập trình Python, tích hợp chặt chẽ với .NET Framework. IronPython có thể sử dụng .NET Framework và các thư viện Python, các ngôn ngữ .NET khác cũng có thể đọc và chạy code Python dễ dàng.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Cài đặt IronPython&lt;/h2&gt;
+&lt;p&gt;Vào trang chủ download bộ cài đặt về (link download ở trang chủ là link github). Thời điểm viết bài, IronPython đang ở phiên bản 2.7.8: https://github.com/IronLanguages/ironpython2/releases/tag/ipy-2.7.8. IronPython 3 đang trong quá trình phát triển, chưa có bản chính thức.&lt;/p&gt;
+&lt;h2&gt;Sử dụng&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Bật IronPython interpreter bằng cách chạy (bấm đúp - double click) vào file ở đường dẫn: &lt;code&gt;C:\Program Files (x86)\IronPython 2.7\ipy.exe&lt;/code&gt; hoặc &lt;code&gt;C:\Program Files (x86)\IronPython 2.7\ipy64.exe&lt;/code&gt;. Hoặc bấm nút Start -&amp;gt; gõ cmd -&amp;gt; Enter, sau khi cửa sổ Command Prompt hiện lên thì gõ đường dẫn file: &lt;code&gt;C:\Program Files (x86)\IronPython 2.7\ipy.exe&lt;/code&gt; hoặc &lt;code&gt;C:\Program Files (x86)\IronPython 2.7\ipy64.exe&lt;/code&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Microsoft&lt;/span&gt; &lt;span class="n"&gt;Windows&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;Version&lt;/span&gt; &lt;span class="mf"&gt;6.1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;7601&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;Copyright&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;2009&lt;/span&gt; &lt;span class="n"&gt;Microsoft&lt;/span&gt; &lt;span class="n"&gt;Corporation&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;  &lt;span class="n"&gt;All&lt;/span&gt; &lt;span class="n"&gt;rights&lt;/span&gt; &lt;span class="n"&gt;reserved&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;\&lt;span class="n"&gt;Users&lt;/span&gt;\&lt;span class="n"&gt;HTL&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;c:\Program Files (x86)\IronPython 2.7\ipy.exe&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;IronPython&lt;/span&gt; &lt;span class="mf"&gt;2.7&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;2.7&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mf"&gt;0.40&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;NET&lt;/span&gt; &lt;span class="mf"&gt;4.0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mf"&gt;30319.42000&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;32&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;bit&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;Type&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;help&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;copyright&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;credits&amp;quot;&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;license&amp;quot;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;more&lt;/span&gt; &lt;span class="n"&gt;information&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Hello from IronPython&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;Hello&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;IronPython&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Chạy 1 python script đã viết sẵn bằng cách gõ vào Command Prompt: &lt;code&gt;C:\Program Files (x86)\IronPython 2.7\ipy.exe đường_dẫn\đến\script.py&lt;/code&gt;. Ví dụ nội dung file &lt;code&gt;D:\HTL\Desktop\script.py&lt;/code&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Hello from inside a Python script&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;C:\Users\HTL&amp;gt;&amp;quot;c:\Program Files (x86)\IronPython 2.7\ipy.exe&amp;quot; D:\HTL\Desktop\script.py
+Hello from inside a Python script
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Sử dụng .NET Framework và Python libraries&lt;/h2&gt;
+&lt;p&gt;IronPython có sẵn thư viện &lt;code&gt;clr&lt;/code&gt; hỗ trợ load các .NET Assemblies (VD như các file .dll) và sử dụng các công cụ trong đó. IronPython cũng có các libraries kèm theo tương tự như CPython:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;\&lt;span class="n"&gt;Users&lt;/span&gt;\&lt;span class="n"&gt;HTL&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;c:\Program Files (x86)\IronPython 2.7\ipy.exe&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;IronPython&lt;/span&gt; &lt;span class="mf"&gt;2.7&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;2.7&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mf"&gt;0.40&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;NET&lt;/span&gt; &lt;span class="mf"&gt;4.0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mf"&gt;30319.42000&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;32&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;bit&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;Type&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;help&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;copyright&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;credits&amp;quot;&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;license&amp;quot;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;more&lt;/span&gt; &lt;span class="n"&gt;information&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;clr&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;clr&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;AddReference&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;System&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;System&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Environment&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Environment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SystemDirectory&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;\&lt;span class="n"&gt;Windows&lt;/span&gt;\&lt;span class="n"&gt;system32&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;math&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;math&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pi&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="mf"&gt;3.14159265359&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Kết luận&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Học ngôn ngữ Python là có thể sử dụng trên nhiều môi trường, với nhiều implementation khác nhau (CPython, IronPython, Jython...).&lt;/li&gt;
+&lt;li&gt;IronPython là sự lựa chọn hợp lý khi làm việc với môi trường Windows và các phần mềm chạy trên Windows.&lt;/li&gt;
+&lt;li&gt;Alternative: Trả lời cho câu hỏi "Mình vẫn muốn dùng CPython và vẫn muốn sử dụng .NET Framework thì làm như thế nào?" -&amp;gt; Tìm hiểu &lt;a href="http://pythonnet.github.io/"&gt;pythonnet&lt;/a&gt; nhé. Tuy nhiên mình khuyến khích dùng IronPython để làm việc trên Windows và các phần mềm chạy trên Windows.&lt;/li&gt;
+&lt;/ul&gt;</content><category term="python"></category><category term="ironpython"></category><category term="windows"></category><category term="implementation"></category><category term="dotnet"></category></entry><entry><title>Awk siêu tốc</title><link href="http://pp.pymi.vn/article/awk/" rel="alternate"></link><published>2018-05-27T00:00:00+07:00</published><updated>2018-05-27T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-05-27:/article/awk/</id><summary type="html">&lt;p&gt;học và dùng luôn trong 20 phút - yêu cầu dùng Ubuntu/OSX hay các hệ điều hành UNIX-like.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Nếu bạn đã biết 1 scripting language như Python hay Perl việc học AWK sẽ có vẻ hơi
 thừa/ hơi ngần ngại. Nhưng AWK - ngôn ngữ lập trình sinh ra từ những năm 1970 luôn
 có chỗ dùng, và sức mạnh đáng gờm.&lt;/p&gt;
 &lt;p&gt;Bài này giới thiệu các khái niệm cơ bản của ngôn ngữ lập trình AWK, một số cách dùng thông dụng, học xong có thể dùng ngay và vô cùng hữu ích với những người xử lý dữ liệu dạng cột/ bảng mà không biết Python.&lt;/p&gt;
