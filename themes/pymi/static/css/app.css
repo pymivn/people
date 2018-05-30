@@ -464,6 +464,11 @@ h2.entry-title {
   line-height: 51px;
   font-size: 40px; }
 
+.centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
+
 .wrapper {
   text-align: center; }
 

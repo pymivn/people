@@ -57,3 +57,13 @@
   {% endif %}
 </section>
 {% endblock %}
+{% block additional_js %}
+<script type="text/javascript">
+var images = document.getElementsByTagName("img");
+var i;
+
+for(i = 0; i < images.length; i++) {
+  images[i].className += " centered";
+}
+</script>
+{% endblock %}
