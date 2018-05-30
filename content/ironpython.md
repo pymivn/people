@@ -17,7 +17,8 @@ Vào trang chủ download bộ cài đặt về (link download ở trang chủ l
 
 
 ## Sử dụng
-- Bật IronPython interpreter bằng cách chạy (bấm đúp - double click) vào file ở đường dẫn: `C:\Program Files (x86)\IronPython 2.7\ipy.exe` hoặc `C:\Program Files (x86)\IronPython 2.7\ipy64.exe`. Hoặc gõ đường dẫn file `ipy.exe, ipy64.exe` vào `Command Prompt/PowerShell`
+- Bật IronPython interpreter bằng cách chạy (bấm đúp - double click) vào file ở đường dẫn: `C:\Program Files (x86)\IronPython 2.7\ipy.exe` hoặc `C:\Program Files (x86)\IronPython 2.7\ipy64.exe`. Hoặc bấm nút Start -> gõ cmd -> Enter, sau khi cửa sổ Command Prompt hiện lên thì gõ đường dẫn file: `C:\Program Files (x86)\IronPython 2.7\ipy.exe` hoặc `C:\Program Files (x86)\IronPython 2.7\ipy64.exe`:
+
 
 ```python
 Microsoft Windows [Version 6.1.7601]
