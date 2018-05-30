@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/trang-chu.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2018-05-27T00:00:00+07:00</updated><entry><title>Awk siêu tốc</title><link href="http://pp.pymi.vn/article/awk/" rel="alternate"></link><published>2018-05-27T00:00:00+07:00</published><updated>2018-05-27T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-05-27:article/awk/</id><summary type="html">&lt;p&gt;Nếu bạn đã biết 1 scripting language như Python hay Perl việc học AWK sẽ có vẻ hơi
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers - Trang chủ</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/trang-chu.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2018-05-27T00:00:00+07:00</updated><entry><title>Awk siêu tốc</title><link href="http://pp.pymi.vn/article/awk/" rel="alternate"></link><published>2018-05-27T00:00:00+07:00</published><updated>2018-05-27T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-05-27:/article/awk/</id><summary type="html">&lt;p&gt;học và dùng luôn trong 20 phút - yêu cầu dùng Ubuntu/OSX hay các hệ điều hành UNIX-like.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Nếu bạn đã biết 1 scripting language như Python hay Perl việc học AWK sẽ có vẻ hơi
 thừa/ hơi ngần ngại. Nhưng AWK - ngôn ngữ lập trình sinh ra từ những năm 1970 luôn
 có chỗ dùng, và sức mạnh đáng gờm.&lt;/p&gt;
 &lt;p&gt;Bài này giới thiệu các khái niệm cơ bản của ngôn ngữ lập trình AWK, một số cách dùng thông dụng, học xong có thể dùng ngay và vô cùng hữu ích với những người xử lý dữ liệu dạng cột/ bảng mà không biết Python.&lt;/p&gt;
 &lt;p&gt;Các lệnh trong bài này dùng &lt;code&gt;mawk&lt;/code&gt; vì nó được biết là nhanh hơn các bản awk khác, nhưng về tính năng cơ bản là giống nhau, người đọc dùng bản nào cũng được, VD gawk&lt;/p&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;$ whatis awk
-awk &lt;span style="color: #f92672"&gt;(&lt;/span&gt;&lt;span style="color: #ae81ff"&gt;1&lt;/span&gt;&lt;span style="color: #f92672"&gt;)&lt;/span&gt;              - pattern scanning and processing language
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ whatis awk
+awk &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;              - pattern scanning and processing language
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h3&gt;Dùng trong các câu lệnh hàng ngày&lt;/h3&gt;
 &lt;p&gt;AWK rất thích hợp để nhét vào 1 pipe các câu lệnh UNIX, việc mà Python vốn không sinh ra để làm&lt;/p&gt;
 &lt;p&gt;Ví dụ: đếm số dòng trong file /etc/passwd&lt;/p&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;$ wc /etc/passwd
-  &lt;span style="color: #ae81ff"&gt;57&lt;/span&gt;   &lt;span style="color: #ae81ff"&gt;95&lt;/span&gt; &lt;span style="color: #ae81ff"&gt;3193&lt;/span&gt; /etc/passwd
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ wc /etc/passwd
+  &lt;span class="m"&gt;57&lt;/span&gt;   &lt;span class="m"&gt;95&lt;/span&gt; &lt;span class="m"&gt;3193&lt;/span&gt; /etc/passwd
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Lệnh &lt;code&gt;wc&lt;/code&gt; vốn sinh ra để đếm: dòng, số từ, số ký tự. Bạn có thể viết 1 script Python 5-7 dòng
 làm chuyện này, nhưng 1 dòng? Hãy thử và nếu thành công, hãy comment!&lt;/p&gt;
 &lt;p&gt;Với AWK, làm việc này không khó khăn gì. Hãy bỏ qua nếu không hiểu gì, phần giải thích sẽ theo sau&lt;/p&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;$ cat /etc/passwd &lt;span style="color: #f8f8f2"&gt;|&lt;/span&gt; mawk &lt;span style="color: #e6db74"&gt;&amp;#39;{ words += NF; chars += length($0) + 1;} END { print NR, words, chars}&amp;#39;&lt;/span&gt;
-&lt;span style="color: #ae81ff"&gt;57&lt;/span&gt; &lt;span style="color: #ae81ff"&gt;95&lt;/span&gt; &lt;span style="color: #ae81ff"&gt;3193&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ cat /etc/passwd &lt;span class="p"&gt;|&lt;/span&gt; mawk &lt;span class="s1"&gt;&amp;#39;{ words += NF; chars += length($0) + 1;} END { print NR, words, chars}&amp;#39;&lt;/span&gt;
+&lt;span class="m"&gt;57&lt;/span&gt; &lt;span class="m"&gt;95&lt;/span&gt; &lt;span class="m"&gt;3193&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Một pipe (&lt;code&gt;cmd1 | cmd2 | cmd3&lt;/code&gt;) thường bắt đầu bằng &lt;code&gt;cat file&lt;/code&gt;, mặc dù nó không phải cách làm tốt (tốn thêm 1 câu lệnh cat - khi mà hầu hết các câu lệnh đều hỗ trợ đầu vào là 1 file), nhưng tiện, nên ta cứ bắt đầu với cat, khi nào cần tối ưu ta sẽ bỏ nó đi. Ở đây, &lt;code&gt;mawk&lt;/code&gt; có thể nhận file để xử lý, ta viết lại:&lt;/p&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;$ mawk &lt;span style="color: #e6db74"&gt;&amp;#39;{ words += NF; chars += length($0) + 1;} END { print NR, words, chars}&amp;#39;&lt;/span&gt; /etc/passwd
-&lt;span style="color: #ae81ff"&gt;57&lt;/span&gt; &lt;span style="color: #ae81ff"&gt;95&lt;/span&gt; &lt;span style="color: #ae81ff"&gt;3193&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ mawk &lt;span class="s1"&gt;&amp;#39;{ words += NF; chars += length($0) + 1;} END { print NR, words, chars}&amp;#39;&lt;/span&gt; /etc/passwd
+&lt;span class="m"&gt;57&lt;/span&gt; &lt;span class="m"&gt;95&lt;/span&gt; &lt;span class="m"&gt;3193&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Một ví dụ khác&lt;/p&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;$ head /etc/passwd
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ head /etc/passwd
 root:x:0:0:root:/root:/bin/bash
 daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
 bin:x:2:2:bin:/bin:/usr/sbin/nologin
@@ -47,25 +47,25 @@ news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
 
 
 &lt;p&gt;Một yêu cầu quái dị có thể xuất hiện như: hãy tính tổng các số ở cột số 3, với các câu lệnh CLI truyền thống, ta làm như sau&lt;/p&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span style="color: #f8f8f2"&gt;echo&lt;/span&gt; &lt;span style="color: #66d9ef"&gt;$(&lt;/span&gt;cat /etc/passwd &lt;span style="color: #f8f8f2"&gt;|&lt;/span&gt; cut -d: -f3 &lt;span style="color: #f8f8f2"&gt;|&lt;/span&gt; xargs &lt;span style="color: #f8f8f2"&gt;printf&lt;/span&gt; &lt;span style="color: #e6db74"&gt;&amp;#39;%s +&amp;#39;&lt;/span&gt;&lt;span style="color: #66d9ef"&gt;)&lt;/span&gt; &lt;span style="color: #ae81ff"&gt;0&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;|&lt;/span&gt; bc
-&lt;span style="color: #ae81ff"&gt;75624&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;cat /etc/passwd &lt;span class="p"&gt;|&lt;/span&gt; cut -d: -f3 &lt;span class="p"&gt;|&lt;/span&gt; xargs &lt;span class="nb"&gt;printf&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;%s +&amp;#39;&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; bc
+&lt;span class="m"&gt;75624&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;&lt;code&gt;cut&lt;/code&gt; giúp lấy cột thứ 3, phân cách bằng dấu &lt;code&gt;:&lt;/code&gt;, dùng &lt;code&gt;printf&lt;/code&gt; để nối các số lại bằng dấu &lt;code&gt;+&lt;/code&gt;, vì thừa 1 dấu &lt;code&gt;+&lt;/code&gt; ở đuôi nên ta &lt;code&gt;echo&lt;/code&gt; thêm số 0 để cho hợp lệ rồi đưa vào lệnh &lt;code&gt;bc&lt;/code&gt; để tính.&lt;/p&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;$ mawk -F: &lt;span style="color: #e6db74"&gt;&amp;#39;{sum += $3} END { print sum }&amp;#39;&lt;/span&gt; /etc/passwd
-&lt;span style="color: #ae81ff"&gt;75624&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ mawk -F: &lt;span class="s1"&gt;&amp;#39;{sum += $3} END { print sum }&amp;#39;&lt;/span&gt; /etc/passwd
+&lt;span class="m"&gt;75624&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Tương tự &lt;code&gt;cut&lt;/code&gt;, ta dùng &lt;code&gt;-F:&lt;/code&gt; để chỉ ra sẽ dùng &lt;code&gt;:&lt;/code&gt; để phân cách cột, lấy cột số 3 &lt;code&gt;$3&lt;/code&gt;, cộng
 lần lượt các giá trị vào biến &lt;code&gt;sum&lt;/code&gt; - khi ta không khai báo, AWK mặc định đó là số 0 nếu thực hiện phép toán với số. Làm như vậy với mỗi dòng (gọi là &lt;em&gt;record&lt;/em&gt; trong AWK):&lt;/p&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;{ sum += $3 }
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;{ sum += $3 }
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Và khi hết các dòng (đánh dấu bằng END), ta print ra kết quả&lt;/p&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;END { print sum }
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;END { print sum }
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -76,7 +76,7 @@ sau đó mặc định cắt tại dấu space (khoảng trắng), tạo thành 
 Ta hoàn toàn có thể chỉ định AWK cắt ở ký tự khác.&lt;/p&gt;
 &lt;h2&gt;Cấu tạo một chương trình AWK&lt;/h2&gt;
 &lt;p&gt;Một chương trình AWK cấu tạo bởi các câu lệnh (statements) với cú pháp:&lt;/p&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;              pattern   { action statements }
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;              pattern   { action statements }
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -90,45 +90,45 @@ Khi viết vào file thì viết mỗi câu lệnh 1 dòng, nhưng hoàn toàn c
 &lt;li&gt;KHÔNG GHI PATTERN: thực hiện câu lệnh này cho mỗi record&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Ví dụ&lt;/p&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;&amp;#39;{sum += $3} END { print sum }&amp;#39;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;#39;{sum += $3} END { print sum }&amp;#39;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Không có BEGIN, với mỗi record ta sẽ cộng dồn, và khi đọc hết các record rồi, ta print ra tổng. Chú ý: dấu &lt;code&gt;\&lt;/code&gt; ở cuối dòng là cú pháp trong shell cho phép viết 1 dòng thành nhiều dòng, khi chạy chúng sẽ chỉ xem là 1 dòng.&lt;/p&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;&lt;span style="color: #f92672"&gt;$&lt;/span&gt; &lt;span style="color: #a6e22e"&gt;echo&lt;/span&gt; &lt;span style="color: #e6db74"&gt;&amp;#39;pymi\npython\nfamilug&amp;#39;&lt;/span&gt; &lt;span style="color: #f92672"&gt;|&lt;/span&gt; &lt;span style="color: #a6e22e"&gt;mawk&lt;/span&gt; &lt;span style="color: #e6db74"&gt;&amp;#39;\&lt;/span&gt;
-&lt;span style="color: #e6db74"&gt; BEGIN { print &amp;quot;the begin&amp;quot; } \&lt;/span&gt;
-&lt;span style="color: #e6db74"&gt; { printf &amp;quot;got line: %s has length %d\n&amp;quot;, $0, length($0) }\&lt;/span&gt;
-&lt;span style="color: #e6db74"&gt; { print &amp;quot;done process line &amp;quot;, NR }\&lt;/span&gt;
-&lt;span style="color: #e6db74"&gt; END {print &amp;quot;DONE&amp;quot;}&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="nx"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;pymi\npython\nfamilug&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="nx"&gt;mawk&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;\&lt;/span&gt;
+&lt;span class="s1"&gt; BEGIN { print &amp;quot;the begin&amp;quot; } \&lt;/span&gt;
+&lt;span class="s1"&gt; { printf &amp;quot;got line: %s has length %d\n&amp;quot;, $0, length($0) }\&lt;/span&gt;
+&lt;span class="s1"&gt; { print &amp;quot;done process line &amp;quot;, NR }\&lt;/span&gt;
+&lt;span class="s1"&gt; END {print &amp;quot;DONE&amp;quot;}&amp;#39;&lt;/span&gt;
 
-&lt;span style="color: #a6e22e"&gt;the&lt;/span&gt; &lt;span style="color: #a6e22e"&gt;begin&lt;/span&gt;
-&lt;span style="color: #a6e22e"&gt;got&lt;/span&gt; &lt;span style="color: #a6e22e"&gt;line&lt;/span&gt;&lt;span style="color: #960050; background-color: #1e0010"&gt;:&lt;/span&gt; &lt;span style="color: #a6e22e"&gt;pymi&lt;/span&gt; &lt;span style="color: #a6e22e"&gt;has&lt;/span&gt; &lt;span style="color: #66d9ef"&gt;length&lt;/span&gt; &lt;span style="color: #ae81ff"&gt;4&lt;/span&gt;
-&lt;span style="color: #a6e22e"&gt;done&lt;/span&gt; &lt;span style="color: #a6e22e"&gt;process&lt;/span&gt; &lt;span style="color: #a6e22e"&gt;line&lt;/span&gt;  &lt;span style="color: #ae81ff"&gt;1&lt;/span&gt;
-&lt;span style="color: #a6e22e"&gt;got&lt;/span&gt; &lt;span style="color: #a6e22e"&gt;line&lt;/span&gt;&lt;span style="color: #960050; background-color: #1e0010"&gt;:&lt;/span&gt; &lt;span style="color: #a6e22e"&gt;python&lt;/span&gt; &lt;span style="color: #a6e22e"&gt;has&lt;/span&gt; &lt;span style="color: #66d9ef"&gt;length&lt;/span&gt; &lt;span style="color: #ae81ff"&gt;6&lt;/span&gt;
-&lt;span style="color: #a6e22e"&gt;done&lt;/span&gt; &lt;span style="color: #a6e22e"&gt;process&lt;/span&gt; &lt;span style="color: #a6e22e"&gt;line&lt;/span&gt;  &lt;span style="color: #ae81ff"&gt;2&lt;/span&gt;
-&lt;span style="color: #a6e22e"&gt;got&lt;/span&gt; &lt;span style="color: #a6e22e"&gt;line&lt;/span&gt;&lt;span style="color: #960050; background-color: #1e0010"&gt;:&lt;/span&gt; &lt;span style="color: #a6e22e"&gt;familug&lt;/span&gt; &lt;span style="color: #a6e22e"&gt;has&lt;/span&gt; &lt;span style="color: #66d9ef"&gt;length&lt;/span&gt; &lt;span style="color: #ae81ff"&gt;7&lt;/span&gt;
-&lt;span style="color: #a6e22e"&gt;done&lt;/span&gt; &lt;span style="color: #a6e22e"&gt;process&lt;/span&gt; &lt;span style="color: #a6e22e"&gt;line&lt;/span&gt;  &lt;span style="color: #ae81ff"&gt;3&lt;/span&gt;
-&lt;span style="color: #a6e22e"&gt;DONE&lt;/span&gt;
+&lt;span class="nx"&gt;the&lt;/span&gt; &lt;span class="nx"&gt;begin&lt;/span&gt;
+&lt;span class="nx"&gt;got&lt;/span&gt; &lt;span class="nx"&gt;line&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;pymi&lt;/span&gt; &lt;span class="nx"&gt;has&lt;/span&gt; &lt;span class="kr"&gt;length&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;
+&lt;span class="nx"&gt;done&lt;/span&gt; &lt;span class="nx"&gt;process&lt;/span&gt; &lt;span class="nx"&gt;line&lt;/span&gt;  &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="nx"&gt;got&lt;/span&gt; &lt;span class="nx"&gt;line&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;python&lt;/span&gt; &lt;span class="nx"&gt;has&lt;/span&gt; &lt;span class="kr"&gt;length&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;
+&lt;span class="nx"&gt;done&lt;/span&gt; &lt;span class="nx"&gt;process&lt;/span&gt; &lt;span class="nx"&gt;line&lt;/span&gt;  &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="nx"&gt;got&lt;/span&gt; &lt;span class="nx"&gt;line&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;familug&lt;/span&gt; &lt;span class="nx"&gt;has&lt;/span&gt; &lt;span class="kr"&gt;length&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;
+&lt;span class="nx"&gt;done&lt;/span&gt; &lt;span class="nx"&gt;process&lt;/span&gt; &lt;span class="nx"&gt;line&lt;/span&gt;  &lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;span class="nx"&gt;DONE&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h2&gt;parttern tìm kiếm&lt;/h2&gt;
 &lt;p&gt;parttern này giúp tìm kiếm các record có chứa một regular expression (hoặc string cố định) và xử lý record đó.&lt;/p&gt;
 &lt;p&gt;Đếm số dòng chứa từ &lt;code&gt;print&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span style="color: #f8f8f2"&gt;echo&lt;/span&gt; -e &lt;span style="color: #e6db74"&gt;&amp;quot;printf print \nprintf&amp;quot;&lt;/span&gt;
-&lt;span style="color: #f8f8f2"&gt;printf&lt;/span&gt; print
-&lt;span style="color: #f8f8f2"&gt;printf&lt;/span&gt;
-$ &lt;span style="color: #f8f8f2"&gt;echo&lt;/span&gt; -e &lt;span style="color: #e6db74"&gt;&amp;quot;printf print \nprintf&amp;quot;&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;|&lt;/span&gt; grep -c print
-&lt;span style="color: #ae81ff"&gt;2&lt;/span&gt;
-$ &lt;span style="color: #f8f8f2"&gt;echo&lt;/span&gt; -e &lt;span style="color: #e6db74"&gt;&amp;quot;printf print \nprintf&amp;quot;&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;|&lt;/span&gt; mawk &lt;span style="color: #e6db74"&gt;&amp;#39;/print/ { count += 1 } END { print count }&amp;#39;&lt;/span&gt;
-&lt;span style="color: #ae81ff"&gt;2&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nb"&gt;echo&lt;/span&gt; -e &lt;span class="s2"&gt;&amp;quot;printf print \nprintf&amp;quot;&lt;/span&gt;
+&lt;span class="nb"&gt;printf&lt;/span&gt; print
+&lt;span class="nb"&gt;printf&lt;/span&gt;
+$ &lt;span class="nb"&gt;echo&lt;/span&gt; -e &lt;span class="s2"&gt;&amp;quot;printf print \nprintf&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; grep -c print
+&lt;span class="m"&gt;2&lt;/span&gt;
+$ &lt;span class="nb"&gt;echo&lt;/span&gt; -e &lt;span class="s2"&gt;&amp;quot;printf print \nprintf&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; mawk &lt;span class="s1"&gt;&amp;#39;/print/ { count += 1 } END { print count }&amp;#39;&lt;/span&gt;
+&lt;span class="m"&gt;2&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h2&gt;print&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;print&lt;/code&gt;  và &lt;code&gt;printf&lt;/code&gt; là 2 output statements (câu lệnh xử lý đầu ra), không phải function nên
 không sử dụng cú pháp gọi function &lt;code&gt;print(thing)&lt;/code&gt;&lt;/p&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;$ mawk &lt;span style="color: #e6db74"&gt;&amp;#39;BEGIN { print &amp;quot;hello&amp;quot; }&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ mawk &lt;span class="s1"&gt;&amp;#39;BEGIN { print &amp;quot;hello&amp;quot; }&amp;#39;&lt;/span&gt;
 hello
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -146,12 +146,12 @@ Các variable có sẵn:&lt;/p&gt;
 &lt;li&gt;NR - thứ tự của record, tăng dần sau khi xử lý xong mỗi record&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Khi truy cập biến, không sử dụng thêm bất cứ ký tự nào (khác với bash, bash phải thêm $varname).&lt;/p&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span style="color: #f8f8f2"&gt;echo&lt;/span&gt; &lt;span style="color: #e6db74"&gt;&amp;#39;1, Le Van Xe, 27, Ha Noi, 0990090090&amp;#39;&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;|&lt;/span&gt; mawk -F, &lt;span style="color: #e6db74"&gt;&amp;#39;{ print $NF}&amp;#39;&lt;/span&gt;
- &lt;span style="color: #ae81ff"&gt;0990090090&lt;/span&gt;
-$ &lt;span style="color: #f8f8f2"&gt;echo&lt;/span&gt; &lt;span style="color: #e6db74"&gt;&amp;#39;1, Le Van Xe, 27, Ha Noi, 0990090090&amp;#39;&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;|&lt;/span&gt; mawk -F, &lt;span style="color: #e6db74"&gt;&amp;#39;{ print $0}&amp;#39;&lt;/span&gt;
-&lt;span style="color: #ae81ff"&gt;1&lt;/span&gt;, Le Van Xe, &lt;span style="color: #ae81ff"&gt;27&lt;/span&gt;, Ha Noi, &lt;span style="color: #ae81ff"&gt;0990090090&lt;/span&gt;
-$ &lt;span style="color: #f8f8f2"&gt;echo&lt;/span&gt; &lt;span style="color: #e6db74"&gt;&amp;#39;1, Le Van Xe, 27, Ha Noi, 0990090090&amp;#39;&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;|&lt;/span&gt; mawk -F, &lt;span style="color: #e6db74"&gt;&amp;#39;{ print NF }&amp;#39;&lt;/span&gt;
-&lt;span style="color: #ae81ff"&gt;5&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;1, Le Van Xe, 27, Ha Noi, 0990090090&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; mawk -F, &lt;span class="s1"&gt;&amp;#39;{ print $NF}&amp;#39;&lt;/span&gt;
+ &lt;span class="m"&gt;0990090090&lt;/span&gt;
+$ &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;1, Le Van Xe, 27, Ha Noi, 0990090090&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; mawk -F, &lt;span class="s1"&gt;&amp;#39;{ print $0}&amp;#39;&lt;/span&gt;
+&lt;span class="m"&gt;1&lt;/span&gt;, Le Van Xe, &lt;span class="m"&gt;27&lt;/span&gt;, Ha Noi, &lt;span class="m"&gt;0990090090&lt;/span&gt;
+$ &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;1, Le Van Xe, 27, Ha Noi, 0990090090&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; mawk -F, &lt;span class="s1"&gt;&amp;#39;{ print NF }&amp;#39;&lt;/span&gt;
+&lt;span class="m"&gt;5&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -161,14 +161,14 @@ $ &lt;span style="color: #f8f8f2"&gt;echo&lt;/span&gt; &lt;span style="color: #e
 Ta không bàn tới array ở đây, vì nếu cần lập trình gì phức tạp hơn một câu lệnh AWK đơn giản, ta  có thể sử dụng Python cho sạch sẽ, gọn gàng, tiện lợi.&lt;/p&gt;
 &lt;h2&gt;Control flow&lt;/h2&gt;
 &lt;p&gt;Là ngôn ngữ lập trình đầy đủ, AWK có if/else/for/while như các ngôn ngữ lập trình "giống C" khác. Ví dụ đếm số chẵn và số lẻ&lt;/p&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span style="color: #f8f8f2"&gt;echo&lt;/span&gt; -e &lt;span style="color: #e6db74"&gt;&amp;#39;1\n2\n3\n4\n20\n30&amp;#39;&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;|&lt;/span&gt; mawk &lt;span style="color: #e6db74"&gt;&amp;#39;\&lt;/span&gt;
-&lt;span style="color: #e6db74"&gt;{ if ($1 % 2 == 0) \&lt;/span&gt;
-&lt;span style="color: #e6db74"&gt;     { chan += 1 } \&lt;/span&gt;
-&lt;span style="color: #e6db74"&gt;  else { le += 1 } \&lt;/span&gt;
-&lt;span style="color: #e6db74"&gt;} \&lt;/span&gt;
-&lt;span style="color: #e6db74"&gt;END { print chan, le }&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nb"&gt;echo&lt;/span&gt; -e &lt;span class="s1"&gt;&amp;#39;1\n2\n3\n4\n20\n30&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; mawk &lt;span class="s1"&gt;&amp;#39;\&lt;/span&gt;
+&lt;span class="s1"&gt;{ if ($1 % 2 == 0) \&lt;/span&gt;
+&lt;span class="s1"&gt;     { chan += 1 } \&lt;/span&gt;
+&lt;span class="s1"&gt;  else { le += 1 } \&lt;/span&gt;
+&lt;span class="s1"&gt;} \&lt;/span&gt;
+&lt;span class="s1"&gt;END { print chan, le }&amp;#39;&lt;/span&gt;
 
-&lt;span style="color: #ae81ff"&gt;5&lt;/span&gt; &lt;span style="color: #ae81ff"&gt;1&lt;/span&gt;
+&lt;span class="m"&gt;5&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -176,8 +176,8 @@ Ta không bàn tới array ở đây, vì nếu cần lập trình gì phức t�
 &lt;p&gt;AWK có sẵn các funtion xử lý string, số thì đủ các phép toán, các function sin cos ..., người dùng cũng có thể định nghĩa function của họ. Xem thêm ở &lt;a href="https://www.gnu.org/software/gawk/manual/gawk.html#Functions"&gt;đây&lt;/a&gt;.&lt;/p&gt;
 &lt;h3&gt;Bonus - giải bài projecteuler 1&lt;/h3&gt;
 &lt;p&gt;&lt;a href="https://projecteuler.net/problem=1"&gt;Tính tổng các số nhỏ hơn 1000 chia hết cho 3 hoặc 5&lt;/a&gt;&lt;/p&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;$ seq &lt;span style="color: #ae81ff"&gt;1&lt;/span&gt; &lt;span style="color: #ae81ff"&gt;999&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;|&lt;/span&gt; mawk &lt;span style="color: #e6db74"&gt;&amp;#39;{ if ($1 % 3 == 0 || $i % 5 == 0) sum += $1 } END { print sum }&amp;#39;&lt;/span&gt;
-&lt;span style="color: #ae81ff"&gt;233168&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ seq &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="m"&gt;999&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; mawk &lt;span class="s1"&gt;&amp;#39;{ if ($1 % 3 == 0 || $i % 5 == 0) sum += $1 } END { print sum }&amp;#39;&lt;/span&gt;
+&lt;span class="m"&gt;233168&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -189,192 +189,192 @@ Ta không bàn tới array ở đây, vì nếu cần lập trình gì phức t�
 &lt;li&gt;&lt;a href="https://adamdrake.com/command-line-tools-can-be-235x-faster-than-your-hadoop-cluster.html"&gt;AWK on big data&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Hết&lt;/p&gt;
-&lt;p&gt;HVN at &lt;a href="http://pymi.vn"&gt;http://pymi.vn&lt;/a&gt; and &lt;a href="https://www.familug.org"&gt;https://www.familug.org&lt;/a&gt;.&lt;/p&gt;</summary><category term="awk"></category><category term="sysadmin"></category><category term="linux"></category><category term="csv"></category><category term="bigdata"></category></entry><entry><title>In ra màn hình số 1 - ngôn ngữ nào nhẹ nhất?</title><link href="http://pp.pymi.vn/article/dynamic/" rel="alternate"></link><published>2018-05-27T00:00:00+07:00</published><updated>2018-05-27T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-05-27:article/dynamic/</id><summary type="html">&lt;p&gt;Nếu chỉ cần in ra mà hình số 1, ngôn ngữ lập trình nào sẽ chạy tốn ít RAM nhất?&lt;/p&gt;
+&lt;p&gt;HVN at &lt;a href="http://pymi.vn"&gt;http://pymi.vn&lt;/a&gt; and &lt;a href="https://www.familug.org"&gt;https://www.familug.org&lt;/a&gt;.&lt;/p&gt;</content><category term="awk"></category><category term="sysadmin"></category><category term="linux"></category><category term="csv"></category><category term="bigdata"></category></entry><entry><title>In ra màn hình số 1 - ngôn ngữ nào nhẹ nhất?</title><link href="http://pp.pymi.vn/article/dynamic/" rel="alternate"></link><published>2018-05-27T00:00:00+07:00</published><updated>2018-05-27T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-05-27:/article/dynamic/</id><summary type="html">&lt;p&gt;dash, bash, awk, perl, ruby, nodejs, python, elixir, guile - tất cả lên thớt!&lt;/p&gt;</summary><content type="html">&lt;p&gt;Nếu chỉ cần in ra mà hình số 1, ngôn ngữ lập trình nào sẽ chạy tốn ít RAM nhất?&lt;/p&gt;
 &lt;p&gt;Thí nghiệm sau sẽ cho ta thấy các chương trình cần bao nhiêu RAM để chạy và in
 ra số 1, kết thúc dòng bằng một dấu xuống dòng (newline &lt;code&gt;\n&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;Ta dùng chương trình &lt;code&gt;/usr/bin/time&lt;/code&gt; để có cả thông số về RAM (&lt;code&gt;RSS&lt;/code&gt;) thay vì chỉ gõ time - lệnh builtin của bash.&lt;/p&gt;
 &lt;h2&gt;bash4.3&lt;/h2&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time bash -c &lt;span style="color: #e6db74"&gt;&amp;#39;echo 1&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time bash -c &lt;span class="s1"&gt;&amp;#39;echo 1&amp;#39;&lt;/span&gt;
 
-&lt;span style="color: #ae81ff"&gt;1&lt;/span&gt;
+&lt;span class="m"&gt;1&lt;/span&gt;
 
-&lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;.00user &lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;.00system &lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;:00.00elapsed &lt;span style="color: #ae81ff"&gt;100&lt;/span&gt;%CPU &lt;span style="color: #f92672"&gt;(&lt;/span&gt;0avgtext+0avgdata 3064maxresident&lt;span style="color: #f92672"&gt;)&lt;/span&gt;k
+&lt;span class="m"&gt;0&lt;/span&gt;.00user &lt;span class="m"&gt;0&lt;/span&gt;.00system &lt;span class="m"&gt;0&lt;/span&gt;:00.00elapsed &lt;span class="m"&gt;100&lt;/span&gt;%CPU &lt;span class="o"&gt;(&lt;/span&gt;0avgtext+0avgdata 3064maxresident&lt;span class="o"&gt;)&lt;/span&gt;k
 
-0inputs+0outputs &lt;span style="color: #f92672"&gt;(&lt;/span&gt;0major+136minor&lt;span style="color: #f92672"&gt;)&lt;/span&gt;pagefaults 0swaps
+0inputs+0outputs &lt;span class="o"&gt;(&lt;/span&gt;0major+136minor&lt;span class="o"&gt;)&lt;/span&gt;pagefaults 0swaps
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h2&gt;dash&lt;/h2&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time /bin/dash -c &lt;span style="color: #e6db74"&gt;&amp;#39;echo 1&amp;#39;&lt;/span&gt;
-&lt;span style="color: #ae81ff"&gt;1&lt;/span&gt;
-&lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;.00user &lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;.00system &lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;:00.00elapsed ?%CPU &lt;span style="color: #f92672"&gt;(&lt;/span&gt;0avgtext+0avgdata 1492maxresident&lt;span style="color: #f92672"&gt;)&lt;/span&gt;k
-0inputs+0outputs &lt;span style="color: #f92672"&gt;(&lt;/span&gt;0major+67minor&lt;span style="color: #f92672"&gt;)&lt;/span&gt;pagefaults 0swaps
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time /bin/dash -c &lt;span class="s1"&gt;&amp;#39;echo 1&amp;#39;&lt;/span&gt;
+&lt;span class="m"&gt;1&lt;/span&gt;
+&lt;span class="m"&gt;0&lt;/span&gt;.00user &lt;span class="m"&gt;0&lt;/span&gt;.00system &lt;span class="m"&gt;0&lt;/span&gt;:00.00elapsed ?%CPU &lt;span class="o"&gt;(&lt;/span&gt;0avgtext+0avgdata 1492maxresident&lt;span class="o"&gt;)&lt;/span&gt;k
+0inputs+0outputs &lt;span class="o"&gt;(&lt;/span&gt;0major+67minor&lt;span class="o"&gt;)&lt;/span&gt;pagefaults 0swaps
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h2&gt;mawk&lt;/h2&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time mawk &lt;span style="color: #e6db74"&gt;&amp;#39;BEGIN {print 1}&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time mawk &lt;span class="s1"&gt;&amp;#39;BEGIN {print 1}&amp;#39;&lt;/span&gt;
 
-&lt;span style="color: #ae81ff"&gt;1&lt;/span&gt;
+&lt;span class="m"&gt;1&lt;/span&gt;
 
-&lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;.00user &lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;.00system &lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;:00.00elapsed &lt;span style="color: #ae81ff"&gt;100&lt;/span&gt;%CPU &lt;span style="color: #f92672"&gt;(&lt;/span&gt;0avgtext+0avgdata 1932maxresident&lt;span style="color: #f92672"&gt;)&lt;/span&gt;k
+&lt;span class="m"&gt;0&lt;/span&gt;.00user &lt;span class="m"&gt;0&lt;/span&gt;.00system &lt;span class="m"&gt;0&lt;/span&gt;:00.00elapsed &lt;span class="m"&gt;100&lt;/span&gt;%CPU &lt;span class="o"&gt;(&lt;/span&gt;0avgtext+0avgdata 1932maxresident&lt;span class="o"&gt;)&lt;/span&gt;k
 
-0inputs+0outputs &lt;span style="color: #f92672"&gt;(&lt;/span&gt;0major+86minor&lt;span style="color: #f92672"&gt;)&lt;/span&gt;pagefaults 0swaps
+0inputs+0outputs &lt;span class="o"&gt;(&lt;/span&gt;0major+86minor&lt;span class="o"&gt;)&lt;/span&gt;pagefaults 0swaps
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h2&gt;gawk 4.1.3&lt;/h2&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time gawk &lt;span style="color: #e6db74"&gt;&amp;#39;BEGIN {print 1}&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time gawk &lt;span class="s1"&gt;&amp;#39;BEGIN {print 1}&amp;#39;&lt;/span&gt;
 
-&lt;span style="color: #ae81ff"&gt;1&lt;/span&gt;
+&lt;span class="m"&gt;1&lt;/span&gt;
 
-&lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;.00user &lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;.00system &lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;:00.00elapsed &lt;span style="color: #ae81ff"&gt;42&lt;/span&gt;%CPU &lt;span style="color: #f92672"&gt;(&lt;/span&gt;0avgtext+0avgdata 3632maxresident&lt;span style="color: #f92672"&gt;)&lt;/span&gt;k
+&lt;span class="m"&gt;0&lt;/span&gt;.00user &lt;span class="m"&gt;0&lt;/span&gt;.00system &lt;span class="m"&gt;0&lt;/span&gt;:00.00elapsed &lt;span class="m"&gt;42&lt;/span&gt;%CPU &lt;span class="o"&gt;(&lt;/span&gt;0avgtext+0avgdata 3632maxresident&lt;span class="o"&gt;)&lt;/span&gt;k
 
-552inputs+0outputs &lt;span style="color: #f92672"&gt;(&lt;/span&gt;2major+173minor&lt;span style="color: #f92672"&gt;)&lt;/span&gt;pagefaults 0swaps
+552inputs+0outputs &lt;span class="o"&gt;(&lt;/span&gt;2major+173minor&lt;span class="o"&gt;)&lt;/span&gt;pagefaults 0swaps
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h2&gt;Python3.5.2&lt;/h2&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time python3 -c &lt;span style="color: #e6db74"&gt;&amp;#39;print(1)&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time python3 -c &lt;span class="s1"&gt;&amp;#39;print(1)&amp;#39;&lt;/span&gt;
 
-&lt;span style="color: #ae81ff"&gt;1&lt;/span&gt;
+&lt;span class="m"&gt;1&lt;/span&gt;
 
-&lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;.03user &lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;.01system &lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;:00.05elapsed &lt;span style="color: #ae81ff"&gt;98&lt;/span&gt;%CPU &lt;span style="color: #f92672"&gt;(&lt;/span&gt;0avgtext+0avgdata 9292maxresident&lt;span style="color: #f92672"&gt;)&lt;/span&gt;k
+&lt;span class="m"&gt;0&lt;/span&gt;.03user &lt;span class="m"&gt;0&lt;/span&gt;.01system &lt;span class="m"&gt;0&lt;/span&gt;:00.05elapsed &lt;span class="m"&gt;98&lt;/span&gt;%CPU &lt;span class="o"&gt;(&lt;/span&gt;0avgtext+0avgdata 9292maxresident&lt;span class="o"&gt;)&lt;/span&gt;k
 
-0inputs+0outputs &lt;span style="color: #f92672"&gt;(&lt;/span&gt;0major+1100minor&lt;span style="color: #f92672"&gt;)&lt;/span&gt;pagefaults 0swaps
+0inputs+0outputs &lt;span class="o"&gt;(&lt;/span&gt;0major+1100minor&lt;span class="o"&gt;)&lt;/span&gt;pagefaults 0swaps
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h2&gt;Python2.7.12&lt;/h2&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time python2 -c &lt;span style="color: #e6db74"&gt;&amp;#39;print(1)&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time python2 -c &lt;span class="s1"&gt;&amp;#39;print(1)&amp;#39;&lt;/span&gt;
 
-&lt;span style="color: #ae81ff"&gt;1&lt;/span&gt;
+&lt;span class="m"&gt;1&lt;/span&gt;
 
-&lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;.01user &lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;.00system &lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;:00.01elapsed &lt;span style="color: #ae81ff"&gt;94&lt;/span&gt;%CPU &lt;span style="color: #f92672"&gt;(&lt;/span&gt;0avgtext+0avgdata 6640maxresident&lt;span style="color: #f92672"&gt;)&lt;/span&gt;k
+&lt;span class="m"&gt;0&lt;/span&gt;.01user &lt;span class="m"&gt;0&lt;/span&gt;.00system &lt;span class="m"&gt;0&lt;/span&gt;:00.01elapsed &lt;span class="m"&gt;94&lt;/span&gt;%CPU &lt;span class="o"&gt;(&lt;/span&gt;0avgtext+0avgdata 6640maxresident&lt;span class="o"&gt;)&lt;/span&gt;k
 
-0inputs+0outputs &lt;span style="color: #f92672"&gt;(&lt;/span&gt;0major+819minor&lt;span style="color: #f92672"&gt;)&lt;/span&gt;pagefaults 0swaps
+0inputs+0outputs &lt;span class="o"&gt;(&lt;/span&gt;0major+819minor&lt;span class="o"&gt;)&lt;/span&gt;pagefaults 0swaps
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h2&gt;Ruby 2.3.1&lt;/h2&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time ruby -e &lt;span style="color: #e6db74"&gt;&amp;#39;puts 1&amp;#39;&lt;/span&gt;
-&lt;span style="color: #ae81ff"&gt;1&lt;/span&gt;
-&lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;.03user &lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;.01system &lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;:00.04elapsed &lt;span style="color: #ae81ff"&gt;100&lt;/span&gt;%CPU &lt;span style="color: #f92672"&gt;(&lt;/span&gt;0avgtext+0avgdata 10336maxresident&lt;span style="color: #f92672"&gt;)&lt;/span&gt;k
-0inputs+0outputs &lt;span style="color: #f92672"&gt;(&lt;/span&gt;0major+1595minor&lt;span style="color: #f92672"&gt;)&lt;/span&gt;pagefaults 0swaps
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time ruby -e &lt;span class="s1"&gt;&amp;#39;puts 1&amp;#39;&lt;/span&gt;
+&lt;span class="m"&gt;1&lt;/span&gt;
+&lt;span class="m"&gt;0&lt;/span&gt;.03user &lt;span class="m"&gt;0&lt;/span&gt;.01system &lt;span class="m"&gt;0&lt;/span&gt;:00.04elapsed &lt;span class="m"&gt;100&lt;/span&gt;%CPU &lt;span class="o"&gt;(&lt;/span&gt;0avgtext+0avgdata 10336maxresident&lt;span class="o"&gt;)&lt;/span&gt;k
+0inputs+0outputs &lt;span class="o"&gt;(&lt;/span&gt;0major+1595minor&lt;span class="o"&gt;)&lt;/span&gt;pagefaults 0swaps
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h2&gt;Perl v5.22.1&lt;/h2&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time perl -e &lt;span style="color: #e6db74"&gt;&amp;#39;print &amp;quot;1\n&amp;quot;&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time perl -e &lt;span class="s1"&gt;&amp;#39;print &amp;quot;1\n&amp;quot;&amp;#39;&lt;/span&gt;
 
-&lt;span style="color: #ae81ff"&gt;1&lt;/span&gt;
+&lt;span class="m"&gt;1&lt;/span&gt;
 
-&lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;.00user &lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;.00system &lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;:00.00elapsed &lt;span style="color: #ae81ff"&gt;100&lt;/span&gt;%CPU &lt;span style="color: #f92672"&gt;(&lt;/span&gt;0avgtext+0avgdata 4144maxresident&lt;span style="color: #f92672"&gt;)&lt;/span&gt;k
+&lt;span class="m"&gt;0&lt;/span&gt;.00user &lt;span class="m"&gt;0&lt;/span&gt;.00system &lt;span class="m"&gt;0&lt;/span&gt;:00.00elapsed &lt;span class="m"&gt;100&lt;/span&gt;%CPU &lt;span class="o"&gt;(&lt;/span&gt;0avgtext+0avgdata 4144maxresident&lt;span class="o"&gt;)&lt;/span&gt;k
 
-0inputs+0outputs &lt;span style="color: #f92672"&gt;(&lt;/span&gt;0major+176minor&lt;span style="color: #f92672"&gt;)&lt;/span&gt;pagefaults 0swaps
+0inputs+0outputs &lt;span class="o"&gt;(&lt;/span&gt;0major+176minor&lt;span class="o"&gt;)&lt;/span&gt;pagefaults 0swaps
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h2&gt;NodeJS 6.11.2&lt;/h2&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time node -p &lt;span style="color: #e6db74"&gt;&amp;#39;1&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time node -p &lt;span class="s1"&gt;&amp;#39;1&amp;#39;&lt;/span&gt;
 
-&lt;span style="color: #ae81ff"&gt;1&lt;/span&gt;
+&lt;span class="m"&gt;1&lt;/span&gt;
 
-&lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;.09user &lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;.00system &lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;:00.10elapsed &lt;span style="color: #ae81ff"&gt;100&lt;/span&gt;%CPU &lt;span style="color: #f92672"&gt;(&lt;/span&gt;0avgtext+0avgdata 24080maxresident&lt;span style="color: #f92672"&gt;)&lt;/span&gt;k
+&lt;span class="m"&gt;0&lt;/span&gt;.09user &lt;span class="m"&gt;0&lt;/span&gt;.00system &lt;span class="m"&gt;0&lt;/span&gt;:00.10elapsed &lt;span class="m"&gt;100&lt;/span&gt;%CPU &lt;span class="o"&gt;(&lt;/span&gt;0avgtext+0avgdata 24080maxresident&lt;span class="o"&gt;)&lt;/span&gt;k
 
-0inputs+0outputs &lt;span style="color: #f92672"&gt;(&lt;/span&gt;0major+2920minor&lt;span style="color: #f92672"&gt;)&lt;/span&gt;pagefaults 0swaps
+0inputs+0outputs &lt;span class="o"&gt;(&lt;/span&gt;0major+2920minor&lt;span class="o"&gt;)&lt;/span&gt;pagefaults 0swaps
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h2&gt;Elixir 1.6.3&lt;/h2&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time elixir -e &lt;span style="color: #e6db74"&gt;&amp;#39;IO.puts 1&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time elixir -e &lt;span class="s1"&gt;&amp;#39;IO.puts 1&amp;#39;&lt;/span&gt;
 
-&lt;span style="color: #ae81ff"&gt;1&lt;/span&gt;
+&lt;span class="m"&gt;1&lt;/span&gt;
 
-&lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;.17user &lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;.04system &lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;:00.16elapsed &lt;span style="color: #ae81ff"&gt;137&lt;/span&gt;%CPU &lt;span style="color: #f92672"&gt;(&lt;/span&gt;0avgtext+0avgdata 29268maxresident&lt;span style="color: #f92672"&gt;)&lt;/span&gt;k
+&lt;span class="m"&gt;0&lt;/span&gt;.17user &lt;span class="m"&gt;0&lt;/span&gt;.04system &lt;span class="m"&gt;0&lt;/span&gt;:00.16elapsed &lt;span class="m"&gt;137&lt;/span&gt;%CPU &lt;span class="o"&gt;(&lt;/span&gt;0avgtext+0avgdata 29268maxresident&lt;span class="o"&gt;)&lt;/span&gt;k
 
-16inputs+0outputs &lt;span style="color: #f92672"&gt;(&lt;/span&gt;1major+7837minor&lt;span style="color: #f92672"&gt;)&lt;/span&gt;pagefaults 0swaps
+16inputs+0outputs &lt;span class="o"&gt;(&lt;/span&gt;1major+7837minor&lt;span class="o"&gt;)&lt;/span&gt;pagefaults 0swaps
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h2&gt;Guile 2.0.11&lt;/h2&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time guile -c &lt;span style="color: #e6db74"&gt;&amp;#39;(display 1) (newline)&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time guile -c &lt;span class="s1"&gt;&amp;#39;(display 1) (newline)&amp;#39;&lt;/span&gt;
 
-&lt;span style="color: #ae81ff"&gt;1&lt;/span&gt;
+&lt;span class="m"&gt;1&lt;/span&gt;
 
-&lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;.02user &lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;.00system &lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;:00.01elapsed &lt;span style="color: #ae81ff"&gt;115&lt;/span&gt;%CPU &lt;span style="color: #f92672"&gt;(&lt;/span&gt;0avgtext+0avgdata 7720maxresident&lt;span style="color: #f92672"&gt;)&lt;/span&gt;k
+&lt;span class="m"&gt;0&lt;/span&gt;.02user &lt;span class="m"&gt;0&lt;/span&gt;.00system &lt;span class="m"&gt;0&lt;/span&gt;:00.01elapsed &lt;span class="m"&gt;115&lt;/span&gt;%CPU &lt;span class="o"&gt;(&lt;/span&gt;0avgtext+0avgdata 7720maxresident&lt;span class="o"&gt;)&lt;/span&gt;k
 
-0inputs+0outputs &lt;span style="color: #f92672"&gt;(&lt;/span&gt;0major+976minor&lt;span style="color: #f92672"&gt;)&lt;/span&gt;pagefaults 0swaps
+0inputs+0outputs &lt;span class="o"&gt;(&lt;/span&gt;0major+976minor&lt;span class="o"&gt;)&lt;/span&gt;pagefaults 0swaps
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h2&gt;printf 8.25 - chương trình viết bằng C&lt;/h2&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time &lt;span style="color: #f8f8f2"&gt;printf&lt;/span&gt; &lt;span style="color: #e6db74"&gt;&amp;#39;1&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ /usr/bin/time &lt;span class="nb"&gt;printf&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;1&amp;#39;&lt;/span&gt;
 
-&lt;span style="color: #ae81ff"&gt;10&lt;/span&gt;.00user &lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;.00system &lt;span style="color: #ae81ff"&gt;0&lt;/span&gt;:00.00elapsed &lt;span style="color: #ae81ff"&gt;100&lt;/span&gt;%CPU &lt;span style="color: #f92672"&gt;(&lt;/span&gt;0avgtext+0avgdata 1844maxresident&lt;span style="color: #f92672"&gt;)&lt;/span&gt;k
+&lt;span class="m"&gt;10&lt;/span&gt;.00user &lt;span class="m"&gt;0&lt;/span&gt;.00system &lt;span class="m"&gt;0&lt;/span&gt;:00.00elapsed &lt;span class="m"&gt;100&lt;/span&gt;%CPU &lt;span class="o"&gt;(&lt;/span&gt;0avgtext+0avgdata 1844maxresident&lt;span class="o"&gt;)&lt;/span&gt;k
 
-0inputs+0outputs &lt;span style="color: #f92672"&gt;(&lt;/span&gt;0major+72minor&lt;span style="color: #f92672"&gt;)&lt;/span&gt;pagefaults 0swaps
+0inputs+0outputs &lt;span class="o"&gt;(&lt;/span&gt;0major+72minor&lt;span class="o"&gt;)&lt;/span&gt;pagefaults 0swaps
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h2&gt;Làm lại toàn bộ bằng Python&lt;/h2&gt;
 &lt;p&gt;Tạo một dictionary, chứa các tên ngôn ngữ - kèm với câu lệnh sẽ dùng để thử nghiệm&lt;/p&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;&lt;span style="color: #f92672"&gt;import&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;shlex&lt;/span&gt;
-&lt;span style="color: #f92672"&gt;import&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;subprocess&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;shlex&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;subprocess&lt;/span&gt;
 
 
-&lt;span style="color: #f8f8f2"&gt;programs&lt;/span&gt; &lt;span style="color: #f92672"&gt;=&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;{&lt;/span&gt;
-    &lt;span style="color: #e6db74"&gt;&amp;#39;bash&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;:&lt;/span&gt; &lt;span style="color: #e6db74"&gt;&amp;#39;bash -c &amp;quot;echo 1&amp;quot;&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;,&lt;/span&gt;
-    &lt;span style="color: #e6db74"&gt;&amp;#39;dash&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;:&lt;/span&gt; &lt;span style="color: #e6db74"&gt;&amp;#39;dash -c &amp;quot;echo 1&amp;quot;&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;,&lt;/span&gt;
-    &lt;span style="color: #e6db74"&gt;&amp;#39;mawk&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;:&lt;/span&gt; &lt;span style="color: #e6db74"&gt;&amp;quot;mawk &amp;#39;BEGIN {print 1}&amp;#39;&amp;quot;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;,&lt;/span&gt;
-    &lt;span style="color: #e6db74"&gt;&amp;#39;gawk&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;:&lt;/span&gt; &lt;span style="color: #e6db74"&gt;&amp;quot;gawk &amp;#39;BEGIN {print 1}&amp;#39;&amp;quot;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;,&lt;/span&gt;
-    &lt;span style="color: #e6db74"&gt;&amp;#39;python2.7&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;:&lt;/span&gt; &lt;span style="color: #e6db74"&gt;&amp;#39;python2 -c &amp;quot;print(1)&amp;quot;&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;,&lt;/span&gt;
-    &lt;span style="color: #e6db74"&gt;&amp;#39;python3.5&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;:&lt;/span&gt; &lt;span style="color: #e6db74"&gt;&amp;#39;python3 -c &amp;quot;print(1)&amp;quot;&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;,&lt;/span&gt;
-    &lt;span style="color: #e6db74"&gt;&amp;#39;ruby2.3&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;:&lt;/span&gt; &lt;span style="color: #e6db74"&gt;&amp;#39;ruby -e &amp;quot;puts 1&amp;quot;&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;,&lt;/span&gt;
-    &lt;span style="color: #e6db74"&gt;&amp;#39;node6&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;:&lt;/span&gt; &lt;span style="color: #e6db74"&gt;&amp;#39;node -p 1&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;,&lt;/span&gt;
-    &lt;span style="color: #e6db74"&gt;&amp;#39;perl5&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;:&lt;/span&gt; &lt;span style="color: #e6db74"&gt;&amp;quot;perl -e &lt;/span&gt;&lt;span style="color: #ae81ff"&gt;\&amp;quot;&lt;/span&gt;&lt;span style="color: #e6db74"&gt;print &amp;#39;1&lt;/span&gt;&lt;span style="color: #ae81ff"&gt;\n&lt;/span&gt;&lt;span style="color: #e6db74"&gt;&amp;#39;&lt;/span&gt;&lt;span style="color: #ae81ff"&gt;\&amp;quot;&lt;/span&gt;&lt;span style="color: #e6db74"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;,&lt;/span&gt;
-    &lt;span style="color: #e6db74"&gt;&amp;#39;elixir&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;:&lt;/span&gt; &lt;span style="color: #e6db74"&gt;&amp;#39;elixir -e &amp;quot;IO.puts 1&amp;quot;&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;,&lt;/span&gt;
-    &lt;span style="color: #e6db74"&gt;&amp;#39;guile&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;:&lt;/span&gt; &lt;span style="color: #e6db74"&gt;&amp;#39;guile -c &amp;quot;(display 1) (newline)&amp;quot;&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;,&lt;/span&gt;
-    &lt;span style="color: #e6db74"&gt;&amp;#39;printf&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;:&lt;/span&gt; &lt;span style="color: #e6db74"&gt;&amp;#39;printf &amp;quot;1&lt;/span&gt;&lt;span style="color: #ae81ff"&gt;\n&lt;/span&gt;&lt;span style="color: #e6db74"&gt;&amp;quot;&amp;#39;&lt;/span&gt;
-&lt;span style="color: #f8f8f2"&gt;}&lt;/span&gt;
+&lt;span class="n"&gt;programs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;bash&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;bash -c &amp;quot;echo 1&amp;quot;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;dash&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;dash -c &amp;quot;echo 1&amp;quot;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;mawk&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;mawk &amp;#39;BEGIN {print 1}&amp;#39;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;gawk&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;gawk &amp;#39;BEGIN {print 1}&amp;#39;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;python2.7&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;python2 -c &amp;quot;print(1)&amp;quot;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;python3.5&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;python3 -c &amp;quot;print(1)&amp;quot;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;ruby2.3&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;ruby -e &amp;quot;puts 1&amp;quot;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;node6&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;node -p 1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;perl5&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;perl -e &lt;/span&gt;&lt;span class="se"&gt;\&amp;quot;&lt;/span&gt;&lt;span class="s2"&gt;print &amp;#39;1&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\&amp;quot;&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;elixir&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;elixir -e &amp;quot;IO.puts 1&amp;quot;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;guile&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;guile -c &amp;quot;(display 1) (newline)&amp;quot;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;printf&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;printf &amp;quot;1&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s1"&gt;&amp;quot;&amp;#39;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 
 
-&lt;span style="color: #f92672"&gt;import&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;re&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;re&lt;/span&gt;
 
-&lt;span style="color: #66d9ef"&gt;def&lt;/span&gt; &lt;span style="color: #a6e22e"&gt;get_rss_from_stderr&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;(stderr):&lt;/span&gt;
-    &lt;span style="color: #f8f8f2"&gt;match&lt;/span&gt; &lt;span style="color: #f92672"&gt;=&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;re&lt;/span&gt;&lt;span style="color: #f92672"&gt;.&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;compile(&lt;/span&gt;&lt;span style="color: #e6db74"&gt;&amp;#39;(?P&amp;lt;rss&amp;gt;\d+)maxresident&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;)&lt;/span&gt;&lt;span style="color: #f92672"&gt;.&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;search(err&lt;/span&gt;&lt;span style="color: #f92672"&gt;.&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;decode(&lt;/span&gt;&lt;span style="color: #e6db74"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;))&lt;/span&gt;
-    &lt;span style="color: #66d9ef"&gt;return&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;int(match&lt;/span&gt;&lt;span style="color: #f92672"&gt;.&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;group(&lt;/span&gt;&lt;span style="color: #e6db74"&gt;&amp;#39;rss&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;))&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_rss_from_stderr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stderr&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;match&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;compile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;(?P&amp;lt;rss&amp;gt;\d+)maxresident&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;err&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;decode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;match&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;group&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;rss&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 
 
-&lt;span style="color: #f92672"&gt;import&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;pandas&lt;/span&gt; &lt;span style="color: #f92672"&gt;as&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;pd&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
 
-&lt;span style="color: #f8f8f2"&gt;languages&lt;/span&gt; &lt;span style="color: #f92672"&gt;=&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;[]&lt;/span&gt;
-&lt;span style="color: #f8f8f2"&gt;rsses&lt;/span&gt; &lt;span style="color: #f92672"&gt;=&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;[]&lt;/span&gt;
-&lt;span style="color: #66d9ef"&gt;for&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;language,&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;cmd&lt;/span&gt; &lt;span style="color: #f92672"&gt;in&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;programs&lt;/span&gt;&lt;span style="color: #f92672"&gt;.&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;items():&lt;/span&gt;
-    &lt;span style="color: #f8f8f2"&gt;cmd&lt;/span&gt; &lt;span style="color: #f92672"&gt;=&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;[&lt;/span&gt;&lt;span style="color: #e6db74"&gt;&amp;#39;/usr/bin/time&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;]&lt;/span&gt; &lt;span style="color: #f92672"&gt;+&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;shlex&lt;/span&gt;&lt;span style="color: #f92672"&gt;.&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;split(cmd)&lt;/span&gt;
-    &lt;span style="color: #f8f8f2"&gt;process&lt;/span&gt; &lt;span style="color: #f92672"&gt;=&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;subprocess&lt;/span&gt;&lt;span style="color: #f92672"&gt;.&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;Popen(cmd,&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;stdout&lt;/span&gt;&lt;span style="color: #f92672"&gt;=&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;subprocess&lt;/span&gt;&lt;span style="color: #f92672"&gt;.&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;PIPE,&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;stderr&lt;/span&gt;&lt;span style="color: #f92672"&gt;=&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;subprocess&lt;/span&gt;&lt;span style="color: #f92672"&gt;.&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;PIPE)&lt;/span&gt;
-    &lt;span style="color: #f8f8f2"&gt;out,&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;err&lt;/span&gt; &lt;span style="color: #f92672"&gt;=&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;process&lt;/span&gt;&lt;span style="color: #f92672"&gt;.&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;communicate()&lt;/span&gt;
-    &lt;span style="color: #66d9ef"&gt;assert&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;out&lt;/span&gt;&lt;span style="color: #f92672"&gt;.&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;decode(&lt;/span&gt;&lt;span style="color: #e6db74"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;)&lt;/span&gt; &lt;span style="color: #f92672"&gt;==&lt;/span&gt; &lt;span style="color: #e6db74"&gt;&amp;#39;1&lt;/span&gt;&lt;span style="color: #ae81ff"&gt;\n&lt;/span&gt;&lt;span style="color: #e6db74"&gt;&amp;#39;&lt;/span&gt;
-    &lt;span style="color: #f8f8f2"&gt;rss&lt;/span&gt; &lt;span style="color: #f92672"&gt;=&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;get_rss_from_stderr(err)&lt;/span&gt;
-    &lt;span style="color: #66d9ef"&gt;print&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;(language,&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;rss)&lt;/span&gt;
-    &lt;span style="color: #f8f8f2"&gt;languages&lt;/span&gt;&lt;span style="color: #f92672"&gt;.&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;append(language)&lt;/span&gt;
-    &lt;span style="color: #f8f8f2"&gt;rsses&lt;/span&gt;&lt;span style="color: #f92672"&gt;.&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;append(rss)&lt;/span&gt;
+&lt;span class="n"&gt;languages&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="n"&gt;rsses&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;language&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cmd&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;programs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;cmd&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/usr/bin/time&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;shlex&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cmd&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;process&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;subprocess&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Popen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cmd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;stdout&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;subprocess&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PIPE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;stderr&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;subprocess&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PIPE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;out&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;err&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;communicate&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;decode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;1&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;
+    &lt;span class="n"&gt;rss&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_rss_from_stderr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;err&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;language&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;rss&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;languages&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;language&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;rsses&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rss&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span style="color: #f8f8f2"&gt;df&lt;/span&gt; &lt;span style="color: #f92672"&gt;=&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;pd&lt;/span&gt;&lt;span style="color: #f92672"&gt;.&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;DataFrame(index&lt;/span&gt;&lt;span style="color: #f92672"&gt;=&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;languages,&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;data&lt;/span&gt;&lt;span style="color: #f92672"&gt;=&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;rsses,&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;columns&lt;/span&gt;&lt;span style="color: #f92672"&gt;=&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;[&lt;/span&gt;&lt;span style="color: #e6db74"&gt;&amp;#39;RSS&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;languages&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;rsses&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;RSS&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 
-&lt;span style="color: #f8f8f2"&gt;df_sorted_rss&lt;/span&gt; &lt;span style="color: #f92672"&gt;=&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;df&lt;/span&gt;&lt;span style="color: #f92672"&gt;.&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;sort_values(by&lt;/span&gt;&lt;span style="color: #f92672"&gt;=&lt;/span&gt;&lt;span style="color: #e6db74"&gt;&amp;#39;RSS&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;df_sorted_rss&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sort_values&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;by&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;RSS&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span style="color: #75715e"&gt;# run in Jupyter&lt;/span&gt;
-&lt;span style="color: #f92672"&gt;from&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;matplotlib&lt;/span&gt; &lt;span style="color: #f92672"&gt;import&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;pyplot&lt;/span&gt; &lt;span style="color: #66d9ef"&gt;as&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;plt&lt;/span&gt;
-&lt;span style="color: #f92672"&gt;import&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;matplotlib&lt;/span&gt;
-&lt;span style="color: #f8f8f2"&gt;matplotlib&lt;/span&gt;&lt;span style="color: #f92672"&gt;.&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;style&lt;/span&gt;&lt;span style="color: #f92672"&gt;.&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;use(&lt;/span&gt;&lt;span style="color: #e6db74"&gt;&amp;#39;fivethirtyeight&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# run in Jupyter&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;matplotlib&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;pyplot&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;plt&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib&lt;/span&gt;
+&lt;span class="n"&gt;matplotlib&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;style&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;use&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;fivethirtyeight&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span style="color: #f92672"&gt;%&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;matplotlib&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;inline&lt;/span&gt;
-&lt;span style="color: #f8f8f2"&gt;df_sorted_rss&lt;/span&gt;&lt;span style="color: #f92672"&gt;.&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;plot&lt;/span&gt;&lt;span style="color: #f92672"&gt;.&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;bar(title&lt;/span&gt;&lt;span style="color: #f92672"&gt;=&lt;/span&gt;&lt;span style="color: #e6db74"&gt;&amp;#39;RSS size in byte when print 1&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;);&lt;/span&gt;
+&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;matplotlib&lt;/span&gt; &lt;span class="n"&gt;inline&lt;/span&gt;
+&lt;span class="n"&gt;df_sorted_rss&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;RSS size in byte when print 1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;img alt="Dynamic typing languages" src="http://pp.pymi.vn/images/dynamic.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Dynamic typing languages" src="http://pp.pymi.vn/images/dynamic.png"&gt;&lt;/p&gt;
 &lt;h2&gt;Kết luận&lt;/h2&gt;
 &lt;p&gt;Khoan vội kết luận rằng cả thế giới nên chuyển hết về dùng dash cho đỡ tốn RAM hay xa lánh Elixir vì nó chạy tới 30 MB RAM để in số 1 ra màn hình.&lt;/p&gt;
 &lt;p&gt;Sử dụng đúng công cụ, cho đúng vấn đề thích hợp mới là điều quan trọng.&lt;/p&gt;
@@ -393,14 +393,17 @@ ra số 1, kết thúc dòng bằng một dấu xuống dòng (newline &lt;code&
 &lt;p&gt;Bài này không xét các ngôn ngữ mà phải viết thành file, compile mới chạy, vì tác giả quá lười.&lt;/p&gt;
 &lt;p&gt;PS: học hết đống trên ở &lt;a href="http://www.familug.org/2016/12/free-ebook.html"&gt;đây&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Hết.&lt;/p&gt;
-&lt;p&gt;HVN at https://pymi.vn and https://www.familug.org&lt;/p&gt;</summary><category term="python"></category><category term="tip"></category></entry><entry><title>Tôi học lập trình không phải vì lương 4000 USD</title><link href="http://pp.pymi.vn/article/toi-hoc-lap-trinh-khong-phai-vi-luong-4000-usd/" rel="alternate"></link><published>2018-05-20T00:00:00+07:00</published><updated>2018-05-20T00:00:00+07:00</updated><author><name>tung491</name></author><id>tag:pp.pymi.vn,2018-05-20:article/toi-hoc-lap-trinh-khong-phai-vi-luong-4000-usd/</id><summary type="html">&lt;p&gt;Không ít học sinh phổ thông từng thắc mắc học môn lập trình để làm gì?
+&lt;p&gt;HVN at https://pymi.vn and https://www.familug.org&lt;/p&gt;</content><category term="python"></category><category term="tip"></category></entry><entry><title>Tôi học lập trình không phải vì lương 4000 USD</title><link href="http://pp.pymi.vn/article/toi-hoc-lap-trinh-khong-phai-vi-luong-4000-usd/" rel="alternate"></link><published>2018-05-20T00:00:00+07:00</published><updated>2018-05-20T00:00:00+07:00</updated><author><name>tung491</name></author><id>tag:pp.pymi.vn,2018-05-20:/article/toi-hoc-lap-trinh-khong-phai-vi-luong-4000-usd/</id><summary type="html">&lt;p&gt;Không ít học sinh phổ thông từng thắc mắc học môn lập trình để làm gì?
+Có phải vì mức lương 4000 USD của sinh viên mới ra trường mà nhiều người hay
+nhắc đến khi nói về lập trình viên.&lt;/p&gt;
+&lt;p&gt;Hôm nay mình đọc một bài trên Facebook nói …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Không ít học sinh phổ thông từng thắc mắc học môn lập trình để làm gì?
 Có phải vì mức lương 4000 USD của sinh viên mới ra trường mà nhiều người hay
 nhắc đến khi nói về lập trình viên.&lt;/p&gt;
 &lt;p&gt;Hôm nay mình đọc một bài trên Facebook nói về lí do &lt;code&gt;Tại sao bạn học lập trình?&lt;/code&gt;,
 trong đó có 1 lí do được nhắc đi nhắc lại rất nhiều
 đó là có một tương lai tươi sáng với mức lương khởi điểm khi ra trường 4000 USD. Bài này nói lên quan điểm của mình về
 việc học lập trình để làm gì.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="4000USD" src="https://cdn-images-1.medium.com/max/800/1*MNkBMrAinvq65wLx9y2oIg.jpeg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="4000USD" src="https://cdn-images-1.medium.com/max/800/1*MNkBMrAinvq65wLx9y2oIg.jpeg"&gt;&lt;/p&gt;
 &lt;p&gt;Mình cũng giống các bạn trong clip trên, đều là học sinh cấp 3, đều có không ít thì nhiều kiến thức về lập trình nhưng mình thấy các bạn đang có phần ảo tưởng về ngành lập trình. Mình tiếp xúc với không ít lập trình viên chuyên nghiệp, nên không còn lạ gì những nỗi khổ của ngành này: trĩ lòi, mắt mờ, đau lưng, cột sống, stress, deadline, đau dạ dày, trầm cảm... Những người ngoài chỉ nhìn vào họ những lúc họ khoe lương nhưng đâu có nhìn thấy lúc họ làm việc. Trên các loại báo xàm ke của Việt Nam và các bà hàng xóm, nghề &lt;code&gt;lập trình&lt;/code&gt; thường xuyên được nhắc đến trong các chủ đề như: "những công việc lương cao nhất", "những công việc không sợ thiếu việc làm lương cao trong 5 năm tới", blabla ... ; nhưng sự thực có phải vậy không ? Công việc lập trình cũng chỉ giống bao nhiêu ngành nghề khác là bán sức lao động và giá trị của bản thân cho công ty và xã hội thôi.&lt;/p&gt;
 &lt;p&gt;Bố mình từng nói "Không có ngành nghề dễ kiếm việc hơn hay lương cao hơn ngành nghề nào.
 Tất cả công việc mày được trả lương là người ta trả cho giá trị và khả năng của mày mang lại chứ không phải trả cho cái ngành nghề của mày hay cái trường mày học."&lt;/p&gt;
@@ -409,7 +412,10 @@ Tất cả công việc mày được trả lương là người ta trả cho gi
 &lt;p&gt;Trong cuộc sống, chúng ta không khó để thấy những sự thật về những con người thành công trong nhiều lĩnh vực nhưng những lĩnh vực đó không hề &lt;code&gt;hot&lt;/code&gt; hay được truyền thống tung hô ví dụ: nuôi lợn, trồng rau, ... vì đơn giản họ tìm thấy được đam mê của mình với nghề và tiềm năng của nghề. Do đó chúng ta thấy được sự thành công đến từ bản thân bạn chứ không phải ngành nghề của bạn&lt;/p&gt;
 &lt;p&gt;Tóm lại, đừng thần thánh hóa &lt;strong&gt;lập trình viên&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;HẾT&lt;/p&gt;
-&lt;p&gt;TUNG491 at https://pymi.vn.&lt;/p&gt;</summary><category term="developer"></category><category term="lương"></category><category term="coder"></category><category term="4000USD"></category></entry><entry><title>Requests + bs4 &lt;= Requests-HTML</title><link href="http://pp.pymi.vn/article/requests-bs4-requests-html/" rel="alternate"></link><published>2018-05-09T00:00:00+07:00</published><updated>2018-05-09T00:00:00+07:00</updated><author><name>tung491</name></author><id>tag:pp.pymi.vn,2018-05-09:article/requests-bs4-requests-html/</id><summary type="html">&lt;h2&gt;Giới thiệu&lt;/h2&gt;
+&lt;p&gt;TUNG491 at https://pymi.vn.&lt;/p&gt;</content><category term="developer"></category><category term="lương"></category><category term="coder"></category><category term="4000USD"></category></entry><entry><title>Requests + bs4 &lt;= Requests-HTML</title><link href="http://pp.pymi.vn/article/requests-bs4-requests-html/" rel="alternate"></link><published>2018-05-09T00:00:00+07:00</published><updated>2018-05-09T00:00:00+07:00</updated><author><name>tung491</name></author><id>tag:pp.pymi.vn,2018-05-09:/article/requests-bs4-requests-html/</id><summary type="html">&lt;h2&gt;Giới thiệu&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://html.python-requests.org/"&gt;Requests-HTML&lt;/a&gt; được viết bởi Kenneth Reitz - tác giả của &lt;code&gt;requests&lt;/code&gt; nổi tiếng, với mục đích cao cả là thay thế combo huyền thoại (với pymier) requests + bs4.  Trên trang chủ, requests-html tự mô tả như sau:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This library intends to make parsing HTML (e.g. scraping the web …&lt;/p&gt;&lt;/blockquote&gt;</summary><content type="html">&lt;h2&gt;Giới thiệu&lt;/h2&gt;
 &lt;p&gt;&lt;a href="http://html.python-requests.org/"&gt;Requests-HTML&lt;/a&gt; được viết bởi Kenneth Reitz - tác giả của &lt;code&gt;requests&lt;/code&gt; nổi tiếng, với mục đích cao cả là thay thế combo huyền thoại (với pymier) requests + bs4.  Trên trang chủ, requests-html tự mô tả như sau:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;This library intends to make parsing HTML (e.g. scraping the web) as simple and intuitive as possible&lt;/p&gt;
@@ -425,21 +431,21 @@ Tất cả công việc mày được trả lương là người ta trả cho gi
 &lt;p&gt;Cách cài đặt và sử dụng cơ bản của requests-html đã được tác giả nói rất rõ ở trang chủ do đó mính sẽ không nói lại nữa.&lt;/p&gt;
 &lt;h3&gt;Render&lt;/h3&gt;
 &lt;p&gt;Nhặt một đoạn văn bản mà đã được render bởi JavaScript:&lt;/p&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;In&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;[&lt;/span&gt;&lt;span style="color: #ae81ff"&gt;4&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;]:&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;r&lt;/span&gt; &lt;span style="color: #f92672"&gt;=&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;session&lt;/span&gt;&lt;span style="color: #f92672"&gt;.&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;get(&lt;/span&gt;&lt;span style="color: #e6db74"&gt;&amp;#39;http://www.familug.org/&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;)&lt;/span&gt;
-&lt;span style="color: #f8f8f2"&gt;In&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;[&lt;/span&gt;&lt;span style="color: #ae81ff"&gt;5&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;]:&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;r&lt;/span&gt;&lt;span style="color: #f92672"&gt;.&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;html&lt;/span&gt;&lt;span style="color: #f92672"&gt;.&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;render()&lt;/span&gt;
-&lt;span style="color: #f8f8f2"&gt;[W:pyppeteer&lt;/span&gt;&lt;span style="color: #f92672"&gt;.&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;chromium_downloader]&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;start&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;chromium&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;download&lt;/span&gt;&lt;span style="color: #f92672"&gt;.&lt;/span&gt;
-&lt;span style="color: #f8f8f2"&gt;Download&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;may&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;take&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;a&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;few&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;minutes&lt;/span&gt;&lt;span style="color: #f92672"&gt;.&lt;/span&gt;
-&lt;span style="color: #f8f8f2"&gt;[W:pyppeteer&lt;/span&gt;&lt;span style="color: #f92672"&gt;.&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;chromium_downloader]&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;chromium&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;download&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;done&lt;/span&gt;&lt;span style="color: #f92672"&gt;.&lt;/span&gt;
-&lt;span style="color: #f8f8f2"&gt;[W:pyppeteer&lt;/span&gt;&lt;span style="color: #f92672"&gt;.&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;chromium_downloader]&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;chromium&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;extracted&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;to:&lt;/span&gt; &lt;span style="color: #f92672"&gt;/&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;home&lt;/span&gt;&lt;span style="color: #f92672"&gt;/&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;dosontung007&lt;/span&gt;&lt;span style="color: #f92672"&gt;/.&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;pyppeteer&lt;/span&gt;&lt;span style="color: #f92672"&gt;/&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;local&lt;/span&gt;&lt;span style="color: #f92672"&gt;-&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;chromium&lt;/span&gt;&lt;span style="color: #f92672"&gt;/&lt;/span&gt;&lt;span style="color: #ae81ff"&gt;543305&lt;/span&gt;
-&lt;span style="color: #f8f8f2"&gt;In&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;[&lt;/span&gt;&lt;span style="color: #ae81ff"&gt;6&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;]:&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;r&lt;/span&gt;&lt;span style="color: #f92672"&gt;.&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;html&lt;/span&gt;&lt;span style="color: #f92672"&gt;.&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;search(&lt;/span&gt;&lt;span style="color: #e6db74"&gt;&amp;#39;UEFI vs BIOS - tạo USB boot cài Windows {something} từ Ubuntu&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;)[&lt;/span&gt;&lt;span style="color: #e6db74"&gt;&amp;#39;something&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;]&lt;/span&gt;
-&lt;span style="color: #f8f8f2"&gt;Out[&lt;/span&gt;&lt;span style="color: #ae81ff"&gt;6&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;]:&lt;/span&gt; &lt;span style="color: #e6db74"&gt;&amp;#39;10&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;In&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;session&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;http://www.familug.org/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;In&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;render&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;W&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;pyppeteer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;chromium_downloader&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="n"&gt;chromium&lt;/span&gt; &lt;span class="n"&gt;download&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;Download&lt;/span&gt; &lt;span class="n"&gt;may&lt;/span&gt; &lt;span class="n"&gt;take&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;few&lt;/span&gt; &lt;span class="n"&gt;minutes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;W&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;pyppeteer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;chromium_downloader&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;chromium&lt;/span&gt; &lt;span class="n"&gt;download&lt;/span&gt; &lt;span class="n"&gt;done&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;W&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;pyppeteer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;chromium_downloader&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;chromium&lt;/span&gt; &lt;span class="n"&gt;extracted&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dosontung007&lt;/span&gt;&lt;span class="o"&gt;/.&lt;/span&gt;&lt;span class="n"&gt;pyppeteer&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;chromium&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;543305&lt;/span&gt;
+&lt;span class="n"&gt;In&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;UEFI vs BIOS - tạo USB boot cài Windows {something} từ Ubuntu&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;something&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;Out&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;10&amp;#39;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Khi bạn chạy render() lần đầu, method sẽ tải về &lt;code&gt;Chromium headless&lt;/code&gt; về thư mục &lt;code&gt;$HOME&lt;/code&gt;.&lt;/p&gt;
 &lt;h3&gt;XPath Selector&lt;/h3&gt;
 &lt;p&gt;Requests-html hỗ trợ Xpath query như Scrapy&lt;/p&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;In [25]: r.html.xpath(&amp;#39;//h3//a&amp;#39;)
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;In [25]: r.html.xpath(&amp;#39;//h3//a&amp;#39;)
 Out[25]:
 [&amp;lt;Element &amp;#39;a&amp;#39; href=&amp;#39;http://www.familug.org/2018/04/uefi-vs-bios-tao-usb-boot-cai-windows.html&amp;#39;&amp;gt;,
  &amp;lt;Element &amp;#39;a&amp;#39; href=&amp;#39;http://www.familug.org/2018/04/alsa-pulseaudio-jack-ubuntu.html&amp;#39;&amp;gt;,
@@ -459,7 +465,7 @@ Out[26]:
 
 
 &lt;h3&gt;CSS Selector&lt;/h3&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;In [26]: sel = &amp;#39;#Blog1 &amp;gt; div.blog-posts.hfeed &amp;gt; div:nth-child(1) &amp;gt; div &amp;gt; div &amp;gt; div &amp;gt; h3&amp;#39;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;In [26]: sel = &amp;#39;#Blog1 &amp;gt; div.blog-posts.hfeed &amp;gt; div:nth-child(1) &amp;gt; div &amp;gt; div &amp;gt; div &amp;gt; h3&amp;#39;
 
 In [27]: r.html.find(sel, first=True)
 Out[27]: &amp;lt;Element &amp;#39;h3&amp;#39; class=(&amp;#39;post-title&amp;#39;, &amp;#39;entry-title&amp;#39;) itemprop=&amp;#39;name&amp;#39;&amp;gt;
@@ -474,9 +480,9 @@ Out[28]: &amp;#39;UEFI vs BIOS - tạo USB boot cài Windows 10 từ Ubuntu&amp;
 &lt;p&gt;Requests-html là 1 thư viện tiện lợi thay thế cho combo requests + bs4, dễ dàng chuyển lên scrapy nếu cần thực hiện dự án crawling lớn, chuyên nghiệp.&lt;/p&gt;
 &lt;p&gt;Chi tiết hơn xem tại: http://html.python-requests.org/.&lt;/p&gt;
 &lt;p&gt;HẾT.&lt;/p&gt;
-&lt;p&gt;TUNG491 at https://pymi.vn&lt;/p&gt;</summary><category term="requests-html"></category><category term="bs4"></category><category term="requests"></category><category term="python"></category><category term="crawl"></category></entry><entry><title>python -i file.py</title><link href="http://pp.pymi.vn/article/pythoni/" rel="alternate"></link><published>2018-05-04T00:00:00+07:00</published><updated>2018-05-04T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-05-04:article/pythoni/</id><summary type="html">&lt;p&gt;Với một lập trình viên Python, quá trình sản xuất code là liên tục vòng tuần
+&lt;p&gt;TUNG491 at https://pymi.vn&lt;/p&gt;</content><category term="requests-html"></category><category term="bs4"></category><category term="requests"></category><category term="python"></category><category term="crawl"></category></entry><entry><title>python -i file.py</title><link href="http://pp.pymi.vn/article/pythoni/" rel="alternate"></link><published>2018-05-04T00:00:00+07:00</published><updated>2018-05-04T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-05-04:/article/pythoni/</id><summary type="html">&lt;p&gt;chạy lệnh python với option -i&lt;/p&gt;</summary><content type="html">&lt;p&gt;Với một lập trình viên Python, quá trình sản xuất code là liên tục vòng tuần
 hoàn:&lt;/p&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;viết code -&amp;gt; python filename.py -&amp;gt; sửa code -&amp;gt; python filename.py ...
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;viết code -&amp;gt; python filename.py -&amp;gt; sửa code -&amp;gt; python filename.py ...
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -484,18 +490,18 @@ hoàn:&lt;/p&gt;
 &lt;p&gt;Option &lt;code&gt;-i&lt;/code&gt; mang lại một khả năng khá thú vị khi cho phép tiếp tục tương tác
 với "đoạn code" sau khi đã chạy xong.&lt;/p&gt;
 &lt;p&gt;Ví dụ, đoạn code:&lt;/p&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;a&lt;/span&gt; &lt;span style="color: #f92672"&gt;=&lt;/span&gt; &lt;span style="color: #ae81ff"&gt;6&lt;/span&gt;
-&lt;span style="color: #f8f8f2"&gt;b&lt;/span&gt; &lt;span style="color: #f92672"&gt;=&lt;/span&gt; &lt;span style="color: #ae81ff"&gt;9&lt;/span&gt;
-&lt;span style="color: #f8f8f2"&gt;c&lt;/span&gt; &lt;span style="color: #f92672"&gt;=&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;a&lt;/span&gt; &lt;span style="color: #f92672"&gt;+&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;b&lt;/span&gt;
-&lt;span style="color: #f8f8f2"&gt;hot_links&lt;/span&gt; &lt;span style="color: #f92672"&gt;=&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;[&lt;/span&gt;&lt;span style="color: #e6db74"&gt;&amp;#39;https://pymi.vn&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;,&lt;/span&gt; &lt;span style="color: #e6db74"&gt;&amp;#39;http://www.familug.org&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;,&lt;/span&gt; &lt;span style="color: #e6db74"&gt;&amp;#39;http://pp.pymi.vn&amp;#39;&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;]&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;
+&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;
+&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;
+&lt;span class="n"&gt;hot_links&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;https://pymi.vn&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;http://www.familug.org&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;http://pp.pymi.vn&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 
-&lt;span style="color: #66d9ef"&gt;for&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;link&lt;/span&gt; &lt;span style="color: #f92672"&gt;in&lt;/span&gt; &lt;span style="color: #f8f8f2"&gt;hot_links:&lt;/span&gt;
-    &lt;span style="color: #66d9ef"&gt;print&lt;/span&gt;&lt;span style="color: #f8f8f2"&gt;(link)&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;link&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;hot_links&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;link&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Chạy&lt;/p&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;$ python3 get_data.py
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ python3 get_data.py
 https://pymi.vn
 http://www.familug.org
 http://pp.pymi.vn
@@ -504,40 +510,40 @@ http://pp.pymi.vn
 
 &lt;p&gt;Giờ muốn tải từng link về thì phải mở editor lên, sửa code và chạy thử tiếp...&lt;/p&gt;
 &lt;p&gt;Chạy với &lt;code&gt;-i&lt;/code&gt;, ta có:&lt;/p&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;$ python3 -i get_data.py
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ python3 -i get_data.py
 https://pymi.vn
 http://www.familug.org
 http://pp.pymi.vn
-&amp;gt;&amp;gt;&amp;gt; locals&lt;span style="color: #f92672"&gt;()&lt;/span&gt;
-&lt;span style="color: #f92672"&gt;{&lt;/span&gt;&lt;span style="color: #e6db74"&gt;&amp;#39;link&amp;#39;&lt;/span&gt;: &lt;span style="color: #e6db74"&gt;&amp;#39;http://pp.pymi.vn&amp;#39;&lt;/span&gt;, &lt;span style="color: #e6db74"&gt;&amp;#39;__doc__&amp;#39;&lt;/span&gt;: None, &lt;span style="color: #e6db74"&gt;&amp;#39;c&amp;#39;&lt;/span&gt;: &lt;span style="color: #ae81ff"&gt;15&lt;/span&gt;, &lt;span style="color: #e6db74"&gt;&amp;#39;a&amp;#39;&lt;/span&gt;: &lt;span style="color: #ae81ff"&gt;6&lt;/span&gt;, &lt;span style="color: #e6db74"&gt;&amp;#39;__name__&amp;#39;&lt;/span&gt;: &lt;span style="color: #e6db74"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;, &lt;span style="color: #e6db74"&gt;&amp;#39;__builtins__&amp;#39;&lt;/span&gt;: &amp;lt;module &lt;span style="color: #e6db74"&gt;&amp;#39;builtins&amp;#39;&lt;/span&gt; &lt;span style="color: #f92672"&gt;(&lt;/span&gt;built-in&lt;span style="color: #f92672"&gt;)&lt;/span&gt;&amp;gt;, &lt;span style="color: #e6db74"&gt;&amp;#39;__spec__&amp;#39;&lt;/span&gt;: None, &lt;span style="color: #e6db74"&gt;&amp;#39;b&amp;#39;&lt;/span&gt;: &lt;span style="color: #ae81ff"&gt;9&lt;/span&gt;, &lt;span style="color: #e6db74"&gt;&amp;#39;__cached__&amp;#39;&lt;/span&gt;: None, &lt;span style="color: #e6db74"&gt;&amp;#39;__loader__&amp;#39;&lt;/span&gt;: &amp;lt;_frozen_importlib_external.SourceFileLoader object at 0x7f0bcaee7f28&amp;gt;, &lt;span style="color: #e6db74"&gt;&amp;#39;hot_links&amp;#39;&lt;/span&gt;: &lt;span style="color: #f92672"&gt;[&lt;/span&gt;&lt;span style="color: #e6db74"&gt;&amp;#39;https://pymi.vn&amp;#39;&lt;/span&gt;, &lt;span style="color: #e6db74"&gt;&amp;#39;http://www.familug.org&amp;#39;&lt;/span&gt;, &lt;span style="color: #e6db74"&gt;&amp;#39;http://pp.pymi.vn&amp;#39;&lt;/span&gt;&lt;span style="color: #f92672"&gt;]&lt;/span&gt;, &lt;span style="color: #e6db74"&gt;&amp;#39;__package__&amp;#39;&lt;/span&gt;: None&lt;span style="color: #f92672"&gt;}&lt;/span&gt;
+&amp;gt;&amp;gt;&amp;gt; locals&lt;span class="o"&gt;()&lt;/span&gt;
+&lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;link&amp;#39;&lt;/span&gt;: &lt;span class="s1"&gt;&amp;#39;http://pp.pymi.vn&amp;#39;&lt;/span&gt;, &lt;span class="s1"&gt;&amp;#39;__doc__&amp;#39;&lt;/span&gt;: None, &lt;span class="s1"&gt;&amp;#39;c&amp;#39;&lt;/span&gt;: &lt;span class="m"&gt;15&lt;/span&gt;, &lt;span class="s1"&gt;&amp;#39;a&amp;#39;&lt;/span&gt;: &lt;span class="m"&gt;6&lt;/span&gt;, &lt;span class="s1"&gt;&amp;#39;__name__&amp;#39;&lt;/span&gt;: &lt;span class="s1"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;, &lt;span class="s1"&gt;&amp;#39;__builtins__&amp;#39;&lt;/span&gt;: &amp;lt;module &lt;span class="s1"&gt;&amp;#39;builtins&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;built-in&lt;span class="o"&gt;)&lt;/span&gt;&amp;gt;, &lt;span class="s1"&gt;&amp;#39;__spec__&amp;#39;&lt;/span&gt;: None, &lt;span class="s1"&gt;&amp;#39;b&amp;#39;&lt;/span&gt;: &lt;span class="m"&gt;9&lt;/span&gt;, &lt;span class="s1"&gt;&amp;#39;__cached__&amp;#39;&lt;/span&gt;: None, &lt;span class="s1"&gt;&amp;#39;__loader__&amp;#39;&lt;/span&gt;: &amp;lt;_frozen_importlib_external.SourceFileLoader object at 0x7f0bcaee7f28&amp;gt;, &lt;span class="s1"&gt;&amp;#39;hot_links&amp;#39;&lt;/span&gt;: &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;https://pymi.vn&amp;#39;&lt;/span&gt;, &lt;span class="s1"&gt;&amp;#39;http://www.familug.org&amp;#39;&lt;/span&gt;, &lt;span class="s1"&gt;&amp;#39;http://pp.pymi.vn&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;, &lt;span class="s1"&gt;&amp;#39;__package__&amp;#39;&lt;/span&gt;: None&lt;span class="o"&gt;}&lt;/span&gt;
 &amp;gt;&amp;gt;&amp;gt; c
-&lt;span style="color: #ae81ff"&gt;15&lt;/span&gt;
+&lt;span class="m"&gt;15&lt;/span&gt;
 &amp;gt;&amp;gt;&amp;gt; hot_links
-&lt;span style="color: #f92672"&gt;[&lt;/span&gt;&lt;span style="color: #e6db74"&gt;&amp;#39;https://pymi.vn&amp;#39;&lt;/span&gt;, &lt;span style="color: #e6db74"&gt;&amp;#39;http://www.familug.org&amp;#39;&lt;/span&gt;, &lt;span style="color: #e6db74"&gt;&amp;#39;http://pp.pymi.vn&amp;#39;&lt;/span&gt;&lt;span style="color: #f92672"&gt;]&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;https://pymi.vn&amp;#39;&lt;/span&gt;, &lt;span class="s1"&gt;&amp;#39;http://www.familug.org&amp;#39;&lt;/span&gt;, &lt;span class="s1"&gt;&amp;#39;http://pp.pymi.vn&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Tất nhiên các Pymier chẳng ai dùng python chay cả, mà là ipython:&lt;/p&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;$ ipython -i get_data.py
-Python &lt;span style="color: #ae81ff"&gt;3&lt;/span&gt;.5.2 &lt;span style="color: #f92672"&gt;(&lt;/span&gt;default, Nov &lt;span style="color: #ae81ff"&gt;17&lt;/span&gt; &lt;span style="color: #ae81ff"&gt;2016&lt;/span&gt;, &lt;span style="color: #ae81ff"&gt;17&lt;/span&gt;:05:23&lt;span style="color: #f92672"&gt;)&lt;/span&gt;
-Type &lt;span style="color: #e6db74"&gt;&amp;#39;copyright&amp;#39;&lt;/span&gt;, &lt;span style="color: #e6db74"&gt;&amp;#39;credits&amp;#39;&lt;/span&gt; or &lt;span style="color: #e6db74"&gt;&amp;#39;license&amp;#39;&lt;/span&gt; &lt;span style="color: #66d9ef"&gt;for&lt;/span&gt; more information
-IPython &lt;span style="color: #ae81ff"&gt;6&lt;/span&gt;.2.1 -- An enhanced Interactive Python. Type &lt;span style="color: #e6db74"&gt;&amp;#39;?&amp;#39;&lt;/span&gt; &lt;span style="color: #66d9ef"&gt;for&lt;/span&gt; help.
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ ipython -i get_data.py
+Python &lt;span class="m"&gt;3&lt;/span&gt;.5.2 &lt;span class="o"&gt;(&lt;/span&gt;default, Nov &lt;span class="m"&gt;17&lt;/span&gt; &lt;span class="m"&gt;2016&lt;/span&gt;, &lt;span class="m"&gt;17&lt;/span&gt;:05:23&lt;span class="o"&gt;)&lt;/span&gt;
+Type &lt;span class="s1"&gt;&amp;#39;copyright&amp;#39;&lt;/span&gt;, &lt;span class="s1"&gt;&amp;#39;credits&amp;#39;&lt;/span&gt; or &lt;span class="s1"&gt;&amp;#39;license&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; more information
+IPython &lt;span class="m"&gt;6&lt;/span&gt;.2.1 -- An enhanced Interactive Python. Type &lt;span class="s1"&gt;&amp;#39;?&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; help.
 https://pymi.vn
 http://www.familug.org
 http://pp.pymi.vn
 
-In &lt;span style="color: #f92672"&gt;[&lt;/span&gt;&lt;span style="color: #ae81ff"&gt;1&lt;/span&gt;&lt;span style="color: #f92672"&gt;]&lt;/span&gt;: hot_links
-Out&lt;span style="color: #f92672"&gt;[&lt;/span&gt;&lt;span style="color: #ae81ff"&gt;1&lt;/span&gt;&lt;span style="color: #f92672"&gt;]&lt;/span&gt;: &lt;span style="color: #f92672"&gt;[&lt;/span&gt;&lt;span style="color: #e6db74"&gt;&amp;#39;https://pymi.vn&amp;#39;&lt;/span&gt;, &lt;span style="color: #e6db74"&gt;&amp;#39;http://www.familug.org&amp;#39;&lt;/span&gt;, &lt;span style="color: #e6db74"&gt;&amp;#39;http://pp.pymi.vn&amp;#39;&lt;/span&gt;&lt;span style="color: #f92672"&gt;]&lt;/span&gt;
+In &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;: hot_links
+Out&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;: &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;https://pymi.vn&amp;#39;&lt;/span&gt;, &lt;span class="s1"&gt;&amp;#39;http://www.familug.org&amp;#39;&lt;/span&gt;, &lt;span class="s1"&gt;&amp;#39;http://pp.pymi.vn&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Một option đơn giản, nhưng vô cùng tiện lợi.&lt;/p&gt;
-&lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;-i     : inspect interactively after running script; forces a prompt even
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;-i     : inspect interactively after running script; forces a prompt even
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Hết.
-HVN at https://pymi.vn and http://www.familug.org&lt;/p&gt;</summary><category term="python"></category><category term="tip"></category></entry><entry><title>Blog chung của các Pymier</title><link href="http://pp.pymi.vn/article/first/" rel="alternate"></link><published>2018-05-02T00:00:00+07:00</published><updated>2018-05-02T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-05-02:article/first/</id><summary type="html">&lt;p&gt;Nơi các Pymier chia sẻ kiến thức cho nhau.
+HVN at https://pymi.vn and http://www.familug.org&lt;/p&gt;</content><category term="python"></category><category term="tip"></category></entry><entry><title>Blog chung của các Pymier</title><link href="http://pp.pymi.vn/article/first/" rel="alternate"></link><published>2018-05-02T00:00:00+07:00</published><updated>2018-05-02T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-05-02:/article/first/</id><summary type="html">&lt;p&gt;Bài viết đầu tiên&lt;/p&gt;</summary><content type="html">&lt;p&gt;Nơi các Pymier chia sẻ kiến thức cho nhau.
 Để tạo một bài viết - hãy fork repo này và tạo một Pull Requests,
 sau khi review xong bài viết sẽ được xuất bản.&lt;/p&gt;
 &lt;ul&gt;
@@ -545,4 +551,4 @@ sau khi review xong bài viết sẽ được xuất bản.&lt;/p&gt;
 &lt;li&gt;Tên tác giả nên dùng GitHub username&lt;/li&gt;
 &lt;li&gt;Bài viết sử dụng Markdown syntax&lt;/li&gt;
 &lt;li&gt;Bài viết tuyển chọn sẽ được đưa vào category "Trang chủ"&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="memo"></category><category term="python"></category></entry></feed>
+&lt;/ul&gt;</content><category term="memo"></category><category term="python"></category></entry></feed>
