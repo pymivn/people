@@ -4,6 +4,7 @@ Author: htlcnn
 Tags: python, ironpython, windows, implementation, dotnet
 Category: Trang chủ
 Summary: Guide to install, run IronPython on Windows. Basic examples on how to use both .NET assemblies and standard Python libraries in IronPython.
+Slug: ironpython
 
 ## IronPython là gì?
 
