@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+        <meta charset="utf-8" />
+        <title>The PyMiers - crawl</title>
+        <link rel="stylesheet" href="http://pp.pymi.vn/theme/css/main.css" />
+        <link href="http://pp.pymi.vn/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="The PyMiers Atom Feed" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://pp.pymi.vn/">The PyMiers </a></h1>
+                <nav><ul>
+                    <li><a href="http://pp.pymi.vn/pages/about.html">About</a></li>
+                    <li><a href="http://pp.pymi.vn/pages/add.html">Tạo bài viết</a></li>
+                    <li><a href="http://pp.pymi.vn/category/trang-chu.html">Trang chủ</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="http://pp.pymi.vn/requests-bs4-requests-html.html">Requests + bs4 <= Requests-HTML</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2018-05-09T00:00:00+07:00">
+                Published: Wed 09 May 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://pp.pymi.vn/author/tung491.html">tung491</a>
+        </address>
+<p>In <a href="http://pp.pymi.vn/category/trang-chu.html">Trang chủ</a>.</p>
+<p>tags: <a href="http://pp.pymi.vn/tag/requests-html.html">requests-html</a> <a href="http://pp.pymi.vn/tag/bs4.html">bs4</a> <a href="http://pp.pymi.vn/tag/requests.html">requests</a> <a href="http://pp.pymi.vn/tag/python.html">python</a> <a href="http://pp.pymi.vn/tag/crawl.html">crawl</a> </p>
+</footer><!-- /.post-info --><h2>Giới thiệu</h2>
+<p><a href="http://html.python-requests.org/">Requests-HTML</a> được viết bởi Kenneth Reitz - tác giả của <code>requests</code> nổi tiếng, với mục đích cao cả là thay thế combo huyền thoại (với pymier) requests + bs4.  Trên trang chủ, requests-html tự mô tả như sau:</p>
+<blockquote>
+<p>This library intends to make parsing HTML (e.g. scraping the web) as simple and intuitive as possible</p>
+</blockquote>
+<p>và đặc biệt chỉ hỗ trợ python3.</p>
+<h2>Các tính năng nổi bật của requests-html</h2>
+<ul>
+<li>Hỗ trợ đầy đủ JavaScript</li>
+<li>Hỗ trợ chọn thành phần của trang bằng CSS, Xpath</li>
+<li>Tự động theo chuyển trang</li>
+</ul>
+<h2>Demo vài tính năng nổi bật</h2>
+<p>Cách cài đặt và sử dụng cơ bản của requests-html đã được tác giả nói rất rõ ở trang chủ do đó mính sẽ không nói lại nữa.</p>
+<h3>Render</h3>
+<p>Nhặt một đoạn văn bản mà đã được render bởi JavaScript:</p>
+<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">r</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://www.familug.org/&#39;</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="n">r</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+<span class="p">[</span><span class="n">W</span><span class="p">:</span><span class="n">pyppeteer</span><span class="o">.</span><span class="n">chromium_downloader</span><span class="p">]</span> <span class="n">start</span> <span class="n">chromium</span> <span class="n">download</span><span class="o">.</span>
+<span class="n">Download</span> <span class="n">may</span> <span class="n">take</span> <span class="n">a</span> <span class="n">few</span> <span class="n">minutes</span><span class="o">.</span>
+<span class="p">[</span><span class="n">W</span><span class="p">:</span><span class="n">pyppeteer</span><span class="o">.</span><span class="n">chromium_downloader</span><span class="p">]</span> <span class="n">chromium</span> <span class="n">download</span> <span class="n">done</span><span class="o">.</span>
+<span class="p">[</span><span class="n">W</span><span class="p">:</span><span class="n">pyppeteer</span><span class="o">.</span><span class="n">chromium_downloader</span><span class="p">]</span> <span class="n">chromium</span> <span class="n">extracted</span> <span class="n">to</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">dosontung007</span><span class="o">/.</span><span class="n">pyppeteer</span><span class="o">/</span><span class="n">local</span><span class="o">-</span><span class="n">chromium</span><span class="o">/</span><span class="mi">543305</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="n">r</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;UEFI vs BIOS - tạo USB boot cài Windows {something} từ Ubuntu&#39;</span><span class="p">)[</span><span class="s1">&#39;something&#39;</span><span class="p">]</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="s1">&#39;10&#39;</span>
+</pre></div>
+
+
+<p>Khi bạn chạy render() lần đầu, method sẽ tải về <code>Chromium headless</code> về thư mục <code>$HOME</code>.</p>
+<h3>XPath Selector</h3>
+<p>Requests-html hỗ trợ Xpath query như Scrapy</p>
+<div class="highlight"><pre><span></span>In [25]: r.html.xpath(&#39;//h3//a&#39;)
+Out[25]:
+[&lt;Element &#39;a&#39; href=&#39;http://www.familug.org/2018/04/uefi-vs-bios-tao-usb-boot-cai-windows.html&#39;&gt;,
+ &lt;Element &#39;a&#39; href=&#39;http://www.familug.org/2018/04/alsa-pulseaudio-jack-ubuntu.html&#39;&gt;,
+ &lt;Element &#39;a&#39; href=&#39;http://www.familug.org/2018/02/hello-2018.html&#39;&gt;,
+ &lt;Element &#39;a&#39; href=&#39;http://www.familug.org/2017/12/dung-git-diff-voi-patch.html&#39;&gt;,
+ &lt;Element &#39;a&#39; href=&#39;http://www.familug.org/2017/11/pgrep-e-grep-process.html&#39;&gt;,
+ &lt;Element &#39;a&#39; href=&#39;http://www.familug.org/2017/11/vuot-qua-gioi-han-1-deploy-key-cua.html&#39;&gt;]
+In [26]: r.html.xpath(&#39;//h3//a/@href&#39;)
+Out[26]:
+[&#39;http://www.familug.org/2018/04/uefi-vs-bios-tao-usb-boot-cai-windows.html&#39;,
+&#39;http://www.familug.org/2018/04/alsa-pulseaudio-jack-ubuntu.html&#39;,
+&#39;http://www.familug.org/2018/02/hello-2018.html&#39;,
+&#39;http://www.familug.org/2017/12/dung-git-diff-voi-patch.html&#39;,
+&#39;http://www.familug.org/2017/11/pgrep-e-grep-process.html&#39;,
+&#39;http://www.familug.org/2017/11/vuot-qua-gioi-han-1-deploy-key-cua.html&#39;]
+</pre></div>
+
+
+<h3>CSS Selector</h3>
+<div class="highlight"><pre><span></span>In [26]: sel = &#39;#Blog1 &gt; div.blog-posts.hfeed &gt; div:nth-child(1) &gt; div &gt; div &gt; div &gt; h3&#39;
+
+In [27]: r.html.find(sel, first=True)
+Out[27]: &lt;Element &#39;h3&#39; class=(&#39;post-title&#39;, &#39;entry-title&#39;) itemprop=&#39;name&#39;&gt;
+
+In [28]: r.html.find(sel, first=True).text
+Out[28]: &#39;UEFI vs BIOS - tạo USB boot cài Windows 10 từ Ubuntu&#39;
+</pre></div>
+
+
+<p>CSS selector này có thể copy từ developer tool của trình duyệt web.</p>
+<h2>Tổng kết</h2>
+<p>Requests-html là 1 thư viện tiện lợi thay thế cho combo requests + bs4, dễ dàng chuyển lên scrapy nếu cần thực hiện dự án crawling lớn, chuyên nghiệp.</p>
+<p>Chi tiết hơn xem tại: http://html.python-requests.org/.</p>
+<p>HẾT.</p>
+<p>TUNG491 at https://pymi.vn</p><p>There are <a href="http://pp.pymi.vn/requests-bs4-requests-html.html#disqus_thread">comments</a>.</p>                </article>
+            </aside><!-- /#featured -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="https://pymi.vn/">PyMi homepage</a></li>
+                            <li><a href="http://www.familug.org/">FAMILUG.org</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://pp.pymi.vn/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://www.facebook.com/pyfml/">Facebook</a></li>
+                            <li><a href="https://github.com/pymivn/">GitHub</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'pymier';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>
