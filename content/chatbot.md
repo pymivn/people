@@ -3,6 +3,7 @@ Date: 2018-05-25
 Author: tung491
 Tags: Python, chatbot
 Category: Trang chủ
+Summary: Chatbot - 
 
 Đầu tiên, bạn cần hiểu chatbot là gì? Chatbot là một chương trình thực hiện cuộc hội thoại qua phương pháp gửi nhận văn bản hoặc các object như hình ảnh, file, ...
 
