@@ -1,9 +1,10 @@
 Title: IronPython
 Date: 2018-05-30
+Modified: 2018-05-31
 Author: htlcnn
 Tags: python, ironpython, windows, implementation, dotnet
 Category: Trang chủ
-Summary: Guide to install, run IronPython on Windows. Basic examples on how to use both .NET assemblies and standard Python libraries in IronPython.
+Summary: Hướng dẫn cài đặt, chạy IronPython trên Windows. Ví dụ cơ bản về cách sử dụng .NET Framework và các thư viện có sẵn với IronPython.
 Slug: ironpython
 
 ## IronPython là gì?
@@ -15,7 +16,7 @@ Theo giới thiệu ở [trang chủ IronPython](http://ironpython.net/):
 
 
 ## Cài đặt IronPython
-Vào trang chủ download bộ cài đặt về (link download ở trang chủ là link github). Thời điểm viết bài, IronPython đang ở phiên bản 2.7.8: https://github.com/IronLanguages/ironpython2/releases/tag/ipy-2.7.8. IronPython 3 đang trong quá trình phát triển, chưa có bản chính thức.
+Vào trang chủ download bộ cài đặt về (link download ở trang chủ là link github). Thời điểm viết bài, IronPython đang ở [phiên bản 2.7.8](https://github.com/IronLanguages/ironpython2/releases/tag/ipy-2.7.8). IronPython 3 đang trong quá trình phát triển, chưa có bản chính thức.
 
 
 ## Sử dụng
