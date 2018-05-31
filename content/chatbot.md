@@ -14,7 +14,7 @@ Trong bài viết này mình sử dụng 2 lib của bên thứ 3 là [fbchat](h
 
 Đầu tiên, import những lib mình cần đã 🎉
 
-```
+``` python
 import logging
 import os
 import time
@@ -30,7 +30,7 @@ Sau đó tạo một class `Bot` kế thừa `Client` :
 
 Tạo 1 function trong class `Bot` để thực hiện gửi tin nhắn, dưới đây là code của mình:
 
-```
+``` python
 class Bot(Client):
     def do_something(self): 
         #Đổi tên function cho phù hợp
@@ -46,7 +46,7 @@ class Bot(Client):
 
 Và để nhận được tin nhắn từ những người gửi cho mình cho mình , ta viết function `onMessage` trong class `Bot` và xử lí các tin nhắn đó:
 
-```
+``` python
 def onMessage(self, message_object, author_id, thread_id, thread_type, **kwargs):
     lst_msg = list('Chúc mừng năm mới')
     if author_id != self.uid and message_object.text in lst_msg:
@@ -66,7 +66,7 @@ Class `Bot` kế thừa `Client` do đó 2 args cần truyền vào đó là use
 
 Bây giờ còn một công việc duy nhất là hẹn giờ cho job làm việc thôi!
 
-```
+``` python
 def job():
     Bot(os.environ['USERNAME_'], os.environ['PASSWORD']).do_something()
 
@@ -83,14 +83,14 @@ Thay đổi `00:00` bằng thời gian mà bạn muốn hẹn giờ.
 
 Để nhận được message, ta sử dụng function `listen` từ `Client` , về cơ bản `listen` khi chạy sẽ truyền các arguments vào `onMessage` mỗi lần Facebook bạn có event mới (VD: có người nhắn cho bạn, bạn nhắn cho người khác hoặc tin nhắn trong nhóm, ...):
 
-```
+``` python
 def reply_msg():
     Bot(os.environ['USERNAME_'], os.environ['PASSWORD']).listen()
 ```
 
 Ở function main, mình sử dụng lib threading để chạy song song 2 job là reply_msg và send_msg :
 
-```
+``` python
 def main():
     Thread(target=send_msg).start()
     Thread(target=reply_msg).start()
@@ -98,7 +98,7 @@ def main():
 
 Cuối cùng cũng xong 🎉.Sau tất cả, đây là một con chatbot hoàn chỉnh :
 
-```
+``` python
 import logging
 import os
 import time
@@ -120,8 +120,8 @@ class Bot(Client):
 
     def do_something(self):
         logging.basicConfig(level=logging.INFO)
-        lst_id = ['100012610305665']
-        for user_id in lst_id:    
+        user_ids = ['100012610305665']
+        for user_id in user_ids:    
             self.send(Message(text="Chúc mừng năm mới"),
                       thread_id=user_id, thread_type=ThreadType.USER)
             self.sendLocalImage('/home/dosontung007/Pictures/wallpaper.png', message=Message(text='Chúc mừng năm mới'),
@@ -161,7 +161,7 @@ Bây giờ chỉ cần chạy thôi. Và đây là thành quả:
 
 Nếu bạn muốn chạy luôn mà không cần hẹn giờ thì chỉ cần xoá function `job_that_executes_once` và thay function `send_msg` bằng:
 
-```
+``` python
 def send_msg():
     Bot(os.environ['USERNAME_'],os.environ['PASSWORD']).do_something()
 ```
