@@ -47,7 +47,48 @@ Thắc mắc hay gặp: Mình muốn sử dụng 1 công cụ trong .NET Framewo
 Khi chạy ipy.exe, IronPython đã AddReference sẵn tới mscorlib.dll và System.dll [<sup>[1]</sup>](http://ironpython.net/documentation/dotnet/dotnet.html#assemblies-loaded-by-default). Khi đó chỉ việc `import` các namespaces có trong 2 assemblies này mà không phải AddRerence.
 
 ## AddReference các Assemblies khác
-Ngoài các assemblies có trong .NET Framework, còn có các assemblies khác đi kèm với các phần mềm cài vào Windows, hoặc assemblies được compiled từ chính IronPython. Cú pháp AddReference tương tự như trên, với lưu ý là `AddReference` khi đó sẽ tìm assemblies trong GAC hoặc `sys.path`. Nếu không muốn append đường dẫn tới folder chứa file .dll thì có thể dùng `AddReferenceToFileAndPath`. Ví dụ:
+Ngoài các assemblies có trong .NET Framework, còn có các assemblies khác đi kèm với các phần mềm cài vào Windows, hoặc assemblies được compiled từ chính IronPython. Cú pháp AddReference tương tự như trên, với lưu ý là `AddReference` khi đó sẽ tìm assemblies trong GAC hoặc `sys.path`. Nếu không muốn append đường dẫn tới folder chứa file .dll thì có thể dùng `AddReferenceToFileAndPath`. Phải chạy đúng phiên bản IronPython 32bit/64bit tương ứng với target mà file assemblies được compiled. Ví dụ file `RevitAPI.dll` được compiled với target architecture là 64bit:
+```python
+C:\Users\HTL>"C:\Program Files (x86)\IronPython 2.7\ipy.exe"
+IronPython 2.7.3 (2.7.0.40) on .NET 4.0.30319.42000 (32-bit)
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import clr
+>>> import sys
+>>> sys.path.append(r'C:\Program Files\Autodesk\Revit 2018')
+>>> clr.AddReference('RevitAPI')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+IOError: System.IO.IOException: Could not add reference to assembly RevitAPI
+   at IronPython.Runtime.ClrModule.AddReference(CodeContext context, String name
+)
+   at IronPython.Runtime.ClrModule.AddReference(CodeContext context, Object refe
+rence)
+   at IronPython.Runtime.ClrModule.AddReference(CodeContext context, Object[] re
+ferences)
+   at Microsoft.Scripting.Interpreter.ActionCallInstruction`2.Run(InterpretedFra
+me frame)
+   at Microsoft.Scripting.Interpreter.Interpreter.Run(InterpretedFrame frame)
+   at Microsoft.Scripting.Interpreter.LightLambda.Run4[T0,T1,T2,T3,TRet](T0 arg0
+, T1 arg1, T2 arg2, T3 arg3)
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute3[T0,T1,T2,TRet](CallSite s
+ite, T0 arg0, T1 arg1, T2 arg2)
+   at Microsoft.Scripting.Interpreter.FuncCallInstruction`6.Run(InterpretedFrame
+ frame)
+   at Microsoft.Scripting.Interpreter.Interpreter.Run(InterpretedFrame frame)
+   at Microsoft.Scripting.Interpreter.LightLambda.Run4[T0,T1,T2,T3,TRet](T0 arg0
+, T1 arg1, T2 arg2, T3 arg3)
+   at IronPython.Compiler.Ast.CallExpression.Invoke1Instruction.Run(InterpretedF
+rame frame)
+   at Microsoft.Scripting.Interpreter.Interpreter.Run(InterpretedFrame frame)
+   at Microsoft.Scripting.Interpreter.LightLambda.Run2[T0,T1,TRet](T0 arg0, T1 a
+rg1)
+   at IronPython.Compiler.PythonScriptCode.RunWorker(CodeContext ctx)
+   at IronPython.Compiler.PythonScriptCode.Run(Scope scope)
+   at IronPython.Hosting.PythonCommandLine.<>c__DisplayClass1.<RunOneInteraction
+>b__0()
+>>>
+```
+
 ```python
 C:\Users\HTL>"C:\Program Files (x86)\IronPython 2.7\ipy64.exe"
 IronPython 2.7.3 (2.7.0.40) on .NET 4.0.30319.42000 (64-bit)
