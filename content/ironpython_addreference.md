@@ -1,0 +1,68 @@
+Title: Dùng .NET Framework với IronPython
+Date: 2018-05-31
+Author: htlcnn
+Tags: ironpython, windows, dotnet, reference, dll
+Category: Trang chủ
+Summary: Làm việc với .NET Framework trong IronPython.
+Slug: ironpython-addreference
+
+
+## AddReference .NET Assemblies
+Khi lập trình các ngôn ngữ .NET khác như C#, dùng Visual Studio, muốn sử dụng các công cụ trong .NET Framework thì bạn phải thêm "Reference" vào project browser. IronPython có 1 module hỗ trợ "Add Reference" vào script là `clr`. Các methods Add Reference trong IronPython:
+```python
+# Sử dụng một trong các methods sau
+clr.AddReference
+clr.AddReferenceByName
+clr.AddReferenceByPartialName
+clr.AddReferenceToFile
+clr.AddReferenceToFileAndPath
+```
+`clr.AddReference` nhận vào 1 đối tượng [System.Reflection.Assembly](https://msdn.microsoft.com/en-us/library/system.reflection.assembly(v=vs.110).aspx), hoặc **full name** của assembly (vd `clr.AddReference("System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")`), hoặc **partial name** của assembly (vd `clr.AddReference("System.Drawing")`). Khi dùng partial name, IronPython sẽ tìm file dll ở trong [Global Assembly Cache (GAC)](https://docs.microsoft.com/en-us/dotnet/framework/app-domains/gac). Mình thường dùng cách thứ 3: truyền vào partial name cho ngắn gọn.
+Xem các assemblies đã add ở `clr.References`:
+```python
+C:\Users\HTL>"c:\Program Files (x86)\IronPython 2.7\ipy.exe"
+IronPython 2.7.3 (2.7.0.40) on .NET 4.0.30319.42000 (32-bit)
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import clr
+>>> clr.AddReference("System.Drawing")
+>>> clr.References
+(<mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089>,
+<System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089>,
+<IronPython.SQLite, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b71
+3576e1>,
+<IronPython.Wpf, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b713576e1>,
+<System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a>)
+
+>>>
+```
+Sau khi `AddReference`, phải `import` các namespaces có trong assemblies để sử dụng trong IronPython. Cú pháp import như bình thường:
+```python
+>>> from System import Drawing
+>>> print(Drawing)
+Microsoft.Scripting.Actions.NamespaceTracker:System.Drawing
+>>>
+```
+Thắc mắc hay gặp: Mình muốn sử dụng 1 công cụ trong .NET Framework thì biết tên assembly là gì để `AddReference`, biết namespace nào để `import`? Trả lời với từ khóa tìm kiếm: `Tên_công_cụ msdn` (VD [System Environment msdn](http://lmgtfy.com/?s=d&q=System+Environment+msdn)). Dùng phần **Assembly** để `AddReference`, phần **Namespace** để `import`.
+
+Khi chạy ipy.exe, IronPython đã AddReference sẵn tới mscorlib.dll và System.dll [<sup>[1]</sup>](http://ironpython.net/documentation/dotnet/dotnet.html#assemblies-loaded-by-default). Khi đó chỉ việc `import` các namespaces có trong 2 assemblies này mà không phải AddRerence.
+
+## AddReference các Assemblies khác
+Ngoài các assemblies có trong .NET Framework, còn có các assemblies khác đi kèm với các phần mềm cài vào Windows, hoặc assemblies được compiled từ chính IronPython. Cú pháp AddReference tương tự như trên, với lưu ý là `AddReference` khi đó sẽ tìm assemblies trong GAC hoặc `sys.path`. Nếu không muốn append đường dẫn tới folder chứa file .dll thì có thể dùng `AddReferenceToFileAndPath`. Ví dụ:
+```python
+C:\Users\HTL>"C:\Program Files (x86)\IronPython 2.7\ipy64.exe"
+IronPython 2.7.3 (2.7.0.40) on .NET 4.0.30319.42000 (64-bit)
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import clr
+>>> import sys
+>>> sys.path
+['.', 'C:\\Program Files (x86)\\IronPython 2.7\\Lib',
+ 'C:\\Program Files (x86)\\IronPython 2.7\\DLLs',
+ 'C:\\Program Files (x86)\\IronPython 2.7',
+ 'C:\\Program Files (x86)\\IronPython 2.7\\lib\\site-packages']
+>>> sys.path.append(r'C:\Program Files\Autodesk\Revit 2018')
+>>> clr.AddReference('RevitAPI')
+>>> from Autodesk.Revit.DB import Wall
+>>> Wall
+<type 'Wall'>
+>>>
+```
