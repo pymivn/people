@@ -59,6 +59,9 @@ C:\Windows\system32
 3.14159265359
 ```
 
+## Tài liệu IronPython
+Tương tự câu hỏi khi học Python thì dùng tài liệu nào, đối với IronPython thì cũng lấy tài liệu ở trang chủ. IronPython Documentation có 2 phần: phần 1 chính là [Python 2.7 documentation](https://docs.python.org/2.7/), phần 2 là [hướng dẫn tích hợp .NET với IronPython](http://ironpython.net/documentation/dotnet/).
+
 ## Kết luận
 - Học ngôn ngữ Python là có thể sử dụng trên nhiều môi trường, với nhiều implementation khác nhau (CPython, IronPython, Jython...).
 - IronPython là sự lựa chọn hợp lý khi làm việc với môi trường Windows và các phần mềm chạy trên Windows.
