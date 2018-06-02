@@ -3,12 +3,15 @@ Date: 2018-05-31
 Author: htlcnn
 Tags: ironpython, windows, dotnet, reference, dll
 Category: Trang chủ
-Summary: Làm việc với .NET Framework trong IronPython.
+Summary: Giới thiệu cách thêm các công cụ của .NET Framework vào IronPython.
 Slug: ironpython-addreference
 
 
+## Assembly là gì
+[Assembly](https://msdn.microsoft.com/en-us/library/ms973231.aspx#assenamesp_topic4) là một file được tạo ra bởi quá trình compile một ứng dụng .NET. Nó có thể có đuôi `.dll` hoặc `.exe`. .NET Framework có sẵn rất nhiều assemblies, cũng tương tự như Python có sẵn rất nhiều [standard libraries](https://docs.python.org/3/library/index.html) vậy.
+
 ## AddReference .NET Assemblies
-Khi lập trình các ngôn ngữ .NET khác như C#, dùng Visual Studio, muốn sử dụng các công cụ trong .NET Framework thì bạn phải thêm "Reference" vào project browser. IronPython có 1 module hỗ trợ "Add Reference" vào script là `clr`. Các methods Add Reference trong IronPython:
+Khi lập trình các ngôn ngữ .NET khác như C# hat VB.NET, dùng Visual Studio, muốn sử dụng các công cụ trong .NET Framework thì bạn phải thêm "Reference" vào project browser. IronPython có 1 module hỗ trợ "Add Reference" vào script là `clr`. Các methods Add Reference trong IronPython:
 ```python
 # Sử dụng một trong các methods sau
 clr.AddReference
@@ -47,7 +50,9 @@ Thắc mắc hay gặp: Mình muốn sử dụng 1 công cụ trong .NET Framewo
 Khi chạy ipy.exe, IronPython đã AddReference sẵn tới mscorlib.dll và System.dll [<sup>[1]</sup>](http://ironpython.net/documentation/dotnet/dotnet.html#assemblies-loaded-by-default). Khi đó chỉ việc `import` các namespaces có trong 2 assemblies này mà không phải AddRerence.
 
 ## AddReference các Assemblies khác
-Ngoài các assemblies có trong .NET Framework, còn có các assemblies khác đi kèm với các phần mềm cài vào Windows, hoặc assemblies được compiled từ chính IronPython. Cú pháp AddReference tương tự như trên, với lưu ý là `AddReference` khi đó sẽ tìm assemblies trong GAC hoặc `sys.path`. Nếu không muốn append đường dẫn tới folder chứa file .dll thì có thể dùng `AddReferenceToFileAndPath`. Phải chạy đúng phiên bản IronPython 32bit/64bit tương ứng với target mà file assemblies được compiled. Ví dụ file `RevitAPI.dll` được compiled với target architecture là 64bit:
+Ngoài các assemblies có trong .NET Framework, còn có các assemblies khác đi kèm với các phần mềm cài vào Windows, hoặc assemblies được compiled từ chính IronPython. Cú pháp AddReference tương tự như trên, với lưu ý là `AddReference` khi đó sẽ tìm assemblies trong GAC hoặc `sys.path`. Nếu không muốn append đường dẫn tới folder chứa file .dll thì có thể dùng `AddReferenceToFileAndPath`. Phải chạy đúng phiên bản IronPython 32bit/64bit tương ứng với [Target Platform](https://msdn.microsoft.com/en-us/library/hh264221.aspx#Target%20Platform) mà file assembly được compiled.
+
+Ví dụ file `RevitAPI.dll` được compiled với Target Platform là x64 (64-bit), nếu chạy `ipy.exe` (32-bit) sẽ không `AddReference` được:
 ```python
 C:\Users\HTL>"C:\Program Files (x86)\IronPython 2.7\ipy.exe"
 IronPython 2.7.3 (2.7.0.40) on .NET 4.0.30319.42000 (32-bit)
@@ -89,6 +94,7 @@ rg1)
 >>>
 ```
 
+Mà phải dùng `ipy64.exe` để `AddReference`:
 ```python
 C:\Users\HTL>"C:\Program Files (x86)\IronPython 2.7\ipy64.exe"
 IronPython 2.7.3 (2.7.0.40) on .NET 4.0.30319.42000 (64-bit)
