@@ -8,10 +8,10 @@ Slug: ironpython-addreference
 
 
 ## Assembly là gì
-[Assembly](https://msdn.microsoft.com/en-us/library/ms973231.aspx#assenamesp_topic4) là một file được tạo ra bởi quá trình compile một ứng dụng .NET. Nó có thể có đuôi `.dll` hoặc `.exe`. .NET Framework có sẵn rất nhiều assemblies, cũng tương tự như Python có sẵn rất nhiều [standard libraries](https://docs.python.org/3/library/index.html) vậy.
+[Assembly](https://msdn.microsoft.com/en-us/library/ms973231.aspx#assenamesp_topic4) (số nhiều: assemblies) là một file được tạo ra bởi quá trình compile một ứng dụng .NET. Nó có thể có đuôi `.dll` hoặc `.exe`. .NET Framework có sẵn rất nhiều assemblies (chính là thành phần [Class Library trong .NET Framework](https://msdn.microsoft.com/en-us/library/gg145045.aspx)), cũng tương tự như Python có sẵn rất nhiều [standard libraries](https://docs.python.org/3/library/index.html) vậy.
 
 ## AddReference .NET Assemblies
-Khi lập trình các ngôn ngữ .NET khác như C# hat VB.NET, dùng Visual Studio, muốn sử dụng các công cụ trong .NET Framework thì bạn phải thêm "Reference" vào project browser. IronPython có 1 module hỗ trợ "Add Reference" vào script là `clr`. Các methods Add Reference trong IronPython:
+Khi lập trình các ngôn ngữ .NET khác như C# hay VB.NET, dùng Visual Studio, muốn sử dụng các công cụ trong .NET Framework thì bạn phải thêm "Reference" vào project browser. IronPython có 1 module hỗ trợ "Add Reference" vào script là `clr`. Các methods Add Reference trong IronPython:
 ```python
 # Sử dụng một trong các methods sau
 clr.AddReference
