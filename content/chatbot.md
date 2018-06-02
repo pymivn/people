@@ -3,7 +3,7 @@ Date: 2018-05-25
 Author: tung491
 Tags: Python, chatbot
 Category: Trang chủ
-Summary: Chatbot - 
+Summary: Làm FaceBook chat bot còn dễ hơn rủ em gái bàn bên đi xem phim...
 
 Đầu tiên, bạn cần hiểu chatbot là gì? Chatbot là một chương trình thực hiện cuộc hội thoại qua phương pháp gửi nhận văn bản hoặc các object như hình ảnh, file, ...
 
