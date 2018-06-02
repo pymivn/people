@@ -1,5 +1,5 @@
 Title: Dùng .NET Framework với IronPython
-Date: 2018-06-02
+Date: 2018-05-31
 Author: htlcnn
 Tags: ironpython, windows, dotnet, reference, dll
 Category: Trang chủ
@@ -113,3 +113,8 @@ Type "help", "copyright", "credits" or "license" for more information.
 <type 'Wall'>
 >>>
 ```
+
+## AddReference các assemblies được compiled bằng IronPython
+Nếu như bạn chưa biết, IronPython có thể compile python script thành các file assemblies (`.dll` hoặc `.exe`) sử dụng công cụ kèm theo là `pyc.py` (sẽ có bài viết riêng về **Compile pyhton script dùng IronPython**).
+
+Một lưu ý quan trọng khi AddReference các file assemblies này là: **phải dùng đúng phiên bản IronPython tương ứng với phiên bản đã dùng để compile ra file assembly đó thì mới AddReference được**. Ví dụ: file assembly được compiled bằng IronPython 2.7.3 thì khi AddReference ta phải dùng IronPython 2.7.3. Sẽ có ví dụ cụ thể trong bài **Compile pyhton script dùng IronPython**.
