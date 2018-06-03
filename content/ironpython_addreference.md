@@ -119,3 +119,4 @@ Type "help", "copyright", "credits" or "license" for more information.
 Nếu như bạn chưa biết, IronPython có thể compile python script thành các file assemblies (`.dll` hoặc `.exe`) sử dụng công cụ kèm theo là `pyc.py` (sẽ có bài viết riêng về **Compile python script dùng IronPython**).
 
 Một lưu ý quan trọng khi AddReference các file assemblies này là: **phải dùng đúng phiên bản IronPython tương ứng với phiên bản đã dùng để compile ra file assembly đó thì mới AddReference được**. Ví dụ: file assembly được compiled bằng IronPython 2.7.3 thì khi AddReference ta phải dùng IronPython 2.7.3. Sẽ có ví dụ cụ thể trong bài **Compile python script dùng IronPython**.
+

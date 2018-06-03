@@ -1,0 +1,32 @@
+{% extends "base.html" %} {% block title %} Home {% endblock title %} {% block content %}
+<section class='container'>
+  {% block content_title %} {% endblock %}
+</section>
+
+<section class="container">
+  {% for article in articles_page.object_list %}
+  <article>
+    <header>
+      <h2 class='entry-title'><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h2>
+    </header>
+
+    <footer class='center'>
+      <time class="published" datetime="{{ article.date.isoformat() }}"> {{ article.date|strftime('%d/%m/%Y') }} </time>
+      <address class="vcard author">By
+        {% for author in article.authors %}
+          <a class="url fn" href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>
+        {% endfor %} in <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
+        </address> {% if article.tags %}
+      <em>Tags</em>: {% for tag in article.tags %}
+      <a href="{{ SITEURL }}/{{ tag.url }}"><em>{{ tag }}</em></a>{% if not loop.last %},{% endif %} {% endfor %} {% endif %}
+    </footer>
+
+    <br>
+    <div class="entry-summary"> {{ article.summary }} </div>
+  </article>
+  <hr>
+  {% endfor %}
+  {% if articles_page.has_other_pages() %} {% include 'pagination.html' %} {% endif %}
+</section>
+<!-- /#content -->
+{% endblock content %}
