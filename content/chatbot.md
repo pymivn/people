@@ -158,7 +158,7 @@ if __name__ == '__main__':
 
 Bây giờ chỉ cần chạy thôi. Và đây là thành quả:
 
-![img]: (/home/dosontung007/Downloads/imageedit_2_6324647083.png)
+![img]: (https://photos.app.goo.gl/bRMlOHfq4UYS4pkK2)
 
 Nếu bạn muốn chạy luôn mà không cần hẹn giờ thì chỉ cần xoá function `job_that_executes_once` và thay function `send_msg` bằng:
 
