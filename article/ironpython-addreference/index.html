@@ -154,6 +154,11 @@ Xem các assemblies đã add ở <code>clr.References</code>:</p>
 <span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;Wall&#39;</span><span class="o">&gt;</span>
 <span class="o">&gt;&gt;&gt;</span>
 </pre></div>
+
+
+<h2>AddReference các assemblies được compiled bằng IronPython</h2>
+<p>Nếu như bạn chưa biết, IronPython có thể compile python script thành các file assemblies (<code>.dll</code> hoặc <code>.exe</code>) sử dụng công cụ kèm theo là <code>pyc.py</code> (sẽ có bài viết riêng về <strong>Compile python script dùng IronPython</strong>).</p>
+<p>Một lưu ý quan trọng khi AddReference các file assemblies này là: <strong>phải dùng đúng phiên bản IronPython tương ứng với phiên bản đã dùng để compile ra file assembly đó thì mới AddReference được</strong>. Ví dụ: file assembly được compiled bằng IronPython 2.7.3 thì khi AddReference ta phải dùng IronPython 2.7.3. Sẽ có ví dụ cụ thể trong bài <strong>Compile python script dùng IronPython</strong>.</p>
   </div>
   <!-- /.entry-content -->
 </section>
