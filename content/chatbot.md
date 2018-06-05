@@ -1,7 +1,7 @@
 Title: Viết một chatbot đơn giản với Python3
-Date: 2018-06-02
+Date: 2018-06-05
 Author: tung491
-Tags: Python, chatbot
+Tags: Python, chatbot, facebook, bot, thread
 Category: Trang chủ
 Summary: Làm FaceBook chatbot còn dễ hơn rủ em gái bàn bên đi xem phim...
 
