@@ -163,7 +163,7 @@ if __name__ == '__main__':
 
 Bây giờ export username, password rồi chạy thôi. Và đây là thành quả:
 
-![img]: (https://photos.app.goo.gl/bRMlOHfq4UYS4pkK2)
+<blockquote class="imgur-embed-pub" lang="en" data-id="a/k60ws0u"><a href="//imgur.com/k60ws0u"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
 
 Nếu bạn muốn chạy luôn mà không cần hẹn giờ thì chỉ cần xoá function `job_that_executes_once` và thay function `send_msg` bằng:
 
