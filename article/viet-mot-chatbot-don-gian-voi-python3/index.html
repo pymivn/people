@@ -187,7 +187,7 @@
 
 
 <p>Bây giờ export username, password rồi chạy thôi. Và đây là thành quả:</p>
-<p>![img]: (https://photos.app.goo.gl/bRMlOHfq4UYS4pkK2)</p>
+<p><a href="https://i.imgur.com/VldjbDi.png">Imgur</a></p>
 <p>Nếu bạn muốn chạy luôn mà không cần hẹn giờ thì chỉ cần xoá function <code>job_that_executes_once</code> và thay function <code>send_msg</code> bằng:</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">send_msg</span><span class="p">():</span>
     <span class="n">Bot</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;USERNAME_&#39;</span><span class="p">],</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;PASSWORD&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">do_something</span><span class="p">()</span>
