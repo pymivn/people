@@ -163,7 +163,7 @@ if __name__ == '__main__':
 
 Bây giờ export username, password rồi chạy thôi. Và đây là thành quả:
 
-[Imgur](https://i.imgur.com/VldjbDi.png)
+![Imgur](https://i.imgur.com/VldjbDi.png)
 
 Nếu bạn muốn chạy luôn mà không cần hẹn giờ thì chỉ cần xoá function `job_that_executes_once` và thay function `send_msg` bằng:
 
