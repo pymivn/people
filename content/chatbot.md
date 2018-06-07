@@ -152,8 +152,14 @@ def send_msg():
 
 
 def main():
-    Thread(target=send_msg).start()
-    Thread(target=reply_msg).start()
+    thread1 = Thread(target=send_msg)
+    thread2 = Thread(target=reply_msg)
+    
+    thread1.start()
+    thread2.start()
+    
+    thread1.join()
+    thread2.join()
 
 
 if __name__ == '__main__':
