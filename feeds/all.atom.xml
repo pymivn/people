@@ -405,7 +405,7 @@ Khi viết vào file thì viết mỗi câu lệnh 1 dòng, nhưng hoàn toàn c
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Không có BEGIN, với mỗi record ta sẽ cộng dồn, và khi đọc hết các record rồi, ta print ra tổng. Chú ý: dấu &lt;code&gt;\&lt;/code&gt; ở cuối dòng là cú pháp trong shell cho phép viết 1 dòng thành nhiều dòng, khi chạy chúng sẽ chỉ xem là 1 dòng.&lt;/p&gt;
+&lt;p&gt;Ví dụ sau không có BEGIN, với mỗi record ta sẽ cộng dồn, và khi đọc hết các record, ta print ra tổng. Chú ý: dấu &lt;code&gt;\&lt;/code&gt; ở cuối dòng là cú pháp trong shell cho phép viết 1 dòng thành nhiều dòng, khi chạy AWK chỉ xem toàn bộ chương trình là 1 dòng.&lt;/p&gt;
 &lt;div class="codehilite" style="background: #272822"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span&gt;&lt;/span&gt;&lt;span style="color: #f92672"&gt;$&lt;/span&gt; &lt;span style="color: #a6e22e"&gt;echo&lt;/span&gt; &lt;span style="color: #e6db74"&gt;&amp;#39;pymi\npython\nfamilug&amp;#39;&lt;/span&gt; &lt;span style="color: #f92672"&gt;|&lt;/span&gt; &lt;span style="color: #a6e22e"&gt;mawk&lt;/span&gt; &lt;span style="color: #e6db74"&gt;&amp;#39;\&lt;/span&gt;
 &lt;span style="color: #e6db74"&gt; BEGIN { print &amp;quot;the begin&amp;quot; } \&lt;/span&gt;
 &lt;span style="color: #e6db74"&gt; { printf &amp;quot;got line: %s has length %d\n&amp;quot;, $0, length($0) }\&lt;/span&gt;
