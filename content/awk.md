@@ -89,6 +89,7 @@ END { print sum }
 ```
 
 Khó có thể đánh bại sự ngắn gọn, sạch sẽ này.
+
 ## Record và field
 AWK đọc text vào, mặc định sẽ cắt tại các dấu xuống dòng, tạo thành các record,
 sau đó mặc định cắt tại dấu space (khoảng trắng), tạo thành các field.
@@ -168,13 +169,14 @@ hello
 Mỗi record chứa nhiều field, hãy tưởng tượng như 1 dòng spreadsheet/excel có nhiều ô ứng với các cột.
 Các variable có sẵn:
 
-- `$0` - toàn bộ 1 record (dòng) - chú ý `$X` là tên biến hợp lệ trong AWK, dấu $ dùng để truy cập giá trị của field
+- `$0` - toàn bộ 1 record (dòng) - chú ý dấu $ dùng để truy cập giá trị của field
 - `$1` - field 1 (hay có thể nghĩ là cột số 1)
 - `$2` - field 2
 - ...
+- `$(NF - 1)` - field trước cuối cùng
 - `$NF` - field cuối cùng
 - NF - số field
-- NR - thứ tự của record, tăng dần sau khi xử lý xong mỗi record
+- NR - thứ tự của record, tăng dần sau khi xử lý xong mỗi record (số dòng hiện tại)
 
 Khi truy cập biến, không sử dụng thêm bất cứ ký tự nào (khác với bash, bash phải thêm $varname).
 
