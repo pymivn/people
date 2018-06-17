@@ -49,7 +49,7 @@
   <div class="entry-content">
     <p>Với một lập trình viên Python, quá trình sản xuất code là liên tục vòng tuần
 hoàn:</p>
-<div class="highlight"><pre><span></span>viết code -&gt; python filename.py -&gt; sửa code -&gt; python filename.py ...
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>viết code -&gt; python filename.py -&gt; sửa code -&gt; python filename.py ...
 </pre></div>
 
 
@@ -57,18 +57,18 @@ hoàn:</p>
 <p>Option <code>-i</code> mang lại một khả năng khá thú vị khi cho phép tiếp tục tương tác
 với "đoạn code" sau khi đã chạy xong.</p>
 <p>Ví dụ, đoạn code:</p>
-<div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">6</span>
-<span class="n">b</span> <span class="o">=</span> <span class="mi">9</span>
-<span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
-<span class="n">hot_links</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://pymi.vn&#39;</span><span class="p">,</span> <span class="s1">&#39;http://www.familug.org&#39;</span><span class="p">,</span> <span class="s1">&#39;http://pp.pymi.vn&#39;</span><span class="p">]</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f8f8f2">a</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">6</span>
+<span style="color: #f8f8f2">b</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">9</span>
+<span style="color: #f8f8f2">c</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">a</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">b</span>
+<span style="color: #f8f8f2">hot_links</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;https://pymi.vn&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;http://www.familug.org&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;http://pp.pymi.vn&#39;</span><span style="color: #f8f8f2">]</span>
 
-<span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">hot_links</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
+<span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">link</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">hot_links:</span>
+    <span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(link)</span>
 </pre></div>
 
 
 <p>Chạy</p>
-<div class="highlight"><pre><span></span>$ python3 get_data.py
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>$ python3 get_data.py
 https://pymi.vn
 http://www.familug.org
 http://pp.pymi.vn
@@ -77,35 +77,35 @@ http://pp.pymi.vn
 
 <p>Giờ muốn tải từng link về thì phải mở editor lên, sửa code và chạy thử tiếp...</p>
 <p>Chạy với <code>-i</code>, ta có:</p>
-<div class="highlight"><pre><span></span>$ python3 -i get_data.py
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>$ python3 -i get_data.py
 https://pymi.vn
 http://www.familug.org
 http://pp.pymi.vn
-&gt;&gt;&gt; locals<span class="o">()</span>
-<span class="o">{</span><span class="s1">&#39;link&#39;</span>: <span class="s1">&#39;http://pp.pymi.vn&#39;</span>, <span class="s1">&#39;__doc__&#39;</span>: None, <span class="s1">&#39;c&#39;</span>: <span class="m">15</span>, <span class="s1">&#39;a&#39;</span>: <span class="m">6</span>, <span class="s1">&#39;__name__&#39;</span>: <span class="s1">&#39;__main__&#39;</span>, <span class="s1">&#39;__builtins__&#39;</span>: &lt;module <span class="s1">&#39;builtins&#39;</span> <span class="o">(</span>built-in<span class="o">)</span>&gt;, <span class="s1">&#39;__spec__&#39;</span>: None, <span class="s1">&#39;b&#39;</span>: <span class="m">9</span>, <span class="s1">&#39;__cached__&#39;</span>: None, <span class="s1">&#39;__loader__&#39;</span>: &lt;_frozen_importlib_external.SourceFileLoader object at 0x7f0bcaee7f28&gt;, <span class="s1">&#39;hot_links&#39;</span>: <span class="o">[</span><span class="s1">&#39;https://pymi.vn&#39;</span>, <span class="s1">&#39;http://www.familug.org&#39;</span>, <span class="s1">&#39;http://pp.pymi.vn&#39;</span><span class="o">]</span>, <span class="s1">&#39;__package__&#39;</span>: None<span class="o">}</span>
+&gt;&gt;&gt; locals<span style="color: #f92672">()</span>
+<span style="color: #f92672">{</span><span style="color: #e6db74">&#39;link&#39;</span>: <span style="color: #e6db74">&#39;http://pp.pymi.vn&#39;</span>, <span style="color: #e6db74">&#39;__doc__&#39;</span>: None, <span style="color: #e6db74">&#39;c&#39;</span>: <span style="color: #ae81ff">15</span>, <span style="color: #e6db74">&#39;a&#39;</span>: <span style="color: #ae81ff">6</span>, <span style="color: #e6db74">&#39;__name__&#39;</span>: <span style="color: #e6db74">&#39;__main__&#39;</span>, <span style="color: #e6db74">&#39;__builtins__&#39;</span>: &lt;module <span style="color: #e6db74">&#39;builtins&#39;</span> <span style="color: #f92672">(</span>built-in<span style="color: #f92672">)</span>&gt;, <span style="color: #e6db74">&#39;__spec__&#39;</span>: None, <span style="color: #e6db74">&#39;b&#39;</span>: <span style="color: #ae81ff">9</span>, <span style="color: #e6db74">&#39;__cached__&#39;</span>: None, <span style="color: #e6db74">&#39;__loader__&#39;</span>: &lt;_frozen_importlib_external.SourceFileLoader object at 0x7f0bcaee7f28&gt;, <span style="color: #e6db74">&#39;hot_links&#39;</span>: <span style="color: #f92672">[</span><span style="color: #e6db74">&#39;https://pymi.vn&#39;</span>, <span style="color: #e6db74">&#39;http://www.familug.org&#39;</span>, <span style="color: #e6db74">&#39;http://pp.pymi.vn&#39;</span><span style="color: #f92672">]</span>, <span style="color: #e6db74">&#39;__package__&#39;</span>: None<span style="color: #f92672">}</span>
 &gt;&gt;&gt; c
-<span class="m">15</span>
+<span style="color: #ae81ff">15</span>
 &gt;&gt;&gt; hot_links
-<span class="o">[</span><span class="s1">&#39;https://pymi.vn&#39;</span>, <span class="s1">&#39;http://www.familug.org&#39;</span>, <span class="s1">&#39;http://pp.pymi.vn&#39;</span><span class="o">]</span>
+<span style="color: #f92672">[</span><span style="color: #e6db74">&#39;https://pymi.vn&#39;</span>, <span style="color: #e6db74">&#39;http://www.familug.org&#39;</span>, <span style="color: #e6db74">&#39;http://pp.pymi.vn&#39;</span><span style="color: #f92672">]</span>
 </pre></div>
 
 
 <p>Tất nhiên các Pymier chẳng ai dùng python chay cả, mà là ipython:</p>
-<div class="highlight"><pre><span></span>$ ipython -i get_data.py
-Python <span class="m">3</span>.5.2 <span class="o">(</span>default, Nov <span class="m">17</span> <span class="m">2016</span>, <span class="m">17</span>:05:23<span class="o">)</span>
-Type <span class="s1">&#39;copyright&#39;</span>, <span class="s1">&#39;credits&#39;</span> or <span class="s1">&#39;license&#39;</span> <span class="k">for</span> more information
-IPython <span class="m">6</span>.2.1 -- An enhanced Interactive Python. Type <span class="s1">&#39;?&#39;</span> <span class="k">for</span> help.
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>$ ipython -i get_data.py
+Python <span style="color: #ae81ff">3</span>.5.2 <span style="color: #f92672">(</span>default, Nov <span style="color: #ae81ff">17</span> <span style="color: #ae81ff">2016</span>, <span style="color: #ae81ff">17</span>:05:23<span style="color: #f92672">)</span>
+Type <span style="color: #e6db74">&#39;copyright&#39;</span>, <span style="color: #e6db74">&#39;credits&#39;</span> or <span style="color: #e6db74">&#39;license&#39;</span> <span style="color: #66d9ef">for</span> more information
+IPython <span style="color: #ae81ff">6</span>.2.1 -- An enhanced Interactive Python. Type <span style="color: #e6db74">&#39;?&#39;</span> <span style="color: #66d9ef">for</span> help.
 https://pymi.vn
 http://www.familug.org
 http://pp.pymi.vn
 
-In <span class="o">[</span><span class="m">1</span><span class="o">]</span>: hot_links
-Out<span class="o">[</span><span class="m">1</span><span class="o">]</span>: <span class="o">[</span><span class="s1">&#39;https://pymi.vn&#39;</span>, <span class="s1">&#39;http://www.familug.org&#39;</span>, <span class="s1">&#39;http://pp.pymi.vn&#39;</span><span class="o">]</span>
+In <span style="color: #f92672">[</span><span style="color: #ae81ff">1</span><span style="color: #f92672">]</span>: hot_links
+Out<span style="color: #f92672">[</span><span style="color: #ae81ff">1</span><span style="color: #f92672">]</span>: <span style="color: #f92672">[</span><span style="color: #e6db74">&#39;https://pymi.vn&#39;</span>, <span style="color: #e6db74">&#39;http://www.familug.org&#39;</span>, <span style="color: #e6db74">&#39;http://pp.pymi.vn&#39;</span><span style="color: #f92672">]</span>
 </pre></div>
 
 
 <p>Một option đơn giản, nhưng vô cùng tiện lợi.</p>
-<div class="highlight"><pre><span></span>-i     : inspect interactively after running script; forces a prompt even
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>-i     : inspect interactively after running script; forces a prompt even
 </pre></div>
 
 

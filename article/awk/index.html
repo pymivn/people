@@ -55,35 +55,35 @@ thừa/ hơi ngần ngại. Nhưng AWK - ngôn ngữ lập trình sinh ra từ n
 có chỗ dùng, và sức mạnh đáng gờm.</p>
 <p>Bài này giới thiệu các khái niệm cơ bản của ngôn ngữ lập trình AWK, một số cách dùng thông dụng, học xong có thể dùng ngay và vô cùng hữu ích với những người xử lý dữ liệu dạng cột/ bảng mà không biết Python.</p>
 <p>Các lệnh trong bài này dùng <code>mawk</code> vì nó được biết là nhanh hơn các bản awk khác, nhưng về tính năng cơ bản là giống nhau, người đọc dùng bản nào cũng được, VD gawk</p>
-<div class="highlight"><pre><span></span>$ whatis awk
-awk <span class="o">(</span><span class="m">1</span><span class="o">)</span>              - pattern scanning and processing language
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>$ whatis awk
+awk <span style="color: #f92672">(</span><span style="color: #ae81ff">1</span><span style="color: #f92672">)</span>              - pattern scanning and processing language
 </pre></div>
 
 
 <h3>Dùng trong các câu lệnh hàng ngày</h3>
 <p>AWK rất thích hợp để nhét vào 1 pipe các câu lệnh UNIX, việc mà Python vốn không sinh ra để làm</p>
 <p>Ví dụ: đếm số dòng trong file /etc/passwd</p>
-<div class="highlight"><pre><span></span>$ wc /etc/passwd
-  <span class="m">57</span>   <span class="m">95</span> <span class="m">3193</span> /etc/passwd
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>$ wc /etc/passwd
+  <span style="color: #ae81ff">57</span>   <span style="color: #ae81ff">95</span> <span style="color: #ae81ff">3193</span> /etc/passwd
 </pre></div>
 
 
 <p>Lệnh <code>wc</code> vốn sinh ra để đếm: dòng, số từ, số ký tự. Bạn có thể viết 1 script Python 5-7 dòng
 làm chuyện này, nhưng 1 dòng? Hãy thử và nếu thành công, hãy comment!</p>
 <p>Với AWK, làm việc này không khó khăn gì. Hãy bỏ qua nếu không hiểu gì, phần giải thích sẽ theo sau</p>
-<div class="highlight"><pre><span></span>$ cat /etc/passwd <span class="p">|</span> mawk <span class="s1">&#39;{ words += NF; chars += length($0) + 1;} END { print NR, words, chars}&#39;</span>
-<span class="m">57</span> <span class="m">95</span> <span class="m">3193</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>$ cat /etc/passwd <span style="color: #f8f8f2">|</span> mawk <span style="color: #e6db74">&#39;{ words += NF; chars += length($0) + 1;} END { print NR, words, chars}&#39;</span>
+<span style="color: #ae81ff">57</span> <span style="color: #ae81ff">95</span> <span style="color: #ae81ff">3193</span>
 </pre></div>
 
 
 <p>Một pipe (<code>cmd1 | cmd2 | cmd3</code>) thường bắt đầu bằng <code>cat file</code>, mặc dù nó không phải cách làm tốt (tốn thêm 1 câu lệnh cat - khi mà hầu hết các câu lệnh đều hỗ trợ đầu vào là 1 file), nhưng tiện, nên ta cứ bắt đầu với cat, khi nào cần tối ưu ta sẽ bỏ nó đi. Ở đây, <code>mawk</code> có thể nhận file để xử lý, ta viết lại:</p>
-<div class="highlight"><pre><span></span>$ mawk <span class="s1">&#39;{ words += NF; chars += length($0) + 1;} END { print NR, words, chars}&#39;</span> /etc/passwd
-<span class="m">57</span> <span class="m">95</span> <span class="m">3193</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>$ mawk <span style="color: #e6db74">&#39;{ words += NF; chars += length($0) + 1;} END { print NR, words, chars}&#39;</span> /etc/passwd
+<span style="color: #ae81ff">57</span> <span style="color: #ae81ff">95</span> <span style="color: #ae81ff">3193</span>
 </pre></div>
 
 
 <p>Một ví dụ khác</p>
-<div class="highlight"><pre><span></span>$ head /etc/passwd
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>$ head /etc/passwd
 root:x:0:0:root:/root:/bin/bash
 daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
 bin:x:2:2:bin:/bin:/usr/sbin/nologin
@@ -98,25 +98,25 @@ news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
 
 
 <p>Một yêu cầu quái dị có thể xuất hiện như: hãy tính tổng các số ở cột số 3, với các câu lệnh CLI truyền thống, ta làm như sau</p>
-<div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="k">$(</span>cat /etc/passwd <span class="p">|</span> cut -d: -f3 <span class="p">|</span> xargs <span class="nb">printf</span> <span class="s1">&#39;%s +&#39;</span><span class="k">)</span> <span class="m">0</span> <span class="p">|</span> bc
-<span class="m">75624</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>$ <span style="color: #f8f8f2">echo</span> <span style="color: #66d9ef">$(</span>cat /etc/passwd <span style="color: #f8f8f2">|</span> cut -d: -f3 <span style="color: #f8f8f2">|</span> xargs <span style="color: #f8f8f2">printf</span> <span style="color: #e6db74">&#39;%s +&#39;</span><span style="color: #66d9ef">)</span> <span style="color: #ae81ff">0</span> <span style="color: #f8f8f2">|</span> bc
+<span style="color: #ae81ff">75624</span>
 </pre></div>
 
 
 <p><code>cut</code> giúp lấy cột thứ 3, phân cách bằng dấu <code>:</code>, dùng <code>printf</code> để nối các số lại bằng dấu <code>+</code>, vì thừa 1 dấu <code>+</code> ở đuôi nên ta <code>echo</code> thêm số 0 để cho hợp lệ rồi đưa vào lệnh <code>bc</code> để tính.</p>
-<div class="highlight"><pre><span></span>$ mawk -F: <span class="s1">&#39;{sum += $3} END { print sum }&#39;</span> /etc/passwd
-<span class="m">75624</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>$ mawk -F: <span style="color: #e6db74">&#39;{sum += $3} END { print sum }&#39;</span> /etc/passwd
+<span style="color: #ae81ff">75624</span>
 </pre></div>
 
 
 <p>Tương tự <code>cut</code>, ta dùng <code>-F:</code> để chỉ ra sẽ dùng <code>:</code> để phân cách cột, lấy cột số 3 <code>$3</code>, cộng
 lần lượt các giá trị vào biến <code>sum</code> - khi ta không khai báo, AWK mặc định đó là số 0 nếu thực hiện phép toán với số. Làm như vậy với mỗi dòng (gọi là <em>record</em> trong AWK):</p>
-<div class="highlight"><pre><span></span>{ sum += $3 }
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>{ sum += $3 }
 </pre></div>
 
 
 <p>Và khi hết các dòng (đánh dấu bằng END), ta print ra kết quả</p>
-<div class="highlight"><pre><span></span>END { print sum }
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>END { print sum }
 </pre></div>
 
 
@@ -127,7 +127,7 @@ sau đó mặc định cắt tại dấu space (khoảng trắng), tạo thành 
 Ta hoàn toàn có thể chỉ định AWK cắt ở ký tự khác.</p>
 <h2>Cấu tạo một chương trình AWK</h2>
 <p>Một chương trình AWK cấu tạo bởi các câu lệnh (statements) với cú pháp:</p>
-<div class="highlight"><pre><span></span>              pattern   { action statements }
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>              pattern   { action statements }
 </pre></div>
 
 
@@ -141,45 +141,45 @@ Khi viết vào file thì viết mỗi câu lệnh 1 dòng, nhưng hoàn toàn c
 <li>KHÔNG GHI PATTERN: thực hiện câu lệnh này cho mỗi record</li>
 </ul>
 <p>Ví dụ</p>
-<div class="highlight"><pre><span></span>&#39;{sum += $3} END { print sum }&#39;
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>&#39;{sum += $3} END { print sum }&#39;
 </pre></div>
 
 
 <p>Không có BEGIN, với mỗi record ta sẽ cộng dồn, và khi đọc hết các record rồi, ta print ra tổng. Chú ý: dấu <code>\</code> ở cuối dòng là cú pháp trong shell cho phép viết 1 dòng thành nhiều dòng, khi chạy chúng sẽ chỉ xem là 1 dòng.</p>
-<div class="highlight"><pre><span></span><span class="o">$</span> <span class="nx">echo</span> <span class="s1">&#39;pymi\npython\nfamilug&#39;</span> <span class="o">|</span> <span class="nx">mawk</span> <span class="s1">&#39;\</span>
-<span class="s1"> BEGIN { print &quot;the begin&quot; } \</span>
-<span class="s1"> { printf &quot;got line: %s has length %d\n&quot;, $0, length($0) }\</span>
-<span class="s1"> { print &quot;done process line &quot;, NR }\</span>
-<span class="s1"> END {print &quot;DONE&quot;}&#39;</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f92672">$</span> <span style="color: #a6e22e">echo</span> <span style="color: #e6db74">&#39;pymi\npython\nfamilug&#39;</span> <span style="color: #f92672">|</span> <span style="color: #a6e22e">mawk</span> <span style="color: #e6db74">&#39;\</span>
+<span style="color: #e6db74"> BEGIN { print &quot;the begin&quot; } \</span>
+<span style="color: #e6db74"> { printf &quot;got line: %s has length %d\n&quot;, $0, length($0) }\</span>
+<span style="color: #e6db74"> { print &quot;done process line &quot;, NR }\</span>
+<span style="color: #e6db74"> END {print &quot;DONE&quot;}&#39;</span>
 
-<span class="nx">the</span> <span class="nx">begin</span>
-<span class="nx">got</span> <span class="nx">line</span><span class="err">:</span> <span class="nx">pymi</span> <span class="nx">has</span> <span class="kr">length</span> <span class="mi">4</span>
-<span class="nx">done</span> <span class="nx">process</span> <span class="nx">line</span>  <span class="mi">1</span>
-<span class="nx">got</span> <span class="nx">line</span><span class="err">:</span> <span class="nx">python</span> <span class="nx">has</span> <span class="kr">length</span> <span class="mi">6</span>
-<span class="nx">done</span> <span class="nx">process</span> <span class="nx">line</span>  <span class="mi">2</span>
-<span class="nx">got</span> <span class="nx">line</span><span class="err">:</span> <span class="nx">familug</span> <span class="nx">has</span> <span class="kr">length</span> <span class="mi">7</span>
-<span class="nx">done</span> <span class="nx">process</span> <span class="nx">line</span>  <span class="mi">3</span>
-<span class="nx">DONE</span>
+<span style="color: #a6e22e">the</span> <span style="color: #a6e22e">begin</span>
+<span style="color: #a6e22e">got</span> <span style="color: #a6e22e">line</span><span style="color: #960050; background-color: #1e0010">:</span> <span style="color: #a6e22e">pymi</span> <span style="color: #a6e22e">has</span> <span style="color: #66d9ef">length</span> <span style="color: #ae81ff">4</span>
+<span style="color: #a6e22e">done</span> <span style="color: #a6e22e">process</span> <span style="color: #a6e22e">line</span>  <span style="color: #ae81ff">1</span>
+<span style="color: #a6e22e">got</span> <span style="color: #a6e22e">line</span><span style="color: #960050; background-color: #1e0010">:</span> <span style="color: #a6e22e">python</span> <span style="color: #a6e22e">has</span> <span style="color: #66d9ef">length</span> <span style="color: #ae81ff">6</span>
+<span style="color: #a6e22e">done</span> <span style="color: #a6e22e">process</span> <span style="color: #a6e22e">line</span>  <span style="color: #ae81ff">2</span>
+<span style="color: #a6e22e">got</span> <span style="color: #a6e22e">line</span><span style="color: #960050; background-color: #1e0010">:</span> <span style="color: #a6e22e">familug</span> <span style="color: #a6e22e">has</span> <span style="color: #66d9ef">length</span> <span style="color: #ae81ff">7</span>
+<span style="color: #a6e22e">done</span> <span style="color: #a6e22e">process</span> <span style="color: #a6e22e">line</span>  <span style="color: #ae81ff">3</span>
+<span style="color: #a6e22e">DONE</span>
 </pre></div>
 
 
 <h2>parttern tìm kiếm</h2>
 <p>parttern này giúp tìm kiếm các record có chứa một regular expression (hoặc string cố định) và xử lý record đó.</p>
 <p>Đếm số dòng chứa từ <code>print</code>:</p>
-<div class="highlight"><pre><span></span>$ <span class="nb">echo</span> -e <span class="s2">&quot;printf print \nprintf&quot;</span>
-<span class="nb">printf</span> print
-<span class="nb">printf</span>
-$ <span class="nb">echo</span> -e <span class="s2">&quot;printf print \nprintf&quot;</span> <span class="p">|</span> grep -c print
-<span class="m">2</span>
-$ <span class="nb">echo</span> -e <span class="s2">&quot;printf print \nprintf&quot;</span> <span class="p">|</span> mawk <span class="s1">&#39;/print/ { count += 1 } END { print count }&#39;</span>
-<span class="m">2</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>$ <span style="color: #f8f8f2">echo</span> -e <span style="color: #e6db74">&quot;printf print \nprintf&quot;</span>
+<span style="color: #f8f8f2">printf</span> print
+<span style="color: #f8f8f2">printf</span>
+$ <span style="color: #f8f8f2">echo</span> -e <span style="color: #e6db74">&quot;printf print \nprintf&quot;</span> <span style="color: #f8f8f2">|</span> grep -c print
+<span style="color: #ae81ff">2</span>
+$ <span style="color: #f8f8f2">echo</span> -e <span style="color: #e6db74">&quot;printf print \nprintf&quot;</span> <span style="color: #f8f8f2">|</span> mawk <span style="color: #e6db74">&#39;/print/ { count += 1 } END { print count }&#39;</span>
+<span style="color: #ae81ff">2</span>
 </pre></div>
 
 
 <h2>print</h2>
 <p><code>print</code>  và <code>printf</code> là 2 output statements (câu lệnh xử lý đầu ra), không phải function nên
 không sử dụng cú pháp gọi function <code>print(thing)</code></p>
-<div class="highlight"><pre><span></span>$ mawk <span class="s1">&#39;BEGIN { print &quot;hello&quot; }&#39;</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>$ mawk <span style="color: #e6db74">&#39;BEGIN { print &quot;hello&quot; }&#39;</span>
 hello
 </pre></div>
 
@@ -188,21 +188,22 @@ hello
 <p>Mỗi record chứa nhiều field, hãy tưởng tượng như 1 dòng spreadsheet/excel có nhiều ô ứng với các cột.
 Các variable có sẵn:</p>
 <ul>
-<li><code>$0</code> - toàn bộ 1 record (dòng) - chú ý <code>$X</code> là tên biến hợp lệ trong AWK, dấu $ dùng để truy cập giá trị của field</li>
+<li><code>$0</code> - toàn bộ 1 record (dòng) - chú ý dấu $ dùng để truy cập giá trị của field</li>
 <li><code>$1</code> - field 1 (hay có thể nghĩ là cột số 1)</li>
 <li><code>$2</code> - field 2</li>
 <li>...</li>
+<li><code>$(NF - 1)</code> - field trước cuối cùng</li>
 <li><code>$NF</code> - field cuối cùng</li>
 <li>NF - số field</li>
-<li>NR - thứ tự của record, tăng dần sau khi xử lý xong mỗi record</li>
+<li>NR - thứ tự của record, tăng dần sau khi xử lý xong mỗi record (số dòng hiện tại)</li>
 </ul>
 <p>Khi truy cập biến, không sử dụng thêm bất cứ ký tự nào (khác với bash, bash phải thêm $varname).</p>
-<div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s1">&#39;1, Le Van Xe, 27, Ha Noi, 0990090090&#39;</span> <span class="p">|</span> mawk -F, <span class="s1">&#39;{ print $NF}&#39;</span>
- <span class="m">0990090090</span>
-$ <span class="nb">echo</span> <span class="s1">&#39;1, Le Van Xe, 27, Ha Noi, 0990090090&#39;</span> <span class="p">|</span> mawk -F, <span class="s1">&#39;{ print $0}&#39;</span>
-<span class="m">1</span>, Le Van Xe, <span class="m">27</span>, Ha Noi, <span class="m">0990090090</span>
-$ <span class="nb">echo</span> <span class="s1">&#39;1, Le Van Xe, 27, Ha Noi, 0990090090&#39;</span> <span class="p">|</span> mawk -F, <span class="s1">&#39;{ print NF }&#39;</span>
-<span class="m">5</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>$ <span style="color: #f8f8f2">echo</span> <span style="color: #e6db74">&#39;1, Le Van Xe, 27, Ha Noi, 0990090090&#39;</span> <span style="color: #f8f8f2">|</span> mawk -F, <span style="color: #e6db74">&#39;{ print $NF}&#39;</span>
+ <span style="color: #ae81ff">0990090090</span>
+$ <span style="color: #f8f8f2">echo</span> <span style="color: #e6db74">&#39;1, Le Van Xe, 27, Ha Noi, 0990090090&#39;</span> <span style="color: #f8f8f2">|</span> mawk -F, <span style="color: #e6db74">&#39;{ print $0}&#39;</span>
+<span style="color: #ae81ff">1</span>, Le Van Xe, <span style="color: #ae81ff">27</span>, Ha Noi, <span style="color: #ae81ff">0990090090</span>
+$ <span style="color: #f8f8f2">echo</span> <span style="color: #e6db74">&#39;1, Le Van Xe, 27, Ha Noi, 0990090090&#39;</span> <span style="color: #f8f8f2">|</span> mawk -F, <span style="color: #e6db74">&#39;{ print NF }&#39;</span>
+<span style="color: #ae81ff">5</span>
 </pre></div>
 
 
@@ -212,14 +213,14 @@ $ <span class="nb">echo</span> <span class="s1">&#39;1, Le Van Xe, 27, Ha Noi, 0
 Ta không bàn tới array ở đây, vì nếu cần lập trình gì phức tạp hơn một câu lệnh AWK đơn giản, ta  có thể sử dụng Python cho sạch sẽ, gọn gàng, tiện lợi.</p>
 <h2>Control flow</h2>
 <p>Là ngôn ngữ lập trình đầy đủ, AWK có if/else/for/while như các ngôn ngữ lập trình "giống C" khác. Ví dụ đếm số chẵn và số lẻ</p>
-<div class="highlight"><pre><span></span>$ <span class="nb">echo</span> -e <span class="s1">&#39;1\n2\n3\n4\n20\n30&#39;</span> <span class="p">|</span> mawk <span class="s1">&#39;\</span>
-<span class="s1">{ if ($1 % 2 == 0) \</span>
-<span class="s1">     { chan += 1 } \</span>
-<span class="s1">  else { le += 1 } \</span>
-<span class="s1">} \</span>
-<span class="s1">END { print chan, le }&#39;</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>$ <span style="color: #f8f8f2">echo</span> -e <span style="color: #e6db74">&#39;1\n2\n3\n4\n20\n30&#39;</span> <span style="color: #f8f8f2">|</span> mawk <span style="color: #e6db74">&#39;\</span>
+<span style="color: #e6db74">{ if ($1 % 2 == 0) \</span>
+<span style="color: #e6db74">     { chan += 1 } \</span>
+<span style="color: #e6db74">  else { le += 1 } \</span>
+<span style="color: #e6db74">} \</span>
+<span style="color: #e6db74">END { print chan, le }&#39;</span>
 
-<span class="m">5</span> <span class="m">1</span>
+<span style="color: #ae81ff">5</span> <span style="color: #ae81ff">1</span>
 </pre></div>
 
 
@@ -227,8 +228,8 @@ Ta không bàn tới array ở đây, vì nếu cần lập trình gì phức t�
 <p>AWK có sẵn các funtion xử lý string, số thì đủ các phép toán, các function sin cos ..., người dùng cũng có thể định nghĩa function của họ. Xem thêm ở <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Functions">đây</a>.</p>
 <h3>Bonus - giải bài projecteuler 1</h3>
 <p><a href="https://projecteuler.net/problem=1">Tính tổng các số nhỏ hơn 1000 chia hết cho 3 hoặc 5</a></p>
-<div class="highlight"><pre><span></span>$ seq <span class="m">1</span> <span class="m">999</span> <span class="p">|</span> mawk <span class="s1">&#39;{ if ($1 % 3 == 0 || $i % 5 == 0) sum += $1 } END { print sum }&#39;</span>
-<span class="m">233168</span>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span>$ seq <span style="color: #ae81ff">1</span> <span style="color: #ae81ff">999</span> <span style="color: #f8f8f2">|</span> mawk <span style="color: #e6db74">&#39;{ if ($1 % 3 == 0 || $i % 5 == 0) sum += $1 } END { print sum }&#39;</span>
+<span style="color: #ae81ff">233168</span>
 </pre></div>
 
 
