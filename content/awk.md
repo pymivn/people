@@ -120,7 +120,7 @@ Ví dụ
 '{sum += $3} END { print sum }'
 ```
 
-Không có BEGIN, với mỗi record ta sẽ cộng dồn, và khi đọc hết các record rồi, ta print ra tổng. Chú ý: dấu `\` ở cuối dòng là cú pháp trong shell cho phép viết 1 dòng thành nhiều dòng, khi chạy chúng sẽ chỉ xem là 1 dòng.
+Ví dụ sau không có BEGIN, với mỗi record ta sẽ cộng dồn, và khi đọc hết các record, ta print ra tổng. Chú ý: dấu `\` ở cuối dòng là cú pháp trong shell cho phép viết 1 dòng thành nhiều dòng, khi chạy AWK chỉ xem toàn bộ chương trình là 1 dòng.
 
 ```awk
 $ echo 'pymi\npython\nfamilug' | mawk '\
