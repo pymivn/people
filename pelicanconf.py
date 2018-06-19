@@ -9,7 +9,14 @@ THEME = 'themes/pymi'
 STATIC_PATHS = ['images', 'extra/CNAME']
 CSS_FILE = 'app.css'
 PLUGIN_PATHS = ["plugins", ]
-MD_EXTENSIONS = ['codehilite(noclasses=True, pygments_style=monokai)', 'extra']
+MARKDOWN = {
+    'extension_configs': {
+        'markdown.extensions.codehilite': {'css_class': 'highlight', 'pygments_style': 'monokai'},
+        'markdown.extensions.extra': {},
+        'markdown.extensions.meta': {},
+    },
+    'output_format': 'html5',
+}
 
 PATH = 'content'
 
