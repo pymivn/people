@@ -6,7 +6,7 @@ AUTHOR = 'Pymiers'
 SITENAME = 'The PyMiers'
 SITEURL = ''
 THEME = 'themes/pymi'
-STATIC_PATHS = ['css', 'images']
+STATIC_PATHS = ['images', 'extra/CNAME']
 CSS_FILE = 'app.css'
 PLUGIN_PATHS = ["plugins", ]
 MD_EXTENSIONS = ['codehilite(noclasses=True, pygments_style=monokai)', 'extra']
