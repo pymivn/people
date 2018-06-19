@@ -1,4 +1,4 @@
 pelican
 ghp-import
 Markdown==2.6.11
-Pygments
+Pygments==2.2.0
