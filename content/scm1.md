@@ -99,9 +99,9 @@ một số bản thương mại rất đắt tiền.
 
 Scheme ra đời vào những năm 197X, với mong muốn có một bản LISP trong sạch,
 dễ đọc, nhỏ gọn, không còn chứa những di tích lịch sử, không còn những từ khóa
-khó hiểu như `cdr`, `car`. Nó rất sạch sẽ và được dùng làm ngôn ngữ chính
-để dạy học lập trình tại đại học danh giá MIT - nổi tiếng theo đó là
-sách luôn nằm trong top 10 các cuốn sách về lập trình SICP (xem cuối bài).
+khó hiểu như `cdr`, `car`. Scheme được dùng làm ngôn ngữ chính
+để dạy học lập trình tại đại học danh giá MIT - nổi tiếng theo đó là SICP
+- cuốn sách luôn nằm trong top 10 các cuốn sách về lập trình (xem cuối bài).
 
 NOTE: sau này vì lý do thực dụng, MIT dạy SICP bằng Python, không dùng Scheme
 nữa.
