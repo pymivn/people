@@ -1,5 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2018-08-18T00:00:00+07:00</updated><entry><title>Làm app giao diện đồ hoạ với Python</title><link href="http://pp.pymi.vn/article/gui/" rel="alternate"></link><published>2018-08-18T00:00:00+07:00</published><updated>2018-08-18T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-08-18:article/gui/</id><summary type="html">&lt;p&gt;Giao diện đồ hoạ (GUI - Graphic User Interface) vốn từng là một phần không thể thiếu khi nói về lập trình. Dù học ngôn ngữ lập trình nào, người ta cũng nghĩ tới chuyện "làm sao để có giao diện đồ hoạ".&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2018-09-03T00:00:00+07:00</updated><entry><title>Bắt đầu lập trình CHICKEN Scheme</title><link href="http://pp.pymi.vn/article/scm1/" rel="alternate"></link><published>2018-09-03T00:00:00+07:00</published><updated>2018-09-03T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-09-03:/article/scm1/</id><summary type="html">&lt;p&gt;Cu Hít ở xứ sở LISP - 1 trong 2 ngôn lập trình lâu đời nhất trái đất.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Ba năm trước, khi chúng tôi bắt đầu mở khóa học đầu tiên dạy lập trình Python tại
+&lt;a href="https://pymi.vn"&gt;PyMi&lt;/a&gt;, có 8 học viên đi học, hầu hết đều là sysadmin của một
+công ty nào đó từng động tới OpenStack/SaltStack/Ansible.
+Mới chỉ 3 năm trước, khi những người nghe tới Python tại Việt Nam
+là những "hàng hiếm", thì tại thời điểm này, 2018, Python nhan nhản mọi nơi,
+các trường (đại) học bắt đầu đưa Python vào chương trình giảng dạy, các
+công ty tuyển Python như điên dại, làm Machine Learning, làm Odoo...
+các chị em kế toán, ngân hàng bắt đầu kéo nhau đi học code Python!&lt;/p&gt;
+&lt;p&gt;Hầu hết số đông đến với Python không phải vì ham mê lập trình, yêu thích những
+dòng code sạch sẽ, mà đơn giản bởi (1) công việc yêu cầu (2) kiếm tiền.
+Khi đạt được múc đích rồi thì sao? đơn giản là thì thôi. Việc này không có gì
+sai cả.&lt;/p&gt;
+&lt;p&gt;Vậy còn những người ham mê lập trình, yêu thích code thì làm gì? Họ tiếp tục
+đào sâu thêm, học thêm vô vàn kiến thức trong thế giới lập trình, mở rộng
+ra những ngôn ngữ mới, cách viết code mới, cách suy nghĩ mới.&lt;/p&gt;
+&lt;p&gt;Python thành công bởi ngôn ngữ sạch sẽ, (dẫn tới) cộng đồng đông đảo, (dẫn
+tới) các thư viện có sẵn rất nhiều, chất lượng chuẩn, cập nhật hàng ngày.
+Hầu hết các ngôn ngữ bạn từng nghe tên sẽ nằm trong nhóm này, những ngôn ngữ
+còn lại (có tới hàng ngàn ngôn ngữ lập trình) thường bị xem là "đã chết".
+Một ngôn ngữ mã nguồn mở chỉ thực sự chết khi cộng đồng không còn một ai,
+những ngôn ngữ bạn chưa nghe tên bao giờ có khi đơn giản vì bạn không quen
+ai dùng ngôn ngữ đó.&lt;/p&gt;
+&lt;p&gt;Python sinh năm 1991, C sinh năm 197x, thì LISP sinh ra vào năm 1958 (60 năm
+trước - chỉ sau Fortran 1 năm) &lt;a href="https://www.familug.org/2016/02/python-python-tuoi-gi.html"&gt;xem bảng tuổi các ngôn
+ngữ&lt;/a&gt;
+Hẵn rất dễ cho rằng LISP đã chết, vì chẳng gặp ai ở Việt Nam dùng nó. Cho tới
+khi bạn gặp một anh kỹ sư xây dựng dùng AUTOCAD vẽ bản vẽ 2D, và cộng đồng
+này vẫn truyền tay nhau những đoạn code LISP.&lt;/p&gt;
+&lt;p&gt;Cộng đồng quốc tế rất đánh giá cao LISP, và có những thời điểm lịch sử, LISP
+được gọi là ngôn ngữ của AI (một hướng phát triển AI rất khác so với
+Machine Learning/Deep Learning sau này).&lt;/p&gt;
+&lt;p&gt;LISP (&lt;strong&gt;LIS&lt;/strong&gt;t &lt;strong&gt;P&lt;/strong&gt;rocessor) là tên của một gia đình các ngôn ngữ lập trình,
+có 2 nhánh (dialect) chính là Common Lisp và Scheme. Cả 2 dialect này đều có
+đặc điểm chung sử dụng rất nhiều dấu &lt;code&gt;()&lt;/code&gt; nhưng khi thò tay vào code thì lại có
+rất nhiều điểm khác. Một ví dụ viết function tính số gấp đôi của số đầu vào
+bằng CHICKEN Scheme (một bản Scheme &lt;em&gt;còn sống&lt;/em&gt;):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;double&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;* &lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Gọi function:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="mi"&gt;21&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;double&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;So với Python:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;double&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+
+&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;21&lt;/span&gt;
+&lt;span class="n"&gt;double&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Nếu xét kỹ, cú pháp của Scheme (&lt;code&gt;define&lt;/code&gt;) ít khái niệm/ký tự/nhất quán hơn
+Python (&lt;code&gt;:&lt;/code&gt;, &lt;code&gt;def&lt;/code&gt;, &lt;code&gt;=&lt;/code&gt;, &lt;code&gt;return&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;Một khái niệm khác rất quan trọng/phổ biến/nổi bật của LISP là sử dụng
+macro (cùng khái niệm Macro trong C - nhưng mạnh mẽ hơn, ở một đẳng cấp hoàn
+toàn khác).&lt;/p&gt;
+&lt;h2&gt;Các dialect của LISP&lt;/h2&gt;
+&lt;h3&gt;Common Lisp&lt;/h3&gt;
+&lt;p&gt;Common Lisp để tồn tại sau nhiều năm lịch sử với sự cạnh tranh của hàng ngàn ngôn
+ngữ lập trình khác, đã tự biến đổi mình như một sinh vật tiến hóa. Nó gom vào
+mình cả lịch sử lẫn những mảnh ghép của cộng đồng, khiến cho Common Lisp khá
+đồ sộ, thực dụng. Những từ khóa cơ bản trong Common Lisp như &lt;code&gt;cdr&lt;/code&gt;, &lt;code&gt;car&lt;/code&gt;
+là viết tắt của những khái niệm phổ biến những năm 195x nhưng ngày nay không
+còn được nhắc tới, cho nên Common Lisp hơi khó đọc đối với dân ngoại đạo.
+Bộ tiêu chuẩn Common Lisp dài &lt;a href="https://www.techstreet.com/standards/incits-226-1994-r1999?product_id=56214"&gt;hơn 1000 trang
+giấy&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Bản chạy opensource phổ biến nhất của CL là : &lt;a href="http://www.sbcl.org/"&gt;SBCL&lt;/a&gt;
+một số bản thương mại rất đắt tiền.&lt;/p&gt;
+&lt;h3&gt;Scheme&lt;/h3&gt;
+&lt;p&gt;Scheme ra đời vào những năm 197X, với mong muốn có một bản LISP trong sạch,
+dễ đọc, nhỏ gọn, không còn chứa những di tích lịch sử, không còn những từ khóa
+khó hiểu như &lt;code&gt;cdr&lt;/code&gt;, &lt;code&gt;car&lt;/code&gt;. Nó rất sạch sẽ và được dùng làm ngôn ngữ chính
+để dạy học lập trình tại đại học danh giá MIT - nổi tiếng theo đó là
+sách luôn nằm trong top 10 các cuốn sách về lập trình SICP (xem cuối bài).&lt;/p&gt;
+&lt;p&gt;NOTE: sau này vì lý do thực dụng, MIT dạy SICP bằng Python, không dùng Scheme
+nữa.&lt;/p&gt;
+&lt;p&gt;Scheme được thống nhất thành tiêu chuẩn viết tắt là R4RS,R5RS, R6RS
+hay đầy đủ là &lt;code&gt;Revised^5 Report on the Algorithmic Language Scheme&lt;/code&gt; -
+&lt;strong&gt;R&lt;/strong&gt;evised Revised Revised Revised Revised &lt;strong&gt;R&lt;/strong&gt;eport ... &lt;strong&gt;S&lt;/strong&gt;cheme.
+Mỗi lần "revised" như vậy (tăng lên 1 số),
+tiêu chuẩn lại thêm bớt gì đó, và chuyện này không phải ai cũng đồng ý, nên
+nhiều bản chạy (implementation) quyết định chỉ
+hỗ trợ R5RS mà ko chịu lên R6.&lt;/p&gt;
+&lt;p&gt;Các bản Scheme nổi bật:
+- CHICKEN scheme
+- Guile (cài sẵn trên các máy Ubuntu)
+- Chez scheme
+- Gambit
+- MIT Scheme&lt;/p&gt;
+&lt;h3&gt;Clojure&lt;/h3&gt;
+&lt;p&gt;Clojure nổi bật lên là 1 LISP-dialect HIỆN ĐẠI. Nó chạy trên JVM (như Java)
+và được dùng phổ biến trong các doanh nghiệp công nghệ - tại thời điểm
+năm 2018. Xem thêm tại &lt;a href="https://clojure.org/about/lisp"&gt;trang chủ của Clojure&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Racket&lt;/h3&gt;
+&lt;p&gt;Racket từng là PLT Scheme, từng tuân theo tiêu chuẩn Scheme (S_RS) cho tới khi
+nó tiến hóa thành một thứ khác rất nhiều. Racket cũng được xem làm một ngôn
+ngữ hiện đại trong gia đình LISP.&lt;/p&gt;
+&lt;h3&gt;Emacs Lisp&lt;/h3&gt;
+&lt;p&gt;LISP dialect dùng trong editor Emacs - một chương trình chỉnh sửa code lâu đời,
+được ưa thích trong giới lập trình viên.&lt;/p&gt;
+&lt;h2&gt;Học để làm gì?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Vui&lt;/li&gt;
+&lt;li&gt;Mở mang suy nghĩ, thay đổi cách nghĩ - khi trên tay bạn chỉ có một cái búa
+thì mọi thứ bạn thấy đều là cái đinh.&lt;/li&gt;
+&lt;li&gt;Để thực hành khi đọc những cuốn sách hay nổi tiếng: SICP, HTDP&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Có để làm được không?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Cái này tùy vào chuyện bạn làm gì. Nếu lập trình nhúng có thể bạn sẽ dùng 1
+LISP dialect X, nhưng viết micro service tại các doanh nghiệp dùng Java,
+Clojure lại là lựa chọn hấp dẫn hơn. Có thể tham khảo hướng dẫn học
+Common Lisp năm 2018 &lt;a href="http://stevelosh.com/blog/2018/08/a-road-to-common-lisp/"&gt;A road to Common
+Lisp&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Những người học dùng LISP thường đã có công việc ổn định, không còn lo học
+ngôn ngữ đầu tiên để xin việc - vậy nên chuyện có mang đi làm được hay không
+không quá quan trọng ở đây. Học LISP xong, theo một cách nào đó, sẽ khiến
+bạn trở thành lập trình viên Python giỏi hơn.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Loạt bài này sử dụng &lt;a href="http//call-cc.org"&gt;CHICKEN scheme&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Cài đặt&lt;/h2&gt;
+&lt;p&gt;Trên trang chủ của các bản LISP đều có hướng dẫn cài đặt chi tiết.
+Trên ubuntu 16.04, &lt;code&gt;guile&lt;/code&gt; có sẵn, cài CHICKEN scheme chỉ bằng một câu lệnh:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo apt install -y chicken-bin
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Lệnh này cài bản &lt;code&gt;Version: 4.9.X&lt;/code&gt;, cài xong bật lên để gõ code như python
+interpreter:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ csi
+CHICKEN
+&lt;span class="o"&gt;(&lt;/span&gt;c&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="m"&gt;2008&lt;/span&gt;-2014, The Chicken Team
+&lt;span class="o"&gt;(&lt;/span&gt;c&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="m"&gt;2000&lt;/span&gt;-2007, Felix L. Winkelmann
+Version &lt;span class="m"&gt;4&lt;/span&gt;.9.0.1 &lt;span class="o"&gt;(&lt;/span&gt;stability/4.9.0&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;rev 8b3189b&lt;span class="o"&gt;)&lt;/span&gt;
+    linux-unix-gnu-x86-64 &lt;span class="o"&gt;[&lt;/span&gt; 64bit manyargs dload ptables &lt;span class="o"&gt;]&lt;/span&gt;
+    bootstrapped &lt;span class="m"&gt;2014&lt;/span&gt;-06-07
+
+&lt;span class="c1"&gt;#;1&amp;gt; (+ 1 2 3 4 5)&lt;/span&gt;
+    &lt;span class="m"&gt;15&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Để hỗ trợ chỉnh sửa tiện hơn, trên Ubuntu nên cài thêm &lt;code&gt;rl-wrap&lt;/code&gt; và chạy
+&lt;code&gt;rl-wrap csi&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;Tài liệu&lt;/h2&gt;
+&lt;p&gt;Sách free online thì có 2 cuốn đã lừng danh&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://mitpress.mit.edu/sites/default/files/sicp/index.html"&gt;SICP -  Structure and Interpretation of Computer Programs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://htdp.org/2018-01-06/Book/"&gt;HTDP - How to Design Programs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Các bài viết&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.draketo.de/proj/py2guile/"&gt;"Nhật ký" từ Python qua Guile Scheme&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Lập trình viên Python có thể xem phần hướng dẫn cơ bản dành riêng cho Python
+developer trên &lt;a href="http://wiki.call-cc.org/chicken-for-python-programmers"&gt;wiki của CHICKEN&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.artima.com/weblogs/viewpost.jsp?thread=251474"&gt;Hành trình của Python dev vào thế giới Scheme&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Trên đây là tài liệu về Scheme, tài liệu Common Lisp cũng không thiếu,
+và đều online/free - xem tại &lt;a href="http://stevelosh.com/blog/2018/08/a-road-to-common-lisp/"&gt;A road to Common
+Lisp&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Emacs&lt;/h2&gt;
+&lt;p&gt;Khi lập trình LISP, người dùng được khuyên sử dụng Emacs đặc biệt là
+common lisp với SLIME. Đây không phải điều bắt buộc, nhưng nếu chưa từng dùng
+Emacs, đây là một cơ hội tuyệt vời để trải nghiệm (vì emacs dùng Emacs Lisp).&lt;/p&gt;
+&lt;p&gt;Hết phần 1.&lt;/p&gt;</content><category term="scheme"></category><category term="lisp"></category><category term="chicken"></category><category term="htdp"></category></entry><entry><title>Làm app giao diện đồ hoạ với Python</title><link href="http://pp.pymi.vn/article/gui/" rel="alternate"></link><published>2018-08-18T00:00:00+07:00</published><updated>2018-08-18T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-08-18:/article/gui/</id><summary type="html">&lt;p&gt;Không gì là không thể - đã dễ, lại còn đẹp&lt;/p&gt;</summary><content type="html">&lt;p&gt;Giao diện đồ hoạ (GUI - Graphic User Interface) vốn từng là một phần không thể thiếu khi nói về lập trình. Dù học ngôn ngữ lập trình nào, người ta cũng nghĩ tới chuyện "làm sao để có giao diện đồ hoạ".&lt;/p&gt;
 &lt;p&gt;Thế giới thay đổi, thứ từng quan trọng của ngày hôm qua thì hôm nay chưa chắc đã cần tới. Thời đại tất cả mọi thứ đều chuyển lên web, thì web/app mobile trở thành giao diện để tương tác với người dùng, chứ không phải các phần mềm có giao diện chạy trên máy tính như trước kia.
 Giờ đây người ta: nghe nhạc trên web, xem film trên web, chơi game trên web, soạn thảo văn bản trên web... khó còn ứng dụng nào không đưa lên web nữa. Vậy nên về mặt "sự nghiệp", có vẻ như bạn nên đầu tư vào kỹ năng làm web thay vì học để tạo một app trên desktop như cách đây chục năm.&lt;/p&gt;
 &lt;p&gt;Dĩ nhiên, GUI không ngay lập tức biến mất, vẫn có nhu cầu sử dụng, vẫn có người dùng, vẫn có hàng tá thư viện đồ hoạ tồn tại từ lâu (và vẫn tiếp tục phát triển), vẫn có những game mà chỉ chơi được trên máy tính do yêu cầu về hiệu năng mà web không đáp ứng nổi (như Half-Life/ đế chế / đua xe ...).&lt;/p&gt;
@@ -26,7 +200,7 @@ các hành động tương ứng của chương trình (các function) được 
 
 
 &lt;p&gt;Nếu Tk hoat động trên máy bạn, ngay lập tức một cửa sổ trắng tinh sẽ hiện ra.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="emptygui" src="http://pp.pymi.vn/images/gui.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="emptygui" src="http://pp.pymi.vn/images/gui.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;Tk()&lt;/code&gt; tạo một cửa sổ chính  (main window), &lt;code&gt;Frame&lt;/code&gt; là một widget có khả năng chứa các widget khác. Gọi function &lt;code&gt;mainloop()&lt;/code&gt; để chạy giao diện mãi mãi cho tới khi người dùng đóng lại.&lt;/p&gt;
 &lt;h3&gt;Các widget&lt;/h3&gt;
 &lt;p&gt;Tkinter có sẵn 17 widget:&lt;/p&gt;
@@ -89,7 +263,7 @@ các hành động tương ứng của chương trình (các function) được 
 &lt;li&gt;set thanh tiêu đề &lt;code&gt;title&lt;/code&gt; và kích thước cho chương trình qua &lt;code&gt;app.master&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Kết quả:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="checker" src="http://pp.pymi.vn/images/checker.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="checker" src="http://pp.pymi.vn/images/checker.png"&gt;&lt;/p&gt;
 &lt;p&gt;Danh sách đầy đủ các widget xem tại &lt;a href="https://github.com/python/cpython/blob/3.6/Lib/tkinter/__init__.py"&gt;https://github.com/python/cpython/blob/3.6/Lib/tkinter/&lt;strong&gt;init&lt;/strong&gt;.py&lt;/a&gt;  - search &lt;code&gt;(Widget&lt;/code&gt; (các subclass của class Widget).&lt;/p&gt;
 &lt;p&gt;Tk nhẹ gọn, có sẵn, dễ dùng, đủ dùng khi bạn thấy đủ. Bao giờ thấy ngột ngạt, có lẽ lại chuyển sang Qt, các khái niệm lập trình giao diện dù dùng library/framework nào cũng đều tương tự nhau.&lt;/p&gt;
 &lt;h2&gt;Tham khảo&lt;/h2&gt;
@@ -97,7 +271,7 @@ các hành động tương ứng của chương trình (các function) được 
 &lt;li&gt;Tkinter: https://docs.python.org/3/library/tkinter.html&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Hết.
-HVN @ &lt;a href=""&gt;https://pymi.vn&lt;/a&gt; and &lt;a href=""&gt;https://www.familug.org/&lt;/a&gt;&lt;/p&gt;</summary><category term="python"></category><category term="gui"></category><category term="tk"></category></entry><entry><title>Viết một chatbot đơn giản với Python3</title><link href="http://pp.pymi.vn/article/viet-mot-chatbot-don-gian-voi-python3/" rel="alternate"></link><published>2018-06-05T00:00:00+07:00</published><updated>2018-06-05T00:00:00+07:00</updated><author><name>tung491</name></author><id>tag:pp.pymi.vn,2018-06-05:article/viet-mot-chatbot-don-gian-voi-python3/</id><summary type="html">&lt;h2&gt;Chatbot là gì?&lt;/h2&gt;
+HVN @ &lt;a href=""&gt;https://pymi.vn&lt;/a&gt; and &lt;a href=""&gt;https://www.familug.org/&lt;/a&gt;&lt;/p&gt;</content><category term="python"></category><category term="gui"></category><category term="tk"></category></entry><entry><title>Viết một chatbot đơn giản với Python3</title><link href="http://pp.pymi.vn/article/viet-mot-chatbot-don-gian-voi-python3/" rel="alternate"></link><published>2018-06-05T00:00:00+07:00</published><updated>2018-06-05T00:00:00+07:00</updated><author><name>tung491</name></author><id>tag:pp.pymi.vn,2018-06-05:/article/viet-mot-chatbot-don-gian-voi-python3/</id><summary type="html">&lt;p&gt;Làm FaceBook chatbot còn dễ hơn rủ em gái bàn bên đi xem phim...&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Chatbot là gì?&lt;/h2&gt;
 &lt;p&gt;Trước khi thò tay vào hì hục code, ta cần hiểu chatbot là gì đã?&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Chatbot"&gt;Chatbot&lt;/a&gt; là một chương trình thực hiện cuộc hội thoại qua phương pháp gửi nhận văn bản hoặc các object như hình ảnh, file, ... Chú ý Chatbot không nhất thiết là phải thông minh, là phải dùng trí tuệ nhân tạo, etc ...&lt;/p&gt;
 &lt;p&gt;Có bao giờ sắp đến giao thừa hay một dịp mà bạn muốn nhắn tin cho nhiều người vào 12h đêm mà bạn không thể dậy được, hoặc bạn quá lười để làm một việc lặp đi lặp lại? Câu trả lời là viết một chatbot và hẹn giờ cho nó.&lt;/p&gt;
@@ -234,7 +408,7 @@ HVN @ &lt;a href=""&gt;https://pymi.vn&lt;/a&gt; and &lt;a href=""&gt;https://ww
 
 
 &lt;p&gt;Bây giờ export username, password rồi chạy thôi. Và đây là thành quả:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Imgur" src="https://i.imgur.com/VldjbDi.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Imgur" src="https://i.imgur.com/VldjbDi.png"&gt;&lt;/p&gt;
 &lt;p&gt;Nếu bạn muốn chạy luôn mà không cần hẹn giờ thì chỉ cần xoá function &lt;code&gt;job_that_executes_once&lt;/code&gt; và thay function &lt;code&gt;send_msg&lt;/code&gt; bằng:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;send_msg&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
     &lt;span class="n"&gt;Bot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;USERNAME_&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;PASSWORD&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;do_something&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -242,7 +416,7 @@ HVN @ &lt;a href=""&gt;https://pymi.vn&lt;/a&gt; and &lt;a href=""&gt;https://ww
 
 
 &lt;p&gt;HẾT.&lt;/p&gt;
-&lt;p&gt;TUNG491 at http://pymi.vn/&lt;/p&gt;</summary><category term="Python"></category><category term="chatbot"></category><category term="facebook"></category><category term="bot"></category><category term="thread"></category></entry><entry><title>Dùng .NET Framework với IronPython</title><link href="http://pp.pymi.vn/article/ironpython-addreference/" rel="alternate"></link><published>2018-06-04T00:00:00+07:00</published><updated>2018-06-04T00:00:00+07:00</updated><author><name>htlcnn</name></author><id>tag:pp.pymi.vn,2018-06-02:article/ironpython-addreference/</id><summary type="html">&lt;h2&gt;Assembly là gì&lt;/h2&gt;
+&lt;p&gt;TUNG491 at http://pymi.vn/&lt;/p&gt;</content><category term="Python"></category><category term="chatbot"></category><category term="facebook"></category><category term="bot"></category><category term="thread"></category></entry><entry><title>Dùng .NET Framework với IronPython</title><link href="http://pp.pymi.vn/article/ironpython-addreference/" rel="alternate"></link><published>2018-06-02T00:00:00+07:00</published><updated>2018-06-04T00:00:00+07:00</updated><author><name>htlcnn</name></author><id>tag:pp.pymi.vn,2018-06-02:/article/ironpython-addreference/</id><summary type="html">&lt;p&gt;Giới thiệu cách thêm các công cụ của .NET Framework vào IronPython.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Assembly là gì&lt;/h2&gt;
 &lt;p&gt;&lt;a href="https://msdn.microsoft.com/en-us/library/ms973231.aspx#assenamesp_topic4"&gt;Assembly&lt;/a&gt; (số nhiều: assemblies) là một file được tạo ra bởi quá trình compile một ứng dụng .NET. Nó có thể có đuôi &lt;code&gt;.dll&lt;/code&gt; hoặc &lt;code&gt;.exe&lt;/code&gt;. .NET Framework có sẵn rất nhiều assemblies (chính là thành phần &lt;a href="https://msdn.microsoft.com/en-us/library/gg145045.aspx"&gt;Class Library trong .NET Framework&lt;/a&gt;), cũng tương tự như Python có sẵn rất nhiều &lt;a href="https://docs.python.org/3/library/index.html"&gt;standard libraries&lt;/a&gt; vậy.&lt;/p&gt;
 &lt;h2&gt;AddReference .NET Assemblies&lt;/h2&gt;
 &lt;p&gt;Khi lập trình các ngôn ngữ .NET khác như C# hay VB.NET, dùng Visual Studio, muốn sử dụng các công cụ trong .NET Framework thì bạn phải thêm "Reference" vào project browser. IronPython có 1 module hỗ trợ "Add Reference" vào script là &lt;code&gt;clr&lt;/code&gt;. Các methods Add Reference trong IronPython:&lt;/p&gt;
@@ -350,7 +524,7 @@ Xem các assemblies đã add ở &lt;code&gt;clr.References&lt;/code&gt;:&lt;/p&
 
 &lt;h2&gt;AddReference các assemblies được compiled bằng IronPython&lt;/h2&gt;
 &lt;p&gt;Nếu như bạn chưa biết, IronPython có thể compile python script thành các file assemblies (&lt;code&gt;.dll&lt;/code&gt; hoặc &lt;code&gt;.exe&lt;/code&gt;) sử dụng công cụ kèm theo là &lt;code&gt;pyc.py&lt;/code&gt; (sẽ có bài viết riêng về &lt;strong&gt;Compile python script dùng IronPython&lt;/strong&gt;).&lt;/p&gt;
-&lt;p&gt;Một lưu ý quan trọng khi AddReference các file assemblies này là: &lt;strong&gt;phải dùng đúng phiên bản IronPython tương ứng với phiên bản đã dùng để compile ra file assembly đó thì mới AddReference được&lt;/strong&gt;. Ví dụ: file assembly được compiled bằng IronPython 2.7.3 thì khi AddReference ta phải dùng IronPython 2.7.3. Sẽ có ví dụ cụ thể trong bài &lt;strong&gt;Compile python script dùng IronPython&lt;/strong&gt;.&lt;/p&gt;</summary><category term="ironpython"></category><category term="windows"></category><category term="dotnet"></category><category term="reference"></category><category term="dll"></category></entry><entry><title>IronPython</title><link href="http://pp.pymi.vn/article/ironpython/" rel="alternate"></link><published>2018-05-31T00:00:00+07:00</published><updated>2018-05-31T00:00:00+07:00</updated><author><name>htlcnn</name></author><id>tag:pp.pymi.vn,2018-05-30:article/ironpython/</id><summary type="html">&lt;h2&gt;IronPython là gì?&lt;/h2&gt;
+&lt;p&gt;Một lưu ý quan trọng khi AddReference các file assemblies này là: &lt;strong&gt;phải dùng đúng phiên bản IronPython tương ứng với phiên bản đã dùng để compile ra file assembly đó thì mới AddReference được&lt;/strong&gt;. Ví dụ: file assembly được compiled bằng IronPython 2.7.3 thì khi AddReference ta phải dùng IronPython 2.7.3. Sẽ có ví dụ cụ thể trong bài &lt;strong&gt;Compile python script dùng IronPython&lt;/strong&gt;.&lt;/p&gt;</content><category term="ironpython"></category><category term="windows"></category><category term="dotnet"></category><category term="reference"></category><category term="dll"></category></entry><entry><title>IronPython</title><link href="http://pp.pymi.vn/article/ironpython/" rel="alternate"></link><published>2018-05-30T00:00:00+07:00</published><updated>2018-05-31T00:00:00+07:00</updated><author><name>htlcnn</name></author><id>tag:pp.pymi.vn,2018-05-30:/article/ironpython/</id><summary type="html">&lt;p&gt;Hướng dẫn cài đặt, chạy IronPython trên Windows. Ví dụ cơ bản về cách sử dụng .NET Framework và các thư viện có sẵn với IronPython.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;IronPython là gì?&lt;/h2&gt;
 &lt;p&gt;Theo giới thiệu ở &lt;a href="http://ironpython.net/"&gt;trang chủ IronPython&lt;/a&gt;:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;IronPython is an open-source implementation of the Python programming language which is tightly integrated with the .NET Framework. IronPython can use the .NET Framework and Python libraries, and other .NET languages can use Python code just as easily.&lt;/p&gt;
@@ -408,7 +582,7 @@ Hello from inside a Python script
 &lt;li&gt;Học ngôn ngữ Python là có thể sử dụng trên nhiều môi trường, với nhiều implementation khác nhau (CPython, IronPython, Jython...).&lt;/li&gt;
 &lt;li&gt;IronPython là sự lựa chọn hợp lý khi làm việc với môi trường Windows và các phần mềm chạy trên Windows.&lt;/li&gt;
 &lt;li&gt;Alternative: Trả lời cho câu hỏi "Mình vẫn muốn dùng CPython và vẫn muốn sử dụng .NET Framework thì làm như thế nào?" -&amp;gt; Tìm hiểu &lt;a href="http://pythonnet.github.io/"&gt;pythonnet&lt;/a&gt; nhé. Tuy nhiên mình khuyến khích dùng IronPython để làm việc trên Windows và các phần mềm chạy trên Windows.&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="python"></category><category term="ironpython"></category><category term="windows"></category><category term="implementation"></category><category term="dotnet"></category></entry><entry><title>Awk siêu tốc</title><link href="http://pp.pymi.vn/article/awk/" rel="alternate"></link><published>2018-05-27T00:00:00+07:00</published><updated>2018-05-27T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-05-27:article/awk/</id><summary type="html">&lt;p&gt;Nếu bạn đã biết 1 scripting language như Python hay Perl việc học AWK sẽ có vẻ hơi
+&lt;/ul&gt;</content><category term="python"></category><category term="ironpython"></category><category term="windows"></category><category term="implementation"></category><category term="dotnet"></category></entry><entry><title>Awk siêu tốc</title><link href="http://pp.pymi.vn/article/awk/" rel="alternate"></link><published>2018-05-27T00:00:00+07:00</published><updated>2018-05-27T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-05-27:/article/awk/</id><summary type="html">&lt;p&gt;học và dùng luôn trong 20 phút - yêu cầu dùng Ubuntu/OSX hay các hệ điều hành UNIX-like.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Nếu bạn đã biết 1 scripting language như Python hay Perl việc học AWK sẽ có vẻ hơi
 thừa/ hơi ngần ngại. Nhưng AWK - ngôn ngữ lập trình sinh ra từ những năm 1970 luôn
 có chỗ dùng, và sức mạnh đáng gờm.&lt;/p&gt;
 &lt;p&gt;Bài này giới thiệu các khái niệm cơ bản của ngôn ngữ lập trình AWK, một số cách dùng thông dụng, học xong có thể dùng ngay và vô cùng hữu ích với những người xử lý dữ liệu dạng cột/ bảng mà không biết Python.&lt;/p&gt;
@@ -599,7 +773,7 @@ Ta không bàn tới array ở đây, vì nếu cần lập trình gì phức t�
 &lt;li&gt;&lt;a href="https://adamdrake.com/command-line-tools-can-be-235x-faster-than-your-hadoop-cluster.html"&gt;AWK on big data&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Hết&lt;/p&gt;
-&lt;p&gt;HVN at &lt;a href="http://pymi.vn"&gt;http://pymi.vn&lt;/a&gt; and &lt;a href="https://www.familug.org"&gt;https://www.familug.org&lt;/a&gt;.&lt;/p&gt;</summary><category term="awk"></category><category term="sysadmin"></category><category term="linux"></category><category term="csv"></category><category term="bigdata"></category></entry><entry><title>In ra màn hình số 1 - ngôn ngữ nào nhẹ nhất?</title><link href="http://pp.pymi.vn/article/dynamic/" rel="alternate"></link><published>2018-05-27T00:00:00+07:00</published><updated>2018-05-27T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-05-27:article/dynamic/</id><summary type="html">&lt;p&gt;Nếu chỉ cần in ra mà hình số 1, ngôn ngữ lập trình nào sẽ chạy tốn ít RAM nhất?&lt;/p&gt;
+&lt;p&gt;HVN at &lt;a href="http://pymi.vn"&gt;http://pymi.vn&lt;/a&gt; and &lt;a href="https://www.familug.org"&gt;https://www.familug.org&lt;/a&gt;.&lt;/p&gt;</content><category term="awk"></category><category term="sysadmin"></category><category term="linux"></category><category term="csv"></category><category term="bigdata"></category></entry><entry><title>In ra màn hình số 1 - ngôn ngữ nào nhẹ nhất?</title><link href="http://pp.pymi.vn/article/dynamic/" rel="alternate"></link><published>2018-05-27T00:00:00+07:00</published><updated>2018-05-27T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-05-27:/article/dynamic/</id><summary type="html">&lt;p&gt;dash, bash, awk, perl, ruby, nodejs, python, elixir, guile - tất cả lên thớt!&lt;/p&gt;</summary><content type="html">&lt;p&gt;Nếu chỉ cần in ra mà hình số 1, ngôn ngữ lập trình nào sẽ chạy tốn ít RAM nhất?&lt;/p&gt;
 &lt;p&gt;Thí nghiệm sau sẽ cho ta thấy các chương trình cần bao nhiêu RAM để chạy và in
 ra số 1, kết thúc dòng bằng một dấu xuống dòng (newline &lt;code&gt;\n&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;Ta dùng chương trình &lt;code&gt;/usr/bin/time&lt;/code&gt; để có cả thông số về RAM (&lt;code&gt;RSS&lt;/code&gt;) thay vì chỉ gõ time - lệnh builtin của bash.&lt;/p&gt;
@@ -784,7 +958,7 @@ ra số 1, kết thúc dòng bằng một dấu xuống dòng (newline &lt;code&
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;img alt="Dynamic typing languages" src="http://pp.pymi.vn/images/dynamic.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Dynamic typing languages" src="http://pp.pymi.vn/images/dynamic.png"&gt;&lt;/p&gt;
 &lt;h2&gt;Kết luận&lt;/h2&gt;
 &lt;p&gt;Khoan vội kết luận rằng cả thế giới nên chuyển hết về dùng dash cho đỡ tốn RAM hay xa lánh Elixir vì nó chạy tới 30 MB RAM để in số 1 ra màn hình.&lt;/p&gt;
 &lt;p&gt;Sử dụng đúng công cụ, cho đúng vấn đề thích hợp mới là điều quan trọng.&lt;/p&gt;
@@ -803,14 +977,17 @@ ra số 1, kết thúc dòng bằng một dấu xuống dòng (newline &lt;code&
 &lt;p&gt;Bài này không xét các ngôn ngữ mà phải viết thành file, compile mới chạy, vì tác giả quá lười.&lt;/p&gt;
 &lt;p&gt;PS: học hết đống trên ở &lt;a href="http://www.familug.org/2016/12/free-ebook.html"&gt;đây&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Hết.&lt;/p&gt;
-&lt;p&gt;HVN at https://pymi.vn and https://www.familug.org&lt;/p&gt;</summary><category term="python"></category><category term="tip"></category></entry><entry><title>Tôi học lập trình không phải vì lương 4000 USD</title><link href="http://pp.pymi.vn/article/toi-hoc-lap-trinh-khong-phai-vi-luong-4000-usd/" rel="alternate"></link><published>2018-05-20T00:00:00+07:00</published><updated>2018-05-20T00:00:00+07:00</updated><author><name>tung491</name></author><id>tag:pp.pymi.vn,2018-05-20:article/toi-hoc-lap-trinh-khong-phai-vi-luong-4000-usd/</id><summary type="html">&lt;p&gt;Không ít học sinh phổ thông từng thắc mắc học môn lập trình để làm gì?
+&lt;p&gt;HVN at https://pymi.vn and https://www.familug.org&lt;/p&gt;</content><category term="python"></category><category term="tip"></category></entry><entry><title>Tôi học lập trình không phải vì lương 4000 USD</title><link href="http://pp.pymi.vn/article/toi-hoc-lap-trinh-khong-phai-vi-luong-4000-usd/" rel="alternate"></link><published>2018-05-20T00:00:00+07:00</published><updated>2018-05-20T00:00:00+07:00</updated><author><name>tung491</name></author><id>tag:pp.pymi.vn,2018-05-20:/article/toi-hoc-lap-trinh-khong-phai-vi-luong-4000-usd/</id><summary type="html">&lt;p&gt;Không ít học sinh phổ thông từng thắc mắc học môn lập trình để làm gì?
+Có phải vì mức lương 4000 USD của sinh viên mới ra trường mà nhiều người hay
+nhắc đến khi nói về lập trình viên.&lt;/p&gt;
+&lt;p&gt;Hôm nay mình đọc một bài trên Facebook nói …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Không ít học sinh phổ thông từng thắc mắc học môn lập trình để làm gì?
 Có phải vì mức lương 4000 USD của sinh viên mới ra trường mà nhiều người hay
 nhắc đến khi nói về lập trình viên.&lt;/p&gt;
 &lt;p&gt;Hôm nay mình đọc một bài trên Facebook nói về lí do &lt;code&gt;Tại sao bạn học lập trình?&lt;/code&gt;,
 trong đó có 1 lí do được nhắc đi nhắc lại rất nhiều
 đó là có một tương lai tươi sáng với mức lương khởi điểm khi ra trường 4000 USD. Bài này nói lên quan điểm của mình về
 việc học lập trình để làm gì.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="4000USD" src="https://cdn-images-1.medium.com/max/800/1*MNkBMrAinvq65wLx9y2oIg.jpeg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="4000USD" src="https://cdn-images-1.medium.com/max/800/1*MNkBMrAinvq65wLx9y2oIg.jpeg"&gt;&lt;/p&gt;
 &lt;p&gt;Mình cũng giống các bạn trong clip trên, đều là học sinh cấp 3, đều có không ít thì nhiều kiến thức về lập trình nhưng mình thấy các bạn đang có phần ảo tưởng về ngành lập trình. Mình tiếp xúc với không ít lập trình viên chuyên nghiệp, nên không còn lạ gì những nỗi khổ của ngành này: trĩ lòi, mắt mờ, đau lưng, cột sống, stress, deadline, đau dạ dày, trầm cảm... Những người ngoài chỉ nhìn vào họ những lúc họ khoe lương nhưng đâu có nhìn thấy lúc họ làm việc. Trên các loại báo xàm ke của Việt Nam và các bà hàng xóm, nghề &lt;code&gt;lập trình&lt;/code&gt; thường xuyên được nhắc đến trong các chủ đề như: "những công việc lương cao nhất", "những công việc không sợ thiếu việc làm lương cao trong 5 năm tới", blabla ... ; nhưng sự thực có phải vậy không ? Công việc lập trình cũng chỉ giống bao nhiêu ngành nghề khác là bán sức lao động và giá trị của bản thân cho công ty và xã hội thôi.&lt;/p&gt;
 &lt;p&gt;Bố mình từng nói "Không có ngành nghề dễ kiếm việc hơn hay lương cao hơn ngành nghề nào.
 Tất cả công việc mày được trả lương là người ta trả cho giá trị và khả năng của mày mang lại chứ không phải trả cho cái ngành nghề của mày hay cái trường mày học."&lt;/p&gt;
@@ -819,7 +996,10 @@ Tất cả công việc mày được trả lương là người ta trả cho gi
 &lt;p&gt;Trong cuộc sống, chúng ta không khó để thấy những sự thật về những con người thành công trong nhiều lĩnh vực nhưng những lĩnh vực đó không hề &lt;code&gt;hot&lt;/code&gt; hay được truyền thống tung hô ví dụ: nuôi lợn, trồng rau, ... vì đơn giản họ tìm thấy được đam mê của mình với nghề và tiềm năng của nghề. Do đó chúng ta thấy được sự thành công đến từ bản thân bạn chứ không phải ngành nghề của bạn&lt;/p&gt;
 &lt;p&gt;Tóm lại, đừng thần thánh hóa &lt;strong&gt;lập trình viên&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;HẾT&lt;/p&gt;
-&lt;p&gt;TUNG491 at https://pymi.vn.&lt;/p&gt;</summary><category term="developer"></category><category term="lương"></category><category term="coder"></category><category term="4000USD"></category></entry><entry><title>Requests + bs4 &lt;= Requests-HTML</title><link href="http://pp.pymi.vn/article/requests-bs4-requests-html/" rel="alternate"></link><published>2018-05-09T00:00:00+07:00</published><updated>2018-05-09T00:00:00+07:00</updated><author><name>tung491</name></author><id>tag:pp.pymi.vn,2018-05-09:article/requests-bs4-requests-html/</id><summary type="html">&lt;h2&gt;Giới thiệu&lt;/h2&gt;
+&lt;p&gt;TUNG491 at https://pymi.vn.&lt;/p&gt;</content><category term="developer"></category><category term="lương"></category><category term="coder"></category><category term="4000USD"></category></entry><entry><title>Requests + bs4 &lt;= Requests-HTML</title><link href="http://pp.pymi.vn/article/requests-bs4-requests-html/" rel="alternate"></link><published>2018-05-09T00:00:00+07:00</published><updated>2018-05-09T00:00:00+07:00</updated><author><name>tung491</name></author><id>tag:pp.pymi.vn,2018-05-09:/article/requests-bs4-requests-html/</id><summary type="html">&lt;h2&gt;Giới thiệu&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://html.python-requests.org/"&gt;Requests-HTML&lt;/a&gt; được viết bởi Kenneth Reitz - tác giả của &lt;code&gt;requests&lt;/code&gt; nổi tiếng, với mục đích cao cả là thay thế combo huyền thoại (với pymier) requests + bs4.  Trên trang chủ, requests-html tự mô tả như sau:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This library intends to make parsing HTML (e.g. scraping the web …&lt;/p&gt;&lt;/blockquote&gt;</summary><content type="html">&lt;h2&gt;Giới thiệu&lt;/h2&gt;
 &lt;p&gt;&lt;a href="http://html.python-requests.org/"&gt;Requests-HTML&lt;/a&gt; được viết bởi Kenneth Reitz - tác giả của &lt;code&gt;requests&lt;/code&gt; nổi tiếng, với mục đích cao cả là thay thế combo huyền thoại (với pymier) requests + bs4.  Trên trang chủ, requests-html tự mô tả như sau:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;This library intends to make parsing HTML (e.g. scraping the web) as simple and intuitive as possible&lt;/p&gt;
@@ -884,7 +1064,7 @@ Out[28]: &amp;#39;UEFI vs BIOS - tạo USB boot cài Windows 10 từ Ubuntu&amp;
 &lt;p&gt;Requests-html là 1 thư viện tiện lợi thay thế cho combo requests + bs4, dễ dàng chuyển lên scrapy nếu cần thực hiện dự án crawling lớn, chuyên nghiệp.&lt;/p&gt;
 &lt;p&gt;Chi tiết hơn xem tại: http://html.python-requests.org/.&lt;/p&gt;
 &lt;p&gt;HẾT.&lt;/p&gt;
-&lt;p&gt;TUNG491 at https://pymi.vn&lt;/p&gt;</summary><category term="requests-html"></category><category term="bs4"></category><category term="requests"></category><category term="python"></category><category term="crawl"></category></entry><entry><title>python -i file.py</title><link href="http://pp.pymi.vn/article/pythoni/" rel="alternate"></link><published>2018-05-04T00:00:00+07:00</published><updated>2018-05-04T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-05-04:article/pythoni/</id><summary type="html">&lt;p&gt;Với một lập trình viên Python, quá trình sản xuất code là liên tục vòng tuần
+&lt;p&gt;TUNG491 at https://pymi.vn&lt;/p&gt;</content><category term="requests-html"></category><category term="bs4"></category><category term="requests"></category><category term="python"></category><category term="crawl"></category></entry><entry><title>python -i file.py</title><link href="http://pp.pymi.vn/article/pythoni/" rel="alternate"></link><published>2018-05-04T00:00:00+07:00</published><updated>2018-05-04T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-05-04:/article/pythoni/</id><summary type="html">&lt;p&gt;chạy lệnh python với option -i&lt;/p&gt;</summary><content type="html">&lt;p&gt;Với một lập trình viên Python, quá trình sản xuất code là liên tục vòng tuần
 hoàn:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;viết code -&amp;gt; python filename.py -&amp;gt; sửa code -&amp;gt; python filename.py ...
 &lt;/pre&gt;&lt;/div&gt;
@@ -947,7 +1127,7 @@ Out&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;s
 
 
 &lt;p&gt;Hết.
-HVN at https://pymi.vn and http://www.familug.org&lt;/p&gt;</summary><category term="python"></category><category term="tip"></category></entry><entry><title>Blog chung của các Pymier</title><link href="http://pp.pymi.vn/article/first/" rel="alternate"></link><published>2018-05-02T00:00:00+07:00</published><updated>2018-05-02T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-05-02:article/first/</id><summary type="html">&lt;p&gt;Nơi các Pymier chia sẻ kiến thức cho nhau.
+HVN at https://pymi.vn and http://www.familug.org&lt;/p&gt;</content><category term="python"></category><category term="tip"></category></entry><entry><title>Blog chung của các Pymier</title><link href="http://pp.pymi.vn/article/first/" rel="alternate"></link><published>2018-05-02T00:00:00+07:00</published><updated>2018-05-02T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-05-02:/article/first/</id><summary type="html">&lt;p&gt;Bài viết đầu tiên&lt;/p&gt;</summary><content type="html">&lt;p&gt;Nơi các Pymier chia sẻ kiến thức cho nhau.
 Để tạo một bài viết - hãy fork repo này và tạo một Pull Requests,
 sau khi review xong bài viết sẽ được xuất bản.&lt;/p&gt;
 &lt;ul&gt;
@@ -955,4 +1135,4 @@ sau khi review xong bài viết sẽ được xuất bản.&lt;/p&gt;
 &lt;li&gt;Tên tác giả nên dùng GitHub username&lt;/li&gt;
 &lt;li&gt;Bài viết sử dụng Markdown syntax&lt;/li&gt;
 &lt;li&gt;Bài viết tuyển chọn sẽ được đưa vào category "Trang chủ"&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="memo"></category><category term="python"></category></entry></feed>
+&lt;/ul&gt;</content><category term="memo"></category><category term="python"></category></entry></feed>

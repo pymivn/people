@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+   <title> Bắt đầu lập trình CHICKEN Scheme  - The PyMiers</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="robots" content="" />
+  <link rel="stylesheet" type="text/css" href="/theme/css/app.css">
+<link rel="stylesheet" type="text/css" href="http://pp.pymi.vn/theme/css/pygment.css">
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    <meta name="author" content="Pymiers" />
+  <meta name="description" content="" />    <link href="http://pp.pymi.vn/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="The PyMiers Full Atom Feed" />       <link href="http://pp.pymi.vn/feeds/trang-chu.atom.xml" type="application/atom+xml" rel="alternate" title="The PyMiers Categories Atom Feed" />     
+  <meta name="tags" content="scheme" />
+  <meta name="tags" content="lisp" />
+  <meta name="tags" content="chicken" />
+  <meta name="tags" content="htdp" />
+</head>
+
+<body>
+  <main class="wrapper">
+    <section class="container">
+      <header class='column'>
+        <h1 class='title'><a href="http://pp.pymi.vn/">The PyMiers</a></h1>
+      </header>
+
+      <div class="section">
+        <div class="row navbar">
+          <div class="column nav-item is-active"><a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a></div>
+           <div class="column nav-item "><a href="http://pp.pymi.vn/pages/about/">About</a></div>
+          <div class="column nav-item "><a href="http://pp.pymi.vn/pages/add/">Tạo bài viết</a></div>
+          <div class="column nav-item"><a href="/archives">Archives</a></div>
+        </div>
+      </div>
+    </section>
+
+<section class="container">
+  <header>
+    <h2 class="entry-title">
+      <a href="http://pp.pymi.vn/article/scm1/" rel="bookmark"
+         title="Permalink to Bắt đầu lập trình CHICKEN Scheme">Bắt đầu lập trình CHICKEN Scheme</a></h2>  
+  </header>
+  <footer class='center'>
+    <time class="published" datetime="2018-09-03T00:00:00+07:00"> 03/09/2018 </time>
+    <address class="vcard author">By
+                    <a class="url fn" href="http://pp.pymi.vn/author/hvnsweeting/">hvnsweeting</a>
+ in <a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a>
+                </address>     <em>Tags</em>:     <a href="http://pp.pymi.vn/tag/scheme/"><em>scheme</em></a>,     <a href="http://pp.pymi.vn/tag/lisp/"><em>lisp</em></a>,     <a href="http://pp.pymi.vn/tag/chicken/"><em>chicken</em></a>,     <a href="http://pp.pymi.vn/tag/htdp/"><em>htdp</em></a>    </footer>
+  <br>
+  <div class="entry-content">
+    <p>Ba năm trước, khi chúng tôi bắt đầu mở khóa học đầu tiên dạy lập trình Python tại
+<a href="https://pymi.vn">PyMi</a>, có 8 học viên đi học, hầu hết đều là sysadmin của một
+công ty nào đó từng động tới OpenStack/SaltStack/Ansible.
+Mới chỉ 3 năm trước, khi những người nghe tới Python tại Việt Nam
+là những "hàng hiếm", thì tại thời điểm này, 2018, Python nhan nhản mọi nơi,
+các trường (đại) học bắt đầu đưa Python vào chương trình giảng dạy, các
+công ty tuyển Python như điên dại, làm Machine Learning, làm Odoo...
+các chị em kế toán, ngân hàng bắt đầu kéo nhau đi học code Python!</p>
+<p>Hầu hết số đông đến với Python không phải vì ham mê lập trình, yêu thích những
+dòng code sạch sẽ, mà đơn giản bởi (1) công việc yêu cầu (2) kiếm tiền.
+Khi đạt được múc đích rồi thì sao? đơn giản là thì thôi. Việc này không có gì
+sai cả.</p>
+<p>Vậy còn những người ham mê lập trình, yêu thích code thì làm gì? Họ tiếp tục
+đào sâu thêm, học thêm vô vàn kiến thức trong thế giới lập trình, mở rộng
+ra những ngôn ngữ mới, cách viết code mới, cách suy nghĩ mới.</p>
+<p>Python thành công bởi ngôn ngữ sạch sẽ, (dẫn tới) cộng đồng đông đảo, (dẫn
+tới) các thư viện có sẵn rất nhiều, chất lượng chuẩn, cập nhật hàng ngày.
+Hầu hết các ngôn ngữ bạn từng nghe tên sẽ nằm trong nhóm này, những ngôn ngữ
+còn lại (có tới hàng ngàn ngôn ngữ lập trình) thường bị xem là "đã chết".
+Một ngôn ngữ mã nguồn mở chỉ thực sự chết khi cộng đồng không còn một ai,
+những ngôn ngữ bạn chưa nghe tên bao giờ có khi đơn giản vì bạn không quen
+ai dùng ngôn ngữ đó.</p>
+<p>Python sinh năm 1991, C sinh năm 197x, thì LISP sinh ra vào năm 1958 (60 năm
+trước - chỉ sau Fortran 1 năm) <a href="https://www.familug.org/2016/02/python-python-tuoi-gi.html">xem bảng tuổi các ngôn
+ngữ</a>
+Hẵn rất dễ cho rằng LISP đã chết, vì chẳng gặp ai ở Việt Nam dùng nó. Cho tới
+khi bạn gặp một anh kỹ sư xây dựng dùng AUTOCAD vẽ bản vẽ 2D, và cộng đồng
+này vẫn truyền tay nhau những đoạn code LISP.</p>
+<p>Cộng đồng quốc tế rất đánh giá cao LISP, và có những thời điểm lịch sử, LISP
+được gọi là ngôn ngữ của AI (một hướng phát triển AI rất khác so với
+Machine Learning/Deep Learning sau này).</p>
+<p>LISP (<strong>LIS</strong>t <strong>P</strong>rocessor) là tên của một gia đình các ngôn ngữ lập trình,
+có 2 nhánh (dialect) chính là Common Lisp và Scheme. Cả 2 dialect này đều có
+đặc điểm chung sử dụng rất nhiều dấu <code>()</code> nhưng khi thò tay vào code thì lại có
+rất nhiều điểm khác. Một ví dụ viết function tính số gấp đôi của số đầu vào
+bằng CHICKEN Scheme (một bản Scheme <em>còn sống</em>):</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">double</span> <span class="nv">x</span><span class="p">)</span>
+   <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="mi">2</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Gọi function:</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="nv">n</span> <span class="mi">21</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">double</span> <span class="nv">n</span><span class="p">)</span>
+</pre></div>
+
+
+<p>So với Python:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">double</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">21</span>
+<span class="n">double</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Nếu xét kỹ, cú pháp của Scheme (<code>define</code>) ít khái niệm/ký tự/nhất quán hơn
+Python (<code>:</code>, <code>def</code>, <code>=</code>, <code>return</code>).</p>
+<p>Một khái niệm khác rất quan trọng/phổ biến/nổi bật của LISP là sử dụng
+macro (cùng khái niệm Macro trong C - nhưng mạnh mẽ hơn, ở một đẳng cấp hoàn
+toàn khác).</p>
+<h2>Các dialect của LISP</h2>
+<h3>Common Lisp</h3>
+<p>Common Lisp để tồn tại sau nhiều năm lịch sử với sự cạnh tranh của hàng ngàn ngôn
+ngữ lập trình khác, đã tự biến đổi mình như một sinh vật tiến hóa. Nó gom vào
+mình cả lịch sử lẫn những mảnh ghép của cộng đồng, khiến cho Common Lisp khá
+đồ sộ, thực dụng. Những từ khóa cơ bản trong Common Lisp như <code>cdr</code>, <code>car</code>
+là viết tắt của những khái niệm phổ biến những năm 195x nhưng ngày nay không
+còn được nhắc tới, cho nên Common Lisp hơi khó đọc đối với dân ngoại đạo.
+Bộ tiêu chuẩn Common Lisp dài <a href="https://www.techstreet.com/standards/incits-226-1994-r1999?product_id=56214">hơn 1000 trang
+giấy</a></p>
+<p>Bản chạy opensource phổ biến nhất của CL là : <a href="http://www.sbcl.org/">SBCL</a>
+một số bản thương mại rất đắt tiền.</p>
+<h3>Scheme</h3>
+<p>Scheme ra đời vào những năm 197X, với mong muốn có một bản LISP trong sạch,
+dễ đọc, nhỏ gọn, không còn chứa những di tích lịch sử, không còn những từ khóa
+khó hiểu như <code>cdr</code>, <code>car</code>. Nó rất sạch sẽ và được dùng làm ngôn ngữ chính
+để dạy học lập trình tại đại học danh giá MIT - nổi tiếng theo đó là
+sách luôn nằm trong top 10 các cuốn sách về lập trình SICP (xem cuối bài).</p>
+<p>NOTE: sau này vì lý do thực dụng, MIT dạy SICP bằng Python, không dùng Scheme
+nữa.</p>
+<p>Scheme được thống nhất thành tiêu chuẩn viết tắt là R4RS,R5RS, R6RS
+hay đầy đủ là <code>Revised^5 Report on the Algorithmic Language Scheme</code> -
+<strong>R</strong>evised Revised Revised Revised Revised <strong>R</strong>eport ... <strong>S</strong>cheme.
+Mỗi lần "revised" như vậy (tăng lên 1 số),
+tiêu chuẩn lại thêm bớt gì đó, và chuyện này không phải ai cũng đồng ý, nên
+nhiều bản chạy (implementation) quyết định chỉ
+hỗ trợ R5RS mà ko chịu lên R6.</p>
+<p>Các bản Scheme nổi bật:
+- CHICKEN scheme
+- Guile (cài sẵn trên các máy Ubuntu)
+- Chez scheme
+- Gambit
+- MIT Scheme</p>
+<h3>Clojure</h3>
+<p>Clojure nổi bật lên là 1 LISP-dialect HIỆN ĐẠI. Nó chạy trên JVM (như Java)
+và được dùng phổ biến trong các doanh nghiệp công nghệ - tại thời điểm
+năm 2018. Xem thêm tại <a href="https://clojure.org/about/lisp">trang chủ của Clojure</a>.</p>
+<h3>Racket</h3>
+<p>Racket từng là PLT Scheme, từng tuân theo tiêu chuẩn Scheme (S_RS) cho tới khi
+nó tiến hóa thành một thứ khác rất nhiều. Racket cũng được xem làm một ngôn
+ngữ hiện đại trong gia đình LISP.</p>
+<h3>Emacs Lisp</h3>
+<p>LISP dialect dùng trong editor Emacs - một chương trình chỉnh sửa code lâu đời,
+được ưa thích trong giới lập trình viên.</p>
+<h2>Học để làm gì?</h2>
+<ul>
+<li>Vui</li>
+<li>Mở mang suy nghĩ, thay đổi cách nghĩ - khi trên tay bạn chỉ có một cái búa
+thì mọi thứ bạn thấy đều là cái đinh.</li>
+<li>Để thực hành khi đọc những cuốn sách hay nổi tiếng: SICP, HTDP</li>
+</ul>
+<h3>Có để làm được không?</h3>
+<ul>
+<li>
+<p>Cái này tùy vào chuyện bạn làm gì. Nếu lập trình nhúng có thể bạn sẽ dùng 1
+LISP dialect X, nhưng viết micro service tại các doanh nghiệp dùng Java,
+Clojure lại là lựa chọn hấp dẫn hơn. Có thể tham khảo hướng dẫn học
+Common Lisp năm 2018 <a href="http://stevelosh.com/blog/2018/08/a-road-to-common-lisp/">A road to Common
+Lisp</a></p>
+</li>
+<li>
+<p>Những người học dùng LISP thường đã có công việc ổn định, không còn lo học
+ngôn ngữ đầu tiên để xin việc - vậy nên chuyện có mang đi làm được hay không
+không quá quan trọng ở đây. Học LISP xong, theo một cách nào đó, sẽ khiến
+bạn trở thành lập trình viên Python giỏi hơn.</p>
+</li>
+</ul>
+<p>Loạt bài này sử dụng <a href="http//call-cc.org">CHICKEN scheme</a>.</p>
+<h2>Cài đặt</h2>
+<p>Trên trang chủ của các bản LISP đều có hướng dẫn cài đặt chi tiết.
+Trên ubuntu 16.04, <code>guile</code> có sẵn, cài CHICKEN scheme chỉ bằng một câu lệnh:</p>
+<div class="highlight"><pre><span></span>sudo apt install -y chicken-bin
+</pre></div>
+
+
+<p>Lệnh này cài bản <code>Version: 4.9.X</code>, cài xong bật lên để gõ code như python
+interpreter:</p>
+<div class="highlight"><pre><span></span>$ csi
+CHICKEN
+<span class="o">(</span>c<span class="o">)</span> <span class="m">2008</span>-2014, The Chicken Team
+<span class="o">(</span>c<span class="o">)</span> <span class="m">2000</span>-2007, Felix L. Winkelmann
+Version <span class="m">4</span>.9.0.1 <span class="o">(</span>stability/4.9.0<span class="o">)</span> <span class="o">(</span>rev 8b3189b<span class="o">)</span>
+    linux-unix-gnu-x86-64 <span class="o">[</span> 64bit manyargs dload ptables <span class="o">]</span>
+    bootstrapped <span class="m">2014</span>-06-07
+
+<span class="c1">#;1&gt; (+ 1 2 3 4 5)</span>
+    <span class="m">15</span>
+</pre></div>
+
+
+<p>Để hỗ trợ chỉnh sửa tiện hơn, trên Ubuntu nên cài thêm <code>rl-wrap</code> và chạy
+<code>rl-wrap csi</code>.</p>
+<h2>Tài liệu</h2>
+<p>Sách free online thì có 2 cuốn đã lừng danh</p>
+<ul>
+<li><a href="https://mitpress.mit.edu/sites/default/files/sicp/index.html">SICP -  Structure and Interpretation of Computer Programs</a></li>
+<li><a href="https://htdp.org/2018-01-06/Book/">HTDP - How to Design Programs</a></li>
+</ul>
+<p>Các bài viết</p>
+<ul>
+<li><a href="http://www.draketo.de/proj/py2guile/">"Nhật ký" từ Python qua Guile Scheme</a></li>
+<li>Lập trình viên Python có thể xem phần hướng dẫn cơ bản dành riêng cho Python
+developer trên <a href="http://wiki.call-cc.org/chicken-for-python-programmers">wiki của CHICKEN</a></li>
+<li><a href="https://www.artima.com/weblogs/viewpost.jsp?thread=251474">Hành trình của Python dev vào thế giới Scheme</a></li>
+</ul>
+<p>Trên đây là tài liệu về Scheme, tài liệu Common Lisp cũng không thiếu,
+và đều online/free - xem tại <a href="http://stevelosh.com/blog/2018/08/a-road-to-common-lisp/">A road to Common
+Lisp</a></p>
+<h2>Emacs</h2>
+<p>Khi lập trình LISP, người dùng được khuyên sử dụng Emacs đặc biệt là
+common lisp với SLIME. Đây không phải điều bắt buộc, nhưng nếu chưa từng dùng
+Emacs, đây là một cơ hội tuyệt vời để trải nghiệm (vì emacs dùng Emacs Lisp).</p>
+<p>Hết phần 1.</p>
+  </div>
+  <!-- /.entry-content -->
+</section>
+<section class="container">
+  <div class="comments">
+    <h3>Comments</h3>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'pymier';
+      var disqus_identifier = 'article/scm1/';
+      var disqus_url = 'http://pp.pymi.vn/article/scm1/';
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//pymier.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the comments.</noscript>
+  </div>
+</section>
+
+    <section class="container footer">
+      <footer>
+        <address>
+        Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+        which takes great advantage of <a href="http://python.org">Python</a>.
+        </address>
+        <address>
+          Học lập trình Python tại <a href="https://pymi.vn/">Pymi.vn</a>
+        </address>
+      </footer>
+    </section>
+  </main>
+
+<script type="text/javascript">
+var images = document.getElementsByTagName("img");
+var i;
+
+for(i = 0; i < images.length; i++) {
+  images[i].className += " centered";
+}
+</script>
+</body>
+
+</html>
