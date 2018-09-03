@@ -36,8 +36,8 @@ Python sinh năm 1991, C sinh năm 197x, thì LISP sinh ra vào năm 1958 (60 n�
 trước - chỉ sau Fortran 1 năm - [xem bảng tuổi các ngôn
 ngữ](https://www.familug.org/2016/02/python-python-tuoi-gi.html) ).
 Hẵn rất dễ cho rằng LISP đã chết, vì chẳng gặp ai ở Việt Nam dùng nó. Cho tới
-khi bạn gặp một anh kỹ sư xây dựng dùng AUTOCAD vẽ bản vẽ 2D, và cộng đồng
-này vẫn truyền tay nhau những đoạn code LISP.
+khi bạn gặp một anh kỹ sư xây dựng dùng AutoCAD vẽ bản vẽ 2D thiết kế nhà,
+và cộng đồng này vẫn truyền tay nhau những đoạn code LISP.
 
 Cộng đồng quốc tế rất đánh giá cao LISP, và có những thời điểm lịch sử, LISP
 được gọi là ngôn ngữ của AI (một hướng phát triển AI rất khác so với
