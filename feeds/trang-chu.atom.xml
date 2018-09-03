@@ -76,9 +76,9 @@ một số bản thương mại rất đắt tiền.&lt;/p&gt;
 &lt;h3&gt;Scheme&lt;/h3&gt;
 &lt;p&gt;Scheme ra đời vào những năm 197X, với mong muốn có một bản LISP trong sạch,
 dễ đọc, nhỏ gọn, không còn chứa những di tích lịch sử, không còn những từ khóa
-khó hiểu như &lt;code&gt;cdr&lt;/code&gt;, &lt;code&gt;car&lt;/code&gt;. Nó rất sạch sẽ và được dùng làm ngôn ngữ chính
-để dạy học lập trình tại đại học danh giá MIT - nổi tiếng theo đó là
-sách luôn nằm trong top 10 các cuốn sách về lập trình SICP (xem cuối bài).&lt;/p&gt;
+khó hiểu như &lt;code&gt;cdr&lt;/code&gt;, &lt;code&gt;car&lt;/code&gt;. Scheme được dùng làm ngôn ngữ chính
+để dạy học lập trình tại đại học danh giá MIT - nổi tiếng theo đó là SICP
+- cuốn sách luôn nằm trong top 10 các cuốn sách về lập trình (xem cuối bài).&lt;/p&gt;
 &lt;p&gt;NOTE: sau này vì lý do thực dụng, MIT dạy SICP bằng Python, không dùng Scheme
 nữa.&lt;/p&gt;
 &lt;p&gt;Scheme được thống nhất thành tiêu chuẩn viết tắt là R4RS,R5RS, R6RS
