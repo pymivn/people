@@ -123,18 +123,18 @@ Các bản Scheme nổi bật:
 - MIT Scheme
 
 ### Clojure
-Clojure nổi bật lên là 1 LISP-dialect HIỆN ĐẠI. Nó chạy trên JVM (như Java)
+Clojure nổi bật là 1 LISP-dialect HIỆN ĐẠI. Nó chạy trên JVM (như Java)
 và được dùng phổ biến trong các doanh nghiệp công nghệ - tại thời điểm
 năm 2018. Xem thêm tại [trang chủ của Clojure](https://clojure.org/about/lisp).
 
 ### Racket
 Racket từng là PLT Scheme, từng tuân theo tiêu chuẩn Scheme (S_RS) cho tới khi
-nó tiến hóa thành một thứ khác rất nhiều. Racket cũng được xem làm một ngôn
+nó tiến hóa thành một thứ khác rất nhiều. Racket cũng là một ngôn
 ngữ hiện đại trong gia đình LISP.
 
 ### Emacs Lisp
-LISP dialect dùng trong editor Emacs - một chương trình chỉnh sửa code lâu đời,
-được ưa thích trong giới lập trình viên.
+LISP dialect dùng để phát triển các tính năng cho editor Emacs - một chương
+trình chỉnh sửa code lâu đời, được ưa thích trong giới lập trình viên.
 
 ## Học để làm gì?
 - Vui
