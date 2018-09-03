@@ -106,8 +106,8 @@ khó hiểu như `cdr`, `car`. Scheme được dùng làm ngôn ngữ chính
 NOTE: sau này vì lý do thực dụng, MIT dạy SICP bằng Python, không dùng Scheme
 nữa.
 
-Scheme được thống nhất thành tiêu chuẩn viết tắt là R4RS,R5RS, R6RS
-hay đầy đủ là `Revised^5 Report on the Algorithmic Language Scheme` -
+Scheme được thống nhất thành tiêu chuẩn viết tắt là R5RS, R6RS, R7RS
+hay đầy đủ là **Revised^5 Report on the Algorithmic Language Scheme** -
 **R**evised Revised Revised Revised Revised **R**eport ... **S**cheme.
 Mỗi lần "revised" như vậy (tăng lên 1 số),
 tiêu chuẩn lại thêm bớt gì đó, và chuyện này không phải ai cũng đồng ý, nên
@@ -115,6 +115,7 @@ nhiều bản chạy (implementation) quyết định chỉ
 hỗ trợ R5RS mà ko chịu lên R6.
 
 Các bản Scheme nổi bật:
+
 - CHICKEN scheme
 - Guile (cài sẵn trên các máy Ubuntu)
 - Chez scheme
