@@ -81,30 +81,32 @@ khó hiểu như &lt;code&gt;cdr&lt;/code&gt;, &lt;code&gt;car&lt;/code&gt;. Sch
 - cuốn sách luôn nằm trong top 10 các cuốn sách về lập trình (xem cuối bài).&lt;/p&gt;
 &lt;p&gt;NOTE: sau này vì lý do thực dụng, MIT dạy SICP bằng Python, không dùng Scheme
 nữa.&lt;/p&gt;
-&lt;p&gt;Scheme được thống nhất thành tiêu chuẩn viết tắt là R4RS,R5RS, R6RS
-hay đầy đủ là &lt;code&gt;Revised^5 Report on the Algorithmic Language Scheme&lt;/code&gt; -
+&lt;p&gt;Scheme được thống nhất thành tiêu chuẩn viết tắt là R5RS, R6RS, R7RS
+hay đầy đủ là &lt;strong&gt;Revised^5 Report on the Algorithmic Language Scheme&lt;/strong&gt; -
 &lt;strong&gt;R&lt;/strong&gt;evised Revised Revised Revised Revised &lt;strong&gt;R&lt;/strong&gt;eport ... &lt;strong&gt;S&lt;/strong&gt;cheme.
 Mỗi lần "revised" như vậy (tăng lên 1 số),
 tiêu chuẩn lại thêm bớt gì đó, và chuyện này không phải ai cũng đồng ý, nên
 nhiều bản chạy (implementation) quyết định chỉ
 hỗ trợ R5RS mà ko chịu lên R6.&lt;/p&gt;
-&lt;p&gt;Các bản Scheme nổi bật:
-- CHICKEN scheme
-- Guile (cài sẵn trên các máy Ubuntu)
-- Chez scheme
-- Gambit
-- MIT Scheme&lt;/p&gt;
+&lt;p&gt;Các bản Scheme nổi bật:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CHICKEN scheme&lt;/li&gt;
+&lt;li&gt;Guile (cài sẵn trên các máy Ubuntu)&lt;/li&gt;
+&lt;li&gt;Chez scheme&lt;/li&gt;
+&lt;li&gt;Gambit&lt;/li&gt;
+&lt;li&gt;MIT Scheme&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h3&gt;Clojure&lt;/h3&gt;
-&lt;p&gt;Clojure nổi bật lên là 1 LISP-dialect HIỆN ĐẠI. Nó chạy trên JVM (như Java)
+&lt;p&gt;Clojure nổi bật là 1 LISP-dialect HIỆN ĐẠI. Nó chạy trên JVM (như Java)
 và được dùng phổ biến trong các doanh nghiệp công nghệ - tại thời điểm
 năm 2018. Xem thêm tại &lt;a href="https://clojure.org/about/lisp"&gt;trang chủ của Clojure&lt;/a&gt;.&lt;/p&gt;
 &lt;h3&gt;Racket&lt;/h3&gt;
 &lt;p&gt;Racket từng là PLT Scheme, từng tuân theo tiêu chuẩn Scheme (S_RS) cho tới khi
-nó tiến hóa thành một thứ khác rất nhiều. Racket cũng được xem làm một ngôn
+nó tiến hóa thành một thứ khác rất nhiều. Racket cũng là một ngôn
 ngữ hiện đại trong gia đình LISP.&lt;/p&gt;
 &lt;h3&gt;Emacs Lisp&lt;/h3&gt;
-&lt;p&gt;LISP dialect dùng trong editor Emacs - một chương trình chỉnh sửa code lâu đời,
-được ưa thích trong giới lập trình viên.&lt;/p&gt;
+&lt;p&gt;LISP dialect dùng để phát triển các tính năng cho editor Emacs - một chương
+trình chỉnh sửa code lâu đời, được ưa thích trong giới lập trình viên.&lt;/p&gt;
 &lt;h2&gt;Học để làm gì?&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Vui&lt;/li&gt;
