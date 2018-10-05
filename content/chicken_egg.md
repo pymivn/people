@@ -4,7 +4,7 @@ Category: Trang chủ
 Tags: scheme, lisp, chicken, htdp
 Slug: scm_egg
 Authors: hvnsweeting
-Summary: Con đường nhanh nhất để sử dung 1 ngôn ngữ là dùng nó!
+Summary: Con đường nhanh nhất để sử dụng 1 ngôn ngữ là dùng nó!
 
 Học và hành thường ở rất xa nhau.
 Ta có thể học đủ loại khái niệm, đủ loại cú pháp, viết các thuật toán để luyện
