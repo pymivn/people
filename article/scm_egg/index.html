@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+   <title> Quản lý, sử dụng package trong CHICKEN Scheme  - The PyMiers</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="robots" content="" />
+  <link rel="stylesheet" type="text/css" href="/theme/css/app.css">
+<link rel="stylesheet" type="text/css" href="http://pp.pymi.vn/theme/css/pygment.css">
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    <meta name="author" content="Pymiers" />
+  <meta name="description" content="" />    <link href="http://pp.pymi.vn/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="The PyMiers Full Atom Feed" />       <link href="http://pp.pymi.vn/feeds/trang-chu.atom.xml" type="application/atom+xml" rel="alternate" title="The PyMiers Categories Atom Feed" />     
+  <meta name="tags" content="scheme" />
+  <meta name="tags" content="lisp" />
+  <meta name="tags" content="chicken" />
+  <meta name="tags" content="htdp" />
+</head>
+
+<body>
+  <main class="wrapper">
+    <section class="container">
+      <header class='column'>
+        <h1 class='title'><a href="http://pp.pymi.vn/">The PyMiers</a></h1>
+      </header>
+
+      <div class="section">
+        <div class="row navbar">
+          <div class="column nav-item is-active"><a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a></div>
+           <div class="column nav-item "><a href="http://pp.pymi.vn/pages/about/">About</a></div>
+          <div class="column nav-item "><a href="http://pp.pymi.vn/pages/add/">Tạo bài viết</a></div>
+          <div class="column nav-item"><a href="/archives">Archives</a></div>
+        </div>
+      </div>
+    </section>
+
+<section class="container">
+  <header>
+    <h2 class="entry-title">
+      <a href="http://pp.pymi.vn/article/scm_egg/" rel="bookmark"
+         title="Permalink to Quản lý, sử dụng package trong CHICKEN Scheme">Quản lý, sử dụng package trong CHICKEN Scheme</a></h2>  
+  </header>
+  <footer class='center'>
+    <time class="published" datetime="2018-10-05T00:00:00+07:00"> 05/10/2018 </time>
+    <address class="vcard author">By
+                    <a class="url fn" href="http://pp.pymi.vn/author/hvnsweeting/">hvnsweeting</a>
+ in <a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a>
+                </address>     <em>Tags</em>:     <a href="http://pp.pymi.vn/tag/scheme/"><em>scheme</em></a>,     <a href="http://pp.pymi.vn/tag/lisp/"><em>lisp</em></a>,     <a href="http://pp.pymi.vn/tag/chicken/"><em>chicken</em></a>,     <a href="http://pp.pymi.vn/tag/htdp/"><em>htdp</em></a>    </footer>
+  <br>
+  <div class="entry-content">
+    <p>Học và hành thường ở rất xa nhau.
+Ta có thể học đủ loại khái niệm, đủ loại cú pháp, viết các thuật toán để luyện
+ngôn ngữ, nhưng rồi lại mãi luẩn quẩn ở đó, không thoát ra được, không bay
+lên nổi. Viết 1 vòng for, 2 câu if bằng Python, JavaScript, Golang hay
+<a href="https://elixir.pymi.vn/">Elixir</a>
+cũng không hơn nhau gì cả, chỉ thay đổi chút cú pháp thôi.</p>
+<p>Thế nên cách "tốt nhất" để học 1 ngôn ngữ lập trình, không phải là học đủ các
+khái niệm, best practice, viết code chuẩn đẹp tuyệt đối, mà là việc hoàn thành
+một sản phẩm từ đầu đến tận X Y Z. Đưa ra sản phẩm cuối cùng, có thể là trang
+web chạy với domain hẳn hoi, có thể là chương trình đóng thành package,
+thành file cài đặt, hay game có giao diện đầy đủ.</p>
+<p>Package manager giúp cài đặt các thư viện có sẵn là công cụ giúp ta đến đích
+nhanh nhất. Python có pip, JavaScript có NPM, Elixir có mix, Rust có cargo ...
+thì CHICKEN Scheme có <code>chicken-install</code>, câu lệnh có sẵn khi cài CHICKEN
+Scheme.</p>
+<h2>Cài đặt extension</h2>
+<p>CHICKEN Scheme gọi các gói thư viện là extension hay "egg".</p>
+<p><code>chicken-install tên-extension</code></p>
+<p>Ví dụ cài <code>regex</code>:</p>
+<div class="highlight"><pre><span></span>$ sudo chicken-install regex
+<span class="o">[</span>sudo<span class="o">]</span> password <span class="k">for</span> hvn:  GO PASSWORD
+retrieving ...
+connecting to host <span class="s2">&quot;chicken.kitten-technologies.co.uk&quot;</span>, port <span class="m">80</span> ...
+requesting <span class="s2">&quot;/henrietta.cgi?name=regex&amp;mode=default&quot;</span> ...
+reading response ...
+HTTP/1.1 <span class="m">200</span> OK
+Date: Fri, <span class="m">05</span> Oct <span class="m">2018</span> <span class="m">14</span>:28:32 GMT
+Server: Apache/2.2.31 <span class="o">(</span>Unix<span class="o">)</span> DAV/2 PHP/5.5.36 mod_fastcgi/2.4.6
+...
+checking platform <span class="k">for</span> <span class="sb">`</span>regex<span class="s1">&#39; ...</span>
+<span class="s1">checking dependencies for `regex&#39;</span> ...
+install order:
+<span class="o">(</span><span class="s2">&quot;regex&quot;</span><span class="o">)</span>
+installing regex:1.0 ...
+changing current directory to /tmp/tempab50.21917/regex
+  <span class="s1">&#39;/usr/bin/csi&#39;</span> -bnq -setup-mode -e <span class="s2">&quot;(require-library setup-api)&quot;</span> -e <span class="s2">&quot;(import setup-api)&quot;</span> -e <span class="s2">&quot;(setup-error-handling)&quot;</span> -e <span class="s2">&quot;(extension-name-and-version &#39;(\&quot;regex\&quot; \&quot;1.0\&quot;))&quot;</span> <span class="s1">&#39;regex.setup&#39;</span>
+  <span class="s1">&#39;/usr/bin/csc&#39;</span> -feature compiling-extension -setup-mode    -s -O3 -d1 regex.scm -JS
+  <span class="s1">&#39;/usr/bin/csc&#39;</span> -feature compiling-extension -setup-mode    -s -O3 -d0 regex.import.scm
+  cp -r <span class="s1">&#39;regex.so&#39;</span> <span class="s1">&#39;/var/lib/chicken/7/regex.so&#39;</span>
+  chmod a+r <span class="s1">&#39;/var/lib/chicken/7/regex.so&#39;</span>
+  cp -r <span class="s1">&#39;regex.import.so&#39;</span> <span class="s1">&#39;/var/lib/chicken/7/regex.import.so&#39;</span>
+  chmod a+r <span class="s1">&#39;/var/lib/chicken/7/regex.import.so&#39;</span>
+  chmod a+r <span class="s1">&#39;/var/lib/chicken/7/regex.setup-info&#39;</span>
+</pre></div>
+
+
+<p>Bật <code>csi</code> lên để gõ code gọi function <code>grep</code>:</p>
+<div class="highlight"><pre><span></span><span class="nv">$</span> <span class="nv">csi</span>
+<span class="nv">/usr/bin/rlwrap</span>
+
+<span class="nv">CHICKEN</span>
+<span class="p">(</span><span class="nf">c</span><span class="p">)</span> <span class="mi">2008-2014</span><span class="o">,</span> <span class="nv">The</span> <span class="nv">Chicken</span> <span class="nv">Team</span>
+<span class="p">(</span><span class="nf">c</span><span class="p">)</span> <span class="mi">2000-2007</span><span class="o">,</span> <span class="nv">Felix</span> <span class="nv">L</span><span class="o">.</span> <span class="nv">Winkelmann</span>
+<span class="nv">Version</span> <span class="mf">4.9</span><span class="o">.</span><span class="mf">0.1</span> <span class="p">(</span><span class="nf">stability/4</span><span class="o">.</span><span class="mf">9.0</span><span class="p">)</span> <span class="p">(</span><span class="nf">rev</span> <span class="mi">8</span><span class="nv">b3189b</span><span class="p">)</span>
+<span class="nv">linux-unix-gnu-x86-64</span> <span class="p">[</span> <span class="mi">64</span><span class="nv">bit</span> <span class="nv">manyargs</span> <span class="nv">dload</span> <span class="nv">ptables</span> <span class="p">]</span>
+<span class="nv">bootstrapped</span> <span class="mi">2014-06-07</span>
+
+<span class="o">#</span><span class="c1">;1&gt; (grep &quot;[0-9]&quot; (list &quot;pymi&quot; &quot;2018&quot; &quot;pymi2018&quot;))</span>
+
+<span class="nv">Error:</span> <span class="nv">unbound</span> <span class="nv">variable:</span> <span class="nv">grep</span>
+
+    <span class="nv">Call</span> <span class="nv">history:</span>
+
+    <span class="nv">&lt;syntax&gt;</span>      <span class="p">(</span><span class="nf">grep</span> <span class="s">&quot;[0-9]&quot;</span> <span class="p">(</span><span class="nb">list </span><span class="s">&quot;pymi&quot;</span> <span class="s">&quot;2018&quot;</span> <span class="s">&quot;pymi2018&quot;</span><span class="p">))</span>
+    <span class="nv">&lt;syntax&gt;</span>      <span class="p">(</span><span class="nb">list </span><span class="s">&quot;pymi&quot;</span> <span class="s">&quot;2018&quot;</span> <span class="s">&quot;pymi2018&quot;</span><span class="p">)</span>
+    <span class="nv">&lt;eval&gt;</span>    <span class="p">(</span><span class="nf">grep</span> <span class="s">&quot;[0-9]&quot;</span> <span class="p">(</span><span class="nb">list </span><span class="s">&quot;pymi&quot;</span> <span class="s">&quot;2018&quot;</span> <span class="s">&quot;pymi2018&quot;</span><span class="p">))</span>    <span class="nv">&lt;--</span>
+</pre></div>
+
+
+<p>Nội dung error rõ ràng: <code>Error: unbound variable: grep</code> - không hiểu <code>grep</code>
+là cái gì - nó không phải một variable/function đã tồn tại.</p>
+<h2>Sử dụng / import extension</h2>
+<p>Dùng macro <code>use ten-extension</code> (tại bài này cứ hiểu là function cũng tạm ổn)</p>
+<div class="highlight"><pre><span></span><span class="o">#</span><span class="c1">;1&gt; (use regex)</span>
+<span class="c1">; loading /var/lib//chicken/7/regex.import.so ...</span>
+<span class="c1">; loading /var/lib//chicken/7/chicken.import.so ...</span>
+<span class="c1">; loading /var/lib//chicken/7/irregex.import.so ...</span>
+<span class="c1">; loading /var/lib//chicken/7/regex.so ...</span>
+<span class="o">#</span><span class="c1">;2&gt; (grep &quot;[0-9]&quot; (list &quot;pymi&quot; &quot;2018&quot; &quot;pymi2018&quot;))</span>
+<span class="p">(</span><span class="s">&quot;2018&quot;</span> <span class="s">&quot;pymi2018&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Ta thu được list các phần tử có chứa số, string "[0-9]" là regular expression
+biểu diễn một số hệ 10.</p>
+<h2>Đọc tài liệu của module/function</h2>
+<p><code>grep</code> ở trên làm gì? CHICKEN Scheme có chương trình <code>chicken-doc</code> để tra
+tài liêu, tương tự python có <code>pydoc</code>. Để có <code>chicken-doc</code>, cần cài extension
+với lệnh: <code>sudo chicken-install chicken-doc</code>.</p>
+<div class="highlight"><pre><span></span>$ chicken-doc grep
+path: <span class="o">(</span>regex grep<span class="o">)</span>
+
+-- procedure: <span class="o">(</span>grep REGEX LIST <span class="o">[</span>ACCESSOR<span class="o">])</span>
+
+Returns all items of <span class="sb">`</span>LIST<span class="sb">`</span> that match the regular expression <span class="sb">`</span>REGEX<span class="sb">`</span>. This procedure could be defined as follows:
+
+  <span class="o">(</span>define <span class="o">(</span>grep regex lst<span class="o">)</span>
+    <span class="o">(</span>filter <span class="o">(</span>lambda <span class="o">(</span>x<span class="o">)</span> <span class="o">(</span>string-search regex x<span class="o">))</span> lst<span class="o">)</span> <span class="o">)</span>
+
+<span class="sb">`</span>ACCESSOR<span class="sb">`</span> is an optional accessor-procedure applied to each element before doing the match. It should take a single argument
+and <span class="k">return</span> a string that will <span class="k">then</span> be used in the regular expression matching. <span class="sb">`</span>ACCESSOR<span class="sb">`</span> defaults to the identity <span class="k">function</span>.
+</pre></div>
+
+
+<p>Pydoc đi kèm với Python có khả năng tương tự:</p>
+<div class="highlight"><pre><span></span>$ pydoc len
+
+Help on built-in <span class="k">function</span> len in module builtins:
+
+len<span class="o">(</span>obj, /<span class="o">)</span>
+    Return the number of items in a container.
+</pre></div>
+
+
+<h2>Liệt kê các extension có trên "mạng"</h2>
+<div class="highlight"><pre><span></span>$ chicken-install -list
+2d-primitives
+3viewer
+9ML-toolkit
+9p
+AD
+F-operator
+R
+abnf
+accents-substitute
+...
+</pre></div>
+
+
+<p>Tại thời điểm viết bài, có 781 egg trong kho - hơi ít.</p>
+<h2>Xem các extension library đã cài</h2>
+<p>Dùng lệnh <code>chicken-status</code></p>
+<div class="highlight"><pre><span></span>$ chicken-status
+apropos ......................................... version: <span class="m">2</span>.1.0
+check-errors .................................... version: <span class="m">2</span>.2.0
+chicken-doc ..................................... version: <span class="m">0</span>.4.7
+chicken-doc-cmd ................................. version: <span class="m">0</span>.4.7
+fmt ............................................. version: <span class="m">0</span>.808
+fmt-c ........................................... version: <span class="m">0</span>.808
+fmt-color ....................................... version: <span class="m">0</span>.808
+fmt-js .......................................... version: <span class="m">0</span>.808
+fmt-unicode ..................................... version: <span class="m">0</span>.808
+iset .............................................. version: <span class="m">2</span>.0
+</pre></div>
+
+
+<h2>Gỡ extension</h2>
+<p>Sử dụng câu lệnh <code>chicken-uninstall TEN-extension</code>.</p>
+<h2>Danh sách với thông tin các extension</h2>
+<p>Xem online tai <a href="">http://eggs.call-cc.org/4/</a> cho bản CHICKEN stable hiện tại:
+version 4.</p>
+<p>Bài viết thực hiện trên:</p>
+<div class="highlight"><pre><span></span>$ lsb_release -r<span class="p">;</span> csi -version
+Release:    <span class="m">16</span>.04
+
+CHICKEN
+<span class="o">(</span>c<span class="o">)</span> <span class="m">2008</span>-2014, The Chicken Team
+<span class="o">(</span>c<span class="o">)</span> <span class="m">2000</span>-2007, Felix L. Winkelmann
+Version <span class="m">4</span>.9.0.1 <span class="o">(</span>stability/4.9.0<span class="o">)</span> <span class="o">(</span>rev 8b3189b<span class="o">)</span>
+linux-unix-gnu-x86-64 <span class="o">[</span> 64bit manyargs dload ptables <span class="o">]</span>
+bootstrapped <span class="m">2014</span>-06-07
+</pre></div>
+
+
+<p>Hết phần 2.</p>
+  </div>
+  <!-- /.entry-content -->
+</section>
+<section class="container">
+  <div class="comments">
+    <h3>Comments</h3>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'pymier';
+      var disqus_identifier = 'article/scm_egg/';
+      var disqus_url = 'http://pp.pymi.vn/article/scm_egg/';
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//pymier.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the comments.</noscript>
+  </div>
+</section>
+
+    <section class="container footer">
+      <footer>
+        <address>
+        Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+        which takes great advantage of <a href="http://python.org">Python</a>.
+        </address>
+        <address>
+          Học lập trình Python tại <a href="https://pymi.vn/">Pymi.vn</a>
+        </address>
+      </footer>
+    </section>
+  </main>
+
+<script type="text/javascript">
+var images = document.getElementsByTagName("img");
+var i;
+
+for(i = 0; i < images.length; i++) {
+  images[i].className += " centered";
+}
+</script>
+</body>
+
+</html>

@@ -1,5 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2018-09-10T00:00:00+07:00</updated><entry><title>Tuple comprehension</title><link href="http://pp.pymi.vn/article/tuple_comps/" rel="alternate"></link><published>2018-09-10T00:00:00+07:00</published><updated>2018-09-10T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-09-10:/article/tuple_comps/</id><summary type="html">&lt;p&gt;List comprehension, set/dict comprehension, còn tuple? Generator là gì?&lt;/p&gt;</summary><content type="html">&lt;p&gt;Python có sẵn (builtin) 4 kiểu dữ liệu "compound"/"container" quan trọng,
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2018-10-05T00:00:00+07:00</updated><entry><title>Quản lý, sử dụng package trong CHICKEN Scheme</title><link href="http://pp.pymi.vn/article/scm_egg/" rel="alternate"></link><published>2018-10-05T00:00:00+07:00</published><updated>2018-10-05T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-10-05:/article/scm_egg/</id><summary type="html">&lt;p&gt;Con đường nhanh nhất để sử dung 1 ngôn ngữ là dùng nó!&lt;/p&gt;</summary><content type="html">&lt;p&gt;Học và hành thường ở rất xa nhau.
+Ta có thể học đủ loại khái niệm, đủ loại cú pháp, viết các thuật toán để luyện
+ngôn ngữ, nhưng rồi lại mãi luẩn quẩn ở đó, không thoát ra được, không bay
+lên nổi. Viết 1 vòng for, 2 câu if bằng Python, JavaScript, Golang hay
+&lt;a href="https://elixir.pymi.vn/"&gt;Elixir&lt;/a&gt;
+cũng không hơn nhau gì cả, chỉ thay đổi chút cú pháp thôi.&lt;/p&gt;
+&lt;p&gt;Thế nên cách "tốt nhất" để học 1 ngôn ngữ lập trình, không phải là học đủ các
+khái niệm, best practice, viết code chuẩn đẹp tuyệt đối, mà là việc hoàn thành
+một sản phẩm từ đầu đến tận X Y Z. Đưa ra sản phẩm cuối cùng, có thể là trang
+web chạy với domain hẳn hoi, có thể là chương trình đóng thành package,
+thành file cài đặt, hay game có giao diện đầy đủ.&lt;/p&gt;
+&lt;p&gt;Package manager giúp cài đặt các thư viện có sẵn là công cụ giúp ta đến đích
+nhanh nhất. Python có pip, JavaScript có NPM, Elixir có mix, Rust có cargo ...
+thì CHICKEN Scheme có &lt;code&gt;chicken-install&lt;/code&gt;, câu lệnh có sẵn khi cài CHICKEN
+Scheme.&lt;/p&gt;
+&lt;h2&gt;Cài đặt extension&lt;/h2&gt;
+&lt;p&gt;CHICKEN Scheme gọi các gói thư viện là extension hay "egg".&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;chicken-install tên-extension&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Ví dụ cài &lt;code&gt;regex&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ sudo chicken-install regex
+&lt;span class="o"&gt;[&lt;/span&gt;sudo&lt;span class="o"&gt;]&lt;/span&gt; password &lt;span class="k"&gt;for&lt;/span&gt; hvn:  GO PASSWORD
+retrieving ...
+connecting to host &lt;span class="s2"&gt;&amp;quot;chicken.kitten-technologies.co.uk&amp;quot;&lt;/span&gt;, port &lt;span class="m"&gt;80&lt;/span&gt; ...
+requesting &lt;span class="s2"&gt;&amp;quot;/henrietta.cgi?name=regex&amp;amp;mode=default&amp;quot;&lt;/span&gt; ...
+reading response ...
+HTTP/1.1 &lt;span class="m"&gt;200&lt;/span&gt; OK
+Date: Fri, &lt;span class="m"&gt;05&lt;/span&gt; Oct &lt;span class="m"&gt;2018&lt;/span&gt; &lt;span class="m"&gt;14&lt;/span&gt;:28:32 GMT
+Server: Apache/2.2.31 &lt;span class="o"&gt;(&lt;/span&gt;Unix&lt;span class="o"&gt;)&lt;/span&gt; DAV/2 PHP/5.5.36 mod_fastcgi/2.4.6
+...
+checking platform &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="sb"&gt;`&lt;/span&gt;regex&lt;span class="s1"&gt;&amp;#39; ...&lt;/span&gt;
+&lt;span class="s1"&gt;checking dependencies for `regex&amp;#39;&lt;/span&gt; ...
+install order:
+&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;regex&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+installing regex:1.0 ...
+changing current directory to /tmp/tempab50.21917/regex
+  &lt;span class="s1"&gt;&amp;#39;/usr/bin/csi&amp;#39;&lt;/span&gt; -bnq -setup-mode -e &lt;span class="s2"&gt;&amp;quot;(require-library setup-api)&amp;quot;&lt;/span&gt; -e &lt;span class="s2"&gt;&amp;quot;(import setup-api)&amp;quot;&lt;/span&gt; -e &lt;span class="s2"&gt;&amp;quot;(setup-error-handling)&amp;quot;&lt;/span&gt; -e &lt;span class="s2"&gt;&amp;quot;(extension-name-and-version &amp;#39;(\&amp;quot;regex\&amp;quot; \&amp;quot;1.0\&amp;quot;))&amp;quot;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;regex.setup&amp;#39;&lt;/span&gt;
+  &lt;span class="s1"&gt;&amp;#39;/usr/bin/csc&amp;#39;&lt;/span&gt; -feature compiling-extension -setup-mode    -s -O3 -d1 regex.scm -JS
+  &lt;span class="s1"&gt;&amp;#39;/usr/bin/csc&amp;#39;&lt;/span&gt; -feature compiling-extension -setup-mode    -s -O3 -d0 regex.import.scm
+  cp -r &lt;span class="s1"&gt;&amp;#39;regex.so&amp;#39;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/var/lib/chicken/7/regex.so&amp;#39;&lt;/span&gt;
+  chmod a+r &lt;span class="s1"&gt;&amp;#39;/var/lib/chicken/7/regex.so&amp;#39;&lt;/span&gt;
+  cp -r &lt;span class="s1"&gt;&amp;#39;regex.import.so&amp;#39;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/var/lib/chicken/7/regex.import.so&amp;#39;&lt;/span&gt;
+  chmod a+r &lt;span class="s1"&gt;&amp;#39;/var/lib/chicken/7/regex.import.so&amp;#39;&lt;/span&gt;
+  chmod a+r &lt;span class="s1"&gt;&amp;#39;/var/lib/chicken/7/regex.setup-info&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Bật &lt;code&gt;csi&lt;/code&gt; lên để gõ code gọi function &lt;code&gt;grep&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;csi&lt;/span&gt;
+&lt;span class="nv"&gt;/usr/bin/rlwrap&lt;/span&gt;
+
+&lt;span class="nv"&gt;CHICKEN&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;2008-2014&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;The&lt;/span&gt; &lt;span class="nv"&gt;Chicken&lt;/span&gt; &lt;span class="nv"&gt;Team&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;2000-2007&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;Felix&lt;/span&gt; &lt;span class="nv"&gt;L&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="nv"&gt;Winkelmann&lt;/span&gt;
+&lt;span class="nv"&gt;Version&lt;/span&gt; &lt;span class="mf"&gt;4.9&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mf"&gt;0.1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stability/4&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mf"&gt;9.0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;rev&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="nv"&gt;b3189b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nv"&gt;linux-unix-gnu-x86-64&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="mi"&gt;64&lt;/span&gt;&lt;span class="nv"&gt;bit&lt;/span&gt; &lt;span class="nv"&gt;manyargs&lt;/span&gt; &lt;span class="nv"&gt;dload&lt;/span&gt; &lt;span class="nv"&gt;ptables&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="nv"&gt;bootstrapped&lt;/span&gt; &lt;span class="mi"&gt;2014-06-07&lt;/span&gt;
+
+&lt;span class="o"&gt;#&lt;/span&gt;&lt;span class="c1"&gt;;1&amp;gt; (grep &amp;quot;[0-9]&amp;quot; (list &amp;quot;pymi&amp;quot; &amp;quot;2018&amp;quot; &amp;quot;pymi2018&amp;quot;))&lt;/span&gt;
+
+&lt;span class="nv"&gt;Error:&lt;/span&gt; &lt;span class="nv"&gt;unbound&lt;/span&gt; &lt;span class="nv"&gt;variable:&lt;/span&gt; &lt;span class="nv"&gt;grep&lt;/span&gt;
+
+    &lt;span class="nv"&gt;Call&lt;/span&gt; &lt;span class="nv"&gt;history:&lt;/span&gt;
+
+    &lt;span class="nv"&gt;&amp;lt;syntax&amp;gt;&lt;/span&gt;      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;grep&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[0-9]&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;pymi&amp;quot;&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;2018&amp;quot;&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;pymi2018&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="nv"&gt;&amp;lt;syntax&amp;gt;&lt;/span&gt;      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;pymi&amp;quot;&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;2018&amp;quot;&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;pymi2018&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nv"&gt;&amp;lt;eval&amp;gt;&lt;/span&gt;    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;grep&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[0-9]&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;pymi&amp;quot;&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;2018&amp;quot;&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;pymi2018&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;    &lt;span class="nv"&gt;&amp;lt;--&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Nội dung error rõ ràng: &lt;code&gt;Error: unbound variable: grep&lt;/code&gt; - không hiểu &lt;code&gt;grep&lt;/code&gt;
+là cái gì - nó không phải một variable/function đã tồn tại.&lt;/p&gt;
+&lt;h2&gt;Sử dụng / import extension&lt;/h2&gt;
+&lt;p&gt;Dùng macro &lt;code&gt;use ten-extension&lt;/code&gt; (tại bài này cứ hiểu là function cũng tạm ổn)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;#&lt;/span&gt;&lt;span class="c1"&gt;;1&amp;gt; (use regex)&lt;/span&gt;
+&lt;span class="c1"&gt;; loading /var/lib//chicken/7/regex.import.so ...&lt;/span&gt;
+&lt;span class="c1"&gt;; loading /var/lib//chicken/7/chicken.import.so ...&lt;/span&gt;
+&lt;span class="c1"&gt;; loading /var/lib//chicken/7/irregex.import.so ...&lt;/span&gt;
+&lt;span class="c1"&gt;; loading /var/lib//chicken/7/regex.so ...&lt;/span&gt;
+&lt;span class="o"&gt;#&lt;/span&gt;&lt;span class="c1"&gt;;2&amp;gt; (grep &amp;quot;[0-9]&amp;quot; (list &amp;quot;pymi&amp;quot; &amp;quot;2018&amp;quot; &amp;quot;pymi2018&amp;quot;))&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;2018&amp;quot;&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;pymi2018&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Ta thu được list các phần tử có chứa số, string "[0-9]" là regular expression
+biểu diễn một số hệ 10.&lt;/p&gt;
+&lt;h2&gt;Đọc tài liệu của module/function&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;grep&lt;/code&gt; ở trên làm gì? CHICKEN Scheme có chương trình &lt;code&gt;chicken-doc&lt;/code&gt; để tra
+tài liêu, tương tự python có &lt;code&gt;pydoc&lt;/code&gt;. Để có &lt;code&gt;chicken-doc&lt;/code&gt;, cần cài extension
+với lệnh: &lt;code&gt;sudo chicken-install chicken-doc&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ chicken-doc grep
+path: &lt;span class="o"&gt;(&lt;/span&gt;regex grep&lt;span class="o"&gt;)&lt;/span&gt;
+
+-- procedure: &lt;span class="o"&gt;(&lt;/span&gt;grep REGEX LIST &lt;span class="o"&gt;[&lt;/span&gt;ACCESSOR&lt;span class="o"&gt;])&lt;/span&gt;
+
+Returns all items of &lt;span class="sb"&gt;`&lt;/span&gt;LIST&lt;span class="sb"&gt;`&lt;/span&gt; that match the regular expression &lt;span class="sb"&gt;`&lt;/span&gt;REGEX&lt;span class="sb"&gt;`&lt;/span&gt;. This procedure could be defined as follows:
+
+  &lt;span class="o"&gt;(&lt;/span&gt;define &lt;span class="o"&gt;(&lt;/span&gt;grep regex lst&lt;span class="o"&gt;)&lt;/span&gt;
+    &lt;span class="o"&gt;(&lt;/span&gt;filter &lt;span class="o"&gt;(&lt;/span&gt;lambda &lt;span class="o"&gt;(&lt;/span&gt;x&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;string-search regex x&lt;span class="o"&gt;))&lt;/span&gt; lst&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;)&lt;/span&gt;
+
+&lt;span class="sb"&gt;`&lt;/span&gt;ACCESSOR&lt;span class="sb"&gt;`&lt;/span&gt; is an optional accessor-procedure applied to each element before doing the match. It should take a single argument
+and &lt;span class="k"&gt;return&lt;/span&gt; a string that will &lt;span class="k"&gt;then&lt;/span&gt; be used in the regular expression matching. &lt;span class="sb"&gt;`&lt;/span&gt;ACCESSOR&lt;span class="sb"&gt;`&lt;/span&gt; defaults to the identity &lt;span class="k"&gt;function&lt;/span&gt;.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Pydoc đi kèm với Python có khả năng tương tự:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ pydoc len
+
+Help on built-in &lt;span class="k"&gt;function&lt;/span&gt; len in module builtins:
+
+len&lt;span class="o"&gt;(&lt;/span&gt;obj, /&lt;span class="o"&gt;)&lt;/span&gt;
+    Return the number of items in a container.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Liệt kê các extension có trên "mạng"&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ chicken-install -list
+2d-primitives
+3viewer
+9ML-toolkit
+9p
+AD
+F-operator
+R
+abnf
+accents-substitute
+...
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Tại thời điểm viết bài, có 781 egg trong kho - hơi ít.&lt;/p&gt;
+&lt;h2&gt;Xem các extension library đã cài&lt;/h2&gt;
+&lt;p&gt;Dùng lệnh &lt;code&gt;chicken-status&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ chicken-status
+apropos ......................................... version: &lt;span class="m"&gt;2&lt;/span&gt;.1.0
+check-errors .................................... version: &lt;span class="m"&gt;2&lt;/span&gt;.2.0
+chicken-doc ..................................... version: &lt;span class="m"&gt;0&lt;/span&gt;.4.7
+chicken-doc-cmd ................................. version: &lt;span class="m"&gt;0&lt;/span&gt;.4.7
+fmt ............................................. version: &lt;span class="m"&gt;0&lt;/span&gt;.808
+fmt-c ........................................... version: &lt;span class="m"&gt;0&lt;/span&gt;.808
+fmt-color ....................................... version: &lt;span class="m"&gt;0&lt;/span&gt;.808
+fmt-js .......................................... version: &lt;span class="m"&gt;0&lt;/span&gt;.808
+fmt-unicode ..................................... version: &lt;span class="m"&gt;0&lt;/span&gt;.808
+iset .............................................. version: &lt;span class="m"&gt;2&lt;/span&gt;.0
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Gỡ extension&lt;/h2&gt;
+&lt;p&gt;Sử dụng câu lệnh &lt;code&gt;chicken-uninstall TEN-extension&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;Danh sách với thông tin các extension&lt;/h2&gt;
+&lt;p&gt;Xem online tai &lt;a href=""&gt;http://eggs.call-cc.org/4/&lt;/a&gt; cho bản CHICKEN stable hiện tại:
+version 4.&lt;/p&gt;
+&lt;p&gt;Bài viết thực hiện trên:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ lsb_release -r&lt;span class="p"&gt;;&lt;/span&gt; csi -version
+Release:    &lt;span class="m"&gt;16&lt;/span&gt;.04
+
+CHICKEN
+&lt;span class="o"&gt;(&lt;/span&gt;c&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="m"&gt;2008&lt;/span&gt;-2014, The Chicken Team
+&lt;span class="o"&gt;(&lt;/span&gt;c&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="m"&gt;2000&lt;/span&gt;-2007, Felix L. Winkelmann
+Version &lt;span class="m"&gt;4&lt;/span&gt;.9.0.1 &lt;span class="o"&gt;(&lt;/span&gt;stability/4.9.0&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;rev 8b3189b&lt;span class="o"&gt;)&lt;/span&gt;
+linux-unix-gnu-x86-64 &lt;span class="o"&gt;[&lt;/span&gt; 64bit manyargs dload ptables &lt;span class="o"&gt;]&lt;/span&gt;
+bootstrapped &lt;span class="m"&gt;2014&lt;/span&gt;-06-07
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Hết phần 2.&lt;/p&gt;</content><category term="scheme"></category><category term="lisp"></category><category term="chicken"></category><category term="htdp"></category></entry><entry><title>Tuple comprehension</title><link href="http://pp.pymi.vn/article/tuple_comps/" rel="alternate"></link><published>2018-09-10T00:00:00+07:00</published><updated>2018-09-10T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-09-10:/article/tuple_comps/</id><summary type="html">&lt;p&gt;List comprehension, set/dict comprehension, còn tuple? Generator là gì?&lt;/p&gt;</summary><content type="html">&lt;p&gt;Python có sẵn (builtin) 4 kiểu dữ liệu "compound"/"container" quan trọng,
 chúng dùng để chứa các giá trị. &lt;code&gt;list&lt;/code&gt;, &lt;code&gt;tuple&lt;/code&gt;, &lt;code&gt;set&lt;/code&gt;, &lt;code&gt;dict&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Một lập trình viên Python phải nắm thành thạo cả 4 kiểu dữ liệu trên và vận
 dụng linh hoạt, biết điểm mạnh yếu của từng kiểu. Bàn về chuyện &lt;em&gt;ấy&lt;/em&gt; lại cần
