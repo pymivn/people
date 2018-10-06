@@ -103,6 +103,17 @@ and &lt;span class="k"&gt;return&lt;/span&gt; a string that will &lt;span class=
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ chicken-doc data-structures
+path: &lt;span class="o"&gt;(&lt;/span&gt;data-structures&lt;span class="o"&gt;)&lt;/span&gt;
+
+&lt;span class="o"&gt;==&lt;/span&gt; Unit data-structures
+
+This unit contains a collection of procedures related to data structures. This unit is used by default, unless the
+program is compiled with the &lt;span class="sb"&gt;`&lt;/span&gt;-explicit-use&lt;span class="sb"&gt;`&lt;/span&gt; option.
+...
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;Pydoc đi kèm với Python có khả năng tương tự:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ pydoc len
 
