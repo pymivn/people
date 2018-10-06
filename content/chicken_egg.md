@@ -124,6 +124,17 @@ Returns all items of `LIST` that match the regular expression `REGEX`. This proc
 and return a string that will then be used in the regular expression matching. `ACCESSOR` defaults to the identity function.
 ```
 
+```
+$ chicken-doc data-structures
+path: (data-structures)
+
+== Unit data-structures
+
+This unit contains a collection of procedures related to data structures. This unit is used by default, unless the
+program is compiled with the `-explicit-use` option.
+...
+```
+
 Pydoc đi kèm với Python có khả năng tương tự:
 
 ```bash
