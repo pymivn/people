@@ -125,6 +125,10 @@ and return a string that will then be used in the regular expression matching. `
 ```
 
 ```
+$ chicken-doc -i scheme  # đầy đủ doc về R5RS
+...
+$ chicken-doc -c scheme  # danh sách các procedure trong R5RS
+...
 $ chicken-doc data-structures
 path: (data-structures)
 
