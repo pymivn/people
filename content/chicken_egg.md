@@ -137,6 +137,20 @@ path: (data-structures)
 This unit contains a collection of procedures related to data structures. This unit is used by default, unless the
 program is compiled with the `-explicit-use` option.
 ...
+
+
+$ chicken-doc when # tìm từ khóa when, thấy 2 kết quả
+Found 2 matches:
+(spock when)                  (when X1 BODY ...)
+(chicken special-forms when)  (when TEST EXP1 EXP2 ...)
+$ chicken-doc chicken special-forms when # xem kết quả thứ 2
+
+-- syntax: (when TEST EXP1 EXP2 ...)
+
+Equivalent to:
+
+  (if TEST (begin EXP1 EXP2 ...))
+
 ```
 
 Pydoc đi kèm với Python có khả năng tương tự:
