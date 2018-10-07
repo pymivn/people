@@ -153,7 +153,11 @@ and <span class="k">return</span> a string that will <span class="k">then</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>$ chicken-doc data-structures
+<div class="highlight"><pre><span></span>$ chicken-doc -i scheme  <span class="c1"># đầy đủ doc về R5RS</span>
+...
+$ chicken-doc -c scheme  <span class="c1"># danh sách các procedure trong R5RS</span>
+...
+$ chicken-doc data-structures
 path: <span class="o">(</span>data-structures<span class="o">)</span>
 
 <span class="o">==</span> Unit data-structures
@@ -161,6 +165,19 @@ path: <span class="o">(</span>data-structures<span class="o">)</span>
 This unit contains a collection of procedures related to data structures. This unit is used by default, unless the
 program is compiled with the <span class="sb">`</span>-explicit-use<span class="sb">`</span> option.
 ...
+
+
+$ chicken-doc when <span class="c1"># tìm từ khóa when, thấy 2 kết quả</span>
+Found <span class="m">2</span> matches:
+<span class="o">(</span>spock when<span class="o">)</span>                  <span class="o">(</span>when X1 BODY ...<span class="o">)</span>
+<span class="o">(</span>chicken special-forms when<span class="o">)</span>  <span class="o">(</span>when TEST EXP1 EXP2 ...<span class="o">)</span>
+$ chicken-doc chicken special-forms when <span class="c1"># xem kết quả thứ 2</span>
+
+-- syntax: <span class="o">(</span>when TEST EXP1 EXP2 ...<span class="o">)</span>
+
+Equivalent to:
+
+  <span class="o">(</span><span class="k">if</span> TEST <span class="o">(</span>begin EXP1 EXP2 ...<span class="o">))</span>
 </pre></div>
 
 

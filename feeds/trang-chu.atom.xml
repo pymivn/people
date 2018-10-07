@@ -103,7 +103,11 @@ and &lt;span class="k"&gt;return&lt;/span&gt; a string that will &lt;span class=
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ chicken-doc data-structures
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ chicken-doc -i scheme  &lt;span class="c1"&gt;# đầy đủ doc về R5RS&lt;/span&gt;
+...
+$ chicken-doc -c scheme  &lt;span class="c1"&gt;# danh sách các procedure trong R5RS&lt;/span&gt;
+...
+$ chicken-doc data-structures
 path: &lt;span class="o"&gt;(&lt;/span&gt;data-structures&lt;span class="o"&gt;)&lt;/span&gt;
 
 &lt;span class="o"&gt;==&lt;/span&gt; Unit data-structures
@@ -111,6 +115,19 @@ path: &lt;span class="o"&gt;(&lt;/span&gt;data-structures&lt;span class="o"&gt;)
 This unit contains a collection of procedures related to data structures. This unit is used by default, unless the
 program is compiled with the &lt;span class="sb"&gt;`&lt;/span&gt;-explicit-use&lt;span class="sb"&gt;`&lt;/span&gt; option.
 ...
+
+
+$ chicken-doc when &lt;span class="c1"&gt;# tìm từ khóa when, thấy 2 kết quả&lt;/span&gt;
+Found &lt;span class="m"&gt;2&lt;/span&gt; matches:
+&lt;span class="o"&gt;(&lt;/span&gt;spock when&lt;span class="o"&gt;)&lt;/span&gt;                  &lt;span class="o"&gt;(&lt;/span&gt;when X1 BODY ...&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;(&lt;/span&gt;chicken special-forms when&lt;span class="o"&gt;)&lt;/span&gt;  &lt;span class="o"&gt;(&lt;/span&gt;when TEST EXP1 EXP2 ...&lt;span class="o"&gt;)&lt;/span&gt;
+$ chicken-doc chicken special-forms when &lt;span class="c1"&gt;# xem kết quả thứ 2&lt;/span&gt;
+
+-- syntax: &lt;span class="o"&gt;(&lt;/span&gt;when TEST EXP1 EXP2 ...&lt;span class="o"&gt;)&lt;/span&gt;
+
+Equivalent to:
+
+  &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt; TEST &lt;span class="o"&gt;(&lt;/span&gt;begin EXP1 EXP2 ...&lt;span class="o"&gt;))&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
