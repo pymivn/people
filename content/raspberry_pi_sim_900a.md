@@ -1,26 +1,21 @@
 Title: Dùng Raspberry Pi để gửi và nhận SMS với Sim900A
-
 Date: 2018-10-09
-
 Category: Trang chủ
-
 Tags: raspberry, pi, sim, 900a, sms
-
 Slug: raspberry-pi-sim900a
-
 Author: tudoanh
 
 Summary: Hướng dẫn kết nối module Sim900A với Raspberry Pi 3 B+, dùng để gửi và nhận tin nhắn SMS
 
-Dạo này vì lý do công việc nên cần phải tìm cách kết nối và sử dụng module Sim900A với con Raspberry Pi 3, dùng để nhận SMS.  
+Dạo này vì lý do công việc nên cần phải tìm cách kết nối và sử dụng module Sim900A với con Raspberry Pi 3, dùng để nhận SMS.
 
-Tìm hiểu mấy hôm, rất là cực nên hôm nay mình viết lại bài này, cho những ai cần tới sau này đỡ tốn thời gian mày mò lại từ đầu.  
+Tìm hiểu mấy hôm, rất là cực nên hôm nay mình viết lại bài này, cho những ai cần tới sau này đỡ tốn thời gian mày mò lại từ đầu.
 
 ### Chuẩn bị
 
-Để bắt đầu, bạn cần:  
+Để bắt đầu, bạn cần:
 
-- Một combo **Raspberry Pi 3 B+** đầy đủ nguồn, thẻ nhớ, đã cài đặt **Raspbian** 
+- Một combo **Raspberry Pi 3 B+** đầy đủ nguồn, thẻ nhớ, đã cài đặt **Raspbian**
 
 - Một module **Sim900A**
 
@@ -56,7 +51,7 @@ Còn nếu kết nối qua USB
 
 ### Cài đặt
 
-Đầu tiên ta cần mở cổng **ttyS0** 
+Đầu tiên ta cần mở cổng **ttyS0**
 
 Bạn có thể dùng "raspi-config" để mở UART:
 
