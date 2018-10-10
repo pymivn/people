@@ -1,5 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers - Trang chủ</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/trang-chu.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2018-10-05T00:00:00+07:00</updated><entry><title>Quản lý, sử dụng package trong CHICKEN Scheme</title><link href="http://pp.pymi.vn/article/scm_egg/" rel="alternate"></link><published>2018-10-05T00:00:00+07:00</published><updated>2018-10-05T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-10-05:/article/scm_egg/</id><summary type="html">&lt;p&gt;Con đường nhanh nhất để sử dụng 1 ngôn ngữ là dùng nó!&lt;/p&gt;</summary><content type="html">&lt;p&gt;Học và hành thường ở rất xa nhau.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers - Trang chủ</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/trang-chu.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2018-10-09T00:00:00+07:00</updated><entry><title>Dùng Raspberry Pi để gửi và nhận SMS với Sim900A</title><link href="http://pp.pymi.vn/article/raspberry-pi-sim900a/" rel="alternate"></link><published>2018-10-09T00:00:00+07:00</published><updated>2018-10-09T00:00:00+07:00</updated><author><name>tudoanh</name></author><id>tag:pp.pymi.vn,2018-10-09:/article/raspberry-pi-sim900a/</id><summary type="html">&lt;p&gt;Summary: Hướng dẫn kết nối module Sim900A với Raspberry Pi 3 B+, dùng để gửi và nhận tin nhắn SMS&lt;/p&gt;
+&lt;p&gt;Dạo này vì lý do công việc nên cần phải tìm cách kết nối và sử dụng module Sim900A với con Raspberry Pi 3, dùng để nhận SMS.&lt;/p&gt;
+&lt;p&gt;Tìm hiểu …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Summary: Hướng dẫn kết nối module Sim900A với Raspberry Pi 3 B+, dùng để gửi và nhận tin nhắn SMS&lt;/p&gt;
+&lt;p&gt;Dạo này vì lý do công việc nên cần phải tìm cách kết nối và sử dụng module Sim900A với con Raspberry Pi 3, dùng để nhận SMS.&lt;/p&gt;
+&lt;p&gt;Tìm hiểu mấy hôm, rất là cực nên hôm nay mình viết lại bài này, cho những ai cần tới sau này đỡ tốn thời gian mày mò lại từ đầu.&lt;/p&gt;
+&lt;h3&gt;Chuẩn bị&lt;/h3&gt;
+&lt;p&gt;Để bắt đầu, bạn cần:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Một combo &lt;strong&gt;Raspberry Pi 3 B+&lt;/strong&gt; đầy đủ nguồn, thẻ nhớ, đã cài đặt &lt;strong&gt;Raspbian&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Một module &lt;strong&gt;Sim900A&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="https://i.imgur.com/vvIy62p.jpg" src="https://i.imgur.com/vvIy62p.jpg"&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Dây chuyển đổi USB - UART PL2303 (Có thể không có)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="https://i.imgur.com/wWkr422.jpg" src="https://i.imgur.com/wWkr422.jpg"&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Đầy đủ dây nối&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="https://i.imgur.com/C40X3gs.png" src="https://i.imgur.com/C40X3gs.png"&gt;&lt;/p&gt;
+&lt;h3&gt;Kết nối&lt;/h3&gt;
+&lt;p&gt;Chỉ cần bạn kết nối đúng các cổng &lt;em&gt;Tx, Rx, Gnd và nguồn 5v&lt;/em&gt; vào Pi là xong. Tham khảo ảnh dưới:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="https://i.ytimg.com/vi/louSyBRkvO4/maxresdefault.jpg" src="https://i.ytimg.com/vi/louSyBRkvO4/maxresdefault.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;Ảnh thực tế (Nếu kết nối thẳng vào GPIO)&lt;/p&gt;
+&lt;p&gt;&lt;img alt="https://i.imgur.com/KRanp3y.jpg" src="https://i.imgur.com/KRanp3y.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="https://i.imgur.com/dQhoN8e.jpg" src="https://i.imgur.com/dQhoN8e.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;Còn nếu kết nối qua USB&lt;/p&gt;
+&lt;p&gt;&lt;img alt="https://i.imgur.com/2DHsQCx.jpg" src="https://i.imgur.com/2DHsQCx.jpg"&gt;&lt;/p&gt;
+&lt;h3&gt;Cài đặt&lt;/h3&gt;
+&lt;p&gt;Đầu tiên ta cần mở cổng &lt;strong&gt;ttyS0&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Bạn có thể dùng "raspi-config" để mở UART:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="https://i.imgur.com/NVchkKl.png" src="https://i.imgur.com/NVchkKl.png"&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Trong "Interfacing Options", chọn "Serial"&lt;/li&gt;
+&lt;li&gt;Chọn "No" khi được hỏi "You want a login shell over serial?".&lt;/li&gt;
+&lt;li&gt;Chọn "Yes" khi được hỏi "You want the hardware enabled?"&lt;/li&gt;
+&lt;li&gt;Khởi động lại&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Thực ra, bạn có thể sửa file &lt;em&gt;/boot/config.txt&lt;/em&gt; và sửa &lt;strong&gt;enable_uart=1&lt;/strong&gt;, và &lt;strong&gt;console=serial0,115200&lt;/strong&gt; (hoặc &lt;strong&gt;console=ttyS0,115200&lt;/strong&gt;) ở trong &lt;em&gt;/boot/cmdline.txt&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Và bạn có thể bật &lt;em&gt;terminal&lt;/em&gt; lên và test xem kết nối thành công chưa bằng cách gửi command &lt;strong&gt;AT\r\n&lt;/strong&gt; đến khi nào trả về &lt;strong&gt;OK&lt;/strong&gt; là thành công. (Nếu kết nối qua GPIO thì sẽ là &lt;strong&gt;/dev/ttyS0&lt;/strong&gt;, còn qua USB thì sẽ là &lt;strong&gt;/dev/ttyUSB0&lt;/strong&gt;)&lt;/p&gt;
+&lt;p&gt;Ví dụ:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="https://i.imgur.com/59K45tV.png" src="https://i.imgur.com/59K45tV.png"&gt;&lt;/p&gt;
+&lt;p&gt;Link asciinema:&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://asciinema.org/a/U3oPOg0vX4CZ5u3mWTTIr0FTS"&gt;&lt;img alt="asciicast" src="https://asciinema.org/a/U3oPOg0vX4CZ5u3mWTTIr0FTS.png"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Sau đó bạn có thể gửi và đọc tin nhắn bằng lib mình đã viết ở đây (Ví dụ cách sử dụng ở trong link):&lt;/p&gt;
+&lt;p&gt;https://github.com/tudoanh/sim900a&lt;/p&gt;
+&lt;p&gt;Ví dụ về kết quả nhận được bằng lệnh &lt;strong&gt;AT+CNMI=3,2,0,0,0&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="https://i.imgur.com/ecz65hk.png" src="https://i.imgur.com/ecz65hk.png"&gt;&lt;/p&gt;
+&lt;p&gt;Về chi tiết cách sử dụng các lệnh AT và các khái niệm GPIO, UART mình sẽ để sang một bài khác.&lt;/p&gt;
+&lt;p&gt;Chúc các bạn thành công.&lt;/p&gt;
+&lt;p&gt;Tham khảo:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;https://pinout.xyz/&lt;/li&gt;
+&lt;li&gt;http://mlab.vn/9216-huong-dan-lap-trinh-module-sim900a-va-arduino.html&lt;/li&gt;
+&lt;li&gt;https://www.developershome.com/sms/checkCommandSupport3.asp&lt;/li&gt;
+&lt;li&gt;https://raspberrypi.stackexchange.com/questions/82696/how-do-i-connect-gsm-sim-900a-to-a-raspberry-pi-3&lt;/li&gt;
+&lt;li&gt;https://www.espruino.com/datasheets/SIM900_AT.pdf&lt;/li&gt;
+&lt;li&gt;https://hristoborisov.com/index.php/projects/turning-the-raspberry-pi-into-a-sms-center-using-python/#Connecting_the_3gModem&lt;/li&gt;
+&lt;/ol&gt;</content><category term="raspberry"></category><category term="pi"></category><category term="sim"></category><category term="900a"></category><category term="sms"></category></entry><entry><title>Quản lý, sử dụng package trong CHICKEN Scheme</title><link href="http://pp.pymi.vn/article/scm_egg/" rel="alternate"></link><published>2018-10-05T00:00:00+07:00</published><updated>2018-10-05T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-10-05:/article/scm_egg/</id><summary type="html">&lt;p&gt;Con đường nhanh nhất để sử dụng 1 ngôn ngữ là dùng nó!&lt;/p&gt;</summary><content type="html">&lt;p&gt;Học và hành thường ở rất xa nhau.
 Ta có thể học đủ loại khái niệm, đủ loại cú pháp, viết các thuật toán để luyện
 ngôn ngữ, nhưng rồi lại mãi luẩn quẩn ở đó, không thoát ra được, không bay
 lên nổi. Viết 1 vòng for, 2 câu if bằng Python, JavaScript, Golang hay
