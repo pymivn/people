@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+   <title> Dùng MicroPython với wifi board ESP-8266  - The PyMiers</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="robots" content="" />
+  <link rel="stylesheet" type="text/css" href="/theme/css/app.css">
+<link rel="stylesheet" type="text/css" href="http://pp.pymi.vn/theme/css/pygment.css">
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    <meta name="author" content="Pymiers" />
+  <meta name="description" content="" />    <link href="http://pp.pymi.vn/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="The PyMiers Full Atom Feed" />       <link href="http://pp.pymi.vn/feeds/trang-chu.atom.xml" type="application/atom+xml" rel="alternate" title="The PyMiers Categories Atom Feed" />     
+  <meta name="tags" content="micropython" />
+  <meta name="tags" content="embedded" />
+  <meta name="tags" content="esp8266" />
+  <meta name="tags" content="iot" />
+</head>
+
+<body>
+  <main class="wrapper">
+    <section class="container">
+      <header class='column'>
+        <h1 class='title'><a href="http://pp.pymi.vn/">The PyMiers</a></h1>
+      </header>
+
+      <div class="section">
+        <div class="row navbar">
+          <div class="column nav-item is-active"><a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a></div>
+           <div class="column nav-item "><a href="http://pp.pymi.vn/pages/about/">About</a></div>
+          <div class="column nav-item "><a href="http://pp.pymi.vn/pages/add/">Tạo bài viết</a></div>
+          <div class="column nav-item"><a href="/archives">Archives</a></div>
+        </div>
+      </div>
+    </section>
+
+<section class="container">
+  <header>
+    <h2 class="entry-title">
+      <a href="http://pp.pymi.vn/article/micropython/" rel="bookmark"
+         title="Permalink to Dùng MicroPython với wifi board ESP-8266">Dùng MicroPython với wifi board ESP-8266</a></h2>  
+  </header>
+  <footer class='center'>
+    <time class="published" datetime="2018-10-21T00:00:00+07:00"> 21/10/2018 </time>
+    <address class="vcard author">By
+                    <a class="url fn" href="http://pp.pymi.vn/author/hvnsweeting/">hvnsweeting</a>
+ in <a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a>
+                </address>     <em>Tags</em>:     <a href="http://pp.pymi.vn/tag/micropython/"><em>micropython</em></a>,     <a href="http://pp.pymi.vn/tag/embedded/"><em>embedded</em></a>,     <a href="http://pp.pymi.vn/tag/esp8266/"><em>esp8266</em></a>,     <a href="http://pp.pymi.vn/tag/iot/"><em>iot</em></a>    </footer>
+  <br>
+  <div class="entry-content">
+    <p>Khi trở thành một trong những ngôn ngữ lập trình phổ biến nhất thế giới,
+Python không chỉ được dùng trong làm web, data science, hay sysadmin tool mà
+nó còn đá sang cả một lĩnh vực vốn giới hạn về tài nguyên: nhúng.</p>
+<p>Bình thường khi bật Python lên để in ra màn hình dòng "hello, world" ta đã
+dùng tới 8MB bộ nhớ. Vậy nên việc dùng Python cho lập trình nhúng thường nghe
+có vẻ không phù hợp.</p>
+<p>MicroPython ra đời, là một bản thu gọn của Python, tối ưu chạy trên các vi xử
+lý cũng như các môi trường giới hạn về tài nguyên.
+Bài này khám phá việc chạy MicroPython trên một thiết bị với 4MB bộ nhớ
+có tên WEMOS D1 mini.</p>
+<h2>WEMOS D1 mini</h2>
+<p>Là 1 bảng mạch điện có khả năng thu phát sóng wifi (wifi board) có kích thước
+nhỏ hơn ngón chân cái của người lớn, thiết bị này có giá 2 USD.</p>
+<p><img alt="WEMOS D1 Mini" src="http://pp.pymi.vn/images/wemos1.jpg"></p>
+<p>Bảng mạch này sử dụng vi điều khiển (microcontroller) ESP-8266, với xung nhịp
+80MHz/160MHz và 4 MB Flash.</p>
+<h3>Microcontroller</h3>
+<blockquote>
+<p>A microcontroller is a small computer on a single integrated circuit. In modern
+terminology, it is similar to, but less sophisticated than, a system on a chip
+or SoC; an SoC may include a microcontroller as one of its components. A
+microcontroller contains one or more CPUs along with memory and programmable
+input/output peripherals.</p>
+</blockquote>
+<p>Một vi điều khiển là một máy tính nhỏ, trên một mạch điện tử (P/S: SoC là khái
+        niệm tương tự, nhưng phức tạp hơn). Nó có một hoặc nhiều CPU, memory và
+chỗ để thực hiện vào ra dữ liệu.</p>
+<p>Hãy nhìn vào chiếc máy bàn hay laptop bạn đang dùng, nó có 1 cục CPU to bằng
+lòng bàn tay, vài thanh RAM dài như bàn tay, các cổng vào ra đều to bằng ngón
+tay. Mỗi cục CPU đều từ 2-3 GHz (so với 80MHz), ổ cứng vài trăm GB (so với 4MB).
+Ta sẽ thấy microcontroller nhỏ bé và "yếu ớt" đến chừng nào.</p>
+<p><img alt="WEMOS D1 Mini" src="http://pp.pymi.vn/images/esp8266.jpg"></p>
+<h3>MicroPython</h3>
+<p>Phiên bản Python dành riêng cho các thiết bị tí hon này nhỏ tới mức chỉ cần
+256kB không gian chứa code, và 16kB RAM.</p>
+<h2>Cài đặt MicroPython lên WEMOS D1 Mini trên Ubuntu 16.04</h2>
+<p>(Windows hay OSX cần cài driver, hãy lên trang chủ của WEMOS để tải và xem
+ hướng dẫn).</p>
+<p>Cắm thiết bị vào máy tính sử dụng dây micro USB (dây sạc điện thoại android),
+sẽ thấy nháy đèn trên thiết bị, gõ lệnh <code>dmesg</code> để xem Linux kernel báo nhận
+thiết bị:</p>
+<div class="highlight"><pre><span></span>$ dmesg
+...
+<span class="o">[</span>  <span class="m">992</span>.253009<span class="o">]</span> usb <span class="m">2</span>-1: new full-speed USB device number <span class="m">5</span> using xhci_hcd
+<span class="o">[</span>  <span class="m">992</span>.402181<span class="o">]</span> usb <span class="m">2</span>-1: New USB device found, <span class="nv">idVendor</span><span class="o">=</span>1a86, <span class="nv">idProduct</span><span class="o">=</span><span class="m">7523</span>
+<span class="o">[</span>  <span class="m">992</span>.402185<span class="o">]</span> usb <span class="m">2</span>-1: New USB device strings: <span class="nv">Mfr</span><span class="o">=</span><span class="m">0</span>, <span class="nv">Product</span><span class="o">=</span><span class="m">2</span>, <span class="nv">SerialNumber</span><span class="o">=</span><span class="m">0</span>
+<span class="o">[</span>  <span class="m">992</span>.402187<span class="o">]</span> usb <span class="m">2</span>-1: Product: USB2.0-Serial
+<span class="o">[</span>  <span class="m">992</span>.402757<span class="o">]</span> ch341 <span class="m">2</span>-1:1.0: ch341-uart converter detected
+<span class="o">[</span>  <span class="m">992</span>.403119<span class="o">]</span> usb <span class="m">2</span>-1: ch341-uart converter now attached to ttyUSB0
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>$ file /dev/ttyUSB0
+/dev/ttyUSB0: character special <span class="o">(</span><span class="m">188</span>/0<span class="o">)</span>
+</pre></div>
+
+
+<p>Ta có thấy xuất hiện 1 file mới gọi là <code>/dev/ttyUSB0</code>, đây chính là thiết bị
+vừa kết nối.</p>
+<h3>Cài đặt MicroPython sử dụng esptool</h3>
+<p>Cài đặt esptool dùng pip:</p>
+<div class="highlight"><pre><span></span>$ pip install esptool
+Collecting esptool
+...
+Successfully installed ecdsa-0.13 esptool-2.5.1 pyaes-1.6.1 pyserial-3.4
+</pre></div>
+
+
+<p>Xóa nội dung hiện tại trong flash memory</p>
+<div class="highlight"><pre><span></span>$ sudo /home/hvn/py36/bin/esptool.py --port /dev/ttyUSB0 erase_flash
+esptool.py v2.5.1
+Serial port /dev/ttyUSB0
+Connecting....
+Detecting chip type... ESP8266
+Chip is ESP8266EX
+Features: WiFi
+MAC: b4:e6:2d:3b:22:1b
+Uploading stub...
+Running stub...
+Stub running...
+Erasing flash <span class="o">(</span>this may take a <span class="k">while</span><span class="o">)</span>...
+Chip erase completed successfully in <span class="m">1</span>.6s
+Hard resetting via RTS pin...
+</pre></div>
+
+
+<p>Tải MicroPython bản dành cho ESP8266: bản mới nhất tại thời điểm viết bài
+http://micropython.org/resources/firmware/esp8266-20180511-v1.9.4.bin</p>
+<p>Ghi micropython lên flash memory:</p>
+<div class="highlight"><pre><span></span>$ sudo /home/hvn/py36/bin/esptool.py --port /dev/ttyUSB0 --baud <span class="m">460800</span> write_flash --flash_size<span class="o">=</span>detect -fm dio <span class="m">0</span> ~/esp8266-20180511-v1.9.4.bin
+esptool.py v2.5.1
+Serial port /dev/ttyUSB0
+Connecting....
+Detecting chip type... ESP8266
+Chip is ESP8266EX
+Features: WiFi
+MAC: b4:e6:2d:3b:22:1b
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to <span class="m">460800</span>
+Changed.
+Configuring flash size...
+Auto-detected Flash size: 4MB
+Flash params <span class="nb">set</span> to 0x0240
+Compressed <span class="m">604872</span> bytes to <span class="m">394893</span>...
+Wrote <span class="m">604872</span> bytes <span class="o">(</span><span class="m">394893</span> compressed<span class="o">)</span> at 0x00000000 in <span class="m">9</span>.0 seconds <span class="o">(</span>effective <span class="m">536</span>.4 kbit/s<span class="o">)</span>...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...
+</pre></div>
+
+
+<p>Sau khi cài đặt xong, bấm nút "reset" trên thiết bị để khởi động lại, ngay sau
+đó bật WIFI của laptop hay điện thoại lên ta sẽ thấy một mạng WIFI có tên
+<code>MicroPython-xxxxxx</code>, có thể kết nối vào WIFI này với password <code>micropythoN</code>.
+Ở đây ta không cần làm việc này. Tiếp tục cài đặt để kết nối với thiết bị qua
+cổng COM:</p>
+<p>Cài <code>picocom</code>:</p>
+<div class="highlight"><pre><span></span>$ sudo apt install -y picocom
+$ sudo picocom /dev/ttyUSB0 --baud <span class="m">115200</span>
+picocom v1.7
+
+port is        : /dev/ttyUSB0
+flowcontrol    : none
+baudrate is    : <span class="m">115200</span>
+parity is      : none
+databits are   : <span class="m">8</span>
+escape is      : C-a
+<span class="nb">local</span> <span class="nb">echo</span> is  : no
+noinit is      : no
+noreset is     : no
+nolock is      : no
+send_cmd is    : sz -vv
+receive_cmd is : rz -vv
+imap is        :
+omap is        :
+emap is        : crcrlf,delbs,
+
+Terminal ready
+
+&gt;&gt;&gt; <span class="m">2</span>**1000
+<span class="m">10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652624386837205668069376</span>
+</pre></div>
+
+
+<p>Sau khi kết nối, ta lập tức sử dụng Python interpreter như bình thường.</p>
+<p>Python interpreter đóng vai trò như 1 hệ điều hành ở đây, mỗi lần reset thiết bị,
+nó sẽ lại bật lại Python interpreter.
+Mọi tương tác với thiết bị (đọc/ghi file) đều thực hiện qua code python.</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">os</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+    <span class="s1">&#39;/&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">()</span>
+<span class="p">[</span><span class="s1">&#39;boot.py&#39;</span><span class="p">,</span> <span class="s1">&#39;main.py&#39;</span><span class="p">]</span>
+</pre></div>
+
+
+<p>Hai file này được chạy mỗi lần thiết bị khởi động.</p>
+<p>Xem nội dung file <code>boot.py</code>:</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;boot.py&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<span class="c1"># This file is executed on every boot (including wake-boot from deepsleep)</span>
+<span class="c1">#import esp</span>
+<span class="c1">#esp.osdebug(None)</span>
+    <span class="kn">import</span> <span class="nn">gc</span>
+<span class="c1">#import webrepl</span>
+<span class="c1">#webrepl.start()</span>
+    <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+</pre></div>
+
+
+<p>File <code>main.py</code> chứa code của người dùng muốn chạy mỗi lần bật thiết bị. Ví dụ ta muốn hiển thị dòng hello PyMi:</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;main.py&#39;</span><span class="p">,</span> <span class="s1">&#39;wt&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;print(&quot;Hello Pymi.vn&quot;)&#39;</span><span class="p">)</span>
+<span class="mi">22</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Bấm nút reset sẽ thấy:</p>
+<div class="highlight"><pre><span></span>...
+ets_task(40100130, 3, 3fff83ec, 4)
+Hello Pymi.vn
+
+MicroPython v1.9.4-8-ga9a3caad0 on 2018-05-11; ESP module with ESP8266
+Type &quot;help()&quot; for more information.
+&gt;&gt;&gt;
+</pre></div>
+
+
+<p>Thao tác với các chân Pin</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">Pin</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">P0</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">P0</span><span class="o">.</span>
+<span class="vm">__class__</span>       <span class="n">IN</span>              <span class="n">IRQ_FALLING</span>     <span class="n">IRQ_RISING</span>
+<span class="n">OPEN_DRAIN</span>      <span class="n">OUT</span>             <span class="n">PULL_UP</span>         <span class="n">init</span>
+<span class="n">irq</span>             <span class="n">off</span>             <span class="n">on</span>              <span class="n">value</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">P0</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">P0</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span>
+</pre></div>
+
+
+<h3>Baud</h3>
+<p>Baud /ˈbɔːd/ ở câu lệnh trên là một độ đo "symbol rate" (symbol per second), để
+quyết định tốc độ giao tiếp qua một kênh thông tin.</p>
+<h2>Kết luận</h2>
+<p>Với MicroPython trên thiết bị, ta đã có thể thực hiện điều khiển các chân Pin sử dụng GPIO hay gửi HTTP request như code Python bình thường. Giờ thì giới hạn chỉ còn là trí tưởng tượng của bạn.</p>
+<h2>Tham khảo</h2>
+<ul>
+<li>http://docs.micropython.org/en/latest/esp8266/tutorial/intro.html#intro</li>
+<li>https://wiki.wemos.cc/products:d1:d1_mini</li>
+</ul>
+  </div>
+  <!-- /.entry-content -->
+</section>
+<section class="container">
+  <div class="comments">
+    <h3>Comments</h3>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'pymier';
+      var disqus_identifier = 'article/micropython/';
+      var disqus_url = 'http://pp.pymi.vn/article/micropython/';
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//pymier.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the comments.</noscript>
+  </div>
+</section>
+
+    <section class="container footer">
+      <footer>
+        <address>
+        Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+        which takes great advantage of <a href="http://python.org">Python</a>.
+        </address>
+        <address>
+          Học lập trình Python tại <a href="https://pymi.vn/">Pymi.vn</a>
+        </address>
+      </footer>
+    </section>
+  </main>
+
+<script type="text/javascript">
+var images = document.getElementsByTagName("img");
+var i;
+
+for(i = 0; i < images.length; i++) {
+  images[i].className += " centered";
+}
+</script>
+</body>
+
+</html>

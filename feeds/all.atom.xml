@@ -1,5 +1,219 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2018-10-09T00:00:00+07:00</updated><entry><title>Dùng Raspberry Pi để gửi và nhận SMS với Sim900A</title><link href="http://pp.pymi.vn/article/raspberry-pi-sim900a/" rel="alternate"></link><published>2018-10-09T00:00:00+07:00</published><updated>2018-10-09T00:00:00+07:00</updated><author><name>tudoanh</name></author><id>tag:pp.pymi.vn,2018-10-09:/article/raspberry-pi-sim900a/</id><summary type="html">&lt;p&gt;Summary: Hướng dẫn kết nối module Sim900A với Raspberry Pi 3 B+, dùng để gửi và nhận tin nhắn SMS&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2018-10-21T00:00:00+07:00</updated><entry><title>Dùng MicroPython với wifi board ESP-8266</title><link href="http://pp.pymi.vn/article/micropython/" rel="alternate"></link><published>2018-10-21T00:00:00+07:00</published><updated>2018-10-21T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-10-21:/article/micropython/</id><summary type="html">&lt;p&gt;Chạy code Python trên thiết bị với chỉ 4MB bộ nhớ.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Khi trở thành một trong những ngôn ngữ lập trình phổ biến nhất thế giới,
+Python không chỉ được dùng trong làm web, data science, hay sysadmin tool mà
+nó còn đá sang cả một lĩnh vực vốn giới hạn về tài nguyên: nhúng.&lt;/p&gt;
+&lt;p&gt;Bình thường khi bật Python lên để in ra màn hình dòng "hello, world" ta đã
+dùng tới 8MB bộ nhớ. Vậy nên việc dùng Python cho lập trình nhúng thường nghe
+có vẻ không phù hợp.&lt;/p&gt;
+&lt;p&gt;MicroPython ra đời, là một bản thu gọn của Python, tối ưu chạy trên các vi xử
+lý cũng như các môi trường giới hạn về tài nguyên.
+Bài này khám phá việc chạy MicroPython trên một thiết bị với 4MB bộ nhớ
+có tên WEMOS D1 mini.&lt;/p&gt;
+&lt;h2&gt;WEMOS D1 mini&lt;/h2&gt;
+&lt;p&gt;Là 1 bảng mạch điện có khả năng thu phát sóng wifi (wifi board) có kích thước
+nhỏ hơn ngón chân cái của người lớn, thiết bị này có giá 2 USD.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="WEMOS D1 Mini" src="http://pp.pymi.vn/images/wemos1.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;Bảng mạch này sử dụng vi điều khiển (microcontroller) ESP-8266, với xung nhịp
+80MHz/160MHz và 4 MB Flash.&lt;/p&gt;
+&lt;h3&gt;Microcontroller&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A microcontroller is a small computer on a single integrated circuit. In modern
+terminology, it is similar to, but less sophisticated than, a system on a chip
+or SoC; an SoC may include a microcontroller as one of its components. A
+microcontroller contains one or more CPUs along with memory and programmable
+input/output peripherals.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Một vi điều khiển là một máy tính nhỏ, trên một mạch điện tử (P/S: SoC là khái
+        niệm tương tự, nhưng phức tạp hơn). Nó có một hoặc nhiều CPU, memory và
+chỗ để thực hiện vào ra dữ liệu.&lt;/p&gt;
+&lt;p&gt;Hãy nhìn vào chiếc máy bàn hay laptop bạn đang dùng, nó có 1 cục CPU to bằng
+lòng bàn tay, vài thanh RAM dài như bàn tay, các cổng vào ra đều to bằng ngón
+tay. Mỗi cục CPU đều từ 2-3 GHz (so với 80MHz), ổ cứng vài trăm GB (so với 4MB).
+Ta sẽ thấy microcontroller nhỏ bé và "yếu ớt" đến chừng nào.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="WEMOS D1 Mini" src="http://pp.pymi.vn/images/esp8266.jpg"&gt;&lt;/p&gt;
+&lt;h3&gt;MicroPython&lt;/h3&gt;
+&lt;p&gt;Phiên bản Python dành riêng cho các thiết bị tí hon này nhỏ tới mức chỉ cần
+256kB không gian chứa code, và 16kB RAM.&lt;/p&gt;
+&lt;h2&gt;Cài đặt MicroPython lên WEMOS D1 Mini trên Ubuntu 16.04&lt;/h2&gt;
+&lt;p&gt;(Windows hay OSX cần cài driver, hãy lên trang chủ của WEMOS để tải và xem
+ hướng dẫn).&lt;/p&gt;
+&lt;p&gt;Cắm thiết bị vào máy tính sử dụng dây micro USB (dây sạc điện thoại android),
+sẽ thấy nháy đèn trên thiết bị, gõ lệnh &lt;code&gt;dmesg&lt;/code&gt; để xem Linux kernel báo nhận
+thiết bị:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ dmesg
+...
+&lt;span class="o"&gt;[&lt;/span&gt;  &lt;span class="m"&gt;992&lt;/span&gt;.253009&lt;span class="o"&gt;]&lt;/span&gt; usb &lt;span class="m"&gt;2&lt;/span&gt;-1: new full-speed USB device number &lt;span class="m"&gt;5&lt;/span&gt; using xhci_hcd
+&lt;span class="o"&gt;[&lt;/span&gt;  &lt;span class="m"&gt;992&lt;/span&gt;.402181&lt;span class="o"&gt;]&lt;/span&gt; usb &lt;span class="m"&gt;2&lt;/span&gt;-1: New USB device found, &lt;span class="nv"&gt;idVendor&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;1a86, &lt;span class="nv"&gt;idProduct&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;7523&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;  &lt;span class="m"&gt;992&lt;/span&gt;.402185&lt;span class="o"&gt;]&lt;/span&gt; usb &lt;span class="m"&gt;2&lt;/span&gt;-1: New USB device strings: &lt;span class="nv"&gt;Mfr&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;, &lt;span class="nv"&gt;Product&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;, &lt;span class="nv"&gt;SerialNumber&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;  &lt;span class="m"&gt;992&lt;/span&gt;.402187&lt;span class="o"&gt;]&lt;/span&gt; usb &lt;span class="m"&gt;2&lt;/span&gt;-1: Product: USB2.0-Serial
+&lt;span class="o"&gt;[&lt;/span&gt;  &lt;span class="m"&gt;992&lt;/span&gt;.402757&lt;span class="o"&gt;]&lt;/span&gt; ch341 &lt;span class="m"&gt;2&lt;/span&gt;-1:1.0: ch341-uart converter detected
+&lt;span class="o"&gt;[&lt;/span&gt;  &lt;span class="m"&gt;992&lt;/span&gt;.403119&lt;span class="o"&gt;]&lt;/span&gt; usb &lt;span class="m"&gt;2&lt;/span&gt;-1: ch341-uart converter now attached to ttyUSB0
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ file /dev/ttyUSB0
+/dev/ttyUSB0: character special &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;188&lt;/span&gt;/0&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Ta có thấy xuất hiện 1 file mới gọi là &lt;code&gt;/dev/ttyUSB0&lt;/code&gt;, đây chính là thiết bị
+vừa kết nối.&lt;/p&gt;
+&lt;h3&gt;Cài đặt MicroPython sử dụng esptool&lt;/h3&gt;
+&lt;p&gt;Cài đặt esptool dùng pip:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ pip install esptool
+Collecting esptool
+...
+Successfully installed ecdsa-0.13 esptool-2.5.1 pyaes-1.6.1 pyserial-3.4
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Xóa nội dung hiện tại trong flash memory&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ sudo /home/hvn/py36/bin/esptool.py --port /dev/ttyUSB0 erase_flash
+esptool.py v2.5.1
+Serial port /dev/ttyUSB0
+Connecting....
+Detecting chip type... ESP8266
+Chip is ESP8266EX
+Features: WiFi
+MAC: b4:e6:2d:3b:22:1b
+Uploading stub...
+Running stub...
+Stub running...
+Erasing flash &lt;span class="o"&gt;(&lt;/span&gt;this may take a &lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;...
+Chip erase completed successfully in &lt;span class="m"&gt;1&lt;/span&gt;.6s
+Hard resetting via RTS pin...
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Tải MicroPython bản dành cho ESP8266: bản mới nhất tại thời điểm viết bài
+http://micropython.org/resources/firmware/esp8266-20180511-v1.9.4.bin&lt;/p&gt;
+&lt;p&gt;Ghi micropython lên flash memory:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ sudo /home/hvn/py36/bin/esptool.py --port /dev/ttyUSB0 --baud &lt;span class="m"&gt;460800&lt;/span&gt; write_flash --flash_size&lt;span class="o"&gt;=&lt;/span&gt;detect -fm dio &lt;span class="m"&gt;0&lt;/span&gt; ~/esp8266-20180511-v1.9.4.bin
+esptool.py v2.5.1
+Serial port /dev/ttyUSB0
+Connecting....
+Detecting chip type... ESP8266
+Chip is ESP8266EX
+Features: WiFi
+MAC: b4:e6:2d:3b:22:1b
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to &lt;span class="m"&gt;460800&lt;/span&gt;
+Changed.
+Configuring flash size...
+Auto-detected Flash size: 4MB
+Flash params &lt;span class="nb"&gt;set&lt;/span&gt; to 0x0240
+Compressed &lt;span class="m"&gt;604872&lt;/span&gt; bytes to &lt;span class="m"&gt;394893&lt;/span&gt;...
+Wrote &lt;span class="m"&gt;604872&lt;/span&gt; bytes &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;394893&lt;/span&gt; compressed&lt;span class="o"&gt;)&lt;/span&gt; at 0x00000000 in &lt;span class="m"&gt;9&lt;/span&gt;.0 seconds &lt;span class="o"&gt;(&lt;/span&gt;effective &lt;span class="m"&gt;536&lt;/span&gt;.4 kbit/s&lt;span class="o"&gt;)&lt;/span&gt;...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Sau khi cài đặt xong, bấm nút "reset" trên thiết bị để khởi động lại, ngay sau
+đó bật WIFI của laptop hay điện thoại lên ta sẽ thấy một mạng WIFI có tên
+&lt;code&gt;MicroPython-xxxxxx&lt;/code&gt;, có thể kết nối vào WIFI này với password &lt;code&gt;micropythoN&lt;/code&gt;.
+Ở đây ta không cần làm việc này. Tiếp tục cài đặt để kết nối với thiết bị qua
+cổng COM:&lt;/p&gt;
+&lt;p&gt;Cài &lt;code&gt;picocom&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ sudo apt install -y picocom
+$ sudo picocom /dev/ttyUSB0 --baud &lt;span class="m"&gt;115200&lt;/span&gt;
+picocom v1.7
+
+port is        : /dev/ttyUSB0
+flowcontrol    : none
+baudrate is    : &lt;span class="m"&gt;115200&lt;/span&gt;
+parity is      : none
+databits are   : &lt;span class="m"&gt;8&lt;/span&gt;
+escape is      : C-a
+&lt;span class="nb"&gt;local&lt;/span&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; is  : no
+noinit is      : no
+noreset is     : no
+nolock is      : no
+send_cmd is    : sz -vv
+receive_cmd is : rz -vv
+imap is        :
+omap is        :
+emap is        : crcrlf,delbs,
+
+Terminal ready
+
+&amp;gt;&amp;gt;&amp;gt; &lt;span class="m"&gt;2&lt;/span&gt;**1000
+&lt;span class="m"&gt;10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652624386837205668069376&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Sau khi kết nối, ta lập tức sử dụng Python interpreter như bình thường.&lt;/p&gt;
+&lt;p&gt;Python interpreter đóng vai trò như 1 hệ điều hành ở đây, mỗi lần reset thiết bị,
+nó sẽ lại bật lại Python interpreter.
+Mọi tương tác với thiết bị (đọc/ghi file) đều thực hiện qua code python.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getcwd&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;listdir&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;boot.py&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;main.py&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Hai file này được chạy mỗi lần thiết bị khởi động.&lt;/p&gt;
+&lt;p&gt;Xem nội dung file &lt;code&gt;boot.py&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;boot.py&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;span class="c1"&gt;# This file is executed on every boot (including wake-boot from deepsleep)&lt;/span&gt;
+&lt;span class="c1"&gt;#import esp&lt;/span&gt;
+&lt;span class="c1"&gt;#esp.osdebug(None)&lt;/span&gt;
+    &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;gc&lt;/span&gt;
+&lt;span class="c1"&gt;#import webrepl&lt;/span&gt;
+&lt;span class="c1"&gt;#webrepl.start()&lt;/span&gt;
+    &lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;collect&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;File &lt;code&gt;main.py&lt;/code&gt; chứa code của người dùng muốn chạy mỗi lần bật thiết bị. Ví dụ ta muốn hiển thị dòng hello PyMi:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;main.py&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;wt&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;print(&amp;quot;Hello Pymi.vn&amp;quot;)&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="mi"&gt;22&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;close&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Bấm nút reset sẽ thấy:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;...
+ets_task(40100130, 3, 3fff83ec, 4)
+Hello Pymi.vn
+
+MicroPython v1.9.4-8-ga9a3caad0 on 2018-05-11; ESP module with ESP8266
+Type &amp;quot;help()&amp;quot; for more information.
+&amp;gt;&amp;gt;&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Thao tác với các chân Pin&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;machine&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Pin&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;P0&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Pin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Pin&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;OUT&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;P0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="vm"&gt;__class__&lt;/span&gt;       &lt;span class="n"&gt;IN&lt;/span&gt;              &lt;span class="n"&gt;IRQ_FALLING&lt;/span&gt;     &lt;span class="n"&gt;IRQ_RISING&lt;/span&gt;
+&lt;span class="n"&gt;OPEN_DRAIN&lt;/span&gt;      &lt;span class="n"&gt;OUT&lt;/span&gt;             &lt;span class="n"&gt;PULL_UP&lt;/span&gt;         &lt;span class="n"&gt;init&lt;/span&gt;
+&lt;span class="n"&gt;irq&lt;/span&gt;             &lt;span class="n"&gt;off&lt;/span&gt;             &lt;span class="n"&gt;on&lt;/span&gt;              &lt;span class="n"&gt;value&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;P0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;P0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;off&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Baud&lt;/h3&gt;
+&lt;p&gt;Baud /ˈbɔːd/ ở câu lệnh trên là một độ đo "symbol rate" (symbol per second), để
+quyết định tốc độ giao tiếp qua một kênh thông tin.&lt;/p&gt;
+&lt;h2&gt;Kết luận&lt;/h2&gt;
+&lt;p&gt;Với MicroPython trên thiết bị, ta đã có thể thực hiện điều khiển các chân Pin sử dụng GPIO hay gửi HTTP request như code Python bình thường. Giờ thì giới hạn chỉ còn là trí tưởng tượng của bạn.&lt;/p&gt;
+&lt;h2&gt;Tham khảo&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;http://docs.micropython.org/en/latest/esp8266/tutorial/intro.html#intro&lt;/li&gt;
+&lt;li&gt;https://wiki.wemos.cc/products:d1:d1_mini&lt;/li&gt;
+&lt;/ul&gt;</content><category term="micropython"></category><category term="embedded"></category><category term="esp8266"></category><category term="iot"></category></entry><entry><title>Dùng Raspberry Pi để gửi và nhận SMS với Sim900A</title><link href="http://pp.pymi.vn/article/raspberry-pi-sim900a/" rel="alternate"></link><published>2018-10-09T00:00:00+07:00</published><updated>2018-10-09T00:00:00+07:00</updated><author><name>tudoanh</name></author><id>tag:pp.pymi.vn,2018-10-09:/article/raspberry-pi-sim900a/</id><summary type="html">&lt;p&gt;Summary: Hướng dẫn kết nối module Sim900A với Raspberry Pi 3 B+, dùng để gửi và nhận tin nhắn SMS&lt;/p&gt;
 &lt;p&gt;Dạo này vì lý do công việc nên cần phải tìm cách kết nối và sử dụng module Sim900A với con Raspberry Pi 3, dùng để nhận SMS.&lt;/p&gt;
 &lt;p&gt;Tìm hiểu …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Summary: Hướng dẫn kết nối module Sim900A với Raspberry Pi 3 B+, dùng để gửi và nhận tin nhắn SMS&lt;/p&gt;
 &lt;p&gt;Dạo này vì lý do công việc nên cần phải tìm cách kết nối và sử dụng module Sim900A với con Raspberry Pi 3, dùng để nhận SMS.&lt;/p&gt;
