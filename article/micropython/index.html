@@ -55,16 +55,16 @@ nó còn đá sang cả một lĩnh vực vốn giới hạn về tài nguyên: 
 <p>Bình thường khi bật Python lên để in ra màn hình dòng "hello, world" ta đã
 dùng tới 8MB bộ nhớ. Vậy nên việc dùng Python cho lập trình nhúng thường nghe
 có vẻ không phù hợp.</p>
-<p>MicroPython ra đời, là một bản thu gọn của Python, tối ưu chạy trên các vi xử
+<p><a href="http://micropython.org">MicroPython</a> ra đời, là một bản thu gọn của Python, tối ưu chạy trên các vi xử
 lý cũng như các môi trường giới hạn về tài nguyên.
-Bài này khám phá việc chạy MicroPython trên một thiết bị với 4MB bộ nhớ
+Bài này khám phá việc chạy MicroPython trên một thiết bị tí hon
 có tên WEMOS D1 mini.</p>
 <h2>WEMOS D1 mini</h2>
 <p>Là 1 bảng mạch điện có khả năng thu phát sóng wifi (wifi board) có kích thước
 nhỏ hơn ngón chân cái của người lớn, thiết bị này có giá 2 USD.</p>
 <p><img alt="WEMOS D1 Mini" src="http://pp.pymi.vn/images/wemos1.jpg"></p>
 <p>Bảng mạch này sử dụng vi điều khiển (microcontroller) ESP-8266, với xung nhịp
-80MHz/160MHz và 4 MB Flash.</p>
+80MHz/160MHz, 96KB RAM và 4 MB Flash.</p>
 <h3>Microcontroller</h3>
 <blockquote>
 <p>A microcontroller is a small computer on a single integrated circuit. In modern
@@ -78,7 +78,8 @@ input/output peripherals.</p>
 chỗ để thực hiện vào ra dữ liệu.</p>
 <p>Hãy nhìn vào chiếc máy bàn hay laptop bạn đang dùng, nó có 1 cục CPU to bằng
 lòng bàn tay, vài thanh RAM dài như bàn tay, các cổng vào ra đều to bằng ngón
-tay. Mỗi cục CPU đều từ 2-3 GHz (so với 80MHz), ổ cứng vài trăm GB (so với 4MB).
+tay. Mỗi cục CPU đều từ 2-3 GHz (so với 80MHz), ổ cứng vài trăm GB (so với 4MB),
+1-16 GB RAM (so với 96KB RAM).
 Ta sẽ thấy microcontroller nhỏ bé và "yếu ớt" đến chừng nào.</p>
 <p><img alt="WEMOS D1 Mini" src="http://pp.pymi.vn/images/esp8266.jpg"></p>
 <h3>MicroPython</h3>
@@ -258,7 +259,7 @@ Type &quot;help()&quot; for more information.
 <p>Baud /ˈbɔːd/ ở câu lệnh trên là một độ đo "symbol rate" (symbol per second), để
 quyết định tốc độ giao tiếp qua một kênh thông tin.</p>
 <h2>Kết luận</h2>
-<p>Với MicroPython trên thiết bị, ta đã có thể thực hiện điều khiển các chân Pin sử dụng GPIO hay gửi HTTP request như code Python bình thường. Giờ thì giới hạn chỉ còn là trí tưởng tượng của bạn.</p>
+<p>Với MicroPython trên thiết bị, ta đã có thể thực hiện điều khiển các chân Pin hay gửi HTTP request như code Python bình thường. Giờ thì giới hạn chỉ còn là trí tưởng tượng của bạn.</p>
 <h2>Tham khảo</h2>
 <ul>
 <li>http://docs.micropython.org/en/latest/esp8266/tutorial/intro.html#intro</li>
