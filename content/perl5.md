@@ -1,23 +1,146 @@
-# Perl 5 cho người lười
+## Perl 5 cho người lười
 
+Perl là một ngôn ngữ lập trình phổ biến, từng là công cụ No.1 của các Sysadmin.
+Xuất hiện vào năm 1987, Perl chứng kiến sự bùng nổ của internet, sự lớn mạnh của các hệ điều hành nhân Linux, sự ra đời của các ngôn ngữ lập trình như Python, PHP, Ruby ...
+
+Perl vốn mang tiếng xấu là
+- cú pháp khó đọc
+- là ngôn ngữ chỉ để viết chứ không để đọc
+- là lạc hậu, cũ (dù sao Perl cũng chỉ hơn Python có 4 tuổi, Python sinh năm 1991) ???!!!
+
+# TODO IMAGE PERL LOGO HERE
+
+Ngày nay, Perl càng ít được ưa chuộng, ngay cả lĩnh vực Perl từng mạnh nhất là viết script, giờ cũng bị cạnh tranh khốc liệt bởi Python, Ruby.
+Thế nhưng ngôn ngữ xấu tiếng này vẫn có những điểm rực sáng và ảnh hưởng rất lớn:
+- PCRE (Perl-compatible regular expressions)- cú pháp regex (regular expression) là phiên bản regex được sử dụng phổ biến, ngay cả trong các ngôn ngữ lập trình khác.
+Việc dùng Regex như con dao 2 lưỡi, rất tiện dụng, nhưng khá khó đọc, và khó viết đúng.
+- Khi xử lý các file text, perl được ví như `portable sed`. `sed`/`awk` là 2 công cụ không thể thiếu để chỉnh sửa file text hàng loạt trên `*NIX`.
+
+Bài viết này giới thiệu ngắn gọn cú pháp của Perl5, đủ để đọc được code Perl trong các project viết sạch đẹp (hãy thử sau khi đọc đến cuối bài này), và có thẻ bắt đầu viết Perl thay sed.
+
+### Perl 5
+Perl có 2 phiên bản là Perl 5 và Perl 6, chú ý không phải 6 là bản thay thế Perl 5, mà Perl 6 có thể xem như một ngôn ngữ hoàn toàn khác.
+Việc phát triển Perl 5 và Perl 6 được thực hiện song song.
+Bài này chỉ bàn tới Perl từ xưa cho đến Perl 5.
+
+```sh
+$ perl --version
+
+This is perl 5, version 22, subversion 1 (v5.22.1) built for x86_64-linux-gnu-thread-multi
+(with 73 registered patches, see perl -V for more detail)
+
+    Copyright 1987-2015, Larry Wall
+...
+```
+
+**Larry Wall** là người tạo ra Perl.
+
+Perl 5 thường có sẵn trên các máy tính `*NIX`: OSX, Ubuntu, RedHat ... hoặc nếu khong có, cài đặt cũng rất dễ dàng.
+Xem thêm tại trang chủ [http://www.perl.org]()
+
+```sh
  $ whatis -s1 perl
  perl (1)             - The Perl 5 language interpreter
  $ whatis -s1 cpan
  cpan (1)             - easily interact with CPAN from the command line
+```
 
-perl -e
-perldoc perlintro
+CPAN là tên kho package (thư viện) của Perl, tương tự như Pypi của Python. Nó có câu lệnh `cpan` tương đương với `pip` của Python hay `npm` của JavaScript.
+
+#### perldoc
+perldoc là câu lệnh để đọc doc của perl. Trên Ubuntu cài đặt bằng lệnh:
+
+```
+sudo apt-get install -y perl-doc
+```
+
+Bài viết này dựa theo doc có trong `perldoc perlintro`
+
+Code perl thường ghi trong file `filename.pl`, chạy file này bằng lệnh `perl filename.pl`
+
+```perl
+# hello.pl
+print("Hello PyMi.vn\n");
+print "Merry Xmas\n";
+```
+
+Perl sử dụng ~ 4 MB để chạy đoạn code trên.
+
+```sh
+$ perl hello.pl
+Hello PyMi.vn
+Merry Xmas
+$ /usr/bin/time perl hello.pl
+Hello PyMi.vn
+Merry Xmas
+0.00user 0.00system 0:00.00elapsed 100%CPU (0avgtext+0avgdata 4124maxresident)k
+0inputs+0outputs (0major+181minor)pagefaults 0swaps
+```
+
+Nếu không muốn viết vào file, có thể dùng option `-e` và gõ code trực tiếp:
+
+```sh
+$ perl -e 'print("Hello world\n");
+print "Merry Xmas\n";
+'
+Hello world # output
+Merry Xmas # output
+```
+
+IMAGE HERE #TODO perlecli.png
+
+perl mặc định không có interactive mode như Python, không gõ từng dòng lệnh được.
+
+### Cú pháp Perl 5
+
+Một điều cần hiểu trước khi định phát biểu ý kiến gì về cú pháp của Perl: perl có khẩu hiệu soi đường (Perl motto) là
+> "There's more than one way to do it."
+
+Có hơn 1 cách làm việc gì đó. Nên cú pháp của Perl cũng sẽ có nhiều cách để làm cùng một việc.
+Điều này khá trái ngược với motto của Python
+
+> There should be one-- and preferably only one --obvious way to do it.
+
+Từ đây trở đi, code sẽ viết bình thường và kết quả chạy code sẽ bắt đầu với dấu `->`
+
+Vài quy tắc chung về cú pháp:
+- dấu space không có ý nghĩa gì (trừ khi nằm trong string)
+- dòng thường kết thúc bằng `;` (thay vì phải nhớ khi nào có khi nào không thì tốt nhất là cứ thêm vào)
+- khi gọi sub routine (function), không bắt buộc phải có dấu `()`, `print "abc"` và `print("abc")` là như nhau.
+
+#### Các kiểu dữ liệu đơn (giản)
+
+KHÔNG CÓ kiểu Boolean (True/False), perl dùng số `1` với nghĩa có/đúng và empty string với nghĩa sai.
+
+```perl
+$ perl -e 'print(5<4 == "")'
+1
+```
+
+##### String/integer/float
 
 
-Like bash
-String double quote will substitue var
-String single quote keep verbatim
+```perl
+my $x =    10;
+my $y =20.3;
+print $x + $y - 2 * 10 / 3;
+-> 23.6333333333333
+```
 
-End with ;
+Tạo biến NÊN dùng từ khóa `my` trước `$` tên biến.
 
-Variable define: my x = 10;
-my y = 20;
-print $x + $y - 2 * 10 / 2;
+```perl
+my $name = "PyMi";
+print "Hello $name\n"; # substitue name with value PyMi
+print 'Hello $name\n'; # keep no change
+
+-> Hello PyMi
+-> Hello $name\n
+```
+
+String giống như `bash`, chỉ biến trong double quote `" $name "` mới được thay thế, single quote giữ nguyên nội dung.
+
+## TODO
 print 5 != 4 && 2 < 5 || !(3 > 5)
 print "meo" ne "cho"
 
