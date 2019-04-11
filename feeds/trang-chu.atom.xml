@@ -1,5 +1,297 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers - Trang chủ</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/trang-chu.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2018-10-21T00:00:00+07:00</updated><entry><title>Dùng MicroPython với wifi board ESP-8266</title><link href="http://pp.pymi.vn/article/micropython/" rel="alternate"></link><published>2018-10-21T00:00:00+07:00</published><updated>2018-10-21T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-10-21:/article/micropython/</id><summary type="html">&lt;p&gt;Chạy code Python trên thiết bị với chỉ 96KB RAM và 4MB bộ nhớ flash.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Khi trở thành một trong những ngôn ngữ lập trình phổ biến nhất thế giới,
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers - Trang chủ</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/trang-chu.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2019-04-11T00:00:00+07:00</updated><entry><title>Biết Python - quen ngay Julia</title><link href="http://pp.pymi.vn/article/julia_intro/" rel="alternate"></link><published>2019-04-11T00:00:00+07:00</published><updated>2019-04-11T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2019-04-11:/article/julia_intro/</id><summary type="html">&lt;p&gt;Giống Python, mà nhanh gấp 2++, cũng rất gì và này nọ.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Julia là ngôn ngữ lập trình mới, trông rất giống code Python, chạy nhanh hơn Python3 &lt;a href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/faster/julia-python3.html"&gt;ít nhất 2 lần&lt;/a&gt;
+và có nhiều tính năng hấp dẫn. Bạn không cần phải từ bỏ Python hay ngôn ngữ XYZ để học Julia, Julia chỉ đơn giản là một bông hoa đẹp mà ai thích... thì múc.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Julia" src="https://docs.julialang.org/en/v1/assets/logo.png"&gt;&lt;/p&gt;
+&lt;p&gt;Julia là ngôn ngữ lập trình "làm gì cũng được", nhưng được tập trung vào lĩnh vực tính toán khoa học và muốn
+thế chỗ Python (nhưng đường còn dài, và còn nhiều hơn trông gai).&lt;/p&gt;
+&lt;h3&gt;Cài đặt&lt;/h3&gt;
+&lt;p&gt;Xem https://docs.julialang.org/en/v1/&lt;/p&gt;
+&lt;p&gt;Tại thời điểm viết bài (2019 tháng 4), Julia ở bản 1.1.0 - đã ổn định hơn trước rất nhiều, ít bug hơn, chạy nhanh hơn.&lt;/p&gt;
+&lt;h3&gt;Từ Python ngó sang&lt;/h3&gt;
+&lt;p&gt;Julia trông rất giống Python, cách dùng các học, cách code cũng tương tự, nên nếu biết Python thì 
+việc viết được code để làm công việc thường ngày (của 1 DevOps) chỉ trong vòng vài tiếng.&lt;/p&gt;
+&lt;h4&gt;REPL&lt;/h4&gt;
+&lt;p&gt;Gõ lệnh trực tiếp bằng lệnh &lt;code&gt;julia&lt;/code&gt; trên Linux/MacOS&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;julia&lt;/span&gt;
+               &lt;span class="n"&gt;_&lt;/span&gt;
+   &lt;span class="n"&gt;_&lt;/span&gt;       &lt;span class="n"&gt;_&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;_&lt;/span&gt;     &lt;span class="o"&gt;|&lt;/span&gt;  &lt;span class="n"&gt;Documentation&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="o"&gt;://&lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;julialang&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;     &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;    &lt;span class="o"&gt;|&lt;/span&gt;
+   &lt;span class="n"&gt;_&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt;   &lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;_&lt;/span&gt;  &lt;span class="n"&gt;__&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt;   &lt;span class="o"&gt;|&lt;/span&gt;  &lt;span class="kt"&gt;Type&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;?&amp;quot;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;]?&amp;quot;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;Pkg&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+  &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="o"&gt;|/&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="sb"&gt;` |  |&lt;/span&gt;
+&lt;span class="sb"&gt;  | | |_| | | | (_| |  |  Version 1.1.0 (2019-01-21)&lt;/span&gt;
+&lt;span class="sb"&gt; _/ |\__&amp;#39;_|_|_|\__&amp;#39;_|  |  Official https://julialang.org/ release&lt;/span&gt;
+&lt;span class="sb"&gt;|__/                   |&lt;/span&gt;
+
+&lt;span class="sb"&gt;julia&amp;gt; 1 + 1&lt;/span&gt;
+&lt;span class="sb"&gt;2&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Đây gọi là chế độ "REPL" (Read-Eval-Print-Loop) == (gõ vào - chạy - in ra kết quả - cứ thế mà làm).&lt;/p&gt;
+&lt;h4&gt;IPython&lt;/h4&gt;
+&lt;p&gt;Không cần cài thêm gì, Julia REPL tự có đủ các tính năng thiết yếu của IPython.&lt;/p&gt;
+&lt;p&gt;Đọc document của 1 function? Gõ ?  rồi gõ bất cứ cái gì cần hỏi:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;julia&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="c"&gt;###### gõ ? xong , biến từ julia&amp;gt; thành help?&amp;gt;&lt;/span&gt;
+&lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;?&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;sum&lt;/span&gt;
+&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;sum&lt;/span&gt; &lt;span class="n"&gt;sum!&lt;/span&gt; &lt;span class="n"&gt;summary&lt;/span&gt; &lt;span class="n"&gt;cumsum&lt;/span&gt; &lt;span class="n"&gt;cumsum!&lt;/span&gt; &lt;span class="n"&gt;isnumeric&lt;/span&gt; &lt;span class="kt"&gt;VersionNumber&lt;/span&gt; &lt;span class="n"&gt;issubnormal&lt;/span&gt; &lt;span class="n"&gt;get_zero_subnormals&lt;/span&gt;
+
+&lt;span class="o"&gt;...&lt;/span&gt;
+ &lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;itr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+  &lt;span class="n"&gt;Returns&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;sum&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;all&lt;/span&gt; &lt;span class="n"&gt;elements&lt;/span&gt; &lt;span class="kp"&gt;in&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;collection&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Màu mè (syntax highlight) cũng tự có sẵn rồi.&lt;/p&gt;
+&lt;h4&gt;Chạy file code&lt;/h4&gt;
+&lt;p&gt;File code Julia có đuôi &lt;code&gt;.jl&lt;/code&gt;, ví dụ &lt;code&gt;hello.jl&lt;/code&gt;.
+Chạy file code bằng cách gõ lệnh: &lt;code&gt;julia hello.jl&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Cài đặt package&lt;/h4&gt;
+&lt;p&gt;Để cài các package trên mạng, sử dụng package manager CÓ SẴN của Julia.
+Chuyện về &lt;code&gt;virtualenv&lt;/code&gt; tạm chưa bàn tới ở đây vì khá rõ ràng là không cần thiết (cài package 
+&lt;a href="http://pymi.vn/blog/virtualenv/"&gt;không cần gõ sudo gì cả&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Việc cài đặt package trong Julia thực hiện hơi khác so với Python Pip hay NodeJS NPM một chút.
+Sẽ không có câu lệnh nào để gõ cả, không có chương trình thêm nào hết.
+Julia thực hiện cài đặt package khi một đoạn code Julia được chạy (gọi function thực hiện cài đặt).&lt;/p&gt;
+&lt;p&gt;Ví dụ một file tên (tuỳ ý) như sau:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c"&gt;# gicungduoc.jl&lt;/span&gt;
+&lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="n"&gt;Pkg&lt;/span&gt;
+&lt;span class="n"&gt;Pkg&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;HTTP&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;Pkg&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;JSON&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;Pkg&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;DocOpt&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Chạy code này: &lt;code&gt;julia gicungduoc.jl&lt;/code&gt; sẽ cài đặt các package, sau đó cứ thế mà dùng các thư viện này.&lt;/p&gt;
+&lt;h3&gt;The good, the OK, the ugly&lt;/h3&gt;
+&lt;h4&gt;The good - phần tốt&lt;/h4&gt;
+&lt;h5&gt;Pipe operator&lt;/h5&gt;
+&lt;p&gt;Tốt hay xấu là tuỳ do từng người tự phán xét.
+Hãy xem đoạn code sau:&lt;/p&gt;
+&lt;p&gt;Python: &lt;code&gt;''.join("  Py thon    ".strip().split())&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Julia: &lt;code&gt;"  Py thon    " |&amp;gt; strip |&amp;gt; split |&amp;gt; xs -&amp;gt; join(xs, "")&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Python&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;double&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;incr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;incr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;double&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;incr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;double&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="n"&gt;incr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;|&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;incr&lt;/span&gt; &lt;span class="o"&gt;|&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;double&lt;/span&gt; &lt;span class="o"&gt;|&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;incr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c"&gt;# 7&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;|&amp;gt;&lt;/code&gt; gọi là &lt;code&gt;Piping operator&lt;/code&gt;, lấy đầu ra của function này làm đầu vào cho function khác.
+Giúp việc goi funciton liên tục (và đọc nó) dễ dàng hơn.
+Giống UNIX command.&lt;/p&gt;
+&lt;h5&gt;Nhanh&lt;/h5&gt;
+&lt;p&gt;Julia thường nhanh hơn Python &lt;a href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/faster/julia-python3.html"&gt;ít nhất 2 lần&lt;/a&gt;&lt;/p&gt;
+&lt;h5&gt;Không quan trọng indentation&lt;/h5&gt;
+&lt;p&gt;Dù bạn thụt ra thụt vào 2 3 4 5 ký tự, hay dùng tab đều không quan trọng.&lt;/p&gt;
+&lt;p&gt;Python&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Julia&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="kp"&gt;in&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;999&lt;/span&gt;
+ &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+   &lt;span class="kd"&gt;global&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;
+ &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c"&gt;# 233168&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Julia dùng từ &lt;code&gt;end&lt;/code&gt; để kết thúc &lt;code&gt;if&lt;/code&gt; hay &lt;code&gt;for&lt;/code&gt;, nên không cần thiết sử dụng dấu cách hay tab để thụt dòng.
+Thậm chí có thể dùng &lt;code&gt;;&lt;/code&gt; để phân cách các phần, và viết trên 1 dòng (bạn KHÔNG THỂ làm điều này với Python khi có for):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;julia&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="kp"&gt;in&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;999&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="kd"&gt;global&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;end&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;end&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="mi"&gt;233168&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;Range bao gồm cả số kết thúc&lt;/h5&gt;
+&lt;p&gt;Một điều khá khó chịu với người mới code Python là phần kết thúc của range không được tính.
+Tức nếu viết &lt;code&gt;range(1,1000)&lt;/code&gt; thì chỉ có từ 1 đến 999. Trong đầu luôn phải nhớ bớt đi 1.
+Julia &lt;code&gt;1:999&lt;/code&gt; nghĩa là 1 đến 999, không thêm bớt gì.&lt;/p&gt;
+&lt;h5&gt;Không bị "leak" biến i trong vòng lặp ra ngoài&lt;/h5&gt;
+&lt;p&gt;Đây là &lt;a href="https://stackoverflow.com/questions/3611760/scoping-in-python-for-loops"&gt;1 bug của Python&lt;/a&gt;, do sau này quá muộn để sửa, &lt;a href="https://www.wired.com/story/its-not-a-bug-its-a-feature/"&gt;người ta coi nó như 1 tính năng&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# i vốn ở trong vòng lặp for, nay thoát ra ngoài với giá trị = 3&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;Hỗ trợ functional&lt;/h5&gt;
+&lt;p&gt;Viết map trong Julia rất dễ chịu - dễ đọc:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;map([1,2,3]) do x
+  x + 1
+end
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Cách viết dùng lambda: &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;sẽ tạo array chứa &lt;code&gt;[2,3,4]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Python&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;The OK - ổn&lt;/h4&gt;
+&lt;h5&gt;Index from 1&lt;/h5&gt;
+&lt;p&gt;Chuyện này gây sốc với lập trình viên lâu năm C, Java, PHP, Python ...
+Nhưng không phải là hiếm có. Lua, MatLab, R đều dùng index từ 1.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;ns&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt; &lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ns&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Code này trong Julia sẽ in ra số 4 nhưng Python sẽ xảy ra exception do Python index đếm từ 0&lt;/p&gt;
+&lt;p&gt;Dùng nhiều sẽ quen và cũng không ghê gớm lắm, do Julia sử dụng cả phần cuối của range.&lt;/p&gt;
+&lt;p&gt;Ví dụ slice: Python lấy 3 số đầu tiên của list:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;ns&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Julia: &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;ns&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Đều kết thúc là 3 - đều là số phần tử cần lấy.&lt;/p&gt;
+&lt;p&gt;Nhưng khá tệ khi cần lấy 2 phần tử cuối:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;ns&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="k"&gt;end&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="k"&gt;end&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;end&lt;/code&gt; là một index magic (tự xuất hiện) ở đây, đại diện cho index của phần tử cuối cùng.&lt;/p&gt;
+&lt;p&gt;Trong ví dụ này gõ số 4 thay end cũng được.&lt;/p&gt;
+&lt;h4&gt;The ugly - thảm hại&lt;/h4&gt;
+&lt;p&gt;Unicode string - sẽ rất đau đầu khi chuyển từ Python sang.&lt;/p&gt;
+&lt;p&gt;Index của string (mặc định Unicode) trong Julia là byte index, không phải index theo thứ tự của ký tự.&lt;/p&gt;
+&lt;p&gt;Python&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;In&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; &lt;span class="n"&gt;w&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Điêu&amp;quot;&lt;/span&gt;
+
+&lt;span class="n"&gt;In&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; &lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;Out&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Đ&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;i&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Julia &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;ulia&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;w&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Điêu&amp;quot;&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot;Điêu&amp;quot;&lt;/span&gt;
+
+&lt;span class="n"&gt;julia&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="sc"&gt;&amp;#39;Đ&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Unicode&lt;/span&gt; &lt;span class="n"&gt;U&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;0110&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;category&lt;/span&gt; &lt;span class="n"&gt;Lu&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Letter&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;uppercase&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;julia&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;ERROR&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;StringIndexError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Điêu&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;Stacktrace&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+ &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;string_index_err&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="kt"&gt;Int64&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nix&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;store&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="n"&gt;fmf5sqi0jx5zdlqx0gpw2m6nrsbcch2&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;julia&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;1.0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;julia&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dylib&lt;/span&gt;&lt;span class="o"&gt;:?&lt;/span&gt;
+ &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;getindex_continued&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="kt"&gt;Int64&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="kt"&gt;UInt32&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nix&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;store&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="n"&gt;fmf5sqi0jx5zdlqx0gpw2m6nrsbcch2&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;julia&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;1.0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;julia&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dylib&lt;/span&gt;&lt;span class="o"&gt;:?&lt;/span&gt;
+ &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;getindex&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="kt"&gt;Int64&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nix&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;store&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="n"&gt;fmf5sqi0jx5zdlqx0gpw2m6nrsbcch2&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;julia&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;1.0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;julia&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dylib&lt;/span&gt;&lt;span class="o"&gt;:?&lt;/span&gt;
+ &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;top&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;level&lt;/span&gt; &lt;span class="n"&gt;scope&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="n"&gt;none&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;
+
+&lt;span class="n"&gt;julia&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="sc"&gt;&amp;#39;i&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ASCII&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Unicode&lt;/span&gt; &lt;span class="n"&gt;U&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;0069&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;category&lt;/span&gt; &lt;span class="n"&gt;Ll&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Letter&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;lowercase&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Do chữ &lt;code&gt;Đ&lt;/code&gt; trong Unicode UTF-8 được biểu diễn bằng 2 byte, ta chỉ có thể truy cập 
+được index 1, không truy cập được index 2. Và chữ &lt;code&gt;i&lt;/code&gt; ngay sau &lt;code&gt;Đ&lt;/code&gt; sẽ là index 3.&lt;/p&gt;
+&lt;h4&gt;Exception&lt;/h4&gt;
+&lt;p&gt;TBD&lt;/p&gt;
+&lt;h4&gt;Chú ý&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Julia khởi động mất 0.2-0.4 giây, Python khởi động nhanh gấp 10.&lt;/li&gt;
+&lt;li&gt;String trong Julia phải dùng double quote "", single quote '' dành cho ký tự (Char) &lt;/li&gt;
+&lt;li&gt;Nối string dùng &lt;code&gt;*&lt;/code&gt; chứ không phải &lt;code&gt;+&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Sẽ không có method gắn liền vào các object như string hay list trong Python,
+  thay vào đó là các function có sẵn (thường không cần import, gọi là trong &lt;a href="https://docs.julialang.org/en/v1/base/base/"&gt;Base&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Ví dụ 1 chương trình CLI nhận argument nhập vào, gọi HTTP với JSON&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="n"&gt;HTTP&lt;/span&gt;
+&lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="n"&gt;JSON&lt;/span&gt;
+&lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="n"&gt;DocOpt&lt;/span&gt;  &lt;span class="c"&gt;# import docopt function&lt;/span&gt;
+
+&lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;doc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;quot;&amp;quot;Fist Julia program which makes HTTP requests to httpbin endpoint&lt;/span&gt;
+
+&lt;span class="s"&gt;    Usage:&lt;/span&gt;
+&lt;span class="s"&gt;      main.jl request &amp;lt;endpoint&amp;gt;&lt;/span&gt;
+
+&lt;span class="s"&gt;    Options:&lt;/span&gt;
+&lt;span class="s"&gt;      -h --help     Show this screen.&lt;/span&gt;
+&lt;span class="s"&gt;      --version     Show version.&lt;/span&gt;
+&lt;span class="s"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+    &lt;span class="n"&gt;args&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;docopt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;doc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;version&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;0.0.1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;endpoint&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;endpoint&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;https://httpbin.org/&lt;/span&gt;&lt;span class="si"&gt;$endpoint&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Accessing &lt;/span&gt;&lt;span class="si"&gt;$url&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;resp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;HTTP&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;JSON&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;parse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;resp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;body&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;My IP is &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;origin&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+
+    &lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Now also send post&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;HTTP&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;POST&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;https://httpbin.org/post&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Content-Type&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;application/json&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+            &lt;span class="n"&gt;JSON&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;Dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sc"&gt;&amp;#39;a&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sc"&gt;&amp;#39;b&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+            &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;JSON&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;parse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;body&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;json&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Chạy&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ julia  main.jl  -h
+Fist Julia program which makes HTTP requests to httpbin endpoint
+
+Usage:
+  main.jl request &amp;lt;endpoint&amp;gt;
+
+Options:
+  -h --help     Show this screen.
+  --version     Show version.
+
+$ julia main.jl request ip
+Accessing https://httpbin.org/ip
+My IP is &lt;span class="m"&gt;3&lt;/span&gt;.117.1.254, &lt;span class="m"&gt;3&lt;/span&gt;.117.1.254
+Now also send post
+Dict&lt;span class="o"&gt;{&lt;/span&gt;String,Any&lt;span class="o"&gt;}(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;b&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&amp;gt;3,&lt;span class="s2"&gt;&amp;quot;a&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&amp;gt;2&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Code hoàn toàn tương đương với code Python.&lt;/p&gt;
+&lt;h3&gt;Kết luận&lt;/h3&gt;
+&lt;p&gt;Còn chờ gì nữa?
+Làm tí Julia thôi.&lt;/p&gt;
+&lt;p&gt;Phần tiếp theo (nếu có) sẽ đi vào các tính năng của Julia sử dụng trong tính toán khoa học.&lt;/p&gt;
+&lt;h3&gt;Tham khảo&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://docs.julialang.org/en/v1/"&gt;https://docs.julialang.org/en/v1/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://en.wikibooks.org/wiki/Introducing_Julia"&gt;https://en.wikibooks.org/wiki/Introducing_Julia&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://lectures.quantecon.org/jl/"&gt;https://lectures.quantecon.org/jl/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="julia"></category><category term="python"></category></entry><entry><title>Dùng MicroPython với wifi board ESP-8266</title><link href="http://pp.pymi.vn/article/micropython/" rel="alternate"></link><published>2018-10-21T00:00:00+07:00</published><updated>2018-10-21T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2018-10-21:/article/micropython/</id><summary type="html">&lt;p&gt;Chạy code Python trên thiết bị với chỉ 96KB RAM và 4MB bộ nhớ flash.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Khi trở thành một trong những ngôn ngữ lập trình phổ biến nhất thế giới,
 Python không chỉ được dùng trong làm web, data science, hay sysadmin tool mà
 nó còn đá sang cả một lĩnh vực vốn giới hạn về tài nguyên: nhúng.&lt;/p&gt;
 &lt;p&gt;Bình thường khi bật Python lên để in ra màn hình dòng "hello, world" ta đã
