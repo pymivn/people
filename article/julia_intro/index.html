@@ -143,7 +143,8 @@ Giống UNIX command.</p>
 <h5>Nhanh</h5>
 <p>Julia thường nhanh hơn Python <a href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/faster/julia-python3.html">ít nhất 2 lần</a></p>
 <h5>Không quan trọng indentation</h5>
-<p>Dù bạn thụt ra thụt vào 2 3 4 5 ký tự, hay dùng tab đều không quan trọng.</p>
+<p>Dù bạn thụt ra thụt vào 2 3 4 5 ký tự, hay dùng tab đều không quan trọng.
+Chuyện này vốn gây đau đầu cho không ít người dùng Python.</p>
 <p>Python</p>
 <div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
@@ -172,7 +173,7 @@ Thậm chí có thể dùng <code>;</code> để phân cách các phần, và vi
 
 
 <h5>Range bao gồm cả số kết thúc</h5>
-<p>Một điều khá khó chịu với người mới code Python là phần kết thúc của range không được tính.
+<p>Một điều gây khó chịu với người mới code Python là phần kết thúc của range không được tính.
 Tức nếu viết <code>range(1,1000)</code> thì chỉ có từ 1 đến 999. Trong đầu luôn phải nhớ bớt đi 1.
 Julia <code>1:999</code> nghĩa là 1 đến 999, không thêm bớt gì.</p>
 <h5>Không bị "leak" biến i trong vòng lặp ra ngoài</h5>
@@ -210,7 +211,7 @@ Nhưng không phải là hiếm có. Lua, MatLab, R đều dùng index từ 1.</
 </pre></div>
 
 
-<p>Code này trong Julia sẽ in ra số 4 nhưng Python sẽ xảy ra exception do Python index đếm từ 0</p>
+<p>Trong Julia code này sẽ in ra số 4 nhưng Python sẽ xảy ra exception do Python index đếm từ 0</p>
 <p>Dùng nhiều sẽ quen và cũng không ghê gớm lắm, do Julia sử dụng cả phần cuối của range.</p>
 <p>Ví dụ slice: Python lấy 3 số đầu tiên của list:</p>
 <div class="highlight"><pre><span></span><span class="n">ns</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
@@ -223,12 +224,12 @@ Nhưng không phải là hiếm có. Lua, MatLab, R đều dùng index từ 1.</
 
 
 <p>Đều kết thúc là 3 - đều là số phần tử cần lấy.</p>
-<p>Nhưng khá tệ khi cần lấy 2 phần tử cuối:</p>
+<p>Nhưng tệ hơn khi cần lấy 2 phần tử cuối:</p>
 <div class="highlight"><pre><span></span><span class="n">ns</span><span class="p">[</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="o">:</span><span class="k">end</span><span class="p">]</span>
 </pre></div>
 
 
-<p><code>end</code> là một index magic (tự xuất hiện) ở đây, đại diện cho index của phần tử cuối cùng.</p>
+<p><code>end</code> là một index magic (tự xuất hiện), đại diện cho index của phần tử cuối cùng.</p>
 <p>Trong ví dụ này gõ số 4 thay end cũng được.</p>
 <h4>The ugly - thảm hại</h4>
 <p>Unicode string - sẽ rất đau đầu khi chuyển từ Python sang.</p>
@@ -268,8 +269,8 @@ Nhưng không phải là hiếm có. Lua, MatLab, R đều dùng index từ 1.</
 <h4>Chú ý</h4>
 <ul>
 <li>Julia khởi động mất 0.2-0.4 giây, Python khởi động nhanh gấp 10.</li>
-<li>String trong Julia phải dùng double quote "", single quote '' dành cho ký tự (Char) </li>
-<li>Nối string dùng <code>*</code> chứ không phải <code>+</code></li>
+<li>String trong Julia phải dùng double quote <code>""</code>, single quote <code>''</code> dành cho ký tự (Char).</li>
+<li>Nối string dùng <code>*</code> chứ không phải <code>+</code>.</li>
 <li>Sẽ không có method gắn liền vào các object như string hay list trong Python,
   thay vào đó là các function có sẵn (thường không cần import, gọi là trong <a href="https://docs.julialang.org/en/v1/base/base/">Base</a>)</li>
 </ul>

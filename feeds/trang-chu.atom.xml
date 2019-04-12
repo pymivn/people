@@ -95,7 +95,8 @@ Giống UNIX command.&lt;/p&gt;
 &lt;h5&gt;Nhanh&lt;/h5&gt;
 &lt;p&gt;Julia thường nhanh hơn Python &lt;a href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/faster/julia-python3.html"&gt;ít nhất 2 lần&lt;/a&gt;&lt;/p&gt;
 &lt;h5&gt;Không quan trọng indentation&lt;/h5&gt;
-&lt;p&gt;Dù bạn thụt ra thụt vào 2 3 4 5 ký tự, hay dùng tab đều không quan trọng.&lt;/p&gt;
+&lt;p&gt;Dù bạn thụt ra thụt vào 2 3 4 5 ký tự, hay dùng tab đều không quan trọng.
+Chuyện này vốn gây đau đầu cho không ít người dùng Python.&lt;/p&gt;
 &lt;p&gt;Python&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
 &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
@@ -124,7 +125,7 @@ Thậm chí có thể dùng &lt;code&gt;;&lt;/code&gt; để phân cách các ph
 
 
 &lt;h5&gt;Range bao gồm cả số kết thúc&lt;/h5&gt;
-&lt;p&gt;Một điều khá khó chịu với người mới code Python là phần kết thúc của range không được tính.
+&lt;p&gt;Một điều gây khó chịu với người mới code Python là phần kết thúc của range không được tính.
 Tức nếu viết &lt;code&gt;range(1,1000)&lt;/code&gt; thì chỉ có từ 1 đến 999. Trong đầu luôn phải nhớ bớt đi 1.
 Julia &lt;code&gt;1:999&lt;/code&gt; nghĩa là 1 đến 999, không thêm bớt gì.&lt;/p&gt;
 &lt;h5&gt;Không bị "leak" biến i trong vòng lặp ra ngoài&lt;/h5&gt;
@@ -162,7 +163,7 @@ Nhưng không phải là hiếm có. Lua, MatLab, R đều dùng index từ 1.&l
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Code này trong Julia sẽ in ra số 4 nhưng Python sẽ xảy ra exception do Python index đếm từ 0&lt;/p&gt;
+&lt;p&gt;Trong Julia code này sẽ in ra số 4 nhưng Python sẽ xảy ra exception do Python index đếm từ 0&lt;/p&gt;
 &lt;p&gt;Dùng nhiều sẽ quen và cũng không ghê gớm lắm, do Julia sử dụng cả phần cuối của range.&lt;/p&gt;
 &lt;p&gt;Ví dụ slice: Python lấy 3 số đầu tiên của list:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;ns&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
@@ -175,12 +176,12 @@ Nhưng không phải là hiếm có. Lua, MatLab, R đều dùng index từ 1.&l
 
 
 &lt;p&gt;Đều kết thúc là 3 - đều là số phần tử cần lấy.&lt;/p&gt;
-&lt;p&gt;Nhưng khá tệ khi cần lấy 2 phần tử cuối:&lt;/p&gt;
+&lt;p&gt;Nhưng tệ hơn khi cần lấy 2 phần tử cuối:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;ns&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="k"&gt;end&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="k"&gt;end&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;code&gt;end&lt;/code&gt; là một index magic (tự xuất hiện) ở đây, đại diện cho index của phần tử cuối cùng.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;end&lt;/code&gt; là một index magic (tự xuất hiện), đại diện cho index của phần tử cuối cùng.&lt;/p&gt;
 &lt;p&gt;Trong ví dụ này gõ số 4 thay end cũng được.&lt;/p&gt;
 &lt;h4&gt;The ugly - thảm hại&lt;/h4&gt;
 &lt;p&gt;Unicode string - sẽ rất đau đầu khi chuyển từ Python sang.&lt;/p&gt;
@@ -220,8 +221,8 @@ Nhưng không phải là hiếm có. Lua, MatLab, R đều dùng index từ 1.&l
 &lt;h4&gt;Chú ý&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;Julia khởi động mất 0.2-0.4 giây, Python khởi động nhanh gấp 10.&lt;/li&gt;
-&lt;li&gt;String trong Julia phải dùng double quote "", single quote '' dành cho ký tự (Char) &lt;/li&gt;
-&lt;li&gt;Nối string dùng &lt;code&gt;*&lt;/code&gt; chứ không phải &lt;code&gt;+&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;String trong Julia phải dùng double quote &lt;code&gt;""&lt;/code&gt;, single quote &lt;code&gt;''&lt;/code&gt; dành cho ký tự (Char).&lt;/li&gt;
+&lt;li&gt;Nối string dùng &lt;code&gt;*&lt;/code&gt; chứ không phải &lt;code&gt;+&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;Sẽ không có method gắn liền vào các object như string hay list trong Python,
   thay vào đó là các function có sẵn (thường không cần import, gọi là trong &lt;a href="https://docs.julialang.org/en/v1/base/base/"&gt;Base&lt;/a&gt;)&lt;/li&gt;
 &lt;/ul&gt;
