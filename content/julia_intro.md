@@ -12,7 +12,7 @@ và có nhiều tính năng hấp dẫn. Bạn không cần phải từ bỏ Pyt
 ![Julia](https://docs.julialang.org/en/v1/assets/logo.png)
 
 Julia là ngôn ngữ lập trình "làm gì cũng được", nhưng được tập trung vào lĩnh vực tính toán khoa học và muốn
-thế chỗ Python (nhưng đường còn dài, và còn nhiều hơn trông gai).
+thế chỗ Python (nhưng đường còn dài, và còn nhiều hơn chông gai).
 
 ### Cài đặt
 Xem https://docs.julialang.org/en/v1/
