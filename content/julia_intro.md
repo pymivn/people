@@ -131,6 +131,7 @@ Julia thường nhanh hơn Python [ít nhất 2 lần](https://benchmarksgame-te
 
 ##### Không quan trọng indentation
 Dù bạn thụt ra thụt vào 2 3 4 5 ký tự, hay dùng tab đều không quan trọng.
+Chuyện này vốn gây đau đầu cho không ít người dùng Python.
 
 Python
 ```python
@@ -161,7 +162,7 @@ julia> s = 0; for i in 1:999; if i % 3 == 0 || i % 5 == 0; global s = s + i ; en
 233168
 ```
 ##### Range bao gồm cả số kết thúc
-Một điều khá khó chịu với người mới code Python là phần kết thúc của range không được tính.
+Một điều gây khó chịu với người mới code Python là phần kết thúc của range không được tính.
 Tức nếu viết `range(1,1000)` thì chỉ có từ 1 đến 999. Trong đầu luôn phải nhớ bớt đi 1.
 Julia `1:999` nghĩa là 1 đến 999, không thêm bớt gì.
 
@@ -203,7 +204,7 @@ Nhưng không phải là hiếm có. Lua, MatLab, R đều dùng index từ 1.
 ns=[1,2,3,4]; print(ns[4])
 ```
 
-Code này trong Julia sẽ in ra số 4 nhưng Python sẽ xảy ra exception do Python index đếm từ 0
+Trong Julia code này sẽ in ra số 4 nhưng Python sẽ xảy ra exception do Python index đếm từ 0
 
 Dùng nhiều sẽ quen và cũng không ghê gớm lắm, do Julia sử dụng cả phần cuối của range.
 
@@ -221,12 +222,12 @@ ns[1:3]
 
 Đều kết thúc là 3 - đều là số phần tử cần lấy.
 
-Nhưng khá tệ khi cần lấy 2 phần tử cuối:
+Nhưng tệ hơn khi cần lấy 2 phần tử cuối:
 
 ```julia
 ns[end-1:end]
 ```
-`end` là một index magic (tự xuất hiện) ở đây, đại diện cho index của phần tử cuối cùng.
+`end` là một index magic (tự xuất hiện), đại diện cho index của phần tử cuối cùng.
 
 Trong ví dụ này gõ số 4 thay end cũng được.
 
@@ -272,8 +273,8 @@ TBD
 
 #### Chú ý
 - Julia khởi động mất 0.2-0.4 giây, Python khởi động nhanh gấp 10.
-- String trong Julia phải dùng double quote "", single quote '' dành cho ký tự (Char) 
-- Nối string dùng `*` chứ không phải `+`
+- String trong Julia phải dùng double quote `""`, single quote `''` dành cho ký tự (Char).
+- Nối string dùng `*` chứ không phải `+`.
 - Sẽ không có method gắn liền vào các object như string hay list trong Python,
   thay vào đó là các function có sẵn (thường không cần import, gọi là trong [Base](https://docs.julialang.org/en/v1/base/base/))
 
