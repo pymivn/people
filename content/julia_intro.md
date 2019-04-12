@@ -278,7 +278,7 @@ TBD
 - Sẽ không có method gắn liền vào các object như string hay list trong Python,
   thay vào đó là các function có sẵn (thường không cần import, gọi là trong [Base](https://docs.julialang.org/en/v1/base/base/))
 
-### Ví dụ 1 chương trình CLI nhận argument nhập vào, gọi HTTP với JSON
+### Ví dụ 1 chương trình CLI nhận argument, gọi HTTP với JSON
 
 ```julia
 import HTTP
@@ -303,14 +303,29 @@ function main()
     resp = HTTP.get(url)
     d = JSON.Parser.parse(String(resp.body))
     println("My IP is " * d["origin"])
-    
+
     println("Now also send post")
     r = HTTP.request("POST", "https://httpbin.org/post",
             ["Content-Type" => "application/json"],
             JSON.json(Dict('a'=>2, 'b'=>3))
             )
     data = JSON.Parser.parse(String(r.body))
-    println(data["json"])
+
+    open("/tmp/data.json", "w") do f
+        write(f, JSON.json(data["json"]))
+    end
+    open("/tmp/data.json", "r") do f
+        d = JSON.Parser.parse(String(read(f)))
+        println(d)
+    end
+
+    open(`ls -l`) do io
+        for line in eachline(io)
+            if !isa(match(r".*\.jl", line), Nothing)
+                println(line)
+            end
+        end
+    end
 end
 
 main()
@@ -331,9 +346,10 @@ Options:
 
 $ julia main.jl request ip
 Accessing https://httpbin.org/ip
-My IP is 3.117.1.254, 3.117.1.254
+My IP is 3.117.2.254, 3.117.2.254
 Now also send post
 Dict{String,Any}("b"=>3,"a"=>2)
+-rw-r--r-- 1 viethung.nguyen viethung.nguyen 1189 Apr 12 08:38 main.jl
 ```
 
 Code hoàn toàn tương đương với code Python.
