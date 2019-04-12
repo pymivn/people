@@ -274,7 +274,7 @@ Nhưng không phải là hiếm có. Lua, MatLab, R đều dùng index từ 1.</
 <li>Sẽ không có method gắn liền vào các object như string hay list trong Python,
   thay vào đó là các function có sẵn (thường không cần import, gọi là trong <a href="https://docs.julialang.org/en/v1/base/base/">Base</a>)</li>
 </ul>
-<h3>Ví dụ 1 chương trình CLI nhận argument nhập vào, gọi HTTP với JSON</h3>
+<h3>Ví dụ 1 chương trình CLI nhận argument, gọi HTTP với JSON</h3>
 <div class="highlight"><pre><span></span><span class="k">import</span> <span class="n">HTTP</span>
 <span class="k">import</span> <span class="n">JSON</span>
 <span class="k">using</span> <span class="n">DocOpt</span>  <span class="c"># import docopt function</span>
@@ -304,7 +304,22 @@ Nhưng không phải là hiếm có. Lua, MatLab, R đều dùng index từ 1.</
             <span class="n">JSON</span><span class="o">.</span><span class="n">json</span><span class="p">(</span><span class="kt">Dict</span><span class="p">(</span><span class="sc">&#39;a&#39;</span><span class="o">=&gt;</span><span class="mi">2</span><span class="p">,</span> <span class="sc">&#39;b&#39;</span><span class="o">=&gt;</span><span class="mi">3</span><span class="p">))</span>
             <span class="p">)</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">JSON</span><span class="o">.</span><span class="n">Parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">body</span><span class="p">))</span>
-    <span class="n">println</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">&quot;json&quot;</span><span class="p">])</span>
+
+    <span class="n">open</span><span class="p">(</span><span class="s">&quot;/tmp/data.json&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="n">f</span>
+        <span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">JSON</span><span class="o">.</span><span class="n">json</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">&quot;json&quot;</span><span class="p">]))</span>
+    <span class="k">end</span>
+    <span class="n">open</span><span class="p">(</span><span class="s">&quot;/tmp/data.json&quot;</span><span class="p">,</span> <span class="s">&quot;r&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="n">f</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">JSON</span><span class="o">.</span><span class="n">Parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="n">read</span><span class="p">(</span><span class="n">f</span><span class="p">)))</span>
+        <span class="n">println</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="n">open</span><span class="p">(</span><span class="sb">`ls -l`</span><span class="p">)</span> <span class="k">do</span> <span class="n">io</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="kp">in</span> <span class="n">eachline</span><span class="p">(</span><span class="n">io</span><span class="p">)</span>
+            <span class="k">if</span> <span class="o">!</span><span class="n">isa</span><span class="p">(</span><span class="n">match</span><span class="p">(</span><span class="sr">r&quot;.*\.jl&quot;</span><span class="p">,</span> <span class="n">line</span><span class="p">),</span> <span class="n">Nothing</span><span class="p">)</span>
+                <span class="n">println</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+            <span class="k">end</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
 <span class="k">end</span>
 
 <span class="n">main</span><span class="p">()</span>
@@ -324,9 +339,10 @@ Options:
 
 $ julia main.jl request ip
 Accessing https://httpbin.org/ip
-My IP is <span class="m">3</span>.117.1.254, <span class="m">3</span>.117.1.254
+My IP is <span class="m">3</span>.117.2.254, <span class="m">3</span>.117.2.254
 Now also send post
 Dict<span class="o">{</span>String,Any<span class="o">}(</span><span class="s2">&quot;b&quot;</span><span class="o">=</span>&gt;3,<span class="s2">&quot;a&quot;</span><span class="o">=</span>&gt;2<span class="o">)</span>
+-rw-r--r-- <span class="m">1</span> viethung.nguyen viethung.nguyen <span class="m">1189</span> Apr <span class="m">12</span> <span class="m">08</span>:38 main.jl
 </pre></div>
 
 
