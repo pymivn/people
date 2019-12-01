@@ -24,7 +24,7 @@ có tên WEMOS D1 mini.
 Là 1 bảng mạch điện có khả năng thu phát sóng wifi (wifi board) có kích thước
 nhỏ hơn ngón chân cái của người lớn, thiết bị này có giá 2 USD.
 
-![WEMOS D1 Mini]({filename}/images/wemos1.jpg)
+![WEMOS D1 Mini]({static}/images/wemos1.jpg)
 
 Bảng mạch này sử dụng vi điều khiển (microcontroller) ESP-8266, với xung nhịp
 80MHz/160MHz, 96KB RAM và 4 MB Flash.
@@ -47,7 +47,7 @@ tay. Mỗi cục CPU đều từ 2-3 GHz (so với 80MHz), ổ cứng vài trăm
 1-16 GB RAM (so với 96KB RAM).
 Ta sẽ thấy microcontroller nhỏ bé và "yếu ớt" đến chừng nào.
 
-![WEMOS D1 Mini]({filename}/images/esp8266.jpg)
+![WEMOS D1 Mini]({static}/images/esp8266.jpg)
 
 ### MicroPython
 

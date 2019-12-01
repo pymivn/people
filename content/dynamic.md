@@ -215,7 +215,7 @@ matplotlib.style.use('fivethirtyeight')
 df_sorted_rss.plot.bar(title='RSS size in byte when print 1');
 ```
 
-![Dynamic typing languages]({filename}/images/dynamic.png)
+![Dynamic typing languages]({static}/images/dynamic.png)
 
 ## Kết luận
 

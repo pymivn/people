@@ -45,7 +45,7 @@ In [2]: tk.Frame(tk.Tk()).mainloop()
 
 Nếu Tk hoat động trên máy bạn, ngay lập tức một cửa sổ trắng tinh sẽ hiện ra.
 
-![emptygui]({filename}/images/gui.png)
+![emptygui]({static}/images/gui.png)
 
 
 `Tk()` tạo một cửa sổ chính  (main window), `Frame` là một widget có khả năng chứa các widget khác. Gọi function `mainloop()` để chạy giao diện mãi mãi cho tới khi người dùng đóng lại.
@@ -116,7 +116,7 @@ Code trên:
 
 Kết quả:
 
-![checker]({filename}/images/checker.png)
+![checker]({static}/images/checker.png)
 
 Danh sách đầy đủ các widget xem tại [https://github.com/python/cpython/blob/3.6/Lib/tkinter/__init__.py](https://github.com/python/cpython/blob/3.6/Lib/tkinter/__init__.py)  - search `(Widget` (các subclass của class Widget).
 
