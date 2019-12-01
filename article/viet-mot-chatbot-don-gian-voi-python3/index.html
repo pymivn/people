@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="http://pp.pymi.vn/theme/css/pygment.css">
   <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    <meta name="author" content="Pymiers" />
-  <meta name="description" content="" />    <link href="http://pp.pymi.vn/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="The PyMiers Full Atom Feed" />       <link href="http://pp.pymi.vn/feeds/trang-chu.atom.xml" type="application/atom+xml" rel="alternate" title="The PyMiers Categories Atom Feed" />     
+  <meta name="description" content="" />    <link href="http://pp.pymi.vn/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="The PyMiers Full Atom Feed" />         
   <meta name="tags" content="Python" />
   <meta name="tags" content="chatbot" />
   <meta name="tags" content="facebook" />
@@ -177,8 +177,14 @@
 
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">send_msg</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-    <span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">reply_msg</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">thread1</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">send_msg</span><span class="p">)</span>
+    <span class="n">thread2</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">reply_msg</span><span class="p">)</span>
+
+    <span class="n">thread1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">thread2</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+    <span class="n">thread1</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+    <span class="n">thread2</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
