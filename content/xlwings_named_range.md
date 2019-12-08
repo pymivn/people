@@ -9,6 +9,7 @@ Slug: xlwings-named-range
 
 
 [xlwings](https://github.com/xlwings/xlwings) là 1 thư viện Python dùng để tương tác giữa Python và MS Excel. Hoạt động được trên Windows và Mac. xlwings có các tính năng:
+
 - **Scripting**: Tự động hóa/tương tác với Excel từ môi trường Python, sử dụng cú pháp gần với VBA mà vẫn "Pythonic".
 - **Macros**: Viết các script python thay thế cho VBA macros, giúp code dễ đọc hơn. Sau khi viết script python xong, chỉ cần gọi 1 hàm trong VBA là script chạy.
 - **UDFs**: Viết hàm người dùng tự định nghĩa bằng ngôn ngữ Python và sử dụng được hàm đó trong excel (Windows only).
@@ -47,7 +48,7 @@ sht.range('A1').expand()
 **Ngoài ra, [xlwings còn tích hợp pandas](https://docs.xlwings.org/en/stable/datastructures.html#pandas-dataframes).**
 
 2. Xử lý trường hợp cụ thể:
-Trong video [này](https://www.youtube.com/watch?v=wm7RNejVh8E), xlwings được dùng để tự động tạo các named range cho hàng loạt file có cấu trúc tương tự. Mục đích là để làm bước tiếp theo: link giá trị từ nhiều file vào 1 file tổng hợp, dựa vào named range trong từng file chi tiết. Tham khảo mã nguồn: https://gist.github.com/htlcnn/0ddd4e0023e0b623bc0e6006a9f9520c
+Trong video [này](https://www.youtube.com/watch?v=wm7RNejVh8E), xlwings được dùng để tự động tạo các named range cho hàng loạt file có cấu trúc tương tự. Mục đích là để làm bước tiếp theo: link giá trị từ nhiều file vào 1 file tổng hợp, dựa vào named range trong từng file chi tiết. Tham khảo [script](https://gist.github.com/htlcnn/0ddd4e0023e0b623bc0e6006a9f9520c).
 
 Trong script này còn sử dụng Excel VBA API: [WorkBook.Names.Add](https://docs.microsoft.com/en-us/office/vba/api/excel.names.add) (tra cứu toàn bộ ở [đây](https://docs.microsoft.com/en-us/office/vba/api/overview/excel/object-model), được cung cấp qua `xw_object.api`). Tức là những gì không được cung cấp sẵn cú pháp Pythonic, ta sẽ sử dụng VBA API.
 
