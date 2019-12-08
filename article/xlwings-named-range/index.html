@@ -49,11 +49,13 @@
                 </address>     <em>Tags</em>:     <a href="http://pp.pymi.vn/tag/python/"><em>python</em></a>,     <a href="http://pp.pymi.vn/tag/xlwings/"><em>xlwings</em></a>,     <a href="http://pp.pymi.vn/tag/excel/"><em>excel</em></a>,     <a href="http://pp.pymi.vn/tag/vba/"><em>vba</em></a>    </footer>
   <br>
   <div class="entry-content">
-    <p><a href="https://github.com/xlwings/xlwings">xlwings</a> là 1 thư viện Python dùng để tương tác giữa Python và MS Excel. Hoạt động được trên Windows và Mac. xlwings có các tính năng:
-- <strong>Scripting</strong>: Tự động hóa/tương tác với Excel từ môi trường Python, sử dụng cú pháp gần với VBA mà vẫn "Pythonic".
-- <strong>Macros</strong>: Viết các script python thay thế cho VBA macros, giúp code dễ đọc hơn. Sau khi viết script python xong, chỉ cần gọi 1 hàm trong VBA là script chạy.
-- <strong>UDFs</strong>: Viết hàm người dùng tự định nghĩa bằng ngôn ngữ Python và sử dụng được hàm đó trong excel (Windows only).
-- <strong>REST API</strong>: cung cấp REST API cho Excel workbook.</p>
+    <p><a href="https://github.com/xlwings/xlwings">xlwings</a> là 1 thư viện Python dùng để tương tác giữa Python và MS Excel. Hoạt động được trên Windows và Mac. xlwings có các tính năng:</p>
+<ul>
+<li><strong>Scripting</strong>: Tự động hóa/tương tác với Excel từ môi trường Python, sử dụng cú pháp gần với VBA mà vẫn "Pythonic".</li>
+<li><strong>Macros</strong>: Viết các script python thay thế cho VBA macros, giúp code dễ đọc hơn. Sau khi viết script python xong, chỉ cần gọi 1 hàm trong VBA là script chạy.</li>
+<li><strong>UDFs</strong>: Viết hàm người dùng tự định nghĩa bằng ngôn ngữ Python và sử dụng được hàm đó trong excel (Windows only).</li>
+<li><strong>REST API</strong>: cung cấp REST API cho Excel workbook.</li>
+</ul>
 <h2>Cài đặt:</h2>
 <div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">xlwings</span>
 </pre></div>
@@ -90,7 +92,7 @@
 <p><strong>Ngoài ra, <a href="https://docs.xlwings.org/en/stable/datastructures.html#pandas-dataframes">xlwings còn tích hợp pandas</a>.</strong></p>
 <ol>
 <li>Xử lý trường hợp cụ thể:
-Trong video <a href="https://www.youtube.com/watch?v=wm7RNejVh8E">này</a>, xlwings được dùng để tự động tạo các named range cho hàng loạt file có cấu trúc tương tự. Mục đích là để làm bước tiếp theo: link giá trị từ nhiều file vào 1 file tổng hợp, dựa vào named range trong từng file chi tiết. Tham khảo mã nguồn: https://gist.github.com/htlcnn/0ddd4e0023e0b623bc0e6006a9f9520c</li>
+Trong video <a href="https://www.youtube.com/watch?v=wm7RNejVh8E">này</a>, xlwings được dùng để tự động tạo các named range cho hàng loạt file có cấu trúc tương tự. Mục đích là để làm bước tiếp theo: link giá trị từ nhiều file vào 1 file tổng hợp, dựa vào named range trong từng file chi tiết. Tham khảo <a href="https://gist.github.com/htlcnn/0ddd4e0023e0b623bc0e6006a9f9520c">script</a>.</li>
 </ol>
 <p>Trong script này còn sử dụng Excel VBA API: <a href="https://docs.microsoft.com/en-us/office/vba/api/excel.names.add">WorkBook.Names.Add</a> (tra cứu toàn bộ ở <a href="https://docs.microsoft.com/en-us/office/vba/api/overview/excel/object-model">đây</a>, được cung cấp qua <code>xw_object.api</code>). Tức là những gì không được cung cấp sẵn cú pháp Pythonic, ta sẽ sử dụng VBA API.</p>
 <p>Hạn chế: range expand chỉ ứng dụng được cho vùng dữ liệu liên tục. Với "bảng" có các dòng/cột trống (để "format" cho đẹp) thì sẽ bị ngắt tại chỗ có dòng/cột trống. Vì vậy, thường sẽ phải chọn 1 range khá lớn/1 magic number để lấy được toàn bộ vùng dữ liệu cần xử lý.</p>
