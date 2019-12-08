@@ -1,5 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2019-04-11T00:00:00+07:00</updated><entry><title>Biết Python - quen ngay Julia</title><link href="http://pp.pymi.vn/article/julia_intro/" rel="alternate"></link><published>2019-04-11T00:00:00+07:00</published><updated>2019-04-11T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2019-04-11:/article/julia_intro/</id><summary type="html">&lt;p&gt;Giống Python, mà nhanh gấp 2++, cũng rất gì và này nọ.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Julia là ngôn ngữ lập trình mới, trông rất giống code Python, chạy nhanh hơn Python3 &lt;a href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/faster/julia-python3.html"&gt;ít nhất 2 lần&lt;/a&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2019-12-08T00:00:00+07:00</updated><entry><title>Sử dụng xlwings tương tác với MS Excel</title><link href="http://pp.pymi.vn/article/xlwings-named-range/" rel="alternate"></link><published>2019-12-08T00:00:00+07:00</published><updated>2018-12-08T00:00:00+07:00</updated><author><name>htlcnn</name></author><id>tag:pp.pymi.vn,2019-12-08:/article/xlwings-named-range/</id><summary type="html">&lt;p&gt;Giới thiệu thư viện xlwings dùng để tương tác với MS Excel&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://github.com/xlwings/xlwings"&gt;xlwings&lt;/a&gt; là 1 thư viện Python dùng để tương tác giữa Python và MS Excel. Hoạt động được trên Windows và Mac. xlwings có các tính năng:
+- &lt;strong&gt;Scripting&lt;/strong&gt;: Tự động hóa/tương tác với Excel từ môi trường Python, sử dụng cú pháp gần với VBA mà vẫn "Pythonic".
+- &lt;strong&gt;Macros&lt;/strong&gt;: Viết các script python thay thế cho VBA macros, giúp code dễ đọc hơn. Sau khi viết script python xong, chỉ cần gọi 1 hàm trong VBA là script chạy.
+- &lt;strong&gt;UDFs&lt;/strong&gt;: Viết hàm người dùng tự định nghĩa bằng ngôn ngữ Python và sử dụng được hàm đó trong excel (Windows only).
+- &lt;strong&gt;REST API&lt;/strong&gt;: cung cấp REST API cho Excel workbook.&lt;/p&gt;
+&lt;h2&gt;Cài đặt:&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;xlwings&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Sử dụng:&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Một số thao tác cơ bản:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;xlwings&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;xw&lt;/span&gt;
+
+&lt;span class="c1"&gt;# mở workbook mới&lt;/span&gt;
+&lt;span class="n"&gt;new_wb&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;xw&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Book&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="c1"&gt;# hoặc&lt;/span&gt;
+&lt;span class="n"&gt;opening_wb&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;xw&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Book&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;name_of_opening_workbook&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# hoặc&lt;/span&gt;
+&lt;span class="n"&gt;open_new_workbook&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;xw&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Book&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;full/relaive_path_to_xls&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Lấy các sheets có trong file excel &lt;/span&gt;
+&lt;span class="n"&gt;xw&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sheets&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Làm việc với dữ liệu trong 1 sheet&lt;/span&gt;
+&lt;span class="n"&gt;sht&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;xw&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sheets&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sht&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;A1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;sht&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;A1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;xxx&amp;#39;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# tự động tìm bảng&lt;/span&gt;
+&lt;span class="c1"&gt;# https://docs.xlwings.org/en/stable/datastructures.html#range-expanding&lt;/span&gt;
+&lt;span class="n"&gt;sht&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;A1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;expand&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="c1"&gt;# ...&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Ngoài ra, &lt;a href="https://docs.xlwings.org/en/stable/datastructures.html#pandas-dataframes"&gt;xlwings còn tích hợp pandas&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Xử lý trường hợp cụ thể:
+Trong video &lt;a href="https://www.youtube.com/watch?v=wm7RNejVh8E"&gt;này&lt;/a&gt;, xlwings được dùng để tự động tạo các named range cho hàng loạt file có cấu trúc tương tự. Mục đích là để làm bước tiếp theo: link giá trị từ nhiều file vào 1 file tổng hợp, dựa vào named range trong từng file chi tiết. Tham khảo mã nguồn: https://gist.github.com/htlcnn/0ddd4e0023e0b623bc0e6006a9f9520c&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Trong script này còn sử dụng Excel VBA API: &lt;a href="https://docs.microsoft.com/en-us/office/vba/api/excel.names.add"&gt;WorkBook.Names.Add&lt;/a&gt; (tra cứu toàn bộ ở &lt;a href="https://docs.microsoft.com/en-us/office/vba/api/overview/excel/object-model"&gt;đây&lt;/a&gt;, được cung cấp qua &lt;code&gt;xw_object.api&lt;/code&gt;). Tức là những gì không được cung cấp sẵn cú pháp Pythonic, ta sẽ sử dụng VBA API.&lt;/p&gt;
+&lt;p&gt;Hạn chế: range expand chỉ ứng dụng được cho vùng dữ liệu liên tục. Với "bảng" có các dòng/cột trống (để "format" cho đẹp) thì sẽ bị ngắt tại chỗ có dòng/cột trống. Vì vậy, thường sẽ phải chọn 1 range khá lớn/1 magic number để lấy được toàn bộ vùng dữ liệu cần xử lý.&lt;/p&gt;
+&lt;p&gt;Mọi việc phải xử lý trong video demo sẽ đơn giản hơn nếu có 1 file excel mẫu ban đầu, được định nghĩa sẵn các named range, sau đó mới duplicate ra để điền dữ liệu vào. Tuy nhiên, thực tế không như thế, ta phải xử lý lỗi một cách nhanh nhất, cũng giống như khi tập chép phạt: &lt;code&gt;"Anh xin lỗi\n" * 100&lt;/code&gt;&lt;/p&gt;</content><category term="Trang chủ"></category><category term="python"></category><category term="xlwings"></category><category term="excel"></category><category term="vba"></category></entry><entry><title>Biết Python - quen ngay Julia</title><link href="http://pp.pymi.vn/article/julia_intro/" rel="alternate"></link><published>2019-04-11T00:00:00+07:00</published><updated>2019-04-11T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2019-04-11:/article/julia_intro/</id><summary type="html">&lt;p&gt;Giống Python, mà nhanh gấp 2++, cũng rất gì và này nọ.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Julia là ngôn ngữ lập trình mới, trông rất giống code Python, chạy nhanh hơn Python3 &lt;a href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/faster/julia-python3.html"&gt;ít nhất 2 lần&lt;/a&gt;
 và có nhiều tính năng hấp dẫn. Bạn không cần phải từ bỏ Python hay ngôn ngữ XYZ để học Julia, Julia chỉ đơn giản là một bông hoa đẹp mà ai thích... thì múc.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Julia" src="https://docs.julialang.org/en/v1/assets/logo.png"&gt;&lt;/p&gt;
 &lt;p&gt;Julia là ngôn ngữ lập trình "làm gì cũng được", nhưng được tập trung vào lĩnh vực tính toán khoa học và muốn
