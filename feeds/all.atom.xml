@@ -26,7 +26,7 @@ DOM là programming interface cho HTML (và XML) documents.&lt;/p&gt;
 &lt;p&gt;Có vài cách để truy cập element, trong đó kể tới 2 methods:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;document.getElementsByTagName&lt;/code&gt;: lấy các elements theo HTML tag của chúng&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;document.querySelectorAll&lt;/code&gt;: lấy cá elements theo &lt;a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors"&gt;CSS selectors&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;document.querySelectorAll&lt;/code&gt;: lấy các elements theo &lt;a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors"&gt;CSS selectors&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;code&gt;innerText&lt;/code&gt; là thuộc tính (attribute) của một element, chứa nội dung text của nó. Ví dụ sau sẽ thay đổi tiêu đề của bài viết, đây là cách làm tin giả rồi chụp mành hình, không cần dùng PhotoShop:&lt;/p&gt;
 &lt;p&gt;Vào web page: &lt;a href="https://www.familug.org/2020/02/vagrant.html"&gt;https://www.familug.org/2020/02/vagrant.html&lt;/a&gt;&lt;/p&gt;
