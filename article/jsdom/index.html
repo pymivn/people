@@ -70,7 +70,7 @@ DOM là programming interface cho HTML (và XML) documents.</p>
 <h3>Truy cập &amp; thay đổi DOM trên trình duyệt</h3>
 <p>Mở một web site ra, rồi bật web console lên, hoặc đọc bài <a href="https://www.familug.org/2017/04/hoc-javascript-1.html">này</a> nếu chưa biết cách.</p>
 <h3>Document, Window &amp; DOM Elements</h3>
-<p>Mỗi web page là một document, mỗi "cửa sổ" (thời nay là 1 tab trình duyệt), đại diện cho cửa sổ đó. Mỗi document là một tree, với các node gọi là các Element.</p>
+<p>Mỗi web page là một <code>document</code>, mỗi "cửa sổ" (thời nay là 1 tab trình duyệt), là một <code>window</code>, đại diện cho cửa sổ đó. Mỗi document là một tree, với các node gọi là các Element.</p>
 <p>Gõ vào web console <code>document</code>, đây chính là DOM của web page đang truy cập, thông qua object này, ta có thể làm đủ trò với những gì đang hiện trên trình duyệt.</p>
 <h3>Get element</h3>
 <p>Có vài cách để truy cập element, trong đó kể tới 2 methods:</p>
@@ -79,8 +79,17 @@ DOM là programming interface cho HTML (và XML) documents.</p>
 <li><code>document.querySelectorAll</code>: lấy cá elements theo <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors">CSS selectors</a>.</li>
 </ul>
 <p><code>innerText</code> là thuộc tính (attribute) của một element, chứa nội dung text của nó. Ví dụ sau sẽ thay đổi tiêu đề của bài viết, đây là cách làm tin giả rồi chụp mành hình, không cần dùng PhotoShop:</p>
+<p>Vào web page: <a href="https://www.familug.org/2020/02/vagrant.html">https://www.familug.org/2020/02/vagrant.html</a></p>
 <p><img alt="Trước" src="http://pp.pymi.vn/images/vagrant.png"></p>
 <p>Sau khi "hack"</p>
+<div class="highlight"><pre><span></span><span class="nx">titleTag</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;h3&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">titleTag</span><span class="p">.</span><span class="nx">innerText</span><span class="p">)</span>
+
+<span class="nx">titleTag</span><span class="p">.</span><span class="nx">innerText</span> <span class="o">=</span> <span class="s2">&quot;Happy birthday!&quot;</span>
+</pre></div>
+
+
 <p><img alt="Hack FAMILUG" src="http://pp.pymi.vn/images/happybirthday.png"></p>
 <h3>Query element</h3>
 <p>Thay vì dùng HTML tags, có thể dùng CSS class để tìm ra các element, ví dụ sau đây tìm các tin tuyển dụng trên trang <a href="https://news.ycombinator.com/item?id=22225314">HackerNews</a> có chứa từ khóa Python và Remote, rồi hiển thị lên màn hình - có thể xem như crawl dữ liệu ngay trên trình duyệt:</p>

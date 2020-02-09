@@ -20,7 +20,7 @@ DOM là programming interface cho HTML (và XML) documents.&lt;/p&gt;
 &lt;h3&gt;Truy cập &amp;amp; thay đổi DOM trên trình duyệt&lt;/h3&gt;
 &lt;p&gt;Mở một web site ra, rồi bật web console lên, hoặc đọc bài &lt;a href="https://www.familug.org/2017/04/hoc-javascript-1.html"&gt;này&lt;/a&gt; nếu chưa biết cách.&lt;/p&gt;
 &lt;h3&gt;Document, Window &amp;amp; DOM Elements&lt;/h3&gt;
-&lt;p&gt;Mỗi web page là một document, mỗi "cửa sổ" (thời nay là 1 tab trình duyệt), đại diện cho cửa sổ đó. Mỗi document là một tree, với các node gọi là các Element.&lt;/p&gt;
+&lt;p&gt;Mỗi web page là một &lt;code&gt;document&lt;/code&gt;, mỗi "cửa sổ" (thời nay là 1 tab trình duyệt), là một &lt;code&gt;window&lt;/code&gt;, đại diện cho cửa sổ đó. Mỗi document là một tree, với các node gọi là các Element.&lt;/p&gt;
 &lt;p&gt;Gõ vào web console &lt;code&gt;document&lt;/code&gt;, đây chính là DOM của web page đang truy cập, thông qua object này, ta có thể làm đủ trò với những gì đang hiện trên trình duyệt.&lt;/p&gt;
 &lt;h3&gt;Get element&lt;/h3&gt;
 &lt;p&gt;Có vài cách để truy cập element, trong đó kể tới 2 methods:&lt;/p&gt;
@@ -29,8 +29,17 @@ DOM là programming interface cho HTML (và XML) documents.&lt;/p&gt;
 &lt;li&gt;&lt;code&gt;document.querySelectorAll&lt;/code&gt;: lấy cá elements theo &lt;a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors"&gt;CSS selectors&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;code&gt;innerText&lt;/code&gt; là thuộc tính (attribute) của một element, chứa nội dung text của nó. Ví dụ sau sẽ thay đổi tiêu đề của bài viết, đây là cách làm tin giả rồi chụp mành hình, không cần dùng PhotoShop:&lt;/p&gt;
+&lt;p&gt;Vào web page: &lt;a href="https://www.familug.org/2020/02/vagrant.html"&gt;https://www.familug.org/2020/02/vagrant.html&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Trước" src="http://pp.pymi.vn/images/vagrant.png"&gt;&lt;/p&gt;
 &lt;p&gt;Sau khi "hack"&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nx"&gt;titleTag&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementsByTagName&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;h3&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;titleTag&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;innerText&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="nx"&gt;titleTag&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;innerText&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Happy birthday!&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;&lt;img alt="Hack FAMILUG" src="http://pp.pymi.vn/images/happybirthday.png"&gt;&lt;/p&gt;
 &lt;h3&gt;Query element&lt;/h3&gt;
 &lt;p&gt;Thay vì dùng HTML tags, có thể dùng CSS class để tìm ra các element, ví dụ sau đây tìm các tin tuyển dụng trên trang &lt;a href="https://news.ycombinator.com/item?id=22225314"&gt;HackerNews&lt;/a&gt; có chứa từ khóa Python và Remote, rồi hiển thị lên màn hình - có thể xem như crawl dữ liệu ngay trên trình duyệt:&lt;/p&gt;
