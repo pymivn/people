@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+   <title> Crawl dữ liệu bằng JavaScript ngay trên trình duyệt  - The PyMiers</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="robots" content="" />
+  <link rel="stylesheet" type="text/css" href="/theme/css/app.css">
+<link rel="stylesheet" type="text/css" href="http://pp.pymi.vn/theme/css/pygment.css">
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    <meta name="author" content="Pymiers" />
+  <meta name="description" content="" />    <link href="http://pp.pymi.vn/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="The PyMiers Full Atom Feed" />         
+  <meta name="tags" content="JavaScript" />
+  <meta name="tags" content="JS" />
+  <meta name="tags" content="crawl" />
+  <meta name="tags" content="scraping" />
+</head>
+
+<body>
+  <main class="wrapper">
+    <section class="container">
+      <header class='column'>
+        <h1 class='title'><a href="http://pp.pymi.vn/">The PyMiers</a></h1>
+      </header>
+
+      <div class="section">
+        <div class="row navbar">
+          <div class="column nav-item is-active"><a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a></div>
+           <div class="column nav-item "><a href="http://pp.pymi.vn/pages/about/">About</a></div>
+          <div class="column nav-item "><a href="http://pp.pymi.vn/pages/add/">Tạo bài viết</a></div>
+          <div class="column nav-item"><a href="/archives">Archives</a></div>
+        </div>
+      </div>
+    </section>
+
+<section class="container">
+  <header>
+    <h2 class="entry-title">
+      <a href="http://pp.pymi.vn/article/jsdom/" rel="bookmark"
+         title="Permalink to Crawl dữ liệu bằng JavaScript ngay trên trình duyệt">Crawl dữ liệu bằng JavaScript ngay trên trình duyệt</a></h2>  
+  </header>
+  <footer class='center'>
+    <time class="published" datetime="2020-02-09T00:00:00+07:00"> 09/02/2020 </time>
+    <address class="vcard author">By
+                    <a class="url fn" href="http://pp.pymi.vn/author/hvnsweeting/">hvnsweeting</a>
+ in <a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a>
+                </address>     <em>Tags</em>:     <a href="http://pp.pymi.vn/tag/javascript/"><em>JavaScript</em></a>,     <a href="http://pp.pymi.vn/tag/js/"><em>JS</em></a>,     <a href="http://pp.pymi.vn/tag/crawl/"><em>crawl</em></a>,     <a href="http://pp.pymi.vn/tag/scraping/"><em>scraping</em></a>    </footer>
+  <br>
+  <div class="entry-content">
+    <p>Năm 2020, bên cạnh cuộc chiến khốc liệt với virus Novel Corona (nCov), vẫn dai dẳng và mãnh liệt cuộc chiến chống tin giả, tin quá sốc, tràn lan trên các mạng xã hội.</p>
+<p>Trong các loại tin giả, có không ít tin được đưa theo hình thức chụp ảnh màn hình điện thoại, chụp trình duyệt trên máy tính để làm bằng chứng. Ảnh màn hình điện thoại dễ dàng làm giả với một lập trình viên mobile, còn với ảnh trình duyệt, ai cũng làm được, không cần tới trình độ PhotoShop đỉnh cao hay kỹ thuật lập trình chuyên nghiệp cỡ như các Pymiers.</p>
+<p>Bài viết sẽ vạch trần kỹ thuật làm giả này, đồng thời lợi dụng nó để crawl dữ liệu ngay trên trang web, dùng chính trình duyệt mà không cần thêm gì khác như BeautifulSoup4 hay <a href="/article/requests-bs4-requests-html/">requests-html</a>.</p>
+<h2>Web page là gì</h2>
+<p>Web page là trang web, sử dụng HTML để biểu diễn cấu trúc.</p>
+<h2>HTML là gì</h2>
+<p>HTML là một ngôn ngữ markup (đánh dấu), dùng để mô tả cấu trúc một web page. Nó sử dụng các tag (thẻ) để đánh dấu.
+Chuột phải vào màn hình, chọn "View page source" để xem code HTML của web page.</p>
+<p>HTML không phải một ngôn ngữ lập trình (programming language).</p>
+<h3>HTML tag</h3>
+<p>Mỗi bộ phận của web page được đánh dấu sử dụng một cặp thẻ tương ứng, <code>&lt;a ...&gt; &lt;/a&gt;</code> để đánh dấu một web link, <code>&lt;table&gt; ... &lt;/table&gt;</code> để đánh dấu một bảng ...
+Xem đầy đủ các tag tại <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element">đây</a></p>
+<h2>Document Object Model (DOM)</h2>
+<p>Document Object Model (DOM) biểu diễn HTML ở dạng cây (tree structure).
+DOM là programming interface cho HTML (và XML) documents.</p>
+<p><a href="https://en.wikipedia.org/wiki/Document_Object_Model"><img alt="DOM wiki" src="http://pp.pymi.vn/images/220px-DOM-model.svg.png"></a></p>
+<p>Sử dụng cây này có thể dễ dàng truy cập (query) các thành phần của web page, thay đổi chúng (manipulate).</p>
+<p>Mỗi web page là một document.</p>
+<h3>Truy cập &amp; thay đổi DOM trên trình duyệt</h3>
+<p>Mở một web site ra, rồi bật web console lên, hoặc đọc bài <a href="https://www.familug.org/2017/04/hoc-javascript-1.html">này</a> nếu chưa biết cách.</p>
+<h3>Document, Window &amp; DOM Elements</h3>
+<p>Mỗi web page là một document, mỗi "cửa sổ" (thời nay là 1 tab trình duyệt), đại diện cho cửa sổ đó. Mỗi document là một tree, với các node gọi là các Element.</p>
+<p>Gõ vào web console <code>document</code>, đây chính là DOM của web page đang truy cập, thông qua object này, ta có thể làm đủ trò với những gì đang hiện trên trình duyệt.</p>
+<h3>Get element</h3>
+<p>Có vài cách để truy cập element, trong đó kể tới 2 methods:</p>
+<ul>
+<li><code>document.getElementsByTagName</code>: lấy các elements theo HTML tag của chúng</li>
+<li><code>document.querySelectorAll</code>: lấy cá elements theo <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors">CSS selectors</a>.</li>
+</ul>
+<p><code>innerText</code> là thuộc tính (attribute) của một element, chứa nội dung text của nó. Ví dụ sau sẽ thay đổi tiêu đề của bài viết, đây là cách làm tin giả rồi chụp mành hình, không cần dùng PhotoShop:</p>
+<p><img alt="Trước" src="http://pp.pymi.vn/images/vagrant.png"></p>
+<p>Sau khi "hack"</p>
+<p><img alt="Hack FAMILUG" src="http://pp.pymi.vn/images/happybirthday.png"></p>
+<h3>Query element</h3>
+<p>Thay vì dùng HTML tags, có thể dùng CSS class để tìm ra các element, ví dụ sau đây tìm các tin tuyển dụng trên trang <a href="https://news.ycombinator.com/item?id=22225314">HackerNews</a> có chứa từ khóa Python và Remote, rồi hiển thị lên màn hình - có thể xem như crawl dữ liệu ngay trên trình duyệt:</p>
+<div class="highlight"><pre><span></span><span class="nx">allcomms</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">from</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">&quot;.comment-tree .comtr&quot;</span><span class="p">))</span>
+<span class="nx">topcoms</span> <span class="o">=</span> <span class="nx">allcomms</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">e</span> <span class="p">=&gt;</span> <span class="nx">e</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;img[width=&quot;0&quot;]&#39;</span><span class="p">))</span>
+<span class="nx">pys</span> <span class="o">=</span> <span class="nx">topcoms</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">e</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="sr">/\bpython\b/i</span><span class="p">).</span><span class="nx">test</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">innerText</span><span class="p">))</span>
+<span class="nx">pyremotes</span> <span class="o">=</span> <span class="nx">pys</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">i</span> <span class="p">=&gt;</span> <span class="nx">i</span><span class="p">.</span><span class="nx">innerText</span><span class="p">).</span><span class="nx">filter</span><span class="p">(</span><span class="nx">e</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="sr">/\bremote\b/i</span><span class="p">).</span><span class="nx">test</span><span class="p">(</span><span class="nx">e</span><span class="p">))</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">pyremotes</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;\n&quot;</span><span class="p">))</span>
+</pre></div>
+
+
+<p>Đoạn code trên học theo <a href="https://news.ycombinator.com/item?id=22231675">một comment trên HackerNews</a></p>
+<p>Đọc thêm về map/filter tại <a href="https://gist.github.com/hvnsweeting/e26b6367bb0144d4ce3eaa04cfe3b94d">đây</a>.</p>
+<p><img alt="remote python job" src="http://pp.pymi.vn/images/hackernews_py_remote_jobs.png"></p>
+<p><code>/\bpython\b/i</code> là Regex Object, dùng để tìm các đoạn text chứa từ khóa Python, chữ <code>\b</code> để đánh dấu boundary, tức kết quả sẽ không chứa <code>pikapython</code> mà chỉ chứa <code>pika python</code>, <code>i</code> để không phân biệt chữ hoa chữ thường.</p>
+<h2>Kết luận</h2>
+<p>DOM là khái niệm cơ bản về web page, là nền tảng để lập trình JavaScript ở phía client (trên trình duyệt), dù không phải Front-end developer, cũng nên biết dùng DOM, để automate, để "hack".</p>
+<p>Happy new year 2020!</p>
+  </div>
+  <!-- /.entry-content -->
+</section>
+<section class="container">
+  <div class="comments">
+    <h3>Comments</h3>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'pymier';
+      var disqus_identifier = 'article/jsdom/';
+      var disqus_url = 'http://pp.pymi.vn/article/jsdom/';
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//pymier.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the comments.</noscript>
+  </div>
+</section>
+
+    <section class="container footer">
+      <footer>
+        <address>
+        Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+        which takes great advantage of <a href="http://python.org">Python</a>.
+        </address>
+        <address>
+          Học lập trình Python tại <a href="https://pymi.vn/">Pymi.vn</a>
+        </address>
+      </footer>
+    </section>
+  </main>
+
+<script type="text/javascript">
+var images = document.getElementsByTagName("img");
+var i;
+
+for(i = 0; i < images.length; i++) {
+  images[i].className += " centered";
+}
+</script>
+</body>
+
+</html>
