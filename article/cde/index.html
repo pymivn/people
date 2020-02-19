@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+   <title> C thật là đơn giản  - The PyMiers</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="robots" content="" />
+  <link rel="stylesheet" type="text/css" href="/theme/css/app.css">
+<link rel="stylesheet" type="text/css" href="http://pp.pymi.vn/theme/css/pygment.css">
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    <meta name="author" content="Pymiers" />
+  <meta name="description" content="" />    <link href="http://pp.pymi.vn/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="The PyMiers Full Atom Feed" />         
+  <meta name="tags" content="C" />
+  <meta name="tags" content="Python" />
+  <meta name="tags" content="strace" />
+  <meta name="tags" content="syscall" />
+  <meta name="tags" content="UNIX" />
+  <meta name="tags" content="sysadmin" />
+</head>
+
+<body>
+  <main class="wrapper">
+    <section class="container">
+      <header class='column'>
+        <h1 class='title'><a href="http://pp.pymi.vn/">The PyMiers</a></h1>
+      </header>
+
+      <div class="section">
+        <div class="row navbar">
+          <div class="column nav-item is-active"><a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a></div>
+           <div class="column nav-item "><a href="http://pp.pymi.vn/pages/about/">About</a></div>
+          <div class="column nav-item "><a href="http://pp.pymi.vn/pages/add/">Tạo bài viết</a></div>
+          <div class="column nav-item"><a href="/archives">Archives</a></div>
+        </div>
+      </div>
+    </section>
+
+<section class="container">
+  <header>
+    <h2 class="entry-title">
+      <a href="http://pp.pymi.vn/article/cde/" rel="bookmark"
+         title="Permalink to C thật là đơn giản">C thật là đơn giản</a></h2>  
+  </header>
+  <footer class='center'>
+    <time class="published" datetime="2020-02-19T00:00:00+07:00"> 19/02/2020 </time>
+    <address class="vcard author">By
+                    <a class="url fn" href="http://pp.pymi.vn/author/hvnsweeting/">hvnsweeting</a>
+ in <a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a>
+                </address>     <em>Tags</em>:     <a href="http://pp.pymi.vn/tag/c/"><em>C</em></a>,     <a href="http://pp.pymi.vn/tag/python/"><em>Python</em></a>,     <a href="http://pp.pymi.vn/tag/strace/"><em>strace</em></a>,     <a href="http://pp.pymi.vn/tag/syscall/"><em>syscall</em></a>,     <a href="http://pp.pymi.vn/tag/unix/"><em>UNIX</em></a>,     <a href="http://pp.pymi.vn/tag/sysadmin/"><em>sysadmin</em></a>    </footer>
+  <br>
+  <div class="entry-content">
+    <p>Đơn giản, nhanh, chậm, xinh, cao, thấp, giỏi, xịn... đều là những khái niệm
+mang tính chất tương đối. Có cái hơn khi so sánh ở góc độ này, nhưng lại kém
+khi so sánh ở góc độ khác. Trong ngành lập trình, mọi thứ đều là sự đánh đổi
+(trade off),
+không có giải pháp nào thỏa mãn tất cả mọi nhu cầu (silver bullet) - hoặc có
+nhưng chưa ai tìm ra.</p>
+<p>Không cần bàn cãi, ai cũng đồng ý code Python dễ đọc, viết hơn C, hay... đơn
+giản hơn. Nhưng cái đơn giản đó, là đơn giản với con người, với lập trình viên,
+còn với máy tính thì hoàn toàn ngược lại.</p>
+<p>Ta sẽ thử nghiệm chương trình đơn giản nhất trái đất: hello world viết bằng C
+và Python rồi so sánh dùng <code>strace</code> - một công cụ debug "cao cấp" thường
+dùng bởi các SysAdmin.</p>
+<h3>strace</h3>
+<div class="highlight"><pre><span></span>$ whatis strace
+strace <span class="o">(</span><span class="m">1</span><span class="o">)</span>           - trace system calls and signals
+</pre></div>
+
+
+<p>Bài viết thực hiện trên Ubuntu 18.04, <code>cc</code> - C compiler có lẽ là có sẵn.
+Hoặc nếu không có, hãy cài bằng <code>sudo apt-get install -y  build-essential strace</code></p>
+<h3>C Programming language</h3>
+<p>4 dòng code C</p>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&quot;Hello world!&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Compile rồi chạy - yeah, cực đơn giản, không cần gì khác cả, cũng không cần
+làm việc đơn giản này trở thành rắc rôi.</p>
+<div class="highlight"><pre><span></span>$ cc hello.c -o hello  <span class="c1"># compile, sinh ra file hello</span>
+$ ./hello  <span class="c1"># chạy file hello</span>
+Hello world!
+</pre></div>
+
+
+<p>Giờ chạy với <code>strace</code> để xem chương trình siêu đơn giản này gọi những system call
+nào, <code>-C</code> sẽ hiển thị bảng thống kê, <code>-S calls</code> sẽ sắp xếp thống kê này
+theo cột <code>calls</code>, giảm dần.</p>
+<div class="highlight"><pre><span></span>$ strace -CScalls ./hello
+execve<span class="o">(</span><span class="s2">&quot;./hello&quot;</span>, <span class="o">[</span><span class="s2">&quot;./hello&quot;</span><span class="o">]</span>, 0x7fff1e9af718 /* <span class="m">68</span> vars */<span class="o">)</span> <span class="o">=</span> <span class="m">0</span>
+brk<span class="o">(</span>NULL<span class="o">)</span>                               <span class="o">=</span> 0x56174aa4e000
+access<span class="o">(</span><span class="s2">&quot;/etc/ld.so.nohwcap&quot;</span>, F_OK<span class="o">)</span>      <span class="o">=</span> -1 ENOENT <span class="o">(</span>No such file or directory<span class="o">)</span>
+access<span class="o">(</span><span class="s2">&quot;/etc/ld.so.preload&quot;</span>, R_OK<span class="o">)</span>      <span class="o">=</span> -1 ENOENT <span class="o">(</span>No such file or directory<span class="o">)</span>
+openat<span class="o">(</span>AT_FDCWD, <span class="s2">&quot;/etc/ld.so.cache&quot;</span>, O_RDONLY<span class="p">|</span>O_CLOEXEC<span class="o">)</span> <span class="o">=</span> <span class="m">3</span>
+fstat<span class="o">(</span><span class="m">3</span>, <span class="o">{</span><span class="nv">st_mode</span><span class="o">=</span>S_IFREG<span class="p">|</span><span class="m">0644</span>, <span class="nv">st_size</span><span class="o">=</span><span class="m">106420</span>, ...<span class="o">})</span> <span class="o">=</span> <span class="m">0</span>
+mmap<span class="o">(</span>NULL, <span class="m">106420</span>, PROT_READ, MAP_PRIVATE, <span class="m">3</span>, <span class="m">0</span><span class="o">)</span> <span class="o">=</span> 0x7f867f8fc000
+close<span class="o">(</span><span class="m">3</span><span class="o">)</span>                                <span class="o">=</span> <span class="m">0</span>
+access<span class="o">(</span><span class="s2">&quot;/etc/ld.so.nohwcap&quot;</span>, F_OK<span class="o">)</span>      <span class="o">=</span> -1 ENOENT <span class="o">(</span>No such file or directory<span class="o">)</span>
+openat<span class="o">(</span>AT_FDCWD, <span class="s2">&quot;/lib/x86_64-linux-gnu/libc.so.6&quot;</span>, O_RDONLY<span class="p">|</span>O_CLOEXEC<span class="o">)</span> <span class="o">=</span> <span class="m">3</span>
+read<span class="o">(</span><span class="m">3</span>, <span class="s2">&quot;\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0&gt;\0\1\0\0\0\260\34\2\0\0\0\0\0&quot;</span>..., <span class="m">832</span><span class="o">)</span> <span class="o">=</span> <span class="m">832</span>
+fstat<span class="o">(</span><span class="m">3</span>, <span class="o">{</span><span class="nv">st_mode</span><span class="o">=</span>S_IFREG<span class="p">|</span><span class="m">0755</span>, <span class="nv">st_size</span><span class="o">=</span><span class="m">2030544</span>, ...<span class="o">})</span> <span class="o">=</span> <span class="m">0</span>
+mmap<span class="o">(</span>NULL, <span class="m">8192</span>, PROT_READ<span class="p">|</span>PROT_WRITE, MAP_PRIVATE<span class="p">|</span>MAP_ANONYMOUS, -1, <span class="m">0</span><span class="o">)</span> <span class="o">=</span> 0x7f867f8fa000
+mmap<span class="o">(</span>NULL, <span class="m">4131552</span>, PROT_READ<span class="p">|</span>PROT_EXEC, MAP_PRIVATE<span class="p">|</span>MAP_DENYWRITE, <span class="m">3</span>, <span class="m">0</span><span class="o">)</span> <span class="o">=</span> 0x7f867f2fe000
+mprotect<span class="o">(</span>0x7f867f4e5000, <span class="m">2097152</span>, PROT_NONE<span class="o">)</span> <span class="o">=</span> <span class="m">0</span>
+mmap<span class="o">(</span>0x7f867f6e5000, <span class="m">24576</span>, PROT_READ<span class="p">|</span>PROT_WRITE, MAP_PRIVATE<span class="p">|</span>MAP_FIXED<span class="p">|</span>MAP_DENYWRITE, <span class="m">3</span>, 0x1e7000<span class="o">)</span> <span class="o">=</span> 0x7f867f6e5000
+mmap<span class="o">(</span>0x7f867f6eb000, <span class="m">15072</span>, PROT_READ<span class="p">|</span>PROT_WRITE, MAP_PRIVATE<span class="p">|</span>MAP_FIXED<span class="p">|</span>MAP_ANONYMOUS, -1, <span class="m">0</span><span class="o">)</span> <span class="o">=</span> 0x7f867f6eb000
+close<span class="o">(</span><span class="m">3</span><span class="o">)</span>                                <span class="o">=</span> <span class="m">0</span>
+arch_prctl<span class="o">(</span>ARCH_SET_FS, 0x7f867f8fb4c0<span class="o">)</span> <span class="o">=</span> <span class="m">0</span>
+mprotect<span class="o">(</span>0x7f867f6e5000, <span class="m">16384</span>, PROT_READ<span class="o">)</span> <span class="o">=</span> <span class="m">0</span>
+mprotect<span class="o">(</span>0x56174a941000, <span class="m">4096</span>, PROT_READ<span class="o">)</span> <span class="o">=</span> <span class="m">0</span>
+mprotect<span class="o">(</span>0x7f867f916000, <span class="m">4096</span>, PROT_READ<span class="o">)</span> <span class="o">=</span> <span class="m">0</span>
+munmap<span class="o">(</span>0x7f867f8fc000, <span class="m">106420</span><span class="o">)</span>          <span class="o">=</span> <span class="m">0</span>
+fstat<span class="o">(</span><span class="m">1</span>, <span class="o">{</span><span class="nv">st_mode</span><span class="o">=</span>S_IFCHR<span class="p">|</span><span class="m">0620</span>, <span class="nv">st_rdev</span><span class="o">=</span>makedev<span class="o">(</span><span class="m">136</span>, <span class="m">5</span><span class="o">)</span>, ...<span class="o">})</span> <span class="o">=</span> <span class="m">0</span>
+brk<span class="o">(</span>NULL<span class="o">)</span>                               <span class="o">=</span> 0x56174aa4e000
+brk<span class="o">(</span>0x56174aa6f000<span class="o">)</span>                     <span class="o">=</span> 0x56174aa6f000
+write<span class="o">(</span><span class="m">1</span>, <span class="s2">&quot;Hello world!\n&quot;</span>, 13Hello world!
+     <span class="o">)</span>          <span class="o">=</span> <span class="m">13</span>
+exit_group<span class="o">(</span><span class="m">0</span><span class="o">)</span>                           <span class="o">=</span> ?
++++ exited with <span class="m">0</span> +++
+% <span class="nb">time</span>     seconds  usecs/call     calls    errors syscall
+------ ----------- ----------- --------- --------- ----------------
+  <span class="m">0</span>.00    <span class="m">0</span>.000000           <span class="m">0</span>         <span class="m">5</span>           mmap
+  <span class="m">0</span>.00    <span class="m">0</span>.000000           <span class="m">0</span>         <span class="m">4</span>           mprotect
+  <span class="m">0</span>.00    <span class="m">0</span>.000000           <span class="m">0</span>         <span class="m">3</span>           fstat
+  <span class="m">0</span>.00    <span class="m">0</span>.000000           <span class="m">0</span>         <span class="m">3</span>           brk
+  <span class="m">0</span>.00    <span class="m">0</span>.000000           <span class="m">0</span>         <span class="m">3</span>         <span class="m">3</span> access
+  <span class="m">0</span>.00    <span class="m">0</span>.000000           <span class="m">0</span>         <span class="m">2</span>           close
+  <span class="m">0</span>.00    <span class="m">0</span>.000000           <span class="m">0</span>         <span class="m">2</span>           openat
+  <span class="m">0</span>.00    <span class="m">0</span>.000000           <span class="m">0</span>         <span class="m">1</span>           <span class="nb">read</span>
+  <span class="m">0</span>.00    <span class="m">0</span>.000000           <span class="m">0</span>         <span class="m">1</span>           write
+  <span class="m">0</span>.00    <span class="m">0</span>.000000           <span class="m">0</span>         <span class="m">1</span>           munmap
+  <span class="m">0</span>.00    <span class="m">0</span>.000000           <span class="m">0</span>         <span class="m">1</span>           execve
+  <span class="m">0</span>.00    <span class="m">0</span>.000000           <span class="m">0</span>         <span class="m">1</span>           arch_prctl
+------ ----------- ----------- --------- --------- ----------------
+<span class="m">100</span>.00    <span class="m">0</span>.000000                    <span class="m">27</span>         <span class="m">3</span> total
+</pre></div>
+
+
+<p>Có tổng cộng 27 syscall được thực hiện, 3 fail.</p>
+<h3>Python</h3>
+<p>Một chương trình Python 3.6 in ra màn hình dòng chữ <code>hello world</code> tương tự:</p>
+<div class="highlight"><pre><span></span>$ strace -cScalls python3 -c <span class="s1">&#39;print(&quot;Hello world!&quot;)&#39;</span>
+Hello world!
+% <span class="nb">time</span>     seconds  usecs/call     calls    errors syscall
+------ ----------- ----------- --------- --------- ----------------
+  <span class="m">9</span>.22    <span class="m">0</span>.000277           <span class="m">2</span>       <span class="m">166</span>        <span class="m">32</span> stat
+  <span class="m">7</span>.96    <span class="m">0</span>.000239           <span class="m">3</span>        <span class="m">94</span>           fstat
+  <span class="m">7</span>.19    <span class="m">0</span>.000216           <span class="m">3</span>        <span class="m">79</span>           <span class="nb">read</span>
+  <span class="m">7</span>.19    <span class="m">0</span>.000216           <span class="m">3</span>        <span class="m">68</span>           rt_sigaction
+  <span class="m">8</span>.09    <span class="m">0</span>.000243           <span class="m">4</span>        <span class="m">58</span>           close
+ <span class="m">10</span>.25    <span class="m">0</span>.000308           <span class="m">5</span>        <span class="m">57</span>         <span class="m">2</span> openat
+  <span class="m">1</span>.63    <span class="m">0</span>.000049           <span class="m">1</span>        <span class="m">43</span>         <span class="m">6</span> lseek
+ <span class="m">17</span>.78    <span class="m">0</span>.000534          <span class="m">16</span>        <span class="m">34</span>           mmap
+  <span class="m">0</span>.43    <span class="m">0</span>.000013           <span class="m">1</span>        <span class="m">18</span>           getdents
+ <span class="m">12</span>.62    <span class="m">0</span>.000379          <span class="m">24</span>        <span class="m">16</span>           mprotect
+  <span class="m">2</span>.43    <span class="m">0</span>.000073           <span class="m">6</span>        <span class="m">12</span>           brk
+  <span class="m">1</span>.66    <span class="m">0</span>.000050           <span class="m">4</span>        <span class="m">12</span>         <span class="m">2</span> ioctl
+  <span class="m">5</span>.03    <span class="m">0</span>.000151          <span class="m">17</span>         <span class="m">9</span>         <span class="m">9</span> access
+  <span class="m">0</span>.37    <span class="m">0</span>.000011           <span class="m">1</span>         <span class="m">8</span>           lstat
+  <span class="m">2</span>.46    <span class="m">0</span>.000074          <span class="m">19</span>         <span class="m">4</span>           munmap
+  <span class="m">0</span>.30    <span class="m">0</span>.000009           <span class="m">3</span>         <span class="m">3</span>           dup
+  <span class="m">0</span>.27    <span class="m">0</span>.000008           <span class="m">3</span>         <span class="m">3</span>         <span class="m">1</span> readlink
+  <span class="m">0</span>.23    <span class="m">0</span>.000007           <span class="m">2</span>         <span class="m">3</span>           sigaltstack
+  <span class="m">0</span>.63    <span class="m">0</span>.000019          <span class="m">19</span>         <span class="m">1</span>           write
+  <span class="m">0</span>.53    <span class="m">0</span>.000016          <span class="m">16</span>         <span class="m">1</span>           rt_sigprocmask
+  <span class="m">0</span>.00    <span class="m">0</span>.000000           <span class="m">0</span>         <span class="m">1</span>           getpid
+  <span class="m">0</span>.00    <span class="m">0</span>.000000           <span class="m">0</span>         <span class="m">1</span>           execve
+  <span class="m">0</span>.00    <span class="m">0</span>.000000           <span class="m">0</span>         <span class="m">1</span>           fcntl
+  <span class="m">0</span>.00    <span class="m">0</span>.000000           <span class="m">0</span>         <span class="m">1</span>           sysinfo
+  <span class="m">0</span>.00    <span class="m">0</span>.000000           <span class="m">0</span>         <span class="m">1</span>           getuid
+  <span class="m">0</span>.00    <span class="m">0</span>.000000           <span class="m">0</span>         <span class="m">1</span>           getgid
+  <span class="m">0</span>.00    <span class="m">0</span>.000000           <span class="m">0</span>         <span class="m">1</span>           geteuid
+  <span class="m">0</span>.00    <span class="m">0</span>.000000           <span class="m">0</span>         <span class="m">1</span>           getegid
+  <span class="m">0</span>.43    <span class="m">0</span>.000013          <span class="m">13</span>         <span class="m">1</span>           arch_prctl
+  <span class="m">0</span>.80    <span class="m">0</span>.000024          <span class="m">24</span>         <span class="m">1</span>           futex
+  <span class="m">0</span>.60    <span class="m">0</span>.000018          <span class="m">18</span>         <span class="m">1</span>           set_tid_address
+  <span class="m">0</span>.63    <span class="m">0</span>.000019          <span class="m">19</span>         <span class="m">1</span>           set_robust_list
+  <span class="m">0</span>.53    <span class="m">0</span>.000016          <span class="m">16</span>         <span class="m">1</span>           prlimit64
+  <span class="m">0</span>.73    <span class="m">0</span>.000022          <span class="m">22</span>         <span class="m">1</span>           getrandom
+------ ----------- ----------- --------- --------- ----------------
+<span class="m">100</span>.00    <span class="m">0</span>.003004                   <span class="m">703</span>        <span class="m">52</span> total
+</pre></div>
+
+
+<p>Do output quá dài nên ở đây thay đổi câu lệnh, để có đầy đủ output hãy chạy
+với option C hoa:</p>
+<div class="highlight"><pre><span></span>$ strace -CScalls python -c <span class="s1">&#39;print(&quot;hello world&quot;)&#39;</span>
+</pre></div>
+
+
+<p>Chương trình Python đơn giản này thực hiện tới 703 syscall, 52 fail.</p>
+<h3>Kết luận</h3>
+<p>27 với 703 thì cái nào "hơn"?</p>
+<p>27 nhỏ hơn 703, còn 703 thì lớn hơn 27. Lập trình C cũng rất đơn giản, đúng
+không!</p>
+<p>Vậy nên khi lập trình, luôn nhớ rằng mọi thứ đều là tương đôi, đều phải đánh
+đổi. Mấy em gái đã xinh mà code Python lại giỏi, chỉ có 2 khả năng xảy ra:</p>
+<ul>
+<li>1 là thiếu cái gì đó</li>
+<li>2 là học Python ở <a href="https://pymi.vn">PYMI</a> rõ ràng &lt;3.</li>
+</ul>
+<h3>Đọc thêm</h3>
+<ul>
+<li>System call: https://hvnsweeting.github.io/syscall.html</li>
+</ul>
+  </div>
+  <!-- /.entry-content -->
+</section>
+<section class="container">
+  <div class="comments">
+    <h3>Comments</h3>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'pymier';
+      var disqus_identifier = 'article/cde/';
+      var disqus_url = 'http://pp.pymi.vn/article/cde/';
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//pymier.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the comments.</noscript>
+  </div>
+</section>
+
+    <section class="container footer">
+      <footer>
+        <address>
+        Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+        which takes great advantage of <a href="http://python.org">Python</a>.
+        </address>
+        <address>
+          Học lập trình Python tại <a href="https://pymi.vn/">Pymi.vn</a>
+        </address>
+      </footer>
+    </section>
+  </main>
+
+<script type="text/javascript">
+var images = document.getElementsByTagName("img");
+var i;
+
+for(i = 0; i < images.length; i++) {
+  images[i].className += " centered";
+}
+</script>
+</body>
+
+</html>

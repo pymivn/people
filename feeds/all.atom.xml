@@ -1,5 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2020-02-09T00:00:00+07:00</updated><entry><title>Crawl dữ liệu bằng JavaScript ngay trên trình duyệt</title><link href="http://pp.pymi.vn/article/jsdom/" rel="alternate"></link><published>2020-02-09T00:00:00+07:00</published><updated>2020-02-09T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2020-02-09:/article/jsdom/</id><summary type="html">&lt;p&gt;trở thành hacker ngay trên trình duyệt - hay tại sao không nên tin vào ảnh chụp màn hình.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Năm 2020, bên cạnh cuộc chiến khốc liệt với virus Novel Corona (nCov), vẫn dai dẳng và mãnh liệt cuộc chiến chống tin giả, tin quá sốc, tràn lan trên các mạng xã hội.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2020-02-19T00:00:00+07:00</updated><entry><title>C thật là đơn giản</title><link href="http://pp.pymi.vn/article/cde/" rel="alternate"></link><published>2020-02-19T00:00:00+07:00</published><updated>2020-02-19T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2020-02-19:/article/cde/</id><summary type="html">&lt;p&gt;C đơn giản hơn Python?&lt;/p&gt;</summary><content type="html">&lt;p&gt;Đơn giản, nhanh, chậm, xinh, cao, thấp, giỏi, xịn... đều là những khái niệm
+mang tính chất tương đối. Có cái hơn khi so sánh ở góc độ này, nhưng lại kém
+khi so sánh ở góc độ khác. Trong ngành lập trình, mọi thứ đều là sự đánh đổi
+(trade off),
+không có giải pháp nào thỏa mãn tất cả mọi nhu cầu (silver bullet) - hoặc có
+nhưng chưa ai tìm ra.&lt;/p&gt;
+&lt;p&gt;Không cần bàn cãi, ai cũng đồng ý code Python dễ đọc, viết hơn C, hay... đơn
+giản hơn. Nhưng cái đơn giản đó, là đơn giản với con người, với lập trình viên,
+còn với máy tính thì hoàn toàn ngược lại.&lt;/p&gt;
+&lt;p&gt;Ta sẽ thử nghiệm chương trình đơn giản nhất trái đất: hello world viết bằng C
+và Python rồi so sánh dùng &lt;code&gt;strace&lt;/code&gt; - một công cụ debug "cao cấp" thường
+dùng bởi các SysAdmin.&lt;/p&gt;
+&lt;h3&gt;strace&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ whatis strace
+strace &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;           - trace system calls and signals
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Bài viết thực hiện trên Ubuntu 18.04, &lt;code&gt;cc&lt;/code&gt; - C compiler có lẽ là có sẵn.
+Hoặc nếu không có, hãy cài bằng &lt;code&gt;sudo apt-get install -y  build-essential strace&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;C Programming language&lt;/h3&gt;
+&lt;p&gt;4 dòng code C&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;puts&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Hello world!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Compile rồi chạy - yeah, cực đơn giản, không cần gì khác cả, cũng không cần
+làm việc đơn giản này trở thành rắc rôi.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ cc hello.c -o hello  &lt;span class="c1"&gt;# compile, sinh ra file hello&lt;/span&gt;
+$ ./hello  &lt;span class="c1"&gt;# chạy file hello&lt;/span&gt;
+Hello world!
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Giờ chạy với &lt;code&gt;strace&lt;/code&gt; để xem chương trình siêu đơn giản này gọi những system call
+nào, &lt;code&gt;-C&lt;/code&gt; sẽ hiển thị bảng thống kê, &lt;code&gt;-S calls&lt;/code&gt; sẽ sắp xếp thống kê này
+theo cột &lt;code&gt;calls&lt;/code&gt;, giảm dần.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ strace -CScalls ./hello
+execve&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;./hello&amp;quot;&lt;/span&gt;, &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;./hello&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;, 0x7fff1e9af718 /* &lt;span class="m"&gt;68&lt;/span&gt; vars */&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;
+brk&lt;span class="o"&gt;(&lt;/span&gt;NULL&lt;span class="o"&gt;)&lt;/span&gt;                               &lt;span class="o"&gt;=&lt;/span&gt; 0x56174aa4e000
+access&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/etc/ld.so.nohwcap&amp;quot;&lt;/span&gt;, F_OK&lt;span class="o"&gt;)&lt;/span&gt;      &lt;span class="o"&gt;=&lt;/span&gt; -1 ENOENT &lt;span class="o"&gt;(&lt;/span&gt;No such file or directory&lt;span class="o"&gt;)&lt;/span&gt;
+access&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/etc/ld.so.preload&amp;quot;&lt;/span&gt;, R_OK&lt;span class="o"&gt;)&lt;/span&gt;      &lt;span class="o"&gt;=&lt;/span&gt; -1 ENOENT &lt;span class="o"&gt;(&lt;/span&gt;No such file or directory&lt;span class="o"&gt;)&lt;/span&gt;
+openat&lt;span class="o"&gt;(&lt;/span&gt;AT_FDCWD, &lt;span class="s2"&gt;&amp;quot;/etc/ld.so.cache&amp;quot;&lt;/span&gt;, O_RDONLY&lt;span class="p"&gt;|&lt;/span&gt;O_CLOEXEC&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;3&lt;/span&gt;
+fstat&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;, &lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="nv"&gt;st_mode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;S_IFREG&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="m"&gt;0644&lt;/span&gt;, &lt;span class="nv"&gt;st_size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;106420&lt;/span&gt;, ...&lt;span class="o"&gt;})&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;
+mmap&lt;span class="o"&gt;(&lt;/span&gt;NULL, &lt;span class="m"&gt;106420&lt;/span&gt;, PROT_READ, MAP_PRIVATE, &lt;span class="m"&gt;3&lt;/span&gt;, &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; 0x7f867f8fc000
+close&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;                                &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;
+access&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/etc/ld.so.nohwcap&amp;quot;&lt;/span&gt;, F_OK&lt;span class="o"&gt;)&lt;/span&gt;      &lt;span class="o"&gt;=&lt;/span&gt; -1 ENOENT &lt;span class="o"&gt;(&lt;/span&gt;No such file or directory&lt;span class="o"&gt;)&lt;/span&gt;
+openat&lt;span class="o"&gt;(&lt;/span&gt;AT_FDCWD, &lt;span class="s2"&gt;&amp;quot;/lib/x86_64-linux-gnu/libc.so.6&amp;quot;&lt;/span&gt;, O_RDONLY&lt;span class="p"&gt;|&lt;/span&gt;O_CLOEXEC&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;3&lt;/span&gt;
+read&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;, &lt;span class="s2"&gt;&amp;quot;\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0&amp;gt;\0\1\0\0\0\260\34\2\0\0\0\0\0&amp;quot;&lt;/span&gt;..., &lt;span class="m"&gt;832&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;832&lt;/span&gt;
+fstat&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;, &lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="nv"&gt;st_mode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;S_IFREG&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="m"&gt;0755&lt;/span&gt;, &lt;span class="nv"&gt;st_size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;2030544&lt;/span&gt;, ...&lt;span class="o"&gt;})&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;
+mmap&lt;span class="o"&gt;(&lt;/span&gt;NULL, &lt;span class="m"&gt;8192&lt;/span&gt;, PROT_READ&lt;span class="p"&gt;|&lt;/span&gt;PROT_WRITE, MAP_PRIVATE&lt;span class="p"&gt;|&lt;/span&gt;MAP_ANONYMOUS, -1, &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; 0x7f867f8fa000
+mmap&lt;span class="o"&gt;(&lt;/span&gt;NULL, &lt;span class="m"&gt;4131552&lt;/span&gt;, PROT_READ&lt;span class="p"&gt;|&lt;/span&gt;PROT_EXEC, MAP_PRIVATE&lt;span class="p"&gt;|&lt;/span&gt;MAP_DENYWRITE, &lt;span class="m"&gt;3&lt;/span&gt;, &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; 0x7f867f2fe000
+mprotect&lt;span class="o"&gt;(&lt;/span&gt;0x7f867f4e5000, &lt;span class="m"&gt;2097152&lt;/span&gt;, PROT_NONE&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;
+mmap&lt;span class="o"&gt;(&lt;/span&gt;0x7f867f6e5000, &lt;span class="m"&gt;24576&lt;/span&gt;, PROT_READ&lt;span class="p"&gt;|&lt;/span&gt;PROT_WRITE, MAP_PRIVATE&lt;span class="p"&gt;|&lt;/span&gt;MAP_FIXED&lt;span class="p"&gt;|&lt;/span&gt;MAP_DENYWRITE, &lt;span class="m"&gt;3&lt;/span&gt;, 0x1e7000&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; 0x7f867f6e5000
+mmap&lt;span class="o"&gt;(&lt;/span&gt;0x7f867f6eb000, &lt;span class="m"&gt;15072&lt;/span&gt;, PROT_READ&lt;span class="p"&gt;|&lt;/span&gt;PROT_WRITE, MAP_PRIVATE&lt;span class="p"&gt;|&lt;/span&gt;MAP_FIXED&lt;span class="p"&gt;|&lt;/span&gt;MAP_ANONYMOUS, -1, &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; 0x7f867f6eb000
+close&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;                                &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;
+arch_prctl&lt;span class="o"&gt;(&lt;/span&gt;ARCH_SET_FS, 0x7f867f8fb4c0&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;
+mprotect&lt;span class="o"&gt;(&lt;/span&gt;0x7f867f6e5000, &lt;span class="m"&gt;16384&lt;/span&gt;, PROT_READ&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;
+mprotect&lt;span class="o"&gt;(&lt;/span&gt;0x56174a941000, &lt;span class="m"&gt;4096&lt;/span&gt;, PROT_READ&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;
+mprotect&lt;span class="o"&gt;(&lt;/span&gt;0x7f867f916000, &lt;span class="m"&gt;4096&lt;/span&gt;, PROT_READ&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;
+munmap&lt;span class="o"&gt;(&lt;/span&gt;0x7f867f8fc000, &lt;span class="m"&gt;106420&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;          &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;
+fstat&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;, &lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="nv"&gt;st_mode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;S_IFCHR&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="m"&gt;0620&lt;/span&gt;, &lt;span class="nv"&gt;st_rdev&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;makedev&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;136&lt;/span&gt;, &lt;span class="m"&gt;5&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;, ...&lt;span class="o"&gt;})&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;
+brk&lt;span class="o"&gt;(&lt;/span&gt;NULL&lt;span class="o"&gt;)&lt;/span&gt;                               &lt;span class="o"&gt;=&lt;/span&gt; 0x56174aa4e000
+brk&lt;span class="o"&gt;(&lt;/span&gt;0x56174aa6f000&lt;span class="o"&gt;)&lt;/span&gt;                     &lt;span class="o"&gt;=&lt;/span&gt; 0x56174aa6f000
+write&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;, &lt;span class="s2"&gt;&amp;quot;Hello world!\n&amp;quot;&lt;/span&gt;, 13Hello world!
+     &lt;span class="o"&gt;)&lt;/span&gt;          &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;13&lt;/span&gt;
+exit_group&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;                           &lt;span class="o"&gt;=&lt;/span&gt; ?
++++ exited with &lt;span class="m"&gt;0&lt;/span&gt; +++
+% &lt;span class="nb"&gt;time&lt;/span&gt;     seconds  usecs/call     calls    errors syscall
+------ ----------- ----------- --------- --------- ----------------
+  &lt;span class="m"&gt;0&lt;/span&gt;.00    &lt;span class="m"&gt;0&lt;/span&gt;.000000           &lt;span class="m"&gt;0&lt;/span&gt;         &lt;span class="m"&gt;5&lt;/span&gt;           mmap
+  &lt;span class="m"&gt;0&lt;/span&gt;.00    &lt;span class="m"&gt;0&lt;/span&gt;.000000           &lt;span class="m"&gt;0&lt;/span&gt;         &lt;span class="m"&gt;4&lt;/span&gt;           mprotect
+  &lt;span class="m"&gt;0&lt;/span&gt;.00    &lt;span class="m"&gt;0&lt;/span&gt;.000000           &lt;span class="m"&gt;0&lt;/span&gt;         &lt;span class="m"&gt;3&lt;/span&gt;           fstat
+  &lt;span class="m"&gt;0&lt;/span&gt;.00    &lt;span class="m"&gt;0&lt;/span&gt;.000000           &lt;span class="m"&gt;0&lt;/span&gt;         &lt;span class="m"&gt;3&lt;/span&gt;           brk
+  &lt;span class="m"&gt;0&lt;/span&gt;.00    &lt;span class="m"&gt;0&lt;/span&gt;.000000           &lt;span class="m"&gt;0&lt;/span&gt;         &lt;span class="m"&gt;3&lt;/span&gt;         &lt;span class="m"&gt;3&lt;/span&gt; access
+  &lt;span class="m"&gt;0&lt;/span&gt;.00    &lt;span class="m"&gt;0&lt;/span&gt;.000000           &lt;span class="m"&gt;0&lt;/span&gt;         &lt;span class="m"&gt;2&lt;/span&gt;           close
+  &lt;span class="m"&gt;0&lt;/span&gt;.00    &lt;span class="m"&gt;0&lt;/span&gt;.000000           &lt;span class="m"&gt;0&lt;/span&gt;         &lt;span class="m"&gt;2&lt;/span&gt;           openat
+  &lt;span class="m"&gt;0&lt;/span&gt;.00    &lt;span class="m"&gt;0&lt;/span&gt;.000000           &lt;span class="m"&gt;0&lt;/span&gt;         &lt;span class="m"&gt;1&lt;/span&gt;           &lt;span class="nb"&gt;read&lt;/span&gt;
+  &lt;span class="m"&gt;0&lt;/span&gt;.00    &lt;span class="m"&gt;0&lt;/span&gt;.000000           &lt;span class="m"&gt;0&lt;/span&gt;         &lt;span class="m"&gt;1&lt;/span&gt;           write
+  &lt;span class="m"&gt;0&lt;/span&gt;.00    &lt;span class="m"&gt;0&lt;/span&gt;.000000           &lt;span class="m"&gt;0&lt;/span&gt;         &lt;span class="m"&gt;1&lt;/span&gt;           munmap
+  &lt;span class="m"&gt;0&lt;/span&gt;.00    &lt;span class="m"&gt;0&lt;/span&gt;.000000           &lt;span class="m"&gt;0&lt;/span&gt;         &lt;span class="m"&gt;1&lt;/span&gt;           execve
+  &lt;span class="m"&gt;0&lt;/span&gt;.00    &lt;span class="m"&gt;0&lt;/span&gt;.000000           &lt;span class="m"&gt;0&lt;/span&gt;         &lt;span class="m"&gt;1&lt;/span&gt;           arch_prctl
+------ ----------- ----------- --------- --------- ----------------
+&lt;span class="m"&gt;100&lt;/span&gt;.00    &lt;span class="m"&gt;0&lt;/span&gt;.000000                    &lt;span class="m"&gt;27&lt;/span&gt;         &lt;span class="m"&gt;3&lt;/span&gt; total
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Có tổng cộng 27 syscall được thực hiện, 3 fail.&lt;/p&gt;
+&lt;h3&gt;Python&lt;/h3&gt;
+&lt;p&gt;Một chương trình Python 3.6 in ra màn hình dòng chữ &lt;code&gt;hello world&lt;/code&gt; tương tự:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ strace -cScalls python3 -c &lt;span class="s1"&gt;&amp;#39;print(&amp;quot;Hello world!&amp;quot;)&amp;#39;&lt;/span&gt;
+Hello world!
+% &lt;span class="nb"&gt;time&lt;/span&gt;     seconds  usecs/call     calls    errors syscall
+------ ----------- ----------- --------- --------- ----------------
+  &lt;span class="m"&gt;9&lt;/span&gt;.22    &lt;span class="m"&gt;0&lt;/span&gt;.000277           &lt;span class="m"&gt;2&lt;/span&gt;       &lt;span class="m"&gt;166&lt;/span&gt;        &lt;span class="m"&gt;32&lt;/span&gt; stat
+  &lt;span class="m"&gt;7&lt;/span&gt;.96    &lt;span class="m"&gt;0&lt;/span&gt;.000239           &lt;span class="m"&gt;3&lt;/span&gt;        &lt;span class="m"&gt;94&lt;/span&gt;           fstat
+  &lt;span class="m"&gt;7&lt;/span&gt;.19    &lt;span class="m"&gt;0&lt;/span&gt;.000216           &lt;span class="m"&gt;3&lt;/span&gt;        &lt;span class="m"&gt;79&lt;/span&gt;           &lt;span class="nb"&gt;read&lt;/span&gt;
+  &lt;span class="m"&gt;7&lt;/span&gt;.19    &lt;span class="m"&gt;0&lt;/span&gt;.000216           &lt;span class="m"&gt;3&lt;/span&gt;        &lt;span class="m"&gt;68&lt;/span&gt;           rt_sigaction
+  &lt;span class="m"&gt;8&lt;/span&gt;.09    &lt;span class="m"&gt;0&lt;/span&gt;.000243           &lt;span class="m"&gt;4&lt;/span&gt;        &lt;span class="m"&gt;58&lt;/span&gt;           close
+ &lt;span class="m"&gt;10&lt;/span&gt;.25    &lt;span class="m"&gt;0&lt;/span&gt;.000308           &lt;span class="m"&gt;5&lt;/span&gt;        &lt;span class="m"&gt;57&lt;/span&gt;         &lt;span class="m"&gt;2&lt;/span&gt; openat
+  &lt;span class="m"&gt;1&lt;/span&gt;.63    &lt;span class="m"&gt;0&lt;/span&gt;.000049           &lt;span class="m"&gt;1&lt;/span&gt;        &lt;span class="m"&gt;43&lt;/span&gt;         &lt;span class="m"&gt;6&lt;/span&gt; lseek
+ &lt;span class="m"&gt;17&lt;/span&gt;.78    &lt;span class="m"&gt;0&lt;/span&gt;.000534          &lt;span class="m"&gt;16&lt;/span&gt;        &lt;span class="m"&gt;34&lt;/span&gt;           mmap
+  &lt;span class="m"&gt;0&lt;/span&gt;.43    &lt;span class="m"&gt;0&lt;/span&gt;.000013           &lt;span class="m"&gt;1&lt;/span&gt;        &lt;span class="m"&gt;18&lt;/span&gt;           getdents
+ &lt;span class="m"&gt;12&lt;/span&gt;.62    &lt;span class="m"&gt;0&lt;/span&gt;.000379          &lt;span class="m"&gt;24&lt;/span&gt;        &lt;span class="m"&gt;16&lt;/span&gt;           mprotect
+  &lt;span class="m"&gt;2&lt;/span&gt;.43    &lt;span class="m"&gt;0&lt;/span&gt;.000073           &lt;span class="m"&gt;6&lt;/span&gt;        &lt;span class="m"&gt;12&lt;/span&gt;           brk
+  &lt;span class="m"&gt;1&lt;/span&gt;.66    &lt;span class="m"&gt;0&lt;/span&gt;.000050           &lt;span class="m"&gt;4&lt;/span&gt;        &lt;span class="m"&gt;12&lt;/span&gt;         &lt;span class="m"&gt;2&lt;/span&gt; ioctl
+  &lt;span class="m"&gt;5&lt;/span&gt;.03    &lt;span class="m"&gt;0&lt;/span&gt;.000151          &lt;span class="m"&gt;17&lt;/span&gt;         &lt;span class="m"&gt;9&lt;/span&gt;         &lt;span class="m"&gt;9&lt;/span&gt; access
+  &lt;span class="m"&gt;0&lt;/span&gt;.37    &lt;span class="m"&gt;0&lt;/span&gt;.000011           &lt;span class="m"&gt;1&lt;/span&gt;         &lt;span class="m"&gt;8&lt;/span&gt;           lstat
+  &lt;span class="m"&gt;2&lt;/span&gt;.46    &lt;span class="m"&gt;0&lt;/span&gt;.000074          &lt;span class="m"&gt;19&lt;/span&gt;         &lt;span class="m"&gt;4&lt;/span&gt;           munmap
+  &lt;span class="m"&gt;0&lt;/span&gt;.30    &lt;span class="m"&gt;0&lt;/span&gt;.000009           &lt;span class="m"&gt;3&lt;/span&gt;         &lt;span class="m"&gt;3&lt;/span&gt;           dup
+  &lt;span class="m"&gt;0&lt;/span&gt;.27    &lt;span class="m"&gt;0&lt;/span&gt;.000008           &lt;span class="m"&gt;3&lt;/span&gt;         &lt;span class="m"&gt;3&lt;/span&gt;         &lt;span class="m"&gt;1&lt;/span&gt; readlink
+  &lt;span class="m"&gt;0&lt;/span&gt;.23    &lt;span class="m"&gt;0&lt;/span&gt;.000007           &lt;span class="m"&gt;2&lt;/span&gt;         &lt;span class="m"&gt;3&lt;/span&gt;           sigaltstack
+  &lt;span class="m"&gt;0&lt;/span&gt;.63    &lt;span class="m"&gt;0&lt;/span&gt;.000019          &lt;span class="m"&gt;19&lt;/span&gt;         &lt;span class="m"&gt;1&lt;/span&gt;           write
+  &lt;span class="m"&gt;0&lt;/span&gt;.53    &lt;span class="m"&gt;0&lt;/span&gt;.000016          &lt;span class="m"&gt;16&lt;/span&gt;         &lt;span class="m"&gt;1&lt;/span&gt;           rt_sigprocmask
+  &lt;span class="m"&gt;0&lt;/span&gt;.00    &lt;span class="m"&gt;0&lt;/span&gt;.000000           &lt;span class="m"&gt;0&lt;/span&gt;         &lt;span class="m"&gt;1&lt;/span&gt;           getpid
+  &lt;span class="m"&gt;0&lt;/span&gt;.00    &lt;span class="m"&gt;0&lt;/span&gt;.000000           &lt;span class="m"&gt;0&lt;/span&gt;         &lt;span class="m"&gt;1&lt;/span&gt;           execve
+  &lt;span class="m"&gt;0&lt;/span&gt;.00    &lt;span class="m"&gt;0&lt;/span&gt;.000000           &lt;span class="m"&gt;0&lt;/span&gt;         &lt;span class="m"&gt;1&lt;/span&gt;           fcntl
+  &lt;span class="m"&gt;0&lt;/span&gt;.00    &lt;span class="m"&gt;0&lt;/span&gt;.000000           &lt;span class="m"&gt;0&lt;/span&gt;         &lt;span class="m"&gt;1&lt;/span&gt;           sysinfo
+  &lt;span class="m"&gt;0&lt;/span&gt;.00    &lt;span class="m"&gt;0&lt;/span&gt;.000000           &lt;span class="m"&gt;0&lt;/span&gt;         &lt;span class="m"&gt;1&lt;/span&gt;           getuid
+  &lt;span class="m"&gt;0&lt;/span&gt;.00    &lt;span class="m"&gt;0&lt;/span&gt;.000000           &lt;span class="m"&gt;0&lt;/span&gt;         &lt;span class="m"&gt;1&lt;/span&gt;           getgid
+  &lt;span class="m"&gt;0&lt;/span&gt;.00    &lt;span class="m"&gt;0&lt;/span&gt;.000000           &lt;span class="m"&gt;0&lt;/span&gt;         &lt;span class="m"&gt;1&lt;/span&gt;           geteuid
+  &lt;span class="m"&gt;0&lt;/span&gt;.00    &lt;span class="m"&gt;0&lt;/span&gt;.000000           &lt;span class="m"&gt;0&lt;/span&gt;         &lt;span class="m"&gt;1&lt;/span&gt;           getegid
+  &lt;span class="m"&gt;0&lt;/span&gt;.43    &lt;span class="m"&gt;0&lt;/span&gt;.000013          &lt;span class="m"&gt;13&lt;/span&gt;         &lt;span class="m"&gt;1&lt;/span&gt;           arch_prctl
+  &lt;span class="m"&gt;0&lt;/span&gt;.80    &lt;span class="m"&gt;0&lt;/span&gt;.000024          &lt;span class="m"&gt;24&lt;/span&gt;         &lt;span class="m"&gt;1&lt;/span&gt;           futex
+  &lt;span class="m"&gt;0&lt;/span&gt;.60    &lt;span class="m"&gt;0&lt;/span&gt;.000018          &lt;span class="m"&gt;18&lt;/span&gt;         &lt;span class="m"&gt;1&lt;/span&gt;           set_tid_address
+  &lt;span class="m"&gt;0&lt;/span&gt;.63    &lt;span class="m"&gt;0&lt;/span&gt;.000019          &lt;span class="m"&gt;19&lt;/span&gt;         &lt;span class="m"&gt;1&lt;/span&gt;           set_robust_list
+  &lt;span class="m"&gt;0&lt;/span&gt;.53    &lt;span class="m"&gt;0&lt;/span&gt;.000016          &lt;span class="m"&gt;16&lt;/span&gt;         &lt;span class="m"&gt;1&lt;/span&gt;           prlimit64
+  &lt;span class="m"&gt;0&lt;/span&gt;.73    &lt;span class="m"&gt;0&lt;/span&gt;.000022          &lt;span class="m"&gt;22&lt;/span&gt;         &lt;span class="m"&gt;1&lt;/span&gt;           getrandom
+------ ----------- ----------- --------- --------- ----------------
+&lt;span class="m"&gt;100&lt;/span&gt;.00    &lt;span class="m"&gt;0&lt;/span&gt;.003004                   &lt;span class="m"&gt;703&lt;/span&gt;        &lt;span class="m"&gt;52&lt;/span&gt; total
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Do output quá dài nên ở đây thay đổi câu lệnh, để có đầy đủ output hãy chạy
+với option C hoa:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ strace -CScalls python -c &lt;span class="s1"&gt;&amp;#39;print(&amp;quot;hello world&amp;quot;)&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Chương trình Python đơn giản này thực hiện tới 703 syscall, 52 fail.&lt;/p&gt;
+&lt;h3&gt;Kết luận&lt;/h3&gt;
+&lt;p&gt;27 với 703 thì cái nào "hơn"?&lt;/p&gt;
+&lt;p&gt;27 nhỏ hơn 703, còn 703 thì lớn hơn 27. Lập trình C cũng rất đơn giản, đúng
+không!&lt;/p&gt;
+&lt;p&gt;Vậy nên khi lập trình, luôn nhớ rằng mọi thứ đều là tương đôi, đều phải đánh
+đổi. Mấy em gái đã xinh mà code Python lại giỏi, chỉ có 2 khả năng xảy ra:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;1 là thiếu cái gì đó&lt;/li&gt;
+&lt;li&gt;2 là học Python ở &lt;a href="https://pymi.vn"&gt;PYMI&lt;/a&gt; rõ ràng &amp;lt;3.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Đọc thêm&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;System call: https://hvnsweeting.github.io/syscall.html&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Trang chủ"></category><category term="C"></category><category term="Python"></category><category term="strace"></category><category term="syscall"></category><category term="UNIX"></category><category term="sysadmin"></category></entry><entry><title>Crawl dữ liệu bằng JavaScript ngay trên trình duyệt</title><link href="http://pp.pymi.vn/article/jsdom/" rel="alternate"></link><published>2020-02-09T00:00:00+07:00</published><updated>2020-02-09T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2020-02-09:/article/jsdom/</id><summary type="html">&lt;p&gt;trở thành hacker ngay trên trình duyệt - hay tại sao không nên tin vào ảnh chụp màn hình.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Năm 2020, bên cạnh cuộc chiến khốc liệt với virus Novel Corona (nCov), vẫn dai dẳng và mãnh liệt cuộc chiến chống tin giả, tin quá sốc, tràn lan trên các mạng xã hội.&lt;/p&gt;
 &lt;p&gt;Trong các loại tin giả, có không ít tin được đưa theo hình thức chụp ảnh màn hình điện thoại, chụp trình duyệt trên máy tính để làm bằng chứng. Ảnh màn hình điện thoại dễ dàng làm giả với một lập trình viên mobile, còn với ảnh trình duyệt, ai cũng làm được, không cần tới trình độ PhotoShop đỉnh cao hay kỹ thuật lập trình chuyên nghiệp cỡ như các Pymiers.&lt;/p&gt;
 &lt;p&gt;Bài viết sẽ vạch trần kỹ thuật làm giả này, đồng thời lợi dụng nó để crawl dữ liệu ngay trên trang web, dùng chính trình duyệt mà không cần thêm gì khác như BeautifulSoup4 hay &lt;a href="/article/requests-bs4-requests-html/"&gt;requests-html&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;Web page là gì&lt;/h2&gt;
