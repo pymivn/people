@@ -60,6 +60,7 @@ Sau đây ta viết một GUI app có hiển thị tiêu đề (Label), có mộ
 Bài viết sử dụng thư viện `requests` (cài bằng `pip install requests`), nếu chưa biết dùng [pip](http://pymi.vn/blog/virtualenv/) hay không cài được, hãy xem ví dụ tương tự mà không kết nối internet tại [đây](https://docs.python.org/3/library/tkinter.html#a-simple-hello-world-program).
 
 ```python
+# on Ubuntu, requires install: `sudo apt-get install -y python3-tk`
 import tkinter as tk
 import requests
 
@@ -78,29 +79,29 @@ class Application(tk.Frame):
         self.entrythingy.pack()
 
         self.contents = tk.StringVar()
-        self.entrythingy['textvariable'] = self.contents
-        self.entrythingy.bind('<Key-Return>', self.check_site)
+        self.entrythingy["textvariable"] = self.contents
+        self.entrythingy.bind("<Key-Return>", self.check_site)
 
         self.hi_there = tk.Button(self)
-        self.hi_there['text'] = 'Check site'
-        self.hi_there['command'] = self.check_site
+        self.hi_there["text"] = "Check web site up/down. Enter URL:"
+        self.hi_there["command"] = self.check_site
         self.hi_there.pack()
 
-        self.quit = tk.Button(self, text='QUIT', command=root.destroy)
+        self.quit = tk.Button(self, text="QUIT", command=root.destroy)
         self.quit.pack()
 
     def check_site(self, event=None):
-        url = self.contents.get().strip() or 'https://pymi.vn'
-        if not url.startswith('http'):
-            url = 'http://{}'.format(url)
+        url = self.contents.get().strip() or "https://pymi.vn"
+        if not url.startswith("http"):
+            url = "http://{}".format(url)
 
-        resp = requests.get(url)
+        resp = requests.head(url, timeout=3)
         print("{} response: {}".format(url, resp.status_code))
 
 
 root = tk.Tk()
 app = Application(master=root)
-app.master.title('My checker app')
+app.master.title("My checker app")
 app.master.minsize(300, 200)
 app.mainloop()
 ```
