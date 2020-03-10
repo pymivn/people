@@ -231,7 +231,8 @@ là chuyện không thể trong các ngôn ngữ static typing. Cách giải quy
 nhất là đổi tên biến.
 
 #### Ví dụ 3 - các object phức tạp, thư viện bên ngoài
-Với các lập trình viên Python, type là một thứ lạ, vậy nên không phải dẽ gì ngồi đọc ngay ra kiểu của `resp` sau đây là gì mà gõ vào:
+Với các lập trình viên Python, type là một thứ lạ, nên không phải dẽ gì ngồi
+đọc ngay ra kiểu của `resp` sau đây là gì mà gõ vào:
 
 ```python
 from typing import Any
