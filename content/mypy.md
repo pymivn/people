@@ -8,8 +8,8 @@ Summary: Là bạn hay là bè? là str hay int? Thêm type cho Python code mà 
 
 Vài ba năm gần đây, làng Vũ Trụ rộn lên trào lưu thêm "type" vào các ngôn ngữ lập trình dynamic typing.
 
-- PHP: https://www.php.net/manual/en/functions.arguments.php#functions.arguments.type-declaration
-- JavaScript: https://www.typescriptlang.org/
+- [PHP](https://www.php.net/manual/en/functions.arguments.php#functions.arguments.type-declaration)
+- [JavaScript|TypeScript](https://www.typescriptlang.org/)
 
 Python đã già nhưng vẫn đú, cũng không bỏ lỡ cuộc đu trend này.
 Kết quả là ngày hôm nay, bạn đã có thể thêm type vào code Python -
@@ -316,9 +316,9 @@ Sau khi Python chính thức thêm type notation, không có nghĩa là các cor
 thêm type. Thay vào đó, họ tạo ra các stub file.
 stub file là file chứa type annotation của các function trong library. Nó tương tự header file trong C/C++.
 
-Ví dụ itertools: https://github.com/python/typeshed/blob/master/stdlib/3/itertools.pyi
+Ví dụ [itertools](https://github.com/python/typeshed/blob/master/stdlib/3/itertools.pyi)
 
-Các stub file của Python standard lib được gom lại tại https://github.com/python/typeshed.
+Các stub file của Python standard lib được gom lại tại [python/typeshed](https://github.com/python/typeshed).
 
 Các thư viện bên ngoài thường ít khi có sẵn stub file,
 Ví dụ như `boto3` - thư viện cực kỳ phổ biến - và chính thức để làm việc với
@@ -330,7 +330,7 @@ $ mypy --ignore-missing-import .
 ```
 
 hay tự tạo stub như [htlcnn](https://github.com/htlcnn/autocad_objectarx_python_stubs).
-Xem hướng dẫn tự tạo stub file tại đây: https://github.com/python/mypy/wiki/Creating-Stubs-For-Python-Modules
+Xem hướng dẫn tự tạo stub file tại [mypy wiki](https://github.com/python/mypy/wiki/Creating-Stubs-For-Python-Modules)
 
 ### Những vấn đề type giúp giải quyết
 - Kiểm tra kiểu, đảm bảo function trả về thống nhất một kiểu, nhận được đúng
@@ -345,7 +345,7 @@ chênh lệch trình độ giữa các lập trình viên. Bạn nên tìm cách
 kinh nghiệm, luyện tập cùng các đồng nghiệp thì hơn.
 
 ### Hành động của chúng ta
-THêm ngay dòng sau vào Makefile, hay hệ thống CI của bạn, ngay sau pep8, flake8 hay pylint:
+Thêm ngay dòng sau vào Makefile, hay hệ thống CI của bạn, ngay sau pep8, flake8 hay pylint:
 
 ```
 mypy --ignore-missing-import .
