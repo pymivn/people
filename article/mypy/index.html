@@ -49,8 +49,8 @@
   <div class="entry-content">
     <p>Vài ba năm gần đây, làng Vũ Trụ rộn lên trào lưu thêm "type" vào các ngôn ngữ lập trình dynamic typing.</p>
 <ul>
-<li>PHP: https://www.php.net/manual/en/functions.arguments.php#functions.arguments.type-declaration</li>
-<li>JavaScript: https://www.typescriptlang.org/</li>
+<li><a href="https://www.php.net/manual/en/functions.arguments.php#functions.arguments.type-declaration">PHP</a></li>
+<li><a href="https://www.typescriptlang.org/">JavaScript|TypeScript</a></li>
 </ul>
 <p>Python đã già nhưng vẫn đú, cũng không bỏ lỡ cuộc đu trend này.
 Kết quả là ngày hôm nay, bạn đã có thể thêm type vào code Python -
@@ -320,8 +320,8 @@ mypy_simple.py:1: note: (Stub files are from https://github.com/python/typeshed)
 <p>Sau khi Python chính thức thêm type notation, không có nghĩa là các core developer sẽ đi sửa hàng loạt các file thư viện đã chạy ổn định vài chục năm để
 thêm type. Thay vào đó, họ tạo ra các stub file.
 stub file là file chứa type annotation của các function trong library. Nó tương tự header file trong C/C++.</p>
-<p>Ví dụ itertools: https://github.com/python/typeshed/blob/master/stdlib/3/itertools.pyi</p>
-<p>Các stub file của Python standard lib được gom lại tại https://github.com/python/typeshed.</p>
+<p>Ví dụ <a href="https://github.com/python/typeshed/blob/master/stdlib/3/itertools.pyi">itertools</a></p>
+<p>Các stub file của Python standard lib được gom lại tại <a href="https://github.com/python/typeshed">python/typeshed</a>.</p>
 <p>Các thư viện bên ngoài thường ít khi có sẵn stub file,
 Ví dụ như <code>boto3</code> - thư viện cực kỳ phổ biến - và chính thức để làm việc với
 API của AWS, tới nay vẫn chưa có stub file chính thức từ AWS.
@@ -331,7 +331,7 @@ Nên để đơn giản, thay vì phải chiến đấu với type, ta có thể
 
 
 <p>hay tự tạo stub như <a href="https://github.com/htlcnn/autocad_objectarx_python_stubs">htlcnn</a>.
-Xem hướng dẫn tự tạo stub file tại đây: https://github.com/python/mypy/wiki/Creating-Stubs-For-Python-Modules</p>
+Xem hướng dẫn tự tạo stub file tại <a href="https://github.com/python/mypy/wiki/Creating-Stubs-For-Python-Modules">mypy wiki</a></p>
 <h3>Những vấn đề type giúp giải quyết</h3>
 <ul>
 <li>Kiểm tra kiểu, đảm bảo function trả về thống nhất một kiểu, nhận được đúng
@@ -347,7 +347,7 @@ chênh lệch trình độ giữa các lập trình viên. Bạn nên tìm cách
 kinh nghiệm, luyện tập cùng các đồng nghiệp thì hơn.</li>
 </ul>
 <h3>Hành động của chúng ta</h3>
-<p>THêm ngay dòng sau vào Makefile, hay hệ thống CI của bạn, ngay sau pep8, flake8 hay pylint:</p>
+<p>Thêm ngay dòng sau vào Makefile, hay hệ thống CI của bạn, ngay sau pep8, flake8 hay pylint:</p>
 <div class="highlight"><pre><span></span><span class="n">mypy</span> <span class="o">--</span><span class="n">ignore</span><span class="o">-</span><span class="n">missing</span><span class="o">-</span><span class="kn">import</span> <span class="o">.</span>
 </pre></div>
 

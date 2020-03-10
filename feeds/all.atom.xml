@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2020-03-10T00:00:00+07:00</updated><entry><title>Mypy - là trai hay là gái?</title><link href="http://pp.pymi.vn/article/mypy/" rel="alternate"></link><published>2020-03-10T00:00:00+07:00</published><updated>2020-03-10T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2020-03-10:/article/mypy/</id><summary type="html">&lt;p&gt;Là bạn hay là bè? là str hay int? Thêm type cho Python code mà không ho, không sốt, không toang.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Vài ba năm gần đây, làng Vũ Trụ rộn lên trào lưu thêm "type" vào các ngôn ngữ lập trình dynamic typing.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;PHP: https://www.php.net/manual/en/functions.arguments.php#functions.arguments.type-declaration&lt;/li&gt;
-&lt;li&gt;JavaScript: https://www.typescriptlang.org/&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.php.net/manual/en/functions.arguments.php#functions.arguments.type-declaration"&gt;PHP&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.typescriptlang.org/"&gt;JavaScript|TypeScript&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Python đã già nhưng vẫn đú, cũng không bỏ lỡ cuộc đu trend này.
 Kết quả là ngày hôm nay, bạn đã có thể thêm type vào code Python -
@@ -272,8 +272,8 @@ mypy_simple.py:1: note: (Stub files are from https://github.com/python/typeshed)
 &lt;p&gt;Sau khi Python chính thức thêm type notation, không có nghĩa là các core developer sẽ đi sửa hàng loạt các file thư viện đã chạy ổn định vài chục năm để
 thêm type. Thay vào đó, họ tạo ra các stub file.
 stub file là file chứa type annotation của các function trong library. Nó tương tự header file trong C/C++.&lt;/p&gt;
-&lt;p&gt;Ví dụ itertools: https://github.com/python/typeshed/blob/master/stdlib/3/itertools.pyi&lt;/p&gt;
-&lt;p&gt;Các stub file của Python standard lib được gom lại tại https://github.com/python/typeshed.&lt;/p&gt;
+&lt;p&gt;Ví dụ &lt;a href="https://github.com/python/typeshed/blob/master/stdlib/3/itertools.pyi"&gt;itertools&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Các stub file của Python standard lib được gom lại tại &lt;a href="https://github.com/python/typeshed"&gt;python/typeshed&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Các thư viện bên ngoài thường ít khi có sẵn stub file,
 Ví dụ như &lt;code&gt;boto3&lt;/code&gt; - thư viện cực kỳ phổ biến - và chính thức để làm việc với
 API của AWS, tới nay vẫn chưa có stub file chính thức từ AWS.
@@ -283,7 +283,7 @@ Nên để đơn giản, thay vì phải chiến đấu với type, ta có thể
 
 
 &lt;p&gt;hay tự tạo stub như &lt;a href="https://github.com/htlcnn/autocad_objectarx_python_stubs"&gt;htlcnn&lt;/a&gt;.
-Xem hướng dẫn tự tạo stub file tại đây: https://github.com/python/mypy/wiki/Creating-Stubs-For-Python-Modules&lt;/p&gt;
+Xem hướng dẫn tự tạo stub file tại &lt;a href="https://github.com/python/mypy/wiki/Creating-Stubs-For-Python-Modules"&gt;mypy wiki&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Những vấn đề type giúp giải quyết&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Kiểm tra kiểu, đảm bảo function trả về thống nhất một kiểu, nhận được đúng
@@ -299,7 +299,7 @@ chênh lệch trình độ giữa các lập trình viên. Bạn nên tìm cách
 kinh nghiệm, luyện tập cùng các đồng nghiệp thì hơn.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;Hành động của chúng ta&lt;/h3&gt;
-&lt;p&gt;THêm ngay dòng sau vào Makefile, hay hệ thống CI của bạn, ngay sau pep8, flake8 hay pylint:&lt;/p&gt;
+&lt;p&gt;Thêm ngay dòng sau vào Makefile, hay hệ thống CI của bạn, ngay sau pep8, flake8 hay pylint:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;mypy&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;ignore&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;missing&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
