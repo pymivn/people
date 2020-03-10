@@ -39,7 +39,8 @@ nhiều tính năng phụ thuộc vào nhau, cũng dẫn tới việc không ki�
 Điều này sẽ dễ thấy hơn khi tham gia một dự án có nhiều lập trình viên.
 Một team 5 Python dev làm việc đã quen với nhau, code
 cùng chuẩn PEP8, cùng không thích OOP, ... hay nói cách khác là một team thực
-thụ, sẽ code nhanh như tên lửa, vài giờ một tính năng, bay vèo vèo.
+thụ, sẽ code nhanh như tên lửa, vài giờ một tính năng, bay vèo vèo như
+[YouTube dev](https://books.google.com.vn/books?id=eulODwAAQBAJ&lpg=PA136&dq=google+video+vs+youtube+python+story&pg=PA136&redir_esc=y#v=onepage&q=google%20video%20vs%20youtube%20python%20story&f=false) .
 
 Một nhóm người khác với 5 lập trình viên, học
 lập trình từ các nguồn khác nhau, trình độ khác nhau, thậm chí ngôn ngữ thành
@@ -52,16 +53,14 @@ thể hiện, sửa một function rồi các function khác hỏng theo... và 
 khác có thể sai hơn nữa. Một team như vậy phát
 triển sẽ rất chậm, nhiều bug, khó thêm tính năng,
 thậm chí gây mệt mỏi, stress khi phải làm việc với nhau. Giải pháp thì lại
-không thể là giải tán, cãi nhau,
-Vậy làm gì?
+không thể là giải tán, cãi nhau, vậy làm gì?
 
 Type là một phần giải pháp, type giúp đặt ràng buộc rõ ràng đầu vào đầu ra,
 đảm bảo một function luôn trả về cùng 1 kiểu dù ở nhánh nào. Function
 là kiến trúc cơ bản của 1 chương trình, một hệ thống. Khi function định nghĩa
-rõ ràng, các bên tương tác (gọi function) với nhau cũng sẽ rõ ràng. Ai nhỡ
-sửa function trả về sai kiểu cũng sẽ được thông báo ngay. Nhân viên mới tuyển,
-sinh viên mới ra trường, vào sửa function trả về nhầm kiểu sẽ bị type
-bắt lại ngay.
+rõ ràng, các bên tương tác (gọi function) với nhau cũng sẽ rõ ràng.
+Nhân viên mới tuyển, sinh viên mới ra trường,
+vào sửa function trả về nhầm kiểu sẽ bị type bắt lại ngay.
 
 - Type là một thứ CÔNG CỤ giúp giảm sự linh hoạt của code, tăng thêm kỷ luật,
 đảm bảo code ít bị rối loạn hơn. Nếu code 1 mình, hay bạn chắc chăn mình và
