@@ -199,7 +199,8 @@ một biến để chỉ tới nhiều kiểu khác nhau không hiếm trong dyn
 là chuyện không thể trong các ngôn ngữ static typing. Cách giải quyết chuẩn
 nhất là đổi tên biến.&lt;/p&gt;
 &lt;h4&gt;Ví dụ 3 - các object phức tạp, thư viện bên ngoài&lt;/h4&gt;
-&lt;p&gt;Với các lập trình viên Python, type là một thứ lạ, vậy nên không phải dẽ gì ngồi đọc ngay ra kiểu của &lt;code&gt;resp&lt;/code&gt; sau đây là gì mà gõ vào:&lt;/p&gt;
+&lt;p&gt;Với các lập trình viên Python, type là một thứ lạ, nên không phải dẽ gì ngồi
+đọc ngay ra kiểu của &lt;code&gt;resp&lt;/code&gt; sau đây là gì mà gõ vào:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;typing&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Any&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt;
 
