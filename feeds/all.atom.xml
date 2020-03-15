@@ -1,5 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2020-03-10T00:00:00+07:00</updated><entry><title>Mypy - là trai hay là gái?</title><link href="http://pp.pymi.vn/article/mypy/" rel="alternate"></link><published>2020-03-10T00:00:00+07:00</published><updated>2020-03-10T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2020-03-10:/article/mypy/</id><summary type="html">&lt;p&gt;Là bạn hay là bè? là str hay int? Thêm type cho Python code mà không ho, không sốt, không toang.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Vài ba năm gần đây, làng Vũ Trụ rộn lên trào lưu thêm "type" vào các ngôn ngữ lập trình dynamic typing.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2020-03-15T00:00:00+07:00</updated><entry><title>black - quên đi nỗi lo PEP8</title><link href="http://pp.pymi.vn/article/black/" rel="alternate"></link><published>2020-03-15T00:00:00+07:00</published><updated>2020-03-15T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2020-03-15:/article/black/</id><summary type="html">&lt;p&gt;Viết code Python thì phải chuẩn PEP8, nếu nó tự chuẩn thì sao? yeah!!!&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Code Python phải chuẩn PEP8&lt;/h2&gt;
+&lt;p&gt;Ngay khi bạn mới làm quen với Python được vài tuần, mới biết tí for loop hay
+function, PEP8 từ đâu đó sẽ hiện ra.
+PEP8 là hướng dẫn viết code chuẩn Python, chứ không phải chuẩn C, Java, hay
+không có chuẩn nào cả.
+Nếu tự hoc code một mình, có khi giờ này bạn đã làm ra vài chục script, chạy
+ầm ầm mà vẫn chưa 1 lần nghe PEP8. Tiêu chuẩn code là thứ chỉ hiện ra rõ ràng,
+khi ta làm việc với người khác, chỉ sau vài function, sự mâu thuẫn về style
+sẽ hiện ra ngay, và khi ông Chí Phèo không đồng ý với style của Bá Kiến, thì
+cả 2 phải lên phường và thống nhất dùng chuẩn chung mà làng Vũ Đại đặt ra - hay
+ở đây ta gọi là PEP8.&lt;/p&gt;
+&lt;p&gt;PEP8 có thể xem chi tiết tại &lt;a href="https://www.python.org/dev/peps/pep-0008/"&gt;PEP0008&lt;/a&gt;
+hay &lt;a href="https://pep8.org/"&gt;https://pep8.org/&lt;/a&gt;,
+tiêu chuẩn PEP8 được chấp nhận trên toàn trái đất, thậm chí &lt;a href="https://medium.com/pymi/cia-d%C3%B9ng-python-r%E1%BA%A5t-nhi%E1%BB%81u-32144ecddd50"&gt;CIA&lt;/a&gt;,
+Google cũng
+chỉ sửa đi chút xíu, bởi nó là chuẩn hay, chuẩn tốt.&lt;/p&gt;
+&lt;h2&gt;Chuyện đau đầu về xì tai (style)&lt;/h2&gt;
+&lt;p&gt;Style vốn là một thứ dễ gây ra tranh cãi. Tôi thích kiểu Việt Nam dịu dàng,
+anh thích kiểu Pháp say đắm, ông kia thích kiểu Mỹ mạnh mẽ và hùng hục. Vậy
+ai là người sai?
+Cuộc tranh cãi về style viết code đã kéo dài suốt từ ngày lập trình xuất hiện,
+tới giờ vẫn chưa kết thúc. Bởi đã là style, thì khó nói chuyện đúng sai.&lt;/p&gt;
+&lt;p&gt;Thế rồi mọi cuộc chơi vui, cũng phải đến hồi kết. Một ngôn ngữ lập trình đơn
+giản xuất hiện với tên hai chữ &lt;code&gt;Go&lt;/code&gt; (sau để tránh nhầm lẫn thì gọi là Golang),
+và để tăng thêm sự đơn giản, nó đi kèm
+sẵn một chương trình với tên &lt;code&gt;gofmt&lt;/code&gt; (đọc là gâu phằm) - chương trình này sẽ
+format tất cả code trong thư mục về một chuẩn mà nó đã quy định. Ban đầu,
+người ta vẫn còn tranh cãi về việc bị ép style, nhưng rồi sau một hồi, lợi ích
+của mỗi cái tôi đã sụp đổ trước lợi ích tập thể mà &lt;code&gt;gofmt&lt;/code&gt; mang lại: mọi đoạn
+code đều trông giống nhau, khiến style không còn gì để tranh cãi, lập trình viên
+nhìn code của thằng kia cũng giống như của mình, dễ đọc - dễ hiểu hơn, expert
+hay newbie đều chung 1 style cả.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;gofmt&lt;/code&gt; không phải là chương trình đầu tiên làm vậy, trước đây, trong cộng
+đồng Python đã xuất hiện 1 chương trình tên &lt;code&gt;autopep8&lt;/code&gt; hay Google cũng có
+&lt;a href="https://github.com/google/yapf"&gt;YAPF&lt;/a&gt;. Nhưng &lt;code&gt;Go&lt;/code&gt; là ngôn ngữ đầu tiên mang
+code formatter vào chính thống, chính thức chấm dứt cuộc chiến vô bổ về style
+kéo dài vài thập kỷ. Để rồi từ đó, các ngôn ngữ lập trình khác đua nhau học theo
+như &lt;a href="https://github.com/rust-lang/rustfmt"&gt;Rust&lt;/a&gt;,
+&lt;a href="https://elixir-lang.org/blog/2018/01/17/elixir-v1-6-0-released/"&gt;Elixir&lt;/a&gt;
+và Python thì có &lt;a href="https://github.com/psf/black"&gt;black&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Không có giải pháp nào để giải quyết 1 vấn đề tốt hơn là làm cho nó biến mất.&lt;/p&gt;
+&lt;h2&gt;black là gì&lt;/h2&gt;
+&lt;p&gt;Black là một câu lệnh cài bằng pip: &lt;code&gt;pip install black&lt;/code&gt;, yêu cầu Python3.6 trở
+lên mới chạy. &lt;code&gt;black&lt;/code&gt; xuất hiện như một project của một lập trình viên nào đó
+trên in tơ nét, sau vài năm trở nên cực kỳ phổ biến, và giờ đã chính thức
+được nằm dưới mái nhà PSF (Python Software Foundation) cùng với &lt;code&gt;requests&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/psf/black/blob/master/black.py"&gt;https://github.com/psf/black/blob/master/black.py&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Code của black chỉ vọn vẹn 4000 dòng, sử dụng các tính năng mới nhất của Python
+như f-string, type annotation, asyncio...
+(vì thế nên yêu cầu Python3.6+ để chạy, mặc dù vẫn có thể format code 2.7)&lt;/p&gt;
+&lt;h2&gt;Dùng black để format code Python&lt;/h2&gt;
+&lt;p&gt;Ví dụ có 1 file foo.py&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;def sum_two(a,b):
+    c= a  + b
+
+
+    return c
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Nếu thành thạo PEP8, thấy ngay có 4 chỗ phải sửa ở đây:
+&lt;code&gt;a,b&lt;/code&gt; thiếu dấu space sau &lt;code&gt;,&lt;/code&gt;, &lt;code&gt;c&lt;/code&gt; thiếu dấu space theo sau, sau &lt;code&gt;a&lt;/code&gt; thừa 1
+space, thừa 1 dòng
+trống trước return. Vậy chỉ 3 dòng code, người review phải gõ ra 4 "vấn đề"
+về style, và người code ra 3 dòng này, khi đọc review cũng chẳng vui vẻ gì,
+kể cả người ta nói đúng.&lt;/p&gt;
+&lt;p&gt;Chạy:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ black foo.py
+reformatted foo.py
+All &lt;span class="k"&gt;done&lt;/span&gt;! ✨ 🍰 ✨
+&lt;span class="m"&gt;1&lt;/span&gt; file reformatted.
+
+$ cat foo.py
+def sum_two&lt;span class="o"&gt;(&lt;/span&gt;a, b&lt;span class="o"&gt;)&lt;/span&gt;:
+    &lt;span class="nv"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; a + b
+
+    &lt;span class="k"&gt;return&lt;/span&gt; c
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Đẹp, chuẩn, ngon! Không còn gì mong đợi thêm.
+black có nhiều option để chỉnh style cho phù hợp với tiêu chuẩn của bạn,
+hay dùng nhất là để set độ dài của 1 dòng, vốn là 79 ký tự theo chuẩn PEP8,
+thì black mặc định là 88:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;  -l, --line-length INTEGER       How many characters per line to allow.
+                                  &lt;span class="o"&gt;[&lt;/span&gt;default: &lt;span class="m"&gt;88&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Bạn có thể gọi &lt;code&gt;black -l79 .&lt;/code&gt; để theo PEP8.&lt;/p&gt;
+&lt;h2&gt;Hành động của chúng ta&lt;/h2&gt;
+&lt;p&gt;Đã đến lúc để quên đi việc format code bằng tay, nhớ vài chục tiêu chuẩn
+của PEP8, format code hãy để cho đen (black) không vâu lo - việc này để
+đen không vâu lo.
+Thêm dòng này vào &lt;code&gt;Makefile&lt;/code&gt; của bạn:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;fmt&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;black&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;l79&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;hay cài đặt text editor/IDE tự động chạy &lt;code&gt;black&lt;/code&gt; sau mỗi lần save code.&lt;/p&gt;
+&lt;p&gt;Thêm dòng sau vào CI để bắt quả tang thằng nào không dùng black:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;black --check .
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Black sẽ thông báo các file chưa chuẩn format:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ black --check .
+would reformat /home/hvn/me/people/content/mypy_simple.py
+would reformat /home/hvn/me/people/publishconf.py
+would reformat /home/hvn/me/people/pelicanconf.py
+would reformat /home/hvn/me/people/fabfile.py
+Oh no! 💥 💔 💥
+&lt;span class="m"&gt;4&lt;/span&gt; files would be reformatted, &lt;span class="m"&gt;1&lt;/span&gt; file would be left unchanged.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Kết luận&lt;/h2&gt;
+&lt;p&gt;Hãy dùng &lt;code&gt;black&lt;/code&gt;! Và đừng quên share bài viết này, để cộng đồng code Python
+không còn mất thời gian ít bổ.&lt;/p&gt;</content><category term="Trang chủ"></category><category term="python"></category><category term="black"></category><category term="formatter"></category></entry><entry><title>Mypy - là trai hay là gái?</title><link href="http://pp.pymi.vn/article/mypy/" rel="alternate"></link><published>2020-03-10T00:00:00+07:00</published><updated>2020-03-10T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2020-03-10:/article/mypy/</id><summary type="html">&lt;p&gt;Là bạn hay là bè? là str hay int? Thêm type cho Python code mà không ho, không sốt, không toang.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Vài ba năm gần đây, làng Vũ Trụ rộn lên trào lưu thêm "type" vào các ngôn ngữ lập trình dynamic typing.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://www.php.net/manual/en/functions.arguments.php#functions.arguments.type-declaration"&gt;PHP&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.typescriptlang.org/"&gt;JavaScript|TypeScript&lt;/a&gt;&lt;/li&gt;
