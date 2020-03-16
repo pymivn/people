@@ -72,7 +72,7 @@ người dùng tùy chọn mà đắp vào, vậy nên có phần dễ hiểu h�
 rất khác nhau. Flask vào đời bằng một website dùng 7 dòng code, khiến người dùng
 rất dễ học, dễ bắt đầu với sự đơn giản này. Còn Django lại dùng ví dụ phức tạp,
 mặc định người dùng sẽ cần làm thứ "phức tạp" như vậy nên học thế cho quen.</p>
-<p>Thế nhưng nếu không dựa vào 2 cái tutorial đấy để đánh giá, liêu Django có
+<p>Thế nhưng nếu không dựa vào 2 cái tutorial đấy để đánh giá, liệu Django có
 phức tạp hơn Flask, hay thậm chí còn đơn giản hơn? Bài nầy sẽ dựa trên 2 yếu
 tố để so sánh: 1. số khái niệm bạn cần biết 2. số dòng code bạn cần viết.</p>
 <p>Bắt đầu.</p>
@@ -90,7 +90,7 @@ tố để so sánh: 1. số khái niệm bạn cần biết 2. số dòng code 
 <p>Kết quả: hòa, dễ như nhau: <code>Flask 1 - Django 1</code></p>
 <h3>Viết một website hello world và hello mình</h3>
 <h4>Flask</h4>
-<p>Tạo 1 file tên bất kỳ nhưng tốt nhất đặt là <code>hello.py</code> (tuyệt đôi không đặt
+<p>Tạo 1 file tên bất kỳ nhưng tốt nhất đặt là <code>hello.py</code> (tuyệt đối không đặt
 là <code>flask.py</code> do trùng tên flask)</p>
 <div class="highlight"><pre><span></span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
 <span class="mi">2</span> <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="s2">&quot;my website&quot;</span><span class="p">)</span>
@@ -105,7 +105,8 @@ là <code>flask.py</code> do trùng tên flask)</p>
 </pre></div>
 
 
-<p>Chạy, theo hướng dẫn trên trang chủ (nếu dùng Windows vào xem lệnh tương ứng):</p>
+<p>Chạy, <a href="https://flask.palletsprojects.com/en/1.1.x/quickstart/#a-minimal-application">theo hướng dẫn trên trang chủ</a>
+(nếu dùng Windows vào xem lệnh tương ứng):</p>
 <div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">FLASK_APP</span><span class="o">=</span>hello.py
 $ flask run
  * Running on http://127.0.0.1:5000/

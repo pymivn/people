@@ -23,7 +23,7 @@ người dùng tùy chọn mà đắp vào, vậy nên có phần dễ hiểu h�
 rất khác nhau. Flask vào đời bằng một website dùng 7 dòng code, khiến người dùng
 rất dễ học, dễ bắt đầu với sự đơn giản này. Còn Django lại dùng ví dụ phức tạp,
 mặc định người dùng sẽ cần làm thứ "phức tạp" như vậy nên học thế cho quen.&lt;/p&gt;
-&lt;p&gt;Thế nhưng nếu không dựa vào 2 cái tutorial đấy để đánh giá, liêu Django có
+&lt;p&gt;Thế nhưng nếu không dựa vào 2 cái tutorial đấy để đánh giá, liệu Django có
 phức tạp hơn Flask, hay thậm chí còn đơn giản hơn? Bài nầy sẽ dựa trên 2 yếu
 tố để so sánh: 1. số khái niệm bạn cần biết 2. số dòng code bạn cần viết.&lt;/p&gt;
 &lt;p&gt;Bắt đầu.&lt;/p&gt;
@@ -41,7 +41,7 @@ tố để so sánh: 1. số khái niệm bạn cần biết 2. số dòng code 
 &lt;p&gt;Kết quả: hòa, dễ như nhau: &lt;code&gt;Flask 1 - Django 1&lt;/code&gt;&lt;/p&gt;
 &lt;h3&gt;Viết một website hello world và hello mình&lt;/h3&gt;
 &lt;h4&gt;Flask&lt;/h4&gt;
-&lt;p&gt;Tạo 1 file tên bất kỳ nhưng tốt nhất đặt là &lt;code&gt;hello.py&lt;/code&gt; (tuyệt đôi không đặt
+&lt;p&gt;Tạo 1 file tên bất kỳ nhưng tốt nhất đặt là &lt;code&gt;hello.py&lt;/code&gt; (tuyệt đối không đặt
 là &lt;code&gt;flask.py&lt;/code&gt; do trùng tên flask)&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;flask&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;
 &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;my website&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -56,7 +56,8 @@ là &lt;code&gt;flask.py&lt;/code&gt; do trùng tên flask)&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Chạy, theo hướng dẫn trên trang chủ (nếu dùng Windows vào xem lệnh tương ứng):&lt;/p&gt;
+&lt;p&gt;Chạy, &lt;a href="https://flask.palletsprojects.com/en/1.1.x/quickstart/#a-minimal-application"&gt;theo hướng dẫn trên trang chủ&lt;/a&gt;
+(nếu dùng Windows vào xem lệnh tương ứng):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;FLASK_APP&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;hello.py
 $ flask run
  * Running on http://127.0.0.1:5000/
