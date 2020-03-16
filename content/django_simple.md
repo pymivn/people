@@ -269,6 +269,7 @@ Tỉ số: Flask 2 - Django 3
 Đến đây, việc của người dùng Django là mở tài liệu ra, đọc phần model, đọc phần
 admin page rồi làm theo hướng dẫn, đầy đủ hàng trăm tính năng có sẵn, thì
 người dùng Flask lại phải lo đi tìm:
+
 - dùng database nào? nếu dùng MySQL thì dùng driver nào?
 - có dùng ORM không? nếu có thì phải học SQLAlchemy, tương đương với học Django ORM
 - dùng SQLAlchemy rồi có phải dùng flask-sqlalchemy không (có).
@@ -280,8 +281,8 @@ người dùng Flask lại phải lo đi tìm:
 - Nhập/validate form thì dùng cái chi? (WTForm)
 - ... tiếp tục ...
 
-Còn với Django? tất cả những thứ trên đều có sẵn trong Django, không phải tìm,
-cài gì cả, cứ thế đọc tài liệu rồi lôi ra dùng thôi.
+[![Tìm MIN](http://img.youtube.com/vi/AdfSLq7XNoI/0.jpg)](https://www.youtube.com/watch?v=AdfSLq7XNoI "Tìm")
+
 
 Tỉ số: Flask 2 - Django 4
 
