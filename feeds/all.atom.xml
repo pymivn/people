@@ -231,19 +231,20 @@ thì 10 dự án Flask mỗi cái một kiểu.&lt;/p&gt;
 &lt;h3&gt;Thêm Database, thêm tính năng đăng nhập, thêm trang admin&lt;/h3&gt;
 &lt;p&gt;Đến đây, việc của người dùng Django là mở tài liệu ra, đọc phần model, đọc phần
 admin page rồi làm theo hướng dẫn, đầy đủ hàng trăm tính năng có sẵn, thì
-người dùng Flask lại phải lo đi tìm:
-- dùng database nào? nếu dùng MySQL thì dùng driver nào?
-- có dùng ORM không? nếu có thì phải học SQLAlchemy, tương đương với học Django ORM
-- dùng SQLAlchemy rồi có phải dùng flask-sqlalchemy không (có).
-- khi đổi schema table (thêm/bớt/sửa cột trong 1 SQL table) thì phải làm thế nào?
-  MigrateDB thì dùng cái gì? (Flask-Migrate / alembic)
-- Viết trang admin (ví dụ website quản lý sinh viên thì đây là trang để thêm/bớt/sửa/xóa sinh viên)
-  thì viết ra sao (có thể dùng flask-admin)
-- Đăng nhập thì làm thế nào? (flask-httpauth)
-- Nhập/validate form thì dùng cái chi? (WTForm)
-- ... tiếp tục ...&lt;/p&gt;
-&lt;p&gt;Còn với Django? tất cả những thứ trên đều có sẵn trong Django, không phải tìm,
-cài gì cả, cứ thế đọc tài liệu rồi lôi ra dùng thôi.&lt;/p&gt;
+người dùng Flask lại phải lo đi tìm:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;dùng database nào? nếu dùng MySQL thì dùng driver nào?&lt;/li&gt;
+&lt;li&gt;có dùng ORM không? nếu có thì phải học SQLAlchemy, tương đương với học Django ORM&lt;/li&gt;
+&lt;li&gt;dùng SQLAlchemy rồi có phải dùng flask-sqlalchemy không (có).&lt;/li&gt;
+&lt;li&gt;khi đổi schema table (thêm/bớt/sửa cột trong 1 SQL table) thì phải làm thế nào?
+  MigrateDB thì dùng cái gì? (Flask-Migrate / alembic)&lt;/li&gt;
+&lt;li&gt;Viết trang admin (ví dụ website quản lý sinh viên thì đây là trang để thêm/bớt/sửa/xóa sinh viên)
+  thì viết ra sao (có thể dùng flask-admin)&lt;/li&gt;
+&lt;li&gt;Đăng nhập thì làm thế nào? (flask-httpauth)&lt;/li&gt;
+&lt;li&gt;Nhập/validate form thì dùng cái chi? (WTForm)&lt;/li&gt;
+&lt;li&gt;... tiếp tục ...&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=AdfSLq7XNoI" title="Tìm"&gt;&lt;img alt="Tìm MIN" src="http://img.youtube.com/vi/AdfSLq7XNoI/0.jpg"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Tỉ số: Flask 2 - Django 4&lt;/p&gt;
 &lt;h3&gt;Kết quả&lt;/h3&gt;
 &lt;p&gt;Hòa.&lt;/p&gt;
