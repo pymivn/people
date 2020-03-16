@@ -34,7 +34,7 @@ rất khác nhau. Flask vào đời bằng một website dùng 7 dòng code, khi
 rất dễ học, dễ bắt đầu với sự đơn giản này. Còn Django lại dùng ví dụ phức tạp,
 mặc định người dùng sẽ cần làm thứ "phức tạp" như vậy nên học thế cho quen.
 
-Thế nhưng nếu không dựa vào 2 cái tutorial đấy để đánh giá, liêu Django có
+Thế nhưng nếu không dựa vào 2 cái tutorial đấy để đánh giá, liệu Django có
 phức tạp hơn Flask, hay thậm chí còn đơn giản hơn? Bài nầy sẽ dựa trên 2 yếu
 tố để so sánh: 1. số khái niệm bạn cần biết 2. số dòng code bạn cần viết.
 
@@ -58,7 +58,7 @@ Kết quả: hòa, dễ như nhau: `Flask 1 - Django 1`
 ### Viết một website hello world và hello mình
 
 #### Flask
-Tạo 1 file tên bất kỳ nhưng tốt nhất đặt là `hello.py` (tuyệt đôi không đặt
+Tạo 1 file tên bất kỳ nhưng tốt nhất đặt là `hello.py` (tuyệt đối không đặt
 là `flask.py` do trùng tên flask)
 
 ```python
@@ -74,7 +74,8 @@ là `flask.py` do trùng tên flask)
 10    return "Hello {}".format(name)
 ```
 
-Chạy, theo hướng dẫn trên trang chủ (nếu dùng Windows vào xem lệnh tương ứng):
+Chạy, [theo hướng dẫn trên trang chủ](https://flask.palletsprojects.com/en/1.1.x/quickstart/#a-minimal-application)
+(nếu dùng Windows vào xem lệnh tương ứng):
 ```sh
 $ export FLASK_APP=hello.py
 $ flask run
