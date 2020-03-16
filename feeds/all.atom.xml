@@ -1,5 +1,264 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2020-03-15T00:00:00+07:00</updated><entry><title>black - quên đi nỗi lo PEP8</title><link href="http://pp.pymi.vn/article/black/" rel="alternate"></link><published>2020-03-15T00:00:00+07:00</published><updated>2020-03-15T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2020-03-15:/article/black/</id><summary type="html">&lt;p&gt;Viết code Python thì phải chuẩn PEP8, nếu nó tự chuẩn thì sao? yeah!!!&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Code Python phải chuẩn PEP8&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2020-03-16T00:00:00+07:00</updated><entry><title>Django dễ hơn Flask</title><link href="http://pp.pymi.vn/article/djangovsflask/" rel="alternate"></link><published>2020-03-16T00:00:00+07:00</published><updated>2020-03-16T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2020-03-16:/article/djangovsflask/</id><summary type="html">&lt;p&gt;Flask là một micro-framework, thường được xem như đơn giản hơn Django, nhưng nói vậy mà không phải vậy.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Django và Flask là hai web-framework phổ biến nhất - thành công nhất của Python.
+Ngày này, khi nhìn các bảng tuyển dụng, sẽ thường thấy yêu cầu Django để làm web
+nhưng Flask dần trở thành công cụ quen thuộc của giới làm data.
+Nếu ai có hỏi "nên học cái nào" thì câu trả lời chuẩn nhất chỉ có một: nên học
+cả hai.&lt;/p&gt;
+&lt;h2&gt;Web framework là gì&lt;/h2&gt;
+&lt;p&gt;Một framework là một bộ thư viện, thường gồm nhiều tính năng phục vụ đưa ra
+sản phẩm cuối cùng chạm tới người dùng. Ví dụ &lt;code&gt;requests&lt;/code&gt; là một library,
+chỉ cung cấp tính năng HTTP client, hay &lt;code&gt;bs4&lt;/code&gt; chỉ cung cấp tính năng bóc tách/
+truy cập dữ liệu HTML, hay &lt;code&gt;sqlalchemy&lt;/code&gt; là library giúp truy cập và tương tác
+với database, thì Flask/Django cung cấp một bộ khung kèm các "thư viện" để
+làm ra một sản phẩm tới tay người dùng (trang web).
+Frame trong tiếng Anh có nghĩa là "khung", framework cung cấp cái khung, lập
+trình viên điền những thứ mình muốn vào đó, framework sẽ tự lo chạy. Vì vậy
+khi dùng framework, sẽ có cảm giác như ta không biết nó hoạt động thế nào,
+chỉ biết là điền đúng những thứ yêu cầu thì nó sẽ hoạt động.&lt;/p&gt;
+&lt;p&gt;Django là framework đầy đủ (full-fledge), có đủ mọi thứ, nên sẽ càng có thêm
+cảm giác ta chỉ điền chút xíu là nó tự chạy, mọi thứ đều có khuôn mẫu sẫn rồi.
+Flask là micro-framework, chỉ có phần khung cơ bản, các phần còn lại cho phép
+người dùng tùy chọn mà đắp vào, vậy nên có phần dễ hiểu hơn, ít phép màu hơn.&lt;/p&gt;
+&lt;p&gt;Cũng vì sự khác biệt này, dẫn tới tài liệu trang chủ của 2 framework viết
+rất khác nhau. Flask vào đời bằng một website dùng 7 dòng code, khiến người dùng
+rất dễ học, dễ bắt đầu với sự đơn giản này. Còn Django lại dùng ví dụ phức tạp,
+mặc định người dùng sẽ cần làm thứ "phức tạp" như vậy nên học thế cho quen.&lt;/p&gt;
+&lt;p&gt;Thế nhưng nếu không dựa vào 2 cái tutorial đấy để đánh giá, liêu Django có
+phức tạp hơn Flask, hay thậm chí còn đơn giản hơn? Bài nầy sẽ dựa trên 2 yếu
+tố để so sánh: 1. số khái niệm bạn cần biết 2. số dòng code bạn cần viết.&lt;/p&gt;
+&lt;p&gt;Bắt đầu.&lt;/p&gt;
+&lt;h3&gt;Cài đặt&lt;/h3&gt;
+&lt;h4&gt;Cài đặt Flask&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install flask
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;Cài đặt Django&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install django
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Kết quả: hòa, dễ như nhau: &lt;code&gt;Flask 1 - Django 1&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;Viết một website hello world và hello mình&lt;/h3&gt;
+&lt;h4&gt;Flask&lt;/h4&gt;
+&lt;p&gt;Tạo 1 file tên bất kỳ nhưng tốt nhất đặt là &lt;code&gt;hello.py&lt;/code&gt; (tuyệt đôi không đặt
+là &lt;code&gt;flask.py&lt;/code&gt; do trùng tên flask)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;flask&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;
+&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;my website&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="nd"&gt;@app.route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;hello_world&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;span class="mi"&gt;6&lt;/span&gt;    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Hello world&amp;quot;&lt;/span&gt;
+&lt;span class="mi"&gt;7&lt;/span&gt;
+&lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="nd"&gt;@app.route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/hello/&amp;lt;string:name&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="mi"&gt;9&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;hello&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="mi"&gt;10&lt;/span&gt;    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Hello {}&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Chạy, theo hướng dẫn trên trang chủ (nếu dùng Windows vào xem lệnh tương ứng):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;FLASK_APP&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;hello.py
+$ flask run
+ * Running on http://127.0.0.1:5000/
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Điểm ấn tượng nhất ở đây là chỉ có 10 dòng, trong đúng 1 file, mà chạy thành
+trang web.&lt;/p&gt;
+&lt;p&gt;Tổng số thao tác phải làm: 3 - tạo 1 file, điền nội dung, gõ lệnh để chạy.&lt;/p&gt;
+&lt;h4&gt;Django&lt;/h4&gt;
+&lt;p&gt;Django không làm web trong 1 file, nó dùng các câu lệnh có sẵn để sinh ra các
+file, tức ta chỉ phải gõ lệnh, chứ không phải gõ nhiều code.
+Gõ 3 lệnh sau là chạy luôn trang web:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ django-admin startproject project1
+$ &lt;span class="nb"&gt;cd&lt;/span&gt; project1/
+$ ./manage.py startapp hello
+$ ./manage.py runserver
+Starting development server at http://127.0.0.1:8000/
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Ngay lập tức đã có trang web mẫu của Django - thậm chí chưa gõ tí code nào.
+Để có kết quả giống Flask ở trên, cần sửa 2 file:&lt;/p&gt;
+&lt;p&gt;File &lt;code&gt;hello/views.py&lt;/code&gt;, viết các function tương tự flask:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.http&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;HttpResponse&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;hello_world&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;HttpResponse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Hello world&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;hello&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;HttpResponse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Hello {}&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;File &lt;code&gt;project1/urls.py&lt;/code&gt; thêm 3 dòng:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;hello&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;views&lt;/span&gt;
+
+&lt;span class="n"&gt;urlpatterns&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;  &lt;span class="c1"&gt;# có sẵn&lt;/span&gt;
+    &lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;admin/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;admin&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;site&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;urls&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;  &lt;span class="c1"&gt;# có sẵn&lt;/span&gt;
+    &lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;views&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;hello_world&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;hello_world&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;hello/&amp;lt;str:name&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;views&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;hello&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;hello&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# có sẵn&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Giờ chạy &lt;code&gt;./manage runserver&lt;/code&gt; sẽ có kết quả y hệt Flask.&lt;/p&gt;
+&lt;h4&gt;So sánh thao tác&lt;/h4&gt;
+&lt;p&gt;Tổng số dòng code phải thêm vào Django là 8 - cũng chính bằng số dòng Flask
+phải viết - không tính dòng trống. Django phải chạy nhiều hơn 2 lệnh - nhưng
+chỉ cần phải làm khi bắt đầu dự án. Flask viết code trong 1 file, còn Django
+phải sửa 2 file. ở đây có thể xem như hòa nhau không bên nào hơn/kém quá cả.&lt;/p&gt;
+&lt;h4&gt;So sánh khái niệm&lt;/h4&gt;
+&lt;p&gt;Phần khác nhau chủ đạo giữa Django và Flask là cách ghi URL.
+Người dùng Flask tạo một Flask object, đặt tên là app, sau đó sử dụng
+&lt;code&gt;decorator&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;@app.route(&amp;quot;/hello/&amp;lt;string:name&amp;gt;&amp;quot;)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;để gắn đường dẫn &lt;code&gt;/hello/name&lt;/code&gt; cho function ngay dưới nó (function hello).
+Decorator không phải một khái niệm đơn giản ở đây, mặc dù người dùng có thể
+cứ nhắm mắt rồi gõ &lt;code&gt;@&lt;/code&gt; theo và hiểu nôm na là gắn đường dẫn cũng được.&lt;/p&gt;
+&lt;p&gt;Django chọn giải pháp ghép đường dẫn với function thông qua file &lt;code&gt;urls.py&lt;/code&gt;,
+import module &lt;code&gt;views&lt;/code&gt; từ thư mục &lt;code&gt;hello/&lt;/code&gt; (tạo lúc chạy "startapp hello"),
+sau đó gán đường dẫn bằng cách gọi function &lt;code&gt;path&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;hello/&amp;lt;str:name&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;views&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;hello&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;hello&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Dài dòng hơn Flask một chút là phải ghi &lt;code&gt;name="hello"&lt;/code&gt;, không có &lt;code&gt;/&lt;/code&gt; ở đầu URL,
+và kiểu &lt;code&gt;str&lt;/code&gt; thì ghi là &lt;code&gt;str&lt;/code&gt; chứ không ghi &lt;code&gt;string&lt;/code&gt; như Flask.&lt;/p&gt;
+&lt;p&gt;Khi mới bắt đầu, khó có thể thấy lý do Django viết riêng file &lt;code&gt;urls.py&lt;/code&gt; để làm
+gì, khi mà flask @ lên đầu rất gọn ghẽ. Thì tới lúc có 20 URL bạn sẽ hiểu tại
+sao. Làm thế nào để liệt kê tất cả URL trong app của mình? Các URL của Flask
+rải rác khắc nơi, mỗi cái nằm trên đầu 1 function, nếu như mỗi function dài 50
+dòng, thì việc tìm sẽ khá vất vả - hoặc phải dùng chức năng tìm kiếm, hoặc phải
+có IDE để hỗ trợ. Còn với Django tất cả đều nằm gọn trong &lt;code&gt;urls.py&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Không hiểu tại sao Flask lại chọn &lt;code&gt;string&lt;/code&gt; để ám chỉ kiểu string trong Python,
+vốn viết là &lt;code&gt;str&lt;/code&gt;, Django lại ghi thêm điểm ở đây.&lt;/p&gt;
+&lt;p&gt;Có thể bạn đã biết, rằng không nhất thiết phải dùng &lt;code&gt;@&lt;/code&gt; trong Flask,
+bởi decorator này chỉ làm đơn giản có 1 việc: giống Django. Thay vì viết hai
+dòng &lt;code&gt;@app.route&lt;/code&gt; trên đầu function, viết hai dòng này SAU khi định nghĩa
+các function:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;app.add_url_rule(&amp;quot;/&amp;quot;, &amp;quot;hello_world&amp;quot;, hello_world)
+app.add_url_rule(&amp;quot;/hello/&amp;lt;string:name&amp;gt;&amp;quot;, &amp;quot;hello&amp;quot;, hello)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Đây chính làm điều mà &lt;code&gt;@app.route&lt;/code&gt; làm, như mô tả trong tài liệu của nó:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A decorator that is used to register a view function for a
+given URL rule.  This does the same thing as :meth:&lt;code&gt;add_url_rule&lt;/code&gt;
+but is intended for decorator usage::&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Chốt: Django gõ nhiều hơn 2 lệnh, sửa thêm 1 file, nhưng sử dụng ít khái niệm
+cao cấp hơn Flask. Nếu dễ tính, thì cho là hòa, còn không Django dành chiến
+thắng ở đây.&lt;/p&gt;
+&lt;p&gt;Tỉ số: &lt;code&gt;2 - 2&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;Thêm trang dùng template&lt;/h3&gt;
+&lt;h4&gt;Flask&lt;/h4&gt;
+&lt;p&gt;Tạo 1 thư mục tên &lt;code&gt;templates&lt;/code&gt; ngay cạnh file &lt;code&gt;hello.py&lt;/code&gt;, rồi tạo file
+&lt;code&gt;index.html&lt;/code&gt; chứa code HTML và Jinja2 template.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;{%&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;fw&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;frameworks&lt;/span&gt; &lt;span class="cp"&gt;%}&lt;/span&gt;
+  &lt;span class="cp"&gt;{%&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nv"&gt;fw&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="nf"&gt;length&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="m"&gt;5&lt;/span&gt; &lt;span class="cp"&gt;%}&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;b&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;{{&lt;/span&gt; &lt;span class="nv"&gt;fw&lt;/span&gt; &lt;span class="cp"&gt;}}&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;/b&amp;gt;&lt;/span&gt;
+  &lt;span class="cp"&gt;{%&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="cp"&gt;%}&lt;/span&gt;
+    &lt;span class="cp"&gt;{{&lt;/span&gt; &lt;span class="nv"&gt;fw&lt;/span&gt; &lt;span class="cp"&gt;}}&lt;/span&gt;
+  &lt;span class="cp"&gt;{%&lt;/span&gt; &lt;span class="k"&gt;endif&lt;/span&gt; &lt;span class="cp"&gt;%}&lt;/span&gt;
+&lt;span class="cp"&gt;{%&lt;/span&gt; &lt;span class="k"&gt;endfor&lt;/span&gt; &lt;span class="cp"&gt;%}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Code sửa thành&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;flask&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;render_template&lt;/span&gt;
+&lt;span class="nd"&gt;@app.route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/web&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;frameworks&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;render_template&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;index.html&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;frameworks&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Flask&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Django&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;Django&lt;/h4&gt;
+&lt;p&gt;Tạo thư mục tên &lt;code&gt;templates/hello&lt;/code&gt; trong thư mục
+&lt;code&gt;hello&lt;/code&gt;, sau đó tạo &lt;code&gt;index.html&lt;/code&gt; và nội dung copy y hệt phần template của Flask.&lt;/p&gt;
+&lt;p&gt;Thêm function sau vào &lt;code&gt;hello/views.py&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# chú ý render đã được import sẵn ở file view.py ngay khi tạo app&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;frameworks&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;render&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;hello/index.html&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;frameworks&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Flask&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Django&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Và thêm 1 dòng vào &lt;code&gt;project1/urls.py&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;  path(&amp;#39;web&amp;#39;, views.frameworks, name=&amp;#39;frameworks&amp;#39;),
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Ngoài ra phải thêm &lt;code&gt;'hello'&lt;/code&gt; vào file &lt;code&gt;project1/settings.py&lt;/code&gt;
+Trong list &lt;code&gt;INSTALLED_APPS&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; &lt;span class="n"&gt;INSTALLED_APPS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+     &lt;span class="o"&gt;...&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+     &lt;span class="s1"&gt;&amp;#39;hello&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+ &lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Phần này lại hòa, template mặc định của Flask là &lt;code&gt;jinja2&lt;/code&gt; tương đương với
+Django template, kể cả cú pháp cũng rất giống nhau. Django phải thêm 1
+dòng vào file &lt;code&gt;settings.py&lt;/code&gt; nhưng việc này cũng chỉ phải làm một lần duy nhất
+(lẽ ra nên làm luôn sau khi createapp từ đầu).&lt;/p&gt;
+&lt;h3&gt;Django app&lt;/h3&gt;
+&lt;p&gt;Khi chạy lệnh &lt;code&gt;startproject&lt;/code&gt; ban đầu, nó sinh ra các file cần thiết cho một
+dự án Django (&lt;code&gt;urls.py&lt;/code&gt;, &lt;code&gt;settings.py&lt;/code&gt;, &lt;code&gt;manager.py&lt;/code&gt; ..., và nó chỉ phải chạy
+duy nhất 1 lần trong 1 dự án. Với Flask, bạn tạo thư mục bằng tay.&lt;/p&gt;
+&lt;p&gt;Django đưa ra khái niệm có nhiều &lt;em&gt;app&lt;/em&gt; trong một dự án. Flask cũng có khái
+niệm tương tự, gọi là &lt;a href="https://flask.palletsprojects.com/en/1.1.x/blueprints/"&gt;Blueprint&lt;/a&gt;.
+Nó không cần thiết cho ví dụ 6-10 dòng, nhưng khi làm một website nhiều tính năng
+thì blueprint là cách tổ chức chính thức của Flask, ngay cả trong bài tutorial
+của Flask cũng dùng luôn khái niệm này. Như vậy chỉ khác nhau việc học trước
+hay học sau, chứ không phải Flask thì không dùng tới.&lt;/p&gt;
+&lt;p&gt;Flask không ép (không hướng dẫn) người dùng cách tổ chức code, khi dự án lớn
+dần lên, có 3-5000 dòng code, ắt phải sinh ra file mới, phải sắp xếp, tổ chức
+sao cho hợp lý - mà thế nào là hợp lý thì không phải ai cũng tìm ngay ra cách.
+Dự án Flask khi rơi vào tay lập trình viên chưa có nhiều kinh nghiệm làm web
+sẽ dẫn tới code mỗi thứ một nơi, đi tìm cũng thấy mệt. Flask không hướng dẫn
+người dùng ngay từ đầu, nếu gặp phải người chưa có kinh nghiệm tổ chức, sẽ
+trở thành vô tổ chức.&lt;/p&gt;
+&lt;p&gt;Django bắt đầu bằng việc đặt mỗi thứ vào một nơi quy định sẵn, ban đầu có vẻ
+hơi phiền phức, nhưng sự gọn gàng ngăn nắp sẽ trả lợi ích rõ ràng về sau.
+Bạn có thể xem 10 dự án Django, cấu trúc đều như nhau, như mẫu của Django,
+thì 10 dự án Flask mỗi cái một kiểu.&lt;/p&gt;
+&lt;p&gt;Tỉ số: Flask 2 - Django 3&lt;/p&gt;
+&lt;h3&gt;Thêm Database, thêm tính năng đăng nhập, thêm trang admin&lt;/h3&gt;
+&lt;p&gt;Đến đây, việc của người dùng Django là mở tài liệu ra, đọc phần model, đọc phần
+admin page rồi làm theo hướng dẫn, đầy đủ hàng trăm tính năng có sẵn, thì
+người dùng Flask lại phải lo đi tìm:
+- dùng database nào? nếu dùng MySQL thì dùng driver nào?
+- có dùng ORM không? nếu có thì phải học SQLAlchemy, tương đương với học Django ORM
+- dùng SQLAlchemy rồi có phải dùng flask-sqlalchemy không (có).
+- khi đổi schema table (thêm/bớt/sửa cột trong 1 SQL table) thì phải làm thế nào?
+  MigrateDB thì dùng cái gì? (Flask-Migrate / alembic)
+- Viết trang admin (ví dụ website quản lý sinh viên thì đây là trang để thêm/bớt/sửa/xóa sinh viên)
+  thì viết ra sao (có thể dùng flask-admin)
+- Đăng nhập thì làm thế nào? (flask-httpauth)
+- Nhập/validate form thì dùng cái chi? (WTForm)
+- ... tiếp tục ...&lt;/p&gt;
+&lt;p&gt;Còn với Django? tất cả những thứ trên đều có sẵn trong Django, không phải tìm,
+cài gì cả, cứ thế đọc tài liệu rồi lôi ra dùng thôi.&lt;/p&gt;
+&lt;p&gt;Tỉ số: Flask 2 - Django 4&lt;/p&gt;
+&lt;h3&gt;Kết quả&lt;/h3&gt;
+&lt;p&gt;Hòa.&lt;/p&gt;
+&lt;h2&gt;Hành động của chúng ta&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;pip install django&lt;/code&gt; dùng ngay và luôn thôi.&lt;/p&gt;
+&lt;h2&gt;Kết luận&lt;/h2&gt;
+&lt;p&gt;Bài này không nói Django hoàn hảo, dùng cho mọi trường hợp. Ví dụ nếu
+website của bạn không dùng database, không cần trang admin (như web của data
+science) thì Flask nhanh, nhẹ hơn Django nhiều phần. Hay khi bạn biết mình đang
+làm gì, biết đủ những thư viện để dùng ghép lại xịn hơn cả những gì Django
+có sẵn, thì Flask là lựa chọn tuyệt hảo. Flask không phải đồ chơi, &lt;a href="https://eng.uber.com/building-tincup-microservice-implementation/"&gt;phần
+core của Uber đã từng được viết bằng
+Flask&lt;/a&gt;,
+&lt;a href="https://airflow.apache.org/"&gt;Airflow&lt;/a&gt; - công cụ không thể thiếu trong các hệ
+thống data cũng chính là một sản phẩm dùng Flask. Vậy nên, hãy học cả 2, nhé.
+Và nhớ là, Django không hề khó như bạn tưởng.&lt;/p&gt;</content><category term="Trang chủ"></category><category term="python"></category><category term="django"></category><category term="flask"></category></entry><entry><title>black - quên đi nỗi lo PEP8</title><link href="http://pp.pymi.vn/article/black/" rel="alternate"></link><published>2020-03-15T00:00:00+07:00</published><updated>2020-03-15T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2020-03-15:/article/black/</id><summary type="html">&lt;p&gt;Viết code Python thì phải chuẩn PEP8, nếu nó tự chuẩn thì sao? yeah!!!&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Code Python phải chuẩn PEP8&lt;/h2&gt;
 &lt;p&gt;Ngay khi bạn mới làm quen với Python được vài tuần, mới biết tí for loop hay
 function, PEP8 từ đâu đó sẽ hiện ra.
 PEP8 là hướng dẫn viết code chuẩn Python, chứ không phải chuẩn C, Java, hay
