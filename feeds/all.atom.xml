@@ -42,16 +42,21 @@ Foundation&lt;/a&gt;.&lt;/p&gt;
 &lt;code&gt;urllib2&lt;/code&gt;... để thêm phần phức tạp). Nhưng với Python 3.5 trở đi, rất nhiều
 trong số trên đã được hỗ trợ trong &lt;code&gt;urllib&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Còn đây là các tính năng được quảng cáo ở &lt;a href="https://github.com/psf/requests/blob/v2.23.0/README.md#supported-features--bestpractices"&gt;phiên bản mới nhất&lt;/a&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;         + International Domains and URLs       + Keep-Alive &amp;amp; Connection Pooling
-         + Sessions with Cookie Persistence     + Browser-style SSL Verification
-         + Basic &amp;amp; Digest Authentication        + Familiar `dict`–like Cookies
-         + Automatic Decompression of Content   + Automatic Content Decoding
-         + Automatic Connection Pooling         + Unicode Response Bodies*
-         + Multi-part File Uploads              + SOCKS Proxy Support
-         + Connection Timeouts                  + Streaming Downloads
-         + Automatic honoring of `.netrc`       + Chunked HTTP Requests
-
-                            &amp;amp;, of course, rock–solid stability!
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    Keep-Alive &amp;amp; Connection Pooling
+    International Domains and URLs
+    Sessions with Cookie Persistence
+    Browser-style SSL Verification
+    Automatic Content Decoding
+    Basic/Digest Authentication
+    Elegant Key/Value Cookies
+    Automatic Decompression
+    Unicode Response Bodies
+    HTTP(S) Proxy Support
+    Multipart File Uploads
+    Streaming Downloads
+    Connection Timeouts
+    Chunked Requests
+    .netrc Support
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -73,10 +78,10 @@ the context parameter.&lt;/p&gt;
 &lt;li&gt;Connection Pooling: bình thường khi viết code truy cập vào 1 website, ta
 có thể nghĩ đơn giản là requests.get rồi lấy kết quả là xong chuyện, hết phiên.
 Nếu muốn truy cập trang khác cùng website đó, ta lại requests.get để truy cập
-mới. Phía dưới &lt;code&gt;requests.get&lt;/code&gt; này thực hiện một công việc gọi là tạo
-&lt;code&gt;TCP connection&lt;/code&gt;, sau đó mới gửi &lt;code&gt;HTTP request&lt;/code&gt; qua &lt;code&gt;connection&lt;/code&gt; này. Việc tạo
-connection là công việc khá tốn kém (CPU, thời gian), đặc biệt với HTTPS
-, việc tạo SSL connection tốn hơn nhiều lần. Do vậy, để
+mới. Phía dưới &lt;code&gt;requests.get&lt;/code&gt; thực hiện tạo 1 &lt;code&gt;TCP connection&lt;/code&gt;, sau đó mới gửi
+&lt;code&gt;HTTP request&lt;/code&gt; qua &lt;code&gt;connection&lt;/code&gt; này. Việc tạo
+connection là công việc khá tốn kém (CPU, thời gian), đặc biệt với HTTPS,
+tạo SSL connection còn tốn hơn nhiều lần. Do vậy, để
 tăng hiệu năng, requests sẽ tự giữ lại &lt;code&gt;connection&lt;/code&gt; và dùng lại để truy cập
 website nếu như các yêu cầu sau đó cùng website, khác page. Xem code tại
 &lt;a href="https://github.com/psf/requests/blob/v2.23.0/requests/adapters.py#L129"&gt;adapters.py&lt;/a&gt;.&lt;/li&gt;
