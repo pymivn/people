@@ -4,11 +4,12 @@ dê&lt;/a&gt;
 Python ra đời &lt;a href="https://en.wikipedia.org/wiki/History_of_the_World_Wide_Web#1980%E2%80%931991:_Invention_and_implementation"&gt;từ thời mới có
 HTTP&lt;/a&gt;,
 và nổi tiếng là &lt;a href="https://xkcd.com/353/"&gt;hỗ trợ tận răng&lt;/a&gt;, nên không
-có gì lạ nếu Python có kèm sẵn thư viện standard để thực hiện HTTP request.&lt;/p&gt;
+có gì lạ nếu Python có kèm sẵn thư viện standard để thực hiện HTTP request
+với tên &lt;code&gt;urllib&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Vậy nhưng khi lên mạng tìm kiếm hay hỏi quanh đây: &lt;strong&gt;dùng gì để gọi HTTP
 trong Python?&lt;/strong&gt;, câu trả lời phần lớn đều là cài: &lt;code&gt;pip install requests&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Requests không phải có từ ngày Python xuất hiện, nhưng vào thời Python 2.6 2.7
-phổ biến (cỡ 2012), requests đã rất phổ biến, ví dụ như câu trả lời &lt;a href="https://stackoverflow.com/a/15869929/807703"&gt;trên
+(cỡ 2012-2013), requests đã rất phổ biến, ví dụ như câu trả lời &lt;a href="https://stackoverflow.com/a/15869929/807703"&gt;trên
 StackOverFlow năm 2013&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Requests (có chữ s) xuất hiện với một API cực kỳ thân thiệt, với motto (khẩu
 hiệu):
