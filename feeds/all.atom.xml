@@ -267,7 +267,14 @@ một lần, dùng trong các script ngắn, hay khi không tiện cài &lt;code
 Nhớ sử dụng &lt;a href="https://requests.readthedocs.io/en/v2.9.1/user/advanced/#session-objects"&gt;&lt;code&gt;requests&lt;/code&gt; Session&lt;/a&gt;
 khi truy cập 1 website nhiều lần để tăng hiệu năng.&lt;/p&gt;
 &lt;h2&gt;Kết luận&lt;/h2&gt;
-&lt;p&gt;Mặc định là dùng &lt;code&gt;requests&lt;/code&gt;, nhưng không bị sốc khi thấy người ta dùng &lt;code&gt;urllib&lt;/code&gt;.&lt;/p&gt;</content><category term="Trang chủ"></category><category term="python"></category><category term="requests"></category><category term="urllib"></category><category term="HTTP"></category></entry><entry><title>Django dễ hơn Flask</title><link href="http://pp.pymi.vn/article/djangovsflask/" rel="alternate"></link><published>2020-03-16T00:00:00+07:00</published><updated>2020-03-16T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2020-03-16:/article/djangovsflask/</id><summary type="html">&lt;p&gt;Flask là một micro-framework, thường được xem như đơn giản hơn Django, nhưng nói vậy mà không phải vậy.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Django và Flask là hai web-framework phổ biến nhất - thành công nhất của Python.
+&lt;p&gt;Requests thành công vì sự đơn giản không thể hơn của nó, chứ không phải vì
+kỹ thuật cao siêu phức tạp.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A designer knows he has achieved perfection not when there is nothing left to add, but when there is nothing left to take away.
+The New Hacker's Dictionary - Eric S. Raymond,&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Nhớ mặc định là dùng &lt;code&gt;requests&lt;/code&gt;, nhưng không bị sốc khi thấy người ta dùng
+&lt;code&gt;urllib&lt;/code&gt;.&lt;/p&gt;</content><category term="Trang chủ"></category><category term="python"></category><category term="requests"></category><category term="urllib"></category><category term="HTTP"></category></entry><entry><title>Django dễ hơn Flask</title><link href="http://pp.pymi.vn/article/djangovsflask/" rel="alternate"></link><published>2020-03-16T00:00:00+07:00</published><updated>2020-03-16T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2020-03-16:/article/djangovsflask/</id><summary type="html">&lt;p&gt;Flask là một micro-framework, thường được xem như đơn giản hơn Django, nhưng nói vậy mà không phải vậy.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Django và Flask là hai web-framework phổ biến nhất - thành công nhất của Python.
 Ngày này, khi nhìn các bảng tuyển dụng, sẽ thường thấy yêu cầu Django để làm web
 nhưng Flask dần trở thành công cụ quen thuộc của giới làm data.
 Nếu ai có hỏi "nên học cái nào" thì câu trả lời chuẩn nhất chỉ có một: nên học
