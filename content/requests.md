@@ -291,5 +291,13 @@ một lần, dùng trong các script ngắn, hay khi không tiện cài `request
 Nhớ sử dụng [`requests` Session](https://requests.readthedocs.io/en/v2.9.1/user/advanced/#session-objects)
 khi truy cập 1 website nhiều lần để tăng hiệu năng.
 
+
 ## Kết luận
-Mặc định là dùng `requests`, nhưng không bị sốc khi thấy người ta dùng `urllib`.
+Requests thành công vì sự đơn giản không thể hơn của nó, chứ không phải vì
+kỹ thuật cao siêu phức tạp.
+
+> A designer knows he has achieved perfection not when there is nothing left to add, but when there is nothing left to take away.
+> The New Hacker's Dictionary - Eric S. Raymond,
+
+Nhớ mặc định là dùng `requests`, nhưng không bị sốc khi thấy người ta dùng
+`urllib`.
