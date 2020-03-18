@@ -22,13 +22,14 @@ StackOverFlow năm 2013](https://stackoverflow.com/a/15869929/807703).
 
 Requests (có chữ s) xuất hiện với một API cực kỳ thân thiệt, với motto (khẩu
 hiệu):
-**Python HTTP for Humans** do `urllib` có sẵn trong Python2 quá rắc rôi để
-dùng. API của requests nổi tiếng đến mức [gần như ngôn ngữ lập trình nào cũng
+**Python HTTP for Humans** do `urllib` có sẵn trong Python2 quá rắc rối.
+API của requests nổi tiếng đến mức [gần như ngôn ngữ lập trình nào cũng
 có một thư viện "nhái" requests của
-Python](https://github.com/levigross/grequests). API của thư viện là các
-function
-mà thư viện đó public cho người dùng sử dụng, ví dụ requests có: requests.get,
-requests.post,... mà trước đây, không thư viện nào từng đơn giản vậy.
+Python](https://github.com/levigross/grequests), nó quá đơn giản, tới mức
+... trước đây không thư viện nào từng làm vậy.
+
+(API của thư viện là các function mà thư viện đó public cho người dùng sử dụng,
+ví dụ requests có: requests.get, requests.post.)
 
 ![requests logo](https://raw.githubusercontent.com/psf/requests/master/ext/requests-logo.png)
 
