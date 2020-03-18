@@ -60,16 +60,21 @@ trong số trên đã được hỗ trợ trong `urllib`.
 Còn đây là các tính năng được quảng cáo ở [phiên bản mới nhất](https://github.com/psf/requests/blob/v2.23.0/README.md#supported-features--bestpractices):
 
 ```
-         + International Domains and URLs       + Keep-Alive & Connection Pooling
-         + Sessions with Cookie Persistence     + Browser-style SSL Verification
-         + Basic & Digest Authentication        + Familiar `dict`–like Cookies
-         + Automatic Decompression of Content   + Automatic Content Decoding
-         + Automatic Connection Pooling         + Unicode Response Bodies*
-         + Multi-part File Uploads              + SOCKS Proxy Support
-         + Connection Timeouts                  + Streaming Downloads
-         + Automatic honoring of `.netrc`       + Chunked HTTP Requests
-
-                            &, of course, rock–solid stability!
+    Keep-Alive & Connection Pooling
+    International Domains and URLs
+    Sessions with Cookie Persistence
+    Browser-style SSL Verification
+    Automatic Content Decoding
+    Basic/Digest Authentication
+    Elegant Key/Value Cookies
+    Automatic Decompression
+    Unicode Response Bodies
+    HTTP(S) Proxy Support
+    Multipart File Uploads
+    Streaming Downloads
+    Connection Timeouts
+    Chunked Requests
+    .netrc Support
 ```
 
 Nếu bạn đọc các tính năng này mà không hiểu gì, thì nó chỉ chứng minh một điều
@@ -88,10 +93,10 @@ mãi tới [Python 3.4.3 mới thực hiện kiểm tra SSL một cách mặc
 - Connection Pooling: bình thường khi viết code truy cập vào 1 website, ta
 có thể nghĩ đơn giản là requests.get rồi lấy kết quả là xong chuyện, hết phiên.
 Nếu muốn truy cập trang khác cùng website đó, ta lại requests.get để truy cập
-mới. Phía dưới `requests.get` này thực hiện một công việc gọi là tạo
-`TCP connection`, sau đó mới gửi `HTTP request` qua `connection` này. Việc tạo
-connection là công việc khá tốn kém (CPU, thời gian), đặc biệt với HTTPS
-, việc tạo SSL connection tốn hơn nhiều lần. Do vậy, để
+mới. Phía dưới `requests.get` thực hiện tạo 1 `TCP connection`, sau đó mới gửi
+`HTTP request` qua `connection` này. Việc tạo
+connection là công việc khá tốn kém (CPU, thời gian), đặc biệt với HTTPS,
+tạo SSL connection còn tốn hơn nhiều lần. Do vậy, để
 tăng hiệu năng, requests sẽ tự giữ lại `connection` và dùng lại để truy cập
 website nếu như các yêu cầu sau đó cùng website, khác page. Xem code tại
 [adapters.py](https://github.com/psf/requests/blob/v2.23.0/requests/adapters.py#L129).
