@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+   <title> Lib requests có gì hay mà dùng thay urllib  - The PyMiers</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="robots" content="" />
+  <link rel="stylesheet" type="text/css" href="/theme/css/app.css">
+<link rel="stylesheet" type="text/css" href="http://pp.pymi.vn/theme/css/pygment.css">
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    <meta name="author" content="Pymiers" />
+  <meta name="description" content="" />    <link href="http://pp.pymi.vn/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="The PyMiers Full Atom Feed" />         
+  <meta name="tags" content="python" />
+  <meta name="tags" content="requests" />
+  <meta name="tags" content="urllib" />
+  <meta name="tags" content="HTTP" />
+</head>
+
+<body>
+  <main class="wrapper">
+    <section class="container">
+      <header class='column'>
+        <h1 class='title'><a href="http://pp.pymi.vn/">The PyMiers</a></h1>
+      </header>
+
+      <div class="section">
+        <div class="row navbar">
+          <div class="column nav-item is-active"><a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a></div>
+           <div class="column nav-item "><a href="http://pp.pymi.vn/pages/about/">About</a></div>
+          <div class="column nav-item "><a href="http://pp.pymi.vn/pages/add/">Tạo bài viết</a></div>
+          <div class="column nav-item"><a href="/archives">Archives</a></div>
+        </div>
+      </div>
+    </section>
+
+<section class="container">
+  <header>
+    <h2 class="entry-title">
+      <a href="http://pp.pymi.vn/article/requests/" rel="bookmark"
+         title="Permalink to Lib requests có gì hay mà dùng thay urllib">Lib requests có gì hay mà dùng thay urllib</a></h2>  
+  </header>
+  <footer class='center'>
+    <time class="published" datetime="2020-03-18T00:00:00+07:00"> 18/03/2020 </time>
+    <address class="vcard author">By
+                    <a class="url fn" href="http://pp.pymi.vn/author/hvnsweeting/">hvnsweeting</a>
+ in <a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a>
+                </address>     <em>Tags</em>:     <a href="http://pp.pymi.vn/tag/python/"><em>python</em></a>,     <a href="http://pp.pymi.vn/tag/requests/"><em>requests</em></a>,     <a href="http://pp.pymi.vn/tag/urllib/"><em>urllib</em></a>,     <a href="http://pp.pymi.vn/tag/http/"><em>HTTP</em></a>    </footer>
+  <br>
+  <div class="entry-content">
+    <p>Python là một ngôn ngữ già, có thể bạn chưa biết, <a href="https://www.familug.org/2016/02/python-python-tuoi-gi.html">Python tuổi
+dê</a>
+Python ra đời <a href="https://en.wikipedia.org/wiki/History_of_the_World_Wide_Web#1980%E2%80%931991:_Invention_and_implementation">từ thời mới có
+HTTP</a>,
+và nổi tiếng là <a href="https://xkcd.com/353/">hỗ trợ tận răng</a>, nên không
+có gì lạ nếu Python có kèm sẵn thư viện standard để thực hiện HTTP request.</p>
+<p>Vậy nhưng khi lên mạng tìm kiếm hay hỏi quanh đây: <strong>dùng gì để gọi HTTP
+trong Python?</strong>, câu trả lời phần lớn đều là cài: <code>pip install requests</code>.</p>
+<p>Requests không phải có từ ngày Python xuất hiện, nhưng vào thời Python 2.6 2.7
+phổ biến (cỡ 2012), requests đã rất phổ biến, ví dụ như câu trả lời <a href="https://stackoverflow.com/a/15869929/807703">trên
+StackOverFlow năm 2013</a>.</p>
+<p>Requests (có chữ s) xuất hiện với một API cực kỳ thân thiệt, với motto (khẩu
+hiệu):
+<strong>Python HTTP for Humans</strong> do <code>urllib</code> có sẵn trong Python2 quá rắc rôi để
+dùng. API của requests nổi tiếng đến mức <a href="https://github.com/levigross/grequests">gần như ngôn ngữ lập trình nào cũng
+có một thư viện "nhái" requests của
+Python</a>. API của thư viện là các
+function
+mà thư viện đó public cho người dùng sử dụng, ví dụ requests có: requests.get,
+requests.post,... mà trước đây, không thư viện nào từng đơn giản vậy.</p>
+<p><img alt="requests logo" src="https://raw.githubusercontent.com/psf/requests/master/ext/requests-logo.png"></p>
+<p>Sau gần chục năm phát triển, <code>requests</code> giờ đã nằm dưới mái nhà <a href="https://github.com/psf/requests/">Python Software
+Foundation</a>.</p>
+<p>Với các tính năng được quảng cáo ở bản <a href="https://github.com/psf/requests/tree/v1.0.0">v1.0.0, cuối năm 2012</a></p>
+<div class="highlight"><pre><span></span>    International Domains and URLs
+    Keep-Alive &amp; Connection Pooling
+    Sessions with Cookie Persistence
+    Browser-style SSL Verification
+    Basic/Digest Authentication
+    Elegant Key/Value Cookies
+    Automatic Decompression
+    Unicode Response Bodies
+    Multipart File Uploads
+    Connection Timeouts
+    Thread-safety
+</pre></div>
+
+
+<p>Có thể dễ đoán rằng những tính năng được quảng cáo trên chính là những gì
+<code>urllib</code> Python thời đó chưa hỗ trợ (trong Python còn có cả thư viện tên
+<code>urllib2</code>... để thêm phần phức tạp). Nhưng với Python 3.5 trở đi, rất nhiều
+trong số trên đã được hỗ trợ trong <code>urllib</code>.</p>
+<p>Còn đây là các tính năng được quảng cáo ở <a href="https://github.com/psf/requests/blob/v2.23.0/README.md#supported-features--bestpractices">phiên bản mới nhất</a>:</p>
+<div class="highlight"><pre><span></span>         + International Domains and URLs       + Keep-Alive &amp; Connection Pooling
+         + Sessions with Cookie Persistence     + Browser-style SSL Verification
+         + Basic &amp; Digest Authentication        + Familiar `dict`–like Cookies
+         + Automatic Decompression of Content   + Automatic Content Decoding
+         + Automatic Connection Pooling         + Unicode Response Bodies*
+         + Multi-part File Uploads              + SOCKS Proxy Support
+         + Connection Timeouts                  + Streaming Downloads
+         + Automatic honoring of `.netrc`       + Chunked HTTP Requests
+
+                            &amp;, of course, rock–solid stability!
+</pre></div>
+
+
+<p>Nếu bạn đọc các tính năng này mà không hiểu gì, thì nó chỉ chứng minh một điều
+là HTTP là một giao thức rất lằng nhằng và phức tạp.
+Đáng kể nhất có:</p>
+<ul>
+<li>Browser-style SSL Verification: liên quan tới SSL - tức là bảo mật. <code>urllib</code>
+mãi tới <a href="https://docs.python.org/3/library/http.client.html#http.client.HTTPSConnection">Python 3.4.3 mới thực hiện kiểm tra SSL một cách mặc
+định</a>:</li>
+</ul>
+<blockquote>
+<p>Changed in version 3.4.3: This class now performs all the necessary
+certificate and hostname checks by default. To revert to the previous,
+unverified, behavior ssl._create_unverified_context() can be passed to
+the context parameter.</p>
+</blockquote>
+<ul>
+<li>Connection Pooling: bình thường khi viết code truy cập vào 1 website, ta
+có thể nghĩ đơn giản là requests.get rồi lấy kết quả là xong chuyện, hết phiên.
+Nếu muốn truy cập trang khác cùng website đó, ta lại requests.get để truy cập
+mới. Phía dưới <code>requests.get</code> này thực hiện một công việc gọi là tạo
+<code>TCP connection</code>, sau đó mới gửi <code>HTTP request</code> qua <code>connection</code> này. Việc tạo
+connection là công việc khá tốn kém (CPU, thời gian), đặc biệt với HTTPS
+, việc tạo SSL connection tốn hơn nhiều lần. Do vậy, để
+tăng hiệu năng, requests sẽ tự giữ lại <code>connection</code> và dùng lại để truy cập
+website nếu như các yêu cầu sau đó cùng website, khác page. Xem code tại
+<a href="https://github.com/psf/requests/blob/v2.23.0/requests/adapters.py#L129">adapters.py</a>.</li>
+</ul>
+<p>Việc này ảnh hưởng tới hiệu năng, nhưng không ảnh hưởng gì nếu bạn chỉ gọi
+1 request tới mỗi website.</p>
+<h2>Đọc code requests</h2>
+<p>Lib <code>requests</code> thuộc loại nhỏ, tổng cộng 5000 dòng gồm rất nhiều comment.
+Nó tận dụng các thư viện ngoài khác thay vì tự làm
+tất cả: <code>urllib3</code> để thực hiện connection pooling, thực hiện HTTP requests,
+dùng <code>certifi</code> để cung cấp các SSL certificate mới nhất như các trình duyệt.</p>
+<div class="highlight"><pre><span></span>$ wc -l *<span class="p">|</span> sort -nr
+wc: __pycache__: Is a directory
+   <span class="m">5049</span> total
+    <span class="m">982</span> utils.py
+    <span class="m">954</span> models.py
+    <span class="m">767</span> sessions.py
+    <span class="m">549</span> cookies.py
+    <span class="m">533</span> adapters.py
+    <span class="m">305</span> auth.py
+    <span class="m">161</span> api.py
+    <span class="m">131</span> __init__.py
+    <span class="m">126</span> exceptions.py
+    <span class="m">123</span> status_codes.py
+    <span class="m">119</span> help.py
+    <span class="m">105</span> structures.py
+     <span class="m">72</span> compat.py
+     <span class="m">42</span> _internal_utils.py
+     <span class="m">34</span> hooks.py
+     <span class="m">18</span> certs.py
+     <span class="m">14</span> __version__.py
+     <span class="m">14</span> packages.py
+</pre></div>
+
+
+<p>Phần API đơn giản lừng danh nằm trong file <code>api.py</code>, trích bỏ comment:</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">sessions</span>
+
+<span class="k">def</span> <span class="nf">request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="c1"># By using the &#39;with&#39; statement we are sure the session is closed, thus we</span>
+    <span class="c1"># avoid leaving sockets open which can trigger a ResourceWarning in some</span>
+    <span class="c1"># cases, and look like a memory leak in others.</span>
+    <span class="k">with</span> <span class="n">sessions</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;allow_redirects&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">request</span><span class="p">(</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">options</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;allow_redirects&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">request</span><span class="p">(</span><span class="s1">&#39;options&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">head</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;allow_redirects&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">request</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">request</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">request</span><span class="p">(</span><span class="s1">&#39;put&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">patch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">request</span><span class="p">(</span><span class="s1">&#39;patch&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">request</span><span class="p">(</span><span class="s1">&#39;delete&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+
+
+<h3>urllib3</h3>
+<p><a href="https://urllib3.readthedocs.io/en/latest/"><code>urllib3</code></a> là dependency quan trọng
+của <code>requests</code>, nó đảm nhận những công việc nặng nề:</p>
+<blockquote>
+<p>urllib3 brings many critical features that are missing from the Python
+standard libraries:</p>
+</blockquote>
+<div class="highlight"><pre><span></span>Thread safety.
+Connection pooling.
+Client-side SSL/TLS verification.
+File uploads with multipart encoding.
+Helpers for retrying requests and dealing with HTTP redirects.
+Support for gzip and deflate encoding.
+Proxy support for HTTP and SOCKS.
+</pre></div>
+
+
+<p>Code mẫu:</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">urllib3</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">http</span> <span class="o">=</span> <span class="n">urllib3</span><span class="o">.</span><span class="n">PoolManager</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;http://httpbin.org/robots.txt&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">r</span><span class="o">.</span><span class="n">status</span>
+<span class="mi">200</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">r</span><span class="o">.</span><span class="n">data</span>
+<span class="s1">&#39;User-agent: *</span><span class="se">\n</span><span class="s1">Disallow: /deny</span><span class="se">\n</span><span class="s1">&#39;</span>
+</pre></div>
+
+
+<h2>urllib</h2>
+<p>urllib và urllib2 thời Python2.7 là những em gái dính lời nguyền mà ai cũng
+muốn tha thứ. Nhưng ở Python 3.6+, việc dùng urllib không còn quá phức tạp,
+hãy coi nó như 1 file, nhớ đóng file, hoặc dùng <code>with</code>.</p>
+<h3>urllib đã kiểm tra SSL certificate</h3>
+<div class="highlight"><pre><span></span><span class="n">Python</span> <span class="mf">3.6</span><span class="o">.</span><span class="mi">9</span> <span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="n">Nov</span>  <span class="mi">7</span> <span class="mi">2019</span><span class="p">,</span> <span class="mi">10</span><span class="p">:</span><span class="mi">44</span><span class="p">:</span><span class="mo">02</span><span class="p">)</span>
+<span class="p">[</span><span class="n">GCC</span> <span class="mf">8.3</span><span class="o">.</span><span class="mi">0</span><span class="p">]</span> <span class="n">on</span> <span class="n">linux</span>
+<span class="n">Type</span> <span class="s2">&quot;help&quot;</span><span class="p">,</span> <span class="s2">&quot;copyright&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span> <span class="ow">or</span> <span class="s2">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">with</span> <span class="n">urlopen</span><span class="p">(</span><span class="s2">&quot;https://dantri.com&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="o">...</span>     <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="n">content</span><span class="p">[:</span><span class="mi">100</span><span class="p">])</span>
+<span class="o">...</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s2">&quot;/usr/lib/python3.6/urllib/request.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1318</span><span class="p">,</span> <span class="ow">in</span> <span class="n">do_open</span>
+    <span class="o">...</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_sslobj</span><span class="o">.</span><span class="n">do_handshake</span><span class="p">()</span>
+<span class="n">ssl</span><span class="o">.</span><span class="n">SSLError</span><span class="p">:</span> <span class="p">[</span><span class="n">SSL</span><span class="p">:</span> <span class="n">CERTIFICATE_VERIFY_FAILED</span><span class="p">]</span> <span class="n">certificate</span> <span class="n">verify</span> <span class="n">failed</span> <span class="p">(</span><span class="n">_ssl</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">852</span><span class="p">)</span>
+<span class="o">...</span>
+    <span class="k">raise</span> <span class="n">URLError</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+<span class="n">urllib</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">URLError</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">urlopen</span> <span class="n">error</span> <span class="p">[</span><span class="n">SSL</span><span class="p">:</span> <span class="n">CERTIFICATE_VERIFY_FAILED</span><span class="p">]</span> <span class="n">certificate</span> <span class="n">verify</span> <span class="n">failed</span> <span class="p">(</span><span class="n">_ssl</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">852</span><span class="p">)</span><span class="o">&gt;</span>
+</pre></div>
+
+
+<p>Kết quả tương tự khi dùng <code>requests</code> do URL <code>https://dantri.com</code> SSL certificate
+đẫ hết hạn <code>Expire: January 19, 2020</code></p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">requests</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://dantri.com&quot;</span><span class="p">)</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s2">&quot;/home/hvn/py3/lib/python3.6/site-packages/urllib3/connectionpool.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">672</span><span class="p">,</span> <span class="ow">in</span> <span class="n">urlopen</span>
+    <span class="o">...</span>
+  <span class="n">File</span> <span class="s2">&quot;/usr/lib/python3.6/ssl.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">689</span><span class="p">,</span> <span class="ow">in</span> <span class="n">do_handshake</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_sslobj</span><span class="o">.</span><span class="n">do_handshake</span><span class="p">()</span>
+<span class="n">ssl</span><span class="o">.</span><span class="n">SSLError</span><span class="p">:</span> <span class="p">[</span><span class="n">SSL</span><span class="p">:</span> <span class="n">CERTIFICATE_VERIFY_FAILED</span><span class="p">]</span> <span class="n">certificate</span> <span class="n">verify</span> <span class="n">failed</span> <span class="p">(</span><span class="n">_ssl</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">852</span><span class="p">)</span>
+</pre></div>
+
+
+<h3>urllib redirect ngon lành</h3>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://gmail.com&quot;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">r</span><span class="o">.</span><span class="n">url</span>
+<span class="s1">&#39;https://accounts.google.com/ServiceLogin?service=mail&amp;passive=true&amp;rm=false&amp;continue=https://mail.google.com/mail/&amp;ss=1&amp;scc=1&amp;ltmpl=default&amp;ltmplcache=2&amp;emr=1&amp;osid=1&#39;</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="s2">&quot;https://gmail.com&quot;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">r</span><span class="o">.</span><span class="n">url</span>
+<span class="s1">&#39;https://accounts.google.com/ServiceLogin?service=mail&amp;passive=true&amp;rm=false&amp;continue=https://mail.google.com/mail/&amp;ss=1&amp;scc=1&amp;ltmpl=default&amp;ltmplcache=2&amp;emr=1&amp;osid=1&#39;</span>
+</pre></div>
+
+
+<h3>urllib với JSON API</h3>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">json</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">with</span> <span class="n">urlopen</span><span class="p">(</span><span class="s2">&quot;https://httpbin.org/ip&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="o">...</span>     <span class="n">content</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="p">{</span><span class="s1">&#39;origin&#39;</span><span class="p">:</span> <span class="s1">&#39;171.247.169.69&#39;</span><span class="p">}</span>
+</pre></div>
+
+
+<h3>Tra cứu thông tin COVID-19</h3>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="k">with</span> <span class="n">urlopen</span><span class="p">(</span><span class="s2">&quot;https://corona-stats.online/IT&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+<span class="o">...</span>
+<span class="err">╔═══════╤═══════╤═══════════╤═══════════╤════════╤════════╤═════════════╤═════════════╤═════════╤══════════╗</span>
+<span class="err">║</span>       <span class="err">│</span> <span class="n">State</span> <span class="err">│</span> <span class="n">Confirmed</span> <span class="err">│</span> <span class="n">Recovered</span> <span class="err">│</span> <span class="n">Deaths</span> <span class="err">│</span> <span class="n">Active</span> <span class="err">│</span> <span class="n">Mortality</span> <span class="o">%</span> <span class="err">│</span> <span class="n">Recovered</span> <span class="o">%</span> <span class="err">│</span> <span class="mi">1</span> <span class="n">Day</span> <span class="err">▲</span> <span class="err">│</span> <span class="mi">1</span> <span class="n">Week</span> <span class="err">▲</span> <span class="err">║</span>
+<span class="err">╟───────┼───────┼───────────┼───────────┼────────┼────────┼─────────────┼─────────────┼─────────┼──────────╢</span>
+<span class="err">║</span> <span class="n">Italy</span> <span class="err">│</span> <span class="n">Total</span> <span class="err">│</span>    <span class="mi">31</span><span class="p">,</span><span class="mi">506</span> <span class="err">│</span>     <span class="mi">2</span><span class="p">,</span><span class="mi">941</span> <span class="err">│</span>  <span class="mi">2</span><span class="p">,</span><span class="mi">503</span> <span class="err">│</span> <span class="mi">26</span><span class="p">,</span><span class="mo">062</span> <span class="err">│</span>        <span class="mf">7.94</span> <span class="err">│</span>        <span class="mf">9.33</span> <span class="err">│</span> <span class="mi">3</span><span class="p">,</span><span class="mi">526</span> <span class="err">▲</span> <span class="err">│</span> <span class="mi">21</span><span class="p">,</span><span class="mi">357</span> <span class="err">▲</span> <span class="err">║</span>
+<span class="err">╚═══════╧═══════╧═══════════╧═══════════╧════════╧════════╧═════════════╧═════════════╧═════════╧══════════╝</span>
+
+<span class="n">Stay</span> <span class="n">safe</span><span class="o">.</span> <span class="n">Stay</span> <span class="n">inside</span><span class="o">.</span>
+
+<span class="n">Code</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">sagarkarira</span><span class="o">/</span><span class="n">coronavirus</span><span class="o">-</span><span class="n">tracker</span><span class="o">-</span><span class="n">cli</span>
+<span class="n">Twitter</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">twitter</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ekrysis</span>
+
+<span class="n">Last</span> <span class="n">Updated</span> <span class="n">on</span><span class="p">:</span> <span class="mi">18</span><span class="o">-</span><span class="n">Mar</span><span class="o">-</span><span class="mi">2020</span> <span class="mi">16</span><span class="p">:</span><span class="mo">03</span> <span class="n">UTC</span>
+</pre></div>
+
+
+<h2>Hành động của chúng ta</h2>
+<p>Có thể dùng <code>urllib</code> khi script/chương trình chỉ truy cập mỗi website
+một lần, dùng trong các script ngắn, hay khi không tiện cài <code>requests</code>.
+Nhớ sử dụng <a href="https://requests.readthedocs.io/en/v2.9.1/user/advanced/#session-objects"><code>requests</code> Session</a>
+khi truy cập 1 website nhiều lần để tăng hiệu năng.</p>
+<h2>Kết luận</h2>
+<p>Mặc định là dùng <code>requests</code>, nhưng không bị sốc khi thấy người ta dùng <code>urllib</code>.</p>
+  </div>
+  <!-- /.entry-content -->
+</section>
+<section class="container">
+  <div class="comments">
+    <h3>Comments</h3>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'pymier';
+      var disqus_identifier = 'article/requests/';
+      var disqus_url = 'http://pp.pymi.vn/article/requests/';
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//pymier.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the comments.</noscript>
+  </div>
+</section>
+
+    <section class="container footer">
+      <footer>
+        <address>
+        Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+        which takes great advantage of <a href="http://python.org">Python</a>.
+        </address>
+        <address>
+          Học lập trình Python tại <a href="https://pymi.vn/">Pymi.vn</a>
+        </address>
+      </footer>
+    </section>
+  </main>
+
+<script type="text/javascript">
+var images = document.getElementsByTagName("img");
+var i;
+
+for(i = 0; i < images.length; i++) {
+  images[i].className += " centered";
+}
+</script>
+</body>
+
+</html>
