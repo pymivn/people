@@ -11,13 +11,14 @@ dê](https://www.familug.org/2016/02/python-python-tuoi-gi.html)
 Python ra đời [từ thời mới có
 HTTP](https://en.wikipedia.org/wiki/History_of_the_World_Wide_Web#1980%E2%80%931991:_Invention_and_implementation),
 và nổi tiếng là [hỗ trợ tận răng](https://xkcd.com/353/), nên không
-có gì lạ nếu Python có kèm sẵn thư viện standard để thực hiện HTTP request.
+có gì lạ nếu Python có kèm sẵn thư viện standard để thực hiện HTTP request
+với tên `urllib`.
 
 Vậy nhưng khi lên mạng tìm kiếm hay hỏi quanh đây: **dùng gì để gọi HTTP
 trong Python?**, câu trả lời phần lớn đều là cài: `pip install requests`.
 
 Requests không phải có từ ngày Python xuất hiện, nhưng vào thời Python 2.6 2.7
-phổ biến (cỡ 2012), requests đã rất phổ biến, ví dụ như câu trả lời [trên
+(cỡ 2012-2013), requests đã rất phổ biến, ví dụ như câu trả lời [trên
 StackOverFlow năm 2013](https://stackoverflow.com/a/15869929/807703).
 
 Requests (có chữ s) xuất hiện với một API cực kỳ thân thiệt, với motto (khẩu
