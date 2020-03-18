@@ -12,13 +12,13 @@ phổ biến (cỡ 2012), requests đã rất phổ biến, ví dụ như câu t
 StackOverFlow năm 2013&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Requests (có chữ s) xuất hiện với một API cực kỳ thân thiệt, với motto (khẩu
 hiệu):
-&lt;strong&gt;Python HTTP for Humans&lt;/strong&gt; do &lt;code&gt;urllib&lt;/code&gt; có sẵn trong Python2 quá rắc rôi để
-dùng. API của requests nổi tiếng đến mức &lt;a href="https://github.com/levigross/grequests"&gt;gần như ngôn ngữ lập trình nào cũng
+&lt;strong&gt;Python HTTP for Humans&lt;/strong&gt; do &lt;code&gt;urllib&lt;/code&gt; có sẵn trong Python2 quá rắc rối.
+API của requests nổi tiếng đến mức &lt;a href="https://github.com/levigross/grequests"&gt;gần như ngôn ngữ lập trình nào cũng
 có một thư viện "nhái" requests của
-Python&lt;/a&gt;. API của thư viện là các
-function
-mà thư viện đó public cho người dùng sử dụng, ví dụ requests có: requests.get,
-requests.post,... mà trước đây, không thư viện nào từng đơn giản vậy.&lt;/p&gt;
+Python&lt;/a&gt;, nó quá đơn giản, tới mức
+... trước đây không thư viện nào từng làm vậy.&lt;/p&gt;
+&lt;p&gt;(API của thư viện là các function mà thư viện đó public cho người dùng sử dụng,
+ví dụ requests có: requests.get, requests.post.)&lt;/p&gt;
 &lt;p&gt;&lt;img alt="requests logo" src="https://raw.githubusercontent.com/psf/requests/master/ext/requests-logo.png"&gt;&lt;/p&gt;
 &lt;p&gt;Sau gần chục năm phát triển, &lt;code&gt;requests&lt;/code&gt; giờ đã nằm dưới mái nhà &lt;a href="https://github.com/psf/requests/"&gt;Python Software
 Foundation&lt;/a&gt;.&lt;/p&gt;
