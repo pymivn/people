@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+   <title> Dùng Python như các CLI tool  - The PyMiers</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="robots" content="" />
+  <link rel="stylesheet" type="text/css" href="/theme/css/app.css">
+<link rel="stylesheet" type="text/css" href="http://pp.pymi.vn/theme/css/pygment.css">
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    <meta name="author" content="Pymiers" />
+  <meta name="description" content="" />    <link href="http://pp.pymi.vn/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="The PyMiers Full Atom Feed" />         
+  <meta name="tags" content="python" />
+  <meta name="tags" content="CLI" />
+</head>
+
+<body>
+  <main class="wrapper">
+    <section class="container">
+      <header class='column'>
+        <h1 class='title'><a href="http://pp.pymi.vn/">The PyMiers</a></h1>
+      </header>
+
+      <div class="section">
+        <div class="row navbar">
+          <div class="column nav-item is-active"><a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a></div>
+           <div class="column nav-item "><a href="http://pp.pymi.vn/pages/about/">About</a></div>
+          <div class="column nav-item "><a href="http://pp.pymi.vn/pages/add/">Tạo bài viết</a></div>
+          <div class="column nav-item"><a href="/archives">Archives</a></div>
+        </div>
+      </div>
+    </section>
+
+<section class="container">
+  <header>
+    <h2 class="entry-title">
+      <a href="http://pp.pymi.vn/article/pycli/" rel="bookmark"
+         title="Permalink to Dùng Python như các CLI tool">Dùng Python như các CLI tool</a></h2>  
+  </header>
+  <footer class='center'>
+    <time class="published" datetime="2020-03-24T00:00:00+07:00"> 24/03/2020 </time>
+    <address class="vcard author">By
+                    <a class="url fn" href="http://pp.pymi.vn/author/hvnsweeting/">hvnsweeting</a>
+ in <a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a>
+                </address>     <em>Tags</em>:     <a href="http://pp.pymi.vn/tag/python/"><em>python</em></a>,     <a href="http://pp.pymi.vn/tag/cli/"><em>CLI</em></a>    </footer>
+  <br>
+  <div class="entry-content">
+    <p>Các "hacker" trên dòng lệnh luôn gõ nhoay nhoáy các <a href="https://www.familug.org/search/label/CLI">"command
+line"</a> để xử lý text: <a href="https://www.familug.org/search/label/CCGU">grep, cut,
+uniq, sort,...</a> hay đôi khi chơi hẳn
+sed hoặc (AWK)[https://pp.pymi.vn/article/awk/], thậm chí Perl5.</p>
+<p>Thời xưa, Perl5 vốn là công cụ số một của các
+<a href="https://www.familug.org/2015/01/e-tro-thanh-linux-sysadmin.html">SysAdmin</a>,
+khi mà Python vẫn chưa phổ biến do quá sạch đẹp nhưng cũng hơi "dài dòng" (so
+        với Perl). Muốn làm gì với Python cũng phải viết ra 1 file, rồi chmod
+a+x rồi mới chạy được. Perl thì có cả ngàn phép biến hóa chỉ bằng 1 dòng, gọi
+là <a href="https://duckduckgo.com/?q=perl+one-liners&amp;t=ffab&amp;ia=web">one-liner</a> hay
+trên (Wikipedia)[https://en.wikipedia.org/wiki/One-liner_program#Perl]:</p>
+<div class="highlight"><pre><span></span><span class="n">perl</span> <span class="o">-</span><span class="n">lne</span> <span class="s">&#39;print if $_ eq reverse&#39;</span> <span class="sr">/usr/s</span><span class="n">hare</span><span class="sr">/dict/</span><span class="n">american</span><span class="o">-</span><span class="n">english</span>
+</pre></div>
+
+
+<p>1 dòng trên để tìm ra các từ "palindrome' (ngược xuôi như nhau).</p>
+<h2>Python</h2>
+<h3>Python 1-liner</h3>
+<p>Python 1-liner vốn không ngắn như mong đợi, do code Python
+nhấn mạnh vào sự rõ ràng dễ đọc, nên không có cái như <code>$_</code> như Perl. Viết
+Python 1 dòng dùng option <code>-c</code> như sau:</p>
+<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;import math; print(math.sqrt(2**1000))&#39;</span>
+<span class="mf">3.273390607896142e+150</span>
+</pre></div>
+
+
+<p>Các dòng không cần phải xuống dòng mà dùng dấu <code>;</code> để ngăn cách. Nhưng viết
+<code>for</code> hay <code>if</code> thì ... hơi khó.</p>
+<h3>Python nhiều dòng</h3>
+<p>Cách này đơn giản hơn, viêt code thành nhiều dòng, ý hệt như code trong file. Dùng dấu single quote <code>'</code> rồi enter để gõ code, sau đó kết thúc bằng dầu single quote <code>'</code>.</p>
+<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;</span>
+<span class="o">&gt;</span> <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="o">&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+<span class="o">&gt;</span>     <span class="nb">sum</span> <span class="o">+=</span> <span class="n">i</span>
+<span class="o">&gt;</span> <span class="k">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="s1">&#39;</span>
+<span class="mi">45</span>
+</pre></div>
+
+
+<p>Ví dụ sau lấy ra Shell của user <code>root</code> ghi trong file /etc/passwd, viết HOA:</p>
+<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">cat</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">passwd</span> <span class="o">|</span> <span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;</span>
+<span class="o">&gt;</span> <span class="kn">import</span> <span class="nn">sys</span>
+<span class="o">&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+<span class="o">&gt;</span> <span class="s1">&#39;</span>
+<span class="o">/</span><span class="n">BIN</span><span class="o">/</span><span class="n">BASH</span>
+</pre></div>
+
+
+<p>hay đếm số ký tự kết quả trên bằng lệnh <code>wc</code>:</p>
+<div class="highlight"><pre><span></span> <span class="err">$</span> <span class="n">cat</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">passwd</span> <span class="o">|</span> <span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="k">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+<span class="s1">&#39; | wc -c</span>
+<span class="mi">11</span>
+</pre></div>
+
+
+<p>Không phải 1 dòng, nhưng đẹp hơn 1 dòng, và hoàn toàn hợp lý.</p>
+<p>Ví dụ khác để in JSON đẹp:</p>
+<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">echo</span> <span class="s1">&#39;{&quot;name&quot;: &quot;PyMIers&quot;, &quot;year&quot;: 2020}&#39;</span> <span class="o">|</span> <span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;</span>
+<span class="kn">import</span> <span class="nn">json</span><span class="o">,</span> <span class="nn">sys</span>
+<span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span><span class="s1">&#39;</span>
+<span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;PyMIers&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="mi">2020</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Hay dùng module có sẵn:</p>
+<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">echo</span> <span class="s1">&#39;{&quot;name&quot;: &quot;PyMIers&quot;, &quot;year&quot;: 2020}&#39;</span> <span class="o">|</span> <span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">json</span><span class="o">.</span><span class="n">tool</span>
+<span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;PyMIers&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="mi">2020</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Hoặc tìm các Palindromes trong file:</p>
+<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="p">:</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">line</span> <span class="o">==</span> <span class="n">line</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+<span class="s1">&#39; &lt; /usr/share/dict/american-english | head -5</span>
+<span class="n">ada</span>
+<span class="n">ana</span>
+<span class="n">anna</span>
+<span class="n">ara</span>
+<span class="n">ava</span>
+</pre></div>
+
+
+<p>Cách khác:</p>
+<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;</span>
+<span class="kn">import</span> <span class="nn">fileinput</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fileinput</span><span class="o">.</span><span class="n">input</span><span class="p">():</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">line</span> <span class="o">==</span> <span class="n">line</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+<span class="s1">&#39; /usr/share/dict/american-english | head -3</span>
+<span class="n">ada</span>
+<span class="n">ana</span>
+<span class="n">anna</span>
+</pre></div>
+
+
+<h3>Thử thách</h3>
+<p>Viết lại ví dụ sau chỉ dùng các command line, không dùng Python:</p>
+<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">cat</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">passwd</span> <span class="o">|</span> <span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;</span>
+<span class="o">&gt;</span> <span class="kn">import</span> <span class="nn">sys</span>
+<span class="o">&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+<span class="o">&gt;</span> <span class="s1">&#39;</span>
+<span class="o">/</span><span class="n">BIN</span><span class="o">/</span><span class="n">BASH</span>
+</pre></div>
+
+
+<h3>Pro tips</h3>
+<ul>
+<li>trong code không dùng dấu <code>'</code></li>
+<li><strong>không được gõ sai</strong> vì sửa lại hơi mệt, nếu không có khả năng này,
+  hãy viết code vào file.</li>
+</ul>
+<h2>Kết luận</h2>
+<p>Python dài và chất, đừng ngại dùng khi gõ CLI.</p>
+  </div>
+  <!-- /.entry-content -->
+</section>
+<section class="container">
+  <div class="comments">
+    <h3>Comments</h3>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'pymier';
+      var disqus_identifier = 'article/pycli/';
+      var disqus_url = 'http://pp.pymi.vn/article/pycli/';
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//pymier.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the comments.</noscript>
+  </div>
+</section>
+
+    <section class="container footer">
+      <footer>
+        <address>
+        Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+        which takes great advantage of <a href="http://python.org">Python</a>.
+        </address>
+        <address>
+          Học lập trình Python tại <a href="https://pymi.vn/">Pymi.vn</a>
+        </address>
+      </footer>
+    </section>
+  </main>
+
+<script type="text/javascript">
+var images = document.getElementsByTagName("img");
+var i;
+
+for(i = 0; i < images.length; i++) {
+  images[i].className += " centered";
+}
+</script>
+</body>
+
+</html>
