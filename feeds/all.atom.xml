@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2020-03-24T00:00:00+07:00</updated><entry><title>Dùng Python như các CLI tool</title><link href="http://pp.pymi.vn/article/pycli/" rel="alternate"></link><published>2020-03-24T00:00:00+07:00</published><updated>2020-03-24T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2020-03-24:/article/pycli/</id><summary type="html">&lt;p&gt;Python vốn được dùng để viết script, code trong file nhưng vẫn tỏa sáng khi gõ trong command line&lt;/p&gt;</summary><content type="html">&lt;p&gt;Các "hacker" trên dòng lệnh luôn gõ nhoay nhoáy các &lt;a href="https://www.familug.org/search/label/CLI"&gt;"command
 line"&lt;/a&gt; để xử lý text: &lt;a href="https://www.familug.org/search/label/CCGU"&gt;grep, cut,
 uniq, sort,...&lt;/a&gt; hay đôi khi chơi hẳn
-sed hoặc (AWK)[https://pp.pymi.vn/article/awk/], thậm chí Perl5.&lt;/p&gt;
+sed hoặc &lt;a href="https://pp.pymi.vn/article/awk/"&gt;AWK&lt;/a&gt;, thậm chí Perl5.&lt;/p&gt;
 &lt;p&gt;Thời xưa, Perl5 vốn là công cụ số một của các
 &lt;a href="https://www.familug.org/2015/01/e-tro-thanh-linux-sysadmin.html"&gt;SysAdmin&lt;/a&gt;,
 khi mà Python vẫn chưa phổ biến do quá sạch đẹp nhưng cũng hơi "dài dòng" (so
