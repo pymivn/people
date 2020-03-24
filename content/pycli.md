@@ -6,7 +6,7 @@ Slug: pycli
 Authors: hvnsweeting
 Summary: Python vốn được dùng để viết script, code trong file nhưng vẫn tỏa sáng khi gõ trong command line
 
-Các "hacker" trên dòng lệnh luôn gõ nhoay nhoáy các ["command
+Những "hacker" trên dòng lệnh luôn gõ nhoay nhoáy các ["command
 line"](https://www.familug.org/search/label/CLI) để xử lý text: [grep, cut,
 uniq, sort,...](https://www.familug.org/search/label/CCGU) hay đôi khi chơi hẳn
 sed hoặc [AWK](https://pp.pymi.vn/article/awk/), thậm chí Perl5.
@@ -14,7 +14,7 @@ sed hoặc [AWK](https://pp.pymi.vn/article/awk/), thậm chí Perl5.
 Thời xưa, Perl5 vốn là công cụ số một của các
 [SysAdmin](https://www.familug.org/2015/01/e-tro-thanh-linux-sysadmin.html),
 khi mà Python vẫn chưa phổ biến do quá sạch đẹp nhưng cũng hơi "dài dòng" (so
-        với Perl). Muốn làm gì với Python cũng phải viết ra 1 file, rồi chmod
+với Perl). Muốn làm gì với Python cũng phải viết ra 1 file, rồi chmod
 a+x rồi mới chạy được. Perl thì có cả ngàn phép biến hóa chỉ bằng 1 dòng, gọi
 là [one-liner](https://duckduckgo.com/?q=perl+one-liners&t=ffab&ia=web) hay
 trên [Wikipedia](https://en.wikipedia.org/wiki/One-liner_program#Perl):
@@ -28,7 +28,7 @@ perl -lne 'print if $_ eq reverse' /usr/share/dict/american-english
 ## Python
 ### Python 1-liner
 Python 1-liner vốn không ngắn như mong đợi, do code Python
-nhấn mạnh vào sự rõ ràng dễ đọc, nên không có cái như `$_` như Perl. Viết
+nhấn mạnh vào sự rõ ràng dễ đọc, nên không có các ký tự bí hiểm `$_` như Perl. Viết
 Python 1 dòng dùng option `-c` như sau:
 
 ```python
