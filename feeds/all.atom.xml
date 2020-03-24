@@ -9,7 +9,7 @@ khi mà Python vẫn chưa phổ biến do quá sạch đẹp nhưng cũng hơi 
         với Perl). Muốn làm gì với Python cũng phải viết ra 1 file, rồi chmod
 a+x rồi mới chạy được. Perl thì có cả ngàn phép biến hóa chỉ bằng 1 dòng, gọi
 là &lt;a href="https://duckduckgo.com/?q=perl+one-liners&amp;amp;t=ffab&amp;amp;ia=web"&gt;one-liner&lt;/a&gt; hay
-trên (Wikipedia)[https://en.wikipedia.org/wiki/One-liner_program#Perl]:&lt;/p&gt;
+trên &lt;a href="https://en.wikipedia.org/wiki/One-liner_program#Perl"&gt;Wikipedia&lt;/a&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;perl&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;lne&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;print if $_ eq reverse&amp;#39;&lt;/span&gt; &lt;span class="sr"&gt;/usr/s&lt;/span&gt;&lt;span class="n"&gt;hare&lt;/span&gt;&lt;span class="sr"&gt;/dict/&lt;/span&gt;&lt;span class="n"&gt;american&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;english&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
