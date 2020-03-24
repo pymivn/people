@@ -9,7 +9,7 @@ Summary: Python vốn được dùng để viết script, code trong file nhưng
 Các "hacker" trên dòng lệnh luôn gõ nhoay nhoáy các ["command
 line"](https://www.familug.org/search/label/CLI) để xử lý text: [grep, cut,
 uniq, sort,...](https://www.familug.org/search/label/CCGU) hay đôi khi chơi hẳn
-sed hoặc (AWK)[https://pp.pymi.vn/article/awk/], thậm chí Perl5.
+sed hoặc [AWK](https://pp.pymi.vn/article/awk/), thậm chí Perl5.
 
 Thời xưa, Perl5 vốn là công cụ số một của các
 [SysAdmin](https://www.familug.org/2015/01/e-tro-thanh-linux-sysadmin.html),
