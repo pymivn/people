@@ -17,7 +17,7 @@ khi mà Python vẫn chưa phổ biến do quá sạch đẹp nhưng cũng hơi 
         với Perl). Muốn làm gì với Python cũng phải viết ra 1 file, rồi chmod
 a+x rồi mới chạy được. Perl thì có cả ngàn phép biến hóa chỉ bằng 1 dòng, gọi
 là [one-liner](https://duckduckgo.com/?q=perl+one-liners&t=ffab&ia=web) hay
-trên (Wikipedia)[https://en.wikipedia.org/wiki/One-liner_program#Perl]:
+trên [Wikipedia](https://en.wikipedia.org/wiki/One-liner_program#Perl):
 
 ```perl
 perl -lne 'print if $_ eq reverse' /usr/share/dict/american-english
