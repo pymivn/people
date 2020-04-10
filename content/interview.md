@@ -25,7 +25,7 @@ hay có quan hệ được "giới thiệu" vào làm, thì:
 
 - lập trình viên sẽ lên các trang tuyển dụng/tìm việc ([như PyJobs](https://jobs.pymi.vn/))/trang chủ của công ty cụ thể để tìm công việc mong muốn,
 - hoặc các "head hunter" chuyên đi săn ứng viên hay HR (human resource - nhân
-  sự) của các công ty chủ động liên hệ, mời (or gạ) nộp hồ sơ phỏng vấn. Chý ý
+  sự) của các công ty chủ động liên hệ, mời (or gạ) nộp hồ sơ phỏng vấn. Chú ý
   đây là một nghề hái ra tiền, nên đừng shock nếu được mời chào đon đả.
 
 ## Quy trình phỏng vấn ra sao?
