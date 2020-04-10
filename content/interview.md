@@ -148,8 +148,8 @@ táo quân nói, những thứ khác quan trọng hơn:
   dành đủ 6 tháng 2 năm cày luyện Cracking Coding Interview để thi vào Google,
   cày leetcode... thì đừng mong trả lời được mọi câu hỏi thuật toán lắt léo.
   Và nên nhớ, công ty bạn đang nộp vào, không phải là Google.
-  Quy trình phỏng vấn dùng các câu hỏi thuật toán đang [gây rất nhiều phẫn nộ
-  trong cộng đồng lập trình viên](https://news.ycombinator.com/item?id=22331804),
+  Quy trình phỏng vấn dùng các câu hỏi thuật toán [hiện được xem như một quy
+  trình nhiều lỗ hổng](https://news.ycombinator.com/item?id=22331804),
   bởi nó không phải 1 cách tốt để dánh giá ứng viên.
 - Trượt các câu hỏi lý thuyết trong trường đại học: bên tuyển dụng thường hay hỏi
   kể tên các thuật toán sort bạn biết: bubble sort, quick sort, merge sort,
