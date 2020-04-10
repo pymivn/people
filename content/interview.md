@@ -112,6 +112,11 @@ xuống, khiêm tốn là một (đức) tính được yêu thích (trước) k
   dùng pandas hay viết crawler (hay tốt nghiệp [Pymi.vn](https://pymi.vn)
   là 8 triệu VND tại năm 2019. Sau 1 năm kinh nghiệm,
   con số này có thể gấp đôi, hoặc hơn.
+- Trượt phỏng vấn 10 công ty: chúc mừng, bạn đã đánh 10 con quái và lên level 2.
+  Thất bại là một phần tất yếu của thành công.
+  Quan trọng là về biết rút kinh nghiệm, học những câu trả lời sai để lần sau
+  còn làm đúng. Rồi bạn sẽ ngạc nhiên khi nhiều công ty/nhiều vòng phỏng vấn
+  có "kho" câu hỏi trùng nhau.
 
 ## Kỹ thuật
 Bên trên toàn nói chuyện thoả thuận, tiền, thế còn các câu hỏi kỹ thuật thì sao?
