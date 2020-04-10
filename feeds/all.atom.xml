@@ -1,5 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2020-03-24T00:00:00+07:00</updated><entry><title>Dùng Python như các CLI tool</title><link href="http://pp.pymi.vn/article/pycli/" rel="alternate"></link><published>2020-03-24T00:00:00+07:00</published><updated>2020-03-24T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2020-03-24:/article/pycli/</id><summary type="html">&lt;p&gt;Python vốn được dùng để viết script, code trong file nhưng vẫn tỏa sáng khi gõ trong command line&lt;/p&gt;</summary><content type="html">&lt;p&gt;Những "hacker" trên dòng lệnh luôn gõ nhoay nhoáy các &lt;a href="https://www.familug.org/search/label/CLI"&gt;"command
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2020-04-10T00:00:00+07:00</updated><entry><title>Phỏng vấn</title><link href="http://pp.pymi.vn/article/phongvan/" rel="alternate"></link><published>2020-04-10T00:00:00+07:00</published><updated>2020-04-10T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2020-04-10:/article/phongvan/</id><summary type="html">&lt;p&gt;phỏng vấn thì chuẩn bị gì? làm thế nào để "deal" lương? học xong xin việc thế nào?&lt;/p&gt;</summary><content type="html">&lt;p&gt;Phỏng vấn là hai từ mang yếu tố quyết định, nhưng ít khi được nhắc đến.
+Nó thường bị xem như sự may mắn, hay do "giỏi", hay quan hệ tốt ...
+Bài viết này giải đáp các thắc mắc thầm kín khi đi phỏng vấn xin việc, đặc biệt
+dành cho những người kiếm công việc lập trình đầu tiên.&lt;/p&gt;
+&lt;h2&gt;Phỏng vấn là gì?&lt;/h2&gt;
+&lt;p&gt;Khi muốn đi làm, một lập trình viên sẽ liên hệ với một công ty để "xin việc" nhằm
+có một công việc, được trả lương tại công ty đó, ở đây ví dụ là PAMA corp.&lt;/p&gt;
+&lt;p&gt;PAMA corp sẽ cử một hoặc một nhóm người thực hiện việc "kiểm tra đầu vào". Sau
+quá trình kiểm tra, nếu phía PAMA corp đồng ý, phía lập trình viên đồng ý,
+sẽ ký một hợp đồng lao động, rồi lập trình viên đi làm, và được trả lương.&lt;/p&gt;
+&lt;h2&gt;Nộp "đơn xin việc" thế nào?&lt;/h2&gt;
+&lt;p&gt;Thông thường, tức không phải các trường hợp ngoại lệ như bị "săn" đón đi làm,
+hay có quan hệ được "giới thiệu" vào làm, thì:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;lập trình viên sẽ lên các trang tuyển dụng/tìm việc (&lt;a href="https://jobs.pymi.vn/"&gt;như PyJobs&lt;/a&gt;)/trang chủ của công ty cụ thể để tìm công việc mong muốn,&lt;/li&gt;
+&lt;li&gt;hoặc các "head hunter" chuyên đi săn ứng viên hay HR (human resource - nhân
+  sự) của các công ty chủ động liên hệ, mời (or gạ) nộp hồ sơ phỏng vấn. Chý ý
+  đây là một nghề hái ra tiền, nên đừng shock nếu được mời chào đon đả.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Quy trình phỏng vấn ra sao?&lt;/h2&gt;
+&lt;p&gt;Thông thường sẽ có:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HH/HR gọi điện, thống nhất về Job description (JD - yêu cầu công việc), có
+  thể có cả mức lương thưởng/chính sách. Nếu không có, hãy hỏi kỹ, cụ thể để
+  khỏi mất thời gian. Bạn sẽ không muốn tốn thời gian 4 tuần đi qua 8 vòng phỏng
+  vấn để biết mức thu nhập tối đa công ty sẽ trả cho vị trí đó là 1.500 USD, trong
+  khi thu nhập hiện tại của bạn đang là 3000 USD.
+  HR sẽ chốt quy trình phỏng vấn (mấy vòng), thời gian phỏng vấn vòng 1.&lt;/li&gt;
+&lt;li&gt;Vòng 0: các công ty có thể có bài test online, thường là code 2-3 bài thuật
+  toán trong vòng 1 tiếng trên 1 trang code online như hackerank.com.
+  Hoặc cũng có thể cho 1 bài "test" về nhà làm 1 sản phẩm gì đó rồi nộp sau 1
+  tuần.&lt;/li&gt;
+&lt;li&gt;Nếu có vòng 0, và nếu đạt yêu cầu, HR sẽ email/ gọi điện hẹn phỏng vấn vòng 1.&lt;/li&gt;
+&lt;li&gt;Vòng 1, có thể là cả vòng 2, hay thậm chí vòng N, là việc gặp và trả lời các
+  câu hỏi do đại diện phía công ty đưa ra.&lt;/li&gt;
+&lt;li&gt;Nếu N vòng này thành công, sẽ tới vòng cuối cùng: "deal" lương. Dựa vào kết
+  quả N vòng trước mà công ty quyết định có tuyển lập trinh viên không, và
+  trả thù lao bao nhiêu.&lt;/li&gt;
+&lt;li&gt;Hai bên nếu đồng ý sẽ ký giấy tờ, và hẹn ngày đi làm. Với người đang đi làm
+  ở công ty khác, sẽ thỏa thuận sau thời gian X ngày (thường là 30-45 ngày)
+  sẽ đi làm do đó là thời gian cần thiết để xin nghỉ, chấm dứt hợp đồng với
+  công ty cũ.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Đơn xin việc - Resume - CV&lt;/h2&gt;
+&lt;p&gt;Thường là 1 file PDF (để đọc được trên mọi hệ điều hành),
+bằng tiếng Anh (để tỏ ra chuyên nghiệp), có link GitHub đến các project cá
+nhân thay vì đính kèm file RAR.&lt;/p&gt;
+&lt;p&gt;Xem mẫu CV học viên mới tốt nghiệp &lt;a href="https://pymi.vn"&gt;pymivn&lt;/a&gt;
+tại &lt;a href="https://bit.ly/pymicv"&gt;đây&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Tránh các mẫu CV có "thanh năng lượng" đánh giá 3 sao 5 sao. Really? bạn
+có chắc mình đạt 3 sao? so với ai? So với Guido Van Rossum?
+Để 4 5 sao nhiều khi phản tác dụng khiến cho phía bên kia tìm cách mà dìm bạn
+xuống, khiêm tốn là một (đức) tính được yêu thích (trước) khi đi làm.&lt;/p&gt;
+&lt;h2&gt;Các vấn đề bất cập của quy trình phỏng vấn&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Không có chuẩn, không có khuôn mẫu, mỗi chỗ một kiểu. Có khi lý do
+  không ai viết bài về chuyện phỏng vấn bởi nó chả bao giờ giống nhau cả.&lt;/li&gt;
+&lt;li&gt;Vậy nên những thứ viết trong bài này, hãy xem là tương đối, bởi tác giả
+  không muốn thêm chữ "một cách tương đối" cuối mỗi câu, hay "đôi khi"/"hầu
+  hết" ở mỗi đầu câu.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Những bí quyết phỏng vấn&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;HIỂU rằng ký hợp đồng lao động và đi làm cho một công ty, đó là một thỏa
+  thuận &lt;strong&gt;kinh tế&lt;/strong&gt; giữa 2 bên, thuận mua - vừa bán, như đi mua thịt mua rau.
+  Phía công ty dùng tiền để mua - phía lập trình viên bán sức lao động. Không
+  phải chuyện xin cho, ơn huệ, nợ nần gì ai cả. Không có công ty làm việc không
+  vì lợi nhuận, nhận vào làm vì &lt;a href="https://www.youtube.com/watch?v=iJKV5miglAg"&gt;thương bạn như thương cây bàng
+  non&lt;/a&gt;. Cũng không có chuyện "anh
+  em như thể người nhà, bạn bè đồng nghiệp như là người thân". No, please.
+  Bạn sẽ bị thay thế bất cứ lúc nào nếu không còn có lợi cho công ty.&lt;/li&gt;
+&lt;li&gt;Không để lộ mức lương hiện tại, bằng mọi giá. Vì lý do gì công ty PAMA corp
+  cần biết mức lương cũ của bạn? lý do duy nhất là để ép nó xuống. Nếu bạn nói
+  lương hiện tại 10 triệu, công ty hoàn toàn tự tin trả bạn 11 triệu. Nhưng nếu
+  không biết, họ chỉ có thể trả thấp hơn 1 chút mức bạn yêu cầu. Ở Mỹ, có hẳn
+  &lt;a href="https://www.sfgate.com/business/networth/article/New-law-bans-California-employers-from-asking-12274431.php"&gt;luật cấm các công ty hỏi lịch sử lương ứng viên&lt;/a&gt;. Ở Việt Nam không có luật này, nhưng nếu bị hỏi, hãy nói đã kỹ thỏa thuận
+  không tiết lộ &lt;a href="https://en.wikipedia.org/wiki/Non-disclosure_agreement"&gt;NDA&lt;/a&gt;
+  của công ty cũ / hiện tại. HR sẽ hỏi vòng rằng "mức mong đợi của
+  anh là bao nhiêu?", lúc đó cứ thoải mái nói mức bạn mong muốn, hay cộng 7-10
+  triệu vào mức hiện tại, không mấy ai nhảy việc để nhận thêm 1 triệu mỗi tháng
+  cả.&lt;/li&gt;
+&lt;li&gt;Hỏi rõ mức thu nhập cụ thể, kể cả khoảng (range - từ X đến Y). Rất nhiều công
+  ty để lương theo kiểu "thỏa thuận", hay "có thể thương lượng", hay HR cương
+  quyết không nói mà đòi phải qua vòng phỏng vấn. Cũng nên chú ý rằng, nếu
+  công ty nói là max 2000 USD hay upto 2000 USD, thường nghĩa là họ chỉ trả max
+  1 nghìn mốt.&lt;/li&gt;
+&lt;li&gt;Hỏi rõ lương làm Gross hay Net, search internet để hiểu rõ sự khác nhau này.&lt;/li&gt;
+&lt;li&gt;Nhận 80% lương thử việc là điều thường thấy, nhưng không phải bắt buộc.
+  Ít khi thấy ở các vị trí câp cao vài nghìn USD.&lt;/li&gt;
+&lt;li&gt;Không phải "giỏi" kỹ thuật hơn thì lương cao hơn. Có chăng lý do lương A cao
+  hơn B dù trình độ "ngang nhau" là bởi A giỏi thương lượng/đàm phán/thỏa
+  thuận hơn B.&lt;/li&gt;
+&lt;li&gt;Các câu hỏi mang tính chất dìm hàng như bằng cấp (đặc biệt khi bạn không tốt
+  nghiệp đại học ngành công nghệ thông tin) nhằm làm căn cứ để giảm lương của bạn.
+  Chỉ một số các công ty nhà nước/ngân hàng mới thực sự đòi hỏi bằng cấp. Hay
+  khi phải cân nhấc 2 ứng viên ngang ngửa, bằng mới được lôi ra.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Kỹ thuật&lt;/h2&gt;
+&lt;p&gt;Bên trên toàn nói chuyện thoả thuận, tiền, thế còn các câu hỏi kỹ thuật thì sao?
+các thuật toán cao siêu thì thế nào???&lt;/p&gt;
+&lt;p&gt;Thực ra những vấn đề kỹ thuật không mang nhiều tính chất quyết định. Đúng như
+táo quân nói, những thứ khác quan trọng hơn:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;quan hệ: rất nhiều người đi làm nhờ quan hệ, quan hệ ở đây không có nghĩa xấu
+  như trong táo quân. Một lập trình viên giỏi chưa chắc có việc nhanh bằng
+  một thanh niên biết code có nhiều môi quen biết, biết chỗ nào đang cần người.
+  Nhiều mối ngon cũng đến do ông A chỉ biết thằng B làm Python, chả biết thằng
+  nào khác cả. Lên mạng đi tuyển lại phải đau đầu với chuyện tuyển dụng/ cạnh
+  tranh với hàng trăm công ty khác khi dev Python giờ hot như cồn và khẩu trang.&lt;/li&gt;
+&lt;li&gt;may mắn: ôn đúng bài, bị hỏi toàn cái biết, hay đẹp trai cũng là một dạng may
+  mắn.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Những điều không phải là thất bại&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Các công ty phỏng vấn Python nhưng lại toàn hỏi C, Java, PHP... Nếu là một
+  lập trình viên Python / backend, thì khi phỏng vấn tôi cần trả lời các vấn
+  đề về Python, hay SQL, hay thậm chí tool làm việc như git, docker. Nhưng
+  chẳng có lý do gì lại hỏi C array so sánh với Python list, hay Java/C#
+  design pattern cho Python cả. Khi gặp những công ty hỏi kiểu này, bạn không trả
+  lời được thì đừng trách mình "dốt". Nếu có được hỏi lại, hãy hỏi họ giá trị gì
+  mang lại khi họ hỏi những câu đó với 1 lập trình viên Python. Hoặc bạn sẽ
+  biết phía bên kia không biết gì về Python (không hiếm với các công ty outsource),
+  hoặc sẽ học được điều gì đó.&lt;/li&gt;
+&lt;li&gt;Trượt các câu hỏi thuật toán/IQ: các câu hỏi này rất đa dạng, trừ khi bạn
+  dành đủ 6 tháng 2 năm cày luyện Cracking Coding Interview để thi vào Google,
+  cày leetcode... thì đừng mong trả lời được mọi câu hỏi thuật toán lắt léo.
+  Và nên nhớ, công ty bạn đang nộp vào, không phải là Google.
+  Quy trình phỏng vấn dùng các câu hỏi thuật toán đang &lt;a href="https://news.ycombinator.com/item?id=22331804"&gt;gây rất nhiều phẫn nộ
+  trong cộng đồng lập trình viên&lt;/a&gt;,
+  bởi nó không phải 1 cách tốt để dánh giá ứng viên.&lt;/li&gt;
+&lt;li&gt;Trượt các câu hỏi lý thuyết trong trường đại học: bên tuyển dụng thường hay hỏi
+  kể tên các thuật toán sort bạn biết: bubble sort, quick sort, merge sort,
+  heapsort, insert sort, hay cả &lt;a href="https://www.familug.org/2014/12/algorithm-sleep-sort.html"&gt;sleep sort&lt;/a&gt;
+  thế nhưng chưa chắc họ đã biết tên thuật toán sort trong Python (list.sort)
+  tên là gì? (it's Tim sort) và khả năng cao khác, là họ không giải thích được khi
+  nào bạn phải dùng các thuật toán trường học trên thay vì Tim sort có sẵn
+  trong Python.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Fun fact&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Có những công ty thực hiện đến hơn 10 cuộc phỏng vấn (phỏng vấn lần lượt từng
+  người trong team), kéo dài vài tháng.&lt;/li&gt;
+&lt;li&gt;Có nhiều công ty "top", "hot", "đỉnh", "chỉ tuyển người giỏi nhất", nhưng trả
+  mức thù lao mà chỗ nào cũng trả được.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Dặn dò&lt;/h2&gt;
+&lt;p&gt;Nhớ làm thành thạo bài tập của &lt;a href="https://pymi.vn"&gt;pymi&lt;/a&gt; và đọc &lt;a href="https://faq.pymi.vn/"&gt;PYMI interview
+FAQs&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Kết luận&lt;/h2&gt;
+&lt;p&gt;Phỏng vấn là một kỹ năng, giống như code, để giỏi, cần phải rèn luyện nhiều.
+Phỏng vấn là một cuộc đấu trí, thậm chí chẳng có câu hỏi kỹ thuật chi tiết nào
+được đưa ra mà ứng viên vẫn hoàn thành xuất sắc cuộc phỏng vấn.&lt;/p&gt;
+&lt;p&gt;Nếu lần đầu đi nộp CV, hãy rải thảm tất cả các công ty, hãy đi phỏng vấn thật
+nhiều, trượt thật nhiều, rút kinh nghiệm, rồi sau 10 lần phỏng vấn, kiểu gì
+chả trúng 1. Còn nếu đã đi làm, trừ khi ấm chỗ leader/trưởng phòng/giám đốc/CTO/
+CBE thì mỗi mùa xuân hạ thu đông cũng nên đi phỏng vấn 1 lần để biết trình độ
+mình ở đâu, và đáng giá được bao nhiêu nào.&lt;/p&gt;</content><category term="Trang chủ"></category><category term="python"></category><category term="interview"></category><category term="xin việc"></category><category term="phỏng vấn"></category><category term="HR"></category><category term="HH"></category></entry><entry><title>Dùng Python như các CLI tool</title><link href="http://pp.pymi.vn/article/pycli/" rel="alternate"></link><published>2020-03-24T00:00:00+07:00</published><updated>2020-03-24T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2020-03-24:/article/pycli/</id><summary type="html">&lt;p&gt;Python vốn được dùng để viết script, code trong file nhưng vẫn tỏa sáng khi gõ trong command line&lt;/p&gt;</summary><content type="html">&lt;p&gt;Những "hacker" trên dòng lệnh luôn gõ nhoay nhoáy các &lt;a href="https://www.familug.org/search/label/CLI"&gt;"command
 line"&lt;/a&gt; để xử lý text: &lt;a href="https://www.familug.org/search/label/CCGU"&gt;grep, cut,
 uniq, sort,...&lt;/a&gt; hay đôi khi chơi hẳn
 sed hoặc &lt;a href="https://pp.pymi.vn/article/awk/"&gt;AWK&lt;/a&gt;, thậm chí Perl5.&lt;/p&gt;
