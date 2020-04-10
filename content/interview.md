@@ -22,13 +22,15 @@ sẽ ký một hợp đồng lao động, rồi lập trình viên đi làm, và
 ## Nộp "đơn xin việc" thế nào?
 Thông thường, tức không phải các trường hợp ngoại lệ như bị "săn" đón đi làm,
 hay có quan hệ được "giới thiệu" vào làm, thì:
-- lập trình viên sẽ lên các trang tuyển dụng/tìm việc/trang chủ của công ty cụ thể để tìm công việc mong muốn,
+
+- lập trình viên sẽ lên các trang tuyển dụng/tìm việc ([như PyJobs](https://jobs.pymi.vn/))/trang chủ của công ty cụ thể để tìm công việc mong muốn,
 - hoặc các "head hunter" chuyên đi săn ứng viên hay HR (human resource - nhân
   sự) của các công ty chủ động liên hệ, mời (or gạ) nộp hồ sơ phỏng vấn. Chý ý
   đây là một nghề hái ra tiền, nên đừng shock nếu được mời chào đon đả.
 
 ## Quy trình phỏng vấn ra sao?
 Thông thường sẽ có:
+
 - HH/HR gọi điện, thống nhất về Job description (JD - yêu cầu công việc), có
   thể có cả mức lương thưởng/chính sách. Nếu không có, hãy hỏi kỹ, cụ thể để
   khỏi mất thời gian. Bạn sẽ không muốn tốn thời gian 4 tuần đi qua 8 vòng phỏng
@@ -64,6 +66,7 @@ có chắc mình đạt 3 sao? so với ai? So với Guido Van Rossum?
 xuống, khiêm tốn là một (đức) tính được yêu thích (trước) khi đi làm.
 
 ## Các vấn đề bất cập của quy trình phỏng vấn
+
 - Không có chuẩn, không có khuôn mẫu, mỗi chỗ một kiểu. Có khi lý do
   không ai viết bài về chuyện phỏng vấn bởi nó chả bao giờ giống nhau cả.
 - Vậy nên những thứ viết trong bài này, hãy xem là tương đối, bởi tác giả
@@ -71,6 +74,7 @@ xuống, khiêm tốn là một (đức) tính được yêu thích (trước) k
   hết" ở mỗi đầu câu.
 
 ## Những bí quyết phỏng vấn
+
 - HIỂU rằng ký hợp đồng lao động và đi làm cho một công ty, đó là một thỏa
   thuận **kinh tế** giữa 2 bên, thuận mua - vừa bán, như đi mua thịt mua rau.
   Phía công ty dùng tiền để mua - phía lập trình viên bán sức lao động. Không
@@ -83,7 +87,7 @@ xuống, khiêm tốn là một (đức) tính được yêu thích (trước) k
   cần biết mức lương cũ của bạn? lý do duy nhất là để ép nó xuống. Nếu bạn nói
   lương hiện tại 10 triệu, công ty hoàn toàn tự tin trả bạn 11 triệu. Nhưng nếu
   không biết, họ chỉ có thể trả thấp hơn 1 chút mức bạn yêu cầu. Ở Mỹ, có hẳn
-  [luật cấm các công ty hỏi lịch sử lương ứng viên](https://www.sfgate.com/business/networth/article/New-law-bans-California-employers-from-asking-12274431.php). Ở Việt Nam không có luật này, nhưng nếu bị hỏi, hãy nó đã kỹ thỏa thuận
+  [luật cấm các công ty hỏi lịch sử lương ứng viên](https://www.sfgate.com/business/networth/article/New-law-bans-California-employers-from-asking-12274431.php). Ở Việt Nam không có luật này, nhưng nếu bị hỏi, hãy nói đã kỹ thỏa thuận
   không tiết lộ [NDA](https://en.wikipedia.org/wiki/Non-disclosure_agreement)
   của công ty cũ / hiện tại. HR sẽ hỏi vòng rằng "mức mong đợi của
   anh là bao nhiêu?", lúc đó cứ thoải mái nói mức bạn mong muốn, hay cộng 7-10
@@ -94,18 +98,24 @@ xuống, khiêm tốn là một (đức) tính được yêu thích (trước) k
   quyết không nói mà đòi phải qua vòng phỏng vấn. Cũng nên chú ý rằng, nếu
   công ty nói là max 2000 USD hay upto 2000 USD, thường nghĩa là họ chỉ trả max
   1 nghìn mốt.
+- Hỏi rõ lương làm Gross hay Net, search internet để hiểu rõ sự khác nhau này.
 - Nhận 80% lương thử việc là điều thường thấy, nhưng không phải bắt buộc.
   Ít khi thấy ở các vị trí câp cao vài nghìn USD.
 - Không phải "giỏi" kỹ thuật hơn thì lương cao hơn. Có chăng lý do lương A cao
   hơn B dù trình độ "ngang nhau" là bởi A giỏi thương lượng/đàm phán/thỏa
   thuận hơn B.
+- Các câu hỏi mang tính chất dìm hàng như bằng cấp (đặc biệt khi bạn không tốt
+  nghiệp đại học ngành công nghệ thông tin) nhằm làm căn cứ để giảm lương của bạn.
+  Chỉ một số các công ty nhà nước/ngân hàng mới thực sự đòi hỏi bằng cấp. Hay
+  khi phải cân nhấc 2 ứng viên ngang ngửa, bằng mới được lôi ra.
 
 ## Kỹ thuật
 Bên trên toàn nói chuyện thoả thuận, tiền, thế còn các câu hỏi kỹ thuật thì sao?
 các thuật toán cao siêu thì thế nào???
 
 Thực ra những vấn đề kỹ thuật không mang nhiều tính chất quyết định. Đúng như
-táo quân noi, những thứ khác quan trọng hơn:
+táo quân nói, những thứ khác quan trọng hơn:
+
 - quan hệ: rất nhiều người đi làm nhờ quan hệ, quan hệ ở đây không có nghĩa xấu
   như trong táo quân. Một lập trình viên giỏi chưa chắc có việc nhanh bằng
   một thanh niên biết code có nhiều môi quen biết, biết chỗ nào đang cần người.
@@ -119,8 +129,8 @@ táo quân noi, những thứ khác quan trọng hơn:
 - Các công ty phỏng vấn Python nhưng lại toàn hỏi C, Java, PHP... Nếu là một
   lập trình viên Python / backend, thì khi phỏng vấn tôi cần trả lời các vấn
   đề về Python, hay SQL, hay thậm chí tool làm việc như git, docker. Nhưng
-  chẳng có lý do gì lại hỏi C array so sánh với Python list cả. Hay Java/C#
-  design pattern cho Python. Khi gặp những công ty hỏi kiểu này, bạn không trả
+  chẳng có lý do gì lại hỏi C array so sánh với Python list, hay Java/C#
+  design pattern cho Python cả. Khi gặp những công ty hỏi kiểu này, bạn không trả
   lời được thì đừng trách mình "dốt". Nếu có được hỏi lại, hãy hỏi họ giá trị gì
   mang lại khi họ hỏi những câu đó với 1 lập trình viên Python. Hoặc bạn sẽ
   biết phía bên kia không biết gì về Python (không hiếm với các công ty outsource),
@@ -129,20 +139,26 @@ táo quân noi, những thứ khác quan trọng hơn:
   dành đủ 6 tháng 2 năm cày luyện Cracking Coding Interview để thi vào Google,
   cày leetcode... thì đừng mong trả lời được mọi câu hỏi thuật toán lắt léo.
   Và nên nhớ, công ty bạn đang nộp vào, không phải là Google.
-  Quy trình phỏng vấn dùng các câu hỏi thuật toán đang gây rất nhiều phẫn nộ
-  trong cộng đồng lập trình viên, bởi nó không dánh giá tốt được một ứng viên.
+  Quy trình phỏng vấn dùng các câu hỏi thuật toán đang [gây rất nhiều phẫn nộ
+  trong cộng đồng lập trình viên](https://news.ycombinator.com/item?id=22331804),
+  bởi nó không phải 1 cách tốt để dánh giá ứng viên.
 - Trượt các câu hỏi lý thuyết trong trường đại học: bên tuyển dụng thường hay hỏi
   kể tên các thuật toán sort bạn biết: bubble sort, quick sort, merge sort,
   heapsort, insert sort, hay cả [sleep sort](https://www.familug.org/2014/12/algorithm-sleep-sort.html)
   thế nhưng chưa chắc họ đã biết tên thuật toán sort trong Python (list.sort)
-  tên là gì (Tim sort)? và khả năng cao khác, là họ không giải thích được khi
-  nào bạn phải dùng các thuật toán trên thay vì list.sort có sẵn trong Python.
+  tên là gì? (it's Tim sort) và khả năng cao khác, là họ không giải thích được khi
+  nào bạn phải dùng các thuật toán trường học trên thay vì Tim sort có sẵn
+  trong Python.
 
 ## Fun fact
 - Có những công ty thực hiện đến hơn 10 cuộc phỏng vấn (phỏng vấn lần lượt từng
   người trong team), kéo dài vài tháng.
 - Có nhiều công ty "top", "hot", "đỉnh", "chỉ tuyển người giỏi nhất", nhưng trả
   mức thù lao mà chỗ nào cũng trả được.
+
+## Dặn dò
+Nhớ làm thành thạo bài tập của [pymi](https://pymi.vn) và đọc [PYMI interview
+FAQs](https://faq.pymi.vn/).
 
 ## Kết luận
 Phỏng vấn là một kỹ năng, giống như code, để giỏi, cần phải rèn luyện nhiều.
