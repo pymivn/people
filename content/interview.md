@@ -61,7 +61,7 @@ Xem mẫu CV học viên mới tốt nghiệp [pymivn](https://pymi.vn)
 tại [đây](https://bit.ly/pymicv).
 
 Tránh các mẫu CV có "thanh năng lượng" đánh giá 3 sao 5 sao. Really? bạn
-có chắc mình đạt 3 sao? so với ai? So với Guido Van Rossum?
+có chắc mình đạt 3 sao? so với ai? So với Guido van Rossum?
 Để 4 5 sao nhiều khi phản tác dụng khiến cho phía bên kia tìm cách mà dìm bạn
 xuống, khiêm tốn là một (đức) tính được yêu thích (trước) khi đi làm.
 
@@ -110,8 +110,10 @@ xuống, khiêm tốn là một (đức) tính được yêu thích (trước) k
   khi phải cân nhấc 2 ứng viên ngang ngửa, bằng mới được lôi ra.
 - Mức lương tối thiểu cho một lập trình viên Python biết làm web Flask hay
   dùng pandas hay viết crawler (hay tốt nghiệp [Pymi.vn](https://pymi.vn))
-  là 8 triệu VND tại năm 2019. Sau 1 năm kinh nghiệm,
+  là 8-10 triệu VND tại năm 2019. Sau 1 năm kinh nghiệm,
   con số này có thể gấp đôi, hoặc hơn.
+- Các yêu cầu ghi trong JD là yêu cầu lý tưởng, chứ không phải điều kiện tiên
+  quyết. Như 2 năm kinh nghiệm hay bằng đại học, hay 10 dòng yêu cầu khác.
 - Trượt phỏng vấn 10 công ty: chúc mừng, bạn đã đánh 10 con quái và lên level 2.
   Thất bại là một phần tất yếu của thành công.
   Quan trọng là về biết rút kinh nghiệm, học những câu trả lời sai để lần sau
