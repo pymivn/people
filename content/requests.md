@@ -264,6 +264,17 @@ ssl.SSLError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c
 ...     print(content)
 ...
 {'origin': '171.247.169.69'}
+
+>>> import json
+>>> from urllib.request import Request, urlopen
+>>> with urlopen(
+...   Request("https://httpbin.org/post", method="POST",
+...           data=json.dumps({"name": "Pymi", "since": 2015}).encode('utf-8'),
+...           headers={'Content-Type': "application/json"})
+...           ) as resp:
+...     print(json.load(resp)['json'])
+...
+{'name': 'Pymi', 'since': 2015}
 ```
 
 ### Tra cứu thông tin COVID-19
