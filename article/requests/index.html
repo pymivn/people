@@ -290,6 +290,17 @@ hãy coi nó như 1 file, nhớ đóng file, hoặc dùng <code>with</code>.</p>
 <span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
 <span class="o">...</span>
 <span class="p">{</span><span class="s1">&#39;origin&#39;</span><span class="p">:</span> <span class="s1">&#39;171.247.169.69&#39;</span><span class="p">}</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">json</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">Request</span><span class="p">,</span> <span class="n">urlopen</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">with</span> <span class="n">urlopen</span><span class="p">(</span>
+<span class="o">...</span>   <span class="n">Request</span><span class="p">(</span><span class="s2">&quot;https://httpbin.org/post&quot;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+<span class="o">...</span>           <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Pymi&quot;</span><span class="p">,</span> <span class="s2">&quot;since&quot;</span><span class="p">:</span> <span class="mi">2015</span><span class="p">})</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span>
+<span class="o">...</span>           <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">})</span>
+<span class="o">...</span>           <span class="p">)</span> <span class="k">as</span> <span class="n">resp</span><span class="p">:</span>
+<span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">resp</span><span class="p">)[</span><span class="s1">&#39;json&#39;</span><span class="p">])</span>
+<span class="o">...</span>
+<span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Pymi&#39;</span><span class="p">,</span> <span class="s1">&#39;since&#39;</span><span class="p">:</span> <span class="mi">2015</span><span class="p">}</span>
 </pre></div>
 
 
