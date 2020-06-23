@@ -230,6 +230,7 @@ class NoisyPerson(Noisy, Person):
 ```
 `super()` sẽ gọi class kế tiếp của class hiện tại trong MRO
 
+Ví dụ:
 MRO của NoisyPerson:
 ```python
 (__main__.NoisyPerson, __main__.Noisy, __main__.Person, object)
@@ -245,6 +246,11 @@ Output:
 ```
 'Ư Ư Ư'
 ```
+
+Khi talk() method của girl được gọi, do bản thân NoisyPerson không có method này nên nó sẽ tìm ở class tiếp theo trong MRO là Noisy.
+Noisy có talk() method sẽ được execute. `super().talk()` sẽ tìm gọi method talk() của class kế tiếp trong MRO - Person (return 'ư ư ư').
+Đoạn string 'ư ư ư' này sẽ được upper() và return. Do đó output trả về là `"Ư Ư Ư"` 
+
 
 Bây giờ nếu ta đổi chỗ 2 parent classes với nhau thì sao?
 ```python
