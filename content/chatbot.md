@@ -1,7 +1,7 @@
 Title: Viết một chatbot đơn giản với Python3
-Date: 2018-06-02
+Date: 2018-06-05
 Author: tung491
-Tags: Python, chatbot
+Tags: Python, chatbot, facebook, bot, thread
 Category: Trang chủ
 Summary: Làm FaceBook chatbot còn dễ hơn rủ em gái bàn bên đi xem phim...
 
@@ -152,8 +152,14 @@ def send_msg():
 
 
 def main():
-    Thread(target=send_msg).start()
-    Thread(target=reply_msg).start()
+    thread1 = Thread(target=send_msg)
+    thread2 = Thread(target=reply_msg)
+    
+    thread1.start()
+    thread2.start()
+    
+    thread1.join()
+    thread2.join()
 
 
 if __name__ == '__main__':
@@ -163,7 +169,7 @@ if __name__ == '__main__':
 
 Bây giờ export username, password rồi chạy thôi. Và đây là thành quả:
 
-![img]: (https://photos.app.goo.gl/bRMlOHfq4UYS4pkK2)
+![Imgur](https://i.imgur.com/VldjbDi.png)
 
 Nếu bạn muốn chạy luôn mà không cần hẹn giờ thì chỉ cần xoá function `job_that_executes_once` và thay function `send_msg` bằng:
 

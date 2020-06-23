@@ -5,13 +5,16 @@ Tags: requests-html, bs4, requests, python, crawl
 Category: Trang chủ
 
 ## Giới thiệu
-[Requests-HTML](http://html.python-requests.org/) được viết bởi Kenneth Reitz - tác giả của `requests` nổi tiếng, với mục đích cao cả là thay thế combo huyền thoại (với pymier) requests + bs4.  Trên trang chủ, requests-html tự mô tả như sau: `This library intends to make parsing HTML (e.g. scraping the web) as simple and intuitive as possible` và đặc biệt chỉ hỗ trợ python3.
+[Requests-HTML](http://html.python-requests.org/) được viết bởi Kenneth Reitz - tác giả của `requests` nổi tiếng, với mục đích cao cả là thay thế combo huyền thoại (với pymier) requests + bs4.  Trên trang chủ, requests-html tự mô tả như sau:
+
+> This library intends to make parsing HTML (e.g. scraping the web) as simple and intuitive as possible
+
+và đặc biệt chỉ hỗ trợ python3.
 
 ## Các tính năng nổi bật của requests-html
 - Hỗ trợ đầy đủ JavaScript
 - Hỗ trợ chọn thành phần của trang bằng CSS, Xpath
 - Tự động theo chuyển trang
-
 
 ## Demo vài tính năng nổi bật
 Cách cài đặt và sử dụng cơ bản của requests-html đã được tác giả nói rất rõ ở trang chủ do đó mính sẽ không nói lại nữa.
@@ -19,7 +22,7 @@ Cách cài đặt và sử dụng cơ bản của requests-html đã được t�
 ### Render
  Nhặt một đoạn văn bản mà đã được render bởi JavaScript:
 
-``` python
+```python
 In [4]: r = session.get('http://www.familug.org/')
 In [5]: r.html.render()
 [W:pyppeteer.chromium_downloader] start chromium download.
