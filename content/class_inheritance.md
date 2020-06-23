@@ -144,9 +144,9 @@ Kết quả của Child.__bases__ trong trường hợp này đó là:
 # VI. Tìm attributes với kế thừa
 
 Theo logic, quá trình tìm kiếm attributes như sau:
-* Đầu tiên, tìm kiếm attributes trong local __dict__
-* Nếu không có, tiếp tục tìm trong class __dict__
-* Nếu vẫn không có thì tìm ở trong các classes còn lại ở __mro__
+* Đầu tiên, tìm kiếm attributes trong local `__dict__`
+* Nếu không có, tiếp tục tìm trong class `__dict__`
+* Nếu vẫn không có thì tìm ở trong các classes còn lại ở `__mro__`
 
 Mình sẽ làm rõ ý cuối cùng ở các phần tiếp theo của bài.
 
