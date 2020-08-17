@@ -144,7 +144,7 @@ dict_keys(['id', 'node_id', 'name', 'full_name', 'private', 'owner', 'html_url',
 ```
 
 Với cách làm này, chỉ cần gọi GitHub API duy nhất 1 lần, còn sau đó thử
-thoải mái cho đến khi thu được kết quả mong muốn thì copy vào file cuôi cùng:
+thoải mái cho đến khi thu được kết quả mong muốn thì copy vào file cuối cùng:
 
 ```python
 import json
@@ -249,6 +249,6 @@ ngữ khác.
 Cài ngay IPython, Jupyter rồi bật lên mỗi khi muốn code Python.
 
 ## Kết luận
-Đừng đọc tiếng Anh theo kiểu Việt Nam, đừng code Python theo kiểu C++.
+Đừng đọc tiếng Anh theo kiểu Tiếng Việt, đừng code Python theo kiểu Java.
 REPL là một phát minh có sức mạnh khủng khiếp mà các Pythonista nên vận dụng,
 sử dụng, và làm dụng hết mình.
