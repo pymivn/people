@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+   <title> Viết code dễ đổi, dễ test như thế nào?  - The PyMiers</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="robots" content="" />
+  <link rel="stylesheet" type="text/css" href="/theme/css/app.css">
+<link rel="stylesheet" type="text/css" href="http://pp.pymi.vn/theme/css/pygment.css">
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    <meta name="author" content="Pymiers" />
+  <meta name="description" content="" />    <link href="http://pp.pymi.vn/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="The PyMiers Full Atom Feed" />         
+  <meta name="tags" content="python" />
+  <meta name="tags" content="best-practice" />
+</head>
+
+<body>
+  <main class="wrapper">
+    <section class="container">
+      <header class='column'>
+        <h1 class='title'><a href="http://pp.pymi.vn/">The PyMiers</a></h1>
+      </header>
+
+      <div class="section">
+        <div class="row navbar">
+          <div class="column nav-item is-active"><a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a></div>
+           <div class="column nav-item "><a href="http://pp.pymi.vn/pages/about/">About</a></div>
+          <div class="column nav-item "><a href="http://pp.pymi.vn/pages/add/">Tạo bài viết</a></div>
+          <div class="column nav-item "><a href="http://pp.pymi.vn/pages/rss/">RSS</a></div>
+          <div class="column nav-item"><a href="/archives">Archives</a></div>
+        </div>
+      </div>
+    </section>
+
+<section class="container">
+  <header>
+    <h2 class="entry-title">
+      <a href="http://pp.pymi.vn/article/change/" rel="bookmark"
+         title="Permalink to Viết code dễ đổi, dễ test như thế nào?">Viết code dễ đổi, dễ test như thế nào?</a></h2>  
+  </header>
+  <footer class='center'>
+    <time class="published" datetime="2020-08-17T00:00:00+07:00"> 17/08/2020 </time>
+    <address class="vcard author">By
+                    <a class="url fn" href="http://pp.pymi.vn/author/hvnsweeting/">hvnsweeting</a>
+ in <a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a>
+                </address>     <em>Tags</em>:     <a href="http://pp.pymi.vn/tag/python/"><em>python</em></a>,     <a href="http://pp.pymi.vn/tag/best-practice/"><em>best-practice</em></a>    </footer>
+  <br>
+  <div class="entry-content">
+    <p>Các lập trình viên chuyển sang code Python từ các ngôn ngữ lập trình khác như
+Java, C, Golang... thường bắt đầu code bằng việc bật một cái IDE to đùng
+(PyCharm) lên,
+rồi viết chục dòng code, sau đó bấm nút "tam giác" để chạy từ trên xuống dưới.
+Đó là cách làm phổ biến, tiêu chuẩn khi viết code C, Java, Golang... nhưng là
+một cách làm rất không ... Python.</p>
+<p>Khi học Python, việc đâu tiên ta làm là bật <code>python</code> từ terminal, rồi gõ trực
+tiếp các dòng code vào đó, enter để thấy kết quả:</p>
+<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">python3</span>
+<span class="n">Python</span> <span class="mf">3.6</span><span class="o">.</span><span class="mi">9</span> <span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="n">Apr</span> <span class="mi">18</span> <span class="mi">2020</span><span class="p">,</span> <span class="mo">01</span><span class="p">:</span><span class="mi">56</span><span class="p">:</span><span class="mo">04</span><span class="p">)</span>
+<span class="p">[</span><span class="n">GCC</span> <span class="mf">8.4</span><span class="o">.</span><span class="mi">0</span><span class="p">]</span> <span class="n">on</span> <span class="n">linux</span>
+<span class="n">Type</span> <span class="s2">&quot;help&quot;</span><span class="p">,</span> <span class="s2">&quot;copyright&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span> <span class="ow">or</span> <span class="s2">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">str</span><span class="p">(</span><span class="mi">21</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; is the answer of life.&quot;</span>
+<span class="s1">&#39;42 is the answer of life.&#39;</span>
+</pre></div>
+
+
+<p>Còn khi đi làm, viết code Python? Cũng vậy!</p>
+<p>Khả năng gõ code trực tiếp, enter thấy ngay kết quả như trên, là một tính năng
+cực kỳ hấp dẫn/quan trọng của Python cũng như các ngôn ngữ lập trình có <code>REPL</code>
+như Ruby, Clojure, JavaScript, LISP, Ocaml, Elixir, F#... nó cho phép người
+dùng khám phá,
+vui chơi thoải mái với dữ liệu một cách tương tác, thấy kết quả nhanh nhất, thay
+vì phải ngồi tưởng tượng, đoán, chờ compile,
+và dựa vào IDE trợ giúp như các ngôn ngữ không có REPL.</p>
+<p>Trong Python, ta gọi đây là chế độ <a href="https://docs.python.org/3/tutorial/interpreter.html">"interactive mode"</a>
+của Python interpreter, khái niệm này có cái tên khác chung hơn là REPL.</p>
+<p>(Chú ý: Golang có các project như <a href="https://github.com/motemen/gore"><code>gore</code></a> hay
+ <code>yaegi</code> nhưng đều rất hạn chế so với REPL của các ngôn ngữ kể trên).</p>
+<h2>REPL</h2>
+<p>REPL - Read Eval Print Loop, là môi trường nhận đầu vào từ người dùng (<code>Read</code>),
+chạy input đó (<code>Eval</code>), in kết quả ra màn hình (<code>Print</code>), và cứ tiếp tục vậy
+(<code>Loop</code>).</p>
+<p>Khái niệm này bắt nguồn từ ngôn ngữ lập trình cổ thứ 2 thế giới: <a href="https://pp.pymi.vn/article/scm1/">LISP</a>.</p>
+<p>Việc viết code khi dùng các ngôn ngữ có REPL thường theo các bước:</p>
+<ul>
+<li>bật REPL lên</li>
+<li>gõ code thử cho tới khi thu được kết quả mong muốn</li>
+<li>copy code đó vào editor/IDE</li>
+</ul>
+<h2>Ví dụ</h2>
+<p>Đoạn code Python 3 sau sẽ truy cập API của GitHub, lấy các repo của Pymivn về,
+lọc ra các repo có &gt; 0 star, sắp xếp giảm dần seo số star,
+rồi in ra output ở dạng dễ đọc.</p>
+<div class="highlight"><pre><span></span><span class="c1"># githubstars.py</span>
+<span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">urlopen</span><span class="p">(</span><span class="s2">&quot;https://api.github.com/users/pymivn/repos&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">repos</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+    <span class="n">has_stars</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">repo</span> <span class="ow">in</span> <span class="n">repos</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">repo</span><span class="p">[</span><span class="s2">&quot;stargazers_count&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">has_stars</span><span class="o">.</span><span class="n">append</span><span class="p">((</span>
+                <span class="n">repo</span><span class="p">[</span><span class="s2">&quot;stargazers_count&quot;</span><span class="p">],</span> <span class="n">repo</span><span class="p">[</span><span class="s2">&quot;html_url&quot;</span><span class="p">]</span>
+                <span class="p">))</span>
+
+    <span class="n">has_stars</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">stars</span><span class="p">,</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">has_stars</span><span class="p">:</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="s2">&quot;{} - {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">stars</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Nếu viết theo kiểu này, rồi cho vào IDE, bấm nút tam giác để chạy, những nhược
+điểm sau sẽ xuất hiện:</p>
+<ul>
+<li>Mỗi lần chạy, code sẽ truy cập vào API GitHub 1 lần, việc này ngoài chậm,
+phụ thuộc vào mạng internet mỗi lần chạy,
+còn thêm nhược điểm nữa là sẽ dùng tốn "quota" hàng ngày của bạn (VD GitHub chỉ
+cho phép gọi API n lần 1 ngày).</li>
+<li>Trừ khi bạn code 1 lần chuẩn luôn, còn không thì mất khoảng 5 7 lần mới ra
+đoạn code trên.</li>
+</ul>
+<p>Thay vì vậy, viết lại một phần code như sau</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="k">def</span> <span class="nf">getrepos</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">urlopen</span><span class="p">(</span><span class="s2">&quot;https://api.github.com/users/pymivn/repos&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">repos</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">repos</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="k">pass</span>
+</pre></div>
+
+
+<p>Lưu vào file <code>github.py</code>, rồi vào terminal, bật <code>python3</code> lên, gõ:</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">github</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">repos</span> <span class="o">=</span> <span class="n">github</span><span class="o">.</span><span class="n">getrepos</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="n">repos</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">repos</span><span class="p">)</span>
+<span class="p">(</span><span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">list</span><span class="s1">&#39;&gt;, 23)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">one</span> <span class="o">=</span> <span class="n">repos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">one</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="n">dict_keys</span><span class="p">([</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;node_id&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;full_name&#39;</span><span class="p">,</span> <span class="s1">&#39;private&#39;</span><span class="p">,</span> <span class="s1">&#39;owner&#39;</span><span class="p">,</span> <span class="s1">&#39;html_url&#39;</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;fork&#39;</span><span class="p">,</span> <span class="s1">&#39;url&#39;</span><span class="p">,</span> <span class="s1">&#39;forks_url&#39;</span><span class="p">,</span> <span class="s1">&#39;keys_url&#39;</span><span class="p">,</span> <span class="s1">&#39;collaborators_url&#39;</span><span class="p">,</span> <span class="s1">&#39;teams_url&#39;</span><span class="p">,</span> <span class="s1">&#39;hooks_url&#39;</span><span class="p">,</span> <span class="s1">&#39;issue_events_url&#39;</span><span class="p">,</span> <span class="s1">&#39;events_url&#39;</span><span class="p">,</span> <span class="s1">&#39;assignees_url&#39;</span><span class="p">,</span> <span class="s1">&#39;branches_url&#39;</span><span class="p">,</span> <span class="s1">&#39;tags_url&#39;</span><span class="p">,</span> <span class="s1">&#39;blobs_url&#39;</span><span class="p">,</span> <span class="s1">&#39;git_tags_url&#39;</span><span class="p">,</span> <span class="s1">&#39;git_refs_url&#39;</span><span class="p">,</span> <span class="s1">&#39;trees_url&#39;</span><span class="p">,</span> <span class="s1">&#39;statuses_url&#39;</span><span class="p">,</span> <span class="s1">&#39;languages_url&#39;</span><span class="p">,</span> <span class="s1">&#39;stargazers_url&#39;</span><span class="p">,</span> <span class="s1">&#39;contributors_url&#39;</span><span class="p">,</span> <span class="s1">&#39;subscribers_url&#39;</span><span class="p">,</span> <span class="s1">&#39;subscription_url&#39;</span><span class="p">,</span> <span class="s1">&#39;commits_url&#39;</span><span class="p">,</span> <span class="s1">&#39;git_commits_url&#39;</span><span class="p">,</span> <span class="s1">&#39;comments_url&#39;</span><span class="p">,</span> <span class="s1">&#39;issue_comment_url&#39;</span><span class="p">,</span> <span class="s1">&#39;contents_url&#39;</span><span class="p">,</span> <span class="s1">&#39;compare_url&#39;</span><span class="p">,</span> <span class="s1">&#39;merges_url&#39;</span><span class="p">,</span> <span class="s1">&#39;archive_url&#39;</span><span class="p">,</span> <span class="s1">&#39;downloads_url&#39;</span><span class="p">,</span> <span class="s1">&#39;issues_url&#39;</span><span class="p">,</span> <span class="s1">&#39;pulls_url&#39;</span><span class="p">,</span> <span class="s1">&#39;milestones_url&#39;</span><span class="p">,</span> <span class="s1">&#39;notifications_url&#39;</span><span class="p">,</span> <span class="s1">&#39;labels_url&#39;</span><span class="p">,</span> <span class="s1">&#39;releases_url&#39;</span><span class="p">,</span> <span class="s1">&#39;deployments_url&#39;</span><span class="p">,</span> <span class="s1">&#39;created_at&#39;</span><span class="p">,</span> <span class="s1">&#39;updated_at&#39;</span><span class="p">,</span> <span class="s1">&#39;pushed_at&#39;</span><span class="p">,</span> <span class="s1">&#39;git_url&#39;</span><span class="p">,</span> <span class="s1">&#39;ssh_url&#39;</span><span class="p">,</span> <span class="s1">&#39;clone_url&#39;</span><span class="p">,</span> <span class="s1">&#39;svn_url&#39;</span><span class="p">,</span> <span class="s1">&#39;homepage&#39;</span><span class="p">,</span> <span class="s1">&#39;size&#39;</span><span class="p">,</span> <span class="s1">&#39;stargazers_count&#39;</span><span class="p">,</span> <span class="s1">&#39;watchers_count&#39;</span><span class="p">,</span> <span class="s1">&#39;language&#39;</span><span class="p">,</span> <span class="s1">&#39;has_issues&#39;</span><span class="p">,</span> <span class="s1">&#39;has_projects&#39;</span><span class="p">,</span> <span class="s1">&#39;has_downloads&#39;</span><span class="p">,</span> <span class="s1">&#39;has_wiki&#39;</span><span class="p">,</span> <span class="s1">&#39;has_pages&#39;</span><span class="p">,</span> <span class="s1">&#39;forks_count&#39;</span><span class="p">,</span> <span class="s1">&#39;mirror_url&#39;</span><span class="p">,</span> <span class="s1">&#39;archived&#39;</span><span class="p">,</span> <span class="s1">&#39;disabled&#39;</span><span class="p">,</span> <span class="s1">&#39;open_issues_count&#39;</span><span class="p">,</span> <span class="s1">&#39;license&#39;</span><span class="p">,</span> <span class="s1">&#39;forks&#39;</span><span class="p">,</span> <span class="s1">&#39;open_issues&#39;</span><span class="p">,</span> <span class="s1">&#39;watchers&#39;</span><span class="p">,</span> <span class="s1">&#39;default_branch&#39;</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">one</span><span class="p">[</span><span class="s1">&#39;stargazers_count&#39;</span><span class="p">]</span>
+<span class="mi">0</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">has_stars</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">repos</span> <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="s1">&#39;stargazers_count&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">has_stars</span><span class="p">)</span>
+<span class="mi">8</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">stars_urls</span> <span class="o">=</span> <span class="p">[(</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;stargazers_count&#39;</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="s1">&#39;html_url&#39;</span><span class="p">])</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">has_stars</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">stars_urls</span>
+<span class="p">[(</span><span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;https://github.com/pymivn/awesome&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;https://github.com/pymivn/cpuisfast&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;https://github.com/pymivn/hoidap-python&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;https://github.com/pymivn/lekhome&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;https://github.com/pymivn/math-stats-ml&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;https://github.com/pymivn/people&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;https://github.com/pymivn/pyjobs_crawlers&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;https://github.com/pymivn/Python_Hanoi_Meetup&#39;</span><span class="p">)]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">stars_urls</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">fmt</span> <span class="o">=</span> <span class="s2">&quot;{} - {}&quot;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">stars_urls</span><span class="p">:</span>
+<span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">i</span><span class="p">))</span>
+<span class="o">...</span>
+<span class="mi">7</span> <span class="o">-</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pymivn</span><span class="o">/</span><span class="n">awesome</span>
+<span class="mi">4</span> <span class="o">-</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pymivn</span><span class="o">/</span><span class="n">math</span><span class="o">-</span><span class="n">stats</span><span class="o">-</span><span class="n">ml</span>
+<span class="mi">4</span> <span class="o">-</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pymivn</span><span class="o">/</span><span class="n">Python_Hanoi_Meetup</span>
+<span class="mi">3</span> <span class="o">-</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pymivn</span><span class="o">/</span><span class="n">people</span>
+<span class="mi">2</span> <span class="o">-</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pymivn</span><span class="o">/</span><span class="n">cpuisfast</span>
+<span class="mi">1</span> <span class="o">-</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pymivn</span><span class="o">/</span><span class="n">pyjobs_crawlers</span>
+<span class="mi">1</span> <span class="o">-</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pymivn</span><span class="o">/</span><span class="n">lekhome</span>
+<span class="mi">1</span> <span class="o">-</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pymivn</span><span class="o">/</span><span class="n">hoidap</span><span class="o">-</span><span class="n">python</span>
+</pre></div>
+
+
+<p>Với cách làm này, chỉ cần gọi GitHub API duy nhất 1 lần, còn sau đó thử
+thoải mái cho đến khi thu được kết quả mong muốn thì copy vào file cuôi cùng:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
+
+
+<span class="k">def</span> <span class="nf">getrepos</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">urlopen</span><span class="p">(</span><span class="s2">&quot;https://api.github.com/users/pymivn/repos&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">repos</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">repos</span>
+
+
+<span class="k">def</span> <span class="nf">has_stars</span><span class="p">(</span><span class="n">repo</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">repo</span><span class="p">[</span><span class="s2">&quot;stargazers_count&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">repos</span> <span class="o">=</span> <span class="n">getrepos</span><span class="p">()</span>
+    <span class="n">repos_have_stars</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">repos</span> <span class="k">if</span> <span class="n">has_stars</span><span class="p">(</span><span class="n">p</span><span class="p">)]</span>
+    <span class="n">stars_urls</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="s2">&quot;stargazers_count&quot;</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;html_url&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">repos_have_stars</span>
+    <span class="p">]</span>
+    <span class="n">stars_urls</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">fmt</span> <span class="o">=</span> <span class="s2">&quot;{} - {}&quot;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">stars_urls</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">i</span><span class="p">))</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Nếu quá trình biến đổi phức tạp hơn, hoàn toàn có thể tách thêm các phần sau
+thành function.
+Sau này nếu code có bug, lại bật REPL lên, gọi các function để debug trực tiếp
+dễ dàng, từng bước một.</p>
+<h2>Dev với IPython</h2>
+<p>IPython (<code>pip install ipython</code>) cung cấp thêm các tính năng giúp cách code này
+hiệu quả hơn.</p>
+<p>IPython có màu mè, auto-indent tự thụt sau for/if giúp gõ nhanh hơn.</p>
+<p>Magic command <code>%hist</code> sẽ hiện full history những gì user đã gõ, giúp copy code
+để paste ra IDE/Editor dễ hơn, không bao gồm output.</p>
+<p>Magic command <code>%edit</code> sẽ mở hẳn editor ra để sửa code, sau khi đóng lại, code
+sẽ được chạy, các biến sẽ tồn tại trong môi trường đang code.</p>
+<p>Ví dụ này gõ <code>%edit</code> lần đầu định nghĩa list <code>ns</code>, rồi gõ <code>%edit</code> lần 2 để
+print ra list ns định nghĩa trước đó:</p>
+<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">ipython</span>
+<span class="n">Python</span> <span class="mf">3.6</span><span class="o">.</span><span class="mi">9</span> <span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="n">Apr</span> <span class="mi">18</span> <span class="mi">2020</span><span class="p">,</span> <span class="mo">01</span><span class="p">:</span><span class="mi">56</span><span class="p">:</span><span class="mo">04</span><span class="p">)</span>
+<span class="n">Type</span> <span class="s1">&#39;copyright&#39;</span><span class="p">,</span> <span class="s1">&#39;credits&#39;</span> <span class="ow">or</span> <span class="s1">&#39;license&#39;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span>
+<span class="n">IPython</span> <span class="mf">7.9</span><span class="o">.</span><span class="mi">0</span> <span class="o">--</span> <span class="n">An</span> <span class="n">enhanced</span> <span class="n">Interactive</span> <span class="n">Python</span><span class="o">.</span> <span class="n">Type</span> <span class="s1">&#39;?&#39;</span> <span class="k">for</span> <span class="n">help</span><span class="o">.</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="o">%</span><span class="n">edit</span>
+<span class="n">IPython</span> <span class="n">will</span> <span class="n">make</span> <span class="n">a</span> <span class="n">temporary</span> <span class="nb">file</span> <span class="n">named</span><span class="p">:</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipython_edit_2v90rimj</span><span class="o">/</span><span class="n">ipython_edit_wf_rn_nc</span><span class="o">.</span><span class="n">py</span>
+<span class="n">Editing</span><span class="o">...</span> <span class="n">done</span><span class="o">.</span> <span class="n">Executing</span> <span class="n">edited</span> <span class="n">code</span><span class="o">...</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">ns = [1,2,3,4]</span><span class="se">\n</span><span class="s1">&#39;</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">ns</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="o">%</span><span class="n">edit</span>
+<span class="n">IPython</span> <span class="n">will</span> <span class="n">make</span> <span class="n">a</span> <span class="n">temporary</span> <span class="nb">file</span> <span class="n">named</span><span class="p">:</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipython_edit_qb43pml6</span><span class="o">/</span><span class="n">ipython_edit_tph7_5x6</span><span class="o">.</span><span class="n">py</span>
+<span class="n">Editing</span><span class="o">...</span> <span class="n">done</span><span class="o">.</span> <span class="n">Executing</span> <span class="n">edited</span> <span class="n">code</span><span class="o">...</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="s1">&#39;print(ns)</span><span class="se">\n</span><span class="s1">&#39;</span>
+</pre></div>
+
+
+<h3>Đổi editor</h3>
+<p>ra shell, gõ <code>echo $EDITOR</code> xem đang đặt
+là gì, thay bằng câu lệnh mở editor mình muốn, ví dụ</p>
+<div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">EDITOR</span><span class="o">=</span>nano
+$ ipython
+</pre></div>
+
+
+<h3>Chạy file rồi bật REPL</h3>
+<p>Python hay IPython đều hỗ trợ <a href="https://pp.pymi.vn/article/pythoni/">option
+<code>-i</code></a>, sau khi chạy với 1 file code
+sẽ tự động vào chế độ interactive mode</p>
+<h2>Jupyter</h2>
+<p>Code trên Jupyter (<code>pip install jupyter</code>) cũng cho khả năng linh hoạt tương tự.
+Code xong File &gt; Save As Python file.</p>
+<h2>Unittest</h2>
+<p>Trong các ngôn ngữ không có REPL, cách thử 1 đoạn code nhanh nhất là viết
+1 function cần thử, rồi viết unittest, rồi chạy test thay vì chạy cả 1 chương
+trình ngàn dòng.
+Với Python, ta chỉ cần bật REPL lên, import module vào và khám phá.</p>
+<p>Tất nhiên REPL không thay thế hoàn toàn cho unittest, nhưng nó mang lại môi
+trường thử nghiệm nhanh chóng <del>tương đương như</del> hơn nhiều unittest ở các ngôn
+ngữ khác.</p>
+<h2>Hành động của chúng ta</h2>
+<p>Cài ngay IPython, Jupyter rồi bật lên mỗi khi muốn code Python.</p>
+<h2>Kết luận</h2>
+<p>Đừng đọc tiếng Anh theo kiểu Việt Nam, đừng code Python theo kiểu C++.
+REPL là một phát minh có sức mạnh khủng khiếp mà các Pythonista nên vận dụng,
+sử dụng, và làm dụng hết mình.</p>
+  </div>
+  <!-- /.entry-content -->
+</section>
+<section class="container">
+  <div class="comments">
+    <h3>Comments</h3>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'pymier';
+      var disqus_identifier = 'article/change/';
+      var disqus_url = 'http://pp.pymi.vn/article/change/';
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//pymier.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the comments.</noscript>
+  </div>
+</section>
+
+    <section class="container footer">
+      <footer>
+        <address>
+        Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+        which takes great advantage of <a href="http://python.org">Python</a>.
+        </address>
+        <address>
+          Học lập trình Python tại <a href="https://pymi.vn/">Pymi.vn</a>
+        </address>
+      </footer>
+    </section>
+  </main>
+
+<script type="text/javascript">
+var images = document.getElementsByTagName("img");
+var i;
+
+for(i = 0; i < images.length; i++) {
+  images[i].className += " centered";
+}
+</script>
+</body>
+
+</html>
