@@ -35,8 +35,8 @@ vui chơi thoải mái với dữ liệu một cách tương tác, thấy kết 
 vì phải ngồi tưởng tượng, đoán, chờ compile,
 và dựa vào IDE trợ giúp như các ngôn ngữ không có REPL.
 
-Trong Python, ta gọi đây là chế độ ["interactive mode"](https://docs.python.org/3/tutorial/interpreter.html)
-của Python interpreter, khái niệm này có cái tên khác chung hơn là REPL.
+Đây là chế độ ["interactive mode"](https://docs.python.org/3/tutorial/interpreter.html)
+của Python interpreter, khái niệm này có cái tên khác chung hơn là: REPL.
 
 (Chú ý: Golang có các project như [`gore`](https://github.com/motemen/gore) hay
  `yaegi` nhưng đều rất hạn chế so với REPL của các ngôn ngữ kể trên).
