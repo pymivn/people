@@ -258,7 +258,7 @@ Code xong File &amp;gt; Save As Python file.&lt;/p&gt;
 1 function cần thử, rồi viết unittest, rồi chạy test thay vì chạy cả 1 chương
 trình ngàn dòng.
 Với Python, ta chỉ cần bật REPL lên, import module vào và khám phá.&lt;/p&gt;
-&lt;p&gt;Code viết theo mới trên vừa dễ gõ trực tiếp trong REPL, vừa dễ viết unittest,
+&lt;p&gt;Code viết theo cách mới trên vừa dễ gõ trực tiếp trong REPL, vừa dễ viết unittest,
 ví dụ viết nhanh unittest chạy bằng &lt;code&gt;pytest&lt;/code&gt; (&lt;code&gt;pip install pytest&lt;/code&gt;) như sau:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# test_github.py&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;github&lt;/span&gt;
