@@ -193,12 +193,18 @@ thoải mái cho đến khi thu được kết quả mong muốn thì copy vào 
     <span class="k">return</span> <span class="n">repo</span><span class="p">[</span><span class="s2">&quot;stargazers_count&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span>
 
 
+<span class="k">def</span> <span class="nf">filter_repos_have_stars</span><span class="p">(</span><span class="n">repos</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">repos</span> <span class="k">if</span> <span class="n">has_stars</span><span class="p">(</span><span class="n">p</span><span class="p">)]</span>
+
+
+<span class="k">def</span> <span class="nf">get_star_url</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="s2">&quot;stargazers_count&quot;</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;html_url&quot;</span><span class="p">])</span>
+
+
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="n">repos</span> <span class="o">=</span> <span class="n">getrepos</span><span class="p">()</span>
-    <span class="n">repos_have_stars</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">repos</span> <span class="k">if</span> <span class="n">has_stars</span><span class="p">(</span><span class="n">p</span><span class="p">)]</span>
-    <span class="n">stars_urls</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="s2">&quot;stargazers_count&quot;</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;html_url&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">repos_have_stars</span>
-    <span class="p">]</span>
+    <span class="n">repos_have_stars</span> <span class="o">=</span> <span class="n">filter_repos_have_stars</span><span class="p">(</span><span class="n">repos</span><span class="p">)</span>
+    <span class="n">stars_urls</span> <span class="o">=</span> <span class="p">[</span><span class="n">get_star_url</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">repos_have_stars</span><span class="p">]</span>
     <span class="n">stars_urls</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="n">fmt</span> <span class="o">=</span> <span class="s2">&quot;{} - {}&quot;</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">stars_urls</span><span class="p">:</span>
@@ -210,10 +216,46 @@ thoải mái cho đến khi thu được kết quả mong muốn thì copy vào 
 </pre></div>
 
 
-<p>Nếu quá trình biến đổi phức tạp hơn, hoàn toàn có thể tách thêm các phần sau
-thành function.
-Sau này nếu code có bug, lại bật REPL lên, gọi các function để debug trực tiếp
+<p>Sau này nếu code có bug, lại bật REPL lên, gọi các function để debug trực tiếp
 dễ dàng, từng bước một.</p>
+<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">ipython</span>
+<span class="n">Python</span> <span class="mf">3.6</span><span class="o">.</span><span class="mi">9</span> <span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="n">Jul</span> <span class="mi">17</span> <span class="mi">2020</span><span class="p">,</span> <span class="mi">12</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">27</span><span class="p">)</span>
+<span class="n">Type</span> <span class="s1">&#39;copyright&#39;</span><span class="p">,</span> <span class="s1">&#39;credits&#39;</span> <span class="ow">or</span> <span class="s1">&#39;license&#39;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span>
+<span class="n">IPython</span> <span class="mf">7.9</span><span class="o">.</span><span class="mi">0</span> <span class="o">--</span> <span class="n">An</span> <span class="n">enhanced</span> <span class="n">Interactive</span> <span class="n">Python</span><span class="o">.</span> <span class="n">Type</span> <span class="s1">&#39;?&#39;</span> <span class="k">for</span> <span class="n">help</span><span class="o">.</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">foo</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">repos</span> <span class="o">=</span> <span class="n">foo</span><span class="o">.</span><span class="n">getrepos</span><span class="p">()</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">have_stars</span> <span class="o">=</span> <span class="n">foo</span><span class="o">.</span><span class="n">filter_repos_have_stars</span><span class="p">(</span><span class="n">repos</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="nb">len</span><span class="p">(</span><span class="n">have_stars</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="mi">8</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="p">[</span><span class="n">foo</span><span class="o">.</span><span class="n">get_star_url</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">have_stars</span><span class="p">]</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">5</span><span class="p">]:</span>
+<span class="p">[(</span><span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;https://github.com/pymivn/awesome&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;https://github.com/pymivn/cpuisfast&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;https://github.com/pymivn/hoidap-python&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;https://github.com/pymivn/lekhome&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;https://github.com/pymivn/math-stats-ml&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;https://github.com/pymivn/people&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;https://github.com/pymivn/pyjobs_crawlers&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;https://github.com/pymivn/Python_Hanoi_Meetup&#39;</span><span class="p">)]</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="nb">sorted</span><span class="p">([</span><span class="n">foo</span><span class="o">.</span><span class="n">get_star_url</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">have_stars</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="n">Out</span><span class="p">[</span><span class="mi">8</span><span class="p">]:</span>
+<span class="p">[(</span><span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;https://github.com/pymivn/awesome&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;https://github.com/pymivn/math-stats-ml&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;https://github.com/pymivn/Python_Hanoi_Meetup&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;https://github.com/pymivn/people&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;https://github.com/pymivn/cpuisfast&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;https://github.com/pymivn/pyjobs_crawlers&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;https://github.com/pymivn/lekhome&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;https://github.com/pymivn/hoidap-python&#39;</span><span class="p">)]</span>
+</pre></div>
+
+
 <h2>Dev với IPython</h2>
 <p>IPython (<code>pip install ipython</code>) cung cấp thêm các tính năng giúp cách code này
 hiệu quả hơn.</p>
@@ -265,9 +307,36 @@ Code xong File &gt; Save As Python file.</p>
 1 function cần thử, rồi viết unittest, rồi chạy test thay vì chạy cả 1 chương
 trình ngàn dòng.
 Với Python, ta chỉ cần bật REPL lên, import module vào và khám phá.</p>
+<p>Code viết theo mới trên vừa dễ gõ trực tiếp trong REPL, vừa dễ viết unittest,
+ví dụ viết nhanh unittest chạy bằng <code>pytest</code> (<code>pip install pytest</code>) như sau:</p>
+<div class="highlight"><pre><span></span><span class="c1"># test_github.py</span>
+<span class="kn">import</span> <span class="nn">github</span>
+
+
+<span class="k">def</span> <span class="nf">test</span><span class="p">():</span>
+    <span class="n">bad</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;stargazers_count&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;html_url&quot;</span><span class="p">:</span> <span class="s2">&quot;bad_repo&quot;</span><span class="p">}</span>
+    <span class="n">good</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;stargazers_count&quot;</span><span class="p">:</span> <span class="mi">69</span><span class="p">,</span>
+        <span class="s2">&quot;html_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://github.com/pymivn/awesome&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;blah&quot;</span><span class="p">:</span> <span class="s2">&quot;blo&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">sample_repos</span> <span class="o">=</span> <span class="p">[</span><span class="n">bad</span><span class="p">,</span> <span class="n">good</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="n">github</span><span class="o">.</span><span class="n">filter_repos_have_stars</span><span class="p">(</span><span class="n">sample_repos</span><span class="p">)</span> <span class="o">==</span> <span class="p">[</span><span class="n">good</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="n">github</span><span class="o">.</span><span class="n">get_star_url</span><span class="p">(</span><span class="n">good</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span>
+        <span class="n">good</span><span class="p">[</span><span class="s2">&quot;stargazers_count&quot;</span><span class="p">],</span>
+        <span class="n">good</span><span class="p">[</span><span class="s2">&quot;html_url&quot;</span><span class="p">],</span>
+    <span class="p">)</span>
+    <span class="k">assert</span> <span class="n">github</span><span class="o">.</span><span class="n">has_stars</span><span class="p">(</span><span class="n">bad</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">False</span>
+    <span class="k">assert</span> <span class="n">github</span><span class="o">.</span><span class="n">has_stars</span><span class="p">(</span><span class="n">good</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">True</span>
+</pre></div>
+
+
+<p>Viết code bằng REPL hay bằng <a href="https://en.wikipedia.org/wiki/Test-driven_development">unittest
+TDD</a> đều mang tới một
+kết quả chung: code dễ sửa, dễ test.</p>
 <p>Tất nhiên REPL không thay thế hoàn toàn cho unittest, nhưng nó mang lại môi
-trường thử nghiệm nhanh chóng <del>tương đương như</del> hơn nhiều unittest ở các ngôn
-ngữ khác.</p>
+trường thử nghiệm nhanh chóng <del>tương đương như</del> hơn nhiều unittest ở
+các ngôn ngữ khác.</p>
 <h2>Hành động của chúng ta</h2>
 <p>Cài ngay IPython, Jupyter rồi bật lên mỗi khi muốn code Python.</p>
 <h2>Kết luận</h2>
