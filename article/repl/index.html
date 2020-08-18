@@ -37,7 +37,7 @@
 <section class="container">
   <header>
     <h2 class="entry-title">
-      <a href="http://pp.pymi.vn/article/change/" rel="bookmark"
+      <a href="http://pp.pymi.vn/article/repl/" rel="bookmark"
          title="Permalink to Viết code dễ đổi, dễ test như thế nào?">Viết code dễ đổi, dễ test như thế nào?</a></h2>  
   </header>
   <footer class='center'>
@@ -73,6 +73,7 @@ dùng khám phá,
 vui chơi thoải mái với dữ liệu một cách tương tác, thấy kết quả nhanh nhất, thay
 vì phải ngồi tưởng tượng, đoán, chờ compile,
 và dựa vào IDE trợ giúp như các ngôn ngữ không có REPL.</p>
+<p><img alt="xkcd303" src="https://imgs.xkcd.com/comics/compiling.png"></p>
 <p>Đây là chế độ <a href="https://docs.python.org/3/tutorial/interpreter.html">"interactive mode"</a>
 của Python interpreter, khái niệm này có cái tên khác chung hơn là: REPL.</p>
 <p>(Chú ý: Golang có các project như <a href="https://github.com/motemen/gore"><code>gore</code></a> hay
@@ -90,7 +91,7 @@ chạy input đó (<code>Eval</code>), in kết quả ra màn hình (<code>Print
 </ul>
 <h2>Ví dụ</h2>
 <p>Đoạn code Python 3 sau sẽ truy cập API của GitHub, lấy các repo của Pymivn về,
-lọc ra các repo có &gt; 0 star, sắp xếp giảm dần seo số star,
+lọc ra các repo có &gt; 0 star, sắp xếp giảm dần theo số star,
 rồi in ra output ở dạng dễ đọc.</p>
 <div class="highlight"><pre><span></span><span class="c1"># githubstars.py</span>
 <span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
@@ -128,6 +129,7 @@ còn thêm nhược điểm nữa là sẽ dùng tốn "quota" hàng ngày của
 cho phép gọi API n lần 1 ngày).</li>
 <li>Trừ khi bạn code 1 lần chuẩn luôn, còn không thì mất khoảng 5 7 lần mới ra
 đoạn code trên.</li>
+<li>Không test từng phần (bước) của đoạn code được.</li>
 </ul>
 <p>Thay vì vậy, viết lại một phần code như sau</p>
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
@@ -281,8 +283,8 @@ sử dụng, và làm dụng hết mình.</p>
     <div id="disqus_thread"></div>
     <script type="text/javascript">
       var disqus_shortname = 'pymier';
-      var disqus_identifier = 'article/change/';
-      var disqus_url = 'http://pp.pymi.vn/article/change/';
+      var disqus_identifier = 'article/repl/';
+      var disqus_url = 'http://pp.pymi.vn/article/repl/';
       (function() {
         var dsq = document.createElement('script');
         dsq.type = 'text/javascript';

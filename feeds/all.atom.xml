@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2020-08-17T00:00:00+07:00</updated><entry><title>Viết code dễ đổi, dễ test như thế nào?</title><link href="http://pp.pymi.vn/article/change/" rel="alternate"></link><published>2020-08-17T00:00:00+07:00</published><updated>2020-08-17T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2020-08-17:/article/change/</id><summary type="html">&lt;p&gt;Tận dụng tối đa REPL của Python, tính năng mà C, Java, Golang không có&lt;/p&gt;</summary><content type="html">&lt;p&gt;Các lập trình viên chuyển sang code Python từ các ngôn ngữ lập trình khác như
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2020-08-17T00:00:00+07:00</updated><entry><title>Viết code dễ đổi, dễ test như thế nào?</title><link href="http://pp.pymi.vn/article/repl/" rel="alternate"></link><published>2020-08-17T00:00:00+07:00</published><updated>2020-08-17T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2020-08-17:/article/repl/</id><summary type="html">&lt;p&gt;Tận dụng tối đa REPL của Python, tính năng mà C, Java, Golang không có&lt;/p&gt;</summary><content type="html">&lt;p&gt;Các lập trình viên chuyển sang code Python từ các ngôn ngữ lập trình khác như
 Java, C, Golang... thường bắt đầu code bằng việc bật một cái IDE to đùng
 (PyCharm) lên,
 rồi viết chục dòng code, sau đó bấm nút "tam giác" để chạy từ trên xuống dưới.
@@ -24,6 +24,7 @@ dùng khám phá,
 vui chơi thoải mái với dữ liệu một cách tương tác, thấy kết quả nhanh nhất, thay
 vì phải ngồi tưởng tượng, đoán, chờ compile,
 và dựa vào IDE trợ giúp như các ngôn ngữ không có REPL.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="xkcd303" src="https://imgs.xkcd.com/comics/compiling.png"&gt;&lt;/p&gt;
 &lt;p&gt;Đây là chế độ &lt;a href="https://docs.python.org/3/tutorial/interpreter.html"&gt;"interactive mode"&lt;/a&gt;
 của Python interpreter, khái niệm này có cái tên khác chung hơn là: REPL.&lt;/p&gt;
 &lt;p&gt;(Chú ý: Golang có các project như &lt;a href="https://github.com/motemen/gore"&gt;&lt;code&gt;gore&lt;/code&gt;&lt;/a&gt; hay
@@ -41,7 +42,7 @@ chạy input đó (&lt;code&gt;Eval&lt;/code&gt;), in kết quả ra màn hình 
 &lt;/ul&gt;
 &lt;h2&gt;Ví dụ&lt;/h2&gt;
 &lt;p&gt;Đoạn code Python 3 sau sẽ truy cập API của GitHub, lấy các repo của Pymivn về,
-lọc ra các repo có &amp;gt; 0 star, sắp xếp giảm dần seo số star,
+lọc ra các repo có &amp;gt; 0 star, sắp xếp giảm dần theo số star,
 rồi in ra output ở dạng dễ đọc.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# githubstars.py&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;urllib.request&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;urlopen&lt;/span&gt;
@@ -79,6 +80,7 @@ còn thêm nhược điểm nữa là sẽ dùng tốn "quota" hàng ngày của
 cho phép gọi API n lần 1 ngày).&lt;/li&gt;
 &lt;li&gt;Trừ khi bạn code 1 lần chuẩn luôn, còn không thì mất khoảng 5 7 lần mới ra
 đoạn code trên.&lt;/li&gt;
+&lt;li&gt;Không test từng phần (bước) của đoạn code được.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Thay vì vậy, viết lại một phần code như sau&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;urllib.request&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;urlopen&lt;/span&gt;
