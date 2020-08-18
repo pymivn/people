@@ -13,7 +13,7 @@ rồi viết chục dòng code, sau đó bấm nút "tam giác" để chạy t�
 Đó là cách làm phổ biến, tiêu chuẩn khi viết code C, Java, Golang... nhưng là
 một cách làm rất không ... Python.
 
-Khi học Python, việc đâu tiên ta làm là bật `python` từ terminal, rồi gõ trực
+Khi học Python, việc đầu tiên ta làm là bật `python` từ terminal, rồi gõ trực
 tiếp các dòng code vào đó, enter để thấy kết quả:
 
 ```python
@@ -254,4 +254,4 @@ Cài ngay IPython, Jupyter rồi bật lên mỗi khi muốn code Python.
 ## Kết luận
 Đừng đọc tiếng Anh theo kiểu Tiếng Việt, đừng code Python theo kiểu Java.
 REPL là một phát minh có sức mạnh khủng khiếp mà các Pythonista nên vận dụng,
-sử dụng, và làm dụng hết mình.
+sử dụng, và lạm dụng hết mình.
