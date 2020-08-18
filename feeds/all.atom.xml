@@ -5,7 +5,7 @@ Java, C, Golang... thường bắt đầu code bằng việc bật một cái ID
 rồi viết chục dòng code, sau đó bấm nút "tam giác" để chạy từ trên xuống dưới.
 Đó là cách làm phổ biến, tiêu chuẩn khi viết code C, Java, Golang... nhưng là
 một cách làm rất không ... Python.&lt;/p&gt;
-&lt;p&gt;Khi học Python, việc đâu tiên ta làm là bật &lt;code&gt;python&lt;/code&gt; từ terminal, rồi gõ trực
+&lt;p&gt;Khi học Python, việc đầu tiên ta làm là bật &lt;code&gt;python&lt;/code&gt; từ terminal, rồi gõ trực
 tiếp các dòng code vào đó, enter để thấy kết quả:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;python3&lt;/span&gt;
 &lt;span class="n"&gt;Python&lt;/span&gt; &lt;span class="mf"&gt;3.6&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;default&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Apr&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt; &lt;span class="mi"&gt;2020&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mo"&gt;01&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;56&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;04&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -224,7 +224,7 @@ ngữ khác.&lt;/p&gt;
 &lt;h2&gt;Kết luận&lt;/h2&gt;
 &lt;p&gt;Đừng đọc tiếng Anh theo kiểu Tiếng Việt, đừng code Python theo kiểu Java.
 REPL là một phát minh có sức mạnh khủng khiếp mà các Pythonista nên vận dụng,
-sử dụng, và làm dụng hết mình.&lt;/p&gt;</content><category term="Trang chủ"></category><category term="python"></category><category term="best-practice"></category></entry><entry><title>Phỏng vấn</title><link href="http://pp.pymi.vn/article/phongvan/" rel="alternate"></link><published>2020-04-10T00:00:00+07:00</published><updated>2020-04-10T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2020-04-10:/article/phongvan/</id><summary type="html">&lt;p&gt;phỏng vấn thì chuẩn bị gì? làm thế nào để "deal" lương? học xong xin việc thế nào?&lt;/p&gt;</summary><content type="html">&lt;p&gt;Phỏng vấn là hai từ mang yếu tố quyết định, nhưng ít khi được nhắc đến.
+sử dụng, và lạm dụng hết mình.&lt;/p&gt;</content><category term="Trang chủ"></category><category term="python"></category><category term="best-practice"></category></entry><entry><title>Phỏng vấn</title><link href="http://pp.pymi.vn/article/phongvan/" rel="alternate"></link><published>2020-04-10T00:00:00+07:00</published><updated>2020-04-10T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2020-04-10:/article/phongvan/</id><summary type="html">&lt;p&gt;phỏng vấn thì chuẩn bị gì? làm thế nào để "deal" lương? học xong xin việc thế nào?&lt;/p&gt;</summary><content type="html">&lt;p&gt;Phỏng vấn là hai từ mang yếu tố quyết định, nhưng ít khi được nhắc đến.
 Nó thường bị xem như sự may mắn, hay do "giỏi", hay quan hệ tốt ...
 Bài viết này giải đáp các thắc mắc thầm kín khi đi phỏng vấn xin việc, đặc biệt
 dành cho những người kiếm công việc lập trình đầu tiên.&lt;/p&gt;
