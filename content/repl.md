@@ -195,15 +195,15 @@ Python 3.6.9 (default, Jul 17 2020, 12:50:27)
 Type 'copyright', 'credits' or 'license' for more information
 IPython 7.9.0 -- An enhanced Interactive Python. Type '?' for help.
 
-In [1]: import foo
-In [2]: repos = foo.getrepos()
+In [1]: import github
+In [2]: repos = github.getrepos()
 
-In [3]: have_stars = foo.filter_repos_have_stars(repos)
+In [3]: have_stars = github.filter_repos_have_stars(repos)
 
 In [4]: len(have_stars)
 Out[4]: 8
 
-In [5]: [foo.get_star_url(p) for p in have_stars]
+In [5]: [github.get_star_url(p) for p in have_stars]
 Out[5]:
 [(7, 'https://github.com/pymivn/awesome'),
  (2, 'https://github.com/pymivn/cpuisfast'),
@@ -214,7 +214,7 @@ Out[5]:
  (1, 'https://github.com/pymivn/pyjobs_crawlers'),
  (4, 'https://github.com/pymivn/Python_Hanoi_Meetup')]
 
-In [8]: sorted([foo.get_star_url(p) for p in have_stars], reverse=True)
+In [8]: sorted([github.get_star_url(p) for p in have_stars], reverse=True)
 
 Out[8]:
 [(7, 'https://github.com/pymivn/awesome'),
