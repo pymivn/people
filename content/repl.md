@@ -287,7 +287,7 @@ Trong các ngôn ngữ không có REPL, cách thử 1 đoạn code nhanh nhất 
 trình ngàn dòng.
 Với Python, ta chỉ cần bật REPL lên, import module vào và khám phá.
 
-Code viết theo mới trên vừa dễ gõ trực tiếp trong REPL, vừa dễ viết unittest,
+Code viết theo cách mới trên vừa dễ gõ trực tiếp trong REPL, vừa dễ viết unittest,
 ví dụ viết nhanh unittest chạy bằng `pytest` (`pip install pytest`) như sau:
 
 ```python
