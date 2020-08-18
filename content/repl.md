@@ -2,7 +2,7 @@ Title: Viết code dễ đổi, dễ test như thế nào?
 Date: 2020-08-17
 Category: Trang chủ
 Tags: python, best-practice
-Slug: change
+Slug: repl
 Authors: hvnsweeting
 Summary: Tận dụng tối đa REPL của Python, tính năng mà C, Java, Golang không có
 
@@ -35,6 +35,8 @@ vui chơi thoải mái với dữ liệu một cách tương tác, thấy kết 
 vì phải ngồi tưởng tượng, đoán, chờ compile,
 và dựa vào IDE trợ giúp như các ngôn ngữ không có REPL.
 
+![xkcd303](https://imgs.xkcd.com/comics/compiling.png)
+
 Đây là chế độ ["interactive mode"](https://docs.python.org/3/tutorial/interpreter.html)
 của Python interpreter, khái niệm này có cái tên khác chung hơn là: REPL.
 
@@ -56,7 +58,7 @@ Việc viết code khi dùng các ngôn ngữ có REPL thường theo các bư�
 
 ## Ví dụ
 Đoạn code Python 3 sau sẽ truy cập API của GitHub, lấy các repo của Pymivn về,
-lọc ra các repo có > 0 star, sắp xếp giảm dần seo số star,
+lọc ra các repo có > 0 star, sắp xếp giảm dần theo số star,
 rồi in ra output ở dạng dễ đọc.
 
 ```python
@@ -95,6 +97,7 @@ còn thêm nhược điểm nữa là sẽ dùng tốn "quota" hàng ngày của
 cho phép gọi API n lần 1 ngày).
 - Trừ khi bạn code 1 lần chuẩn luôn, còn không thì mất khoảng 5 7 lần mới ra
 đoạn code trên.
+- Không test từng phần (bước) của đoạn code được.
 
 Thay vì vậy, viết lại một phần code như sau
 
