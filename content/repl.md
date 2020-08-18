@@ -164,12 +164,18 @@ def has_stars(repo):
     return repo["stargazers_count"] > 0
 
 
+def filter_repos_have_stars(repos):
+    return [p for p in repos if has_stars(p)]
+
+
+def get_star_url(p):
+    return (p["stargazers_count"], p["html_url"])
+
+
 def main():
     repos = getrepos()
-    repos_have_stars = [p for p in repos if has_stars(p)]
-    stars_urls = [
-        (p["stargazers_count"], p["html_url"]) for p in repos_have_stars
-    ]
+    repos_have_stars = filter_repos_have_stars(repos)
+    stars_urls = [get_star_url(p) for p in repos_have_stars]
     stars_urls.sort(reverse=True)
     fmt = "{} - {}"
     for i in stars_urls:
@@ -180,10 +186,47 @@ if __name__ == "__main__":
     main()
 ```
 
-Nếu quá trình biến đổi phức tạp hơn, hoàn toàn có thể tách thêm các phần sau
-thành function.
 Sau này nếu code có bug, lại bật REPL lên, gọi các function để debug trực tiếp
 dễ dàng, từng bước một.
+
+```python
+$ ipython
+Python 3.6.9 (default, Jul 17 2020, 12:50:27)
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.9.0 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: import foo
+In [2]: repos = foo.getrepos()
+
+In [3]: have_stars = foo.filter_repos_have_stars(repos)
+
+In [4]: len(have_stars)
+Out[4]: 8
+
+In [5]: [foo.get_star_url(p) for p in have_stars]
+Out[5]:
+[(7, 'https://github.com/pymivn/awesome'),
+ (2, 'https://github.com/pymivn/cpuisfast'),
+ (1, 'https://github.com/pymivn/hoidap-python'),
+ (1, 'https://github.com/pymivn/lekhome'),
+ (4, 'https://github.com/pymivn/math-stats-ml'),
+ (3, 'https://github.com/pymivn/people'),
+ (1, 'https://github.com/pymivn/pyjobs_crawlers'),
+ (4, 'https://github.com/pymivn/Python_Hanoi_Meetup')]
+
+In [8]: sorted([foo.get_star_url(p) for p in have_stars], reverse=True)
+
+Out[8]:
+[(7, 'https://github.com/pymivn/awesome'),
+ (4, 'https://github.com/pymivn/math-stats-ml'),
+ (4, 'https://github.com/pymivn/Python_Hanoi_Meetup'),
+ (3, 'https://github.com/pymivn/people'),
+ (2, 'https://github.com/pymivn/cpuisfast'),
+ (1, 'https://github.com/pymivn/pyjobs_crawlers'),
+ (1, 'https://github.com/pymivn/lekhome'),
+ (1, 'https://github.com/pymivn/hoidap-python')]
+```
+
 
 ## Dev với IPython
 IPython (`pip install ipython`) cung cấp thêm các tính năng giúp cách code này
@@ -244,9 +287,38 @@ Trong các ngôn ngữ không có REPL, cách thử 1 đoạn code nhanh nhất 
 trình ngàn dòng.
 Với Python, ta chỉ cần bật REPL lên, import module vào và khám phá.
 
+Code viết theo mới trên vừa dễ gõ trực tiếp trong REPL, vừa dễ viết unittest,
+ví dụ viết nhanh unittest chạy bằng `pytest` (`pip install pytest`) như sau:
+
+```python
+# test_github.py
+import github
+
+
+def test():
+    bad = {"stargazers_count": 0, "html_url": "bad_repo"}
+    good = {
+        "stargazers_count": 69,
+        "html_url": "https://github.com/pymivn/awesome",
+        "blah": "blo",
+    }
+    sample_repos = [bad, good]
+    assert github.filter_repos_have_stars(sample_repos) == [good]
+    assert github.get_star_url(good) == (
+        good["stargazers_count"],
+        good["html_url"],
+    )
+    assert github.has_stars(bad) is False
+    assert github.has_stars(good) is True
+```
+
+Viết code bằng REPL hay bằng [unittest
+TDD](https://en.wikipedia.org/wiki/Test-driven_development) đều mang tới một
+kết quả chung: code dễ sửa, dễ test.
+
 Tất nhiên REPL không thay thế hoàn toàn cho unittest, nhưng nó mang lại môi
-trường thử nghiệm nhanh chóng <del>tương đương như</del> hơn nhiều unittest ở các ngôn
-ngữ khác.
+trường thử nghiệm nhanh chóng <del>tương đương như</del> hơn nhiều unittest ở
+các ngôn ngữ khác.
 
 ## Hành động của chúng ta
 Cài ngay IPython, Jupyter rồi bật lên mỗi khi muốn code Python.
