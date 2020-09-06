@@ -380,8 +380,12 @@ Bỏ qua giá trị của &lt;code&gt;err&lt;/code&gt; là chuyện hoàn toàn 
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Tất cả các file go trong cùng 1 thư mục phải khai báo cùng package, chúng sẽ được gộp lại làm một. Có thể coi việc các file khác nhau chỉ để
-thuận tiện tổ chức code, chứ vẫn là trong 1 file. Các function trong cùng 1 package (khác file) có thể gọi nhau thoải mái, không cần import gì.&lt;/p&gt;
+&lt;p&gt;Tất cả các file go trong cùng 1 thư mục (không tính thư mục con) phải khai
+báo cùng package, chúng sẽ được gộp lại làm một (trừ phần import, mỗi file
+phải tự import thư viện mình dùng). Có thể coi việc các file khác nhau chỉ để
+thuận tiện tổ chức code, chứ vẫn là trong 1 file. Các function trong cùng 1
+package (khác file) có thể gọi nhau thoải mái, không cần import lẫn nhau.&lt;/p&gt;
+&lt;p&gt;Việc này khác với Python, mỗi file.py tự động là 1 module riêng biệt.&lt;/p&gt;
 &lt;p&gt;Go cài package bằng lệnh &lt;code&gt;go get&lt;/code&gt;, sau đó import tên package - là một đường dẫn theo cấu trúc URL online.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ go get github.com/stretchr/testify/assert
 &lt;/pre&gt;&lt;/div&gt;
