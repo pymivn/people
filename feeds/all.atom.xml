@@ -92,7 +92,7 @@ trước khi dùng, code sau sẽ gặp lỗi khi compile, và không tạo ra b
 &lt;p&gt;&lt;code&gt;cannot use "PyMi" (type untyped string) as type int in assignment&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;Trong Python3.6+, &lt;a href="http://pp.pymi.vn/article/mypy/"&gt;sử dụng type annotation, kết hợp với mypy&lt;/a&gt;
 để check cũng sẽ
-cho lỗi tương tự&lt;/p&gt;
+cho lỗi tương tự (nhưng vẫn chạy được).&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
 &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;PyMi&amp;quot;&lt;/span&gt;
 &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -147,8 +147,7 @@ làm việc với file, process...&lt;/p&gt;
 &lt;h3&gt;Go tour&lt;/h3&gt;
 &lt;p&gt;Tài liệu chính thống, đầy đủ và hiệu quả để học go là Go Tour: &lt;a href="https://tour.golang.org/"&gt;https://tour.golang.org/&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Viết code Go&lt;/h3&gt;
-&lt;p&gt;Cài Go lên máy rồi viết code ra file, hoặc code online trên trang Play &lt;a href="https://play.golang.org/"&gt;https://play.golang.org/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Cách viết này có thể thay đổi tùy phiên bản, làm theo hướng dẫn tại &lt;a href="https://golang.org/doc/tutorial/getting-started"&gt;đây&lt;/a&gt; và &lt;a href="https://golang.org/doc/code.html"&gt;đây&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://golang.org/doc/tutorial/getting-started"&gt;Cài Go lên máy rồi viết code ra file&lt;/a&gt;, hoặc code online trên trang Play &lt;a href="https://play.golang.org/"&gt;https://play.golang.org/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Go chạy code từ function &lt;code&gt;main&lt;/code&gt; thuộc &lt;code&gt;package main&lt;/code&gt;. code "Hello world!" như sau:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="nx"&gt;main&lt;/span&gt;
 
