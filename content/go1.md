@@ -16,7 +16,7 @@ Go (hay còn gọi là Golang theo tên trang chủ [golang.org](https://golang.
 trình mới xuất hiện trong công chúng vào năm 2009 (vs: Python 1991, Java 1995),
 tại Google.
 
-Go được thiết kế ra với mục tiêu thay thế cho C/C++, nhưng khi tung ra cộng
+Go được thiết kế ra với mục tiêu thay thế cho C++, nhưng khi tung ra cộng
 đồng, nó lại trở thành ngôn ngữ hấp dẫn đối với các lập trình viên dùng
 ngôn ngữ bậc cao hơn như Python, [Ruby](https://blog.iron.io/how-we-went-from-30-servers-to-2-go/), PHP, NodeJS... nhờ khả năng chạy code
 nhanh, dùng ít tài nguyên hơn, deploy dễ hơn so với các ngôn ngữ này.
