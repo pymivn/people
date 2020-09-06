@@ -209,7 +209,7 @@ Nếu viết hoa, var/function/type đó sẽ trở thành "public", code bên n
 - bool: kiểu boolean gồm 2 giá trị `true` `false`, các boolean operator `&&` (and), `||` (or) tuân theo [`short-circuit`](https://pymi.vn/tutorial/boolean/).
 - int: các kiểu số trong Go đều có kích thước, int có kích thước 32 hoặc 64 bits [tùy theo bản (chủ yếu 64 bits)](https://golang.org/doc/faq#q_int_sizes).
   Các kiểu cụ thể `int8 int16 int32 int64`, có kích thước là 2 mũ n, int8 int16 thường chỉ dùng khi tối ưu về memory. int64 biểu diễn được giá trị trong khoảng (`-2**64/2, 2**64/2`), Q1: muốn tính giá trị lớn hơn phải làm thế nào?
-- `float32` hoặc `float64`: chú ý không có kiểu `float`.
+- `float32` hoặc `float64`: chú ý không có kiểu `float`. [Tuân theo chuẩn IEE754](https://pymi.vn/blog/why-not-float/) nên `x, y, z := 0.1, 0.1, 0.1` thì `x + y + z == 0.3` sẽ trả về false. Chú ý ở trên tạo các biến để các giá trị 0.1 có kiểu float64, nếu viết trực tiếp `0.1 + 0.1 + 0.1 == 0.3` sẽ là so sánh constants và trả về true [https://play.golang.org/p/TWRRr_lM7jk](https://play.golang.org/p/TWRRr_lM7jk). Đọc thêm về constants tại [blog Go](https://blog.golang.org/constants).
 - string: giống như string của Python, immutable, có thể truy cập dùng index: `s[3]`. String bên dưới là 1 chuỗi các byte, hay một byte array/byte slice `[]byte{'h', 'e', 'l', 'l', 'o'}`, có thể convert thành string: `string(bytes)`. Python cũng có kiểu `bytes`, cũng chuyển thành `str` bằng cách decode `b'abc'.decode('utf-8')`.
 - array/slice: Go array giống như C, các phần tử phải cùng kiểu, và kích thước cố định không đổi. [Array ít được dùng trực tiếp](https://www.youtube.com/watch?v=5DVV36uqQ4E)
   nó được dùng bên dưới slice và slice linh hoạt như list trong Python. Ví dụ về slice
