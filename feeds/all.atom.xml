@@ -89,7 +89,10 @@ trước khi dùng, code sau sẽ gặp lỗi khi compile, và không tạo ra b
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;code&gt;cannot use "PyMi" (type untyped string) as type int in assignment&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cannot use &amp;quot;PyMi&amp;quot; (type untyped string) as type int in assignment
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;Trong Python3.6+, &lt;a href="http://pp.pymi.vn/article/mypy/"&gt;sử dụng type annotation, kết hợp với mypy&lt;/a&gt;
 để check cũng sẽ
 cho lỗi tương tự (nhưng vẫn chạy được).&lt;/p&gt;
