@@ -228,7 +228,7 @@ Nếu viết hoa, var/function/type đó sẽ trở thành "public", code bên n
 <li>int: các kiểu số trong Go đều có kích thước, int có kích thước 32 hoặc 64 bits <a href="https://golang.org/doc/faq#q_int_sizes">tùy theo bản (chủ yếu 64 bits)</a>.
   Các kiểu cụ thể <code>int8 int16 int32 int64</code>, có kích thước là 2 mũ n, int8 int16 thường chỉ dùng khi tối ưu về memory. int64 biểu diễn được giá trị trong khoảng (<code>-2**64/2, 2**64/2</code>), Q1: muốn tính giá trị lớn hơn phải làm thế nào?</li>
 <li><code>float32</code> hoặc <code>float64</code>: chú ý không có kiểu <code>float</code>.</li>
-<li>string: giống như string của Python, immutable, có thể truy cập dùng index.</li>
+<li>string: giống như string của Python, immutable, có thể truy cập dùng index: <code>s[3]</code>. String bên dưới là 1 chuỗi các byte, hay một byte array/byte slice <code>[]byte{'h', 'e', 'l', 'l', 'o'}</code>, có thể convert thành string: <code>string(bytes)</code>. Python cũng có kiểu <code>bytes</code>, cũng chuyển thành <code>str</code> bằng cách decode <code>b'abc'.decode('utf-8')</code>.</li>
 <li>array/slice: Go array giống như C, các phần tử phải cùng kiểu, và kích thước cố định không đổi. <a href="https://www.youtube.com/watch?v=5DVV36uqQ4E">Array ít được dùng trực tiếp</a>
   nó được dùng bên dưới slice và slice linh hoạt như list trong Python. Ví dụ về slice</li>
 </ul>
