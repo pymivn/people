@@ -438,8 +438,13 @@ rồi gọi function qua `package.Function`, vd: `fmt.Println`
 ```go
 package packagename
 ```
-Tất cả các file go trong cùng 1 thư mục phải khai báo cùng package, chúng sẽ được gộp lại làm một. Có thể coi việc các file khác nhau chỉ để
-thuận tiện tổ chức code, chứ vẫn là trong 1 file. Các function trong cùng 1 package (khác file) có thể gọi nhau thoải mái, không cần import gì.
+Tất cả các file go trong cùng 1 thư mục (không tính thư mục con) phải khai
+báo cùng package, chúng sẽ được gộp lại làm một (trừ phần import, mỗi file
+phải tự import thư viện mình dùng). Có thể coi việc các file khác nhau chỉ để
+thuận tiện tổ chức code, chứ vẫn là trong 1 file. Các function trong cùng 1
+package (khác file) có thể gọi nhau thoải mái, không cần import lẫn nhau.
+
+Việc này khác với Python, mỗi file.py tự động là 1 module riêng biệt.
 
 Go cài package bằng lệnh `go get`, sau đó import tên package - là một đường dẫn theo cấu trúc URL online.
 
