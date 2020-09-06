@@ -434,6 +434,12 @@ import "fmt"
 rồi gọi function qua `package.Function`, vd: `fmt.Println`
 
 ### Package & Install 3rd packages
+Đầu mỗi file code Go phải bắt đầu bằng
+```go
+package packagename
+```
+Tất cả các file go trong cùng 1 thư mục phải khai báo cùng package, chúng sẽ được gộp lại làm một. Có thể coi việc các file khác nhau chỉ để
+thuận tiện tổ chức code, chứ vẫn là trong 1 file. Các function trong cùng 1 package (khác file) có thể gọi nhau thoải mái, không cần import gì.
 
 Go cài package bằng lệnh `go get`, sau đó import tên package - là một đường dẫn theo cấu trúc URL online.
 
