@@ -424,6 +424,13 @@ Bỏ qua giá trị của <code>err</code> là chuyện hoàn toàn làm đượ
 
 <p>rồi gọi function qua <code>package.Function</code>, vd: <code>fmt.Println</code></p>
 <h3>Package &amp; Install 3rd packages</h3>
+<p>Đầu mỗi file code Go phải bắt đầu bằng</p>
+<div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">packagename</span>
+</pre></div>
+
+
+<p>Tất cả các file go trong cùng 1 thư mục phải khai báo cùng package, chúng sẽ được gộp lại làm một. Có thể coi việc các file khác nhau chỉ để
+thuận tiện tổ chức code, chứ vẫn là trong 1 file. Các function trong cùng 1 package (khác file) có thể gọi nhau thoải mái, không cần import gì.</p>
 <p>Go cài package bằng lệnh <code>go get</code>, sau đó import tên package - là một đường dẫn theo cấu trúc URL online.</p>
 <div class="highlight"><pre><span></span>$ go get github.com/stretchr/testify/assert
 </pre></div>

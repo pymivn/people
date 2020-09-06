@@ -375,6 +375,13 @@ Bỏ qua giá trị của &lt;code&gt;err&lt;/code&gt; là chuyện hoàn toàn 
 
 &lt;p&gt;rồi gọi function qua &lt;code&gt;package.Function&lt;/code&gt;, vd: &lt;code&gt;fmt.Println&lt;/code&gt;&lt;/p&gt;
 &lt;h3&gt;Package &amp;amp; Install 3rd packages&lt;/h3&gt;
+&lt;p&gt;Đầu mỗi file code Go phải bắt đầu bằng&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="nx"&gt;packagename&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Tất cả các file go trong cùng 1 thư mục phải khai báo cùng package, chúng sẽ được gộp lại làm một. Có thể coi việc các file khác nhau chỉ để
+thuận tiện tổ chức code, chứ vẫn là trong 1 file. Các function trong cùng 1 package (khác file) có thể gọi nhau thoải mái, không cần import gì.&lt;/p&gt;
 &lt;p&gt;Go cài package bằng lệnh &lt;code&gt;go get&lt;/code&gt;, sau đó import tên package - là một đường dẫn theo cấu trúc URL online.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ go get github.com/stretchr/testify/assert
 &lt;/pre&gt;&lt;/div&gt;
