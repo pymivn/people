@@ -36,11 +36,16 @@ frontend (JavaScript), làm website (như Django/RubyOnRails), Machine Learning.
 
 ## Những ưu điểm nổi bật của Go
 
-- Ngôn ngữ đơn giản: Go có ít khái niệm hơn các ngôn ngữ lập trình khác C++/Java/Python/Ruby...
- hầu hết các công ty tuyển lập trình viên Go đều không yêu cầu kinh nghiệm,
+- Ngôn ngữ đơn giản: Go có ít khái niệm hơn các ngôn ngữ lập trình khác
+C++/Java/Python/Ruby... Go tại năm 2020 có [25
+keywords](https://golang.org/ref/spec#Keywords), [Python 3.8 có 35
+keywords](https://docs.python.org/3.8/reference/lexical_analysis.html#keywords).
+Hầu hết các công ty tuyển lập trình viên Go đều không yêu cầu kinh nghiệm code
+Go,
  chỉ cần tuyển 1 lập trình viên đã dùng ngôn ngữ khác, qua training 1-2 tuần
  là đã có thể viết code production, trông không khác gì lập trình viên lâu năm.
 - Code Go viết bằng chính Go, ai cũng có thể đọc [kiểu dữ liệu map được viết thế nào](https://github.com/golang/go/blob/master/src/runtime/map.go) - so với Python (CPython) sẽ phải đọc code C.
+- Hệ thống thư viện có sẵn (stardard library) đa dạng, đầy đủ - ngang ngửa Python, thậm chí còn hơn: gửi HTTP request chỉ cần dùng `net/http`, không phải [cài requests như Python (mặc dù Python có thể dùng urllib nhưng không mấy ai dùng)]({filename}/requests.md), đầy đủ `json`, `regexp`, cho tới HTTP server sẵn sàng chạy production.
 - Compile nhanh: so với các ngôn ngữ C/C++/Java/C#... thì Go compile nhanh gấp
 nhiều lần
 - Sản phẩm compile tạo ra là 1 file binary. Sau đó
@@ -157,7 +162,7 @@ so với code Python. Lập trình viên Python code Go nên quen với việc b
   nghĩa struct theo cấu trúc của JSON.
 
 Code Go nhìn chung sẽ dài hơn code Python, vậy nên lập trình viên nên sắm cho
-mình một IDE xịn (như Goland, VSCode hay `vim` + `vim-go`), với khả năng [dùng snippet để
+mình một IDE xịn (như GoLand/IntelliJ IDEA , VSCode hay `vim` + `vim-go`), với khả năng [dùng snippet để
 sinh code](https://code.visualstudio.com/docs/editor/userdefinedsnippets).
 
 Sự bất tiện này sẽ đỡ khó chịu đi nhiều khi đã quen dùng snippet.
