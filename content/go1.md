@@ -511,7 +511,7 @@ Những nhân vật đáng chú ý/follow trong cộng đồng Go gồm các tá
 
 - [Go blog](https://blog.golang.org/index)
 - [Rob Pike](https://en.wikipedia.org/wiki/Rob_Pike)
-- [Dave Chenny](https://dave.cheney.net/category/golang)
+- [Dave Cheney](https://dave.cheney.net/category/golang)
 - [Russ Cox](https://swtch.com/~rsc/)
 
 ## Kết luận
