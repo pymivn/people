@@ -139,7 +139,7 @@ so với code Python. Lập trình viên Python code Go nên quen với việc b
   nghĩa struct theo cấu trúc của JSON.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Code Go nhìn chung sẽ dài hơn code Python, vậy nên lập trình viên nên sắm cho
-mình một IDE xịn (như Goland, VSCode hay &lt;code&gt;vim&lt;/code&gt; + &lt;code&gt;vim-go&lt;/code&gt;), với khả năng &lt;a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets"&gt;dùng snippet để
+mình một IDE xịn (như GoLand/IntelliJ IDEA , VSCode hay &lt;code&gt;vim&lt;/code&gt; + &lt;code&gt;vim-go&lt;/code&gt;), với khả năng &lt;a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets"&gt;dùng snippet để
 sinh code&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Sự bất tiện này sẽ đỡ khó chịu đi nhiều khi đã quen dùng snippet.&lt;/p&gt;
 &lt;h2&gt;Học lập trình Go (khi đã biết Python)&lt;/h2&gt;
