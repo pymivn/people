@@ -496,6 +496,16 @@ func main() {
 }
 ```
 
+## People & Community
+Go có cộng đồng trên toàn cầu, có forum/slack/IRC để thảo luận, xem tại [help](https://golang.org/help/#help) - có cả bằng Tiếng Việt.
+
+Những nhân vật đáng chú ý/follow trong cộng đồng Go gồm các tác giả, core dev, ...
+
+- [Go blog](https://blog.golang.org/index)
+- [Rob Pike](https://en.wikipedia.org/wiki/Rob_Pike)
+- [Dave Chenny](https://dave.cheney.net/category/golang)
+- [Russ Cox](https://swtch.com/~rsc/)
+
 ## Kết luận
 
 Go là một ngôn ngữ lập trình đơn giản và thú vị, với những kiến thức trong bài này, ta đã có thể bắt đầu dùng Go để viết các chương trình không hề đơn giản.
