@@ -40,6 +40,7 @@ frontend (JavaScript), làm website (như Django/RubyOnRails), Machine Learning.
  hầu hết các công ty tuyển lập trình viên Go đều không yêu cầu kinh nghiệm,
  chỉ cần tuyển 1 lập trình viên đã dùng ngôn ngữ khác, qua training 1-2 tuần
  là đã có thể viết code production, trông không khác gì lập trình viên lâu năm.
+- Code Go viết bằng chính Go, ai cũng có thể đọc [kiểu dữ liệu map được viết thế nào](https://github.com/golang/go/blob/master/src/runtime/map.go) - so với Python (CPython) sẽ phải đọc code C.
 - Compile nhanh: so với các ngôn ngữ C/C++/Java/C#... thì Go compile nhanh gấp
 nhiều lần
 - Sản phẩm compile tạo ra là 1 file binary. Sau đó
@@ -110,7 +111,9 @@ x := 10
 x = "PyMi"
 ```
 
-`cannot use "PyMi" (type untyped string) as type int in assignment`
+```
+cannot use "PyMi" (type untyped string) as type int in assignment
+```
 
 Trong Python3.6+, [sử dụng type annotation, kết hợp với mypy]({filename}/mypy.md)
 để check cũng sẽ
