@@ -429,6 +429,15 @@ ok      _/home/hvn/MyData   &lt;span class="m"&gt;0&lt;/span&gt;.002s
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;h2&gt;People &amp;amp; Community&lt;/h2&gt;
+&lt;p&gt;Go có cộng đồng trên toàn cầu, có forum/slack/IRC để thảo luận, xem tại &lt;a href="https://golang.org/help/#help"&gt;help&lt;/a&gt; - có cả bằng Tiếng Việt.&lt;/p&gt;
+&lt;p&gt;Những nhân vật đáng chú ý/follow trong cộng đồng Go gồm các tác giả, core dev, ...&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://blog.golang.org/index"&gt;Go blog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Rob_Pike"&gt;Rob Pike&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dave.cheney.net/category/golang"&gt;Dave Chenny&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://swtch.com/~rsc/"&gt;Russ Cox&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2&gt;Kết luận&lt;/h2&gt;
 &lt;p&gt;Go là một ngôn ngữ lập trình đơn giản và thú vị, với những kiến thức trong bài này, ta đã có thể bắt đầu dùng Go để viết các chương trình không hề đơn giản.
 Phần tiếp sẽ trình bày chi tiết về các khái niệm chỉ có trong Go mà không có trong Python như Pointer, sự khác biệt về cách tổ chức package trong Go, declaration &amp;amp; initialization (khai báo và khởi tạo variable), cùng các standard library quan trọng nhất cho một SysAdmin/DevOps.&lt;/p&gt;
