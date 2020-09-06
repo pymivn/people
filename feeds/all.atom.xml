@@ -25,6 +25,7 @@ frontend (JavaScript), làm website (như Django/RubyOnRails), Machine Learning.
  hầu hết các công ty tuyển lập trình viên Go đều không yêu cầu kinh nghiệm,
  chỉ cần tuyển 1 lập trình viên đã dùng ngôn ngữ khác, qua training 1-2 tuần
  là đã có thể viết code production, trông không khác gì lập trình viên lâu năm.&lt;/li&gt;
+&lt;li&gt;Code Go viết bằng chính Go, ai cũng có thể đọc &lt;a href="https://github.com/golang/go/blob/master/src/runtime/map.go"&gt;kiểu dữ liệu map được viết thế nào&lt;/a&gt; - so với Python (CPython) sẽ phải đọc code C.&lt;/li&gt;
 &lt;li&gt;Compile nhanh: so với các ngôn ngữ C/C++/Java/C#... thì Go compile nhanh gấp
 nhiều lần&lt;/li&gt;
 &lt;li&gt;Sản phẩm compile tạo ra là 1 file binary. Sau đó
