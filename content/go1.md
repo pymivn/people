@@ -506,5 +506,6 @@ Phần tiếp sẽ trình bày chi tiết về các khái niệm chỉ có trong
 - [https://hn.algolia.com/?dateRange=all&page=0&prefix=true&query=golang&sort=byPopularity&type=story](https://hn.algolia.com/?dateRange=all&page=0&prefix=true&query=golang&sort=byPopularity&type=story)
 - [https://github.com/golang/go/wiki/SuccessStories](https://github.com/golang/go/wiki/SuccessStories)
 - [https://blog.iron.io/go-after-2-years-in-production/](https://blog.iron.io/go-after-2-years-in-production/)
+- [Notes on the Go translation of Reposurgeon - from Python](http://www.catb.org/~esr/reposurgeon/GoNotes.html)
 
 HVN at [http://pymi.vn](http://pymi.vn) and [https://www.familug.org](https://www.familug.org).
