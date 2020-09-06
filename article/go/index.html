@@ -263,13 +263,13 @@ Do map phải có kiểu cố định cho key, value. <a href="https://play.gola
 <p>Các kiểu khác <code>struct</code>, <code>pointer</code>, <code>function</code>, <code>interface</code>, <code>channel</code>
 sẽ được nhắc tới sau, xem đầy đủ tại <a href="https://golang.org/ref/spec#Types">spec</a>.</p>
 <h4>Struct &amp; method</h4>
-<p>Python có Class, cung cấp đủ các tính năng tiêu chuẩn của OOP (object-oriented
+<p>Python có class, cung cấp đủ các tính năng tiêu chuẩn của OOP (object-oriented
 programming - lập trình hướng đối tượng).  Định nghĩa 1 class tạo ra 1
-kiểu đữ liệu mới và cho phép đóng goi dữ liệu (data) với tính năng (method) lại
+kiểu dữ liệu mới và cho phép đóng gói dữ liệu (data) với tính năng (method) lại
 với nhau.</p>
 <p>Go <code>struct</code>: A struct is a collection of fields.</p>
 <p>struct không cung cấp các tính năng của OOP (như inheritance), nhưng cũng
-tạo ra 1 kiểu đữ liệu mới và cho phép đóng goi dữ liệu (data) với tính năng
+tạo ra 1 kiểu dữ liệu mới và cho phép đóng gói dữ liệu (data) với tính năng
 (method) lại với nhau. <a href="https://play.golang.org/p/tQMPLn9OXcj">https://play.golang.org/p/tQMPLn9OXcj</a></p>
 <div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Rectangle</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Width</span>  <span class="kt">float64</span>
@@ -314,7 +314,7 @@ tạo ra 1 kiểu đữ liệu mới và cho phép đóng goi dữ liệu (data)
 <p>Empty interface <code>interface{}</code> là trường hợp đặc biệt, nó có thể chứa mọi giá
 trị do không cần có method nào.</p>
 <p>Một value kiểu <code>interface{}</code> đánh sập mọi đảm bảo về type trong Golang, biến
-Go thành dynamic typing như Python. Nó như một lôi thoát linh hoạt giữa mọi
+Go thành dynamic typing như Python. Nó như lối thoát linh hoạt giữa mọi
 sự cứng nhắc/static.</p>
 <p>Sử dụng type assertion để truy cập giá trị ẩn dưới <code>interface{}</code>:</p>
 <div class="highlight"><pre><span></span>    <span class="kd">var</span> <span class="nx">anything</span> <span class="kd">interface</span><span class="p">{}</span>
@@ -327,7 +327,7 @@ sự cứng nhắc/static.</p>
 </pre></div>
 
 
-<p>https://play.golang.org/p/mNXTI-4C3pU</p>
+<p><a href="https://play.golang.org/p/mNXTI-4C3pU">https://play.golang.org/p/mNXTI-4C3pU</a></p>
 <p>hoặc dùng <code>switch</code> để xử lý các kiểu khác nhau:</p>
 <div class="highlight"><pre><span></span>    <span class="k">switch</span> <span class="nx">v</span> <span class="o">:=</span> <span class="nx">i</span><span class="p">.(</span><span class="kd">type</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">case</span> <span class="kt">int</span><span class="p">:</span>
@@ -347,13 +347,16 @@ sự cứng nhắc/static.</p>
         <span class="nb">println</span><span class="p">(</span><span class="s">&quot;We don&#39;t talk any more&quot;</span><span class="p">)</span>
     <span class="p">}</span>
     <span class="nx">ns</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;meo&quot;</span><span class="p">,</span> <span class="s">&quot;bo&quot;</span><span class="p">,</span> <span class="s">&quot;ga&quot;</span><span class="p">}</span>
-    <span class="k">for</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">value</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">ns</span> <span class="p">{</span>
-        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%d %s\n&quot;</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">ns</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">&lt;</span> <span class="mi">3</span> <span class="p">{</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%d %s\n&quot;</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span>
+        <span class="p">}</span>
     <span class="p">}</span>
 </pre></div>
 
 
-<p>https://play.golang.org/p/urO2b4DQ-36</p>
+<p><a href="https://play.golang.org/p/rHJP4ghomzo">https://play.golang.org/p/rHJP4ghomzo</a></p>
 <h3>Function</h3>
 <p>Định nghĩa function không khác Python đáng kể, ngoại trừ việc thay vì return tuple, Go có thể return nhiều giá trị (và không có kiểu tuple).</p>
 <div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">TwiceAndThrice</span><span class="p">(</span><span class="nx">x</span> <span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
@@ -362,7 +365,7 @@ sự cứng nhắc/static.</p>
 </pre></div>
 
 
-<p><a href="https://golang.org/doc/faq#overloading">Go không hỗ trợ overloading - một tên function dùng với số lượng argument khác nhau</a>
+<p><a href="https://golang.org/doc/faq#overloading">Go không hỗ trợ overloading - một function dùng với số lượng argument khác nhau</a>
 , nên cũng không hỗ trợ default argument <code>pyfunc(x, y=10)</code>.</p>
 <p>Cách duy nhất để gọi function là đưa vào các argument theo thứ tự, không
 có <a href="https://docs.python.org/3/tutorial/controlflow.html#keyword-arguments">keyword argument như Python</a> (<code>python_function(x=5, y=7)</code>).</p>

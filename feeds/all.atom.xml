@@ -214,13 +214,13 @@ Do map phải có kiểu cố định cho key, value. &lt;a href="https://play.g
 &lt;p&gt;Các kiểu khác &lt;code&gt;struct&lt;/code&gt;, &lt;code&gt;pointer&lt;/code&gt;, &lt;code&gt;function&lt;/code&gt;, &lt;code&gt;interface&lt;/code&gt;, &lt;code&gt;channel&lt;/code&gt;
 sẽ được nhắc tới sau, xem đầy đủ tại &lt;a href="https://golang.org/ref/spec#Types"&gt;spec&lt;/a&gt;.&lt;/p&gt;
 &lt;h4&gt;Struct &amp;amp; method&lt;/h4&gt;
-&lt;p&gt;Python có Class, cung cấp đủ các tính năng tiêu chuẩn của OOP (object-oriented
+&lt;p&gt;Python có class, cung cấp đủ các tính năng tiêu chuẩn của OOP (object-oriented
 programming - lập trình hướng đối tượng).  Định nghĩa 1 class tạo ra 1
-kiểu đữ liệu mới và cho phép đóng goi dữ liệu (data) với tính năng (method) lại
+kiểu dữ liệu mới và cho phép đóng gói dữ liệu (data) với tính năng (method) lại
 với nhau.&lt;/p&gt;
 &lt;p&gt;Go &lt;code&gt;struct&lt;/code&gt;: A struct is a collection of fields.&lt;/p&gt;
 &lt;p&gt;struct không cung cấp các tính năng của OOP (như inheritance), nhưng cũng
-tạo ra 1 kiểu đữ liệu mới và cho phép đóng goi dữ liệu (data) với tính năng
+tạo ra 1 kiểu dữ liệu mới và cho phép đóng gói dữ liệu (data) với tính năng
 (method) lại với nhau. &lt;a href="https://play.golang.org/p/tQMPLn9OXcj"&gt;https://play.golang.org/p/tQMPLn9OXcj&lt;/a&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;type&lt;/span&gt; &lt;span class="nx"&gt;Rectangle&lt;/span&gt; &lt;span class="kd"&gt;struct&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="nx"&gt;Width&lt;/span&gt;  &lt;span class="kt"&gt;float64&lt;/span&gt;
@@ -265,7 +265,7 @@ tạo ra 1 kiểu đữ liệu mới và cho phép đóng goi dữ liệu (data)
 &lt;p&gt;Empty interface &lt;code&gt;interface{}&lt;/code&gt; là trường hợp đặc biệt, nó có thể chứa mọi giá
 trị do không cần có method nào.&lt;/p&gt;
 &lt;p&gt;Một value kiểu &lt;code&gt;interface{}&lt;/code&gt; đánh sập mọi đảm bảo về type trong Golang, biến
-Go thành dynamic typing như Python. Nó như một lôi thoát linh hoạt giữa mọi
+Go thành dynamic typing như Python. Nó như lối thoát linh hoạt giữa mọi
 sự cứng nhắc/static.&lt;/p&gt;
 &lt;p&gt;Sử dụng type assertion để truy cập giá trị ẩn dưới &lt;code&gt;interface{}&lt;/code&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;anything&lt;/span&gt; &lt;span class="kd"&gt;interface&lt;/span&gt;&lt;span class="p"&gt;{}&lt;/span&gt;
@@ -278,7 +278,7 @@ sự cứng nhắc/static.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;https://play.golang.org/p/mNXTI-4C3pU&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://play.golang.org/p/mNXTI-4C3pU"&gt;https://play.golang.org/p/mNXTI-4C3pU&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;hoặc dùng &lt;code&gt;switch&lt;/code&gt; để xử lý các kiểu khác nhau:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="k"&gt;switch&lt;/span&gt; &lt;span class="nx"&gt;v&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;.(&lt;/span&gt;&lt;span class="kd"&gt;type&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -298,13 +298,16 @@ sự cứng nhắc/static.&lt;/p&gt;
         &lt;span class="nb"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;We don&amp;#39;t talk any more&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="p"&gt;}&lt;/span&gt;
     &lt;span class="nx"&gt;ns&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;&lt;span class="kt"&gt;string&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;meo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;bo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;ga&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
-    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nx"&gt;index&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;value&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="k"&gt;range&lt;/span&gt; &lt;span class="nx"&gt;ns&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="nx"&gt;fmt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%d %s\n&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;index&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nx"&gt;key&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;value&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="k"&gt;range&lt;/span&gt; &lt;span class="nx"&gt;ns&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="nx"&gt;fmt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%d %s\n&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;key&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
     &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;https://play.golang.org/p/urO2b4DQ-36&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://play.golang.org/p/rHJP4ghomzo"&gt;https://play.golang.org/p/rHJP4ghomzo&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Function&lt;/h3&gt;
 &lt;p&gt;Định nghĩa function không khác Python đáng kể, ngoại trừ việc thay vì return tuple, Go có thể return nhiều giá trị (và không có kiểu tuple).&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;func&lt;/span&gt; &lt;span class="nx"&gt;TwiceAndThrice&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;x&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
@@ -313,7 +316,7 @@ sự cứng nhắc/static.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;a href="https://golang.org/doc/faq#overloading"&gt;Go không hỗ trợ overloading - một tên function dùng với số lượng argument khác nhau&lt;/a&gt;
+&lt;p&gt;&lt;a href="https://golang.org/doc/faq#overloading"&gt;Go không hỗ trợ overloading - một function dùng với số lượng argument khác nhau&lt;/a&gt;
 , nên cũng không hỗ trợ default argument &lt;code&gt;pyfunc(x, y=10)&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Cách duy nhất để gọi function là đưa vào các argument theo thứ tự, không
 có &lt;a href="https://docs.python.org/3/tutorial/controlflow.html#keyword-arguments"&gt;keyword argument như Python&lt;/a&gt; (&lt;code&gt;python_function(x=5, y=7)&lt;/code&gt;).&lt;/p&gt;
