@@ -21,8 +21,12 @@ Kubernetes, Docker, Terraform, InfluxDB, Prometheus, Grafana, ...&lt;/p&gt;
 frontend (JavaScript), làm website (như Django/RubyOnRails), Machine Learning.&lt;/p&gt;
 &lt;h2&gt;Những ưu điểm nổi bật của Go&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;Ngôn ngữ đơn giản: Go có ít khái niệm hơn các ngôn ngữ lập trình khác C++/Java/Python/Ruby...
- hầu hết các công ty tuyển lập trình viên Go đều không yêu cầu kinh nghiệm,
+&lt;li&gt;Ngôn ngữ đơn giản: Go có ít khái niệm hơn các ngôn ngữ lập trình khác
+C++/Java/Python/Ruby... Go tại năm 2020 có &lt;a href="https://golang.org/ref/spec#Keywords"&gt;25
+keywords&lt;/a&gt;, &lt;a href="https://docs.python.org/3.8/reference/lexical_analysis.html#keywords"&gt;Python 3.8 có 35
+keywords&lt;/a&gt;.
+Hầu hết các công ty tuyển lập trình viên Go đều không yêu cầu kinh nghiệmcode
+Go,
  chỉ cần tuyển 1 lập trình viên đã dùng ngôn ngữ khác, qua training 1-2 tuần
  là đã có thể viết code production, trông không khác gì lập trình viên lâu năm.&lt;/li&gt;
 &lt;li&gt;Code Go viết bằng chính Go, ai cũng có thể đọc &lt;a href="https://github.com/golang/go/blob/master/src/runtime/map.go"&gt;kiểu dữ liệu map được viết thế nào&lt;/a&gt; - so với Python (CPython) sẽ phải đọc code C.&lt;/li&gt;
