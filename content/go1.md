@@ -180,9 +180,12 @@ Cần gì thì phụ thuộc vào bạn định làm gì, một Python web devel
 Django, ORM, làm việc với database trong khi một SysAdmin/DevOps engineer lại
 làm việc với file, process...
 
-### Go tour
+### Tài liệu
 
-Tài liệu chính thống, đầy đủ và hiệu quả để học go là Go Tour: [https://tour.golang.org/](https://tour.golang.org/)
+- Tài liệu chính thống, đầy đủ và hiệu quả để học go là Go Tour: [https://tour.golang.org/](https://tour.golang.org/)
+- FAQ giải đáp các thắc mắc thường gặp: [https://golang.org/doc/faq](https://golang.org/doc/faq)
+- Effective Go hướng dẫn viết Go theo cách của Gophers: [https://golang.org/doc/effective_go.html](https://golang.org/doc/effective_go.html)
+- Các tài liệu khác: [learn](https://github.com/golang/go/wiki/Learn)
 
 ### Viết code Go
 [Cài Go lên máy rồi viết code ra file](https://golang.org/doc/tutorial/getting-started), hoặc code online trên trang Play [https://play.golang.org/](https://play.golang.org/)
