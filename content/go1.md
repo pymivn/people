@@ -500,6 +500,8 @@ Ghi file:
 	}
 ```
 
+Nếu bỏ qua phần xử lý error thì cũng không khác Python là mấy.
+
 Đọc file:
 
 - Mở file bằng os.Open, thu được 1 File struct
@@ -531,6 +533,8 @@ Ghi file:
 
 Giải bài [Project Euler 1](https://projecteuler.net/problem=1) bằng Go:
 
+> Find the sum of all the multiples of 3 or 5 below 1000.
+
 ```go
 package main
 
@@ -542,6 +546,36 @@ func main() {
 		if i%3 == 0 || i%5 == 0 {
 			sum = sum + i
 		}
+	}
+	fmt.Printf("%d\n", sum)
+}
+```
+
+Giải bài [Project Euler 16](https://projecteuler.net/problem=16)
+
+> What is the sum of the digits of the number 2 to the power of 1000?
+
+```go
+package main
+
+import (
+	"fmt"
+	"math/big"
+	"strconv"
+)
+
+func main() {
+	var twoToThePowerOf1000 big.Int
+	twoToThePowerOf1000.Exp(big.NewInt(2), big.NewInt(1000), nil)
+	// Có thể tính sum luôn nhưng bài này minh họa slice
+	digits := []int{}
+	for _, c := range twoToThePowerOf1000.String() {
+		digit, _ := strconv.Atoi(string(c))
+		digits = append(digits, digit)
+	}
+	sum := 0
+	for _, v := range digits {
+		sum = sum + v
 	}
 	fmt.Printf("%d\n", sum)
 }
@@ -563,10 +597,11 @@ Go là một ngôn ngữ lập trình đơn giản và thú vị, với những 
 Phần tiếp sẽ trình bày chi tiết về các khái niệm chỉ có trong Go mà không có trong Python như Pointer, sự khác biệt về cách tổ chức package trong Go, declaration & initialization (khai báo và khởi tạo variable), cùng các standard library quan trọng nhất cho một SysAdmin/DevOps.
 
 ## References
-- [https://hn.algolia.com/?q=go](https://hn.algolia.com/?q=go)
-- [https://hn.algolia.com/?dateRange=all&page=0&prefix=true&query=golang&sort=byPopularity&type=story](https://hn.algolia.com/?dateRange=all&page=0&prefix=true&query=golang&sort=byPopularity&type=story)
-- [https://github.com/golang/go/wiki/SuccessStories](https://github.com/golang/go/wiki/SuccessStories)
+- [https://blog.iron.io/how-we-went-from-30-servers-to-2-go/](https://blog.iron.io/how-we-went-from-30-servers-to-2-go/)
 - [https://blog.iron.io/go-after-2-years-in-production/](https://blog.iron.io/go-after-2-years-in-production/)
+- [https://blog.golang.org/survey2019-results](https://blog.golang.org/survey2019-results)
+- [https://github.com/golang/go/wiki/SuccessStories](https://github.com/golang/go/wiki/SuccessStories)
 - [Notes on the Go translation of Reposurgeon - from Python](http://www.catb.org/~esr/reposurgeon/GoNotes.html)
+- [https://hn.algolia.com/?q=go](https://hn.algolia.com/?q=go)
 
 HVN at [http://pymi.vn](http://pymi.vn) and [https://www.familug.org](https://www.familug.org).
