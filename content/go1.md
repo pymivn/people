@@ -112,7 +112,7 @@ Trong static typing, kiểu của 1 biến là cố định, và được khai b
 trước khi dùng, code sau sẽ gặp lỗi khi compile, và không tạo ra binary nào để chạy.
 
 ```go
-x := 10
+var x int = 10
 x = "PyMi"
 ```
 
@@ -140,10 +140,8 @@ Kiểu của các biến trong Go nói chung phải khai báo (declare), Go có 
 luận (type inference) được trong một vài trường hợp đơn giản.
 
 ```go
-var x int
-var s string
-x = 10
-s = "PyMi"
+x := 10
+s := "PyMi"
 ```
 
 ### Low level
@@ -490,11 +488,42 @@ Ghi file:
 - Tạo file với os.Create, thu được 1 File struct
 - Gọi method File.WriteString để ghi string
 
+```go
+	file, err := os.Create("bundau.mamtom")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+	_, err = file.WriteString("bundau\n")
+	if err != nil {
+		log.Fatal(err)
+	}
+```
+
 Đọc file:
 
 - Mở file bằng os.Open, thu được 1 File struct
 - Tạo 1 "Scanner" để giúp xử lý logic đọc file theo từng dòng
 - Lặp qua scanner.Scan() để lấy từng dòng qua scanner.Text()
+
+```go
+	file, err := os.Open("bundau.mamtom")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+
+	var lines []string
+	for scanner.Scan() {
+		lines = append(lines, scanner.Text())
+	}
+	if err := scanner.Err(); err != nil {
+		log.Fatal(err)
+
+	}
+```
 
 [https://play.golang.org/p/Jv80_bRJc2H](https://play.golang.org/p/Jv80_bRJc2H)
 
