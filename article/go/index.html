@@ -139,7 +139,7 @@ Trong dynamic typing, kiểu của 1 biến có thể thay đổi:</p>
 
 <p>Trong static typing, kiểu của 1 biến là cố định, và được khai báo ngay từ
 trước khi dùng, code sau sẽ gặp lỗi khi compile, và không tạo ra binary nào để chạy.</p>
-<div class="highlight"><pre><span></span><span class="nx">x</span> <span class="o">:=</span> <span class="mi">10</span>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">x</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">10</span>
 <span class="nx">x</span> <span class="p">=</span> <span class="s">&quot;PyMi&quot;</span>
 </pre></div>
 
@@ -165,10 +165,8 @@ Found <span class="m">1</span> error in <span class="m">1</span> file <span clas
 
 <p>Kiểu của các biến trong Go nói chung phải khai báo (declare), Go có thể tự suy
 luận (type inference) được trong một vài trường hợp đơn giản.</p>
-<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">x</span> <span class="kt">int</span>
-<span class="kd">var</span> <span class="nx">s</span> <span class="kt">string</span>
-<span class="nx">x</span> <span class="p">=</span> <span class="mi">10</span>
-<span class="nx">s</span> <span class="p">=</span> <span class="s">&quot;PyMi&quot;</span>
+<div class="highlight"><pre><span></span><span class="nx">x</span> <span class="o">:=</span> <span class="mi">10</span>
+<span class="nx">s</span> <span class="o">:=</span> <span class="s">&quot;PyMi&quot;</span>
 </pre></div>
 
 
@@ -478,12 +476,43 @@ ok      _/home/hvn/MyData   <span class="m">0</span>.002s
 <li>Tạo file với os.Create, thu được 1 File struct</li>
 <li>Gọi method File.WriteString để ghi string</li>
 </ul>
+<div class="highlight"><pre><span></span>    <span class="nx">file</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Create</span><span class="p">(</span><span class="s">&quot;bundau.mamtom&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">defer</span> <span class="nx">file</span><span class="p">.</span><span class="nx">Close</span><span class="p">()</span>
+    <span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">file</span><span class="p">.</span><span class="nx">WriteString</span><span class="p">(</span><span class="s">&quot;bundau\n&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+    <span class="p">}</span>
+</pre></div>
+
+
 <p>Đọc file:</p>
 <ul>
 <li>Mở file bằng os.Open, thu được 1 File struct</li>
 <li>Tạo 1 "Scanner" để giúp xử lý logic đọc file theo từng dòng</li>
 <li>Lặp qua scanner.Scan() để lấy từng dòng qua scanner.Text()</li>
 </ul>
+<div class="highlight"><pre><span></span>    <span class="nx">file</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span><span class="s">&quot;bundau.mamtom&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">defer</span> <span class="nx">file</span><span class="p">.</span><span class="nx">Close</span><span class="p">()</span>
+
+    <span class="nx">scanner</span> <span class="o">:=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nx">NewScanner</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span>
+
+    <span class="kd">var</span> <span class="nx">lines</span> <span class="p">[]</span><span class="kt">string</span>
+    <span class="k">for</span> <span class="nx">scanner</span><span class="p">.</span><span class="nx">Scan</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">lines</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">lines</span><span class="p">,</span> <span class="nx">scanner</span><span class="p">.</span><span class="nx">Text</span><span class="p">())</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">scanner</span><span class="p">.</span><span class="nx">Err</span><span class="p">();</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+
+    <span class="p">}</span>
+</pre></div>
+
+
 <p><a href="https://play.golang.org/p/Jv80_bRJc2H">https://play.golang.org/p/Jv80_bRJc2H</a></p>
 <h2>Hành động của chúng ta</h2>
 <p>Giải bài <a href="https://projecteuler.net/problem=1">Project Euler 1</a> bằng Go:</p>
