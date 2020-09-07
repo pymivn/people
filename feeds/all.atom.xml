@@ -439,6 +439,7 @@ ok      _/home/hvn/MyData   &lt;span class="m"&gt;0&lt;/span&gt;.002s
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;p&gt;Nếu bỏ qua phần xử lý error thì cũng không khác Python là mấy.&lt;/p&gt;
 &lt;p&gt;Đọc file:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Mở file bằng os.Open, thu được 1 File struct&lt;/li&gt;
@@ -467,6 +468,9 @@ ok      _/home/hvn/MyData   &lt;span class="m"&gt;0&lt;/span&gt;.002s
 &lt;p&gt;&lt;a href="https://play.golang.org/p/Jv80_bRJc2H"&gt;https://play.golang.org/p/Jv80_bRJc2H&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;Hành động của chúng ta&lt;/h2&gt;
 &lt;p&gt;Giải bài &lt;a href="https://projecteuler.net/problem=1"&gt;Project Euler 1&lt;/a&gt; bằng Go:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Find the sum of all the multiples of 3 or 5 below 1000.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="nx"&gt;main&lt;/span&gt;
 
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
@@ -477,6 +481,36 @@ ok      _/home/hvn/MyData   &lt;span class="m"&gt;0&lt;/span&gt;.002s
         &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
             &lt;span class="nx"&gt;sum&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;sum&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;i&lt;/span&gt;
         &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="nx"&gt;fmt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%d\n&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Giải bài &lt;a href="https://projecteuler.net/problem=16"&gt;Project Euler 16&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;What is the sum of the digits of the number 2 to the power of 1000?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="nx"&gt;main&lt;/span&gt;
+
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;math/big&amp;quot;&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;strconv&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="kd"&gt;func&lt;/span&gt; &lt;span class="nx"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;twoToThePowerOf1000&lt;/span&gt; &lt;span class="nx"&gt;big&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Int&lt;/span&gt;
+    &lt;span class="nx"&gt;twoToThePowerOf1000&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Exp&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;big&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;NewInt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="nx"&gt;big&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;NewInt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="kc"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="c1"&gt;// Có thể tính sum luôn nhưng bài này minh họa slice&lt;/span&gt;
+    &lt;span class="nx"&gt;digits&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;{}&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nx"&gt;_&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;c&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="k"&gt;range&lt;/span&gt; &lt;span class="nx"&gt;twoToThePowerOf1000&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;String&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nx"&gt;digit&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;_&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="nx"&gt;strconv&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Atoi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;string&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;c&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+        &lt;span class="nx"&gt;digits&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;digits&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;digit&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="nx"&gt;sum&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nx"&gt;_&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;v&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="k"&gt;range&lt;/span&gt; &lt;span class="nx"&gt;digits&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nx"&gt;sum&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;sum&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;v&lt;/span&gt;
     &lt;span class="p"&gt;}&lt;/span&gt;
     &lt;span class="nx"&gt;fmt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%d\n&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
@@ -497,11 +531,12 @@ ok      _/home/hvn/MyData   &lt;span class="m"&gt;0&lt;/span&gt;.002s
 Phần tiếp sẽ trình bày chi tiết về các khái niệm chỉ có trong Go mà không có trong Python như Pointer, sự khác biệt về cách tổ chức package trong Go, declaration &amp;amp; initialization (khai báo và khởi tạo variable), cùng các standard library quan trọng nhất cho một SysAdmin/DevOps.&lt;/p&gt;
 &lt;h2&gt;References&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://hn.algolia.com/?q=go"&gt;https://hn.algolia.com/?q=go&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://hn.algolia.com/?dateRange=all&amp;amp;page=0&amp;amp;prefix=true&amp;amp;query=golang&amp;amp;sort=byPopularity&amp;amp;type=story"&gt;https://hn.algolia.com/?dateRange=all&amp;amp;page=0&amp;amp;prefix=true&amp;amp;query=golang&amp;amp;sort=byPopularity&amp;amp;type=story&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/golang/go/wiki/SuccessStories"&gt;https://github.com/golang/go/wiki/SuccessStories&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://blog.iron.io/how-we-went-from-30-servers-to-2-go/"&gt;https://blog.iron.io/how-we-went-from-30-servers-to-2-go/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://blog.iron.io/go-after-2-years-in-production/"&gt;https://blog.iron.io/go-after-2-years-in-production/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://blog.golang.org/survey2019-results"&gt;https://blog.golang.org/survey2019-results&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/golang/go/wiki/SuccessStories"&gt;https://github.com/golang/go/wiki/SuccessStories&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.catb.org/~esr/reposurgeon/GoNotes.html"&gt;Notes on the Go translation of Reposurgeon - from Python&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hn.algolia.com/?q=go"&gt;https://hn.algolia.com/?q=go&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;HVN at &lt;a href="http://pymi.vn"&gt;http://pymi.vn&lt;/a&gt; and &lt;a href="https://www.familug.org"&gt;https://www.familug.org&lt;/a&gt;.&lt;/p&gt;</content><category term="Trang chủ"></category><category term="golang"></category><category term="go"></category></entry><entry><title>Viết code dễ đổi, dễ test như thế nào?</title><link href="http://pp.pymi.vn/article/repl/" rel="alternate"></link><published>2020-08-17T00:00:00+07:00</published><updated>2020-08-17T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2020-08-17:/article/repl/</id><summary type="html">&lt;p&gt;Tận dụng tối đa REPL của Python, tính năng mà C, Java, Golang không có&lt;/p&gt;</summary><content type="html">&lt;p&gt;Các lập trình viên chuyển sang code Python từ các ngôn ngữ lập trình khác như
 Java, C, Golang... thường bắt đầu code bằng việc bật một cái IDE to đùng

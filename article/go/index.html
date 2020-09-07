@@ -488,6 +488,7 @@ ok      _/home/hvn/MyData   <span class="m">0</span>.002s
 </pre></div>
 
 
+<p>Nếu bỏ qua phần xử lý error thì cũng không khác Python là mấy.</p>
 <p>Đọc file:</p>
 <ul>
 <li>Mở file bằng os.Open, thu được 1 File struct</li>
@@ -516,6 +517,9 @@ ok      _/home/hvn/MyData   <span class="m">0</span>.002s
 <p><a href="https://play.golang.org/p/Jv80_bRJc2H">https://play.golang.org/p/Jv80_bRJc2H</a></p>
 <h2>Hành động của chúng ta</h2>
 <p>Giải bài <a href="https://projecteuler.net/problem=1">Project Euler 1</a> bằng Go:</p>
+<blockquote>
+<p>Find the sum of all the multiples of 3 or 5 below 1000.</p>
+</blockquote>
 <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
@@ -526,6 +530,36 @@ ok      _/home/hvn/MyData   <span class="m">0</span>.002s
         <span class="k">if</span> <span class="nx">i</span><span class="o">%</span><span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="nx">i</span><span class="o">%</span><span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
             <span class="nx">sum</span> <span class="p">=</span> <span class="nx">sum</span> <span class="o">+</span> <span class="nx">i</span>
         <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%d\n&quot;</span><span class="p">,</span> <span class="nx">sum</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Giải bài <a href="https://projecteuler.net/problem=16">Project Euler 16</a></p>
+<blockquote>
+<p>What is the sum of the digits of the number 2 to the power of 1000?</p>
+</blockquote>
+<div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;math/big&quot;</span>
+    <span class="s">&quot;strconv&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">twoToThePowerOf1000</span> <span class="nx">big</span><span class="p">.</span><span class="nx">Int</span>
+    <span class="nx">twoToThePowerOf1000</span><span class="p">.</span><span class="nx">Exp</span><span class="p">(</span><span class="nx">big</span><span class="p">.</span><span class="nx">NewInt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="nx">big</span><span class="p">.</span><span class="nx">NewInt</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="c1">// Có thể tính sum luôn nhưng bài này minh họa slice</span>
+    <span class="nx">digits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{}</span>
+    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">c</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">twoToThePowerOf1000</span><span class="p">.</span><span class="nx">String</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">digit</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">strconv</span><span class="p">.</span><span class="nx">Atoi</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">c</span><span class="p">))</span>
+        <span class="nx">digits</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">digits</span><span class="p">,</span> <span class="nx">digit</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nx">sum</span> <span class="o">:=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">digits</span> <span class="p">{</span>
+        <span class="nx">sum</span> <span class="p">=</span> <span class="nx">sum</span> <span class="o">+</span> <span class="nx">v</span>
     <span class="p">}</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%d\n&quot;</span><span class="p">,</span> <span class="nx">sum</span><span class="p">)</span>
 <span class="p">}</span>
@@ -546,11 +580,12 @@ ok      _/home/hvn/MyData   <span class="m">0</span>.002s
 Phần tiếp sẽ trình bày chi tiết về các khái niệm chỉ có trong Go mà không có trong Python như Pointer, sự khác biệt về cách tổ chức package trong Go, declaration &amp; initialization (khai báo và khởi tạo variable), cùng các standard library quan trọng nhất cho một SysAdmin/DevOps.</p>
 <h2>References</h2>
 <ul>
-<li><a href="https://hn.algolia.com/?q=go">https://hn.algolia.com/?q=go</a></li>
-<li><a href="https://hn.algolia.com/?dateRange=all&amp;page=0&amp;prefix=true&amp;query=golang&amp;sort=byPopularity&amp;type=story">https://hn.algolia.com/?dateRange=all&amp;page=0&amp;prefix=true&amp;query=golang&amp;sort=byPopularity&amp;type=story</a></li>
-<li><a href="https://github.com/golang/go/wiki/SuccessStories">https://github.com/golang/go/wiki/SuccessStories</a></li>
+<li><a href="https://blog.iron.io/how-we-went-from-30-servers-to-2-go/">https://blog.iron.io/how-we-went-from-30-servers-to-2-go/</a></li>
 <li><a href="https://blog.iron.io/go-after-2-years-in-production/">https://blog.iron.io/go-after-2-years-in-production/</a></li>
+<li><a href="https://blog.golang.org/survey2019-results">https://blog.golang.org/survey2019-results</a></li>
+<li><a href="https://github.com/golang/go/wiki/SuccessStories">https://github.com/golang/go/wiki/SuccessStories</a></li>
 <li><a href="http://www.catb.org/~esr/reposurgeon/GoNotes.html">Notes on the Go translation of Reposurgeon - from Python</a></li>
+<li><a href="https://hn.algolia.com/?q=go">https://hn.algolia.com/?q=go</a></li>
 </ul>
 <p>HVN at <a href="http://pymi.vn">http://pymi.vn</a> and <a href="https://www.familug.org">https://www.familug.org</a>.</p>
   </div>
