@@ -244,4 +244,4 @@ là một cải tiến hấp dẫn của Python3 so với Python2.
 
 ## Hết.
 
-HVN at https://pymi.vn and http://www.familug.org
+HVN at [https://pymi.vn](https://pymi.vn) and http://www.familug.org
