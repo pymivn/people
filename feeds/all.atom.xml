@@ -274,7 +274,12 @@ hợp với bài toán cụ thể, rõ ràng bạn không phải đối tượng
 
 &lt;p&gt;Trượt đại học nó không khủng khiếp như trượt vỏ chuối. Có đau vì sức ép xã hội,
 chứ không lo đập đầu xuống đất mà mất trí.&lt;/p&gt;
-&lt;p&gt;Đứng dậy, cầm laptop lên và đi học Python tại &lt;a href="https://pymi.vn"&gt;PyMi.vn&lt;/a&gt; đi nhé.&lt;/p&gt;</content><category term="Trang chủ"></category><category term="life"></category></entry><entry><title>Vừa đủ để đi (go)</title><link href="http://pp.pymi.vn/article/go/" rel="alternate"></link><published>2020-09-06T00:00:00+07:00</published><updated>2020-09-06T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2020-09-06:/article/go/</id><summary type="html">&lt;p&gt;Học vừa đủ Golang để nguy hiểm - phần 1&lt;/p&gt;</summary><content type="html">&lt;p&gt;Series bài viết giúp lập trình viên đã biết Python bắt đầu code Go mượt mà hơn - tài liệu bổ trợ cho &lt;a href="https://tour.golang.org/"&gt;Go tour&lt;/a&gt; chứ không để thay thế - phần 1.&lt;/p&gt;
+&lt;p&gt;Đứng dậy, cầm laptop lên và đi học Python tại &lt;a href="https://pymi.vn"&gt;PyMi.vn&lt;/a&gt; đi nhé.&lt;/p&gt;
+&lt;h2&gt;Đọc thêm&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://pp.pymi.vn/article/phongvan/"&gt;"phỏng vấn"&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://pymi.vn"&gt;Trang chủ PyMi.vn&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Trang chủ"></category><category term="life"></category></entry><entry><title>Vừa đủ để đi (go)</title><link href="http://pp.pymi.vn/article/go/" rel="alternate"></link><published>2020-09-06T00:00:00+07:00</published><updated>2020-09-06T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2020-09-06:/article/go/</id><summary type="html">&lt;p&gt;Học vừa đủ Golang để nguy hiểm - phần 1&lt;/p&gt;</summary><content type="html">&lt;p&gt;Series bài viết giúp lập trình viên đã biết Python bắt đầu code Go mượt mà hơn - tài liệu bổ trợ cho &lt;a href="https://tour.golang.org/"&gt;Go tour&lt;/a&gt; chứ không để thay thế - phần 1.&lt;/p&gt;
 &lt;h2&gt;Golang là gì&lt;/h2&gt;
 &lt;p&gt;&lt;img alt="gopher" src="https://golang.org/lib/godoc/images/home-gopher.png"&gt;&lt;/p&gt;
 &lt;p&gt;Go (hay còn gọi là Golang theo tên trang chủ &lt;a href="https://golang.org"&gt;golang.org&lt;/a&gt;) là một ngôn ngữ lập
