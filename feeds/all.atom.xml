@@ -1,5 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2020-09-06T00:00:00+07:00</updated><entry><title>Vừa đủ để đi (go)</title><link href="http://pp.pymi.vn/article/go/" rel="alternate"></link><published>2020-09-06T00:00:00+07:00</published><updated>2020-09-06T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2020-09-06:/article/go/</id><summary type="html">&lt;p&gt;Học vừa đủ Golang để nguy hiểm - phần 1&lt;/p&gt;</summary><content type="html">&lt;p&gt;Series bài viết giúp lập trình viên đã biết Python bắt đầu code Go mượt mà hơn - tài liệu bổ trợ cho &lt;a href="https://tour.golang.org/"&gt;Go tour&lt;/a&gt; chứ không để thay thế - phần 1.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2020-10-05T00:00:00+07:00</updated><entry><title>Mẹ ơi, con trượt rồi!</title><link href="http://pp.pymi.vn/article/dh/" rel="alternate"></link><published>2020-10-05T00:00:00+07:00</published><updated>2020-10-05T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2020-10-05:/article/dh/</id><summary type="html">&lt;p&gt;[WIP] Trượt đại học, rồi sao? không học đại học, thì làm cái gì?&lt;/p&gt;</summary><content type="html">&lt;p&gt;BÀI NÀY ĐANG VIẾT... tắm cái là viết xong nha...&lt;/p&gt;
+&lt;p&gt;Tôi là một người may mắn, và tôi không phải nói câu này.
+Nhưng giờ đã 12 năm sau cái ngày đó (2008), nhìn lại, thì đại học mang lại
+cho tôi những gì?
+Và nếu bạn trượt đại học, thì giờ làm gì đây?&lt;/p&gt;
+&lt;h2&gt;Trượt đại học thì sao?&lt;/h2&gt;
+&lt;p&gt;Thì buồn.&lt;/p&gt;
+&lt;p&gt;Đấy là điều đầu tiên có thể cảm nhận được. Dù chưa trải qua, chỉ cần nhìn những
+đứa bạn kém may mắn hơn chúng nó buồn, thậm chí còn xa lánh mình, sẽ hiểu
+trượt đại học thì buồn.&lt;/p&gt;
+&lt;h3&gt;Thế tại sao lại buồn?&lt;/h3&gt;
+&lt;p&gt;Xã hội sinh ra một định kiến: học hết cấp 3 thì PHẢI thi đại học, và đỗ
+đại học là giỏi, là vinh quang, còn trượt thì là ... không giỏi.
+Bạn sẽ bị coi như 1 kẻ kém cỏi, hàng xóm, người quen, bạn bố mẹ sẽ hỏi thăm.
+Và bởi vĩ nó đã là một định kiến xã hội, nên 1 2 con người thay đổi cũng
+gặp rất nhiều khó khăn.
+Cái sức ép xã hội khiến bạn phải buồn, khiến bạn nghĩ rằng mình kém cỏi, vậy nên
+bạn buồn.&lt;/p&gt;
+&lt;p&gt;Nhớ rằng "học tài, thi phận", bởi nếu như bạn được 25 điểm mà cái trường bạn
+chọn năm nay nó tăng nhanh như chỉ số PM 2.5 ở thủ đô, lấy hản 27 thay vì 23
+như năm trước, thì đâu phải do bạn kém?
+Hay thằng hàng xóm được 20 điểm, đăng ký vào trường năm nay lấy 20, thì nó
+lại đỗ. Hay con ông kia ôn trúng tủ, còn bạn thì lệch, nó đỗ là may hơn, chứ
+đâu phải giỏi hơn.&lt;/p&gt;
+&lt;p&gt;Năm 18 tuổi, tôi thi đại học vì 1 lý do đơn giản duy nhất: vì đấy là điều
+ai cũng làm sau khi học xong lớp 12. Trong cái đầu của 1 thằng học sinh miền núi
+đi thi được cộng thêm 1.5 điểm, không hề từng nghĩ đến câu "tại sao lại phải học đại học",
+hay "học đại học để làm gì?". Chuyện chọn trường cũng đơn giản chỉ là "thích nghịch
+máy tính thì vào bách khoa" chứ chả hiểu bách khoa dạy cái gì để làm với máy tính.&lt;/p&gt;
+&lt;p&gt;Thế nên bạn có thể buồn, nhưng nhớ nghĩ kỹ hơn chút, là tại sao mình phải buồn.&lt;/p&gt;
+&lt;h2&gt;Học đại học để làm gì&lt;/h2&gt;
+&lt;p&gt;Ngày ấy, hiểu đơn giản là cứ đi đại học thôi, đi đại học là thành công,
+đi đại học để học đại học.
+Học để ra trường, kiếm được 1 tấm &lt;strong&gt;bằng đại học&lt;/strong&gt;, rồi cầm về để mang đi xin
+việc, làm ở cơ quan nào đó.&lt;/p&gt;
+&lt;p&gt;Giờ ngẫm lại, xã hội muốn mình đi học học đại học mục đích ra là để kiếm
+cho mình được 1 công việc, nuôi bản thân, đóng góp cho xã hội.&lt;/p&gt;
+&lt;p&gt;Cái bằng là thứ công cụ để xin việc của thời ngày xưa, là tấm vé giải độc đắc
+để kiếm được 1 chỗ ngon trong cơ quan toàn là cán bộ.&lt;/p&gt;
+&lt;p&gt;Còn giờ là năm thứ 20 của thế kỷ 20, tấm bằng trở nên bớt quan trọng hơn nhiều,
+kể cả cầm 1 tấm bằng, đi xin việc thì vẫn phải THI (hay gọi nhẹ nhàng hơn là "phỏng vấn").
+Ngoài ra, rất nhiều nơi / ngành nghề, không hề quan tâm đến bằng cấp, đặc biệt
+là ngành công nghệ thông tin.&lt;/p&gt;
+&lt;p&gt;Nếu anh giỏi, anh làm được, thì mang cái sản phẩm của mình ra mà khoe, còn
+anh chả có gì khoe, thì đành thôi: mang khoe cái bằng.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Xin chào, đây là website tôi làm ra, giải quyết vấn đề này, sử dụng công nghệ
+kia ... app di động 1 triệu lượt tải trên app store ...&lt;/li&gt;
+&lt;li&gt;Xin chào, em không biết code web/app nhưng em có bằng khá bách khoa, em chưa
+làm ra sản phẩm nào ngoài đoạn code tính tổng từ 1 đến 1000.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Cái bằng, không phải là mục đích của việc học đại học. Học đại học là để có được
+"kỹ năng"/"trình độ", cái bằng chỉ là "bằng chứng" do trường đại học đó đánh giá,
+theo tiêu chuẩn của trường đó.
+Vậy nên nếu không học đại học, ta sẽ không có "bằng chứng" do trường đại học đó
+cung cấp, nhưng không hề liên quan đến chuyện "kỹ năng"/"trình độ", thứ mà
+hoàn toàn có thể học ở chỗ khác.&lt;/p&gt;
+&lt;h2&gt;Học đại học được gì&lt;/h2&gt;
+&lt;p&gt;Nếu coi trường học như một cỗ máy, thì đầu vào là các sinh viên khá "thông minh"
+do điểm thi đầu vào trên mức N, còn đầu ra sẽ các kỹ sữ biết làm việc mà họ
+được đào tạo.&lt;/p&gt;
+&lt;p&gt;Lý thuyết là vậy, còn thực tế thì khác hoàn toàn lý thuyết.&lt;/p&gt;
+&lt;p&gt;Nhìn lại, 5 năm đại học tôi có được:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Những người bạn. Vui vẻ cùng nhau đến lớp ngủ, cùng nhau vượt qua các kỳ thi
+lại, cùng nhau uống rượu, cùng nhau đi chơi...
+Thứ tình bạn trong sáng (như hồi cấp 3), những người anh em chia ngọt sẻ bùi,
+điều mà sau này đi làm rồi, hay có gia đình riêng rồi, sẽ rất khó mà kiếm được.&lt;/li&gt;
+&lt;li&gt;Quãng thời gian sinh viên, học hành thì ít mà chơi thì nhiều, những va vấp
+nhẹ nhàng với xã hội khi lần đầu rời xa gia định đến 1 nơi xa lạ.&lt;/li&gt;
+&lt;li&gt;Một ngôi trường có cháo lòng, cháo sườn, bánh mì, rượu ốc ngon.&lt;/li&gt;
+&lt;li&gt;Những hoạt động thanh niên cấp tiến như sinh viên tình nguyện, tiếp sức mùa
+thi, chiếc khăn gió ấm, mùa đông không lạnh...&lt;/li&gt;
+&lt;li&gt;Khả năng tự học.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Còn kiến thức? không nhiều lắm. Những kiến thức ngày nay đi làm, đều do tôi
+tự mày mò, nhờ sự ham mê máy tính từ ngày còn nhỏ.
+Blog &lt;a href="https://www.familug.org/"&gt;FAMILUG&lt;/a&gt; viết từ năm thứ 2 đại học là bằng chứng
+ây. Tôi code Python khi ở Việt Nam chẳng mấy ai biết tên, tôi dùng Ubuntu
+khi mọi người còn không biết nó tồn tại.&lt;/p&gt;
+&lt;p&gt;Nói vậy không có nghĩa là 5 năm trường không dạy gì. Trường có dạy,
+vấn đề là bạn có học hay không? và học có giỏi hay không? Một phần nhỏ sinh viên
+thuộc nhóm có học, và học giỏi, ra sẽ học lên cao, xin học bổng nước ngoài,
+hay xin được công việc phù hợp. Nhưng nhớ là số này rất ít, một khóa học 100 sinh
+viên thì có 1, 2 thằng, chứ không phải là 20 thằng. Với nhóm này, học đại học
+còn có thêm cái lợi: quan hệ tốt với thầy cô, nhiều cơ hội xin học bổng du học
+lên cao, làm đề tài nghiên cứu khoa học cùng thầy cô ...
+Đây là cái đầu ra mong ước, chuẩn của các trường. Số còn lại, chiếm tới hơn 90%,
+mới là phần đáng nói của câu chuyện.&lt;/p&gt;
+&lt;p&gt;Bằng giỏi Bách Khoa thời ấy, hiếm như khẩu trang đầu mùa COVID-19, sinh viên
+ra trường đúng hạn đã hiếm, bằng khá đã là học hành tử tế lắm rồi. Số này cỡ
+20 chục người trong 1 khóa 100 người, cũng bằng số sinh viên ra trường trước hạn,
+bỏ học/đuổi học/quên đăng ký môn học... rồi bị đuổi.&lt;/p&gt;
+&lt;p&gt;Cái nhóm 60 sinh viên bằng "trung bình", ra trường không đúng hạn ấy, học được gì
+ở trường? Năm 2008-2013+, khoa/viện toán ứng dụng và tin học Bách Khoa Hà Nội dạy:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;2 năm học đại cương: toán, lý, hóa, nhiệt, điện, cơ học kỹ thuật, vẽ kỹ
+thuật, điện tử, triết học Mac Lê Nin, tư tưởng Hồ Chí Minh, ... các môn học
+được coi là nền tảng phải có của mọi kỹ sư. Và để thêm chắc, các môn toán lý hóa
+có tới 5 7 môn khác nhau, lý 1 2 3 nữa cho nó chắc. Đây là thời kỳ học chán nản
+nhất cho các sinh viên, trượt/thi lại triền miên, bởi đây toàn những môn lý thuyết
+khó nhai. Có những môn học lại 10 kỳ, cho đến khi qua được thì cũng là lúc ra trường.
+Gọi là học, chứ thi xong là coi như trả hết chữ thầy, kiến thức cũng chẳng dùng
+đến bao giờ, như cách tra biểu đồ nhiệt chẳng hạn. Ở đâu đó, ai đó làm một
+nghề nào đó, có thể đang dùng, thậm chí là quan trọng. Sinh viên ra trường đi
+làm có người dùng tới có người không, nên nhớ đây là chương trình để đào tạo
+hàng loạt người, nên đứng dưới góc độ nhà trường, bạn thà dạy thừa còn hơn thiếu.&lt;/li&gt;
+&lt;li&gt;3 năm học chuyên ngành: Toán-Tin. Hầu hết sinh viên khóa này học toán-tin đơn
+giản là vì trượt nguyện vọng 1, rơi tự do xuống mà vào toán tin. Bách Khoa thời
+ấy, học 1 năm đại cương, lấy điểm 2 kỳ đầu để xét phân khoa. Khoa nào nhiều
+người vào thì hot, điểm cao, khoa nào không ai đăng ký... thì rơi tự do.
+Không nhiều sinh viên vào đây để học toán, chắc cũng là một phần lý do
+mà kết quả học tập cũng không mấy đẹp đẽ gì. Hơn nửa chương trình chuyên ngành
+3 năm này là toán, một chút ít "tin" cho có gọi là. Sinh viên muốn làm được
+đồ án, hay ra trường, phải tự kiếm chỗ mà học lập trình cho tử tế (tự học mà
+giỏi được thì tốt, ai cũng làm được người ta đã không phải mở trường,
+dựng trung tâm).  Đừng hy vọng sẽ được học lập trình, ra thành 1 lập trình viên chuyên nghiệp từ
+đây. Với những sinh viên muốn theo ngành "tin học", thì phần toán kia rất khó
+nuốt, khô khan, chẳng có chỗ dùng, không có hứng học, thi khó qua, điểm sẽ thấp.
+Chương trình học lạc hậu, đặc biệt với các môn tin, khi mà công nghệ thay đổi
+hàng năm còn toán thì trăm năm mới đổi. Đây là tên vài môn toán kinh (khủng)
+điển: giải tích hàm, phương trình đạo hàm riêng,
+giải tích số, giải tích phức, toán kinh tế, các phương pháp tối ưu, hệ mờ ?!?
+Chất lượng giảng dạy thì rất phụ thuộc vào giảng viên, một số môn có thầy cô
+dạy hay, phong cách hay, lôi cuốn sinh viên học dù môn học không có nhiều tính
+ứng dụng thấy ngay, có môn thầy đến lớp chép đầy 3 cái bảng rồi về, sinh viên ra
+vào thậm chí không biết...&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Đấy là thời đó, cũng gần 10 năm rồi, thời ấy học mạng neuron và hệ mờ trên giấy,
+chỉ biết lấy công thức ra tính, chả ai biết để làm gì,
+chưa ai nghe tới Machine Learning hay Deep Learning.
+Còn giờ thì &lt;a href="https://vnexpress.net/dai-hoc-bach-khoa-ha-noi-lay-diem-chuan-cao-nhat-la-29-04-4171374.html"&gt;Toán Tin đầu vào hẳn 27.56&lt;/a&gt;, xin được mừng cho viện nhà.&lt;/p&gt;
+&lt;p&gt;Xem chương trình đào tạo mới tại đây
+http://sami.hust.edu.vn/co-van-hoc-tap/ke-hoach-hoc-tap-chuan/
+thấy đã bớt được nhiều môn học &lt;strong&gt;nền tảng&lt;/strong&gt;, &lt;strong&gt;quan trọng&lt;/strong&gt; như hóa hay nhiệt
+đi rồi, mừng cho các tài năng đất nước.&lt;/p&gt;
+&lt;h2&gt;Trượt đại học thì làm gì&lt;/h2&gt;
+&lt;h1&gt;TODO&lt;/h1&gt;
+&lt;h2&gt;Hành động của chúng ta&lt;/h2&gt;
+&lt;h1&gt;TODO&lt;/h1&gt;
+&lt;h2&gt;Kết luận&lt;/h2&gt;
+&lt;h1&gt;TODO&lt;/h1&gt;</content><category term="Trang chủ"></category><category term="life"></category></entry><entry><title>Vừa đủ để đi (go)</title><link href="http://pp.pymi.vn/article/go/" rel="alternate"></link><published>2020-09-06T00:00:00+07:00</published><updated>2020-09-06T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2020-09-06:/article/go/</id><summary type="html">&lt;p&gt;Học vừa đủ Golang để nguy hiểm - phần 1&lt;/p&gt;</summary><content type="html">&lt;p&gt;Series bài viết giúp lập trình viên đã biết Python bắt đầu code Go mượt mà hơn - tài liệu bổ trợ cho &lt;a href="https://tour.golang.org/"&gt;Go tour&lt;/a&gt; chứ không để thay thế - phần 1.&lt;/p&gt;
 &lt;h2&gt;Golang là gì&lt;/h2&gt;
 &lt;p&gt;&lt;img alt="gopher" src="https://golang.org/lib/godoc/images/home-gopher.png"&gt;&lt;/p&gt;
 &lt;p&gt;Go (hay còn gọi là Golang theo tên trang chủ &lt;a href="https://golang.org"&gt;golang.org&lt;/a&gt;) là một ngôn ngữ lập
