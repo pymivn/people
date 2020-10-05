@@ -259,7 +259,7 @@ hợp với bài toán cụ thể, rõ ràng bạn không phải đối tượng
 &lt;h3&gt;Học xong có làm được cái này, cái kia không?&lt;/h3&gt;
 &lt;p&gt;Vui lòng &lt;strong&gt;đọc kỹ&lt;/strong&gt; trang chủ &lt;a href="https://pymi.vn"&gt;Pymi&lt;/a&gt; và CV mẫu của học viên
 (cũng có link trên trang chủ).&lt;/p&gt;
-&lt;p&gt;Nói tóm lại, người muốn, sẽ tìm cách, còn không muốn, sẽ lý do.&lt;/p&gt;
+&lt;p&gt;Nói tóm lại, người muốn, sẽ tìm cách, còn không muốn, sẽ tìm lý do.&lt;/p&gt;
 &lt;h2&gt;Hành động của chúng ta (Action Item)&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Tự hỏi xem học đại học để làm gì?&lt;/li&gt;
@@ -268,6 +268,10 @@ hợp với bài toán cụ thể, rõ ràng bạn không phải đối tượng
 &lt;li&gt;Tìm cái bằng đại học xem nó ở góc nào.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;Kết luận&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;quot;Don&amp;#39;t let schooling interfere with your education.&amp;quot; - Mark Twain
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;Trượt đại học nó không khủng khiếp như trượt vỏ chuối. Có đau vì sức ép xã hội,
 chứ không lo đập đầu xuống đất mà mất trí.&lt;/p&gt;
 &lt;p&gt;Đứng dậy, cầm laptop lên và đi học Python tại &lt;a href="https://pymi.vn"&gt;PyMi.vn&lt;/a&gt; đi nhé.&lt;/p&gt;</content><category term="Trang chủ"></category><category term="life"></category></entry><entry><title>Vừa đủ để đi (go)</title><link href="http://pp.pymi.vn/article/go/" rel="alternate"></link><published>2020-09-06T00:00:00+07:00</published><updated>2020-09-06T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2020-09-06:/article/go/</id><summary type="html">&lt;p&gt;Học vừa đủ Golang để nguy hiểm - phần 1&lt;/p&gt;</summary><content type="html">&lt;p&gt;Series bài viết giúp lập trình viên đã biết Python bắt đầu code Go mượt mà hơn - tài liệu bổ trợ cho &lt;a href="https://tour.golang.org/"&gt;Go tour&lt;/a&gt; chứ không để thay thế - phần 1.&lt;/p&gt;
