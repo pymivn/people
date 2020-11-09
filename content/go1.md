@@ -86,6 +86,19 @@ copy sang nhiều ngôn ngữ khác (như [Python black]({filename}/black.md))
 go fmt
 ```
 
+#### Chú ý
+Không xuống dòng tùy tiện trong `()` như Python (Vd: khi gọi function). Ví dụ
+sau sẽ [không compile](https://play.golang.org/p/dluh98DPVIR):
+
+```go
+fmt.Print(
+        "Hello, world!"
+        )
+```
+Go [tự động thêm `;` vào các dòng
+khi nó xử lý file code](https://golang.org/ref/spec#Semicolons). Tốt nhất là
+viết hết trên 1 dòng rồi để gofmt lo chuyện format.
+
 ### Static typing
 Python là ngôn ngữ dynamic typing, Go là static typing.
 Nếu chưa từng code ngôn ngữ static typing hay chưa dùng type annotation của Python,
