@@ -352,6 +352,18 @@ copy sang nhiều ngôn ngữ khác (như &lt;a href="http://pp.pymi.vn/article/
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;h4&gt;Chú ý&lt;/h4&gt;
+&lt;p&gt;Không xuống dòng tùy tiện trong &lt;code&gt;()&lt;/code&gt; như Python (Vd: khi gọi function). Ví dụ
+sau sẽ &lt;a href="https://play.golang.org/p/dluh98DPVIR"&gt;không compile&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nx"&gt;fmt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;Hello, world!&amp;quot;&lt;/span&gt;
+        &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Go &lt;a href="https://golang.org/ref/spec#Semicolons"&gt;tự động thêm &lt;code&gt;;&lt;/code&gt; vào các dòng
+khi nó xử lý file code&lt;/a&gt;. Tốt nhất là
+viết hết trên 1 dòng rồi để gofmt lo chuyện format.&lt;/p&gt;
 &lt;h3&gt;Static typing&lt;/h3&gt;
 &lt;p&gt;Python là ngôn ngữ dynamic typing, Go là static typing.
 Nếu chưa từng code ngôn ngữ static typing hay chưa dùng type annotation của Python,

@@ -116,6 +116,18 @@ copy sang nhiều ngôn ngữ khác (như <a href="http://pp.pymi.vn/article/bla
 </pre></div>
 
 
+<h4>Chú ý</h4>
+<p>Không xuống dòng tùy tiện trong <code>()</code> như Python (Vd: khi gọi function). Ví dụ
+sau sẽ <a href="https://play.golang.org/p/dluh98DPVIR">không compile</a>:</p>
+<div class="highlight"><pre><span></span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Print</span><span class="p">(</span>
+        <span class="s">&quot;Hello, world!&quot;</span>
+        <span class="p">)</span>
+</pre></div>
+
+
+<p>Go <a href="https://golang.org/ref/spec#Semicolons">tự động thêm <code>;</code> vào các dòng
+khi nó xử lý file code</a>. Tốt nhất là
+viết hết trên 1 dòng rồi để gofmt lo chuyện format.</p>
 <h3>Static typing</h3>
 <p>Python là ngôn ngữ dynamic typing, Go là static typing.
 Nếu chưa từng code ngôn ngữ static typing hay chưa dùng type annotation của Python,
