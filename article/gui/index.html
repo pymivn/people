@@ -69,7 +69,8 @@ các hành động tương ứng của chương trình (các function) được 
 <p>Các bộ phận giao diện như nút bấm, chữ, ô nhập ký tự ... được gọi là các <strong>widget</strong>.</p>
 <h2>Lập trình GUI với Tkinter</h2>
 <p>Code gõ trực tiếp trên IPython:</p>
-<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">tkinter</span> <span class="kn">as</span> <span class="nn">tk</span>
+<div class="highlight"><pre><span></span><span class="c1"># on Ubuntu, requires install: `sudo apt-get install -y python3-tk`</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">tkinter</span> <span class="kn">as</span> <span class="nn">tk</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">())</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
 </pre></div>
@@ -85,7 +86,7 @@ các hành động tương ứng của chương trình (các function) được 
 <p>Bài viết sử dụng thư viện <code>requests</code> (cài bằng <code>pip install requests</code>), nếu chưa biết dùng <a href="http://pymi.vn/blog/virtualenv/">pip</a> hay không cài được, hãy xem ví dụ tương tự mà không kết nối internet tại <a href="https://docs.python.org/3/library/tkinter.html#a-simple-hello-world-program">đây</a>.</p>
 <div class="highlight"><pre><span></span><span class="c1"># on Ubuntu, requires install: `sudo apt-get install -y python3-tk`</span>
 <span class="kn">import</span> <span class="nn">tkinter</span> <span class="kn">as</span> <span class="nn">tk</span>
-<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
 
 
 <span class="k">class</span> <span class="nc">Application</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
@@ -106,7 +107,9 @@ các hành động tương ứng của chương trình (các function) được 
         <span class="bp">self</span><span class="o">.</span><span class="n">entrythingy</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;&lt;Key-Return&gt;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_site</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">hi_there</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">hi_there</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Check web site up/down. Enter URL:&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hi_there</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;Check web site up/down.&quot;</span> <span class="s2">&quot; Enter URL with http(s):&quot;</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">hi_there</span><span class="p">[</span><span class="s2">&quot;command&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_site</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">hi_there</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
 
@@ -118,8 +121,14 @@ các hành động tương ứng của chương trình (các function) được 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">url</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;http&quot;</span><span class="p">):</span>
             <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 
-        <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;{} response: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">))</span>
+        <span class="c1"># fake useragent as cloudflare block python agent</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span>
+            <span class="n">url</span><span class="p">,</span>
+            <span class="n">method</span><span class="o">=</span><span class="s2">&quot;HEAD&quot;</span><span class="p">,</span>
+            <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;User-Agent&quot;</span><span class="p">:</span> <span class="s2">&quot;python-requests/2.23.0&quot;</span><span class="p">},</span>
+        <span class="p">)</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;response: {} {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">resp</span><span class="o">.</span><span class="n">url</span><span class="p">))</span>
 
 
 <span class="n">root</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">()</span>
@@ -142,6 +151,14 @@ các hành động tương ứng của chương trình (các function) được 
 <p>Kết quả:</p>
 <p><img alt="checker" src="http://pp.pymi.vn/images/checker.png"></p>
 <p>Danh sách đầy đủ các widget xem tại <a href="https://github.com/python/cpython/blob/3.6/Lib/tkinter/__init__.py">https://github.com/python/cpython/blob/3.6/Lib/tkinter/<strong>init</strong>.py</a>  - search <code>(Widget</code> (các subclass của class Widget).</p>
+<p>Thử các ví dụ có sẵn đi kèm với Python:</p>
+<div class="highlight"><pre><span></span>python3 -m turtledemo.minimal_hanoi
+python3 -m turtledemo.sorting_animate
+</pre></div>
+
+
+<p>hay xem code 1 IDE viết bằng tk: <a href="https://github.com/thonny/thonny/tree/v3.3.4">thonny</a></p>
+<h2>Kết luận</h2>
 <p>Tk nhẹ gọn, có sẵn, dễ dùng, đủ dùng khi bạn thấy đủ. Bao giờ thấy ngột ngạt, có lẽ lại chuyển sang Qt, các khái niệm lập trình giao diện dù dùng library/framework nào cũng đều tương tự nhau.</p>
 <h2>Tham khảo</h2>
 <ul>
