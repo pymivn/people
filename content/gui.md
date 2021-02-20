@@ -38,6 +38,7 @@ Các bộ phận giao diện như nút bấm, chữ, ô nhập ký tự ... đư
 Code gõ trực tiếp trên IPython:
 
 ```python
+# on Ubuntu, requires install: `sudo apt-get install -y python3-tk`
 In [1]: import tkinter as tk
 
 In [2]: tk.Frame(tk.Tk()).mainloop()
@@ -62,7 +63,7 @@ Bài viết sử dụng thư viện `requests` (cài bằng `pip install request
 ```python
 # on Ubuntu, requires install: `sudo apt-get install -y python3-tk`
 import tkinter as tk
-import requests
+import urllib.request
 
 
 class Application(tk.Frame):
@@ -83,7 +84,9 @@ class Application(tk.Frame):
         self.entrythingy.bind("<Key-Return>", self.check_site)
 
         self.hi_there = tk.Button(self)
-        self.hi_there["text"] = "Check web site up/down. Enter URL:"
+        self.hi_there["text"] = (
+            "Check web site up/down." " Enter URL with http(s):"
+        )
         self.hi_there["command"] = self.check_site
         self.hi_there.pack()
 
@@ -95,8 +98,14 @@ class Application(tk.Frame):
         if not url.startswith("http"):
             url = "http://{}".format(url)
 
-        resp = requests.head(url, timeout=3)
-        print("{} response: {}".format(url, resp.status_code))
+        # fake useragent as cloudflare block python agent
+        r = urllib.request.Request(
+            url,
+            method="HEAD",
+            headers={"User-Agent": "python-requests/2.23.0"},
+        )
+        resp = urllib.request.urlopen(r, timeout=2)
+        print("response: {} {}".format(resp.status, resp.url))
 
 
 root = tk.Tk()
