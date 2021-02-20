@@ -3921,7 +3921,8 @@ các hành động tương ứng của chương trình (các function) được 
 &lt;p&gt;&lt;img alt="checker" src="http://pp.pymi.vn/images/checker.png"&gt;&lt;/p&gt;
 &lt;p&gt;Danh sách đầy đủ các widget xem tại &lt;a href="https://github.com/python/cpython/blob/3.6/Lib/tkinter/__init__.py"&gt;https://github.com/python/cpython/blob/3.6/Lib/tkinter/&lt;strong&gt;init&lt;/strong&gt;.py&lt;/a&gt;  - search &lt;code&gt;(Widget&lt;/code&gt; (các subclass của class Widget).&lt;/p&gt;
 &lt;p&gt;Thử các ví dụ có sẵn đi kèm với Python:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;python3 -m turtledemo.minimal_hanoi
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# on Ubuntu, requires install: sudo apt-get install -y python3-examples
+python3 -m turtledemo.minimal_hanoi
 python3 -m turtledemo.sorting_animate
 &lt;/pre&gt;&lt;/div&gt;
 
