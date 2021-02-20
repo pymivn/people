@@ -134,6 +134,7 @@ Danh sách đầy đủ các widget xem tại [https://github.com/python/cpython
 Thử các ví dụ có sẵn đi kèm với Python:
 
 ```
+# on Ubuntu, requires install: sudo apt-get install -y python3-examples
 python3 -m turtledemo.minimal_hanoi
 python3 -m turtledemo.sorting_animate
 ```
