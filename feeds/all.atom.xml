@@ -3851,8 +3851,8 @@ các hành động tương ứng của chương trình (các function) được 
 &lt;h3&gt;Các widget&lt;/h3&gt;
 &lt;p&gt;Tkinter có sẵn 17 widget:&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;Button&lt;/code&gt; &lt;code&gt;Canvas&lt;/code&gt; &lt;code&gt;Checkbutton&lt;/code&gt; &lt;code&gt;Entry&lt;/code&gt; &lt;code&gt;Frame&lt;/code&gt; &lt;code&gt;Label&lt;/code&gt; &lt;code&gt;Listbox&lt;/code&gt; &lt;code&gt;Menu&lt;/code&gt; &lt;code&gt;Menubutton&lt;/code&gt; &lt;code&gt;Message&lt;/code&gt; &lt;code&gt;Radiobutton&lt;/code&gt; &lt;code&gt;Scale&lt;/code&gt; &lt;code&gt;Scrollbar&lt;/code&gt; &lt;code&gt;Text&lt;/code&gt; &lt;code&gt;Spinbox&lt;/code&gt; &lt;code&gt;LabelFrame&lt;/code&gt; &lt;code&gt;PanedWindow&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Xem ví dụ hello-world tại &lt;a href="https://docs.python.org/3/library/tkinter.html#a-simple-hello-world-program"&gt;đây&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Sau đây ta viết một GUI app có hiển thị tiêu đề (Label), có một ô nhập địa chỉ trang web (Entry), có một nút bấm để kiểm tra status của trang web (Button).&lt;/p&gt;
-&lt;p&gt;Bài viết sử dụng thư viện &lt;code&gt;requests&lt;/code&gt; (cài bằng &lt;code&gt;pip install requests&lt;/code&gt;), nếu chưa biết dùng &lt;a href="http://pymi.vn/blog/virtualenv/"&gt;pip&lt;/a&gt; hay không cài được, hãy xem ví dụ tương tự mà không kết nối internet tại &lt;a href="https://docs.python.org/3/library/tkinter.html#a-simple-hello-world-program"&gt;đây&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# on Ubuntu, requires install: `sudo apt-get install -y python3-tk`&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;tkinter&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;tk&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;urllib.request&lt;/span&gt;
