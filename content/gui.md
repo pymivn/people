@@ -130,6 +130,18 @@ Kết quả:
 
 Danh sách đầy đủ các widget xem tại [https://github.com/python/cpython/blob/3.6/Lib/tkinter/__init__.py](https://github.com/python/cpython/blob/3.6/Lib/tkinter/__init__.py)  - search `(Widget` (các subclass của class Widget).
 
+
+Thử các ví dụ có sẵn đi kèm với Python:
+
+```
+python3 -m turtledemo.minimal_hanoi
+python3 -m turtledemo.sorting_animate
+```
+
+hay xem code 1 IDE viết bằng tk: [thonny](https://github.com/thonny/thonny/tree/v3.3.4)
+
+## Kết luận
+
 Tk nhẹ gọn, có sẵn, dễ dùng, đủ dùng khi bạn thấy đủ. Bao giờ thấy ngột ngạt, có lẽ lại chuyển sang Qt, các khái niệm lập trình giao diện dù dùng library/framework nào cũng đều tương tự nhau.
 
 ## Tham khảo
