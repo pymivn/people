@@ -56,9 +56,9 @@ Tkinter có sẵn 17 widget:
 
 `Button` `Canvas` `Checkbutton` `Entry` `Frame` `Label` `Listbox` `Menu` `Menubutton` `Message` `Radiobutton` `Scale` `Scrollbar` `Text` `Spinbox` `LabelFrame` `PanedWindow`
 
-Sau đây ta viết một GUI app có hiển thị tiêu đề (Label), có một ô nhập địa chỉ trang web (Entry), có một nút bấm để kiểm tra status của trang web (Button).
+Xem ví dụ hello-world tại [đây](https://docs.python.org/3/library/tkinter.html#a-simple-hello-world-program).
 
-Bài viết sử dụng thư viện `requests` (cài bằng `pip install requests`), nếu chưa biết dùng [pip](http://pymi.vn/blog/virtualenv/) hay không cài được, hãy xem ví dụ tương tự mà không kết nối internet tại [đây](https://docs.python.org/3/library/tkinter.html#a-simple-hello-world-program).
+Sau đây ta viết một GUI app có hiển thị tiêu đề (Label), có một ô nhập địa chỉ trang web (Entry), có một nút bấm để kiểm tra status của trang web (Button).
 
 ```python
 # on Ubuntu, requires install: `sudo apt-get install -y python3-tk`
