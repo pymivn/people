@@ -83,23 +83,23 @@ DOM là programming interface cho HTML (và XML) documents.</p>
 <p>Vào web page: <a href="https://www.familug.org/2020/02/vagrant.html">https://www.familug.org/2020/02/vagrant.html</a></p>
 <p><img alt="Trước" src="http://pp.pymi.vn/images/vagrant.png"></p>
 <p>Sau khi "hack"</p>
-<div class="highlight"><pre><span></span><span class="nx">titleTag</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;h3&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><span class="nx">titleTag</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;h3&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">titleTag</span><span class="p">.</span><span class="nx">innerText</span><span class="p">)</span>
 
 <span class="nx">titleTag</span><span class="p">.</span><span class="nx">innerText</span> <span class="o">=</span> <span class="s2">&quot;Happy birthday!&quot;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p><img alt="Hack FAMILUG" src="http://pp.pymi.vn/images/happybirthday.png"></p>
 <h3>Query element</h3>
 <p>Thay vì dùng HTML tags, có thể dùng CSS class để tìm ra các element, ví dụ sau đây tìm các tin tuyển dụng trên trang <a href="https://news.ycombinator.com/item?id=22225314">HackerNews</a> có chứa từ khóa Python và Remote, rồi hiển thị lên màn hình - có thể xem như crawl dữ liệu ngay trên trình duyệt:</p>
-<div class="highlight"><pre><span></span><span class="nx">allcomms</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">from</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">&quot;.comment-tree .comtr&quot;</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><code><span class="nx">allcomms</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">from</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">&quot;.comment-tree .comtr&quot;</span><span class="p">))</span>
 <span class="nx">topcoms</span> <span class="o">=</span> <span class="nx">allcomms</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">e</span> <span class="p">=&gt;</span> <span class="nx">e</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;img[width=&quot;0&quot;]&#39;</span><span class="p">))</span>
 <span class="nx">pys</span> <span class="o">=</span> <span class="nx">topcoms</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">e</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="sr">/\bpython\b/i</span><span class="p">).</span><span class="nx">test</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">innerText</span><span class="p">))</span>
 <span class="nx">pyremotes</span> <span class="o">=</span> <span class="nx">pys</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">i</span> <span class="p">=&gt;</span> <span class="nx">i</span><span class="p">.</span><span class="nx">innerText</span><span class="p">).</span><span class="nx">filter</span><span class="p">(</span><span class="nx">e</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="sr">/\bremote\b/i</span><span class="p">).</span><span class="nx">test</span><span class="p">(</span><span class="nx">e</span><span class="p">))</span>
 <span class="nx">alert</span><span class="p">(</span><span class="nx">pyremotes</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;\n&quot;</span><span class="p">))</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Đoạn code trên học theo <a href="https://news.ycombinator.com/item?id=22231675">một comment trên HackerNews</a></p>

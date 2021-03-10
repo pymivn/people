@@ -79,13 +79,13 @@ tố để so sánh: 1. số khái niệm bạn cần biết 2. số dòng code 
 <p>Bắt đầu.</p>
 <h3>Cài đặt</h3>
 <h4>Cài đặt Flask</h4>
-<div class="highlight"><pre><span></span>pip install flask
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">pip install flask</span>
+</code></pre></div>
 
 
 <h4>Cài đặt Django</h4>
-<div class="highlight"><pre><span></span>pip install django
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">pip install django</span>
+</code></pre></div>
 
 
 <p>Kết quả: hòa, dễ như nhau: <code>Flask 1 - Django 1</code></p>
@@ -93,25 +93,25 @@ tố để so sánh: 1. số khái niệm bạn cần biết 2. số dòng code 
 <h4>Flask</h4>
 <p>Tạo 1 file tên bất kỳ nhưng tốt nhất đặt là <code>hello.py</code> (tuyệt đối không đặt
 là <code>flask.py</code> do trùng tên flask)</p>
-<div class="highlight"><pre><span></span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<div class="highlight"><pre><span></span><code><span class="mi">1</span> <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
 <span class="mi">2</span> <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="s2">&quot;my website&quot;</span><span class="p">)</span>
 <span class="mi">3</span>
-<span class="mi">4</span> <span class="nd">@app.route</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="mi">4</span> <span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
 <span class="mi">5</span> <span class="k">def</span> <span class="nf">hello_world</span><span class="p">():</span>
 <span class="mi">6</span>    <span class="k">return</span> <span class="s2">&quot;Hello world&quot;</span>
 <span class="mi">7</span>
-<span class="mi">8</span> <span class="nd">@app.route</span><span class="p">(</span><span class="s2">&quot;/hello/&lt;string:name&gt;&quot;</span><span class="p">)</span>
+<span class="mi">8</span> <span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/hello/&lt;string:name&gt;&quot;</span><span class="p">)</span>
 <span class="mi">9</span> <span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-<span class="mi">10</span>    <span class="k">return</span> <span class="s2">&quot;Hello {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-</pre></div>
+<span class="mi">10</span>    <span class="k">return</span> <span class="s2">&quot;Hello </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</code></pre></div>
 
 
 <p>Chạy, <a href="https://flask.palletsprojects.com/en/1.1.x/quickstart/#a-minimal-application">theo hướng dẫn trên trang chủ</a>
 (nếu dùng Windows vào xem lệnh tương ứng):</p>
-<div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">FLASK_APP</span><span class="o">=</span>hello.py
+<div class="highlight"><pre><span></span><code>$ <span class="nb">export</span> <span class="nv">FLASK_APP</span><span class="o">=</span>hello.py
 $ flask run
  * Running on http://127.0.0.1:5000/
-</pre></div>
+</code></pre></div>
 
 
 <p>Điểm ấn tượng nhất ở đây là chỉ có 10 dòng, trong đúng 1 file, mà chạy thành
@@ -121,36 +121,36 @@ trang web.</p>
 <p>Django không làm web trong 1 file, nó dùng các câu lệnh có sẵn để sinh ra các
 file, tức ta chỉ phải gõ lệnh, chứ không phải gõ nhiều code.
 Gõ 3 lệnh sau là chạy luôn trang web:</p>
-<div class="highlight"><pre><span></span>$ django-admin startproject project1
+<div class="highlight"><pre><span></span><code>$ django-admin startproject project1
 $ <span class="nb">cd</span> project1/
 $ ./manage.py startapp hello
 $ ./manage.py runserver
 Starting development server at http://127.0.0.1:8000/
-</pre></div>
+</code></pre></div>
 
 
 <p>Ngay lập tức đã có trang web mẫu của Django - thậm chí chưa gõ tí code nào.
 Để có kết quả giống Flask ở trên, cần sửa 2 file:</p>
 <p>File <code>hello/views.py</code>, viết các function tương tự flask:</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
 
 <span class="k">def</span> <span class="nf">hello_world</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s2">&quot;Hello world&quot;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s2">&quot;Hello {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
-</pre></div>
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s2">&quot;Hello </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+</code></pre></div>
 
 
 <p>File <code>project1/urls.py</code> thêm 3 dòng:</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">hello</span> <span class="kn">import</span> <span class="n">views</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">hello</span> <span class="kn">import</span> <span class="n">views</span>
 
 <span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>  <span class="c1"># có sẵn</span>
     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;admin/&#39;</span><span class="p">,</span> <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">urls</span><span class="p">),</span>  <span class="c1"># có sẵn</span>
     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">hello_world</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;hello_world&#39;</span><span class="p">),</span>
     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;hello/&lt;str:name&gt;&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">hello</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;hello&#39;</span><span class="p">),</span>
 <span class="p">]</span> <span class="c1"># có sẵn</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Giờ chạy <code>./manage runserver</code> sẽ có kết quả y hệt Flask.</p>
@@ -163,8 +163,8 @@ phải sửa 2 file. ở đây có thể xem như hòa nhau không bên nào hơ
 <p>Phần khác nhau chủ đạo giữa Django và Flask là cách ghi URL.
 Người dùng Flask tạo một Flask object, đặt tên là app, sau đó sử dụng
 <code>decorator</code></p>
-<div class="highlight"><pre><span></span>@app.route(&quot;/hello/&lt;string:name&gt;&quot;)
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">@app.route(&quot;/hello/&lt;string:name&gt;&quot;)</span>
+</code></pre></div>
 
 
 <p>để gắn đường dẫn <code>/hello/name</code> cho function ngay dưới nó (function hello).
@@ -173,8 +173,8 @@ cứ nhắm mắt rồi gõ <code>@</code> theo và hiểu nôm na là gắn đ�
 <p>Django chọn giải pháp ghép đường dẫn với function thông qua file <code>urls.py</code>,
 import module <code>views</code> từ thư mục <code>hello/</code> (tạo lúc chạy "startapp hello"),
 sau đó gán đường dẫn bằng cách gọi function <code>path</code>:</p>
-<div class="highlight"><pre><span></span>    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;hello/&lt;str:name&gt;&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">hello</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;hello&#39;</span><span class="p">),</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code>    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;hello/&lt;str:name&gt;&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">hello</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;hello&#39;</span><span class="p">),</span>
+</code></pre></div>
 
 
 <p>Dài dòng hơn Flask một chút là phải ghi <code>name="hello"</code>, không có <code>/</code> ở đầu URL,
@@ -191,9 +191,9 @@ vốn viết là <code>str</code>, Django lại ghi thêm điểm ở đây.</p>
 bởi decorator này chỉ làm đơn giản có 1 việc: giống Django. Thay vì viết hai
 dòng <code>@app.route</code> trên đầu function, viết hai dòng này SAU khi định nghĩa
 các function:</p>
-<div class="highlight"><pre><span></span>app.add_url_rule(&quot;/&quot;, &quot;hello_world&quot;, hello_world)
-app.add_url_rule(&quot;/hello/&lt;string:name&gt;&quot;, &quot;hello&quot;, hello)
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">app.add_url_rule(&quot;/&quot;, &quot;hello_world&quot;, hello_world)</span>
+<span class="err">app.add_url_rule(&quot;/hello/&lt;string:name&gt;&quot;, &quot;hello&quot;, hello)</span>
+</code></pre></div>
 
 
 <p>Đây chính làm điều mà <code>@app.route</code> làm, như mô tả trong tài liệu của nó:</p>
@@ -210,46 +210,46 @@ thắng ở đây.</p>
 <h4>Flask</h4>
 <p>Tạo 1 thư mục tên <code>templates</code> ngay cạnh file <code>hello.py</code>, rồi tạo file
 <code>index.html</code> chứa code HTML và Jinja2 template.</p>
-<div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">fw</span> <span class="k">in</span> <span class="nv">frameworks</span> <span class="cp">%}</span>
+<div class="highlight"><pre><span></span><code><span class="cp">{%</span> <span class="k">for</span> <span class="nv">fw</span> <span class="k">in</span> <span class="nv">frameworks</span> <span class="cp">%}</span>
   <span class="cp">{%</span> <span class="k">if</span> <span class="nv">fw</span><span class="o">|</span><span class="nf">length</span> <span class="o">&gt;</span> <span class="m">5</span> <span class="cp">%}</span>
     <span class="nt">&lt;b&gt;</span><span class="cp">{{</span> <span class="nv">fw</span> <span class="cp">}}</span><span class="nt">&lt;/b&gt;</span>
   <span class="cp">{%</span> <span class="k">else</span> <span class="cp">%}</span>
     <span class="cp">{{</span> <span class="nv">fw</span> <span class="cp">}}</span>
   <span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span>
 <span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Code sửa thành</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span>
-<span class="nd">@app.route</span><span class="p">(</span><span class="s2">&quot;/web&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/web&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">frameworks</span><span class="p">():</span>
     <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;index.html&quot;</span><span class="p">,</span> <span class="n">frameworks</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Flask&quot;</span><span class="p">,</span> <span class="s2">&quot;Django&quot;</span><span class="p">])</span>
-</pre></div>
+</code></pre></div>
 
 
 <h4>Django</h4>
 <p>Tạo thư mục tên <code>templates/hello</code> trong thư mục
 <code>hello</code>, sau đó tạo <code>index.html</code> và nội dung copy y hệt phần template của Flask.</p>
 <p>Thêm function sau vào <code>hello/views.py</code></p>
-<div class="highlight"><pre><span></span><span class="c1"># chú ý render đã được import sẵn ở file view.py ngay khi tạo app</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># chú ý render đã được import sẵn ở file view.py ngay khi tạo app</span>
 <span class="k">def</span> <span class="nf">frameworks</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;hello/index.html&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;frameworks&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Flask&quot;</span><span class="p">,</span> <span class="s2">&quot;Django&quot;</span><span class="p">]})</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Và thêm 1 dòng vào <code>project1/urls.py</code>:</p>
-<div class="highlight"><pre><span></span>  path(&#39;web&#39;, views.frameworks, name=&#39;frameworks&#39;),
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">  path(&#39;web&#39;, views.frameworks, name=&#39;frameworks&#39;),</span>
+</code></pre></div>
 
 
 <p>Ngoài ra phải thêm <code>'hello'</code> vào file <code>project1/settings.py</code>
 Trong list <code>INSTALLED_APPS</code></p>
-<div class="highlight"><pre><span></span> <span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+<div class="highlight"><pre><span></span><code> <span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
      <span class="o">...</span><span class="p">,</span>
      <span class="s1">&#39;hello&#39;</span><span class="p">,</span>
  <span class="p">]</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Phần này lại hòa, template mặc định của Flask là <code>jinja2</code> tương đương với

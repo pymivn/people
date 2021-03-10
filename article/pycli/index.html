@@ -59,8 +59,8 @@ với Perl). Muốn làm gì với Python cũng phải viết ra 1 file, rồi c
 a+x rồi mới chạy được. Perl thì có cả ngàn phép biến hóa chỉ bằng 1 dòng, gọi
 là <a href="https://duckduckgo.com/?q=perl+one-liners&amp;t=ffab&amp;ia=web">one-liner</a> hay
 trên <a href="https://en.wikipedia.org/wiki/One-liner_program#Perl">Wikipedia</a>:</p>
-<div class="highlight"><pre><span></span><span class="n">perl</span> <span class="o">-</span><span class="n">lne</span> <span class="s">&#39;print if $_ eq reverse&#39;</span> <span class="sr">/usr/s</span><span class="n">hare</span><span class="sr">/dict/</span><span class="n">american</span><span class="o">-</span><span class="n">english</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">perl</span> <span class="o">-</span><span class="n">lne</span> <span class="s">&#39;print if $_ eq reverse&#39;</span> <span class="sr">/usr/s</span><span class="n">hare</span><span class="sr">/dict/</span><span class="n">american</span><span class="o">-</span><span class="n">english</span>
+</code></pre></div>
 
 
 <p>1 dòng trên để tìm ra các từ "palindrome' (ngược xuôi như nhau).</p>
@@ -69,102 +69,102 @@ trên <a href="https://en.wikipedia.org/wiki/One-liner_program#Perl">Wikipedia</
 <p>Python 1-liner vốn không ngắn như mong đợi, do code Python
 nhấn mạnh vào sự rõ ràng dễ đọc, nên không có các ký tự bí hiểm <code>$_</code> như Perl. Viết
 Python 1 dòng dùng option <code>-c</code> như sau:</p>
-<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;import math; print(math.sqrt(2**1000))&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="err">$</span> <span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;import math; print(math.sqrt(2**1000))&#39;</span>
 <span class="mf">3.273390607896142e+150</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Các dòng không cần phải xuống dòng mà dùng dấu <code>;</code> để ngăn cách. Nhưng viết
 <code>for</code> hay <code>if</code> thì ... hơi khó.</p>
 <h3>Python nhiều dòng</h3>
 <p>Cách này đơn giản hơn, viêt code thành nhiều dòng, ý hệt như code trong file. Dùng dấu single quote <code>'</code> rồi enter để gõ code, sau đó kết thúc bằng dầu single quote <code>'</code>.</p>
-<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="err">$</span> <span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;</span>
 <span class="o">&gt;</span> <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="o">&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
 <span class="o">&gt;</span>     <span class="nb">sum</span> <span class="o">+=</span> <span class="n">i</span>
-<span class="o">&gt;</span> <span class="k">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
 <span class="o">&gt;</span> <span class="s1">&#39;</span>
 <span class="mi">45</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Ví dụ sau lấy ra Shell của user <code>root</code> ghi trong file /etc/passwd, viết HOA:</p>
-<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">cat</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">passwd</span> <span class="o">|</span> <span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="err">$</span> <span class="n">cat</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">passwd</span> <span class="o">|</span> <span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;</span>
 <span class="o">&gt;</span> <span class="kn">import</span> <span class="nn">sys</span>
-<span class="o">&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+<span class="o">&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
 <span class="o">&gt;</span> <span class="s1">&#39;</span>
 <span class="o">/</span><span class="n">BIN</span><span class="o">/</span><span class="n">BASH</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>hay đếm số ký tự kết quả trên bằng lệnh <code>wc</code>:</p>
-<div class="highlight"><pre><span></span> <span class="err">$</span> <span class="n">cat</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">passwd</span> <span class="o">|</span> <span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;</span>
+<div class="highlight"><pre><span></span><code> <span class="err">$</span> <span class="n">cat</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">passwd</span> <span class="o">|</span> <span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;</span>
 <span class="kn">import</span> <span class="nn">sys</span>
-<span class="k">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
 <span class="s1">&#39; | wc -c</span>
 <span class="mi">11</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Không phải 1 dòng, nhưng đẹp hơn 1 dòng, và hoàn toàn hợp lý.</p>
 <p>Ví dụ khác để in JSON đẹp:</p>
-<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">echo</span> <span class="s1">&#39;{&quot;name&quot;: &quot;PyMIers&quot;, &quot;year&quot;: 2020}&#39;</span> <span class="o">|</span> <span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="err">$</span> <span class="n">echo</span> <span class="s1">&#39;{&quot;name&quot;: &quot;PyMIers&quot;, &quot;year&quot;: 2020}&#39;</span> <span class="o">|</span> <span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;</span>
 <span class="kn">import</span> <span class="nn">json</span><span class="o">,</span> <span class="nn">sys</span>
-<span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span><span class="s1">&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span><span class="s1">&#39;</span>
 <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;PyMIers&quot;</span><span class="p">,</span>
     <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="mi">2020</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Hay dùng module có sẵn:</p>
-<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">echo</span> <span class="s1">&#39;{&quot;name&quot;: &quot;PyMIers&quot;, &quot;year&quot;: 2020}&#39;</span> <span class="o">|</span> <span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">json</span><span class="o">.</span><span class="n">tool</span>
+<div class="highlight"><pre><span></span><code><span class="err">$</span> <span class="n">echo</span> <span class="s1">&#39;{&quot;name&quot;: &quot;PyMIers&quot;, &quot;year&quot;: 2020}&#39;</span> <span class="o">|</span> <span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">json</span><span class="o">.</span><span class="n">tool</span>
 <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;PyMIers&quot;</span><span class="p">,</span>
     <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="mi">2020</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Hoặc tìm các Palindromes trong file:</p>
-<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="err">$</span> <span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="p">:</span>
     <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">line</span> <span class="o">==</span> <span class="n">line</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
 <span class="s1">&#39; &lt; /usr/share/dict/american-english | head -5</span>
 <span class="n">ada</span>
 <span class="n">ana</span>
 <span class="n">anna</span>
 <span class="n">ara</span>
 <span class="n">ava</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Cách khác:</p>
-<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="err">$</span> <span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;</span>
 <span class="kn">import</span> <span class="nn">fileinput</span>
 <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fileinput</span><span class="o">.</span><span class="n">input</span><span class="p">():</span>
     <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">line</span> <span class="o">==</span> <span class="n">line</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
 <span class="s1">&#39; /usr/share/dict/american-english | head -3</span>
 <span class="n">ada</span>
 <span class="n">ana</span>
 <span class="n">anna</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3>Thử thách</h3>
 <p>Viết lại ví dụ sau chỉ dùng các command line, không dùng Python:</p>
-<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">cat</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">passwd</span> <span class="o">|</span> <span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="err">$</span> <span class="n">cat</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">passwd</span> <span class="o">|</span> <span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;</span>
 <span class="o">&gt;</span> <span class="kn">import</span> <span class="nn">sys</span>
-<span class="o">&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+<span class="o">&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
 <span class="o">&gt;</span> <span class="s1">&#39;</span>
 <span class="o">/</span><span class="n">BIN</span><span class="o">/</span><span class="n">BASH</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3>Pro tips</h3>

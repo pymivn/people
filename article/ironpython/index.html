@@ -63,43 +63,43 @@
 <ul>
 <li>Bật IronPython interpreter bằng cách chạy (bấm đúp - double click) vào file ở đường dẫn: <code>C:\Program Files (x86)\IronPython 2.7\ipy.exe</code> hoặc <code>C:\Program Files (x86)\IronPython 2.7\ipy64.exe</code>. Hoặc bấm nút Start -&gt; gõ cmd -&gt; Enter, sau khi cửa sổ Command Prompt hiện lên thì gõ đường dẫn file: <code>C:\Program Files (x86)\IronPython 2.7\ipy.exe</code> hoặc <code>C:\Program Files (x86)\IronPython 2.7\ipy64.exe</code>:</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="n">Microsoft</span> <span class="n">Windows</span> <span class="p">[</span><span class="n">Version</span> <span class="mf">6.1</span><span class="o">.</span><span class="mi">7601</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><span class="n">Microsoft</span> <span class="n">Windows</span> <span class="p">[</span><span class="n">Version</span> <span class="mf">6.1</span><span class="o">.</span><span class="mi">7601</span><span class="p">]</span>
 <span class="n">Copyright</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2009</span> <span class="n">Microsoft</span> <span class="n">Corporation</span><span class="o">.</span>  <span class="n">All</span> <span class="n">rights</span> <span class="n">reserved</span><span class="o">.</span>
 
 <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">HTL</span><span class="o">&gt;</span><span class="s2">&quot;c:\Program Files (x86)\IronPython 2.7\ipy.exe&quot;</span>
 <span class="n">IronPython</span> <span class="mf">2.7</span><span class="o">.</span><span class="mi">3</span> <span class="p">(</span><span class="mf">2.7</span><span class="o">.</span><span class="mf">0.40</span><span class="p">)</span> <span class="n">on</span> <span class="o">.</span><span class="n">NET</span> <span class="mf">4.0</span><span class="o">.</span><span class="mf">30319.42000</span> <span class="p">(</span><span class="mi">32</span><span class="o">-</span><span class="n">bit</span><span class="p">)</span>
 <span class="n">Type</span> <span class="s2">&quot;help&quot;</span><span class="p">,</span> <span class="s2">&quot;copyright&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span> <span class="ow">or</span> <span class="s2">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Hello from IronPython&quot;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello from IronPython&quot;</span><span class="p">)</span>
 <span class="n">Hello</span> <span class="kn">from</span> <span class="nn">IronPython</span>
-</pre></div>
+</code></pre></div>
 
 
 <ul>
 <li>Chạy 1 python script đã viết sẵn bằng cách gõ vào Command Prompt: <code>C:\Program Files (x86)\IronPython 2.7\ipy.exe đường_dẫn\đến\script.py</code>. Ví dụ nội dung file <code>D:\HTL\Desktop\script.py</code>:</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s2">&quot;Hello from inside a Python script&quot;</span><span class="p">)</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello from inside a Python script&quot;</span><span class="p">)</span>
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span>C:\Users\HTL&gt;&quot;c:\Program Files (x86)\IronPython 2.7\ipy.exe&quot; D:\HTL\Desktop\script.py
-Hello from inside a Python script
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="c">C:\Users\HTL&gt;&quot;c:\Program Files (x86)\IronPython 2.7\ipy.exe&quot; D:\HTL\Desktop\script.py</span>
+<span class="err">Hello from inside a Python script</span>
+</code></pre></div>
 
 
 <h2>Sử dụng .NET Framework và Python libraries</h2>
 <p>IronPython có sẵn thư viện <code>clr</code> hỗ trợ load các .NET Assemblies (VD như các file .dll) và sử dụng các công cụ trong đó. IronPython cũng có các libraries kèm theo tương tự như CPython:</p>
-<div class="highlight"><pre><span></span><span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">HTL</span><span class="o">&gt;</span><span class="s2">&quot;c:\Program Files (x86)\IronPython 2.7\ipy.exe&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">HTL</span><span class="o">&gt;</span><span class="s2">&quot;c:\Program Files (x86)\IronPython 2.7\ipy.exe&quot;</span>
 <span class="n">IronPython</span> <span class="mf">2.7</span><span class="o">.</span><span class="mi">3</span> <span class="p">(</span><span class="mf">2.7</span><span class="o">.</span><span class="mf">0.40</span><span class="p">)</span> <span class="n">on</span> <span class="o">.</span><span class="n">NET</span> <span class="mf">4.0</span><span class="o">.</span><span class="mf">30319.42000</span> <span class="p">(</span><span class="mi">32</span><span class="o">-</span><span class="n">bit</span><span class="p">)</span>
 <span class="n">Type</span> <span class="s2">&quot;help&quot;</span><span class="p">,</span> <span class="s2">&quot;copyright&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span> <span class="ow">or</span> <span class="s2">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">clr</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">clr</span><span class="o">.</span><span class="n">AddReference</span><span class="p">(</span><span class="s1">&#39;System&#39;</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">System</span> <span class="kn">import</span> <span class="n">Environment</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">Environment</span><span class="o">.</span><span class="n">SystemDirectory</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">Environment</span><span class="o">.</span><span class="n">SystemDirectory</span><span class="p">)</span>
 <span class="n">C</span><span class="p">:</span>\<span class="n">Windows</span>\<span class="n">system32</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">math</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
 <span class="mf">3.14159265359</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2>Tài liệu IronPython</h2>

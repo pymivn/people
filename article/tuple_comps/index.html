@@ -65,7 +65,7 @@ giết những con ong ham ăn.</p>
 Haskell</a>
  - một ngôn ngữ
 vốn có tiếng khó học và vi diệu. Hãy thử xem 2 ví dụ sau:</p>
-<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;vuong&#39;</span><span class="p">,</span> <span class="s1">&#39;tron&#39;</span><span class="p">,</span> <span class="s1">&#39;tam giac&#39;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;vuong&#39;</span><span class="p">,</span> <span class="s1">&#39;tron&#39;</span><span class="p">,</span> <span class="s1">&#39;tam giac&#39;</span><span class="p">]</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">more_than_four_chars</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -74,9 +74,9 @@ vốn có tiếng khó học và vi diệu. Hãy thử xem 2 ví dụ sau:</p>
    <span class="o">...</span><span class="p">:</span>         <span class="n">more_than_four_chars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">title</span><span class="p">())</span>
    <span class="o">...</span><span class="p">:</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="k">print</span><span class="p">(</span><span class="n">more_than_four_chars</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="nb">print</span><span class="p">(</span><span class="n">more_than_four_chars</span><span class="p">)</span>
 <span class="p">[</span><span class="s1">&#39;Vuong&#39;</span><span class="p">,</span> <span class="s1">&#39;Tam Giac&#39;</span><span class="p">]</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>4 dòng code (dòng print không tính)
@@ -84,29 +84,29 @@ trên để ta filter (lọc) từ một tập hợp đã cho, thu về các ph�
 thỏa mãn điều kiện (hơn 4 ký tự) rồi map (biến đổi) các ký tự đứng đầu thành
 chữ hoa.</p>
 <p>Dù đẹp sạch dễ hiểu lắm rồi, nhưng so với list comprehension:</p>
-<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;vuong&#39;</span><span class="p">,</span> <span class="s1">&#39;tron&#39;</span><span class="p">,</span> <span class="s1">&#39;tam giac&#39;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;vuong&#39;</span><span class="p">,</span> <span class="s1">&#39;tron&#39;</span><span class="p">,</span> <span class="s1">&#39;tam giac&#39;</span><span class="p">]</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="k">print</span><span class="p">([</span><span class="n">name</span><span class="o">.</span><span class="n">title</span><span class="p">()</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">])</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="nb">print</span><span class="p">([</span><span class="n">name</span><span class="o">.</span><span class="n">title</span><span class="p">()</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">])</span>
 <span class="p">[</span><span class="s1">&#39;Vuong&#39;</span><span class="p">,</span> <span class="s1">&#39;Tam Giac&#39;</span><span class="p">]</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>thì sự ngắn gọn, đơn giản này đánh bại hoàn toàn cú pháp thông thường.</p>
 <p>Và ta còn làm tương tự được với <code>set</code>, <code>dict</code>:</p>
-<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="p">{</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="p">{</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">}</span>
 <span class="n">Out</span><span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">}</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">i</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">}</span>
 <span class="n">Out</span><span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="p">{</span><span class="mi">5</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">7</span><span class="p">:</span> <span class="mi">49</span><span class="p">,</span> <span class="mi">9</span><span class="p">:</span> <span class="mi">81</span><span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2>Tuple comprehension</h2>
 <p>Dễ tưởng tượng ra là ta sẽ có luôn <strong>tuple comprehension</strong> - vì nghe có vẻ hợp
 lý mà:</p>
-<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="nb">type</span><span class="p">((</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="nb">type</span><span class="p">((</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span>
 <span class="n">Out</span><span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">generator</span><span class="s1">&#39;&gt;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>SAI! khái niệm <strong>tuple comprehension</strong> không tồn tại. Cùng cú pháp nhưng kết
@@ -116,28 +116,28 @@ quả thu được là 1 <strong>generator</strong>.</p>
 nhưng mục đích tạo ra tuple là hoàn toàn khác. <code>tuple</code> được dùng như khái
 niệm <code>struct</code> trong các ngôn ngữ khác, nó là tập hợp của các thông tin khác
 nhau:</p>
-<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">14</span><span class="p">]:</span> <span class="n">student</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Meo&#39;</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="s1">&#39;0699609096&#39;</span><span class="p">,</span> <span class="s1">&#39;PyMi.vn&#39;</span><span class="p">)</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">14</span><span class="p">]:</span> <span class="n">student</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Meo&#39;</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="s1">&#39;0699609096&#39;</span><span class="p">,</span> <span class="s1">&#39;PyMi.vn&#39;</span><span class="p">)</span>
+</code></pre></div>
 
 
 <p>và khi dùng thì unpack các giá trị ra:</p>
-<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">15</span><span class="p">]:</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">phone</span><span class="p">,</span> <span class="n">school</span> <span class="o">=</span> <span class="n">student</span>
+<div class="highlight"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">15</span><span class="p">]:</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">phone</span><span class="p">,</span> <span class="n">school</span> <span class="o">=</span> <span class="n">student</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">16</span><span class="p">]:</span> <span class="k">print</span><span class="p">(</span><span class="n">school</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">16</span><span class="p">]:</span> <span class="nb">print</span><span class="p">(</span><span class="n">school</span><span class="p">)</span>
 <span class="n">PyMi</span><span class="o">.</span><span class="n">vn</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Còn list dùng để lặp qua/ duyệt qua:</p>
-<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">17</span><span class="p">]:</span> <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;vuong&#39;</span><span class="p">,</span> <span class="s1">&#39;tron&#39;</span><span class="p">,</span> <span class="s1">&#39;tam giac&#39;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">17</span><span class="p">]:</span> <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;vuong&#39;</span><span class="p">,</span> <span class="s1">&#39;tron&#39;</span><span class="p">,</span> <span class="s1">&#39;tam giac&#39;</span><span class="p">]</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">18</span><span class="p">]:</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
-    <span class="o">...</span><span class="p">:</span>     <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Hello các bạn mình là {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">title</span><span class="p">()))</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello các bạn mình là </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">title</span><span class="p">()))</span>
     <span class="o">...</span><span class="p">:</span>
 <span class="n">Hello</span> <span class="n">các</span> <span class="n">bạn</span> <span class="n">mình</span> <span class="n">là</span> <span class="n">Vuong</span>
 <span class="n">Hello</span> <span class="n">các</span> <span class="n">bạn</span> <span class="n">mình</span> <span class="n">là</span> <span class="n">Tron</span>
 <span class="n">Hello</span> <span class="n">các</span> <span class="n">bạn</span> <span class="n">mình</span> <span class="n">là</span> <span class="n">Tam</span> <span class="n">Giac</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Xem thêm tại <a href="https://docs.python.org/3/faq/design.html#why-are-there-separate-tuple-and-list-data-types">FAQ của
@@ -159,54 +159,54 @@ nên thường bị dùng SAI, lạm dụng. Một điều duy nhất quan trọ
 <p>List comprehension tạo ra 1 list, vậy nên nếu không cần tới list kết quả đó
 thì không nên dùng tới list comprehension mà hãy dùng vòng lặp for thông thường:</p>
 <p>Đừng viết:</p>
-<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">19</span><span class="p">]:</span> <span class="p">[</span><span class="k">print</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">19</span><span class="p">]:</span> <span class="p">[</span><span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">]</span>
 <span class="n">VUONG</span>
 <span class="n">TRON</span>
 <span class="n">TAM</span> <span class="n">GIAC</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">19</span><span class="p">]:</span> <span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">]</span>
-</pre></div>
+<span class="n">Out</span><span class="p">[</span><span class="mi">19</span><span class="p">]:</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+</code></pre></div>
 
 
 <p>Hãy viết:</p>
-<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">20</span><span class="p">]:</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
-    <span class="o">...</span><span class="p">:</span>     <span class="k">print</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+<div class="highlight"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">20</span><span class="p">]:</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
     <span class="o">...</span><span class="p">:</span>
 <span class="n">VUONG</span>
 <span class="n">TRON</span>
 <span class="n">TAM</span> <span class="n">GIAC</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Ta không tạo ra 1 cái list vô nghĩa chứa 3 phần tử <code>None</code> - tức là tiết kiệm bộ
 nhớ (memory).</p>
 <p>Đừng viết:</p>
-<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">21</span><span class="p">]:</span> <span class="nb">len</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">21</span><span class="p">]:</span> <span class="nb">len</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">])</span>
 <span class="n">Out</span><span class="p">[</span><span class="mi">21</span><span class="p">]:</span> <span class="mi">450</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Hãy viết:</p>
-<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">22</span><span class="p">]:</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>
+<div class="highlight"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">22</span><span class="p">]:</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">23</span><span class="p">]:</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">):</span>
     <span class="o">...</span><span class="p">:</span>     <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
     <span class="o">...</span><span class="p">:</span>         <span class="n">c</span> <span class="o">=</span> <span class="n">c</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="o">...</span><span class="p">:</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">24</span><span class="p">]:</span> <span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">24</span><span class="p">]:</span> <span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
 <span class="mi">450</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>vì ta sẽ không tạo ra 1 list (tạm) chứa 450 phần tử.</p>
 <p>Và đừng viết:</p>
-<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">25</span><span class="p">]:</span> <span class="nb">sum</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5000000</span><span class="p">)])</span>
+<div class="highlight"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">25</span><span class="p">]:</span> <span class="nb">sum</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5000000</span><span class="p">)])</span>
 <span class="n">Out</span><span class="p">[</span><span class="mi">25</span><span class="p">]:</span> <span class="mi">12499997500000</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Mà hãy viết:</p>
-<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">26</span><span class="p">]:</span> <span class="n">sum_zero_to_5mil</span> <span class="o">=</span> <span class="mi">0</span>
+<div class="highlight"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">26</span><span class="p">]:</span> <span class="n">sum_zero_to_5mil</span> <span class="o">=</span> <span class="mi">0</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">27</span><span class="p">]:</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5000000</span><span class="p">):</span>
     <span class="o">...</span><span class="p">:</span>     <span class="n">sum_zero_to_5mil</span> <span class="o">=</span> <span class="n">sum_zero_to_5mil</span> <span class="o">+</span> <span class="n">i</span>
@@ -214,21 +214,21 @@ nhớ (memory).</p>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">28</span><span class="p">]:</span> <span class="n">sum_zero_to_5mil</span>
 <span class="n">Out</span><span class="p">[</span><span class="mi">28</span><span class="p">]:</span> <span class="mi">12499997500000</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>bởi ta sẽ không <em>vô tình</em> tạo ra một list chiếm tới ~180MB bộ nhớ chỉ để tính
 tổng.</p>
 <p>Cách tính</p>
-<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">32</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">sys</span>
+<div class="highlight"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">32</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">33</span><span class="p">]:</span> <span class="n">list_size</span> <span class="o">=</span>  <span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5000000</span><span class="p">)])</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">34</span><span class="p">]:</span> <span class="n">all_numbers_size</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="mi">5000000</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5000000</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">35</span><span class="p">]:</span> <span class="k">print</span><span class="p">(</span><span class="n">list_size</span><span class="p">,</span> <span class="n">all_numbers_size</span><span class="p">,</span> <span class="n">list_size</span> <span class="o">+</span> <span class="n">all_numbers_size</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">35</span><span class="p">]:</span> <span class="nb">print</span><span class="p">(</span><span class="n">list_size</span><span class="p">,</span> <span class="n">all_numbers_size</span><span class="p">,</span> <span class="n">list_size</span> <span class="o">+</span> <span class="n">all_numbers_size</span><span class="p">)</span>
 <span class="mi">40215168</span> <span class="mi">140000000</span> <span class="mi">180215168</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Và nếu như số vòng <code>for</code> hay lệnh <code>if</code> trong list comprehension nhiều hơn 2,3
@@ -240,7 +240,7 @@ cần tới list/set/dict kết quả, hãy đừng lạm dụng.</p>
 <p>Generator sinh ra các phần tử của list tương ứng, nhưng mỗi lần, chỉ có 1
 phần tử được tạo ra, vì vậy thường dùng để tiết kiệm RAM. Cú pháp tạo generator
 đơn giản chỉ là thay dấu <code>[]</code> thành <code>()</code>.</p>
-<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">36</span><span class="p">]:</span> <span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5000000</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">36</span><span class="p">]:</span> <span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5000000</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">])</span>
 <span class="n">Out</span><span class="p">[</span><span class="mi">36</span><span class="p">]:</span> <span class="mi">19836760</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">37</span><span class="p">]:</span> <span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">((</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5000000</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span>
@@ -251,7 +251,7 @@ phần tử được tạo ra, vì vậy thường dùng để tiết kiệm RAM
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">39</span><span class="p">]:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5000000</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># chỗ này mượn tạm luôn dấu () của sum</span>
 <span class="n">Out</span><span class="p">[</span><span class="mi">39</span><span class="p">]:</span> <span class="mi">5833329166668</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Đã đến lúc lạm dụng <strong>generator</strong>!!! nó được dùng mọi nơi trong Python3 và
