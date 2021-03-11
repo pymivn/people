@@ -9,7 +9,10 @@
   <meta name="robots" content="" />
   <link rel="stylesheet" type="text/css" href="/theme/css/app.css">
 <link rel="stylesheet" type="text/css" href="http://pp.pymi.vn/theme/css/pygment.css">
+  <!--
   <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+  -->
+
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    <meta name="author" content="Pymiers" />
   <meta name="description" content="" />    <link href="http://pp.pymi.vn/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="The PyMiers Full Atom Feed" />         
   <meta name="tags" content="golang" />
@@ -25,6 +28,7 @@
 
       <div class="section">
         <div class="row navbar">
+          <div class="column nav-item "><a href="http://pp.pymi.vn/category/draft/">draft</a></div>
           <div class="column nav-item is-active"><a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a></div>
            <div class="column nav-item "><a href="http://pp.pymi.vn/pages/about/">About</a></div>
           <div class="column nav-item "><a href="http://pp.pymi.vn/pages/add/">Tạo bài viết</a></div>
@@ -98,8 +102,8 @@ nhiều lần</li>
 tạo ra file binary, rồi sau đó mới chạy được file này.
 <a href="http://pp.pymi.vn/article/repl/">Go không có sẵn REPL, không bật lên gõ code trực tiếp như Python được</a>.
 Mỗi lần sửa gì, thử gì, phải compile lại rồi mới chạy được.</p>
-<div class="highlight"><pre><span></span><code><span class="err">go build</span>
-<span class="err">./filename</span>
+<div class="highlight"><pre><span></span><code>go build
+./filename
 </code></pre></div>
 
 
@@ -112,7 +116,7 @@ compile rồi chạy file kết quả luôn.</p>
 <p>Go là ngôn ngữ lập trình đầu tiên đưa 1 công cụ format code tự động vào tiêu chuẩn,
 chấm dứt mọi tranh cãi về code-style/format code. Ý tưởng tuyệt vời này sau được
 copy sang nhiều ngôn ngữ khác (như <a href="http://pp.pymi.vn/article/black/">Python black</a>)</p>
-<div class="highlight"><pre><span></span><code><span class="err">go fmt</span>
+<div class="highlight"><pre><span></span><code>go fmt
 </code></pre></div>
 
 
@@ -156,7 +160,7 @@ trước khi dùng, code sau sẽ gặp lỗi khi compile, và không tạo ra b
 </code></pre></div>
 
 
-<div class="highlight"><pre><span></span><code><span class="err">cannot use &quot;PyMi&quot; (type untyped string) as type int in assignment</span>
+<div class="highlight"><pre><span></span><code>cannot use <span class="s2">&quot;PyMi&quot;</span> <span class="o">(</span><span class="nb">type</span> untyped string<span class="o">)</span> as <span class="nb">type</span> int in assignment
 </code></pre></div>
 
 

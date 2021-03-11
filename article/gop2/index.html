@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+   <title> Cứ đi là đến (Go)  - The PyMiers</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="robots" content="" />
+  <link rel="stylesheet" type="text/css" href="/theme/css/app.css">
+<link rel="stylesheet" type="text/css" href="http://pp.pymi.vn/theme/css/pygment.css">
+  <!--
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+  -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    <meta name="author" content="Pymiers" />
+  <meta name="description" content="" />    <link href="http://pp.pymi.vn/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="The PyMiers Full Atom Feed" />         
+  <meta name="tags" content="golang" />
+  <meta name="tags" content="go" />
+</head>
+
+<body>
+  <main class="wrapper">
+    <section class="container">
+      <header class='column'>
+        <h1 class='title'><a href="http://pp.pymi.vn/">The PyMiers</a></h1>
+      </header>
+
+      <div class="section">
+        <div class="row navbar">
+          <div class="column nav-item is-active"><a href="http://pp.pymi.vn/category/draft/">draft</a></div>
+          <div class="column nav-item "><a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a></div>
+           <div class="column nav-item "><a href="http://pp.pymi.vn/pages/about/">About</a></div>
+          <div class="column nav-item "><a href="http://pp.pymi.vn/pages/add/">Tạo bài viết</a></div>
+          <div class="column nav-item "><a href="http://pp.pymi.vn/pages/rss/">RSS</a></div>
+          <div class="column nav-item"><a href="/archives">Archives</a></div>
+        </div>
+      </div>
+    </section>
+
+<section class="container">
+  <header>
+    <h2 class="entry-title">
+      <a href="http://pp.pymi.vn/article/gop2/" rel="bookmark"
+         title="Permalink to Cứ đi là đến (Go)">Cứ đi là đến (Go)</a></h2>  
+  </header>
+  <footer class='center'>
+    <time class="published" datetime="2021-03-11T00:00:00+07:00"> 11/03/2021 </time>
+    <address class="vcard author">By
+                    <a class="url fn" href="http://pp.pymi.vn/author/hvnsweeting/">hvnsweeting</a>
+ in <a href="http://pp.pymi.vn/category/draft/">draft</a>
+                </address>     <em>Tags</em>:     <a href="http://pp.pymi.vn/tag/golang/"><em>golang</em></a>,     <a href="http://pp.pymi.vn/tag/go/"><em>go</em></a>    </footer>
+  <br>
+  <div class="entry-content">
+    <p>Phần tiếp theo của loạt bài viết <strong>Học vừa đủ Golang để nguy hiểm</strong>
+Chi tiết về các khái niệm chỉ có trong Go mà không có trong Python như Pointer,
+sự khác biệt về cách tổ chức package trong Go, declaration &amp; initialization
+(khai báo và khởi tạo variable), cùng các standard library quan trọng nhất
+cho một SysAdmin/DevOps.</p>
+<p>Code trong loạt bài này lược bỏ phần package/import/declare function main, người đọc tự thêm vào để chạy.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;pp.pymi.vn&quot;</span><span class="p">)</span>
+    <span class="c1">// WRITE CODE HERE</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+<h2>Extended Backus-Naur Form (EBNF)</h2>
+<p>Cú pháp dùng để mô tả Go syntax có tên EBNF.</p>
+<p>Có vẻ không dễ đọc, nhưng không phải là không thể đọc nổi, bỏ qua nếu
+bạn không quan tâm. Một ví dụ:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">Production</span>  <span class="p">=</span> <span class="nx">production_name</span> <span class="s">&quot;=&quot;</span> <span class="p">[</span> <span class="nx">Expression</span> <span class="p">]</span> <span class="s">&quot;.&quot;</span> <span class="p">.</span>
+<span class="nx">Expression</span>  <span class="p">=</span> <span class="nx">Alternative</span> <span class="p">{</span> <span class="s">&quot;|&quot;</span> <span class="nx">Alternative</span> <span class="p">}</span> <span class="p">.</span>
+<span class="nx">Alternative</span> <span class="p">=</span> <span class="nx">Term</span> <span class="p">{</span> <span class="nx">Term</span> <span class="p">}</span> <span class="p">.</span>
+<span class="nx">Term</span>        <span class="p">=</span> <span class="nx">production_name</span> <span class="p">|</span> <span class="nx">token</span> <span class="p">[</span> <span class="s">&quot;…&quot;</span> <span class="nx">token</span> <span class="p">]</span> <span class="p">|</span> <span class="nx">Group</span> <span class="p">|</span> <span class="nx">Option</span> <span class="p">|</span> <span class="nx">Repetition</span> <span class="p">.</span>
+<span class="nx">Group</span>       <span class="p">=</span> <span class="s">&quot;(&quot;</span> <span class="nx">Expression</span> <span class="s">&quot;)&quot;</span> <span class="p">.</span>
+<span class="nx">Option</span>      <span class="p">=</span> <span class="s">&quot;[&quot;</span> <span class="nx">Expression</span> <span class="s">&quot;]&quot;</span> <span class="p">.</span>
+<span class="nx">Repetition</span>  <span class="p">=</span> <span class="s">&quot;{&quot;</span> <span class="nx">Expression</span> <span class="s">&quot;}&quot;</span> <span class="p">.</span>
+</code></pre></div>
+
+
+<p>https://golang.org/ref/spec#Notation</p>
+<p><a href="https://docs.python.org/3.9/reference/grammar.html">Python 3.9 dùng EBNF kết hợp với PEG</a></p>
+<h2>Declaration &amp; initialization</h2>
+<div class="highlight"><pre><span></span><code><span class="nx">VarDecl</span>     <span class="p">=</span> <span class="s">&quot;var&quot;</span> <span class="p">(</span> <span class="nx">VarSpec</span> <span class="p">|</span> <span class="s">&quot;(&quot;</span> <span class="p">{</span> <span class="nx">VarSpec</span> <span class="s">&quot;;&quot;</span> <span class="p">}</span> <span class="s">&quot;)&quot;</span> <span class="p">)</span> <span class="p">.</span>
+<span class="nx">VarSpec</span>     <span class="p">=</span> <span class="nx">IdentifierList</span> <span class="p">(</span> <span class="nx">Type</span> <span class="p">[</span> <span class="s">&quot;=&quot;</span> <span class="nx">ExpressionList</span> <span class="p">]</span> <span class="p">|</span> <span class="s">&quot;=&quot;</span> <span class="nx">ExpressionList</span> <span class="p">)</span> <span class="p">.</span>
+</code></pre></div>
+
+
+<p>Để sử dụng 1 biến trong Go, cần làm 2 bước declaration (khai báo) và
+initialization (khởi tạo giá trị).
+Hai bước này giống như 1. lên phường đăng ký 2. về nhà tổ chức đám cưới vậy.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">x</span> <span class="kt">int</span>
+<span class="kd">var</span> <span class="p">(</span>
+    <span class="nx">y</span> <span class="kt">bool</span>
+    <span class="nx">z</span> <span class="kt">float64</span>
+<span class="p">)</span>
+<span class="nb">println</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">z</span><span class="p">)</span>
+
+<span class="c1">// Output</span>
+<span class="c1">// 0 false +0.000000e+000</span>
+</code></pre></div>
+
+
+<p>Khai báo biến sử dụng từ khóa <code>var</code>, nếu không gán giá trị khởi tạo
+(initialization), các biến sẽ có <a href="https://golang.org/ref/spec#The_zero_value">zero
+value</a> tương ứng với kiểu
+của nó. Tức int sẽ = 0, bool = false, string = "". Nếu có, biểu thức theo sau sẽ được tính toán và biến sẽ chứa giá trị này.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">y</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">1</span>
+<span class="kd">var</span> <span class="nx">x</span> <span class="kt">int</span> <span class="p">=</span> <span class="nx">y</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+<span class="c1">// Output</span>
+<span class="c1">// 2</span>
+</code></pre></div>
+
+
+<p><em>Short variable declarations</em>, không cần ghi type, và dùng dấu <code>:</code></p>
+<div class="highlight"><pre><span></span><code>ShortVarDecl = IdentifierList &quot;:=&quot; ExpressionList .
+</code></pre></div>
+
+
+<div class="highlight"><pre><span></span><code><span class="nx">s</span> <span class="o">:=</span> <span class="s">&quot;Pymier&quot;</span>
+<span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="o">:=</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span>
+<span class="nx">x</span><span class="p">,</span> <span class="nx">z</span> <span class="o">:=</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span>
+<span class="nb">print</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">z</span><span class="p">)</span>
+
+<span class="c1">// Pymier679</span>
+</code></pre></div>
+
+
+<p>https://golang.org/ref/spec#Variable_declarations</p>
+<h2>Scope</h2>
+<p>Mỗi block (đánh dấu bởi <code>{}</code>) như trong if/for/switch hay function
+sẽ tạo 1 không gian tên</p>
+<div class="highlight"><pre><span></span><code>    <span class="kd">var</span> <span class="nx">x</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">3</span>
+    <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">x</span> <span class="kt">string</span> <span class="p">=</span> <span class="s">&quot;Python&quot;</span>
+        <span class="nb">println</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nb">println</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+    <span class="c1">//Python</span>
+    <span class="c1">//3</span>
+</code></pre></div>
+
+
+<p>điều này nghĩa là nếu khai báo 1 variable trong vòng <code>for</code> hay trong
+điều kiện <code>if</code>, thì chúng không thoát ra ngoài khỏi các khối ấy, sẽ
+không có hiện lượng <strong>leak</strong> variable như trong Python for:</p>
+<div class="highlight"><pre><span></span><code><span class="n">p</span> <span class="o">=</span> <span class="s2">&quot;Mi&quot;</span>
+<span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">p</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="c1"># Kết quả hiện ra 2, không hiện ra Mi</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> is hoc sinh gioi&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+</code></pre></div>
+
+
+<p><em>Tính năng</em> này dễ dẫn đến bug nếu ta chuyển code đi xung quanh, hay vô tình đặt tên giống nhau tại các nơi khác, trong cùng 1 function.</p>
+<p>Trong Go:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">p</span> <span class="kt">string</span> <span class="p">=</span> <span class="s">&quot;Mi&quot;</span>
+<span class="nx">s</span> <span class="o">:=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="nx">p</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">p</span> <span class="p">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="nx">p</span><span class="o">++</span> <span class="p">{</span>
+    <span class="nx">s</span> <span class="p">=</span> <span class="nx">s</span> <span class="o">+</span> <span class="nx">p</span>
+<span class="p">}</span>
+<span class="nb">println</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="nx">p</span><span class="p">)</span>
+<span class="c1">// Output</span>
+<span class="c1">// 3 Mi</span>
+</code></pre></div>
+
+
+<p>https://golang.org/ref/spec#Declarations_and_scope</p>
+<h2>Struct</h2>
+<p>struct là khác biệt lớn đầu tiên với người code Python không dùng class (mà dùng dict).
+Do trong Go không thể tạo 1 map chứa các value khác kiểu, không
+có đoạn code tương tự với code Python sau đây nếu dùng map:</p>
+<div class="highlight"><pre><span></span><code><span class="n">boy</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Pika&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">18</span><span class="p">}</span>
+<span class="n">students</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">20088888</span><span class="p">:</span> <span class="n">boy</span><span class="p">,</span>
+    <span class="mi">20089999</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Doraemon&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">},</span>
+<span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">students</span><span class="p">[</span><span class="mi">20088888</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>
+<span class="o">//</span> <span class="n">Pika</span>
+</code></pre></div>
+
+
+<p>Vậy nên khi cần biểu diễn 1 object, Go sẽ tạo struct:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">type</span> <span class="nx">Student</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">name</span> <span class="kt">string</span>
+    <span class="nx">age</span>  <span class="kt">int</span>
+<span class="p">}</span>
+<span class="nx">boy</span> <span class="o">:=</span> <span class="nx">Student</span><span class="p">{</span><span class="nx">name</span><span class="p">:</span> <span class="s">&quot;Pika&quot;</span><span class="p">,</span> <span class="nx">age</span><span class="p">:</span> <span class="mi">18</span><span class="p">}</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%v\n&quot;</span><span class="p">,</span> <span class="nx">boy</span><span class="p">)</span>
+<span class="c1">// {Pika 18}</span>
+<span class="nx">students</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span><span class="nx">Student</span><span class="p">{</span>
+    <span class="mi">20088888</span><span class="p">:</span> <span class="nx">boy</span><span class="p">,</span>
+    <span class="mi">20089999</span><span class="p">:</span> <span class="nx">Student</span><span class="p">{</span><span class="nx">name</span><span class="p">:</span> <span class="s">&quot;Doraemon&quot;</span><span class="p">,</span> <span class="nx">age</span><span class="p">:</span> <span class="mi">20</span><span class="p">},</span>
+<span class="p">}</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">students</span><span class="p">[</span><span class="mi">20088888</span><span class="p">].</span><span class="nx">name</span><span class="p">)</span>
+<span class="c1">// Pika</span>
+</code></pre></div>
+
+
+<p>Và vì thế, map trong Go sẽ chỉ còn được dùng khi cần "ghép cặp" key-value, tối ưu cho việc tìm kiếm theo key. BIG NOTE: Go không có kiểu set built-in.</p>
+<p>Để viết code Python "đúng" nhất theo Go, hãy tạo class mỗi khi cần 1 object, việc này hợp lý trên lý thuyết, nhưng trong thực hành, khi nhận được 1 JSON string rồi <code>json.loads</code> lên, không mấy ai ngồi viết class cả
+(PS: việc này ngày càng phổ biến trong Python với sự hỗ trợ của <a href="https://docs.python.org/3.9/library/dataclasses.html"><code>dataclasses</code></a> hay thư viện <a href="https://marshmallow.readthedocs.io/en/stable/quickstart.html#deserializing-objects-loading">marshmallow</a>). Trong Go thì bắt  buộc phải ngồi viết struct cho JSON đó, hoặc dùng thư viện cung cấp sẵn struct tương ứng giá trị JSON nói trên nếu dịch vụ đó có Go client SDK.</p>
+<h2>Pointer</h2>
+<ul>
+<li>is memory address</li>
+<li>using for : receiving result</li>
+<li>using for: sharing</li>
+<li>heap</li>
+<li>link to dave chenny blog explain pointer</li>
+</ul>
+<h2>Method</h2>
+<ul>
+<li>Just syntactic sugar</li>
+<li>Almost use pointer receiver</li>
+</ul>
+<h2>Interface</h2>
+<ul>
+<li>for methods, not type</li>
+</ul>
+<h2>Packages</h2>
+<ul>
+<li>init</li>
+<li>internal package</li>
+</ul>
+<h2>Concurrency</h2>
+<ul>
+<li>is hard</li>
+<li>go routing leak</li>
+<li>mem leak</li>
+</ul>
+<h2>Stdlib for DevOps</h2>
+<h2>Popular lib</h2>
+<h2>Show the cost</h2>
+<p>x in list</p>
+<h2>Go đơn giản, nhưng không dễ</h2>
+<h2>Like &amp; Dislike</h2>
+<h2>Kết luận</h2>
+<h2>References</h2>
+<p>HVN at <a href="http://pymi.vn">http://pymi.vn</a> and <a href="https://www.familug.org">https://www.familug.org</a>.</p>
+  </div>
+  <!-- /.entry-content -->
+</section>
+<section class="container">
+  <div class="comments">
+    <h3>Comments</h3>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'pymier';
+      var disqus_identifier = 'article/gop2/';
+      var disqus_url = 'http://pp.pymi.vn/article/gop2/';
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//pymier.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the comments.</noscript>
+  </div>
+</section>
+
+    <section class="container footer">
+      <footer>
+        <address>
+        Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+        which takes great advantage of <a href="http://python.org">Python</a>.
+        </address>
+        <address>
+          Học lập trình Python tại <a href="https://pymi.vn/">Pymi.vn</a>
+        </address>
+      </footer>
+    </section>
+  </main>
+
+<script type="text/javascript">
+var images = document.getElementsByTagName("img");
+var i;
+
+for(i = 0; i < images.length; i++) {
+  images[i].className += " centered";
+}
+</script>
+</body>
+
+</html>

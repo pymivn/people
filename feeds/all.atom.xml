@@ -1,5 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2020-10-05T00:00:00+07:00</updated><entry><title>Mẹ ơi, con trượt rồi!</title><link href="http://pp.pymi.vn/article/dh/" rel="alternate"></link><published>2020-10-05T00:00:00+07:00</published><updated>2020-10-05T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2020-10-05:/article/dh/</id><summary type="html">&lt;p&gt;Trượt đại học, rồi sao? không học đại học, thì làm cái gì?&lt;/p&gt;</summary><content type="html">&lt;p&gt;Tôi là một người may mắn, và tôi không phải nói câu này.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2021-03-11T00:00:00+07:00</updated><entry><title>Cứ đi là đến (Go)</title><link href="http://pp.pymi.vn/article/gop2/" rel="alternate"></link><published>2021-03-11T00:00:00+07:00</published><updated>2021-03-11T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2021-03-11:/article/gop2/</id><summary type="html">&lt;p&gt;Học vừa đủ Golang để nguy hiểm - phần 2 - hết&lt;/p&gt;</summary><content type="html">&lt;p&gt;Phần tiếp theo của loạt bài viết &lt;strong&gt;Học vừa đủ Golang để nguy hiểm&lt;/strong&gt;
+Chi tiết về các khái niệm chỉ có trong Go mà không có trong Python như Pointer,
+sự khác biệt về cách tổ chức package trong Go, declaration &amp;amp; initialization
+(khai báo và khởi tạo variable), cùng các standard library quan trọng nhất
+cho một SysAdmin/DevOps.&lt;/p&gt;
+&lt;p&gt;Code trong loạt bài này lược bỏ phần package/import/declare function main, người đọc tự thêm vào để chạy.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="nx"&gt;main&lt;/span&gt;
+
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
+
+&lt;span class="kd"&gt;func&lt;/span&gt; &lt;span class="nx"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;fmt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;pp.pymi.vn&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="c1"&gt;// WRITE CODE HERE&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Extended Backus-Naur Form (EBNF)&lt;/h2&gt;
+&lt;p&gt;Cú pháp dùng để mô tả Go syntax có tên EBNF.&lt;/p&gt;
+&lt;p&gt;Có vẻ không dễ đọc, nhưng không phải là không thể đọc nổi, bỏ qua nếu
+bạn không quan tâm. Một ví dụ:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nx"&gt;Production&lt;/span&gt;  &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;production_name&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;=&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="nx"&gt;Expression&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;.&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="nx"&gt;Expression&lt;/span&gt;  &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;Alternative&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;|&amp;quot;&lt;/span&gt; &lt;span class="nx"&gt;Alternative&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="nx"&gt;Alternative&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;Term&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;Term&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="nx"&gt;Term&lt;/span&gt;        &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;production_name&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; &lt;span class="nx"&gt;token&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;…&amp;quot;&lt;/span&gt; &lt;span class="nx"&gt;token&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; &lt;span class="nx"&gt;Group&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; &lt;span class="nx"&gt;Option&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; &lt;span class="nx"&gt;Repetition&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="nx"&gt;Group&lt;/span&gt;       &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;(&amp;quot;&lt;/span&gt; &lt;span class="nx"&gt;Expression&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;)&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="nx"&gt;Option&lt;/span&gt;      &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[&amp;quot;&lt;/span&gt; &lt;span class="nx"&gt;Expression&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;]&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="nx"&gt;Repetition&lt;/span&gt;  &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;{&amp;quot;&lt;/span&gt; &lt;span class="nx"&gt;Expression&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;}&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;https://golang.org/ref/spec#Notation&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://docs.python.org/3.9/reference/grammar.html"&gt;Python 3.9 dùng EBNF kết hợp với PEG&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Declaration &amp;amp; initialization&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nx"&gt;VarDecl&lt;/span&gt;     &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;var&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="nx"&gt;VarSpec&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;(&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;VarSpec&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;;&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;)&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="nx"&gt;VarSpec&lt;/span&gt;     &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;IdentifierList&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="nx"&gt;Type&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;=&amp;quot;&lt;/span&gt; &lt;span class="nx"&gt;ExpressionList&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;=&amp;quot;&lt;/span&gt; &lt;span class="nx"&gt;ExpressionList&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Để sử dụng 1 biến trong Go, cần làm 2 bước declaration (khai báo) và
+initialization (khởi tạo giá trị).
+Hai bước này giống như 1. lên phường đăng ký 2. về nhà tổ chức đám cưới vậy.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;x&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="nx"&gt;y&lt;/span&gt; &lt;span class="kt"&gt;bool&lt;/span&gt;
+    &lt;span class="nx"&gt;z&lt;/span&gt; &lt;span class="kt"&gt;float64&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;z&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;// Output&lt;/span&gt;
+&lt;span class="c1"&gt;// 0 false +0.000000e+000&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Khai báo biến sử dụng từ khóa &lt;code&gt;var&lt;/code&gt;, nếu không gán giá trị khởi tạo
+(initialization), các biến sẽ có &lt;a href="https://golang.org/ref/spec#The_zero_value"&gt;zero
+value&lt;/a&gt; tương ứng với kiểu
+của nó. Tức int sẽ = 0, bool = false, string = "". Nếu có, biểu thức theo sau sẽ được tính toán và biến sẽ chứa giá trị này.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;y&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;x&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;y&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;// Output&lt;/span&gt;
+&lt;span class="c1"&gt;// 2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;em&gt;Short variable declarations&lt;/em&gt;, không cần ghi type, và dùng dấu &lt;code&gt;:&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;ShortVarDecl = IdentifierList &amp;quot;:=&amp;quot; ExpressionList .
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nx"&gt;s&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Pymier&amp;quot;&lt;/span&gt;
+&lt;span class="nx"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;y&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;
+&lt;span class="nx"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;z&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;z&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;// Pymier679&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;https://golang.org/ref/spec#Variable_declarations&lt;/p&gt;
+&lt;h2&gt;Scope&lt;/h2&gt;
+&lt;p&gt;Mỗi block (đánh dấu bởi &lt;code&gt;{}&lt;/code&gt;) như trong if/for/switch hay function
+sẽ tạo 1 không gian tên&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;x&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;x&lt;/span&gt; &lt;span class="kt"&gt;string&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Python&amp;quot;&lt;/span&gt;
+        &lt;span class="nb"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="nb"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="c1"&gt;//Python&lt;/span&gt;
+    &lt;span class="c1"&gt;//3&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;điều này nghĩa là nếu khai báo 1 variable trong vòng &lt;code&gt;for&lt;/code&gt; hay trong
+điều kiện &lt;code&gt;if&lt;/code&gt;, thì chúng không thoát ra ngoài khỏi các khối ấy, sẽ
+không có hiện lượng &lt;strong&gt;leak&lt;/strong&gt; variable như trong Python for:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Mi&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# Kết quả hiện ra 2, không hiện ra Mi&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{}&lt;/span&gt;&lt;span class="s2"&gt; is hoc sinh gioi&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;em&gt;Tính năng&lt;/em&gt; này dễ dẫn đến bug nếu ta chuyển code đi xung quanh, hay vô tình đặt tên giống nhau tại các nơi khác, trong cùng 1 function.&lt;/p&gt;
+&lt;p&gt;Trong Go:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;p&lt;/span&gt; &lt;span class="kt"&gt;string&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Mi&amp;quot;&lt;/span&gt;
+&lt;span class="nx"&gt;s&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nx"&gt;p&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nx"&gt;p&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nx"&gt;p&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;s&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;s&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;p&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="nb"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;// Output&lt;/span&gt;
+&lt;span class="c1"&gt;// 3 Mi&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;https://golang.org/ref/spec#Declarations_and_scope&lt;/p&gt;
+&lt;h2&gt;Struct&lt;/h2&gt;
+&lt;p&gt;struct là khác biệt lớn đầu tiên với người code Python không dùng class (mà dùng dict).
+Do trong Go không thể tạo 1 map chứa các value khác kiểu, không
+có đoạn code tương tự với code Python sau đây nếu dùng map:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;boy&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Pika&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;age&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="n"&gt;students&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="mi"&gt;20088888&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;boy&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="mi"&gt;20089999&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Doraemon&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;age&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;students&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;20088888&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;Pika&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Vậy nên khi cần biểu diễn 1 object, Go sẽ tạo struct:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;type&lt;/span&gt; &lt;span class="nx"&gt;Student&lt;/span&gt; &lt;span class="kd"&gt;struct&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;name&lt;/span&gt; &lt;span class="kt"&gt;string&lt;/span&gt;
+    &lt;span class="nx"&gt;age&lt;/span&gt;  &lt;span class="kt"&gt;int&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="nx"&gt;boy&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="nx"&gt;Student&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Pika&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;age&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="nx"&gt;fmt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%v\n&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;boy&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;// {Pika 18}&lt;/span&gt;
+&lt;span class="nx"&gt;students&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="kd"&gt;map&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="nx"&gt;Student&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="mi"&gt;20088888&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;boy&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="mi"&gt;20089999&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;Student&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Doraemon&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;age&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="nx"&gt;fmt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;students&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;20088888&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;// Pika&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Và vì thế, map trong Go sẽ chỉ còn được dùng khi cần "ghép cặp" key-value, tối ưu cho việc tìm kiếm theo key. BIG NOTE: Go không có kiểu set built-in.&lt;/p&gt;
+&lt;p&gt;Để viết code Python "đúng" nhất theo Go, hãy tạo class mỗi khi cần 1 object, việc này hợp lý trên lý thuyết, nhưng trong thực hành, khi nhận được 1 JSON string rồi &lt;code&gt;json.loads&lt;/code&gt; lên, không mấy ai ngồi viết class cả
+(PS: việc này ngày càng phổ biến trong Python với sự hỗ trợ của &lt;a href="https://docs.python.org/3.9/library/dataclasses.html"&gt;&lt;code&gt;dataclasses&lt;/code&gt;&lt;/a&gt; hay thư viện &lt;a href="https://marshmallow.readthedocs.io/en/stable/quickstart.html#deserializing-objects-loading"&gt;marshmallow&lt;/a&gt;). Trong Go thì bắt  buộc phải ngồi viết struct cho JSON đó, hoặc dùng thư viện cung cấp sẵn struct tương ứng giá trị JSON nói trên nếu dịch vụ đó có Go client SDK.&lt;/p&gt;
+&lt;h2&gt;Pointer&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;is memory address&lt;/li&gt;
+&lt;li&gt;using for : receiving result&lt;/li&gt;
+&lt;li&gt;using for: sharing&lt;/li&gt;
+&lt;li&gt;heap&lt;/li&gt;
+&lt;li&gt;link to dave chenny blog explain pointer&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Method&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Just syntactic sugar&lt;/li&gt;
+&lt;li&gt;Almost use pointer receiver&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Interface&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;for methods, not type&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Packages&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;init&lt;/li&gt;
+&lt;li&gt;internal package&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Concurrency&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;is hard&lt;/li&gt;
+&lt;li&gt;go routing leak&lt;/li&gt;
+&lt;li&gt;mem leak&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Stdlib for DevOps&lt;/h2&gt;
+&lt;h2&gt;Popular lib&lt;/h2&gt;
+&lt;h2&gt;Show the cost&lt;/h2&gt;
+&lt;p&gt;x in list&lt;/p&gt;
+&lt;h2&gt;Go đơn giản, nhưng không dễ&lt;/h2&gt;
+&lt;h2&gt;Like &amp;amp; Dislike&lt;/h2&gt;
+&lt;h2&gt;Kết luận&lt;/h2&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;p&gt;HVN at &lt;a href="http://pymi.vn"&gt;http://pymi.vn&lt;/a&gt; and &lt;a href="https://www.familug.org"&gt;https://www.familug.org&lt;/a&gt;.&lt;/p&gt;</content><category term="draft"></category><category term="golang"></category><category term="go"></category></entry><entry><title>Mẹ ơi, con trượt rồi!</title><link href="http://pp.pymi.vn/article/dh/" rel="alternate"></link><published>2020-10-05T00:00:00+07:00</published><updated>2020-10-05T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2020-10-05:/article/dh/</id><summary type="html">&lt;p&gt;Trượt đại học, rồi sao? không học đại học, thì làm cái gì?&lt;/p&gt;</summary><content type="html">&lt;p&gt;Tôi là một người may mắn, và tôi không phải nói câu này.
 Nhưng giờ đã 12 năm sau cái ngày đó (2008), nhìn lại, thì đại học mang lại
 cho tôi những gì?
 Và nếu bạn trượt đại học, thì giờ làm gì đây?&lt;/p&gt;
@@ -334,8 +526,8 @@ nhiều lần&lt;/li&gt;
 tạo ra file binary, rồi sau đó mới chạy được file này.
 &lt;a href="http://pp.pymi.vn/article/repl/"&gt;Go không có sẵn REPL, không bật lên gõ code trực tiếp như Python được&lt;/a&gt;.
 Mỗi lần sửa gì, thử gì, phải compile lại rồi mới chạy được.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;go build&lt;/span&gt;
-&lt;span class="err"&gt;./filename&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;go build
+./filename
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
@@ -348,7 +540,7 @@ compile rồi chạy file kết quả luôn.&lt;/p&gt;
 &lt;p&gt;Go là ngôn ngữ lập trình đầu tiên đưa 1 công cụ format code tự động vào tiêu chuẩn,
 chấm dứt mọi tranh cãi về code-style/format code. Ý tưởng tuyệt vời này sau được
 copy sang nhiều ngôn ngữ khác (như &lt;a href="http://pp.pymi.vn/article/black/"&gt;Python black&lt;/a&gt;)&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;go fmt&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;go fmt
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
@@ -392,7 +584,7 @@ trước khi dùng, code sau sẽ gặp lỗi khi compile, và không tạo ra b
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;cannot use &amp;quot;PyMi&amp;quot; (type untyped string) as type int in assignment&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;cannot use &lt;span class="s2"&gt;&amp;quot;PyMi&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;type&lt;/span&gt; untyped string&lt;span class="o"&gt;)&lt;/span&gt; as &lt;span class="nb"&gt;type&lt;/span&gt; int in assignment
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
