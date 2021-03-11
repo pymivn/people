@@ -184,11 +184,13 @@ ký hiệu của kiểu pointer, đứng trước kiểu mà nó trỏ tới.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;p&gt;Chú ý kết quả trên máy bạn sẽ khác, do mỗi lần chạy, Go sẽ cấp 1 memory address
+khác nhau.&lt;/p&gt;
 &lt;h3&gt;Địa chỉ bộ nhớ (memory address)&lt;/h3&gt;
 &lt;p&gt;Còn có các tên gọi khác như memory location, address.&lt;/p&gt;
 &lt;p&gt;Trong máy tính, bộ nhớ (RAM) sẽ lưu giữ các giá trị của chương trình
 đang chạy, các thanh RAM sẽ có nhiều "ô", và mỗi ô sẽ được đánh số (trên thực tế phưc tạp hơn khi phân thành 2 loại physical address/logical address nhưng không bàn tới ở đây). Khi
-tạo ra 1 giá trị trong Go, giá trị đó sẽ được chứa trong 1 ô nào đó,sử dụng phép toán &lt;a href="https://golang.org/ref/spec#Address_operators"&gt;&lt;code&gt;&amp;amp;&lt;/code&gt; (address operator)&lt;/a&gt; sẽ lấy được địa chỉ này là một con số nguyên dương biểu diễn ở dạng hex.&lt;/p&gt;
+tạo ra 1 giá trị trong Go, giá trị đó sẽ được chứa trong 1 ô, sử dụng phép toán &lt;a href="https://golang.org/ref/spec#Address_operators"&gt;&lt;code&gt;&amp;amp;&lt;/code&gt; (address operator)&lt;/a&gt; sẽ lấy được địa chỉ này là một con số nguyên dương biểu diễn ở dạng hex.&lt;/p&gt;
 &lt;h3&gt;Pointer là gì&lt;/h3&gt;
 &lt;p&gt;Một pointer là một memory address - chỉ có vậy.
 Nói &lt;code&gt;p&lt;/code&gt; là một pointer point đến &lt;code&gt;x&lt;/code&gt; là cách nói thuật ngữ của câu
