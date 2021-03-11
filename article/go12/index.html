@@ -84,15 +84,15 @@ bạn không quan tâm. Một ví dụ:</p>
 
 
 <p><a href="https://docs.python.org/3.9/reference/grammar.html">Python 3.9 dùng EBNF kết hợp với PEG</a></p>
-<h2>Declaration &amp; initialization</h2>
+<h2>Khai báo và khởi tạo</h2>
+<p>Declaration &amp; initialization</p>
 <div class="highlight"><pre><span></span><code><span class="nx">VarDecl</span>     <span class="p">=</span> <span class="s">&quot;var&quot;</span> <span class="p">(</span> <span class="nx">VarSpec</span> <span class="p">|</span> <span class="s">&quot;(&quot;</span> <span class="p">{</span> <span class="nx">VarSpec</span> <span class="s">&quot;;&quot;</span> <span class="p">}</span> <span class="s">&quot;)&quot;</span> <span class="p">)</span> <span class="p">.</span>
 <span class="nx">VarSpec</span>     <span class="p">=</span> <span class="nx">IdentifierList</span> <span class="p">(</span> <span class="nx">Type</span> <span class="p">[</span> <span class="s">&quot;=&quot;</span> <span class="nx">ExpressionList</span> <span class="p">]</span> <span class="p">|</span> <span class="s">&quot;=&quot;</span> <span class="nx">ExpressionList</span> <span class="p">)</span> <span class="p">.</span>
 </code></pre></div>
 
 
-<p>Để sử dụng 1 biến trong Go, cần làm 2 bước declaration (khai báo) và
-initialization (khởi tạo giá trị).
-Hai bước này giống như 1. lên phường đăng ký 2. về nhà tổ chức đám cưới vậy.</p>
+<p>Để sử dụng 1 biến (variable) trong Go, cần làm 2 bước declaration (khai báo) và
+initialization (khởi tạo giá trị).</p>
 <div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">x</span> <span class="kt">int</span>
 <span class="kd">var</span> <span class="p">(</span>
     <span class="nx">y</span> <span class="kt">bool</span>
@@ -108,7 +108,8 @@ Hai bước này giống như 1. lên phường đăng ký 2. về nhà tổ ch�
 <p>Khai báo biến sử dụng từ khóa <code>var</code>, nếu không gán giá trị khởi tạo
 (initialization), các biến sẽ có <a href="https://golang.org/ref/spec#The_zero_value">zero
 value</a> tương ứng với kiểu
-của nó. Tức int sẽ = 0, bool = false, string = "", pointer = nil. Nếu có, biểu thức theo sau sẽ được tính toán và biến sẽ chứa giá trị này.</p>
+của nó. Tức int sẽ = 0, bool = false, string = "", pointer = nil. Nếu có gán
+giá trị, biểu thức theo sau sẽ được tính toán và biến sẽ chứa giá trị này.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">y</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">1</span>
 <span class="kd">var</span> <span class="nx">x</span> <span class="kt">int</span> <span class="p">=</span> <span class="nx">y</span> <span class="o">+</span> <span class="mi">1</span>
 <span class="nb">print</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>

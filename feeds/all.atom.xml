@@ -31,15 +31,15 @@ bạn không quan tâm. Một ví dụ:&lt;/p&gt;
 
 
 &lt;p&gt;&lt;a href="https://docs.python.org/3.9/reference/grammar.html"&gt;Python 3.9 dùng EBNF kết hợp với PEG&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;Declaration &amp;amp; initialization&lt;/h2&gt;
+&lt;h2&gt;Khai báo và khởi tạo&lt;/h2&gt;
+&lt;p&gt;Declaration &amp;amp; initialization&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nx"&gt;VarDecl&lt;/span&gt;     &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;var&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="nx"&gt;VarSpec&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;(&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;VarSpec&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;;&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;)&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
 &lt;span class="nx"&gt;VarSpec&lt;/span&gt;     &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;IdentifierList&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="nx"&gt;Type&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;=&amp;quot;&lt;/span&gt; &lt;span class="nx"&gt;ExpressionList&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;=&amp;quot;&lt;/span&gt; &lt;span class="nx"&gt;ExpressionList&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Để sử dụng 1 biến trong Go, cần làm 2 bước declaration (khai báo) và
-initialization (khởi tạo giá trị).
-Hai bước này giống như 1. lên phường đăng ký 2. về nhà tổ chức đám cưới vậy.&lt;/p&gt;
+&lt;p&gt;Để sử dụng 1 biến (variable) trong Go, cần làm 2 bước declaration (khai báo) và
+initialization (khởi tạo giá trị).&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;x&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;
 &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
     &lt;span class="nx"&gt;y&lt;/span&gt; &lt;span class="kt"&gt;bool&lt;/span&gt;
@@ -55,7 +55,8 @@ Hai bước này giống như 1. lên phường đăng ký 2. về nhà tổ ch�
 &lt;p&gt;Khai báo biến sử dụng từ khóa &lt;code&gt;var&lt;/code&gt;, nếu không gán giá trị khởi tạo
 (initialization), các biến sẽ có &lt;a href="https://golang.org/ref/spec#The_zero_value"&gt;zero
 value&lt;/a&gt; tương ứng với kiểu
-của nó. Tức int sẽ = 0, bool = false, string = "", pointer = nil. Nếu có, biểu thức theo sau sẽ được tính toán và biến sẽ chứa giá trị này.&lt;/p&gt;
+của nó. Tức int sẽ = 0, bool = false, string = "", pointer = nil. Nếu có gán
+giá trị, biểu thức theo sau sẽ được tính toán và biến sẽ chứa giá trị này.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;y&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
 &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;x&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;y&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
 &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
