@@ -243,7 +243,7 @@ khác nhau.</p>
 <p>Còn có các tên gọi khác như memory location, address.</p>
 <p>Trong máy tính, bộ nhớ (RAM) sẽ lưu giữ các giá trị của chương trình
 đang chạy, các thanh RAM sẽ có nhiều "ô", và mỗi ô sẽ được đánh số (trên thực tế phưc tạp hơn khi phân thành 2 loại physical address/logical address nhưng không bàn tới ở đây). Khi
-tạo ra 1 giá trị trong Go, giá trị đó sẽ được chứa trong 1 ô, sử dụng phép toán <a href="https://golang.org/ref/spec#Address_operators"><code>&amp;</code> (address operator)</a> sẽ lấy được địa chỉ này là một con số nguyên dương biểu diễn ở dạng hex.</p>
+tạo ra 1 giá trị trong Go, giá trị đó sẽ được chứa trong 1 ô, sử dụng phép toán <a href="https://golang.org/ref/spec#Address_operators"><code>&amp;</code> (address operator)</a> sẽ lấy được địa chỉ này là một số int &gt; 0 biểu diễn ở dạng hex.</p>
 <h3>Pointer là gì</h3>
 <p>Một pointer là một memory address - chỉ có vậy.
 Nói <code>p</code> là một pointer point đến <code>x</code> là cách nói thuật ngữ của câu
