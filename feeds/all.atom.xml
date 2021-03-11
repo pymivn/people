@@ -196,7 +196,7 @@ tạo ra 1 giá trị trong Go, giá trị đó sẽ được chứa trong 1 ô,
 Nói &lt;code&gt;p&lt;/code&gt; là một pointer point đến &lt;code&gt;x&lt;/code&gt; là cách nói thuật ngữ của câu
 &lt;code&gt;p&lt;/code&gt; là giá trị memory address của ô chứa &lt;code&gt;x&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Trong Go, một pointer luôn phải trỏ tới 1 giá trị x nào đó, ngoại trừ pointer mới declare sẽ có giá trị &lt;code&gt;nil&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Nếu 1 tấm biến có ghi địa chỉ của 1 quán ăn, thì tấm biến chính là pointer tới quán ăn đó.&lt;/p&gt;
+&lt;p&gt;Nếu 1 tấm biển có ghi địa chỉ của 1 quán ăn, thì tấm biển chính là pointer tới quán ăn đó.&lt;/p&gt;
 &lt;p&gt;Để lấy giá trị mà &lt;code&gt;p&lt;/code&gt; trỏ tới - tức là &lt;code&gt;x&lt;/code&gt;, dùng ký hiệu: &lt;code&gt;*p&lt;/code&gt;.
 Tránh nhầm lẫn dấu &lt;code&gt;*&lt;/code&gt; ở đây với dấu &lt;code&gt;*&lt;/code&gt; trong kiểu của pointer. Dấu &lt;code&gt;*&lt;/code&gt; ở đây gọi là &lt;code&gt;pointer indirection&lt;/code&gt;.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nx"&gt;x&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="mi"&gt;96&lt;/span&gt;
@@ -225,6 +225,7 @@ Tránh nhầm lẫn dấu &lt;code&gt;*&lt;/code&gt; ở đây với dấu &lt;c
 &lt;p&gt;Ví dụ trên, &lt;code&gt;main&lt;/code&gt; gọi &lt;code&gt;ToUpper&lt;/code&gt;, &lt;code&gt;ToUpper&lt;/code&gt; sẽ nhận được 1 bản copy của &lt;code&gt;n&lt;/code&gt;, khi &lt;code&gt;ToUpper&lt;/code&gt; xử lý xong, &lt;code&gt;main&lt;/code&gt; sẽ nhận được 1 bản copy của kết quả mà &lt;code&gt;ToUpper&lt;/code&gt; return.&lt;/p&gt;
 &lt;p&gt;Copy không có vấn đề gì khi kích thước nhỏ, nhưng khi kích thước dữ liệu lớn, copy sẽ rất tốn RAM/CPU, vậy nên người ta dùng pointer để chia sẻ chung address, dùng chung 1 giá trị thay vì copy để tiết kiệm RAM.
 Việc này thực hiện bằng cách gọi function với pointer argument và return kiểu pointer. Khi call function với pointer argument, pointer argument vẫn được copy, nhưng copy address chỉ là copy 1 số int nhỏ bé.&lt;/p&gt;
+&lt;p&gt;Note: &lt;a href="https://pymi.vn/blog/call-by/"&gt;Python call by object reference&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Dẫn tới câu hỏi tiếp theo...&lt;/p&gt;
 &lt;h3&gt;Bao nhiêu là lớn, khi nào thì dùng pointer?&lt;/h3&gt;
 &lt;p&gt;Một giá trị kiểu &lt;code&gt;int&lt;/code&gt; với kích thước lớn nhất trong Go là &lt;code&gt;int64&lt;/code&gt; có kích thước 64 bits hay 64/8 == 8 bytes, đây được coi là nhỏ. Vậy bao nhiêu là lớn? 80 bytes? 800 bytes? 8 Kilobyte (8000B, 8KB) ...? quyết định sao là ở lập trình viên, &lt;a href="https://stackoverflow.com/questions/23542989/pointers-vs-values-in-parameters-and-return-values"&gt;và vì lập trình viên nhiều khi cũng không biết thế nào là lớn, nên hầu hết đều mặc định dùng pointer cho "tiết kiệm RAM"/nhẹ.&lt;/a&gt;&lt;/p&gt;
