@@ -124,7 +124,7 @@ không có hiện lượng &lt;strong&gt;leak&lt;/strong&gt; variable như trong
 &lt;h2&gt;Struct&lt;/h2&gt;
 &lt;p&gt;struct là khác biệt lớn đầu tiên với người code Python không dùng class (mà dùng dict).
 Do trong Go không thể tạo 1 map chứa các value khác kiểu, không
-có đoạn code tương tự với code Python sau đây nếu dùng map:&lt;/p&gt;
+có đoạn code tương tự với code Python sau đây nếu chỉ dùng map:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;boy&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Pika&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;age&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;span class="n"&gt;students&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="mi"&gt;20088888&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;boy&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
