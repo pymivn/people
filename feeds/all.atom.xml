@@ -194,7 +194,7 @@ tạo ra 1 giá trị trong Go, giá trị đó sẽ được chứa trong 1 ô,
 &lt;h3&gt;Pointer là gì&lt;/h3&gt;
 &lt;p&gt;Một pointer là một memory address - chỉ có vậy.
 Nói &lt;code&gt;p&lt;/code&gt; là một pointer point đến &lt;code&gt;x&lt;/code&gt; là cách nói thuật ngữ của câu
-&lt;code&gt;p&lt;/code&gt; là giá trị của memory address chứa &lt;code&gt;x&lt;/code&gt;.&lt;/p&gt;
+&lt;code&gt;p&lt;/code&gt; là giá trị memory address của ô chứa &lt;code&gt;x&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Trong Go, một pointer luôn phải trỏ tới 1 giá trị x nào đó, ngoại trừ pointer mới declare sẽ có giá trị &lt;code&gt;nil&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Nếu 1 tấm biến có ghi địa chỉ của 1 quán ăn, thì tấm biến chính là pointer tới quán ăn đó.&lt;/p&gt;
 &lt;p&gt;Để lấy giá trị mà &lt;code&gt;p&lt;/code&gt; trỏ tới - tức là &lt;code&gt;x&lt;/code&gt;, dùng ký hiệu: &lt;code&gt;*p&lt;/code&gt;.
