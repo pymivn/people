@@ -65,7 +65,7 @@ tạo ra file binary, rồi sau đó mới chạy được file này.
 [Go không có sẵn REPL, không bật lên gõ code trực tiếp như Python được]({filename}/repl.md).
 Mỗi lần sửa gì, thử gì, phải compile lại rồi mới chạy được.
 
-```
+```sh
 go build
 ./filename
 ```
@@ -82,7 +82,7 @@ Go là ngôn ngữ lập trình đầu tiên đưa 1 công cụ format code tự
 chấm dứt mọi tranh cãi về code-style/format code. Ý tưởng tuyệt vời này sau được
 copy sang nhiều ngôn ngữ khác (như [Python black]({filename}/black.md))
 
-```
+```sh
 go fmt
 ```
 
@@ -129,7 +129,7 @@ var x int = 10
 x = "PyMi"
 ```
 
-```
+```sh
 cannot use "PyMi" (type untyped string) as type int in assignment
 ```
 
