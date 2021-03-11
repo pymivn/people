@@ -236,7 +236,7 @@ ký hiệu của kiểu pointer, đứng trước kiểu mà nó trỏ tới.
 
 
 <h3>Địa chỉ bộ nhớ (memory address)</h3>
-<p>Còn có các tên goi khác như memory location, address.</p>
+<p>Còn có các tên gọi khác như memory location, address.</p>
 <p>Trong máy tính, bộ nhớ (RAM) sẽ lưu giữ các giá trị của chương trình
 đang chạy, các thanh RAM sẽ có nhiều "ô", và mỗi ô sẽ được đánh số (trên thực tế phưc tạp hơn khi phân thành 2 loại physical address/logical address nhưng không bàn tới ở đây). Khi
 tạo ra 1 giá trị trong Go, giá trị đó sẽ được chứa trong 1 ô nào đó,sử dụng phép toán <a href="https://golang.org/ref/spec#Address_operators"><code>&amp;</code> (address operator)</a> sẽ lấy được địa chỉ này là một con số nguyên dương biểu diễn ở dạng hex.</p>
@@ -273,14 +273,14 @@ Tránh nhầm lẫn dấu <code>*</code> ở đây với dấu <code>*</code> tr
 
 <p>Ví dụ trên, <code>main</code> gọi <code>ToUpper</code>, <code>ToUpper</code> sẽ nhận được 1 bản copy của <code>n</code>, khi <code>ToUpper</code> xử lý xong, <code>main</code> sẽ nhận được 1 bản copy của kết quả mà <code>ToUpper</code> return.</p>
 <p>Copy không có vấn đề gì khi kích thước nhỏ, nhưng khi kích thước dữ liệu lớn, copy sẽ rất tốn RAM/CPU, vậy nên người ta dùng pointer để chia sẻ chung address, dùng chung 1 giá trị thay vì copy để tiết kiệm RAM.
-Việc này thực hiện bằng cách gọi function với pointer argument và return kiểu pointer. Khi call function với pointer argument, point argument vẫn được copy, nhưng copy address chỉ là copy 1 số int nhỏ bé.</p>
+Việc này thực hiện bằng cách gọi function với pointer argument và return kiểu pointer. Khi call function với pointer argument, pointer argument vẫn được copy, nhưng copy address chỉ là copy 1 số int nhỏ bé.</p>
 <p>Dẫn tới câu hỏi tiếp theo...</p>
 <h3>Bao nhiêu là lớn, khi nào thì dùng pointer?</h3>
 <p>Một giá trị kiểu <code>int</code> với kích thước lớn nhất trong Go là <code>int64</code> có kích thước 64 bits hay 64/8 == 8 bytes, đây được coi là nhỏ. Vậy bao nhiêu là lớn? 80 bytes? 800 bytes? 8 Kilobyte (8000B, 8KB) ...? quyết định sao là ở lập trình viên, <a href="https://stackoverflow.com/questions/23542989/pointers-vs-values-in-parameters-and-return-values">và vì lập trình viên nhiều khi cũng không biết thế nào là lớn, nên hầu hết đều mặc định dùng pointer cho "tiết kiệm RAM"/nhẹ.</a></p>
 <p>Nếu tác giả của Go cũng nghĩ vậy, có lẽ họ mặc định function call by reference (dùng chung thông qua chia sẻ địa chỉ) thay vì call by value (copy giá trị) luôn cho khỏi phải nghĩ.</p>
-<p>Nếu nhìn kỹ ra, lý do dùng pointer nói trên là 1 cách để "tối ưu" về bộ nhớ và tốc độ, nhưng việc này lại không tôi ưu cho sự đơn giản, dễ hiểu của code - thứ luôn được đánh giá cao hơn trong các chương trình thực tế.</p>
+<p>Nếu nhìn kỹ ra, lý do dùng pointer nói trên là 1 cách để "tối ưu" về bộ nhớ và tốc độ, nhưng việc này lại không tối ưu cho sự đơn giản, dễ hiểu của code - thứ luôn được đánh giá quan trọng hơn trong các chương trình thực tế.</p>
 <p>Sẽ không bao giờ bạn thấy function <code>sump</code> nào trông thế này cả, kể cả nó
-có vẻ như dùng it tài nguyên hơn:</p>
+có vẻ như dùng ít tài nguyên hơn:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nx">sump</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="o">*</span><span class="kt">int</span><span class="p">)</span> <span class="o">*</span><span class="kt">int</span> <span class="p">{</span>
     <span class="nx">r</span> <span class="o">:=</span> <span class="p">(</span><span class="o">*</span><span class="nx">a</span> <span class="o">+</span> <span class="o">*</span><span class="nx">b</span><span class="p">)</span>
     <span class="k">return</span> <span class="o">&amp;</span><span class="nx">r</span>
@@ -303,7 +303,7 @@ có vẻ như dùng it tài nguyên hơn:</p>
 
 <p>Nếu tới đây vẫn chưa hiểu pointer là gì, hãy thử vận may với bài viết của <a href="https://dave.cheney.net/2017/04/26/understand-go-pointers-in-less-than-800-words-or-your-money-back">Dave Cheny</a></p>
 <h2>Method</h2>
-<p>method của struct là một thứ cú pháp rất sáng tạo và khác biệt vơi các ngôn ngữ phổ biến (C, Python)... nhưng nó chỉ là 1 cách viết đơn giản (syntactic sugar) để pass argument struct cho function (method) đó.</p>
+<p>method của struct là một thứ cú pháp rất sáng tạo và khác biệt với các ngôn ngữ phổ biến (C, Python)... nhưng nó chỉ là 1 cách viết đơn giản (syntactic sugar) để pass argument struct cho method đó.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">type</span> <span class="nx">User</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">name</span> <span class="kt">string</span>
     <span class="nx">age</span>  <span class="kt">int</span>
@@ -324,14 +324,15 @@ có vẻ như dùng it tài nguyên hơn:</p>
 
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%v == %v\n&quot;</span><span class="p">,</span> <span class="nx">u</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
 <span class="p">}</span>
+<span class="c1">// Kết quả như nhau</span>
 </code></pre></div>
 
 
-<p><code>struct</code> được mặc định gán vào cho method gọi là <code>method receiver</code>,
-method receiver hầu hết đều là pointer, lý do xem bên trên.
+<p><code>struct</code> argument được mặc định pass vào cho method gọi là <code>method receiver</code>,
+method receiver hầu hết đều là pointer, lý do xem lại phần pointer và link đính kèm.
 <code>method receiver</code> giống như <code>self</code> argument trong method của Python class.</p>
 <h2>Interface</h2>
-<p>Một biến kiểu <code>interface{}</code> có thể chứa mọi giá trị, biến Go thành dynamic typing giống như Python, nhưng đấy không phải lý do người ta tạo ra interface.</p>
+<p>Một var kiểu <code>interface{}</code> có thể chứa mọi giá trị, biến Go thành dynamic typing giống như Python, nhưng đấy không phải lý do người ta tạo ra interface.</p>
 <p>Trích Go <a href="https://golang.org/ref/spec#Interface_types">spec</a>:</p>
 <div class="highlight"><pre><span></span><code><span class="n">An</span> <span class="n">interface</span> <span class="k">type</span> <span class="n">specifies</span> <span class="n">a</span> <span class="k">method</span> <span class="k">set</span> <span class="k">called</span> <span class="n">its</span> <span class="n">interface</span><span class="p">.</span> <span class="n">A</span> <span class="k">variable</span> <span class="k">of</span> <span class="n">interface</span> <span class="k">type</span> <span class="n">can</span> <span class="n">store</span> <span class="n">a</span> <span class="n">value</span> <span class="k">of</span> <span class="k">any</span> <span class="k">type</span> <span class="k">with</span> <span class="n">a</span> <span class="k">method</span> <span class="k">set</span> <span class="n">that</span> <span class="k">is</span> <span class="k">any</span> <span class="n">superset</span> <span class="k">of</span> <span class="n">the</span> <span class="n">interface</span><span class="p">.</span> <span class="n">Such</span> <span class="n">a</span> <span class="k">type</span> <span class="k">is</span> <span class="n">said</span> <span class="k">to</span> <span class="n">implement</span> <span class="n">the</span> <span class="n">interface</span><span class="p">.</span> <span class="n">The</span> <span class="n">value</span> <span class="k">of</span> <span class="n">an</span> <span class="n">uninitialized</span> <span class="k">variable</span> <span class="k">of</span> <span class="n">interface</span> <span class="k">type</span> <span class="k">is</span> <span class="n">nil</span><span class="p">.</span>
 
@@ -361,7 +362,7 @@ Ví dụ trong Python viết:</p>
 </code></pre></div>
 
 
-<p>chỉ thấy 1 chữ <code>in</code> và không thấy <strong>rõ</strong> là phải mất bao nhiêu phép tính, thì Go tối ưu thiết kế cho việc đó, dẫn tới việc muốn tìm 1 giá trị trong 1 slice/array, chỉ có cách là dùng 1 vòng for duyệt qua từng phần tử.</p>
+<p>chỉ thấy 1 chữ <code>in</code> và không thấy <strong>rõ</strong> là phải mất bao nhiêu phép tính, thì Go tối ưu thiết kế cho việc đó, dẫn tới việc muốn tìm 1 giá trị trong 1 slice/array, chỉ có cách là dùng 1 vòng for duyệt qua từng phần tử -&gt; O(n).</p>
 <h2>Stdlib for DevOps</h2>
 <ul>
 <li>Xử lý CLI argument: <code>flag</code></li>
@@ -373,7 +374,7 @@ Ví dụ trong Python viết:</p>
 </ul>
 <p>Cộng đồng Go <a href="https://go-proverbs.github.io/">ưa chuộng việc copy 1 chút thay vì cài thêm thư viện bên ngoài</a>, ưu chuộng dùng bộ stdlib có sẵn.</p>
 <h2>Go đơn giản, nhưng không dễ</h2>
-<p>Go đơn giản - đơn giản tức là ít khái niệm, ít cú pháp. Nhưng không dễ - dễ tức là dễ làm 1 việc gì đó. Kiểm tra 1 phần tử trong slice, thêm 1 phần tử vào giữa array, ... các "bài toán nhỏ" mà Python chỉ mất 1 dòng code, thì trong Go là cả một... vấn đề lớn mà người ta phải viết hẳn <a href="https://github.com/golang/go/wiki/SliceTricks">wiki rồi chia sẻ</a>.</p>
+<p>Go đơn giản - đơn giản tức là ít khái niệm, ít cú pháp. Nhưng không dễ - dễ tức là không mất nhiều suy nghĩ, nhiều công sức làm một việc. Kiểm tra 1 phần tử trong slice, thêm 1 phần tử vào giữa array, ... các "bài toán nhỏ" mà Python chỉ mất 1 dòng code, thì trong Go là cả một vấn đề lớn mà người ta phải viết hẳn <a href="https://github.com/golang/go/wiki/SliceTricks">wiki rồi chia sẻ</a>.</p>
 <p><a href="https://www.arp242.net/go-easy.html">Go is simple, but not easy</a>.</p>
 <h2>Like &amp; Dislike</h2>
 <p>Vậy anh có thích Go hay không?</p>
@@ -382,7 +383,7 @@ Ví dụ trong Python viết:</p>
 <h3>Like</h3>
 <ul>
 <li>Compile thành binary: deploy trở thành câu chuyện rất đơn giản</li>
-<li>Bộ stdlib rất đầy đủ: HTTP, JSON - hai công cụ rất quan trọng của DevOps.</li>
+<li>Bộ stdlib rất đầy đủ: HTTP, JSON - hai công cụ quan trọng của DevOps.</li>
 <li>Được hỗ trợ rộng rãi bởi các nhà cung cấp dịch vụ: AWS, GCP... tất nhiên Python cũng được hỗ trợ nhiều, nhưng nếu bạn dùng 1 ngôn ngữ trẻ nào đó như... Elixir, <a href="https://blog.darklang.com/new-backend-fsharp/">Rust hay già như Ocaml thì đều không được hỗ trợ nhiều vậy</a>.</li>
 </ul>
 <h3>Dislike</h3>
@@ -392,13 +393,17 @@ Ví dụ trong Python viết:</p>
 <li>Quản lý package thay đổi liên tục từ 2014, giờ chắc đã ổn.</li>
 </ul>
 <h2>Kết luận</h2>
-<p>Go là một ngôn ngữ đơn giản nhưng không dễ, ai cũng học được nhưng để có thể dùng thoải mái sẽ cần một thời gian luyện tập cho quen sau khi đã dính lời nguyền ngắn gọn, dễ của Python. Go là một ngôn ngữ hiện đại, tốt, đáng bỏ thời gian đầu tư làm quen trong bộ công cụ của bạn... và vẫn yêu Python.</p>
+<p>Go là một ngôn ngữ đơn giản nhưng không dễ, ai cũng học được nhưng để có thể
+dùng thoải mái sẽ cần một thời gian luyện tập cho quen sau khi đã dính lời
+nguyền ngắn gọn, dễ dàng của Python. Go là một ngôn ngữ hiện đại, tốt, đáng bỏ
+thời gian đầu tư làm quen để cho vào bộ công cụ của bạn... và vẫn yêu Python.</p>
 <h2>References</h2>
 <ul>
 <li><a href="https://golang.org/ref/spec">Go spec</a></li>
 <li><a href="https://go-proverbs.github.io/">go-proverbs</a></li>
-<li>https://blog.darklang.com/new-backend-fsharp/</li>
+<li><a href="https://blog.darklang.com/new-backend-fsharp/">Ocaml to F#</a></li>
 <li><a href="https://blog.darklang.com/new-backend-fsharp/">Dave Cheney on pointer</a></li>
+<li><a href="https://www.arp242.net/go-easy.html">Go easy</a></li>
 </ul>
 <p>HVN at <a href="http://pymi.vn">http://pymi.vn</a> and <a href="https://www.familug.org">https://www.familug.org</a>.</p>
   </div>
