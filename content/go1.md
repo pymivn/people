@@ -8,6 +8,8 @@ Summary: Học vừa đủ Golang để nguy hiểm - phần 1
 
 Series bài viết giúp lập trình viên đã biết Python bắt đầu code Go mượt mà hơn - tài liệu bổ trợ cho [Go tour](https://tour.golang.org/) chứ không để thay thế - phần 1.
 
+Đã có phần 2 [**Cứ đi là đến**]({filename}/go12.md).
+
 ## Golang là gì
 
 ![gopher](https://golang.org/lib/godoc/images/home-gopher.png)
@@ -621,5 +623,8 @@ Phần tiếp sẽ trình bày chi tiết về các khái niệm chỉ có trong
 - [https://github.com/golang/go/wiki/SuccessStories](https://github.com/golang/go/wiki/SuccessStories)
 - [Notes on the Go translation of Reposurgeon - from Python](http://www.catb.org/~esr/reposurgeon/GoNotes.html)
 - [https://hn.algolia.com/?q=go](https://hn.algolia.com/?q=go)
+
+## Next
+Đã có phần 2 [**Cứ đi là đến**]({filename}/go12.md).
 
 HVN at [http://pymi.vn](http://pymi.vn) and [https://www.familug.org](https://www.familug.org).
