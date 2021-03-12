@@ -200,6 +200,7 @@ làm việc với file, process...
 ### Tài liệu
 
 - Tài liệu chính thống, đầy đủ và hiệu quả để học go là Go Tour: [https://tour.golang.org/](https://tour.golang.org/)
+- Bài tập có giải trên [exercism.io](https://exercism.io/tracks/go) - chọn practice mode.
 - FAQ giải đáp các thắc mắc thường gặp: [https://golang.org/doc/faq](https://golang.org/doc/faq)
 - Effective Go hướng dẫn viết Go theo cách của Gophers: [https://golang.org/doc/effective_go.html](https://golang.org/doc/effective_go.html)
 - Các tài liệu khác: [learn](https://github.com/golang/go/wiki/Learn)
