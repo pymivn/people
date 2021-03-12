@@ -238,8 +238,8 @@ Việc này thực hiện bằng cách gọi function với pointer argument và
 &lt;h3&gt;Bao nhiêu là lớn, khi nào thì dùng pointer?&lt;/h3&gt;
 &lt;p&gt;Một giá trị kiểu &lt;code&gt;int&lt;/code&gt; với kích thước lớn nhất trong Go là &lt;code&gt;int64&lt;/code&gt; có kích thước 64 bits hay 64/8 == 8 bytes, đây được coi là nhỏ. Vậy bao nhiêu là lớn? 80 bytes? 800 bytes? 8 Kilobyte (8000B, 8KB) ...? quyết định sao là ở lập trình viên, &lt;a href="https://stackoverflow.com/questions/23542989/pointers-vs-values-in-parameters-and-return-values"&gt;và vì lập trình viên nhiều khi cũng không biết thế nào là lớn, nên hầu hết đều mặc định dùng pointer cho "tiết kiệm RAM"/nhẹ.&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Nếu tác giả của Go cũng nghĩ vậy, có lẽ họ mặc định function call by reference (dùng chung thông qua chia sẻ địa chỉ) thay vì call by value (copy giá trị) luôn cho khỏi phải nghĩ.&lt;/p&gt;
-&lt;p&gt;Nếu nhìn kỹ ra, lý do dùng pointer nói trên là 1 cách để "tối ưu" về bộ nhớ và tốc độ, nhưng việc này lại không tối ưu cho sự đơn giản, dễ hiểu của code - thứ luôn được đánh giá quan trọng hơn trong các chương trình thực tế.&lt;/p&gt;
-&lt;p&gt;Sẽ không bao giờ bạn thấy function &lt;code&gt;sump&lt;/code&gt; nào trông thế này cả, kể cả nó
+&lt;p&gt;Nhìn kỹ ra, lý do dùng pointer nói trên là 1 cách để "tối ưu" về bộ nhớ và tốc độ, nhưng việc này lại không tối ưu cho sự đơn giản, dễ hiểu của code - thứ luôn được đánh giá quan trọng hơn trong các chương trình thực tế.&lt;/p&gt;
+&lt;p&gt;Không bao giờ bạn thấy function &lt;code&gt;sump&lt;/code&gt; nào trông thế này cả, kể cả nó
 có vẻ như dùng ít tài nguyên hơn:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;func&lt;/span&gt; &lt;span class="nx"&gt;sump&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;b&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="nx"&gt;r&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nx"&gt;a&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nx"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -254,7 +254,7 @@ có vẻ như dùng ít tài nguyên hơn:&lt;/p&gt;
     &lt;span class="nx"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;b&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
 
     &lt;span class="nx"&gt;fmt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%d\n&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nx"&gt;sump&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="nx"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="nx"&gt;b&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-    &lt;span class="nx"&gt;fmt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%d\n&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="nx"&gt;fmt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%d\n&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;b&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;span class="c1"&gt;// 3&lt;/span&gt;
 &lt;span class="c1"&gt;// 3&lt;/span&gt;
@@ -263,7 +263,8 @@ có vẻ như dùng ít tài nguyên hơn:&lt;/p&gt;
 
 &lt;p&gt;Nếu tới đây vẫn chưa hiểu pointer là gì, hãy thử vận may với bài viết của &lt;a href="https://dave.cheney.net/2017/04/26/understand-go-pointers-in-less-than-800-words-or-your-money-back"&gt;Dave Cheney&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;Method&lt;/h2&gt;
-&lt;p&gt;method của struct là một thứ cú pháp rất sáng tạo và khác biệt với các ngôn ngữ phổ biến (C, Python)... nhưng nó chỉ là 1 cách viết đơn giản (syntactic sugar) để pass argument struct cho method đó.&lt;/p&gt;
+&lt;p&gt;method của struct là một cú pháp rất sáng tạo và khác biệt với các ngôn ngữ phổ biến (C, Python)... nhưng nó chỉ là 1 cách viết đơn giản (syntactic sugar) để pass struct argument cho method. Ví dụ sau đây, method addAge và
+function addAge là như nhau.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;type&lt;/span&gt; &lt;span class="nx"&gt;User&lt;/span&gt; &lt;span class="kd"&gt;struct&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="nx"&gt;name&lt;/span&gt; &lt;span class="kt"&gt;string&lt;/span&gt;
     &lt;span class="nx"&gt;age&lt;/span&gt;  &lt;span class="kt"&gt;int&lt;/span&gt;

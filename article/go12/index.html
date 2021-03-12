@@ -291,8 +291,8 @@ Việc này thực hiện bằng cách gọi function với pointer argument và
 <h3>Bao nhiêu là lớn, khi nào thì dùng pointer?</h3>
 <p>Một giá trị kiểu <code>int</code> với kích thước lớn nhất trong Go là <code>int64</code> có kích thước 64 bits hay 64/8 == 8 bytes, đây được coi là nhỏ. Vậy bao nhiêu là lớn? 80 bytes? 800 bytes? 8 Kilobyte (8000B, 8KB) ...? quyết định sao là ở lập trình viên, <a href="https://stackoverflow.com/questions/23542989/pointers-vs-values-in-parameters-and-return-values">và vì lập trình viên nhiều khi cũng không biết thế nào là lớn, nên hầu hết đều mặc định dùng pointer cho "tiết kiệm RAM"/nhẹ.</a></p>
 <p>Nếu tác giả của Go cũng nghĩ vậy, có lẽ họ mặc định function call by reference (dùng chung thông qua chia sẻ địa chỉ) thay vì call by value (copy giá trị) luôn cho khỏi phải nghĩ.</p>
-<p>Nếu nhìn kỹ ra, lý do dùng pointer nói trên là 1 cách để "tối ưu" về bộ nhớ và tốc độ, nhưng việc này lại không tối ưu cho sự đơn giản, dễ hiểu của code - thứ luôn được đánh giá quan trọng hơn trong các chương trình thực tế.</p>
-<p>Sẽ không bao giờ bạn thấy function <code>sump</code> nào trông thế này cả, kể cả nó
+<p>Nhìn kỹ ra, lý do dùng pointer nói trên là 1 cách để "tối ưu" về bộ nhớ và tốc độ, nhưng việc này lại không tối ưu cho sự đơn giản, dễ hiểu của code - thứ luôn được đánh giá quan trọng hơn trong các chương trình thực tế.</p>
+<p>Không bao giờ bạn thấy function <code>sump</code> nào trông thế này cả, kể cả nó
 có vẻ như dùng ít tài nguyên hơn:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nx">sump</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="o">*</span><span class="kt">int</span><span class="p">)</span> <span class="o">*</span><span class="kt">int</span> <span class="p">{</span>
     <span class="nx">r</span> <span class="o">:=</span> <span class="p">(</span><span class="o">*</span><span class="nx">a</span> <span class="o">+</span> <span class="o">*</span><span class="nx">b</span><span class="p">)</span>
@@ -307,7 +307,7 @@ có vẻ như dùng ít tài nguyên hơn:</p>
     <span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span>
 
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%d\n&quot;</span><span class="p">,</span> <span class="o">*</span><span class="nx">sump</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">a</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">b</span><span class="p">))</span>
-    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%d\n&quot;</span><span class="p">,</span> <span class="nx">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%d\n&quot;</span><span class="p">,</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">))</span>
 <span class="p">}</span>
 <span class="c1">// 3</span>
 <span class="c1">// 3</span>
@@ -316,7 +316,8 @@ có vẻ như dùng ít tài nguyên hơn:</p>
 
 <p>Nếu tới đây vẫn chưa hiểu pointer là gì, hãy thử vận may với bài viết của <a href="https://dave.cheney.net/2017/04/26/understand-go-pointers-in-less-than-800-words-or-your-money-back">Dave Cheney</a></p>
 <h2>Method</h2>
-<p>method của struct là một thứ cú pháp rất sáng tạo và khác biệt với các ngôn ngữ phổ biến (C, Python)... nhưng nó chỉ là 1 cách viết đơn giản (syntactic sugar) để pass argument struct cho method đó.</p>
+<p>method của struct là một cú pháp rất sáng tạo và khác biệt với các ngôn ngữ phổ biến (C, Python)... nhưng nó chỉ là 1 cách viết đơn giản (syntactic sugar) để pass struct argument cho method. Ví dụ sau đây, method addAge và
+function addAge là như nhau.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">type</span> <span class="nx">User</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">name</span> <span class="kt">string</span>
     <span class="nx">age</span>  <span class="kt">int</span>
