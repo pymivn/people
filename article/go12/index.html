@@ -274,7 +274,7 @@ Tránh nhầm lẫn dấu <code>*</code> ở đây với dấu <code>*</code> tr
 <h3>Pointer dùng để làm gì?</h3>
 <p>Vì pointer là memory address, tức một con số kiểu <code>int</code>, nó rất nhỏ, nhẹ. Người ta dùng nó vì muốn "nhẹ", muốn tiết kiệm bộ nhớ (RAM).</p>
 <h4>Call by value là gì</h4>
-<p>Go function call by value, tức nếu gọi function với argument nào, thì function được gọi sẽ nhận được 1 bản <strong>copy</strong> của argument đó. Khi function return, giá trị return này được <strong>copy</strong> tới function gọi.</p>
+<p>Go function <a href="https://golang.org/ref/spec#Calls">call by value</a>, tức nếu gọi function với argument nào, thì function được gọi sẽ nhận được 1 bản <strong>copy</strong> của argument đó. Khi function return, giá trị return này được <strong>copy</strong> tới function gọi.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">n</span> <span class="o">:=</span> <span class="s">&quot;meo Meo&quot;</span>
     <span class="nx">s</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">ToUpper</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span>

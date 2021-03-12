@@ -221,7 +221,7 @@ Tránh nhầm lẫn dấu &lt;code&gt;*&lt;/code&gt; ở đây với dấu &lt;c
 &lt;h3&gt;Pointer dùng để làm gì?&lt;/h3&gt;
 &lt;p&gt;Vì pointer là memory address, tức một con số kiểu &lt;code&gt;int&lt;/code&gt;, nó rất nhỏ, nhẹ. Người ta dùng nó vì muốn "nhẹ", muốn tiết kiệm bộ nhớ (RAM).&lt;/p&gt;
 &lt;h4&gt;Call by value là gì&lt;/h4&gt;
-&lt;p&gt;Go function call by value, tức nếu gọi function với argument nào, thì function được gọi sẽ nhận được 1 bản &lt;strong&gt;copy&lt;/strong&gt; của argument đó. Khi function return, giá trị return này được &lt;strong&gt;copy&lt;/strong&gt; tới function gọi.&lt;/p&gt;
+&lt;p&gt;Go function &lt;a href="https://golang.org/ref/spec#Calls"&gt;call by value&lt;/a&gt;, tức nếu gọi function với argument nào, thì function được gọi sẽ nhận được 1 bản &lt;strong&gt;copy&lt;/strong&gt; của argument đó. Khi function return, giá trị return này được &lt;strong&gt;copy&lt;/strong&gt; tới function gọi.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;func&lt;/span&gt; &lt;span class="nx"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="nx"&gt;n&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;meo Meo&amp;quot;&lt;/span&gt;
     &lt;span class="nx"&gt;s&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="nx"&gt;strings&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;ToUpper&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
