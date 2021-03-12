@@ -165,8 +165,8 @@ SDK.&lt;/p&gt;
 &lt;h2&gt;Pointer&lt;/h2&gt;
 &lt;p&gt;Now is the famous POINTER!&lt;/p&gt;
 &lt;p&gt;pointer vốn làm rụng tóc hàng ngàn sinh viên đại học khi học C, pointer trong
-Go cũng không khác nhiều với pointer trong C, nhưng sẽ là thứ rất khác biệt với người đến
-từ Python.&lt;/p&gt;
+Go không khác nhiều với pointer trong C, nhưng sẽ là thứ rất khác biệt với
+người đến từ Python.&lt;/p&gt;
 &lt;p&gt;Code trước, nói sau:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nx"&gt;x&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="mi"&gt;96&lt;/span&gt;
 &lt;span class="nx"&gt;p&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="nx"&gt;x&lt;/span&gt;
@@ -177,9 +177,11 @@ từ Python.&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;code&gt;p&lt;/code&gt; có kiểu &lt;code&gt;*int&lt;/code&gt;, và point to &lt;code&gt;x&lt;/code&gt; (trỏ tới x), dấu &lt;code&gt;*&lt;/code&gt; ở đây là
+&lt;p&gt;&lt;code&gt;p&lt;/code&gt; có kiểu &lt;code&gt;*int&lt;/code&gt;, và point to &lt;code&gt;x&lt;/code&gt; (trỏ tới &lt;code&gt;x&lt;/code&gt;), dấu &lt;code&gt;*&lt;/code&gt; ở đây là
 ký hiệu của kiểu pointer, đứng trước kiểu mà nó trỏ tới.
-&lt;code&gt;p&lt;/code&gt; là một trỏ tới &lt;code&gt;x&lt;/code&gt;, &lt;code&gt;x&lt;/code&gt; có kiểu &lt;code&gt;int&lt;/code&gt; nên &lt;code&gt;p&lt;/code&gt; có kiểu &lt;code&gt;*int&lt;/code&gt;. Còn giá trị của &lt;code&gt;p&lt;/code&gt; là gì? &lt;code&gt;0xc000014110&lt;/code&gt; là cách viết hệ hexadecimal (hệ 16), nó thường được dùng tới khi viết địa chỉ bộ nhớ máy tính.&lt;/p&gt;
+&lt;code&gt;p&lt;/code&gt; là một pointer trỏ tới &lt;code&gt;x&lt;/code&gt;, &lt;code&gt;x&lt;/code&gt; có kiểu &lt;code&gt;int&lt;/code&gt; nên &lt;code&gt;p&lt;/code&gt; có kiểu &lt;code&gt;*int&lt;/code&gt;.
+Còn giá trị của &lt;code&gt;p&lt;/code&gt; là gì? &lt;code&gt;0xc000014110&lt;/code&gt; là cách viết hệ hexadecimal (hệ 16),
+thường được dùng tới khi viết địa chỉ bộ nhớ máy tính.&lt;/p&gt;
 &lt;p&gt;Trong Python cũng vậy, khi print 1 instance của class (object):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;python3&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;print(object())&amp;#39;&lt;/span&gt;
 &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt; &lt;span class="nb"&gt;object&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="mh"&gt;0x7f2025653c80&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
