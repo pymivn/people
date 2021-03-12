@@ -18,7 +18,8 @@ tại Google.
 
 Go được thiết kế ra với mục tiêu thay thế cho C++, nhưng khi tung ra cộng
 đồng, nó lại trở thành ngôn ngữ hấp dẫn đối với các lập trình viên dùng
-ngôn ngữ bậc cao hơn như Python, [Ruby](https://blog.iron.io/how-we-went-from-30-servers-to-2-go/), PHP, NodeJS... nhờ khả năng chạy code
+ngôn ngữ bậc cao hơn như [Python](http://www.catb.org/~esr/reposurgeon/GoNotes.html),
+[Ruby](https://blog.iron.io/how-we-went-from-30-servers-to-2-go/), PHP, NodeJS... nhờ khả năng chạy code
 nhanh, dùng ít tài nguyên hơn, deploy dễ hơn so với các ngôn ngữ này.
 
 Go trở thành một trào lưu (trend) công nghệ trên internet, với các bài viết
@@ -28,8 +29,11 @@ công nghệ để viết "service" trong các hệ thống "microservice", web 
 [Go còn được dùng phổ biến để viết các câu lệnh command line](https://blog.golang.org/survey2019-results).
 
 Go đã ở giai đoạn "production ready", đủ ổn định và đã được chạy trên các [hệ thống
-lớn trên toàn cầu](https://github.com/golang/go/wiki/GoUsers). Các sản phẩm opensource viết bằng Go được dùng rộng rãi như:
+lớn trên toàn cầu](https://github.com/golang/go/wiki/GoUsers).
+Các sản phẩm opensource viết bằng Go được dùng rộng rãi như:
 Kubernetes, Docker, Terraform, InfluxDB, Prometheus, Grafana, ...
+Go trở thành ngôn ngữ được ưa chuộng và phổ biến trên các dịch vụ cloud,
+devops.
 
 Những lĩnh vực khác cũng đã có mặt Go nhưng chưa thực sự thành công: mobile,
 frontend (JavaScript), làm website (như Django/RubyOnRails), Machine Learning.
