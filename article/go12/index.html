@@ -284,7 +284,7 @@ Tránh nhầm lẫn dấu <code>*</code> ở đây với dấu <code>*</code> tr
 
 
 <p>Ví dụ trên, <code>main</code> gọi <code>ToUpper</code>, <code>ToUpper</code> sẽ nhận được 1 bản copy của <code>n</code>, khi <code>ToUpper</code> xử lý xong, <code>main</code> sẽ nhận được 1 bản copy của kết quả mà <code>ToUpper</code> return.</p>
-<p>Copy không có vấn đề gì khi kích thước nhỏ, nhưng khi kích thước dữ liệu lớn, copy sẽ rất tốn RAM/CPU, vậy nên người ta dùng pointer để chia sẻ chung address, dùng chung 1 giá trị thay vì copy để tiết kiệm RAM.
+<p>Copy không có vấn đề gì khi kích thước nhỏ, nhưng khi kích thước dữ liệu lớn, copy sẽ tốn RAM/CPU, vậy nên người ta dùng pointer để chia sẻ chung address, dùng chung 1 giá trị thay vì copy để tiết kiệm RAM.
 Việc này thực hiện bằng cách gọi function với pointer argument và return kiểu pointer. Khi call function với pointer argument, pointer argument vẫn được copy, nhưng copy address chỉ là copy 1 số int nhỏ bé.</p>
 <p>Note: <a href="https://pymi.vn/blog/call-by/">Python call by object reference</a></p>
 <p>Dẫn tới câu hỏi tiếp theo...</p>

@@ -231,7 +231,7 @@ Tránh nhầm lẫn dấu &lt;code&gt;*&lt;/code&gt; ở đây với dấu &lt;c
 
 
 &lt;p&gt;Ví dụ trên, &lt;code&gt;main&lt;/code&gt; gọi &lt;code&gt;ToUpper&lt;/code&gt;, &lt;code&gt;ToUpper&lt;/code&gt; sẽ nhận được 1 bản copy của &lt;code&gt;n&lt;/code&gt;, khi &lt;code&gt;ToUpper&lt;/code&gt; xử lý xong, &lt;code&gt;main&lt;/code&gt; sẽ nhận được 1 bản copy của kết quả mà &lt;code&gt;ToUpper&lt;/code&gt; return.&lt;/p&gt;
-&lt;p&gt;Copy không có vấn đề gì khi kích thước nhỏ, nhưng khi kích thước dữ liệu lớn, copy sẽ rất tốn RAM/CPU, vậy nên người ta dùng pointer để chia sẻ chung address, dùng chung 1 giá trị thay vì copy để tiết kiệm RAM.
+&lt;p&gt;Copy không có vấn đề gì khi kích thước nhỏ, nhưng khi kích thước dữ liệu lớn, copy sẽ tốn RAM/CPU, vậy nên người ta dùng pointer để chia sẻ chung address, dùng chung 1 giá trị thay vì copy để tiết kiệm RAM.
 Việc này thực hiện bằng cách gọi function với pointer argument và return kiểu pointer. Khi call function với pointer argument, pointer argument vẫn được copy, nhưng copy address chỉ là copy 1 số int nhỏ bé.&lt;/p&gt;
 &lt;p&gt;Note: &lt;a href="https://pymi.vn/blog/call-by/"&gt;Python call by object reference&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Dẫn tới câu hỏi tiếp theo...&lt;/p&gt;
