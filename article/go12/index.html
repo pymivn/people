@@ -345,18 +345,20 @@ có vẻ như dùng ít tài nguyên hơn:</p>
 method receiver hầu hết đều là pointer, lý do xem lại phần pointer và link đính kèm.
 <code>method receiver</code> giống như <code>self</code> argument trong method của Python class.</p>
 <h2>Interface</h2>
-<p>Một var kiểu <code>interface{}</code> có thể chứa mọi giá trị, biến Go thành dynamic typing giống như Python, nhưng đấy không phải lý do người ta tạo ra interface.</p>
+<p>Một var kiểu <code>interface{}</code> có thể chứa mọi giá trị, biến Go thành dynamic
+typing giống như Python, nhưng đấy không phải lý do người ta tạo ra interface.</p>
 <p>Trích Go <a href="https://golang.org/ref/spec#Interface_types">spec</a>:</p>
-<div class="highlight"><pre><span></span><code><span class="n">An</span> <span class="n">interface</span> <span class="k">type</span> <span class="n">specifies</span> <span class="n">a</span> <span class="k">method</span> <span class="k">set</span> <span class="k">called</span> <span class="n">its</span> <span class="n">interface</span><span class="p">.</span> <span class="n">A</span> <span class="k">variable</span> <span class="k">of</span> <span class="n">interface</span> <span class="k">type</span> <span class="n">can</span> <span class="n">store</span> <span class="n">a</span> <span class="n">value</span> <span class="k">of</span> <span class="k">any</span> <span class="k">type</span> <span class="k">with</span> <span class="n">a</span> <span class="k">method</span> <span class="k">set</span> <span class="n">that</span> <span class="k">is</span> <span class="k">any</span> <span class="n">superset</span> <span class="k">of</span> <span class="n">the</span> <span class="n">interface</span><span class="p">.</span> <span class="n">Such</span> <span class="n">a</span> <span class="k">type</span> <span class="k">is</span> <span class="n">said</span> <span class="k">to</span> <span class="n">implement</span> <span class="n">the</span> <span class="n">interface</span><span class="p">.</span> <span class="n">The</span> <span class="n">value</span> <span class="k">of</span> <span class="n">an</span> <span class="n">uninitialized</span> <span class="k">variable</span> <span class="k">of</span> <span class="n">interface</span> <span class="k">type</span> <span class="k">is</span> <span class="n">nil</span><span class="p">.</span>
-
-<span class="n">InterfaceType</span>      <span class="o">=</span> <span class="ss">&quot;interface&quot;</span> <span class="ss">&quot;{&quot;</span> <span class="err">{</span> <span class="p">(</span> <span class="n">MethodSpec</span> <span class="o">|</span> <span class="n">InterfaceTypeName</span> <span class="p">)</span> <span class="ss">&quot;;&quot;</span> <span class="err">}</span> <span class="ss">&quot;}&quot;</span> <span class="p">.</span>
-<span class="n">MethodSpec</span>         <span class="o">=</span> <span class="n">MethodName</span> <span class="n">Signature</span> <span class="p">.</span>
-<span class="n">MethodName</span>         <span class="o">=</span> <span class="n">identifier</span> <span class="p">.</span>
-<span class="n">InterfaceTypeName</span>  <span class="o">=</span> <span class="n">TypeName</span> <span class="p">.</span>
+<blockquote>
+<p>An interface type specifies a method set called its interface. A variable of interface type can store a value of any type with a method set that is any superset of the interface. Such a type is said to implement the interface. The value of an uninitialized variable of interface type is nil.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="nx">InterfaceType</span>      <span class="p">=</span> <span class="s">&quot;interface&quot;</span> <span class="s">&quot;{&quot;</span> <span class="p">{</span> <span class="p">(</span> <span class="nx">MethodSpec</span> <span class="p">|</span> <span class="nx">InterfaceTypeName</span> <span class="p">)</span> <span class="s">&quot;;&quot;</span> <span class="p">}</span> <span class="s">&quot;}&quot;</span> <span class="p">.</span>
+<span class="nx">MethodSpec</span>         <span class="p">=</span> <span class="nx">MethodName</span> <span class="nx">Signature</span> <span class="p">.</span>
+<span class="nx">MethodName</span>         <span class="p">=</span> <span class="nx">identifier</span> <span class="p">.</span>
+<span class="nx">InterfaceTypeName</span>  <span class="p">=</span> <span class="nx">TypeName</span> <span class="p">.</span>
 </code></pre></div>
 
 
-<p>kiểu <code>interface</code> dùng để định nghĩa 1 bộ các method. Thay vì cách dùng trong OOP phổ biến (C#), một giá trị kiểu A là một giá trị kiểu A hoặc kế thừa kiểu A (inheritance), thì Go nói một giá trị kiểu A nếu nó có đủ các method trong interface A.
+<p>kiểu <code>interface</code> dùng để định nghĩa 1 bộ các method. Thay vì cách dùng trong OOP phổ biến (Java, C#), một giá trị kiểu A là một giá trị kiểu A hoặc kế thừa kiểu A (inheritance), thì Go nói một giá trị kiểu A nếu nó có đủ các method trong interface A.
 Nhờ tính năng này, Go có thể viết 1 function nhận vào 1 interface, và khi gọi, có thể nhận vào bất kỳ kiểu nào đã implement interface này. Đây gọi là <code>polymorphism</code> - 1 trong <a href="https://www.freecodecamp.org/news/four-pillars-of-object-oriented-programming/">4 đặc tính quan trọng của OOP</a>.</p>
 <h2>Packages</h2>
 <p>Mỗi thư mục trong Go là 1 package riêng biệt, thư mục con là 1 package khác, không liên quan gì tới thư mục chứa nó.
