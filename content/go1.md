@@ -408,7 +408,7 @@ Ví dụ khi dùng type assertion để truy cập kiểu string dưới 1 empty
 panic: interface conversion: interface {} is int, not string
 ```
 
-Các function thay vì tạo ra exception, thường trả về giá trị Error kèm kết quả.
+Các function thay vì tạo ra exception, thường trả về giá trị kiểu `error` kèm kết quả.
 Ví dụ function trong package `strconv` dùng để convert string thành int:
 
 ```go
