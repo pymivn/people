@@ -261,7 +261,7 @@ có vẻ như dùng ít tài nguyên hơn:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Nếu tới đây vẫn chưa hiểu pointer là gì, hãy thử vận may với bài viết của &lt;a href="https://dave.cheney.net/2017/04/26/understand-go-pointers-in-less-than-800-words-or-your-money-back"&gt;Dave Cheny&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Nếu tới đây vẫn chưa hiểu pointer là gì, hãy thử vận may với bài viết của &lt;a href="https://dave.cheney.net/2017/04/26/understand-go-pointers-in-less-than-800-words-or-your-money-back"&gt;Dave Cheney&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;Method&lt;/h2&gt;
 &lt;p&gt;method của struct là một thứ cú pháp rất sáng tạo và khác biệt với các ngôn ngữ phổ biến (C, Python)... nhưng nó chỉ là 1 cách viết đơn giản (syntactic sugar) để pass argument struct cho method đó.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;type&lt;/span&gt; &lt;span class="nx"&gt;User&lt;/span&gt; &lt;span class="kd"&gt;struct&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
