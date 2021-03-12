@@ -134,8 +134,10 @@ giá trị, biểu thức theo sau sẽ được tính toán và biến sẽ ch�
 
 <p>https://golang.org/ref/spec#Variable_declarations</p>
 <h2>Scope</h2>
-<p>Mỗi block (đánh dấu bởi <code>{}</code>) như trong if/for/switch hay function
-sẽ tạo 1 không gian tên</p>
+<p>Scope là phạm vi hoạt động của một biến.
+Mỗi tên biến chỉ có thể được định nghĩa duy nhất 1 lần trong mỗi block
+(đánh dấu bởi <code>{}</code>) như trong if/for/switch
+hay function, biến này không thoát ra ngoài block - hay có scope trong block đó.</p>
 <div class="highlight"><pre><span></span><code>    <span class="kd">var</span> <span class="nx">x</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">3</span>
     <span class="p">{</span>
         <span class="kd">var</span> <span class="nx">x</span> <span class="kt">string</span> <span class="p">=</span> <span class="s">&quot;Python&quot;</span>
@@ -264,7 +266,7 @@ Tránh nhầm lẫn dấu <code>*</code> ở đây với dấu <code>*</code> tr
 
 <p>Thay đổi <code>*p</code> chính là thay đổi <code>x</code>.</p>
 <h3>Pointer dùng để làm gì?</h3>
-<p>Vì pointer là memory location, tức một con số kiểu <code>int</code>, nó rất nhỏ, nhẹ. Người ta dùng nó vì muốn "nhẹ", muốn tiết kiệm bộ nhớ (RAM).</p>
+<p>Vì pointer là memory address, tức một con số kiểu <code>int</code>, nó rất nhỏ, nhẹ. Người ta dùng nó vì muốn "nhẹ", muốn tiết kiệm bộ nhớ (RAM).</p>
 <h4>Call by value là gì</h4>
 <p>Go function call by value, tức nếu gọi function với argument nào, thì function được gọi sẽ nhận được 1 bản <strong>copy</strong> của argument đó. Khi function return, giá trị return này được <strong>copy</strong> tới function gọi.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>

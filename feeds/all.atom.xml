@@ -81,8 +81,10 @@ giá trị, biểu thức theo sau sẽ được tính toán và biến sẽ ch�
 
 &lt;p&gt;https://golang.org/ref/spec#Variable_declarations&lt;/p&gt;
 &lt;h2&gt;Scope&lt;/h2&gt;
-&lt;p&gt;Mỗi block (đánh dấu bởi &lt;code&gt;{}&lt;/code&gt;) như trong if/for/switch hay function
-sẽ tạo 1 không gian tên&lt;/p&gt;
+&lt;p&gt;Scope là phạm vi hoạt động của một biến.
+Mỗi tên biến chỉ có thể được định nghĩa duy nhất 1 lần trong mỗi block
+(đánh dấu bởi &lt;code&gt;{}&lt;/code&gt;) như trong if/for/switch
+hay function, biến này không thoát ra ngoài block - hay có scope trong block đó.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;x&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
     &lt;span class="p"&gt;{&lt;/span&gt;
         &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;x&lt;/span&gt; &lt;span class="kt"&gt;string&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Python&amp;quot;&lt;/span&gt;
@@ -211,7 +213,7 @@ Tránh nhầm lẫn dấu &lt;code&gt;*&lt;/code&gt; ở đây với dấu &lt;c
 
 &lt;p&gt;Thay đổi &lt;code&gt;*p&lt;/code&gt; chính là thay đổi &lt;code&gt;x&lt;/code&gt;.&lt;/p&gt;
 &lt;h3&gt;Pointer dùng để làm gì?&lt;/h3&gt;
-&lt;p&gt;Vì pointer là memory location, tức một con số kiểu &lt;code&gt;int&lt;/code&gt;, nó rất nhỏ, nhẹ. Người ta dùng nó vì muốn "nhẹ", muốn tiết kiệm bộ nhớ (RAM).&lt;/p&gt;
+&lt;p&gt;Vì pointer là memory address, tức một con số kiểu &lt;code&gt;int&lt;/code&gt;, nó rất nhỏ, nhẹ. Người ta dùng nó vì muốn "nhẹ", muốn tiết kiệm bộ nhớ (RAM).&lt;/p&gt;
 &lt;h4&gt;Call by value là gì&lt;/h4&gt;
 &lt;p&gt;Go function call by value, tức nếu gọi function với argument nào, thì function được gọi sẽ nhận được 1 bản &lt;strong&gt;copy&lt;/strong&gt; của argument đó. Khi function return, giá trị return này được &lt;strong&gt;copy&lt;/strong&gt; tới function gọi.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;func&lt;/span&gt; &lt;span class="nx"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
