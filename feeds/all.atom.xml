@@ -656,6 +656,7 @@ chứ không lo đập đầu xuống đất mà mất trí.&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://pp.pymi.vn/article/phongvan/"&gt;"phỏng vấn"&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://pymi.vn"&gt;Trang chủ PyMi.vn&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content><category term="Trang chủ"></category><category term="life"></category></entry><entry><title>Vừa đủ để đi (go)</title><link href="http://pp.pymi.vn/article/go/" rel="alternate"></link><published>2020-09-06T00:00:00+07:00</published><updated>2020-09-06T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2020-09-06:/article/go/</id><summary type="html">&lt;p&gt;Học vừa đủ Golang để nguy hiểm - phần 1&lt;/p&gt;</summary><content type="html">&lt;p&gt;Series bài viết giúp lập trình viên đã biết Python bắt đầu code Go mượt mà hơn - tài liệu bổ trợ cho &lt;a href="https://tour.golang.org/"&gt;Go tour&lt;/a&gt; chứ không để thay thế - phần 1.&lt;/p&gt;
+&lt;p&gt;Đã có phần 2 &lt;a href="http://pp.pymi.vn/article/go12/"&gt;&lt;strong&gt;Cứ đi là đến&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;Golang là gì&lt;/h2&gt;
 &lt;p&gt;&lt;img alt="gopher" src="https://golang.org/lib/godoc/images/home-gopher.png"&gt;&lt;/p&gt;
 &lt;p&gt;Go (hay còn gọi là Golang theo tên trang chủ &lt;a href="https://golang.org"&gt;golang.org&lt;/a&gt;) là một ngôn ngữ lập
@@ -1211,6 +1212,8 @@ Phần tiếp sẽ trình bày chi tiết về các khái niệm chỉ có trong
 &lt;li&gt;&lt;a href="http://www.catb.org/~esr/reposurgeon/GoNotes.html"&gt;Notes on the Go translation of Reposurgeon - from Python&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://hn.algolia.com/?q=go"&gt;https://hn.algolia.com/?q=go&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h2&gt;Next&lt;/h2&gt;
+&lt;p&gt;Đã có phần 2 &lt;a href="http://pp.pymi.vn/article/go12/"&gt;&lt;strong&gt;Cứ đi là đến&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;HVN at &lt;a href="http://pymi.vn"&gt;http://pymi.vn&lt;/a&gt; and &lt;a href="https://www.familug.org"&gt;https://www.familug.org&lt;/a&gt;.&lt;/p&gt;</content><category term="Trang chủ"></category><category term="golang"></category><category term="go"></category></entry><entry><title>Viết code dễ đổi, dễ test như thế nào?</title><link href="http://pp.pymi.vn/article/repl/" rel="alternate"></link><published>2020-08-17T00:00:00+07:00</published><updated>2020-08-17T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2020-08-17:/article/repl/</id><summary type="html">&lt;p&gt;Tận dụng tối đa REPL của Python, tính năng mà C, Java, Golang không có&lt;/p&gt;</summary><content type="html">&lt;p&gt;Các lập trình viên chuyển sang code Python từ các ngôn ngữ lập trình khác như
 Java, C, Golang... thường bắt đầu code bằng việc bật một cái IDE to đùng
 (PyCharm) lên,
