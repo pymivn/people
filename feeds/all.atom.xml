@@ -827,6 +827,7 @@ làm việc với file, process...&lt;/p&gt;
 &lt;h3&gt;Tài liệu&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Tài liệu chính thống, đầy đủ và hiệu quả để học go là Go Tour: &lt;a href="https://tour.golang.org/"&gt;https://tour.golang.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Bài tập có giải trên &lt;a href="https://exercism.io/tracks/go"&gt;exercism.io&lt;/a&gt; - chọn practice mode.&lt;/li&gt;
 &lt;li&gt;FAQ giải đáp các thắc mắc thường gặp: &lt;a href="https://golang.org/doc/faq"&gt;https://golang.org/doc/faq&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Effective Go hướng dẫn viết Go theo cách của Gophers: &lt;a href="https://golang.org/doc/effective_go.html"&gt;https://golang.org/doc/effective_go.html&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Các tài liệu khác: &lt;a href="https://github.com/golang/go/wiki/Learn"&gt;learn&lt;/a&gt;&lt;/li&gt;
