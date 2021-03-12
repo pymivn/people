@@ -1015,7 +1015,7 @@ Ví dụ khi dùng type assertion để truy cập kiểu string dưới 1 empty
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Các function thay vì tạo ra exception, thường trả về giá trị Error kèm kết quả.
+&lt;p&gt;Các function thay vì tạo ra exception, thường trả về giá trị kiểu &lt;code&gt;error&lt;/code&gt; kèm kết quả.
 Ví dụ function trong package &lt;code&gt;strconv&lt;/code&gt; dùng để convert string thành int:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;func&lt;/span&gt; &lt;span class="nx"&gt;Atoi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;s&lt;/span&gt; &lt;span class="kt"&gt;string&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;error&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;

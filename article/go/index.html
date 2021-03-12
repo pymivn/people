@@ -412,7 +412,7 @@ Ví dụ khi dùng type assertion để truy cập kiểu string dưới 1 empty
 </code></pre></div>
 
 
-<p>Các function thay vì tạo ra exception, thường trả về giá trị Error kèm kết quả.
+<p>Các function thay vì tạo ra exception, thường trả về giá trị kiểu <code>error</code> kèm kết quả.
 Ví dụ function trong package <code>strconv</code> dùng để convert string thành int:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nx">Atoi</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
 </code></pre></div>
