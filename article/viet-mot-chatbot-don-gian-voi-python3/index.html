@@ -62,23 +62,23 @@
 <h2>Viết chatbot</h2>
 <p>Trong bài viết này mình sử dụng 2 thư viện có sẵn trên mạng là <a href="https://fbchat.readthedocs.io/en/master/">fbchat</a>, <a href="https://schedule.readthedocs.io/en/stable/">schedule</a> do đó bạn cần tạo <a href="http://pymi.vn/blog/virtualenv/">virtualenv</a> trước tiên, sau đó dùng pip để cài 2 lib trên rồi tạo một file code python tùy ý, ở đây mình dùng <code>chatbot.py</code>.</p>
 <p>Đầu tiên, import những lib mình cần 🎉</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">logging</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span>
 <span class="kn">from</span> <span class="nn">fbchat</span> <span class="kn">import</span> <span class="n">Client</span>
 <span class="kn">from</span> <span class="nn">fbchat.models</span> <span class="kn">import</span> <span class="n">Message</span><span class="p">,</span> <span class="n">ThreadType</span>
 <span class="kn">import</span> <span class="nn">schedule</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Sau đó tạo một class <code>Bot</code> kế thừa <code>Client</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Bot</span><span class="p">(</span><span class="n">Client</span><span class="p">):</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Bot</span><span class="p">(</span><span class="n">Client</span><span class="p">):</span>
+</pre></div>
 
 
 <p>Tạo 1 function trong class <code>Bot</code> để thực hiện gửi tin nhắn, dưới đây là code của mình:</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Bot</span><span class="p">(</span><span class="n">Client</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Bot</span><span class="p">(</span><span class="n">Client</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">do_something</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1">#Đổi tên function cho phù hợp</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
@@ -89,17 +89,17 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">sendLocalImage</span><span class="p">(</span><span class="s1">&#39;/home/dosontung007/Pictures/wallpaper.png&#39;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">Message</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;Chúc mừng năm mới&#39;</span><span class="p">),</span>
                                 <span class="n">thread_id</span><span class="o">=</span><span class="n">user_id</span><span class="p">,</span> <span class="n">thread_type</span><span class="o">=</span><span class="n">ThreadType</span><span class="o">.</span><span class="n">USER</span><span class="p">)</span>
             <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Sent success to </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">user_id</span><span class="p">))</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Và để nhận được tin nhắn từ những người gửi cho mình cho mình , ta viết function <code>onMessage</code> trong class <code>Bot</code> và xử lí các tin nhắn đó:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">onMessage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message_object</span><span class="p">,</span> <span class="n">author_id</span><span class="p">,</span> <span class="n">thread_id</span><span class="p">,</span> <span class="n">thread_type</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">onMessage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message_object</span><span class="p">,</span> <span class="n">author_id</span><span class="p">,</span> <span class="n">thread_id</span><span class="p">,</span> <span class="n">thread_type</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="n">lst_msg</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="s1">&#39;Chúc mừng năm mới&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">author_id</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">uid</span> <span class="ow">and</span> <span class="n">message_object</span><span class="o">.</span><span class="n">text</span> <span class="ow">in</span> <span class="n">lst_msg</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">Message</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;Năm mới chúc .....&#39;</span><span class="p">),</span>
                   <span class="n">thread_id</span><span class="o">=</span><span class="n">author_id</span><span class="p">,</span>
                   <span class="n">thread_type</span><span class="o">=</span><span class="n">thread_type</span><span class="p">)</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Tham khảo thêm tại https://fbchat.readthedocs.io/en/master/</p>
@@ -107,35 +107,35 @@
 <p><code>Bot(os.environ['USERNAME_'], os.environ['PASSWORD']).do_something()</code></p>
 <p>Class <code>Bot</code> kế thừa <code>Client</code>, khi tạo một Bot object, ta cần truyền 2 tham số là username và password của Facebook của bạn. Do đó bạn cần set value cho 2 var <code>USERNAME_</code> và <code>PASSWORD</code> bằng câu lệnh <code>export var=value</code> trong bash trước khi chạy chương trình (vì ta không muốn ghi trực tiếp password vào file code - lộ mật khẩu nếu up lên GitHub). Lưu ý <code>USERNAME_</code> chứ không phải <code>USERNAME</code>.</p>
 <p>Bây giờ còn một công việc duy nhất là hẹn giờ cho job làm việc thôi!</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">job</span><span class="p">():</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">job</span><span class="p">():</span>
     <span class="n">Bot</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;USERNAME_&#39;</span><span class="p">],</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;PASSWORD&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">do_something</span><span class="p">()</span>
 
 
 <span class="k">def</span> <span class="nf">send_msg</span><span class="p">():</span>
     <span class="n">schedule</span><span class="o">.</span><span class="n">every</span><span class="p">()</span><span class="o">.</span><span class="n">day</span><span class="o">.</span><span class="n">at</span><span class="p">(</span><span class="s1">&#39;00:00&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="n">job_that_executes_once</span><span class="p">))</span>
 
-    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
         <span class="n">schedule</span><span class="o">.</span><span class="n">run_pending</span><span class="p">()</span>
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Thay đổi <code>00:00</code> bằng thời gian mà bạn muốn hẹn giờ.</p>
 <p>Để nhận được message, ta sử dụng function <code>listen</code> từ <code>Client</code> , về cơ bản <code>listen</code> khi chạy sẽ truyền các arguments vào <code>onMessage</code> mỗi lần Facebook bạn có event mới (VD: có người nhắn cho bạn, bạn nhắn cho người khác hoặc tin nhắn trong nhóm, ...):</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">reply_msg</span><span class="p">():</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">reply_msg</span><span class="p">():</span>
     <span class="n">Bot</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;USERNAME_&#39;</span><span class="p">],</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;PASSWORD&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">listen</span><span class="p">()</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Ở function main, mình sử dụng lib threading để chạy song song 2 job là reply_msg và send_msg :</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">send_msg</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
     <span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">reply_msg</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Cuối cùng cũng xong 🎉.Sau tất cả, đây là một con chatbot hoàn chỉnh :</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">logging</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span>
@@ -176,7 +176,7 @@
 
 <span class="k">def</span> <span class="nf">send_msg</span><span class="p">():</span>
     <span class="n">schedule</span><span class="o">.</span><span class="n">every</span><span class="p">()</span><span class="o">.</span><span class="n">day</span><span class="o">.</span><span class="n">at</span><span class="p">(</span><span class="s1">&#39;00:00&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="n">job_that_executes_once</span><span class="p">))</span>
-    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
         <span class="n">schedule</span><span class="o">.</span><span class="n">run_pending</span><span class="p">()</span>
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
@@ -194,15 +194,15 @@
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Bây giờ export username, password rồi chạy thôi. Và đây là thành quả:</p>
 <p><img alt="Imgur" src="https://i.imgur.com/VldjbDi.png"></p>
 <p>Nếu bạn muốn chạy luôn mà không cần hẹn giờ thì chỉ cần xoá function <code>job_that_executes_once</code> và thay function <code>send_msg</code> bằng:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">send_msg</span><span class="p">():</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">send_msg</span><span class="p">():</span>
     <span class="n">Bot</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;USERNAME_&#39;</span><span class="p">],</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;PASSWORD&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">do_something</span><span class="p">()</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>HẾT.</p>

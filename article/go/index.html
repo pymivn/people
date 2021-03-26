@@ -107,9 +107,9 @@ nhiều lần</li>
 tạo ra file binary, rồi sau đó mới chạy được file này.
 <a href="http://pp.pymi.vn/article/repl/">Go không có sẵn REPL, không bật lên gõ code trực tiếp như Python được</a>.
 Mỗi lần sửa gì, thử gì, phải compile lại rồi mới chạy được.</p>
-<div class="highlight"><pre><span></span><code>go build
+<div class="highlight"><pre><span></span>go build
 ./filename
-</code></pre></div>
+</pre></div>
 
 
 <p>Vậy nên cách nhanh nhất để thử 1 đoạn code trong Go có lẽ là viết unittest.
@@ -121,17 +121,17 @@ compile rồi chạy file kết quả luôn.</p>
 <p>Go là ngôn ngữ lập trình đầu tiên đưa 1 công cụ format code tự động vào tiêu chuẩn,
 chấm dứt mọi tranh cãi về code-style/format code. Ý tưởng tuyệt vời này sau được
 copy sang nhiều ngôn ngữ khác (như <a href="http://pp.pymi.vn/article/black/">Python black</a>)</p>
-<div class="highlight"><pre><span></span><code>go fmt
-</code></pre></div>
+<div class="highlight"><pre><span></span>go fmt
+</pre></div>
 
 
 <h4>Chú ý</h4>
 <p>Không xuống dòng tùy tiện trong <code>()</code> như Python (Vd: khi gọi function). Ví dụ
 sau sẽ <a href="https://play.golang.org/p/dluh98DPVIR">không compile</a>:</p>
-<div class="highlight"><pre><span></span><code><span class="nx">fmt</span><span class="p">.</span><span class="nx">Print</span><span class="p">(</span>
+<div class="highlight"><pre><span></span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Print</span><span class="p">(</span>
         <span class="s">&quot;Hello, world!&quot;</span>
         <span class="p">)</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Go <a href="https://golang.org/ref/spec#Semicolons">tự động thêm <code>;</code> vào các dòng
@@ -153,42 +153,42 @@ actually are.</p>
 </blockquote>
 <p>Static/dynamic typing nói tới kiểu (type) của 1 biến (variable/name).
 Trong dynamic typing, kiểu của 1 biến có thể thay đổi:</p>
-<div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;PyMi&quot;</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Trong static typing, kiểu của 1 biến là cố định, và được khai báo ngay từ
 trước khi dùng, code sau sẽ gặp lỗi khi compile, và không tạo ra binary nào để chạy.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">x</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">10</span>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">x</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">10</span>
 <span class="nx">x</span> <span class="p">=</span> <span class="s">&quot;PyMi&quot;</span>
-</code></pre></div>
+</pre></div>
 
 
-<div class="highlight"><pre><span></span><code>cannot use <span class="s2">&quot;PyMi&quot;</span> <span class="o">(</span><span class="nb">type</span> untyped string<span class="o">)</span> as <span class="nb">type</span> int in assignment
-</code></pre></div>
+<div class="highlight"><pre><span></span>cannot use <span class="s2">&quot;PyMi&quot;</span> <span class="o">(</span><span class="nb">type</span> untyped string<span class="o">)</span> as <span class="nb">type</span> int in assignment
+</pre></div>
 
 
 <p>Trong Python3.6+, <a href="http://pp.pymi.vn/article/mypy/">sử dụng type annotation, kết hợp với mypy</a>
 để check cũng sẽ
 cho lỗi tương tự (nhưng vẫn chạy được).</p>
-<div class="highlight"><pre><span></span><code><span class="n">x</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span>
+<div class="highlight"><pre><span></span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;PyMi&quot;</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</code></pre></div>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
 
 
-<div class="highlight"><pre><span></span><code>$ mypy typetest.py
+<div class="highlight"><pre><span></span>$ mypy typetest.py
 typetest.py:2: error: Incompatible types in assignment <span class="o">(</span>expression has <span class="nb">type</span> <span class="s2">&quot;str&quot;</span>, variable has <span class="nb">type</span> <span class="s2">&quot;int&quot;</span><span class="o">)</span>
 Found <span class="m">1</span> error in <span class="m">1</span> file <span class="o">(</span>checked <span class="m">1</span> <span class="nb">source</span> file<span class="o">)</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Kiểu của các biến trong Go nói chung phải khai báo (declare), Go có thể tự suy
 luận (type inference) được trong một vài trường hợp đơn giản.</p>
-<div class="highlight"><pre><span></span><code><span class="nx">x</span> <span class="o">:=</span> <span class="mi">10</span>
+<div class="highlight"><pre><span></span><span class="nx">x</span> <span class="o">:=</span> <span class="mi">10</span>
 <span class="nx">s</span> <span class="o">:=</span> <span class="s">&quot;PyMi&quot;</span>
-</code></pre></div>
+</pre></div>
 
 
 <h3>Low level</h3>
@@ -232,14 +232,14 @@ làm việc với file, process...</p>
 <h3>Viết code Go</h3>
 <p><a href="https://golang.org/doc/tutorial/getting-started">Cài Go lên máy rồi viết code ra file</a>, hoặc code online trên trang Play <a href="https://play.golang.org/">https://play.golang.org/</a></p>
 <p>Go chạy code từ function <code>main</code> thuộc <code>package main</code>. code "Hello world!" như sau:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
 
 <span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Hello, world.&quot;</span><span class="p">)</span>
 <span class="p">}</span>
-</code></pre></div>
+</pre></div>
 
 
 <h3>Naming</h3>
@@ -257,13 +257,13 @@ Nếu viết hoa, var/function/type đó sẽ trở thành "public", code bên n
 <li>array/slice: Go array giống như C, các phần tử phải cùng kiểu, và kích thước cố định không đổi. <a href="https://www.youtube.com/watch?v=5DVV36uqQ4E">Array ít được dùng trực tiếp</a>
   nó được dùng bên dưới slice và slice linh hoạt như list trong Python. Ví dụ về slice</li>
 </ul>
-<div class="highlight"><pre><span></span><code>    <span class="nx">ns</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">}</span>
+<div class="highlight"><pre><span></span>    <span class="nx">ns</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">}</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%v\n&quot;</span><span class="p">,</span> <span class="nx">ns</span><span class="p">)</span>
     <span class="nx">ns</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">ns</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%v\n&quot;</span><span class="p">,</span> <span class="nx">ns</span><span class="p">)</span>
     <span class="nx">ns</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">ns</span><span class="p">,</span> <span class="nx">ns</span><span class="o">...</span><span class="p">)</span>  <span class="c1">// như extend trong python list</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%v\n&quot;</span><span class="p">,</span> <span class="nx">ns</span><span class="p">)</span>
-</code></pre></div>
+</pre></div>
 
 
 <p><a href="https://play.golang.org/p/SCW8F0EqCmW">https://play.golang.org/p/SCW8F0EqCmW</a></p>
@@ -274,7 +274,7 @@ key-value, tìm kiếm nhanh, nhưng không dùng như 1 object như dict Python
 <code>{"name": "Pymier", "age": 20}</code>,
 do map phải có kiểu cố định cho key, value. <a href="https://play.golang.org/p/JRu3lp_mEGj">Xem code</a></li>
 </ul>
-<div class="highlight"><pre><span></span><code>    <span class="nx">users</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span><span class="kt">string</span><span class="p">)</span>
+<div class="highlight"><pre><span></span>    <span class="nx">users</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span><span class="kt">string</span><span class="p">)</span>
 
     <span class="nx">users</span><span class="p">[</span><span class="mi">20081269</span><span class="p">]</span> <span class="p">=</span> <span class="s">&quot;Pymier69&quot;</span>
     <span class="nx">users</span><span class="p">[</span><span class="mi">20081234</span><span class="p">]</span> <span class="p">=</span> <span class="s">&quot;Pymier1&quot;</span>
@@ -283,16 +283,16 @@ do map phải có kiểu cố định cho key, value. <a href="https://play.gola
         <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%d: %s\n&quot;</span><span class="p">,</span> <span class="nx">k</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
     <span class="p">}</span>
     <span class="nb">println</span><span class="p">(</span><span class="nx">users</span><span class="p">[</span><span class="mi">20081239</span><span class="p">])</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Cú pháp <a href="https://golang.org/ref/spec#Composite_literals"><code>composite literal</code></a> giúp tạo giá trị cho struct/slice/array/map.</p>
-<div class="highlight"><pre><span></span><code>  <span class="nx">xs</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">}</span>
+<div class="highlight"><pre><span></span>  <span class="nx">xs</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">}</span>
   <span class="nx">m</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span>
          <span class="mi">123</span><span class="p">:</span> <span class="s">&quot;foo&quot;</span><span class="p">,</span>
          <span class="mi">345</span><span class="p">:</span> <span class="s">&quot;bar&quot;</span><span class="p">,</span>
      <span class="p">}</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Các kiểu khác <code>struct</code>, <code>pointer</code>, <code>function</code>, <code>interface</code>, <code>channel</code>
@@ -306,7 +306,7 @@ với nhau.</p>
 <p>struct không cung cấp các tính năng của OOP (như inheritance), nhưng cũng
 tạo ra 1 kiểu dữ liệu mới và cho phép đóng gói dữ liệu (data) với tính năng
 (method) lại với nhau. <a href="https://play.golang.org/p/tQMPLn9OXcj">https://play.golang.org/p/tQMPLn9OXcj</a></p>
-<div class="highlight"><pre><span></span><code><span class="kd">type</span> <span class="nx">Rectangle</span> <span class="kd">struct</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Rectangle</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Width</span>  <span class="kt">float64</span>
     <span class="nx">Height</span> <span class="kt">float64</span>
 <span class="p">}</span>
@@ -319,11 +319,11 @@ tạo ra 1 kiểu dữ liệu mới và cho phép đóng gói dữ liệu (data)
     <span class="nx">r</span> <span class="o">:=</span> <span class="nx">Rectangle</span><span class="p">{</span><span class="nx">Width</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">Height</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%f %T&quot;</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">r</span><span class="p">.</span><span class="nx">Area</span><span class="p">())</span>
 <span class="p">}</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Code tương tự trong Python3, với type annotation</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Rectangle</span><span class="p">():</span>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Rectangle</span><span class="p">():</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">width</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">height</span>
@@ -332,8 +332,8 @@ tạo ra 1 kiểu dữ liệu mới và cho phép đóng gói dữ liệu (data)
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span>
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">Rectangle</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">area</span><span class="p">())</span>
-</code></pre></div>
+    <span class="k">print</span><span class="p">(</span><span class="n">Rectangle</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">area</span><span class="p">())</span>
+</pre></div>
 
 
 <p>Trong Go, function gắn với các struct gọi là method, <code>(r Rectangle)</code> gọi là receiver, đứng trước tên <code>Area()</code> trông lạ so với các ngôn ngữ khác, nhưng nó đóng vai trò như <code>self</code> trong Python method.</p>
@@ -352,30 +352,30 @@ trị do không cần có method nào.</p>
 Go thành dynamic typing như Python. Nó như lối thoát linh hoạt giữa mọi
 sự cứng nhắc/static.</p>
 <p>Sử dụng type assertion để truy cập giá trị ẩn dưới <code>interface{}</code>:</p>
-<div class="highlight"><pre><span></span><code>    <span class="kd">var</span> <span class="nx">anything</span> <span class="kd">interface</span><span class="p">{}</span>
+<div class="highlight"><pre><span></span>    <span class="kd">var</span> <span class="nx">anything</span> <span class="kd">interface</span><span class="p">{}</span>
     <span class="nx">anything</span> <span class="p">=</span> <span class="s">&quot;PyMi.vn&quot;</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%v %T\n&quot;</span><span class="p">,</span> <span class="nx">anything</span><span class="p">,</span> <span class="nx">anything</span><span class="p">)</span>
     <span class="nx">anything</span> <span class="p">=</span> <span class="mi">42</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%v %T\n&quot;</span><span class="p">,</span> <span class="nx">anything</span><span class="p">,</span> <span class="nx">anything</span><span class="p">)</span>
     <span class="nx">x</span> <span class="o">:=</span> <span class="mi">10</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%v %T\n&quot;</span><span class="p">,</span> <span class="nx">x</span><span class="o">+</span><span class="nx">anything</span><span class="p">.(</span><span class="kt">int</span><span class="p">),</span> <span class="nx">anything</span><span class="p">.(</span><span class="kt">int</span><span class="p">))</span>
-</code></pre></div>
+</pre></div>
 
 
 <p><a href="https://play.golang.org/p/mNXTI-4C3pU">https://play.golang.org/p/mNXTI-4C3pU</a></p>
 <p>hoặc dùng <code>switch</code> để xử lý các kiểu khác nhau:</p>
-<div class="highlight"><pre><span></span><code>    <span class="k">switch</span> <span class="nx">v</span> <span class="o">:=</span> <span class="nx">i</span><span class="p">.(</span><span class="kd">type</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span>    <span class="k">switch</span> <span class="nx">v</span> <span class="o">:=</span> <span class="nx">i</span><span class="p">.(</span><span class="kd">type</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">case</span> <span class="kt">int</span><span class="p">:</span>
         <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Twice %v is %v\n&quot;</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">v</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
     <span class="k">case</span> <span class="kt">string</span><span class="p">:</span>
         <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%q is %v bytes long\n&quot;</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">v</span><span class="p">))</span>
-</code></pre></div>
+</pre></div>
 
 
 <h3>Control flow (if/else/for)</h3>
 <p>Go không có while, dùng for để loop đủ kiểu. Để lặp vô hạn như while, dùng <code>for { }</code>.</p>
 <p>if cho phép định nghĩa một biến chỉ dùng trong if, khá giống với warus operator của Python 3.8.</p>
-<div class="highlight"><pre><span></span><code>    <span class="nx">y</span> <span class="o">:=</span> <span class="mi">3</span>
+<div class="highlight"><pre><span></span>    <span class="nx">y</span> <span class="o">:=</span> <span class="mi">3</span>
     <span class="k">if</span> <span class="nx">x</span> <span class="o">:=</span> <span class="nx">y</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span> <span class="nx">x</span> <span class="p">&gt;</span> <span class="mi">2</span> <span class="p">{</span>
         <span class="nb">println</span><span class="p">(</span><span class="s">&quot;big number&quot;</span><span class="p">)</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
@@ -388,16 +388,16 @@ sự cứng nhắc/static.</p>
             <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%d %s\n&quot;</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span>
         <span class="p">}</span>
     <span class="p">}</span>
-</code></pre></div>
+</pre></div>
 
 
 <p><a href="https://play.golang.org/p/rHJP4ghomzo">https://play.golang.org/p/rHJP4ghomzo</a></p>
 <h3>Function</h3>
 <p>Định nghĩa function không khác Python đáng kể, ngoại trừ việc thay vì return tuple, Go có thể return nhiều giá trị (và không có kiểu tuple).</p>
-<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nx">TwiceAndThrice</span><span class="p">(</span><span class="nx">x</span> <span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">TwiceAndThrice</span><span class="p">(</span><span class="nx">x</span> <span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">x</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">x</span> <span class="o">*</span> <span class="mi">3</span>
 <span class="p">}</span>
-</code></pre></div>
+</pre></div>
 
 
 <p><a href="https://golang.org/doc/faq#overloading">Go không hỗ trợ overloading - một function dùng với số lượng argument khác nhau</a>
@@ -409,32 +409,32 @@ Function nhận function khác làm argument được gọi là <code>higher ord
 <h3>Error handling</h3>
 <p>Go không có exception, lỗi không được xử lý khiến chương trình kết thúc qua việc gọi function "panic" (runtime error).
 Ví dụ khi dùng type assertion để truy cập kiểu string dưới 1 empty interface chứa giá trị int.</p>
-<div class="highlight"><pre><span></span><code><span class="nx">panic</span><span class="p">:</span> <span class="kd">interface</span> <span class="nx">conversion</span><span class="p">:</span> <span class="kd">interface</span> <span class="p">{}</span> <span class="nx">is</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">not</span> <span class="kt">string</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="nx">panic</span><span class="p">:</span> <span class="kd">interface</span> <span class="nx">conversion</span><span class="p">:</span> <span class="kd">interface</span> <span class="p">{}</span> <span class="nx">is</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">not</span> <span class="kt">string</span>
+</pre></div>
 
 
 <p>Các function thay vì tạo ra exception, thường trả về giá trị kiểu <code>error</code> kèm kết quả.
 Ví dụ function trong package <code>strconv</code> dùng để convert string thành int:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nx">Atoi</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">Atoi</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
 
 
 <p>Nếu thành công, error sẽ là <code>nil</code> còn biến kiểu int chứa giá trị, nếu s không phải dạng string của 1 số int, error sẽ có giá trị khác <code>nil</code> và thường chứa chi tiết về lỗi xảy ra. <code>error</code> là kiểu dữ liệu interface.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">type</span> <span class="kt">error</span> <span class="kd">interface</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="kd">type</span> <span class="kt">error</span> <span class="kd">interface</span> <span class="p">{</span>
     <span class="nx">Error</span><span class="p">()</span> <span class="kt">string</span>
 <span class="p">}</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>mọi kiểu dữ liệu có method <code>Error()</code> return <code>string</code> đều có thể là 1 <code>error</code>.</p>
 <p>Do các function đều viết theo cách này, nên code gọi 1 function trong Go thường đi kèm với 1 đoạn kiểm tra <code>error</code> ngay sau đó rồi mới xử lý giá trị nhận được:</p>
-<div class="highlight"><pre><span></span><code>    <span class="nx">s</span> <span class="o">:=</span> <span class="s">&quot;42&quot;</span>
+<div class="highlight"><pre><span></span>    <span class="nx">s</span> <span class="o">:=</span> <span class="s">&quot;42&quot;</span>
     <span class="nx">value</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">strconv</span><span class="p">.</span><span class="nx">Atoi</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
     <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
         <span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
     <span class="p">}</span>
     <span class="nb">println</span><span class="p">(</span><span class="nx">value</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Cách làm này gây nhiều tranh cãi, nhưng vẫn là cách làm chính thống của Go.
@@ -443,16 +443,16 @@ Bỏ qua giá trị của <code>err</code> là chuyện hoàn toàn làm đượ
 <p>Cách return error này không ÉP được lập trình viên phải xử lý mọi lỗi, nhưng tạo ra 1 nền văn hóa trong cộng đồng code Golang: luôn xử lý (hay ít nhất là nghĩ tới) error mọi lúc, mọi nơi.</p>
 <h3>Import</h3>
 <p>Cú pháp tương tự Python</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="s2">&quot;packagename&quot;</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="s2">&quot;packagename&quot;</span>
 <span class="kn">import</span> <span class="s2">&quot;fmt&quot;</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>rồi gọi function qua <code>package.Function</code>, vd: <code>fmt.Println</code></p>
 <h3>Package &amp; Install 3rd packages</h3>
 <p>Đầu mỗi file code Go phải bắt đầu bằng</p>
-<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">packagename</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">packagename</span>
+</pre></div>
 
 
 <p>Tất cả các file go trong cùng 1 thư mục (không tính thư mục con) phải khai
@@ -462,13 +462,13 @@ thuận tiện tổ chức code, chứ vẫn là trong 1 file. Các function tro
 package (khác file) có thể gọi nhau thoải mái, không cần import lẫn nhau.</p>
 <p>Việc này khác với Python, mỗi file.py tự động là 1 module riêng biệt.</p>
 <p>Go cài package bằng lệnh <code>go get</code>, sau đó import tên package - là một đường dẫn theo cấu trúc URL online.</p>
-<div class="highlight"><pre><span></span><code>$ go get github.com/stretchr/testify/assert
-</code></pre></div>
+<div class="highlight"><pre><span></span>$ go get github.com/stretchr/testify/assert
+</pre></div>
 
 
 <p>Package "testing" của Go không có "assert", cài package từ github rồi dùng
 assert.Equal để kiểm tra 2 giá trị có bằng nhau không, và message hiển thị khi chúng không bằng nhau.</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// main_test.go</span>
+<div class="highlight"><pre><span></span><span class="c1">// main_test.go</span>
 <span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
@@ -480,15 +480,15 @@ assert.Equal để kiểm tra 2 giá trị có bằng nhau không, và message h
     <span class="c1">// assert equality</span>
     <span class="nx">assert</span><span class="p">.</span><span class="nx">Equal</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="mi">123</span><span class="p">,</span> <span class="mi">123</span><span class="p">,</span> <span class="s">&quot;they should be equal&quot;</span><span class="p">)</span>
 <span class="p">}</span>
-</code></pre></div>
+</pre></div>
 
 
-<div class="highlight"><pre><span></span><code> $ go <span class="nb">test</span> -v
+<div class="highlight"><pre><span></span> $ go <span class="nb">test</span> -v
 <span class="o">===</span> RUN   TestSomething
 --- PASS: TestSomething <span class="o">(</span><span class="m">0</span>.00s<span class="o">)</span>
 PASS
 ok      _/home/hvn/MyData   <span class="m">0</span>.002s
-</code></pre></div>
+</pre></div>
 
 
 <p>Danh sách các package xem tại <a href="https://github.com/avelino/awesome-go">awesome-go</a> và <a href="https://godoc.org/">godoc</a></p>
@@ -499,7 +499,7 @@ ok      _/home/hvn/MyData   <span class="m">0</span>.002s
 <li>Tạo file với os.Create, thu được 1 File struct</li>
 <li>Gọi method File.WriteString để ghi string</li>
 </ul>
-<div class="highlight"><pre><span></span><code>    <span class="nx">file</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Create</span><span class="p">(</span><span class="s">&quot;bundau.mamtom&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span>    <span class="nx">file</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Create</span><span class="p">(</span><span class="s">&quot;bundau.mamtom&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
         <span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
     <span class="p">}</span>
@@ -508,7 +508,7 @@ ok      _/home/hvn/MyData   <span class="m">0</span>.002s
     <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
         <span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
     <span class="p">}</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Nếu bỏ qua phần xử lý error thì cũng không khác Python là mấy.</p>
@@ -518,7 +518,7 @@ ok      _/home/hvn/MyData   <span class="m">0</span>.002s
 <li>Tạo 1 "Scanner" để giúp xử lý logic đọc file theo từng dòng</li>
 <li>Lặp qua scanner.Scan() để lấy từng dòng qua scanner.Text()</li>
 </ul>
-<div class="highlight"><pre><span></span><code>    <span class="nx">file</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span><span class="s">&quot;bundau.mamtom&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span>    <span class="nx">file</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span><span class="s">&quot;bundau.mamtom&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
         <span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
     <span class="p">}</span>
@@ -534,7 +534,7 @@ ok      _/home/hvn/MyData   <span class="m">0</span>.002s
         <span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
 
     <span class="p">}</span>
-</code></pre></div>
+</pre></div>
 
 
 <p><a href="https://play.golang.org/p/Jv80_bRJc2H">https://play.golang.org/p/Jv80_bRJc2H</a></p>
@@ -543,7 +543,7 @@ ok      _/home/hvn/MyData   <span class="m">0</span>.002s
 <blockquote>
 <p>Find the sum of all the multiples of 3 or 5 below 1000.</p>
 </blockquote>
-<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
 
@@ -556,14 +556,14 @@ ok      _/home/hvn/MyData   <span class="m">0</span>.002s
     <span class="p">}</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%d\n&quot;</span><span class="p">,</span> <span class="nx">sum</span><span class="p">)</span>
 <span class="p">}</span>
-</code></pre></div>
+</pre></div>
 
 
 <p>Giải bài <a href="https://projecteuler.net/problem=16">Project Euler 16</a></p>
 <blockquote>
 <p>What is the sum of the digits of the number 2 to the power of 1000?</p>
 </blockquote>
-<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -586,7 +586,7 @@ ok      _/home/hvn/MyData   <span class="m">0</span>.002s
     <span class="p">}</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%d\n&quot;</span><span class="p">,</span> <span class="nx">sum</span><span class="p">)</span>
 <span class="p">}</span>
-</code></pre></div>
+</pre></div>
 
 
 <h2>People &amp; Community</h2>
