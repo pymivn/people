@@ -393,7 +393,6 @@ Ví dụ trong Python viết:</p>
 <p>Script liệt kê các GitHub repositories của 1 GitHub user (NOTE: no pagination)</p>
 <div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm">Script lists GitHub repos of given username.</span>
-<span class="cm">No pagination handling.</span>
 <span class="cm">*/</span>
 <span class="kn">package</span> <span class="nx">main</span>
 
@@ -427,8 +426,8 @@ Ví dụ trong Python viết:</p>
 
     <span class="nx">decoder</span> <span class="o">:=</span> <span class="nx">json</span><span class="p">.</span><span class="nx">NewDecoder</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">Body</span><span class="p">)</span>
     <span class="kd">var</span> <span class="nx">repos</span> <span class="p">[]</span><span class="kd">struct</span> <span class="p">{</span>
-        <span class="nx">Name</span>     <span class="kt">string</span>
-        <span class="nx">Html_url</span> <span class="kt">string</span>
+        <span class="nx">Name</span>    <span class="kt">string</span>
+        <span class="nx">HtmlUrl</span> <span class="kt">string</span> <span class="s">`json:&quot;html_url&quot;`</span>
     <span class="p">}</span>
     <span class="nx">err</span> <span class="p">=</span> <span class="nx">decoder</span><span class="p">.</span><span class="nx">Decode</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">repos</span><span class="p">)</span>
     <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
@@ -436,7 +435,7 @@ Ví dụ trong Python viết:</p>
     <span class="p">}</span>
 
     <span class="k">for</span> <span class="nx">idx</span><span class="p">,</span> <span class="nx">i</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">repos</span> <span class="p">{</span>
-        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%3d %s %s\n&quot;</span><span class="p">,</span> <span class="nx">idx</span><span class="p">,</span> <span class="nx">i</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="nx">i</span><span class="p">.</span><span class="nx">Html_url</span><span class="p">)</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%3d %s %s\n&quot;</span><span class="p">,</span> <span class="nx">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nx">i</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="nx">i</span><span class="p">.</span><span class="nx">HtmlUrl</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
