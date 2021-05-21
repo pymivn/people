@@ -96,7 +96,7 @@ Ta sẽ thấy microcontroller nhỏ bé và "yếu ớt" đến chừng nào.</
 <p>Cắm thiết bị vào máy tính sử dụng dây micro USB (dây sạc điện thoại android),
 sẽ thấy nháy đèn trên thiết bị, gõ lệnh <code>dmesg</code> để xem Linux kernel báo nhận
 thiết bị:</p>
-<div class="highlight"><pre><span></span>$ dmesg
+<div class="highlight"><pre><span></span><code>$ dmesg
 ...
 <span class="o">[</span>  <span class="m">992</span>.253009<span class="o">]</span> usb <span class="m">2</span>-1: new full-speed USB device number <span class="m">5</span> using xhci_hcd
 <span class="o">[</span>  <span class="m">992</span>.402181<span class="o">]</span> usb <span class="m">2</span>-1: New USB device found, <span class="nv">idVendor</span><span class="o">=</span>1a86, <span class="nv">idProduct</span><span class="o">=</span><span class="m">7523</span>
@@ -104,70 +104,65 @@ thiết bị:</p>
 <span class="o">[</span>  <span class="m">992</span>.402187<span class="o">]</span> usb <span class="m">2</span>-1: Product: USB2.0-Serial
 <span class="o">[</span>  <span class="m">992</span>.402757<span class="o">]</span> ch341 <span class="m">2</span>-1:1.0: ch341-uart converter detected
 <span class="o">[</span>  <span class="m">992</span>.403119<span class="o">]</span> usb <span class="m">2</span>-1: ch341-uart converter now attached to ttyUSB0
-</pre></div>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span>$ file /dev/ttyUSB0
+<div class="highlight"><pre><span></span><code>$ file /dev/ttyUSB0
 /dev/ttyUSB0: character special <span class="o">(</span><span class="m">188</span>/0<span class="o">)</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Ta có thấy xuất hiện 1 file mới gọi là <code>/dev/ttyUSB0</code>, đây chính là thiết bị
 vừa kết nối.</p>
 <h3>Cài đặt MicroPython sử dụng esptool</h3>
 <p>Cài đặt esptool dùng pip:</p>
-<div class="highlight"><pre><span></span>$ pip install esptool
+<div class="highlight"><pre><span></span><code>$ pip install esptool
 Collecting esptool
 ...
 Successfully installed ecdsa-0.13 esptool-2.5.1 pyaes-1.6.1 pyserial-3.4
-</pre></div>
-
+</code></pre></div>
 
 <p>Xóa nội dung hiện tại trong flash memory</p>
-<div class="highlight"><pre><span></span>$ sudo /home/hvn/py36/bin/esptool.py --port /dev/ttyUSB0 erase_flash
-esptool.py v2.5.1
-Serial port /dev/ttyUSB0
-Connecting....
-Detecting chip type... ESP8266
-Chip is ESP8266EX
-Features: WiFi
-MAC: b4:e6:2d:3b:22:1b
-Uploading stub...
-Running stub...
-Stub running...
-Erasing flash <span class="o">(</span>this may take a <span class="k">while</span><span class="o">)</span>...
-Chip erase completed successfully in <span class="m">1</span>.6s
-Hard resetting via RTS pin...
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="o">$</span> <span class="n">sudo</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">hvn</span><span class="o">/</span><span class="n">py36</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">esptool</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">port</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB0</span> <span class="n">erase_flash</span>
+<span class="n">esptool</span><span class="o">.</span><span class="n">py</span> <span class="n">v2</span><span class="o">.</span><span class="mf">5.1</span>
+<span class="n">Serial</span> <span class="n">port</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB0</span>
+<span class="n">Connecting</span><span class="o">....</span>
+<span class="n">Detecting</span> <span class="n">chip</span> <span class="n">type</span><span class="o">...</span> <span class="n">ESP8266</span>
+<span class="n">Chip</span> <span class="k">is</span> <span class="n">ESP8266EX</span>
+<span class="n">Features</span><span class="p">:</span> <span class="n">WiFi</span>
+<span class="n">MAC</span><span class="p">:</span> <span class="n">b4</span><span class="p">:</span><span class="n">e6</span><span class="p">:</span><span class="mi">2</span><span class="n">d</span><span class="p">:</span><span class="mi">3</span><span class="n">b</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span><span class="mi">1</span><span class="n">b</span>
+<span class="n">Uploading</span> <span class="n">stub</span><span class="o">...</span>
+<span class="n">Running</span> <span class="n">stub</span><span class="o">...</span>
+<span class="n">Stub</span> <span class="n">running</span><span class="o">...</span>
+<span class="n">Erasing</span> <span class="n">flash</span> <span class="p">(</span><span class="n">this</span> <span class="n">may</span> <span class="n">take</span> <span class="n">a</span> <span class="k">while</span><span class="p">)</span><span class="o">...</span>
+<span class="n">Chip</span> <span class="n">erase</span> <span class="n">completed</span> <span class="n">successfully</span> <span class="ow">in</span> <span class="mf">1.6</span><span class="n">s</span>
+<span class="n">Hard</span> <span class="n">resetting</span> <span class="n">via</span> <span class="n">RTS</span> <span class="n">pin</span><span class="o">...</span>
+</code></pre></div>
 
 <p>Tải MicroPython bản dành cho ESP8266: bản mới nhất tại thời điểm viết bài
 http://micropython.org/resources/firmware/esp8266-20180511-v1.9.4.bin</p>
 <p>Ghi micropython lên flash memory:</p>
-<div class="highlight"><pre><span></span>$ sudo /home/hvn/py36/bin/esptool.py --port /dev/ttyUSB0 --baud <span class="m">460800</span> write_flash --flash_size<span class="o">=</span>detect -fm dio <span class="m">0</span> ~/esp8266-20180511-v1.9.4.bin
-esptool.py v2.5.1
-Serial port /dev/ttyUSB0
-Connecting....
-Detecting chip type... ESP8266
-Chip is ESP8266EX
-Features: WiFi
-MAC: b4:e6:2d:3b:22:1b
-Uploading stub...
-Running stub...
-Stub running...
-Changing baud rate to <span class="m">460800</span>
-Changed.
-Configuring flash size...
-Auto-detected Flash size: 4MB
-Flash params <span class="nb">set</span> to 0x0240
-Compressed <span class="m">604872</span> bytes to <span class="m">394893</span>...
-Wrote <span class="m">604872</span> bytes <span class="o">(</span><span class="m">394893</span> compressed<span class="o">)</span> at 0x00000000 in <span class="m">9</span>.0 seconds <span class="o">(</span>effective <span class="m">536</span>.4 kbit/s<span class="o">)</span>...
-Hash of data verified.
+<div class="highlight"><pre><span></span><code><span class="o">$</span> <span class="n">sudo</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">hvn</span><span class="o">/</span><span class="n">py36</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">esptool</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">port</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB0</span> <span class="o">--</span><span class="n">baud</span> <span class="mi">460800</span> <span class="n">write_flash</span> <span class="o">--</span><span class="n">flash_size</span><span class="o">=</span><span class="n">detect</span> <span class="o">-</span><span class="n">fm</span> <span class="n">dio</span> <span class="mi">0</span> <span class="o">~/</span><span class="n">esp8266</span><span class="o">-</span><span class="mi">20180511</span><span class="o">-</span><span class="n">v1</span><span class="o">.</span><span class="mf">9.4</span><span class="o">.</span><span class="n">bin</span>
+<span class="n">esptool</span><span class="o">.</span><span class="n">py</span> <span class="n">v2</span><span class="o">.</span><span class="mf">5.1</span>
+<span class="n">Serial</span> <span class="n">port</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB0</span>
+<span class="n">Connecting</span><span class="o">....</span>
+<span class="n">Detecting</span> <span class="n">chip</span> <span class="n">type</span><span class="o">...</span> <span class="n">ESP8266</span>
+<span class="n">Chip</span> <span class="k">is</span> <span class="n">ESP8266EX</span>
+<span class="n">Features</span><span class="p">:</span> <span class="n">WiFi</span>
+<span class="n">MAC</span><span class="p">:</span> <span class="n">b4</span><span class="p">:</span><span class="n">e6</span><span class="p">:</span><span class="mi">2</span><span class="n">d</span><span class="p">:</span><span class="mi">3</span><span class="n">b</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span><span class="mi">1</span><span class="n">b</span>
+<span class="n">Uploading</span> <span class="n">stub</span><span class="o">...</span>
+<span class="n">Running</span> <span class="n">stub</span><span class="o">...</span>
+<span class="n">Stub</span> <span class="n">running</span><span class="o">...</span>
+<span class="n">Changing</span> <span class="n">baud</span> <span class="n">rate</span> <span class="n">to</span> <span class="mi">460800</span>
+<span class="n">Changed</span><span class="o">.</span>
+<span class="n">Configuring</span> <span class="n">flash</span> <span class="n">size</span><span class="o">...</span>
+<span class="n">Auto</span><span class="o">-</span><span class="n">detected</span> <span class="n">Flash</span> <span class="n">size</span><span class="p">:</span> <span class="mi">4</span><span class="n">MB</span>
+<span class="n">Flash</span> <span class="n">params</span> <span class="n">set</span> <span class="n">to</span> <span class="mh">0x0240</span>
+<span class="n">Compressed</span> <span class="mi">604872</span> <span class="n">bytes</span> <span class="n">to</span> <span class="mf">394893.</span><span class="o">..</span>
+<span class="n">Wrote</span> <span class="mi">604872</span> <span class="n">bytes</span> <span class="p">(</span><span class="mi">394893</span> <span class="n">compressed</span><span class="p">)</span> <span class="n">at</span> <span class="mh">0x00000000</span> <span class="ow">in</span> <span class="mf">9.0</span> <span class="n">seconds</span> <span class="p">(</span><span class="n">effective</span> <span class="mf">536.4</span> <span class="n">kbit</span><span class="o">/</span><span class="n">s</span><span class="p">)</span><span class="o">...</span>
+<span class="n">Hash</span> <span class="n">of</span> <span class="n">data</span> <span class="n">verified</span><span class="o">.</span>
 
-Leaving...
-Hard resetting via RTS pin...
-</pre></div>
-
+<span class="n">Leaving</span><span class="o">...</span>
+<span class="n">Hard</span> <span class="n">resetting</span> <span class="n">via</span> <span class="n">RTS</span> <span class="n">pin</span><span class="o">...</span>
+</code></pre></div>
 
 <p>Sau khi cài đặt xong, bấm nút "reset" trên thiết bị để khởi động lại, ngay sau
 đó bật WIFI của laptop hay điện thoại lên ta sẽ thấy một mạng WIFI có tên
@@ -175,7 +170,7 @@ Hard resetting via RTS pin...
 Ở đây ta không cần làm việc này. Tiếp tục cài đặt để kết nối với thiết bị qua
 cổng COM:</p>
 <p>Cài <code>picocom</code>:</p>
-<div class="highlight"><pre><span></span>$ sudo apt install -y picocom
+<div class="highlight"><pre><span></span><code>$ sudo apt install -y picocom
 $ sudo picocom /dev/ttyUSB0 --baud <span class="m">115200</span>
 picocom v1.7
 
@@ -199,25 +194,23 @@ Terminal ready
 
 &gt;&gt;&gt; <span class="m">2</span>**1000
 <span class="m">10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652624386837205668069376</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Sau khi kết nối, ta lập tức sử dụng Python interpreter như bình thường.</p>
 <p>Python interpreter đóng vai trò như 1 hệ điều hành ở đây, mỗi lần reset thiết bị,
 nó sẽ lại bật lại Python interpreter.
 Mọi tương tác với thiết bị (đọc/ghi file) đều thực hiện qua code python.</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">os</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
     <span class="s1">&#39;/&#39;</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">()</span>
 <span class="p">[</span><span class="s1">&#39;boot.py&#39;</span><span class="p">,</span> <span class="s1">&#39;main.py&#39;</span><span class="p">]</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Hai file này được chạy mỗi lần thiết bị khởi động.</p>
 <p>Xem nội dung file <code>boot.py</code>:</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;boot.py&#39;</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;boot.py&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 <span class="c1"># This file is executed on every boot (including wake-boot from deepsleep)</span>
 <span class="c1">#import esp</span>
 <span class="c1">#esp.osdebug(None)</span>
@@ -225,30 +218,27 @@ Mọi tương tác với thiết bị (đọc/ghi file) đều thực hiện qua
 <span class="c1">#import webrepl</span>
 <span class="c1">#webrepl.start()</span>
     <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>File <code>main.py</code> chứa code của người dùng muốn chạy mỗi lần bật thiết bị. Ví dụ ta muốn hiển thị dòng hello PyMi:</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;main.py&#39;</span><span class="p">,</span> <span class="s1">&#39;wt&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;main.py&#39;</span><span class="p">,</span> <span class="s1">&#39;wt&#39;</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;print(&quot;Hello Pymi.vn&quot;)&#39;</span><span class="p">)</span>
 <span class="mi">22</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Bấm nút reset sẽ thấy:</p>
-<div class="highlight"><pre><span></span>...
-ets_task(40100130, 3, 3fff83ec, 4)
-Hello Pymi.vn
+<div class="highlight"><pre><span></span><code>...
+<span class="nv">ets_task</span><span class="ss">(</span><span class="mi">40100130</span>, <span class="mi">3</span>, <span class="mi">3</span><span class="nv">fff83ec</span>, <span class="mi">4</span><span class="ss">)</span>
+<span class="nv">Hello</span> <span class="nv">Pymi</span>.<span class="nv">vn</span>
 
-MicroPython v1.9.4-8-ga9a3caad0 on 2018-05-11; ESP module with ESP8266
-Type &quot;help()&quot; for more information.
-&gt;&gt;&gt;
-</pre></div>
-
+<span class="nv">MicroPython</span> <span class="nv">v1</span>.<span class="mi">9</span>.<span class="mi">4</span><span class="o">-</span><span class="mi">8</span><span class="o">-</span><span class="nv">ga9a3caad0</span> <span class="nv">on</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">11</span><span class="c1">; ESP module with ESP8266</span>
+<span class="nv">Type</span> <span class="s2">&quot;</span><span class="s">help()</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="nv">more</span> <span class="nv">information</span>.
+<span class="o">&gt;&gt;&gt;</span>
+</code></pre></div>
 
 <p>Thao tác với các chân Pin</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">Pin</span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">Pin</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">P0</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">P0</span><span class="o">.</span>
 <span class="vm">__class__</span>       <span class="n">IN</span>              <span class="n">IRQ_FALLING</span>     <span class="n">IRQ_RISING</span>
@@ -257,8 +247,7 @@ Type &quot;help()&quot; for more information.
 <span class="o">&gt;&gt;&gt;</span> <span class="n">P0</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">P0</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
 <span class="o">&gt;&gt;&gt;</span>
-</pre></div>
-
+</code></pre></div>
 
 <h3>Baud</h3>
 <p>Baud /ˈbɔːd/ ở câu lệnh trên là một độ đo "symbol rate" (symbol per second), để

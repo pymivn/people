@@ -90,26 +90,23 @@ có 2 nhánh (dialect) chính là Common Lisp và Scheme. Cả 2 dialect này đ
 đặc điểm chung sử dụng rất nhiều dấu <code>()</code> nhưng khi thò tay vào code thì lại có
 rất nhiều điểm khác. Một ví dụ viết function tính số gấp đôi của số đầu vào
 bằng CHICKEN Scheme (một bản Scheme <em>còn sống</em>):</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">double</span> <span class="nv">x</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">double</span> <span class="nv">x</span><span class="p">)</span>
    <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="mi">2</span><span class="p">)</span>
 <span class="p">)</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Gọi function:</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="nv">n</span> <span class="mi">21</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">define </span><span class="nv">n</span> <span class="mi">21</span><span class="p">)</span>
 <span class="p">(</span><span class="nf">double</span> <span class="nv">n</span><span class="p">)</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>So với Python:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">double</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">double</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
 
 <span class="n">n</span> <span class="o">=</span> <span class="mi">21</span>
 <span class="n">double</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Nếu xét kỹ, cú pháp của Scheme (<code>define</code>) ít khái niệm/ký tự/nhất quán hơn
 Python (<code>:</code>, <code>def</code>, <code>=</code>, <code>return</code>).</p>
@@ -189,24 +186,22 @@ bạn trở thành lập trình viên Python giỏi hơn.</p>
 <h2>Cài đặt</h2>
 <p>Trên trang chủ của các bản LISP đều có hướng dẫn cài đặt chi tiết.
 Trên ubuntu 16.04, <code>guile</code> có sẵn, cài CHICKEN scheme chỉ bằng một câu lệnh:</p>
-<div class="highlight"><pre><span></span>sudo apt install -y chicken-bin
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>sudo apt install -y chicken-bin
+</code></pre></div>
 
 <p>Lệnh này cài bản <code>Version: 4.9.X</code>, cài xong bật lên để gõ code như python
 interpreter:</p>
-<div class="highlight"><pre><span></span>$ csi
-CHICKEN
-<span class="o">(</span>c<span class="o">)</span> <span class="m">2008</span>-2014, The Chicken Team
-<span class="o">(</span>c<span class="o">)</span> <span class="m">2000</span>-2007, Felix L. Winkelmann
-Version <span class="m">4</span>.9.0.1 <span class="o">(</span>stability/4.9.0<span class="o">)</span> <span class="o">(</span>rev 8b3189b<span class="o">)</span>
-    linux-unix-gnu-x86-64 <span class="o">[</span> 64bit manyargs dload ptables <span class="o">]</span>
-    bootstrapped <span class="m">2014</span>-06-07
+<div class="highlight"><pre><span></span><code><span class="o">$</span> <span class="n">csi</span>
+<span class="n">CHICKEN</span>
+<span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2008</span><span class="o">-</span><span class="mi">2014</span><span class="p">,</span> <span class="n">The</span> <span class="n">Chicken</span> <span class="n">Team</span>
+<span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2000</span><span class="o">-</span><span class="mi">2007</span><span class="p">,</span> <span class="n">Felix</span> <span class="n">L</span><span class="o">.</span> <span class="n">Winkelmann</span>
+<span class="n">Version</span> <span class="mf">4.9</span><span class="o">.</span><span class="mf">0.1</span> <span class="p">(</span><span class="n">stability</span><span class="o">/</span><span class="mf">4.9</span><span class="o">.</span><span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="n">rev</span> <span class="mi">8</span><span class="n">b3189b</span><span class="p">)</span>
+    <span class="n">linux</span><span class="o">-</span><span class="n">unix</span><span class="o">-</span><span class="n">gnu</span><span class="o">-</span><span class="n">x86</span><span class="o">-</span><span class="mi">64</span> <span class="p">[</span> <span class="mi">64</span><span class="n">bit</span> <span class="n">manyargs</span> <span class="n">dload</span> <span class="n">ptables</span> <span class="p">]</span>
+    <span class="n">bootstrapped</span> <span class="mi">2014</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">07</span>
 
 <span class="c1">#;1&gt; (+ 1 2 3 4 5)</span>
-    <span class="m">15</span>
-</pre></div>
-
+    <span class="mi">15</span>
+</code></pre></div>
 
 <p>Để hỗ trợ chỉnh sửa tiện hơn, trên Ubuntu nên cài thêm <code>rl-wrap</code> và chạy
 <code>rl-wrap csi</code>.</p>

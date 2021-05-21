@@ -111,45 +111,41 @@ như của Java là một ví dụ điển hình khiến việc viết code cũn
 </ul>
 <h2>Sử dụng mypy</h2>
 <h3>Cài đặt</h3>
-<div class="highlight"><pre><span></span>pip install mypy
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>pip install mypy
+</code></pre></div>
 
 <h4>Ví dụ 1 - đơn giản để bắt đầu</h4>
 <p>Ví dụ 1: đoạn code không có type:</p>
 <p>File <code>mypy_simple.py</code></p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sum_of_three</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">sum_of_three</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span>
     <span class="k">return</span> <span class="n">result</span>
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">sum_of_three</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span>
     <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;The answer of life: &quot;</span> <span class="o">+</span> <span class="n">result</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
 <span class="n">main</span><span class="p">()</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Chạy mypy:</p>
-<div class="highlight"><pre><span></span>$ mypy mypy_simple.py
-Success: no issues found in <span class="m">1</span> <span class="nb">source</span> file
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>$ mypy mypy_simple.py
+Success: no issues found <span class="k">in</span> <span class="m">1</span> <span class="nb">source</span> file
+</code></pre></div>
 
 <p>Không có gì xảy ra, do không function/name nào có type annotation cả.
 Mặc định này giúp việc thêm type là tùy ý. Team có thể có người viết type,
 có người không ở các function khác nhau, đều OK. Nếu cực nghiêm khắc,
 có thể bật chế độ strict lên:</p>
-<div class="highlight"><pre><span></span>$ mypy --strict mypy_simple.py
+<div class="highlight"><pre><span></span><code>$ mypy --strict mypy_simple.py
 mypy_simple.py:1: error: Function is missing a <span class="nb">type</span> annotation
 mypy_simple.py:5: error: Function is missing a <span class="k">return</span> <span class="nb">type</span> annotation
 mypy_simple.py:5: note: Use <span class="s2">&quot;-&gt; None&quot;</span> <span class="k">if</span> <span class="k">function</span> does not <span class="k">return</span> a value
-mypy_simple.py:6: error: Call to untyped <span class="k">function</span> <span class="s2">&quot;sum_of_three&quot;</span> in typed context
-mypy_simple.py:10: error: Call to untyped <span class="k">function</span> <span class="s2">&quot;main&quot;</span> in typed context
-Found <span class="m">4</span> errors in <span class="m">1</span> file <span class="o">(</span>checked <span class="m">1</span> <span class="nb">source</span> file<span class="o">)</span>
-</pre></div>
-
+mypy_simple.py:6: error: Call to untyped <span class="k">function</span> <span class="s2">&quot;sum_of_three&quot;</span> <span class="k">in</span> typed context
+mypy_simple.py:10: error: Call to untyped <span class="k">function</span> <span class="s2">&quot;main&quot;</span> <span class="k">in</span> typed context
+Found <span class="m">4</span> errors <span class="k">in</span> <span class="m">1</span> file <span class="o">(</span>checked <span class="m">1</span> <span class="nb">source</span> file<span class="o">)</span>
+</code></pre></div>
 
 <p>Ở chế độ này, mọi thứ thiếu type annotation đều bị thông báo, đây chỉ là ví dụ
 cực đoan, phải tốn khá nhiều công sức và làm quen mới có thể bật chế độ này lên,
@@ -158,81 +154,74 @@ vậy nên khó quá tạm thời bỏ qua.</p>
 với Python type annotation, ta thường chỉ thêm cho định nghĩa của các function,
 ít khi phải khai báo cho các variable. Ví dụ trên có 2 function, sau khi thêm
 type vào <code>sum_of_three</code> sẽ trông như sau:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sum_of_three</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">sum_of_three</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span>
     <span class="k">return</span> <span class="n">result</span>
 
-<span class="k">def</span> <span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">sum_of_three</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span>
-    <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;The answer of life: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-</pre></div>
-
+    <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;The answer of life: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</code></pre></div>
 
 <p>3 argument đều có kiểu là <code>: int</code>, <code>-&gt; int</code> nói rằng function này
 trả về kiểu <code>int</code>.
 Chạy lại lệnh mypy</p>
-<div class="highlight"><pre><span></span>$ mypy mypy_simple.py
-Success: no issues found in <span class="m">1</span> <span class="nb">source</span> file
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>$ mypy mypy_simple.py
+Success: no issues found <span class="k">in</span> <span class="m">1</span> <span class="nb">source</span> file
+</code></pre></div>
 
 <p>Vẫn trông như không có gì xảy ra, nhưng thật ra là có, do code của ta không
 có vấn đề gì nên mypy cũng không báo gì. Thử đổi trong function <code>main</code>,
 cộng kết quả của <code>sum_of_three</code> (kiểu int) với một <code>str</code>:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">sum_of_three</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span>
     <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;The answer of life: &quot;</span> <span class="o">+</span> <span class="n">result</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-</pre></div>
-
+    <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</code></pre></div>
 
 <p>Nếu là lập trình viên JavaScript, bạn sẽ mong đợi một kết quả str bình thường,
 <code>"The answer of life: 42"</code>, bởi JavaScript thuộc loại weak typing,
 còn Python là strong typing: int là int, str là str, không cộng trừ lẫn lộn.</p>
 <p>Nếu là một PyMier chân chính, bạn sẽ nhận ra ngay đoạn code này gặp exception
 khi CHẠY THẬT, do cộng một str với một số int.</p>
-<div class="highlight"><pre><span></span>$ python mypy_simple.py
+<div class="highlight"><pre><span></span><code>$ python mypy_simple.py
 Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
-  File <span class="s2">&quot;mypy_simple.py&quot;</span>, line <span class="m">12</span>, in &lt;module&gt;
+  File <span class="s2">&quot;mypy_simple.py&quot;</span>, line <span class="m">12</span>, <span class="k">in</span> &lt;module&gt;
     main<span class="o">()</span>
-  File <span class="s2">&quot;mypy_simple.py&quot;</span>, line <span class="m">8</span>, in main
+  File <span class="s2">&quot;mypy_simple.py&quot;</span>, line <span class="m">8</span>, <span class="k">in</span> main
     <span class="nv">message</span> <span class="o">=</span> <span class="s2">&quot;The answer of life: &quot;</span> + result
 TypeError: must be str, not int
 Command exited with non-zero status <span class="m">1</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Vậy ta chỉ biết, khi chạy thật, mà lúc ấy mới biết thì "toang" rồi.
 Có cách nào <strong>biết trước</strong> khi chạy không? Mypy sẽ giúp làm chuyện ấy:</p>
-<div class="highlight"><pre><span></span>$ mypy mypy_simple.py
+<div class="highlight"><pre><span></span><code>$ mypy mypy_simple.py
 mypy_simple.py:8: error: Unsupported operand types <span class="k">for</span> + <span class="o">(</span><span class="s2">&quot;str&quot;</span> and <span class="s2">&quot;int&quot;</span><span class="o">)</span>
-Found <span class="m">1</span> error in <span class="m">1</span> file <span class="o">(</span>checked <span class="m">1</span> <span class="nb">source</span> file<span class="o">)</span>
-</pre></div>
-
+Found <span class="m">1</span> error <span class="k">in</span> <span class="m">1</span> file <span class="o">(</span>checked <span class="m">1</span> <span class="nb">source</span> file<span class="o">)</span>
+</code></pre></div>
 
 <p>Chú ý: việc phân tích function main chỉ xảy ra khi nó có type annotation:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</code></pre></div>
 
 <p>Function main không nhận argument, trả về kiểu None. Nếu bỏ <code>-&gt; None</code> đi,
 mypy sẽ không kiểm tra function main.</p>
 <h4>Ví dụ 2 - các containers: list, tuple, dict, set</h4>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
 
 <span class="k">def</span> <span class="nf">with_index</span><span class="p">(</span><span class="n">names</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
     <span class="k">return</span> <span class="p">[(</span><span class="n">idx</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">names</span><span class="p">)]</span>
 
-<span class="k">def</span> <span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="n">result</span> <span class="o">=</span> <span class="mi">21</span> <span class="o">*</span> <span class="mi">2</span>
 
     <span class="n">result</span> <span class="o">=</span> <span class="n">with_index</span><span class="p">([</span><span class="s2">&quot;Corona&quot;</span><span class="p">,</span> <span class="s2">&quot;Tiger Nau&quot;</span><span class="p">,</span> <span class="s2">&quot;TrucBach&quot;</span><span class="p">])</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 
 <span class="n">main</span><span class="p">()</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Chỉ có str, int, float, bool, None là các kiểu dùng ngay.
 Với list, tuple, set, dict, cần phải import type tương ứng
@@ -240,10 +229,9 @@ từ standard lib <code>typing</code>, các type viết Hoa chữ cái đầu.
 Có thể khai báo qua loa
 <code>def with_index(names: List) -&gt; List:</code>
 hoặc chi tiết như trong ví dụ 2.</p>
-<div class="highlight"><pre><span></span>$ mypy mypy_simple.py
-mypy_simple.py:11: error: Incompatible types in assignment <span class="o">(</span>expression has <span class="nb">type</span> <span class="s2">&quot;List[Tuple[int, str]]&quot;</span>, variable has <span class="nb">type</span> <span class="s2">&quot;int&quot;</span><span class="o">)</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>$ mypy mypy_simple.py
+mypy_simple.py:11: error: Incompatible types <span class="k">in</span> assignment <span class="o">(</span>expression has <span class="nb">type</span> <span class="s2">&quot;List[Tuple[int, str]]&quot;</span>, variable has <span class="nb">type</span> <span class="s2">&quot;int&quot;</span><span class="o">)</span>
+</code></pre></div>
 
 <p>Lỗi này thường gặp, do chuyện dùng chung tên <code>result</code>,
 mypy lần đầu gặp sẽ nghĩ <code>result</code> là kiểu <code>int</code>, qua dòng tiếp
@@ -254,7 +242,7 @@ nhất là đổi tên biến.</p>
 <h4>Ví dụ 3 - các object phức tạp, thư viện bên ngoài</h4>
 <p>Với các lập trình viên Python, type là một thứ lạ, nên không phải dẽ gì ngồi
 đọc ngay ra kiểu của <code>resp</code> sau đây là gì mà gõ vào:</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="k">def</span> <span class="nf">process_response</span><span class="p">(</span><span class="n">resp</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;From: &#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -262,28 +250,25 @@ nhất là đổi tên biến.</p>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://httpbin.org/ip&#39;</span><span class="p">)</span>
 <span class="n">output</span> <span class="o">=</span> <span class="n">process_response</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="c1"># + 10</span>
-<span class="k">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
-</pre></div>
-
+<span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</code></pre></div>
 
 <p><code>Any</code> giúp điền vào chỗ trống khi không biết kiểu gì, đồng nghĩa
 với việc mất đi một chút bảo vệ của mypy do mypy sẽ cho phép gọi
 function <code>process_response</code> với argument đầu tiên thuộc bất kỳ kiểu nào.</p>
 <p><code>msg: str = 'From: '</code> là argument <code>msg</code>, kiểu <code>str</code>, với giá trị
 default <code>From:</code>.</p>
-<div class="highlight"><pre><span></span>$ python mypy_simple.py
+<div class="highlight"><pre><span></span><code>$ python mypy_simple.py
 From: <span class="m">111</span>.212.107.29
-</pre></div>
-
+</code></pre></div>
 
 <p>Có một cách khác để nhờ mypy tìm giúp kiểu của <code>resp</code>, đó là khai báo sai kiểu,
 thay <code>Any</code> thành <code>int</code>, chạy mypy sẽ thấy:</p>
-<div class="highlight"><pre><span></span>$ mypy mypy_simple.py
+<div class="highlight"><pre><span></span><code>$ mypy mypy_simple.py
 mypy_simple.py:5: error: <span class="s2">&quot;int&quot;</span> has no attribute <span class="s2">&quot;json&quot;</span>
 mypy_simple.py:8: error: Argument <span class="m">1</span> to <span class="s2">&quot;process_response&quot;</span> has incompatible <span class="nb">type</span> <span class="s2">&quot;Response&quot;</span><span class="p">;</span> expected <span class="s2">&quot;int&quot;</span>
-Found <span class="m">2</span> errors in <span class="m">1</span> file <span class="o">(</span>checked <span class="m">1</span> <span class="nb">source</span> file<span class="o">)</span>
-</pre></div>
-
+Found <span class="m">2</span> errors <span class="k">in</span> <span class="m">1</span> file <span class="o">(</span>checked <span class="m">1</span> <span class="nb">source</span> file<span class="o">)</span>
+</code></pre></div>
 
 <p>Vậy kiểu của <code>resp</code> cần khai báo là Response, đầy đủ là <code>requests.models.Response</code>
 có thể tìm ra bằng cách <code>print(type(r))</code></p>
@@ -291,36 +276,32 @@ có thể tìm ra bằng cách <code>print(type(r))</code></p>
 <p>Cũng có lúc, ta muốn chủ ý nhận vào nhiều loại input khác kiểu,
 nhưng chỉ giới hạn trong 1 nhóm, ví dụ như int, str, float, chứ không phải dict
 hay list, nếu dùng <code>Any</code> thì dễ dãi quá:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">any_number</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="k">return</span> <span class="s2">&quot;This is {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">any_number</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="s2">&quot;This is </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 
 <span class="n">any_number</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
 <span class="n">any_number</span><span class="p">(</span><span class="s2">&quot;9&quot;</span><span class="p">)</span>
 
 <span class="c1">### mypy check</span>
 <span class="n">error</span><span class="p">:</span> <span class="n">Argument</span> <span class="mi">1</span> <span class="n">to</span> <span class="s2">&quot;any_number&quot;</span> <span class="n">has</span> <span class="n">incompatible</span> <span class="nb">type</span> <span class="s2">&quot;str&quot;</span><span class="p">;</span> <span class="n">expected</span> <span class="s2">&quot;int&quot;</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Giải pháp là dùng Union.</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
 
 <span class="k">def</span> <span class="nf">any_number</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span><span class="nb">float</span><span class="p">,</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Các kiểu type khác: <a href="https://mypy.readthedocs.io/en/stable/kinds_of_types.html">https://mypy.readthedocs.io/en/stable/kinds_of_types.html</a> đáng chú ý như Optional khi có thể trả về None, hay Callable là kiểu cho
 function.</p>
 <h3>Stub</h3>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">boto3</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">boto3</span>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span>mypy mypy_simple.py
-mypy_simple.py:1: error: No library stub file for module &#39;boto3&#39;
-mypy_simple.py:1: note: (Stub files are from https://github.com/python/typeshed)
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="nv">mypy</span> <span class="nv">mypy_simple</span>.<span class="nv">py</span>
+<span class="nv">mypy_simple</span>.<span class="nv">py</span>:<span class="mi">1</span>: <span class="nv">error</span>: <span class="nv">No</span> <span class="nv">library</span> <span class="nv">stub</span> <span class="nv">file</span> <span class="k">for</span> <span class="nv">module</span> <span class="s1">&#39;</span><span class="s">boto3</span><span class="s1">&#39;</span>
+<span class="nv">mypy_simple</span>.<span class="nv">py</span>:<span class="mi">1</span>: <span class="nv">note</span>: <span class="ss">(</span><span class="nv">Stub</span> <span class="nv">files</span> <span class="nv">are</span> <span class="nv">from</span> <span class="nv">https</span>:<span class="o">//</span><span class="nv">github</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">python</span><span class="o">/</span><span class="nv">typeshed</span><span class="ss">)</span>
+</code></pre></div>
 
 <p>Sau khi Python chính thức thêm type notation, không có nghĩa là các core developer sẽ đi sửa hàng loạt các file thư viện đã chạy ổn định vài chục năm để
 thêm type. Thay vào đó, họ tạo ra các stub file.
@@ -331,9 +312,8 @@ stub file là file chứa type annotation của các function trong library. Nó
 Ví dụ như <code>boto3</code> - thư viện cực kỳ phổ biến - và chính thức để làm việc với
 API của AWS, tới nay vẫn chưa có stub file chính thức từ AWS.
 Nên để đơn giản, thay vì phải chiến đấu với type, ta có thể bỏ qua:</p>
-<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">mypy</span> <span class="o">--</span><span class="n">ignore</span><span class="o">-</span><span class="n">missing</span><span class="o">-</span><span class="kn">import</span> <span class="o">.</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="err">$</span> <span class="n">mypy</span> <span class="o">--</span><span class="n">ignore</span><span class="o">-</span><span class="n">missing</span><span class="o">-</span><span class="kn">import</span> <span class="nn">.</span>
+</code></pre></div>
 
 <p>hay tự tạo stub như <a href="https://github.com/htlcnn/autocad_objectarx_python_stubs">htlcnn</a>.
 Xem hướng dẫn tự tạo stub file tại <a href="https://github.com/python/mypy/wiki/Creating-Stubs-For-Python-Modules">mypy wiki</a></p>
@@ -353,9 +333,8 @@ kinh nghiệm, luyện tập cùng các đồng nghiệp thì hơn.</li>
 </ul>
 <h3>Hành động của chúng ta</h3>
 <p>Thêm ngay dòng sau vào Makefile, hay hệ thống CI của bạn, ngay sau pep8, flake8 hay pylint:</p>
-<div class="highlight"><pre><span></span><span class="n">mypy</span> <span class="o">--</span><span class="n">ignore</span><span class="o">-</span><span class="n">missing</span><span class="o">-</span><span class="kn">import</span> <span class="o">.</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="n">mypy</span> <span class="o">--</span><span class="n">ignore</span><span class="o">-</span><span class="n">missing</span><span class="o">-</span><span class="kn">import</span> <span class="nn">.</span>
+</code></pre></div>
 
 <h2>Kết luận</h2>
 <p>Type là một công cụ tốt cho các Pythonista như pylint pep8, giúp phát triển các dự án lớn hơn,

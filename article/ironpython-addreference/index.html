@@ -59,49 +59,46 @@
 <p><a href="https://msdn.microsoft.com/en-us/library/ms973231.aspx#assenamesp_topic4">Assembly</a> (số nhiều: assemblies) là một file được tạo ra bởi quá trình compile một ứng dụng .NET. Nó có thể có đuôi <code>.dll</code> hoặc <code>.exe</code>. .NET Framework có sẵn rất nhiều assemblies (chính là thành phần <a href="https://msdn.microsoft.com/en-us/library/gg145045.aspx">Class Library trong .NET Framework</a>), cũng tương tự như Python có sẵn rất nhiều <a href="https://docs.python.org/3/library/index.html">standard libraries</a> vậy.</p>
 <h2>AddReference .NET Assemblies</h2>
 <p>Khi lập trình các ngôn ngữ .NET khác như C# hay VB.NET, dùng Visual Studio, muốn sử dụng các công cụ trong .NET Framework thì bạn phải thêm "Reference" vào project browser. IronPython có 1 module hỗ trợ "Add Reference" vào script là <code>clr</code>. Các methods Add Reference trong IronPython:</p>
-<div class="highlight"><pre><span></span><span class="c1"># Sử dụng một trong các methods sau</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Sử dụng một trong các methods sau</span>
 <span class="n">clr</span><span class="o">.</span><span class="n">AddReference</span>
 <span class="n">clr</span><span class="o">.</span><span class="n">AddReferenceByName</span>
 <span class="n">clr</span><span class="o">.</span><span class="n">AddReferenceByPartialName</span>
 <span class="n">clr</span><span class="o">.</span><span class="n">AddReferenceToFile</span>
 <span class="n">clr</span><span class="o">.</span><span class="n">AddReferenceToFileAndPath</span>
-</pre></div>
-
+</code></pre></div>
 
 <p><code>clr.AddReference</code> nhận vào 1 đối tượng <a href="https://msdn.microsoft.com/en-us/library/system.reflection.assembly(v=vs.110).aspx">System.Reflection.Assembly</a>, hoặc <strong>full name</strong> của assembly (vd <code>clr.AddReference("System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")</code>), hoặc <strong>partial name</strong> của assembly (vd <code>clr.AddReference("System.Drawing")</code>). Khi dùng partial name, IronPython sẽ tìm file dll ở trong <a href="https://docs.microsoft.com/en-us/dotnet/framework/app-domains/gac">Global Assembly Cache (GAC)</a>. Mình thường dùng cách thứ 3: truyền vào partial name cho ngắn gọn.
 Xem các assemblies đã add ở <code>clr.References</code>:</p>
-<div class="highlight"><pre><span></span><span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">HTL</span><span class="o">&gt;</span><span class="s2">&quot;c:\Program Files (x86)\IronPython 2.7\ipy.exe&quot;</span>
-<span class="n">IronPython</span> <span class="mf">2.7</span><span class="o">.</span><span class="mi">3</span> <span class="p">(</span><span class="mf">2.7</span><span class="o">.</span><span class="mf">0.40</span><span class="p">)</span> <span class="n">on</span> <span class="o">.</span><span class="n">NET</span> <span class="mf">4.0</span><span class="o">.</span><span class="mf">30319.42000</span> <span class="p">(</span><span class="mi">32</span><span class="o">-</span><span class="n">bit</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">HTL</span><span class="o">&gt;</span><span class="s2">&quot;c:\Program Files (x86)\IronPython 2.7\ipy.exe&quot;</span>
+<span class="n">IronPython</span> <span class="mf">2.7.3</span> <span class="p">(</span><span class="mf">2.7.0.40</span><span class="p">)</span> <span class="n">on</span> <span class="o">.</span><span class="n">NET</span> <span class="mf">4.0.30319.42000</span> <span class="p">(</span><span class="mi">32</span><span class="o">-</span><span class="n">bit</span><span class="p">)</span>
 <span class="n">Type</span> <span class="s2">&quot;help&quot;</span><span class="p">,</span> <span class="s2">&quot;copyright&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span> <span class="ow">or</span> <span class="s2">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">clr</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">clr</span><span class="o">.</span><span class="n">AddReference</span><span class="p">(</span><span class="s2">&quot;System.Drawing&quot;</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">clr</span><span class="o">.</span><span class="n">References</span>
-<span class="p">(</span><span class="o">&lt;</span><span class="n">mscorlib</span><span class="p">,</span> <span class="n">Version</span><span class="o">=</span><span class="mf">4.0</span><span class="o">.</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">Culture</span><span class="o">=</span><span class="n">neutral</span><span class="p">,</span> <span class="n">PublicKeyToken</span><span class="o">=</span><span class="n">b77a5c561934e089</span><span class="o">&gt;</span><span class="p">,</span>
-<span class="o">&lt;</span><span class="n">System</span><span class="p">,</span> <span class="n">Version</span><span class="o">=</span><span class="mf">4.0</span><span class="o">.</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">Culture</span><span class="o">=</span><span class="n">neutral</span><span class="p">,</span> <span class="n">PublicKeyToken</span><span class="o">=</span><span class="n">b77a5c561934e089</span><span class="o">&gt;</span><span class="p">,</span>
-<span class="o">&lt;</span><span class="n">IronPython</span><span class="o">.</span><span class="n">SQLite</span><span class="p">,</span> <span class="n">Version</span><span class="o">=</span><span class="mf">2.7</span><span class="o">.</span><span class="mf">0.40</span><span class="p">,</span> <span class="n">Culture</span><span class="o">=</span><span class="n">neutral</span><span class="p">,</span> <span class="n">PublicKeyToken</span><span class="o">=</span><span class="mi">7</span><span class="n">f709c5b71</span>
+<span class="p">(</span><span class="o">&lt;</span><span class="n">mscorlib</span><span class="p">,</span> <span class="n">Version</span><span class="o">=</span><span class="mf">4.0.0.0</span><span class="p">,</span> <span class="n">Culture</span><span class="o">=</span><span class="n">neutral</span><span class="p">,</span> <span class="n">PublicKeyToken</span><span class="o">=</span><span class="n">b77a5c561934e089</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="o">&lt;</span><span class="n">System</span><span class="p">,</span> <span class="n">Version</span><span class="o">=</span><span class="mf">4.0.0.0</span><span class="p">,</span> <span class="n">Culture</span><span class="o">=</span><span class="n">neutral</span><span class="p">,</span> <span class="n">PublicKeyToken</span><span class="o">=</span><span class="n">b77a5c561934e089</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="o">&lt;</span><span class="n">IronPython</span><span class="o">.</span><span class="n">SQLite</span><span class="p">,</span> <span class="n">Version</span><span class="o">=</span><span class="mf">2.7.0.40</span><span class="p">,</span> <span class="n">Culture</span><span class="o">=</span><span class="n">neutral</span><span class="p">,</span> <span class="n">PublicKeyToken</span><span class="o">=</span><span class="mi">7</span><span class="n">f709c5b71</span>
 <span class="mf">3576e1</span><span class="o">&gt;</span><span class="p">,</span>
-<span class="o">&lt;</span><span class="n">IronPython</span><span class="o">.</span><span class="n">Wpf</span><span class="p">,</span> <span class="n">Version</span><span class="o">=</span><span class="mf">2.7</span><span class="o">.</span><span class="mf">0.40</span><span class="p">,</span> <span class="n">Culture</span><span class="o">=</span><span class="n">neutral</span><span class="p">,</span> <span class="n">PublicKeyToken</span><span class="o">=</span><span class="mi">7</span><span class="n">f709c5b713576e1</span><span class="o">&gt;</span><span class="p">,</span>
-<span class="o">&lt;</span><span class="n">System</span><span class="o">.</span><span class="n">Drawing</span><span class="p">,</span> <span class="n">Version</span><span class="o">=</span><span class="mf">4.0</span><span class="o">.</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">Culture</span><span class="o">=</span><span class="n">neutral</span><span class="p">,</span> <span class="n">PublicKeyToken</span><span class="o">=</span><span class="n">b03f5f7f11d50a3a</span><span class="o">&gt;</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">IronPython</span><span class="o">.</span><span class="n">Wpf</span><span class="p">,</span> <span class="n">Version</span><span class="o">=</span><span class="mf">2.7.0.40</span><span class="p">,</span> <span class="n">Culture</span><span class="o">=</span><span class="n">neutral</span><span class="p">,</span> <span class="n">PublicKeyToken</span><span class="o">=</span><span class="mi">7</span><span class="n">f709c5b713576e1</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="o">&lt;</span><span class="n">System</span><span class="o">.</span><span class="n">Drawing</span><span class="p">,</span> <span class="n">Version</span><span class="o">=</span><span class="mf">4.0.0.0</span><span class="p">,</span> <span class="n">Culture</span><span class="o">=</span><span class="n">neutral</span><span class="p">,</span> <span class="n">PublicKeyToken</span><span class="o">=</span><span class="n">b03f5f7f11d50a3a</span><span class="o">&gt;</span><span class="p">)</span>
 
 <span class="o">&gt;&gt;&gt;</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Sau khi <code>AddReference</code>, phải <code>import</code> các namespaces có trong assemblies để sử dụng trong IronPython. Cú pháp import như bình thường:</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">System</span> <span class="kn">import</span> <span class="n">Drawing</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">Drawing</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">System</span> <span class="kn">import</span> <span class="n">Drawing</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">Drawing</span><span class="p">)</span>
 <span class="n">Microsoft</span><span class="o">.</span><span class="n">Scripting</span><span class="o">.</span><span class="n">Actions</span><span class="o">.</span><span class="n">NamespaceTracker</span><span class="p">:</span><span class="n">System</span><span class="o">.</span><span class="n">Drawing</span>
 <span class="o">&gt;&gt;&gt;</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Thắc mắc hay gặp: Mình muốn sử dụng 1 công cụ trong .NET Framework thì biết tên assembly là gì để <code>AddReference</code>, biết namespace nào để <code>import</code>? Trả lời với từ khóa tìm kiếm: <code>Tên_công_cụ msdn</code> (VD <a href="http://lmgtfy.com/?s=d&amp;q=System+Environment+msdn">System Environment msdn</a>). Dùng phần <strong>Assembly</strong> để <code>AddReference</code>, phần <strong>Namespace</strong> để <code>import</code>.</p>
 <p>Khi chạy ipy.exe, IronPython đã AddReference sẵn tới mscorlib.dll và System.dll <a href="http://ironpython.net/documentation/dotnet/dotnet.html#assemblies-loaded-by-default"><sup>[1]</sup></a>. Khi đó chỉ việc <code>import</code> các namespaces có trong 2 assemblies này mà không phải AddRerence.</p>
 <h2>AddReference các Assemblies khác</h2>
 <p>Ngoài các assemblies có trong .NET Framework, còn có các assemblies khác đi kèm với các phần mềm cài vào Windows, hoặc assemblies được compiled từ chính IronPython. Cú pháp AddReference tương tự như trên, với lưu ý là <code>AddReference</code> khi đó sẽ tìm assemblies trong GAC hoặc <code>sys.path</code>. Nếu không muốn append đường dẫn tới folder chứa file .dll thì có thể dùng <code>AddReferenceToFileAndPath</code>. Phải chạy đúng phiên bản IronPython 32bit/64bit tương ứng với <a href="https://msdn.microsoft.com/en-us/library/hh264221.aspx#Target%20Platform">Target Platform</a> mà file assembly được compiled.</p>
 <p>Ví dụ file <code>RevitAPI.dll</code> được compiled với Target Platform là x64 (64-bit), nếu chạy <code>ipy.exe</code> (32-bit) sẽ không <code>AddReference</code> được:</p>
-<div class="highlight"><pre><span></span><span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">HTL</span><span class="o">&gt;</span><span class="s2">&quot;C:\Program Files (x86)\IronPython 2.7\ipy.exe&quot;</span>
-<span class="n">IronPython</span> <span class="mf">2.7</span><span class="o">.</span><span class="mi">3</span> <span class="p">(</span><span class="mf">2.7</span><span class="o">.</span><span class="mf">0.40</span><span class="p">)</span> <span class="n">on</span> <span class="o">.</span><span class="n">NET</span> <span class="mf">4.0</span><span class="o">.</span><span class="mf">30319.42000</span> <span class="p">(</span><span class="mi">32</span><span class="o">-</span><span class="n">bit</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">HTL</span><span class="o">&gt;</span><span class="s2">&quot;C:\Program Files (x86)\IronPython 2.7\ipy.exe&quot;</span>
+<span class="n">IronPython</span> <span class="mf">2.7.3</span> <span class="p">(</span><span class="mf">2.7.0.40</span><span class="p">)</span> <span class="n">on</span> <span class="o">.</span><span class="n">NET</span> <span class="mf">4.0.30319.42000</span> <span class="p">(</span><span class="mi">32</span><span class="o">-</span><span class="n">bit</span><span class="p">)</span>
 <span class="n">Type</span> <span class="s2">&quot;help&quot;</span><span class="p">,</span> <span class="s2">&quot;copyright&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span> <span class="ow">or</span> <span class="s2">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">clr</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">sys</span>
@@ -138,12 +135,11 @@ Xem các assemblies đã add ở <code>clr.References</code>:</p>
    <span class="n">at</span> <span class="n">IronPython</span><span class="o">.</span><span class="n">Hosting</span><span class="o">.</span><span class="n">PythonCommandLine</span><span class="o">.&lt;&gt;</span><span class="n">c__DisplayClass1</span><span class="o">.&lt;</span><span class="n">RunOneInteraction</span>
 <span class="o">&gt;</span><span class="n">b__0</span><span class="p">()</span>
 <span class="o">&gt;&gt;&gt;</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Mà phải dùng <code>ipy64.exe</code> để <code>AddReference</code>:</p>
-<div class="highlight"><pre><span></span><span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">HTL</span><span class="o">&gt;</span><span class="s2">&quot;C:\Program Files (x86)\IronPython 2.7\ipy64.exe&quot;</span>
-<span class="n">IronPython</span> <span class="mf">2.7</span><span class="o">.</span><span class="mi">3</span> <span class="p">(</span><span class="mf">2.7</span><span class="o">.</span><span class="mf">0.40</span><span class="p">)</span> <span class="n">on</span> <span class="o">.</span><span class="n">NET</span> <span class="mf">4.0</span><span class="o">.</span><span class="mf">30319.42000</span> <span class="p">(</span><span class="mi">64</span><span class="o">-</span><span class="n">bit</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">HTL</span><span class="o">&gt;</span><span class="s2">&quot;C:\Program Files (x86)\IronPython 2.7\ipy64.exe&quot;</span>
+<span class="n">IronPython</span> <span class="mf">2.7.3</span> <span class="p">(</span><span class="mf">2.7.0.40</span><span class="p">)</span> <span class="n">on</span> <span class="o">.</span><span class="n">NET</span> <span class="mf">4.0.30319.42000</span> <span class="p">(</span><span class="mi">64</span><span class="o">-</span><span class="n">bit</span><span class="p">)</span>
 <span class="n">Type</span> <span class="s2">&quot;help&quot;</span><span class="p">,</span> <span class="s2">&quot;copyright&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span> <span class="ow">or</span> <span class="s2">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">clr</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">sys</span>
@@ -158,8 +154,7 @@ Xem các assemblies đã add ở <code>clr.References</code>:</p>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">Wall</span>
 <span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;Wall&#39;</span><span class="o">&gt;</span>
 <span class="o">&gt;&gt;&gt;</span>
-</pre></div>
-
+</code></pre></div>
 
 <h2>AddReference các assemblies được compiled bằng IronPython</h2>
 <p>Nếu như bạn chưa biết, IronPython có thể compile python script thành các file assemblies (<code>.dll</code> hoặc <code>.exe</code>) sử dụng công cụ kèm theo là <code>pyc.py</code> (sẽ có bài viết riêng về <strong>Compile python script dùng IronPython</strong>).</p>
