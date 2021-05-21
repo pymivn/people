@@ -245,7 +245,7 @@ Nếu viết hoa, var/function/type đó sẽ trở thành "public", code bên n
 [https://play.golang.org/p/SCW8F0EqCmW](https://play.golang.org/p/SCW8F0EqCmW)
 
 - map: giống dict của Python, key phải so sánh `==` được, map và slice không
-làm key được, key không theo thứ tự (unordered). Map trong Go dùng khi cần nối
+làm key được, thứ tự key là ngẫu nhiên. Map trong Go dùng khi cần nối
 key-value, tìm kiếm nhanh, nhưng không dùng như 1 object như dict Python
 `{"name": "Pymier", "age": 20}`,
 do map phải có kiểu cố định cho key, value. [Xem code](https://play.golang.org/p/JRu3lp_mEGj)
