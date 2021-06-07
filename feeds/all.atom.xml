@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2021-06-07T00:00:00+07:00</updated><entry><title>Free variable</title><link href="http://pp.pymi.vn/article/free/" rel="alternate"></link><published>2021-06-07T00:00:00+07:00</published><updated>2021-06-07T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2021-06-07:/article/free/</id><summary type="html">&lt;p&gt;tự do như biến&lt;/p&gt;</summary><content type="html">&lt;p&gt;Python có 2 loại variable (biến): local, global, và free (đếm từ 0, tất nhiên).&lt;/p&gt;
 &lt;p&gt;&lt;img alt="free" src="https://images.unsplash.com/photo-1546672117-f83291ce87a9?crop=entropy&amp;amp;cs=tinysrgb&amp;amp;fit=max&amp;amp;fm=jpg&amp;amp;ixid=MnwyMzI1MzN8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNzQxNTI&amp;amp;ixlib=rb-1.2.1&amp;amp;q=80&amp;amp;w=600"&gt;&lt;/p&gt;
-&lt;h2&gt;3 loại variable trong Python&lt;/h2&gt;
-&lt;h3&gt;binding&lt;/h3&gt;
+&lt;h2&gt;binding&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;x = 42&lt;/code&gt; trong Python đọc là bind name x tới object 42.
 Tham khảo thêm tại bài &lt;a href="https://pymi.vn/blog/call-by/"&gt;Python call by gì?&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;3 loại variable trong Python&lt;/h2&gt;
 &lt;h3&gt;global variable&lt;/h3&gt;
 &lt;p&gt;Đoạn code sau&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
