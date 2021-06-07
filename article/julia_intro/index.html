@@ -65,25 +65,26 @@ thế chỗ Python (nhưng đường còn dài, và còn nhiều hơn chông gai
 việc viết được code để làm công việc thường ngày (của 1 DevOps) chỉ trong vòng vài tiếng.</p>
 <h4>REPL</h4>
 <p>Gõ lệnh trực tiếp bằng lệnh <code>julia</code> trên Linux/MacOS</p>
-<div class="highlight"><pre><span></span><code><span class="o">$</span> <span class="n">julia</span>
+<div class="highlight"><pre><span></span><span class="o">$</span> <span class="n">julia</span>
                <span class="n">_</span>
    <span class="n">_</span>       <span class="n">_</span> <span class="n">_</span><span class="p">(</span><span class="n">_</span><span class="p">)</span><span class="n">_</span>     <span class="o">|</span>  <span class="n">Documentation</span><span class="o">:</span> <span class="n">https</span><span class="o">://</span><span class="n">docs</span><span class="o">.</span><span class="n">julialang</span><span class="o">.</span><span class="n">org</span>
   <span class="p">(</span><span class="n">_</span><span class="p">)</span>     <span class="o">|</span> <span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="p">(</span><span class="n">_</span><span class="p">)</span>    <span class="o">|</span>
    <span class="n">_</span> <span class="n">_</span>   <span class="n">_</span><span class="o">|</span> <span class="o">|</span><span class="n">_</span>  <span class="n">__</span> <span class="n">_</span>   <span class="o">|</span>  <span class="kt">Type</span> <span class="s">&quot;?&quot;</span> <span class="k">for</span> <span class="n">help</span><span class="p">,</span> <span class="s">&quot;]?&quot;</span> <span class="k">for</span> <span class="n">Pkg</span> <span class="n">help</span><span class="o">.</span>
-  <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|/</span> <span class="sa">_</span><span class="sb">` |  |</span>
+  <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|/</span> <span class="n">_</span><span class="sb">` |  |</span>
 <span class="sb">  | | |_| | | | (_| |  |  Version 1.1.0 (2019-01-21)</span>
 <span class="sb"> _/ |\__&#39;_|_|_|\__&#39;_|  |  Official https://julialang.org/ release</span>
 <span class="sb">|__/                   |</span>
 
 <span class="sb">julia&gt; 1 + 1</span>
 <span class="sb">2</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>Đây gọi là chế độ "REPL" (Read-Eval-Print-Loop) == (gõ vào - chạy - in ra kết quả - cứ thế mà làm).</p>
 <h4>IPython</h4>
 <p>Không cần cài thêm gì, Julia REPL tự có đủ các tính năng thiết yếu của IPython.</p>
 <p>Đọc document của 1 function? Gõ ?  rồi gõ bất cứ cái gì cần hỏi:</p>
-<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span>
+<div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span>
 <span class="mi">2</span>
 <span class="c">###### gõ ? xong , biến từ julia&gt; thành help?&gt;</span>
 <span class="n">help</span><span class="o">?&gt;</span> <span class="n">sum</span>
@@ -92,8 +93,9 @@ việc viết được code để làm công việc thường ngày (của 1 Dev
 <span class="o">...</span>
  <span class="n">sum</span><span class="p">(</span><span class="n">itr</span><span class="p">)</span>
 
-  <span class="n">Returns</span> <span class="n">the</span> <span class="n">sum</span> <span class="n">of</span> <span class="n">all</span> <span class="n">elements</span> <span class="k">in</span> <span class="n">a</span> <span class="n">collection</span><span class="o">.</span>
-</code></pre></div>
+  <span class="n">Returns</span> <span class="n">the</span> <span class="n">sum</span> <span class="n">of</span> <span class="n">all</span> <span class="n">elements</span> <span class="kp">in</span> <span class="n">a</span> <span class="n">collection</span><span class="o">.</span>
+</pre></div>
+
 
 <p>Màu mè (syntax highlight) cũng tự có sẵn rồi.</p>
 <h4>Chạy file code</h4>
@@ -107,12 +109,13 @@ Chuyện về <code>virtualenv</code> tạm chưa bàn tới ở đây vì khá 
 Sẽ không có câu lệnh nào để gõ cả, không có chương trình thêm nào hết.
 Julia thực hiện cài đặt package khi một đoạn code Julia được chạy (gọi function thực hiện cài đặt).</p>
 <p>Ví dụ một file tên (tuỳ ý) như sau:</p>
-<div class="highlight"><pre><span></span><code><span class="c"># gicungduoc.jl</span>
+<div class="highlight"><pre><span></span><span class="c"># gicungduoc.jl</span>
 <span class="k">using</span> <span class="n">Pkg</span>
 <span class="n">Pkg</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;HTTP&quot;</span><span class="p">)</span>
 <span class="n">Pkg</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;JSON&quot;</span><span class="p">)</span>
 <span class="n">Pkg</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;DocOpt&quot;</span><span class="p">)</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>Chạy code này: <code>julia gicungduoc.jl</code> sẽ cài đặt các package, sau đó cứ thế mà dùng các thư viện này.</p>
 <h3>The good, the OK, the ugly</h3>
@@ -123,19 +126,21 @@ Hãy xem đoạn code sau:</p>
 <p>Python: <code>''.join("  Py thon    ".strip().split())</code></p>
 <p>Julia: <code>"  Py thon    " |&gt; strip |&gt; split |&gt; xs -&gt; join(xs, "")</code></p>
 <p>Python</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">double</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">double</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
 <span class="k">def</span> <span class="nf">incr</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">incr</span><span class="p">(</span><span class="n">double</span><span class="p">(</span><span class="n">incr</span><span class="p">(</span><span class="mi">2</span><span class="p">))))</span>
-</code></pre></div>
+<span class="k">print</span><span class="p">(</span><span class="n">incr</span><span class="p">(</span><span class="n">double</span><span class="p">(</span><span class="n">incr</span><span class="p">(</span><span class="mi">2</span><span class="p">))))</span>
+</pre></div>
 
-<div class="highlight"><pre><span></span><code><span class="n">double</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
+
+<div class="highlight"><pre><span></span><span class="n">double</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
 <span class="n">incr</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
 <span class="n">println</span><span class="p">(</span><span class="mi">2</span> <span class="o">|&gt;</span> <span class="n">incr</span> <span class="o">|&gt;</span> <span class="n">double</span> <span class="o">|&gt;</span> <span class="n">incr</span><span class="p">)</span>
 <span class="c"># 7</span>
-</code></pre></div>
+</pre></div>
+
 
 <p><code>|&gt;</code> gọi là <code>Piping operator</code>, lấy đầu ra của function này làm đầu vào cho function khác.
 Giúp việc goi funciton liên tục (và đọc nó) dễ dàng hơn.
@@ -146,28 +151,31 @@ Giống UNIX command.</p>
 <p>Dù bạn thụt ra thụt vào 2 3 4 5 ký tự, hay dùng tab đều không quan trọng.
 Chuyện này vốn gây đau đầu cho không ít người dùng Python.</p>
 <p>Python</p>
-<div class="highlight"><pre><span></span><code><span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
+<div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">i</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-</code></pre></div>
+<span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+
 
 <p>Julia</p>
-<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="o">:</span><span class="mi">999</span>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="kp">in</span> <span class="mi">1</span><span class="o">:</span><span class="mi">999</span>
  <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span>
-   <span class="k">global</span> <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">i</span>
+   <span class="kd">global</span> <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">i</span>
  <span class="k">end</span>
 <span class="k">end</span>
 <span class="n">println</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
 <span class="c"># 233168</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>Julia dùng từ <code>end</code> để kết thúc <code>if</code> hay <code>for</code>, nên không cần thiết sử dụng dấu cách hay tab để thụt dòng.
 Thậm chí có thể dùng <code>;</code> để phân cách các phần, và viết trên 1 dòng (bạn KHÔNG THỂ làm điều này với Python khi có for):</p>
-<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="o">:</span><span class="mi">999</span><span class="p">;</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span> <span class="k">global</span> <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">i</span> <span class="p">;</span> <span class="k">end</span> <span class="p">;</span> <span class="k">end</span><span class="p">;</span> <span class="n">println</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="k">for</span> <span class="n">i</span> <span class="kp">in</span> <span class="mi">1</span><span class="o">:</span><span class="mi">999</span><span class="p">;</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span> <span class="kd">global</span> <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">i</span> <span class="p">;</span> <span class="k">end</span> <span class="p">;</span> <span class="k">end</span><span class="p">;</span> <span class="n">println</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
 <span class="mi">233168</span>
-</code></pre></div>
+</pre></div>
+
 
 <h5>Range bao gồm cả số kết thúc</h5>
 <p>Một điều gây khó chịu với người mới code Python là phần kết thúc của range không được tính.
@@ -175,48 +183,56 @@ Tức nếu viết <code>range(1,1000)</code> thì chỉ có từ 1 đến 999. 
 Julia <code>1:999</code> nghĩa là 1 đến 999, không thêm bớt gì.</p>
 <h5>Không bị "leak" biến i trong vòng lặp ra ngoài</h5>
 <p>Đây là <a href="https://stackoverflow.com/questions/3611760/scoping-in-python-for-loops">1 bug của Python</a>, do sau này quá muộn để sửa, <a href="https://www.wired.com/story/its-not-a-bug-its-a-feature/">người ta coi nó như 1 tính năng</a>.</p>
-<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>  <span class="c1"># i vốn ở trong vòng lặp for, nay thoát ra ngoài với giá trị = 3</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>  <span class="c1"># i vốn ở trong vòng lặp for, nay thoát ra ngoài với giá trị = 3</span>
+</pre></div>
+
 
 <h5>Hỗ trợ functional</h5>
 <p>Viết map trong Julia rất dễ chịu - dễ đọc:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">map</span><span class="ss">(</span>[<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>]<span class="ss">)</span> <span class="k">do</span> <span class="nv">x</span>
-  <span class="nv">x</span> <span class="o">+</span> <span class="mi">1</span>
-<span class="k">end</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span>map([1,2,3]) do x
+  x + 1
+end
+</pre></div>
+
 
 <p>Cách viết dùng lambda: </p>
-<div class="highlight"><pre><span></span><code><span class="n">map</span><span class="p">(</span><span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="n">map</span><span class="p">(</span><span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+
 
 <p>sẽ tạo array chứa <code>[2,3,4]</code></p>
 <p>Python</p>
-<div class="highlight"><pre><span></span><code><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]))</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]))</span>
+</pre></div>
+
 
 <h4>The OK - ổn</h4>
 <h5>Index from 1</h5>
 <p>Chuyện này gây sốc với lập trình viên lâu năm C, Java, PHP, Python ...
 Nhưng không phải là hiếm có. Lua, MatLab, R đều dùng index từ 1.</p>
-<div class="highlight"><pre><span></span><code><span class="n">ns</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">];</span> <span class="n">print</span><span class="p">(</span><span class="n">ns</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="n">ns</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">];</span> <span class="n">print</span><span class="p">(</span><span class="n">ns</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+</pre></div>
+
 
 <p>Trong Julia code này sẽ in ra số 4 nhưng Python sẽ xảy ra exception do Python index đếm từ 0</p>
 <p>Dùng nhiều sẽ quen và cũng không ghê gớm lắm, do Julia sử dụng cả phần cuối của range.</p>
 <p>Ví dụ slice: Python lấy 3 số đầu tiên của list:</p>
-<div class="highlight"><pre><span></span><code><span class="n">ns</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="n">ns</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+
 
 <p>Julia: </p>
-<div class="highlight"><pre><span></span><code><span class="n">ns</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">3</span><span class="p">]</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="n">ns</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+
 
 <p>Đều kết thúc là 3 - đều là số phần tử cần lấy.</p>
 <p>Nhưng tệ hơn khi cần lấy 2 phần tử cuối:</p>
-<div class="highlight"><pre><span></span><code><span class="n">ns</span><span class="p">[</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="o">:</span><span class="k">end</span><span class="p">]</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="n">ns</span><span class="p">[</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="o">:</span><span class="k">end</span><span class="p">]</span>
+</pre></div>
+
 
 <p><code>end</code> là một index magic (tự xuất hiện), đại diện cho index của phần tử cuối cùng.</p>
 <p>Trong ví dụ này gõ số 4 thay end cũng được.</p>
@@ -224,30 +240,32 @@ Nhưng không phải là hiếm có. Lua, MatLab, R đều dùng index từ 1.</
 <p>Unicode string - sẽ rất đau đầu khi chuyển từ Python sang.</p>
 <p>Index của string (mặc định Unicode) trong Julia là byte index, không phải index theo thứ tự của ký tự.</p>
 <p>Python</p>
-<div class="highlight"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">16</span><span class="p">]:</span> <span class="n">w</span> <span class="o">=</span> <span class="s2">&quot;Điêu&quot;</span>
+<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">16</span><span class="p">]:</span> <span class="n">w</span> <span class="o">=</span> <span class="s2">&quot;Điêu&quot;</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">20</span><span class="p">]:</span> <span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">w</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">Out</span><span class="p">[</span><span class="mi">20</span><span class="p">]:</span> <span class="p">(</span><span class="s1">&#39;Đ&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">)</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>Julia </p>
-<div class="highlight"><pre><span></span><code><span class="n">ulia</span><span class="o">&gt;</span> <span class="n">w</span> <span class="o">=</span> <span class="s">&quot;Điêu&quot;</span>
+<div class="highlight"><pre><span></span><span class="n">ulia</span><span class="o">&gt;</span> <span class="n">w</span> <span class="o">=</span> <span class="s">&quot;Điêu&quot;</span>
 <span class="s">&quot;Điêu&quot;</span>
 
 <span class="n">julia</span><span class="o">&gt;</span> <span class="n">w</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="sc">&#39;Đ&#39;</span><span class="o">:</span> <span class="n">Unicode</span> <span class="n">U</span><span class="o">+</span><span class="mi">0110</span> <span class="p">(</span><span class="n">category</span> <span class="n">Lu</span><span class="o">:</span> <span class="n">Letter</span><span class="p">,</span> <span class="n">uppercase</span><span class="p">)</span>
 
 <span class="n">julia</span><span class="o">&gt;</span> <span class="n">w</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-<span class="n">ERROR</span><span class="o">:</span> <span class="kt">StringIndexError</span><span class="p">(</span><span class="s">&quot;Điêu&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">ERROR</span><span class="o">:</span> <span class="n">StringIndexError</span><span class="p">(</span><span class="s">&quot;Điêu&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">Stacktrace</span><span class="o">:</span>
- <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">string_index_err</span><span class="p">(</span><span class="o">::</span><span class="kt">String</span><span class="p">,</span> <span class="o">::</span><span class="kt">Int64</span><span class="p">)</span> <span class="n">at</span> <span class="o">/</span><span class="n">nix</span><span class="o">/</span><span class="n">store</span><span class="o">/</span><span class="mi">2</span><span class="n">fmf5sqi0jx5zdlqx0gpw2m6nrsbcch2</span><span class="o">-</span><span class="n">julia</span><span class="o">-</span><span class="mf">1.0.1</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">julia</span><span class="o">/</span><span class="n">sys</span><span class="o">.</span><span class="n">dylib</span><span class="o">:?</span>
- <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">getindex_continued</span><span class="p">(</span><span class="o">::</span><span class="kt">String</span><span class="p">,</span> <span class="o">::</span><span class="kt">Int64</span><span class="p">,</span> <span class="o">::</span><span class="kt">UInt32</span><span class="p">)</span> <span class="n">at</span> <span class="o">/</span><span class="n">nix</span><span class="o">/</span><span class="n">store</span><span class="o">/</span><span class="mi">2</span><span class="n">fmf5sqi0jx5zdlqx0gpw2m6nrsbcch2</span><span class="o">-</span><span class="n">julia</span><span class="o">-</span><span class="mf">1.0.1</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">julia</span><span class="o">/</span><span class="n">sys</span><span class="o">.</span><span class="n">dylib</span><span class="o">:?</span>
- <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">getindex</span><span class="p">(</span><span class="o">::</span><span class="kt">String</span><span class="p">,</span> <span class="o">::</span><span class="kt">Int64</span><span class="p">)</span> <span class="n">at</span> <span class="o">/</span><span class="n">nix</span><span class="o">/</span><span class="n">store</span><span class="o">/</span><span class="mi">2</span><span class="n">fmf5sqi0jx5zdlqx0gpw2m6nrsbcch2</span><span class="o">-</span><span class="n">julia</span><span class="o">-</span><span class="mf">1.0.1</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">julia</span><span class="o">/</span><span class="n">sys</span><span class="o">.</span><span class="n">dylib</span><span class="o">:?</span>
+ <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">string_index_err</span><span class="p">(</span><span class="o">::</span><span class="n">String</span><span class="p">,</span> <span class="o">::</span><span class="kt">Int64</span><span class="p">)</span> <span class="n">at</span> <span class="o">/</span><span class="n">nix</span><span class="o">/</span><span class="n">store</span><span class="o">/</span><span class="mi">2</span><span class="n">fmf5sqi0jx5zdlqx0gpw2m6nrsbcch2</span><span class="o">-</span><span class="n">julia</span><span class="o">-</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">1</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">julia</span><span class="o">/</span><span class="n">sys</span><span class="o">.</span><span class="n">dylib</span><span class="o">:?</span>
+ <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">getindex_continued</span><span class="p">(</span><span class="o">::</span><span class="n">String</span><span class="p">,</span> <span class="o">::</span><span class="kt">Int64</span><span class="p">,</span> <span class="o">::</span><span class="kt">UInt32</span><span class="p">)</span> <span class="n">at</span> <span class="o">/</span><span class="n">nix</span><span class="o">/</span><span class="n">store</span><span class="o">/</span><span class="mi">2</span><span class="n">fmf5sqi0jx5zdlqx0gpw2m6nrsbcch2</span><span class="o">-</span><span class="n">julia</span><span class="o">-</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">1</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">julia</span><span class="o">/</span><span class="n">sys</span><span class="o">.</span><span class="n">dylib</span><span class="o">:?</span>
+ <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">getindex</span><span class="p">(</span><span class="o">::</span><span class="n">String</span><span class="p">,</span> <span class="o">::</span><span class="kt">Int64</span><span class="p">)</span> <span class="n">at</span> <span class="o">/</span><span class="n">nix</span><span class="o">/</span><span class="n">store</span><span class="o">/</span><span class="mi">2</span><span class="n">fmf5sqi0jx5zdlqx0gpw2m6nrsbcch2</span><span class="o">-</span><span class="n">julia</span><span class="o">-</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">1</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">julia</span><span class="o">/</span><span class="n">sys</span><span class="o">.</span><span class="n">dylib</span><span class="o">:?</span>
  <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span> <span class="n">at</span> <span class="n">none</span><span class="o">:</span><span class="mi">0</span>
 
 <span class="n">julia</span><span class="o">&gt;</span> <span class="n">w</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
 <span class="sc">&#39;i&#39;</span><span class="o">:</span> <span class="n">ASCII</span><span class="o">/</span><span class="n">Unicode</span> <span class="n">U</span><span class="o">+</span><span class="mi">0069</span> <span class="p">(</span><span class="n">category</span> <span class="n">Ll</span><span class="o">:</span> <span class="n">Letter</span><span class="p">,</span> <span class="n">lowercase</span><span class="p">)</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>Do chữ <code>Đ</code> trong Unicode UTF-8 được biểu diễn bằng 2 byte, ta chỉ có thể truy cập 
 được index 1, không truy cập được index 2. Và chữ <code>i</code> ngay sau <code>Đ</code> sẽ là index 3.</p>
@@ -262,7 +280,7 @@ Nhưng không phải là hiếm có. Lua, MatLab, R đều dùng index từ 1.</
   thay vào đó là các function có sẵn (thường không cần import, gọi là trong <a href="https://docs.julialang.org/en/v1/base/base/">Base</a>)</li>
 </ul>
 <h3>Ví dụ 1 chương trình CLI nhận argument, gọi HTTP với JSON</h3>
-<div class="highlight"><pre><span></span><code><span class="k">import</span> <span class="n">HTTP</span>
+<div class="highlight"><pre><span></span><span class="k">import</span> <span class="n">HTTP</span>
 <span class="k">import</span> <span class="n">JSON</span>
 <span class="k">using</span> <span class="n">DocOpt</span>  <span class="c"># import docopt function</span>
 
@@ -277,12 +295,12 @@ Nhưng không phải là hiếm có. Lua, MatLab, R đều dùng index từ 1.</
 <span class="s">      --version     Show version.</span>
 <span class="s">    &quot;&quot;&quot;</span>
 
-    <span class="n">args</span> <span class="o">=</span> <span class="n">docopt</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="sa">v</span><span class="s">&quot;0.0.1&quot;</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">docopt</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="n">v</span><span class="s">&quot;0.0.1&quot;</span><span class="p">)</span>
     <span class="n">endpoint</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s">&quot;&lt;endpoint&gt;&quot;</span><span class="p">]</span>
     <span class="n">url</span> <span class="o">=</span> <span class="s">&quot;https://httpbin.org/</span><span class="si">$endpoint</span><span class="s">&quot;</span>
     <span class="n">println</span><span class="p">(</span><span class="s">&quot;Accessing </span><span class="si">$url</span><span class="s">&quot;</span><span class="p">)</span>
     <span class="n">resp</span> <span class="o">=</span> <span class="n">HTTP</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-    <span class="n">d</span> <span class="o">=</span> <span class="n">JSON</span><span class="o">.</span><span class="n">Parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="kt">String</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">body</span><span class="p">))</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">JSON</span><span class="o">.</span><span class="n">Parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">body</span><span class="p">))</span>
     <span class="n">println</span><span class="p">(</span><span class="s">&quot;My IP is &quot;</span> <span class="o">*</span> <span class="n">d</span><span class="p">[</span><span class="s">&quot;origin&quot;</span><span class="p">])</span>
 
     <span class="n">println</span><span class="p">(</span><span class="s">&quot;Now also send post&quot;</span><span class="p">)</span>
@@ -290,19 +308,19 @@ Nhưng không phải là hiếm có. Lua, MatLab, R đều dùng index từ 1.</
             <span class="p">[</span><span class="s">&quot;Content-Type&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;application/json&quot;</span><span class="p">],</span>
             <span class="n">JSON</span><span class="o">.</span><span class="n">json</span><span class="p">(</span><span class="kt">Dict</span><span class="p">(</span><span class="sc">&#39;a&#39;</span><span class="o">=&gt;</span><span class="mi">2</span><span class="p">,</span> <span class="sc">&#39;b&#39;</span><span class="o">=&gt;</span><span class="mi">3</span><span class="p">))</span>
             <span class="p">)</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">JSON</span><span class="o">.</span><span class="n">Parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="kt">String</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">body</span><span class="p">))</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">JSON</span><span class="o">.</span><span class="n">Parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">body</span><span class="p">))</span>
 
     <span class="n">open</span><span class="p">(</span><span class="s">&quot;/tmp/data.json&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="n">f</span>
         <span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">JSON</span><span class="o">.</span><span class="n">json</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">&quot;json&quot;</span><span class="p">]))</span>
     <span class="k">end</span>
     <span class="n">open</span><span class="p">(</span><span class="s">&quot;/tmp/data.json&quot;</span><span class="p">,</span> <span class="s">&quot;r&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="n">f</span>
-        <span class="n">d</span> <span class="o">=</span> <span class="n">JSON</span><span class="o">.</span><span class="n">Parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="kt">String</span><span class="p">(</span><span class="n">read</span><span class="p">(</span><span class="n">f</span><span class="p">)))</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">JSON</span><span class="o">.</span><span class="n">Parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="n">read</span><span class="p">(</span><span class="n">f</span><span class="p">)))</span>
         <span class="n">println</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
     <span class="k">end</span>
 
     <span class="n">open</span><span class="p">(</span><span class="sb">`ls -l`</span><span class="p">)</span> <span class="k">do</span> <span class="n">io</span>
-        <span class="k">for</span> <span class="n">line</span> <span class="k">in</span> <span class="n">eachline</span><span class="p">(</span><span class="n">io</span><span class="p">)</span>
-            <span class="k">if</span> <span class="o">!</span><span class="k">isa</span><span class="p">(</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="sr">&quot;.*</span><span class="err">\</span><span class="sr">.jl&quot;</span><span class="p">,</span> <span class="n">line</span><span class="p">),</span> <span class="kt">Nothing</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="kp">in</span> <span class="n">eachline</span><span class="p">(</span><span class="n">io</span><span class="p">)</span>
+            <span class="k">if</span> <span class="o">!</span><span class="n">isa</span><span class="p">(</span><span class="n">match</span><span class="p">(</span><span class="sr">r&quot;.*\.jl&quot;</span><span class="p">,</span> <span class="n">line</span><span class="p">),</span> <span class="n">Nothing</span><span class="p">)</span>
                 <span class="n">println</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
             <span class="k">end</span>
         <span class="k">end</span>
@@ -310,10 +328,11 @@ Nhưng không phải là hiếm có. Lua, MatLab, R đều dùng index từ 1.</
 <span class="k">end</span>
 
 <span class="n">main</span><span class="p">()</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>Chạy</p>
-<div class="highlight"><pre><span></span><code>$ julia  main.jl  -h
+<div class="highlight"><pre><span></span>$ julia  main.jl  -h
 Fist Julia program which makes HTTP requests to httpbin endpoint
 
 Usage:
@@ -329,7 +348,8 @@ My IP is <span class="m">3</span>.117.2.254, <span class="m">3</span>.117.2.254
 Now also send post
 Dict<span class="o">{</span>String,Any<span class="o">}(</span><span class="s2">&quot;b&quot;</span><span class="o">=</span>&gt;3,<span class="s2">&quot;a&quot;</span><span class="o">=</span>&gt;2<span class="o">)</span>
 -rw-r--r-- <span class="m">1</span> viethung.nguyen viethung.nguyen <span class="m">1189</span> Apr <span class="m">12</span> <span class="m">08</span>:38 main.jl
-</code></pre></div>
+</pre></div>
+
 
 <p>Code hoàn toàn tương đương với code Python.</p>
 <h3>Kết luận</h3>

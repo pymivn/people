@@ -73,7 +73,7 @@ Scheme.</p>
 <p>CHICKEN Scheme gọi các gói thư viện là extension hay "egg".</p>
 <p><code>chicken-install tên-extension</code></p>
 <p>Ví dụ cài <code>regex</code>:</p>
-<div class="highlight"><pre><span></span><code>$ sudo chicken-install regex
+<div class="highlight"><pre><span></span>$ sudo chicken-install regex
 <span class="o">[</span>sudo<span class="o">]</span> password <span class="k">for</span> hvn:  GO PASSWORD
 retrieving ...
 connecting to host <span class="s2">&quot;chicken.kitten-technologies.co.uk&quot;</span>, port <span class="m">80</span> ...
@@ -97,10 +97,11 @@ changing current directory to /tmp/tempab50.21917/regex
   cp -r <span class="s1">&#39;regex.import.so&#39;</span> <span class="s1">&#39;/var/lib/chicken/7/regex.import.so&#39;</span>
   chmod a+r <span class="s1">&#39;/var/lib/chicken/7/regex.import.so&#39;</span>
   chmod a+r <span class="s1">&#39;/var/lib/chicken/7/regex.setup-info&#39;</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>Bật <code>csi</code> lên để gõ code gọi function <code>grep</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">$</span> <span class="nv">csi</span>
+<div class="highlight"><pre><span></span><span class="nv">$</span> <span class="nv">csi</span>
 <span class="nv">/usr/bin/rlwrap</span>
 
 <span class="nv">CHICKEN</span>
@@ -119,20 +120,22 @@ changing current directory to /tmp/tempab50.21917/regex
     <span class="nv">&lt;syntax&gt;</span>      <span class="p">(</span><span class="nf">grep</span> <span class="s">&quot;[0-9]&quot;</span> <span class="p">(</span><span class="nb">list </span><span class="s">&quot;pymi&quot;</span> <span class="s">&quot;2018&quot;</span> <span class="s">&quot;pymi2018&quot;</span><span class="p">))</span>
     <span class="nv">&lt;syntax&gt;</span>      <span class="p">(</span><span class="nb">list </span><span class="s">&quot;pymi&quot;</span> <span class="s">&quot;2018&quot;</span> <span class="s">&quot;pymi2018&quot;</span><span class="p">)</span>
     <span class="nv">&lt;eval&gt;</span>    <span class="p">(</span><span class="nf">grep</span> <span class="s">&quot;[0-9]&quot;</span> <span class="p">(</span><span class="nb">list </span><span class="s">&quot;pymi&quot;</span> <span class="s">&quot;2018&quot;</span> <span class="s">&quot;pymi2018&quot;</span><span class="p">))</span>    <span class="nv">&lt;--</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>Nội dung error rõ ràng: <code>Error: unbound variable: grep</code> - không hiểu <code>grep</code>
 là cái gì - nó không phải một variable/function đã tồn tại.</p>
 <h2>Sử dụng / import extension</h2>
 <p>Dùng macro <code>use ten-extension</code> (tại bài này cứ hiểu là function cũng tạm ổn)</p>
-<div class="highlight"><pre><span></span><code><span class="o">#</span><span class="c1">;1&gt; (use regex)</span>
+<div class="highlight"><pre><span></span><span class="o">#</span><span class="c1">;1&gt; (use regex)</span>
 <span class="c1">; loading /var/lib//chicken/7/regex.import.so ...</span>
 <span class="c1">; loading /var/lib//chicken/7/chicken.import.so ...</span>
 <span class="c1">; loading /var/lib//chicken/7/irregex.import.so ...</span>
 <span class="c1">; loading /var/lib//chicken/7/regex.so ...</span>
 <span class="o">#</span><span class="c1">;2&gt; (grep &quot;[0-9]&quot; (list &quot;pymi&quot; &quot;2018&quot; &quot;pymi2018&quot;))</span>
 <span class="p">(</span><span class="s">&quot;2018&quot;</span> <span class="s">&quot;pymi2018&quot;</span><span class="p">)</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>Ta thu được list các phần tử có chứa số, string "[0-9]" là regular expression
 biểu diễn một số hệ 10.</p>
@@ -140,7 +143,7 @@ biểu diễn một số hệ 10.</p>
 <p><code>grep</code> ở trên làm gì? CHICKEN Scheme có chương trình <code>chicken-doc</code> để tra
 tài liêu, tương tự python có <code>pydoc</code>. Để có <code>chicken-doc</code>, cần cài extension
 với lệnh: <code>sudo chicken-install chicken-doc</code>.</p>
-<div class="highlight"><pre><span></span><code>$ chicken-doc grep
+<div class="highlight"><pre><span></span>$ chicken-doc grep
 path: <span class="o">(</span>regex grep<span class="o">)</span>
 
 -- procedure: <span class="o">(</span>grep REGEX LIST <span class="o">[</span>ACCESSOR<span class="o">])</span>
@@ -151,10 +154,11 @@ Returns all items of <span class="sb">`</span>LIST<span class="sb">`</span> that
     <span class="o">(</span>filter <span class="o">(</span>lambda <span class="o">(</span>x<span class="o">)</span> <span class="o">(</span>string-search regex x<span class="o">))</span> lst<span class="o">)</span> <span class="o">)</span>
 
 <span class="sb">`</span>ACCESSOR<span class="sb">`</span> is an optional accessor-procedure applied to each element before doing the match. It should take a single argument
-and <span class="k">return</span> a string that will <span class="k">then</span> be used <span class="k">in</span> the regular expression matching. <span class="sb">`</span>ACCESSOR<span class="sb">`</span> defaults to the identity <span class="k">function</span>.
-</code></pre></div>
+and <span class="k">return</span> a string that will <span class="k">then</span> be used in the regular expression matching. <span class="sb">`</span>ACCESSOR<span class="sb">`</span> defaults to the identity <span class="k">function</span>.
+</pre></div>
 
-<div class="highlight"><pre><span></span><code>$ chicken-doc -i scheme  <span class="c1"># đầy đủ doc về R5RS</span>
+
+<div class="highlight"><pre><span></span>$ chicken-doc -i scheme  <span class="c1"># đầy đủ doc về R5RS</span>
 ...
 $ chicken-doc -c scheme  <span class="c1"># danh sách các procedure trong R5RS</span>
 ...
@@ -179,19 +183,21 @@ $ chicken-doc chicken special-forms when <span class="c1"># xem kết quả th�
 Equivalent to:
 
   <span class="o">(</span><span class="k">if</span> TEST <span class="o">(</span>begin EXP1 EXP2 ...<span class="o">))</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>Pydoc đi kèm với Python có khả năng tương tự:</p>
-<div class="highlight"><pre><span></span><code>$ pydoc len
+<div class="highlight"><pre><span></span>$ pydoc len
 
-Help on built-in <span class="k">function</span> len <span class="k">in</span> module builtins:
+Help on built-in <span class="k">function</span> len in module builtins:
 
 len<span class="o">(</span>obj, /<span class="o">)</span>
-    Return the number of items <span class="k">in</span> a container.
-</code></pre></div>
+    Return the number of items in a container.
+</pre></div>
+
 
 <h2>Liệt kê các extension có trên "mạng"</h2>
-<div class="highlight"><pre><span></span><code>$ chicken-install -list
+<div class="highlight"><pre><span></span>$ chicken-install -list
 2d-primitives
 3viewer
 9ML-toolkit
@@ -202,12 +208,13 @@ R
 abnf
 accents-substitute
 ...
-</code></pre></div>
+</pre></div>
+
 
 <p>Tại thời điểm viết bài, có 781 egg trong kho - hơi ít.</p>
 <h2>Xem các extension library đã cài</h2>
 <p>Dùng lệnh <code>chicken-status</code></p>
-<div class="highlight"><pre><span></span><code>$ chicken-status
+<div class="highlight"><pre><span></span>$ chicken-status
 apropos ......................................... version: <span class="m">2</span>.1.0
 check-errors .................................... version: <span class="m">2</span>.2.0
 chicken-doc ..................................... version: <span class="m">0</span>.4.7
@@ -218,7 +225,8 @@ fmt-color ....................................... version: <span class="m">0</sp
 fmt-js .......................................... version: <span class="m">0</span>.808
 fmt-unicode ..................................... version: <span class="m">0</span>.808
 iset .............................................. version: <span class="m">2</span>.0
-</code></pre></div>
+</pre></div>
+
 
 <h2>Gỡ extension</h2>
 <p>Sử dụng câu lệnh <code>chicken-uninstall TEN-extension</code>.</p>
@@ -226,16 +234,17 @@ iset .............................................. version: <span class="m">2</
 <p>Xem online tai <a href="">http://eggs.call-cc.org/4/</a> cho bản CHICKEN stable hiện tại:
 version 4.</p>
 <p>Bài viết thực hiện trên:</p>
-<div class="highlight"><pre><span></span><code><span class="o">$</span> <span class="n">lsb_release</span> <span class="o">-</span><span class="n">r</span><span class="p">;</span> <span class="n">csi</span> <span class="o">-</span><span class="n">version</span>
-<span class="n">Release</span><span class="p">:</span>    <span class="mf">16.04</span>
+<div class="highlight"><pre><span></span>$ lsb_release -r<span class="p">;</span> csi -version
+Release:    <span class="m">16</span>.04
 
-<span class="n">CHICKEN</span>
-<span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2008</span><span class="o">-</span><span class="mi">2014</span><span class="p">,</span> <span class="n">The</span> <span class="n">Chicken</span> <span class="n">Team</span>
-<span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2000</span><span class="o">-</span><span class="mi">2007</span><span class="p">,</span> <span class="n">Felix</span> <span class="n">L</span><span class="o">.</span> <span class="n">Winkelmann</span>
-<span class="n">Version</span> <span class="mf">4.9</span><span class="o">.</span><span class="mf">0.1</span> <span class="p">(</span><span class="n">stability</span><span class="o">/</span><span class="mf">4.9</span><span class="o">.</span><span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="n">rev</span> <span class="mi">8</span><span class="n">b3189b</span><span class="p">)</span>
-<span class="n">linux</span><span class="o">-</span><span class="n">unix</span><span class="o">-</span><span class="n">gnu</span><span class="o">-</span><span class="n">x86</span><span class="o">-</span><span class="mi">64</span> <span class="p">[</span> <span class="mi">64</span><span class="n">bit</span> <span class="n">manyargs</span> <span class="n">dload</span> <span class="n">ptables</span> <span class="p">]</span>
-<span class="n">bootstrapped</span> <span class="mi">2014</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">07</span>
-</code></pre></div>
+CHICKEN
+<span class="o">(</span>c<span class="o">)</span> <span class="m">2008</span>-2014, The Chicken Team
+<span class="o">(</span>c<span class="o">)</span> <span class="m">2000</span>-2007, Felix L. Winkelmann
+Version <span class="m">4</span>.9.0.1 <span class="o">(</span>stability/4.9.0<span class="o">)</span> <span class="o">(</span>rev 8b3189b<span class="o">)</span>
+linux-unix-gnu-x86-64 <span class="o">[</span> 64bit manyargs dload ptables <span class="o">]</span>
+bootstrapped <span class="m">2014</span>-06-07
+</pre></div>
+
 
 <p>Hết phần 2.</p>
   </div>

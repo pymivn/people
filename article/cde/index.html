@@ -69,32 +69,35 @@ còn với máy tính thì hoàn toàn ngược lại.</p>
 và Python rồi so sánh dùng <code>strace</code> - một công cụ debug "cao cấp" thường
 dùng bởi các SysAdmin.</p>
 <h3>strace</h3>
-<div class="highlight"><pre><span></span><code>$ whatis strace
+<div class="highlight"><pre><span></span>$ whatis strace
 strace <span class="o">(</span><span class="m">1</span><span class="o">)</span>           - trace system calls and signals
-</code></pre></div>
+</pre></div>
+
 
 <p>Bài viết thực hiện trên Ubuntu 18.04, <code>cc</code> - C compiler có lẽ là có sẵn.
 Hoặc nếu không có, hãy cài bằng <code>sudo apt-get install -y  build-essential strace</code></p>
 <h3>C Programming language</h3>
 <p>4 dòng code C</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">puts</span><span class="p">(</span><span class="s">&quot;Hello world!&quot;</span><span class="p">);</span>
 <span class="p">}</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>Compile rồi chạy - yeah, cực đơn giản, không cần gì khác cả, cũng không cần
 làm việc đơn giản này trở thành rắc rôi.</p>
-<div class="highlight"><pre><span></span><code>$ cc hello.c -o hello  <span class="c1"># compile, sinh ra file hello</span>
+<div class="highlight"><pre><span></span>$ cc hello.c -o hello  <span class="c1"># compile, sinh ra file hello</span>
 $ ./hello  <span class="c1"># chạy file hello</span>
 Hello world!
-</code></pre></div>
+</pre></div>
+
 
 <p>Giờ chạy với <code>strace</code> để xem chương trình siêu đơn giản này gọi những system call
 nào, <code>-C</code> sẽ hiển thị bảng thống kê, <code>-S calls</code> sẽ sắp xếp thống kê này
 theo cột <code>calls</code>, giảm dần.</p>
-<div class="highlight"><pre><span></span><code>$ strace -CScalls ./hello
+<div class="highlight"><pre><span></span>$ strace -CScalls ./hello
 execve<span class="o">(</span><span class="s2">&quot;./hello&quot;</span>, <span class="o">[</span><span class="s2">&quot;./hello&quot;</span><span class="o">]</span>, 0x7fff1e9af718 /* <span class="m">68</span> vars */<span class="o">)</span> <span class="o">=</span> <span class="m">0</span>
 brk<span class="o">(</span>NULL<span class="o">)</span>                               <span class="o">=</span> 0x56174aa4e000
 access<span class="o">(</span><span class="s2">&quot;/etc/ld.so.nohwcap&quot;</span>, F_OK<span class="o">)</span>      <span class="o">=</span> -1 ENOENT <span class="o">(</span>No such file or directory<span class="o">)</span>
@@ -141,12 +144,13 @@ exit_group<span class="o">(</span><span class="m">0</span><span class="o">)</spa
   <span class="m">0</span>.00    <span class="m">0</span>.000000           <span class="m">0</span>         <span class="m">1</span>           arch_prctl
 ------ ----------- ----------- --------- --------- ----------------
 <span class="m">100</span>.00    <span class="m">0</span>.000000                    <span class="m">27</span>         <span class="m">3</span> total
-</code></pre></div>
+</pre></div>
+
 
 <p>Có tổng cộng 27 syscall được thực hiện, 3 fail.</p>
 <h3>Python</h3>
 <p>Một chương trình Python 3.6 in ra màn hình dòng chữ <code>hello world</code> tương tự:</p>
-<div class="highlight"><pre><span></span><code>$ strace -cScalls python3 -c <span class="s1">&#39;print(&quot;Hello world!&quot;)&#39;</span>
+<div class="highlight"><pre><span></span>$ strace -cScalls python3 -c <span class="s1">&#39;print(&quot;Hello world!&quot;)&#39;</span>
 Hello world!
 % <span class="nb">time</span>     seconds  usecs/call     calls    errors syscall
 ------ ----------- ----------- --------- --------- ----------------
@@ -186,12 +190,14 @@ Hello world!
   <span class="m">0</span>.73    <span class="m">0</span>.000022          <span class="m">22</span>         <span class="m">1</span>           getrandom
 ------ ----------- ----------- --------- --------- ----------------
 <span class="m">100</span>.00    <span class="m">0</span>.003004                   <span class="m">703</span>        <span class="m">52</span> total
-</code></pre></div>
+</pre></div>
+
 
 <p>Do output quá dài nên ở đây thay đổi câu lệnh, để có đầy đủ output hãy chạy
 với option C hoa:</p>
-<div class="highlight"><pre><span></span><code>$ strace -CScalls python -c <span class="s1">&#39;print(&quot;hello world&quot;)&#39;</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span>$ strace -CScalls python -c <span class="s1">&#39;print(&quot;hello world&quot;)&#39;</span>
+</pre></div>
+
 
 <p>Chương trình Python đơn giản này thực hiện tới 703 syscall, 52 fail.</p>
 <h3>Kết luận</h3>
