@@ -127,6 +127,7 @@ công cụ sẽ chỉ giúp một phần, phần còn lại là sự cẩn thậ
 &lt;p&gt;Tự do phải chăng cần trong khuôn khổ?&lt;/p&gt;
 &lt;h2&gt;Tham khảo&lt;/h2&gt;
 &lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.familug.org/p/ung-ho.html"&gt;Ủng hộ tác giả 🍺&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://docs.python.org/3/reference/executionmodel.html#interaction-with-dynamic-features"&gt;https://docs.python.org/3/reference/executionmodel.html#interaction-with-dynamic-features&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content><category term="Trang chủ"></category><category term="python"></category></entry><entry><title>Cứ đi là đến (go)</title><link href="http://pp.pymi.vn/article/go12/" rel="alternate"></link><published>2021-03-11T00:00:00+07:00</published><updated>2021-03-11T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2021-03-11:/article/go12/</id><summary type="html">&lt;p&gt;Học vừa đủ Golang để nguy hiểm - phần 2 - hết&lt;/p&gt;</summary><content type="html">&lt;p&gt;Phần tiếp theo của loạt bài viết &lt;a href="http://pp.pymi.vn/article/go/"&gt;&lt;strong&gt;Học vừa đủ Golang để nguy hiểm&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Chi tiết về các khái niệm chỉ có trong Go mà không có trong Python như Pointer,
