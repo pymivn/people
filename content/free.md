@@ -153,4 +153,5 @@ công cụ sẽ chỉ giúp một phần, phần còn lại là sự cẩn thậ
 Tự do phải chăng cần trong khuôn khổ?
 
 ## Tham khảo
+- [Ủng hộ tác giả 🍺](https://www.familug.org/p/ung-ho.html)
 - [https://docs.python.org/3/reference/executionmodel.html#interaction-with-dynamic-features](https://docs.python.org/3/reference/executionmodel.html#interaction-with-dynamic-features)
