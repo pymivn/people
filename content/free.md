@@ -10,11 +10,12 @@ Python có 2 loại variable (biến): local, global, và free (đếm từ 0, t
 
 ![free](https://images.unsplash.com/photo-1546672117-f83291ce87a9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMzI1MzN8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNzQxNTI&ixlib=rb-1.2.1&q=80&w=600)
 
-## 3 loại variable trong Python
 
-### binding
+## binding
 `x = 42` trong Python đọc là bind name x tới object 42.
 Tham khảo thêm tại bài [Python call by gì?](https://pymi.vn/blog/call-by/)
+
+## 3 loại variable trong Python
 
 ### global variable
 Đoạn code sau
