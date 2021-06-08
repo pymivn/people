@@ -2,7 +2,7 @@
 <html lang="vi">
 
 <head>
-   <title> Free variable  - The PyMiers</title>
+   <title> Python free variable  - The PyMiers</title>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="HandheldFriendly" content="True" />
@@ -27,7 +27,6 @@
 
       <div class="section">
         <div class="row navbar">
-          <div class="column nav-item "><a href="http://pp.pymi.vn/category/draft/">draft</a></div>
           <div class="column nav-item is-active"><a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a></div>
            <div class="column nav-item "><a href="http://pp.pymi.vn/pages/about/">About</a></div>
           <div class="column nav-item "><a href="http://pp.pymi.vn/pages/add/">Tạo bài viết</a></div>
@@ -41,7 +40,7 @@
   <header>
     <h2 class="entry-title">
       <a href="http://pp.pymi.vn/article/free/" rel="bookmark"
-         title="Permalink to Free variable">Free variable</a></h2>  
+         title="Permalink to Python free variable">Python free variable</a></h2>  
   </header>
   <footer class='center'>
     <time class="published" datetime="2021-06-07T00:00:00+07:00"> 07/06/2021 </time>
@@ -103,17 +102,19 @@ bind sau khi dùng), exception sẽ xảy ra là</p>
 
 <p>Lần này không xảy ra UnboundLocalError, do đoạn code không bind x = 42
 trong thân function (block). <code>x</code> ở đây là một free variable.</p>
-<p>Free variable hoạt động theo cách ... rất tự do:</p>
+<p>Free variable hoạt động theo cách ... rất tự do. Khi không tìm thấy x trong
+foo, Python sẽ đi tìm x ở global (bên ngoài function foo).</p>
 <div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">42</span>
 <span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
     <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="mi">96</span>
 <span class="n">foo</span><span class="p">()</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">100</span>
 </pre></div>
 
 
-<p>Màn hình sẽ hiện ra <code>42</code> hay <code>96</code>?</p>
+<p>Màn hình sẽ hiện ra <code>42</code>, <code>100</code> hay <code>96</code>?</p>
 <p>Việc tính toán tên <code>x</code> có giá trị gì, được thực hiện khi function <strong>CHẠY</strong>.
 Khi gọi <code>foo()</code> ở trên, x đã có giá trị là 96.</p>
 <h2>Static analysis</h2>
@@ -173,6 +174,37 @@ Một ví dụ vô lý hơn nữa, để thấy sự bất lực của các côn
 <p>Hạn chế hết mức việc sử dụng global variable, free variable, cần biến gì thì
 đưa argument vào function biến đó, code "sát tường" cho hết vào 1 function
 main và gọi main() nếu cần chạy.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">n_pymi_vn</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">s</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">n_pymi_vn</span><span class="p">()</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+
+<span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+
+<p><code>flake8</code> sẽ làm tốt nhiệm vụ phát hiện ra <code>x</code> chưa được định nghĩa trong ví dụ trên:
+<code>F821 undefined name 'x'</code>, và đoạn code này có thể viết lại để không
+còn dùng global/free variable nữa:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">n_pymi_vn</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">s</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">n_pymi_vn</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+
+<span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+
 <h2>Kết luận</h2>
 <p>Tính dynamic của Python khiến các công cụ khó có thể xử lý mọi trường hợp,
 công cụ sẽ chỉ giúp một phần, phần còn lại là sự cẩn thận của lập trình viên.</p>

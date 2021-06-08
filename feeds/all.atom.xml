@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2021-06-07T00:00:00+07:00</updated><entry><title>Free variable</title><link href="http://pp.pymi.vn/article/free/" rel="alternate"></link><published>2021-06-07T00:00:00+07:00</published><updated>2021-06-07T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2021-06-07:/article/free/</id><summary type="html">&lt;p&gt;tự do như biến&lt;/p&gt;</summary><content type="html">&lt;p&gt;Python có 2 loại variable (biến): local, global, và free (đếm từ 0, tất nhiên).&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2021-06-07T00:00:00+07:00</updated><entry><title>Python free variable</title><link href="http://pp.pymi.vn/article/free/" rel="alternate"></link><published>2021-06-07T00:00:00+07:00</published><updated>2021-06-07T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2021-06-07:/article/free/</id><summary type="html">&lt;p&gt;tự do như biến&lt;/p&gt;</summary><content type="html">&lt;p&gt;Python có 2 loại variable (biến): local, global, và free (đếm từ 0, tất nhiên).&lt;/p&gt;
 &lt;p&gt;&lt;img alt="free" src="https://images.unsplash.com/photo-1546672117-f83291ce87a9?crop=entropy&amp;amp;cs=tinysrgb&amp;amp;fit=max&amp;amp;fm=jpg&amp;amp;ixid=MnwyMzI1MzN8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNzQxNTI&amp;amp;ixlib=rb-1.2.1&amp;amp;q=80&amp;amp;w=600"&gt;&lt;/p&gt;
 &lt;h2&gt;binding&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;x = 42&lt;/code&gt; trong Python đọc là bind name x tới object 42.
@@ -51,17 +51,19 @@ bind sau khi dùng), exception sẽ xảy ra là&lt;/p&gt;
 
 &lt;p&gt;Lần này không xảy ra UnboundLocalError, do đoạn code không bind x = 42
 trong thân function (block). &lt;code&gt;x&lt;/code&gt; ở đây là một free variable.&lt;/p&gt;
-&lt;p&gt;Free variable hoạt động theo cách ... rất tự do:&lt;/p&gt;
+&lt;p&gt;Free variable hoạt động theo cách ... rất tự do. Khi không tìm thấy x trong
+foo, Python sẽ đi tìm x ở global (bên ngoài function foo).&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;42&lt;/span&gt;
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
     &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
 &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;96&lt;/span&gt;
 &lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Màn hình sẽ hiện ra &lt;code&gt;42&lt;/code&gt; hay &lt;code&gt;96&lt;/code&gt;?&lt;/p&gt;
+&lt;p&gt;Màn hình sẽ hiện ra &lt;code&gt;42&lt;/code&gt;, &lt;code&gt;100&lt;/code&gt; hay &lt;code&gt;96&lt;/code&gt;?&lt;/p&gt;
 &lt;p&gt;Việc tính toán tên &lt;code&gt;x&lt;/code&gt; có giá trị gì, được thực hiện khi function &lt;strong&gt;CHẠY&lt;/strong&gt;.
 Khi gọi &lt;code&gt;foo()&lt;/code&gt; ở trên, x đã có giá trị là 96.&lt;/p&gt;
 &lt;h2&gt;Static analysis&lt;/h2&gt;
@@ -121,6 +123,37 @@ Một ví dụ vô lý hơn nữa, để thấy sự bất lực của các côn
 &lt;p&gt;Hạn chế hết mức việc sử dụng global variable, free variable, cần biến gì thì
 đưa argument vào function biến đó, code "sát tường" cho hết vào 1 function
 main và gọi main() nếu cần chạy.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;n_pymi_vn&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;n_pymi_vn&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;flake8&lt;/code&gt; sẽ làm tốt nhiệm vụ phát hiện ra &lt;code&gt;x&lt;/code&gt; chưa được định nghĩa trong ví dụ trên:
+&lt;code&gt;F821 undefined name 'x'&lt;/code&gt;, và đoạn code này có thể viết lại để không
+còn dùng global/free variable nữa:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;n_pymi_vn&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
+    &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;n_pymi_vn&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;h2&gt;Kết luận&lt;/h2&gt;
 &lt;p&gt;Tính dynamic của Python khiến các công cụ khó có thể xử lý mọi trường hợp,
 công cụ sẽ chỉ giúp một phần, phần còn lại là sự cẩn thận của lập trình viên.&lt;/p&gt;
@@ -561,7 +594,7 @@ thời gian đầu tư làm quen để cho vào bộ công cụ của bạn... v
 &lt;li&gt;&lt;a href="https://www.infoq.com/presentations/Simple-Made-Easy/"&gt;Simple made easy&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;HVN at &lt;a href="http://pymi.vn"&gt;http://pymi.vn&lt;/a&gt; and &lt;a href="https://www.familug.org"&gt;https://www.familug.org&lt;/a&gt;
-sau một lần nữa 6 tháng code Go và chắc lại còn lâu mới code nữa...&lt;/p&gt;</content><category term="draft"></category><category term="golang"></category><category term="go"></category></entry><entry><title>Mẹ ơi, con trượt rồi!</title><link href="http://pp.pymi.vn/article/dh/" rel="alternate"></link><published>2020-10-05T00:00:00+07:00</published><updated>2020-10-05T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2020-10-05:/article/dh/</id><summary type="html">&lt;p&gt;Trượt đại học, rồi sao? không học đại học, thì làm cái gì?&lt;/p&gt;</summary><content type="html">&lt;p&gt;Tôi là một người may mắn, và tôi không phải nói câu này.
+sau một lần nữa 6 tháng code Go và chắc lại còn lâu mới code nữa...&lt;/p&gt;</content><category term="Trang chủ"></category><category term="golang"></category><category term="go"></category></entry><entry><title>Mẹ ơi, con trượt rồi!</title><link href="http://pp.pymi.vn/article/dh/" rel="alternate"></link><published>2020-10-05T00:00:00+07:00</published><updated>2020-10-05T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2020-10-05:/article/dh/</id><summary type="html">&lt;p&gt;Trượt đại học, rồi sao? không học đại học, thì làm cái gì?&lt;/p&gt;</summary><content type="html">&lt;p&gt;Tôi là một người may mắn, và tôi không phải nói câu này.
 Nhưng giờ đã 12 năm sau cái ngày đó (2008), nhìn lại, thì đại học mang lại
 cho tôi những gì?
 Và nếu bạn trượt đại học, thì giờ làm gì đây?&lt;/p&gt;
