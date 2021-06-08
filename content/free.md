@@ -1,4 +1,4 @@
-Title: Free variable
+Title: Python free variable
 Date: 2021-06-07
 Category: Trang chủ
 Tags: python,
@@ -68,7 +68,8 @@ NameError: name 'x' is not defined
 Lần này không xảy ra UnboundLocalError, do đoạn code không bind x = 42
 trong thân function (block). `x` ở đây là một free variable.
 
-Free variable hoạt động theo cách ... rất tự do:
+Free variable hoạt động theo cách ... rất tự do. Khi không tìm thấy x trong
+foo, Python sẽ đi tìm x ở global (bên ngoài function foo).
 
 ```py
 x = 42
@@ -77,8 +78,9 @@ def foo():
 
 x = 96
 foo()
+x = 100
 ```
-Màn hình sẽ hiện ra `42` hay `96`?
+Màn hình sẽ hiện ra `42`, `100` hay `96`?
 
 Việc tính toán tên `x` có giá trị gì, được thực hiện khi function **CHẠY**.
 Khi gọi `foo()` ở trên, x đã có giá trị là 96.
@@ -146,6 +148,38 @@ print(r)
 Hạn chế hết mức việc sử dụng global variable, free variable, cần biến gì thì
 đưa argument vào function biến đó, code "sát tường" cho hết vào 1 function
 main và gọi main() nếu cần chạy.
+
+```py
+def n_pymi_vn() -> int:
+    s = x + 1
+    return s
+
+
+def main():
+    r = n_pymi_vn()
+    x = 10
+    print(r)
+
+main()
+```
+
+`flake8` sẽ làm tốt nhiệm vụ phát hiện ra `x` chưa được định nghĩa trong ví dụ trên:
+`F821 undefined name 'x'`, và đoạn code này có thể viết lại để không
+còn dùng global/free variable nữa:
+
+```py
+def n_pymi_vn(x) -> int:
+    s = x + 1
+    return s
+
+
+def main():
+    x = 10
+    r = n_pymi_vn(x)
+    print(r)
+
+main()
+```
 
 ## Kết luận
 Tính dynamic của Python khiến các công cụ khó có thể xử lý mọi trường hợp,
