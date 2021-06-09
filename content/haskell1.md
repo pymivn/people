@@ -254,4 +254,4 @@ mạng" nói khó mà chưa thử đã tin!
 ## Tham khảo
 - https://pymi.vn/tutorial/python-integer/
 - https://pymi.vn/tutorial/python-calculation-2/
-- [Rrealworldhaskel](http://book.realworldhaskell.org/read/getting-started.html)
+- [RealWorldHaskell](http://book.realworldhaskell.org/read/getting-started.html)
