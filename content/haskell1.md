@@ -227,10 +227,22 @@ kết quả tương ứng.
 tạo ra 1 list mới với những thay đổi đã thực hiện (và bỏ list cũ đi).
 
 ### Haskell purely functional là gì
-pure function là một function không có "side effect". Side effect là việc
+pure function là một function không có "side effect", giống hàm toán học, kết
+quả đầu ra chỉ phụ thuộc đầu vào.
+
+```py
+f(x) = 2x + 1
+f(30) luôn luôn bằng 61
+```
+
+Side effect là việc
 function thực hiện 1 thay đổi nào đó (thay đổi phần tử 1 list, đọc ghi 1 file,
-in ra màn hình, kết nối internet, ...) nghe hơi vô lý nhưng Haskell sẽ dựa trên
-1 khái niệm/cơ chế hoàn toàn khác để thực hiện các việc nói trên.
+in ra màn hình, kết nối internet, sleep chương trình, ...) hay phụ thuộc vào
+yếu tố khác với đầu vào (một chương trình phụ thuộc vào thời gian lúc nó chạy)
+nghe hơi vô lý khi
+một ngôn ngữ mà không tương tác với thế giới bên ngoài thì... chỉ để học toán.
+Nhưng Haskell sẽ dựa trên 1 khái niệm/cơ chế hoàn toàn khác để thực hiện các
+việc nói trên.
 
 ### Haskell lazy là gì
 lazy là việc function chỉ thực hiện tính toán khi thực sự cần tới giá trị.
