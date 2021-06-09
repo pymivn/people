@@ -164,10 +164,8 @@ it :: (Num a, Enum a) => [a]
 ```hs
 Prelude> 1
 1
-it :: Num p => p
 Prelude> it + 2
 3
-it :: Num a => a
 ```
 
 ## ProjectEuler problem 1
