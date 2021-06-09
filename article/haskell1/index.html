@@ -265,8 +265,8 @@ in ra màn hình, kết nối internet, ...) nghe hơi vô lý nhưng Haskell s�
 1 khái niệm/cơ chế hoàn toàn khác để thực hiện các việc nói trên.</p>
 <h3>Haskell lazy là gì</h3>
 <p>lazy là việc function chỉ thực hiện tính toán khi thực sự cần tới giá trị.
-Ví dụ có thể viết code tạo ra 1 list từ 1 tới vô cùng, nhưng vì Haskell lazy,
-nó chỉ lấy ra phần tử nó cần, chứ không tạo list từ 1 tới vô hạn từ đầu.</p>
+Ví dụ có thể viết code tạo ra list từ 1 tới vô cùng, nhưng vì Haskell lazy,
+nó chỉ lấy ra phần tử nó cần, chứ không tạo list từ 1 tới vô cùng từ đầu.</p>
 <div class="highlight"><pre><span></span><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="n">take</span> <span class="mi">10</span> <span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="p">]</span>
 <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
 <span class="kt">Prelude</span><span class="o">&gt;</span> <span class="n">take</span> <span class="mi">20</span> <span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="p">]</span>
@@ -274,6 +274,7 @@ nó chỉ lấy ra phần tử nó cần, chứ không tạo list từ 1 tới v
 </pre></div>
 
 
+<p>Trong Python, khái niệm gần nhất với lazy là <a href="https://pp.pymi.vn/article/tuple_comps/"><code>generator</code></a></p>
 <h2>Kết luận</h2>
 <p>Ngày đầu của Haskell không hề khó hơn ngày đầu học Python. Đừng vì "cộng đồng
 mạng" nói khó mà chưa thử đã tin!</p>
