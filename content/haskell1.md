@@ -10,9 +10,9 @@ Summary: ngôn ngữ lập trình luôn được xếp vào nhóm "khó học nh
 - Chú ý: không cần biết Python
 
 Haskell (/ˈhæskəl/) - visub: ha-s-kồ - 1990.
+Trang chủ: [https://www.haskell.org/](https://www.haskell.org/)
 
 ![Haskell](https://www.haskell.org/img/haskell-logo.svg)
-Trang chủ: [https://www.haskell.org/](https://www.haskell.org/)
 
 Haskell là ngôn ngữ functional (lập trình hàm), thuộc nhóm "pure" blah blah blah
 có thể bỏ qua và gõ cho đến cuối bài, work first, talk cheap, later.
@@ -221,6 +221,7 @@ C, Java, Python, Go... dựa trên gọi là Turing Machine.
 Hai mô hình này được chứng minh về mặt toán học là có khả năng như nhau.
 
 Về mặt thực hành, code với 1 ngôn ngữ functional thường có nghĩa là:
+
 - không dùng vòng lặp for/while mà dùng các function có sẵn để làm việc tương tự
 (vd: map, filter, fold, reduce,...) hoặc viết các [recursive function](https://pymi.vn/blog/print-recursively/) để thu được
 kết quả tương ứng.
