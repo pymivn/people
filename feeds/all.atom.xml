@@ -231,7 +231,7 @@ mạng" nói khó mà chưa thử đã tin!&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;https://pymi.vn/tutorial/python-integer/&lt;/li&gt;
 &lt;li&gt;https://pymi.vn/tutorial/python-calculation-2/&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://book.realworldhaskell.org/read/getting-started.html"&gt;Rrealworldhaskel&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://book.realworldhaskell.org/read/getting-started.html"&gt;RealWorldHaskell&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content><category term="Trang chủ"></category><category term="haskell"></category></entry><entry><title>Python free variable</title><link href="http://pp.pymi.vn/article/free/" rel="alternate"></link><published>2021-06-07T00:00:00+07:00</published><updated>2021-06-07T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2021-06-07:/article/free/</id><summary type="html">&lt;p&gt;tự do như biến&lt;/p&gt;</summary><content type="html">&lt;p&gt;Python có 2 loại variable (biến): local, global, và free (đếm từ 0, tất nhiên).&lt;/p&gt;
 &lt;p&gt;&lt;img alt="free" src="https://images.unsplash.com/photo-1546672117-f83291ce87a9?crop=entropy&amp;amp;cs=tinysrgb&amp;amp;fit=max&amp;amp;fm=jpg&amp;amp;ixid=MnwyMzI1MzN8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNzQxNTI&amp;amp;ixlib=rb-1.2.1&amp;amp;q=80&amp;amp;w=600"&gt;&lt;/p&gt;
 &lt;h2&gt;binding&lt;/h2&gt;
