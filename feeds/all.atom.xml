@@ -3,9 +3,9 @@
 &lt;li&gt;Cảnh báo: rất giống Python&lt;/li&gt;
 &lt;li&gt;Chú ý: không cần biết Python&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Haskell (/ˈhæskəl/) - visub: ha-s-kồ - 1990.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Haskell" src="https://www.haskell.org/img/haskell-logo.svg"&gt;
+&lt;p&gt;Haskell (/ˈhæskəl/) - visub: ha-s-kồ - 1990.
 Trang chủ: &lt;a href="https://www.haskell.org/"&gt;https://www.haskell.org/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Haskell" src="https://www.haskell.org/img/haskell-logo.svg"&gt;&lt;/p&gt;
 &lt;p&gt;Haskell là ngôn ngữ functional (lập trình hàm), thuộc nhóm "pure" blah blah blah
 có thể bỏ qua và gõ cho đến cuối bài, work first, talk cheap, later.&lt;/p&gt;
 &lt;h2&gt;Cài đặt&lt;/h2&gt;
@@ -199,12 +199,14 @@ có nghĩa nó dựa trên một nhóm lý thuyết có tên &lt;a href="https:/
 tính toán dựa trên các function (hàm toán học), khác với mô hình các ngôn ngữ lập trình
 C, Java, Python, Go... dựa trên gọi là Turing Machine.
 Hai mô hình này được chứng minh về mặt toán học là có khả năng như nhau.&lt;/p&gt;
-&lt;p&gt;Về mặt thực hành, code với 1 ngôn ngữ functional thường có nghĩa là:
-- không dùng vòng lặp for/while mà dùng các function có sẵn để làm việc tương tự
+&lt;p&gt;Về mặt thực hành, code với 1 ngôn ngữ functional thường có nghĩa là:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;không dùng vòng lặp for/while mà dùng các function có sẵn để làm việc tương tự
 (vd: map, filter, fold, reduce,...) hoặc viết các &lt;a href="https://pymi.vn/blog/print-recursively/"&gt;recursive function&lt;/a&gt; để thu được
-kết quả tương ứng.
-- Các kiểu dữ liệu thường là immutable, tức thay vì thay đổi 1 list, Haskell sẽ
-tạo ra 1 list mới với những thay đổi đã thực hiện (và bỏ list cũ đi).&lt;/p&gt;
+kết quả tương ứng.&lt;/li&gt;
+&lt;li&gt;Các kiểu dữ liệu thường là immutable, tức thay vì thay đổi 1 list, Haskell sẽ
+tạo ra 1 list mới với những thay đổi đã thực hiện (và bỏ list cũ đi).&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h3&gt;Haskell purely functional là gì&lt;/h3&gt;
 &lt;p&gt;pure function là một function không có "side effect". Side effect là việc
 function thực hiện 1 thay đổi nào đó (thay đổi phần tử 1 list, đọc ghi 1 file,
