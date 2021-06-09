@@ -1,5 +1,234 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2021-06-07T00:00:00+07:00</updated><entry><title>Python free variable</title><link href="http://pp.pymi.vn/article/free/" rel="alternate"></link><published>2021-06-07T00:00:00+07:00</published><updated>2021-06-07T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2021-06-07:/article/free/</id><summary type="html">&lt;p&gt;tự do như biến&lt;/p&gt;</summary><content type="html">&lt;p&gt;Python có 2 loại variable (biến): local, global, và free (đếm từ 0, tất nhiên).&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2021-06-10T00:00:00+07:00</updated><entry><title>Học Haskell không phải trầm trồ - theo cách Pymi.vn</title><link href="http://pp.pymi.vn/article/haskell1/" rel="alternate"></link><published>2021-06-10T00:00:00+07:00</published><updated>2021-06-10T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2021-06-10:/article/haskell1/</id><summary type="html">&lt;p&gt;ngôn ngữ lập trình luôn được xếp vào nhóm "khó học nhất" - giống Python bất ngờ.&lt;/p&gt;</summary><content type="html">&lt;ul&gt;
+&lt;li&gt;Cảnh báo: rất giống Python&lt;/li&gt;
+&lt;li&gt;Chú ý: không cần biết Python&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Haskell (/ˈhæskəl/) - visub: ha-s-kồ - 1990.&lt;/p&gt;
+&lt;p&gt;Trang chủ: &lt;a href="https://www.haskell.org/"&gt;https://www.haskell.org/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Haskell là ngôn ngữ functional (lập trình hàm), thuộc nhóm "pure" blah blah blah
+có thể bỏ qua và gõ cho đến cuối bài, work first, talk cheap, later.&lt;/p&gt;
+&lt;h2&gt;Cài đặt&lt;/h2&gt;
+&lt;p&gt;Hướng dẫn &lt;a href="https://www.haskell.org/downloads/#linux-mac-freebsd"&gt;trang chủ&lt;/a&gt;, hỗ trợ cả Windows&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;curl --proto &lt;span class="s1"&gt;&amp;#39;=https&amp;#39;&lt;/span&gt; --tlsv1.2 -sSf https://get-ghcup.haskell.org &lt;span class="p"&gt;|&lt;/span&gt; sh
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;enter enter enter ... rồi mở terminal mới, gõ &lt;code&gt;ghci&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ghci --version
+The Glorious Glasgow Haskell Compilation System, version 8.10.5
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;REPL&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;ghci&lt;/span&gt;
+&lt;span class="kt"&gt;GHCi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;version&lt;/span&gt; &lt;span class="mf"&gt;8.10&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="kt"&gt;:&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="kt"&gt;://&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;haskell&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ghc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;  &lt;span class="kt"&gt;:?&lt;/span&gt; &lt;span class="n"&gt;for&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;
+&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;1024&lt;/span&gt;
+&lt;span class="mi"&gt;2048&lt;/span&gt;
+
+&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;:&lt;/span&gt;&lt;span class="n"&gt;quit&lt;/span&gt;
+&lt;span class="kt"&gt;Leaving&lt;/span&gt; &lt;span class="kt"&gt;GHCi&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Haskell Hello world&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Prelude&amp;gt; print &lt;span class="s2"&gt;&amp;quot;Hello Pymier!&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;Hello Pymier!&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Integer&lt;/h2&gt;
+&lt;p&gt;cộng &lt;code&gt;+&lt;/code&gt; trừ &lt;code&gt;-&lt;/code&gt; nhân &lt;code&gt;*&lt;/code&gt; mũ/lũy thừa &lt;code&gt;^&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Prelude&amp;gt; &lt;span class="m"&gt;54&lt;/span&gt; + &lt;span class="m"&gt;5&lt;/span&gt; * &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt; + &lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="m"&gt;69&lt;/span&gt;
+Prelude&amp;gt; &lt;span class="m"&gt;2&lt;/span&gt; ^ &lt;span class="m"&gt;1000&lt;/span&gt;
+&lt;span class="m"&gt;10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652624386837205668069376&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Float&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="mf"&gt;2.0&lt;/span&gt;
+&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="mf"&gt;2.5&lt;/span&gt;
+&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mf"&gt;2.5&lt;/span&gt;
+&lt;span class="mf"&gt;2.0&lt;/span&gt;
+&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mf"&gt;0.1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mf"&gt;0.1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mf"&gt;0.1&lt;/span&gt;
+&lt;span class="mf"&gt;0.30000000000000004&lt;/span&gt;
+
+&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mf"&gt;0.1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mf"&gt;0.1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mf"&gt;0.1&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mf"&gt;0.3&lt;/span&gt;
+&lt;span class="kt"&gt;False&lt;/span&gt;
+&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mf"&gt;0.1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mf"&gt;0.1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mf"&gt;0.1&lt;/span&gt; &lt;span class="o"&gt;/=&lt;/span&gt; &lt;span class="mf"&gt;0.3&lt;/span&gt;
+&lt;span class="kt"&gt;True&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;a href="https://pymi.vn/blog/why-not-float/"&gt;0.1 + 0.1 + 0.1 /= 0.3&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Boolean&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Prelude&amp;gt; &lt;span class="m"&gt;2&lt;/span&gt; &amp;lt; &lt;span class="m"&gt;5&lt;/span&gt;
+True
+Prelude&amp;gt; &lt;span class="m"&gt;2&lt;/span&gt; &amp;gt; &lt;span class="m"&gt;5&lt;/span&gt;
+False
+Prelude&amp;gt; &lt;span class="m"&gt;1&lt;/span&gt; + &lt;span class="nv"&gt;1&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="m"&gt;2&lt;/span&gt;
+True
+Prelude&amp;gt; &lt;span class="m"&gt;2&lt;/span&gt; - &lt;span class="m"&gt;1&lt;/span&gt; /&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;
+True
+Prelude&amp;gt; &lt;span class="m"&gt;2&lt;/span&gt; &amp;lt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;2&lt;/span&gt;
+True
+Prelude&amp;gt; &lt;span class="m"&gt;1&lt;/span&gt;/0
+Infinity
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Prelude&amp;gt; True &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; True
+True
+Prelude&amp;gt; True &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; False
+False
+Prelude&amp;gt; False &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; True
+False
+Prelude&amp;gt; False &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; False
+False
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Haskell boolean có tính &lt;a href="https://pymi.vn/tutorial/boolean/"&gt;short-circuit&lt;/a&gt; - dừng lại ngay khi có thể.
+Đây là điều hiển nhiên nhờ một tính năng nổi bật của Haskell: &lt;strong&gt;Lazy&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2&gt;type&lt;/h2&gt;
+&lt;p&gt;Các câu lệnh trong &lt;code&gt;ghci&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;:help&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;:info&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;:&lt;/span&gt;&lt;span class="n"&gt;info&lt;/span&gt; &lt;span class="n"&gt;mod&lt;/span&gt;
+&lt;span class="kr"&gt;type&lt;/span&gt; &lt;span class="kt"&gt;Integral&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Constraint&lt;/span&gt;
+&lt;span class="kr"&gt;class&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;Real&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;Enum&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Integral&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="kr"&gt;where&lt;/span&gt;
+  &lt;span class="o"&gt;...&lt;/span&gt;
+  &lt;span class="n"&gt;mod&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;
+  &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="c1"&gt;-- Defined in ‘GHC.Real’&lt;/span&gt;
+&lt;span class="kr"&gt;infixl&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt; &lt;span class="p"&gt;`&lt;/span&gt;&lt;span class="n"&gt;mod&lt;/span&gt;&lt;span class="p"&gt;`&lt;/span&gt;
+
+&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;:&lt;/span&gt;&lt;span class="n"&gt;info&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="kr"&gt;type&lt;/span&gt; &lt;span class="kt"&gt;Num&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Constraint&lt;/span&gt;
+&lt;span class="kr"&gt;class&lt;/span&gt; &lt;span class="kt"&gt;Num&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="kr"&gt;where&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;
+  &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="c1"&gt;-- Defined in ‘GHC.Num’&lt;/span&gt;
+&lt;span class="kr"&gt;infixl&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Hiển thị type:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;:&lt;/span&gt;&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt;
+
+&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="nf"&gt;it&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Num&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="ow"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;
+
+&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mf"&gt;0.1&lt;/span&gt;
+&lt;span class="mf"&gt;0.1&lt;/span&gt;
+&lt;span class="nf"&gt;it&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Fractional&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="ow"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;
+
+&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;True&lt;/span&gt;
+&lt;span class="kt"&gt;True&lt;/span&gt;
+&lt;span class="nf"&gt;it&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Bool&lt;/span&gt;
+
+&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;ahihi PyMi.vn&amp;quot;&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot;ahihi PyMi.vn&amp;quot;&lt;/span&gt;
+&lt;span class="nf"&gt;it&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;Char&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;..&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="nf"&gt;it&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;Num&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;Enum&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;it&lt;/code&gt; là biểu thức/kết quả cuối cùng bạn đã gõ. Tương tự &lt;code&gt;_&lt;/code&gt; trong Python interpreter.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="nf"&gt;it&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Num&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="ow"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;
+&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;it&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;span class="nf"&gt;it&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Num&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="ow"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;ProjectEuler problem 1&lt;/h2&gt;
+&lt;p&gt;https://projecteuler.net/problem=1&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
+Find the sum of all the multiples of 3 or 5 below 1000.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Tạo list các số từ 1 đến 5&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;..&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Haskell không dùng &lt;code&gt;%&lt;/code&gt; cho phép chia lấy phần dư (modulo/remainder), code Python &lt;code&gt;10 % 3&lt;/code&gt; tương đương với viết Haskell &lt;code&gt;mod 10 3&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Haskell dùng &lt;code&gt;|| &amp;amp;&amp;amp;&lt;/code&gt; thay Python &lt;code&gt;or and&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://docs.python.org/3/whatsnew/2.0.html#list-comprehensions"&gt;Python 2.0 &lt;strong&gt;MƯỢN&lt;/strong&gt; list comprehension từ Haskell&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="mi"&gt;233168&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Haskell dùng &lt;code&gt;|&lt;/code&gt; thay chữ &lt;code&gt;for&lt;/code&gt;, dùng &lt;code&gt;&amp;lt;-&lt;/code&gt; thay chữ &lt;code&gt;in&lt;/code&gt;, dùng &lt;code&gt;,&lt;/code&gt; thay chữ &lt;code&gt;if&lt;/code&gt; so với Python&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;sum&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;..&lt;/span&gt;&lt;span class="mi"&gt;999&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;mod&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;mod&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="mi"&gt;233168&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Các đặc tính nổi biệt của Haskell&lt;/h2&gt;
+&lt;p&gt;https://wiki.haskell.org/Introduction&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Haskell is a computer programming language. In particular, it is a polymorphically statically typed, lazy, purely functional language, quite different from most other programming languages. The language is named for Haskell Brooks Curry, whose work in mathematical logic serves as a foundation for functional languages. Haskell is based on the lambda calculus, hence the lambda we use as a logo.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;polymorphically statically typed&lt;/li&gt;
+&lt;li&gt;lazy&lt;/li&gt;
+&lt;li&gt;purely functional&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;hoặc xem phần features trên https://www.haskell.org/&lt;/p&gt;
+&lt;h3&gt;lập trình hàm là gì&lt;/h3&gt;
+&lt;p&gt;Haskell là ngôn ngữ thuộc nhóm functional (lập trình hàm).&lt;/p&gt;
+&lt;p&gt;Trên lý thuyết,
+có nghĩa nó dựa trên một nhóm lý thuyết có tên &lt;a href="https://wiki.haskell.org/Lambda_calculus"&gt;"lambda calculus"&lt;/a&gt;, một mô hình/hệ thống
+tính toán dựa trên các function (hàm toán học), khác với mô hình các ngôn ngữ lập trình
+C, Java, Python, Go... dựa trên gọi là Turing Machine.
+Hai mô hình này được chứng minh về mặt toán học là có khả năng như nhau.&lt;/p&gt;
+&lt;p&gt;Về mặt thực hành, code với 1 ngôn ngữ functional thường có nghĩa là:
+- không dùng vòng lặp for/while mà dùng các function có sẵn để làm việc tương tự
+(vd: map, filter, fold, reduce,...) hoặc viết các &lt;a href="https://pymi.vn/blog/print-recursively/"&gt;recursive function&lt;/a&gt; để thu được
+kết quả tương ứng.
+- Các kiểu dữ liệu thường là immutable, tức thay vì thay đổi 1 list, Haskell sẽ
+tạo ra 1 list mới với những thay đổi đã thực hiện (và bỏ list cũ đi).&lt;/p&gt;
+&lt;h3&gt;Haskell purely functional là gì&lt;/h3&gt;
+&lt;p&gt;pure function là một function không có "side effect". Side effect là việc
+function thực hiện 1 thay đổi nào đó (thay đổi phần tử 1 list, đọc ghi 1 file,
+in ra màn hình, kết nối internet, ...) nghe hơi vô lý nhưng Haskell sẽ dựa trên
+1 khái niệm/cơ chế hoàn toàn khác để thực hiện các việc nói trên.&lt;/p&gt;
+&lt;h3&gt;Haskell lazy là gì&lt;/h3&gt;
+&lt;p&gt;lazy là việc function chỉ thực hiện tính toán khi thực sự cần tới giá trị.
+Ví dụ có thể viết code tạo ra 1 list từ 1 tới vô cùng, nhưng vì Haskell lazy,
+nó chỉ lấy ra phần tử nó cần, chứ không tạo list từ 1 tới vô hạn từ đầu.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;take&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;..&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;take&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;..&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;14&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;17&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;19&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Kết luận&lt;/h2&gt;
+&lt;p&gt;Ngày đầu của Haskell không hề khó hơn ngày đầu học Python. Đừng vì "cộng đồng
+mạng" nói khó mà chưa thử đã tin!&lt;/p&gt;
+&lt;h2&gt;Tham khảo&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;https://pymi.vn/tutorial/python-integer/&lt;/li&gt;
+&lt;li&gt;https://pymi.vn/tutorial/python-calculation-2/&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://book.realworldhaskell.org/read/getting-started.html"&gt;Rrealworldhaskel&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Trang chủ"></category><category term="haskell"></category></entry><entry><title>Python free variable</title><link href="http://pp.pymi.vn/article/free/" rel="alternate"></link><published>2021-06-07T00:00:00+07:00</published><updated>2021-06-07T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2021-06-07:/article/free/</id><summary type="html">&lt;p&gt;tự do như biến&lt;/p&gt;</summary><content type="html">&lt;p&gt;Python có 2 loại variable (biến): local, global, và free (đếm từ 0, tất nhiên).&lt;/p&gt;
 &lt;p&gt;&lt;img alt="free" src="https://images.unsplash.com/photo-1546672117-f83291ce87a9?crop=entropy&amp;amp;cs=tinysrgb&amp;amp;fit=max&amp;amp;fm=jpg&amp;amp;ixid=MnwyMzI1MzN8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNzQxNTI&amp;amp;ixlib=rb-1.2.1&amp;amp;q=80&amp;amp;w=600"&gt;&lt;/p&gt;
 &lt;h2&gt;binding&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;x = 42&lt;/code&gt; trong Python đọc là bind name x tới object 42.

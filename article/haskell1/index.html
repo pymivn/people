@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+   <title> Học Haskell không phải trầm trồ - theo cách Pymi.vn  - The PyMiers</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="robots" content="" />
+  <link rel="stylesheet" type="text/css" href="/theme/css/app.css">
+<link rel="stylesheet" type="text/css" href="http://pp.pymi.vn/theme/css/pygment.css">
+  <!--
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+  -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    <meta name="author" content="Pymiers" />
+  <meta name="description" content="" />    <link href="http://pp.pymi.vn/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="The PyMiers Full Atom Feed" />         
+  <meta name="tags" content="haskell" />
+</head>
+
+<body>
+  <main class="wrapper">
+    <section class="container">
+      <header class='column'>
+        <h1 class='title'><a href="http://pp.pymi.vn/">The PyMiers</a></h1>
+      </header>
+
+      <div class="section">
+        <div class="row navbar">
+          <div class="column nav-item is-active"><a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a></div>
+           <div class="column nav-item "><a href="http://pp.pymi.vn/pages/about/">About</a></div>
+          <div class="column nav-item "><a href="http://pp.pymi.vn/pages/add/">Tạo bài viết</a></div>
+          <div class="column nav-item "><a href="http://pp.pymi.vn/pages/rss/">RSS</a></div>
+          <div class="column nav-item"><a href="/archives">Archives</a></div>
+        </div>
+      </div>
+    </section>
+
+<section class="container">
+  <header>
+    <h2 class="entry-title">
+      <a href="http://pp.pymi.vn/article/haskell1/" rel="bookmark"
+         title="Permalink to Học Haskell không phải trầm trồ - theo cách Pymi.vn">Học Haskell không phải trầm trồ - theo cách Pymi.vn</a></h2>  
+  </header>
+  <footer class='center'>
+    <time class="published" datetime="2021-06-10T00:00:00+07:00"> 10/06/2021 </time>
+    <address class="vcard author">By
+                    <a class="url fn" href="http://pp.pymi.vn/author/hvnsweeting/">hvnsweeting</a>
+ in <a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a>
+                </address>     <em>Tags</em>:     <a href="http://pp.pymi.vn/tag/haskell/"><em>haskell</em></a>    </footer>
+  <br>
+  <div class="entry-content">
+    <ul>
+<li>Cảnh báo: rất giống Python</li>
+<li>Chú ý: không cần biết Python</li>
+</ul>
+<p>Haskell (/ˈhæskəl/) - visub: ha-s-kồ - 1990.</p>
+<p>Trang chủ: <a href="https://www.haskell.org/">https://www.haskell.org/</a></p>
+<p>Haskell là ngôn ngữ functional (lập trình hàm), thuộc nhóm "pure" blah blah blah
+có thể bỏ qua và gõ cho đến cuối bài, work first, talk cheap, later.</p>
+<h2>Cài đặt</h2>
+<p>Hướng dẫn <a href="https://www.haskell.org/downloads/#linux-mac-freebsd">trang chủ</a>, hỗ trợ cả Windows</p>
+<div class="highlight"><pre><span></span>curl --proto <span class="s1">&#39;=https&#39;</span> --tlsv1.2 -sSf https://get-ghcup.haskell.org <span class="p">|</span> sh
+</pre></div>
+
+
+<p>enter enter enter ... rồi mở terminal mới, gõ <code>ghci</code>.</p>
+<div class="highlight"><pre><span></span>ghci --version
+The Glorious Glasgow Haskell Compilation System, version 8.10.5
+</pre></div>
+
+
+<h2>REPL</h2>
+<div class="highlight"><pre><span></span><span class="o">$</span> <span class="n">ghci</span>
+<span class="kt">GHCi</span><span class="p">,</span> <span class="n">version</span> <span class="mf">8.10</span><span class="o">.</span><span class="mi">5</span><span class="kt">:</span> <span class="n">https</span><span class="kt">://</span><span class="n">www</span><span class="o">.</span><span class="n">haskell</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">ghc</span><span class="o">/</span>  <span class="kt">:?</span> <span class="n">for</span> <span class="n">help</span>
+<span class="kt">Prelude</span><span class="o">&gt;</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="mi">2</span>
+<span class="kt">Prelude</span><span class="o">&gt;</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">1024</span>
+<span class="mi">2048</span>
+
+<span class="kt">Prelude</span><span class="o">&gt;</span> <span class="kt">:</span><span class="n">quit</span>
+<span class="kt">Leaving</span> <span class="kt">GHCi</span><span class="o">.</span>
+</pre></div>
+
+
+<h2>Haskell Hello world</h2>
+<div class="highlight"><pre><span></span>Prelude&gt; print <span class="s2">&quot;Hello Pymier!&quot;</span>
+<span class="s2">&quot;Hello Pymier!&quot;</span>
+</pre></div>
+
+
+<h2>Integer</h2>
+<p>cộng <code>+</code> trừ <code>-</code> nhân <code>*</code> mũ/lũy thừa <code>^</code></p>
+<div class="highlight"><pre><span></span>Prelude&gt; <span class="m">54</span> + <span class="m">5</span> * <span class="o">(</span><span class="m">2</span> + <span class="m">1</span><span class="o">)</span>
+<span class="m">69</span>
+Prelude&gt; <span class="m">2</span> ^ <span class="m">1000</span>
+<span class="m">10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652624386837205668069376</span>
+</pre></div>
+
+
+<h2>Float</h2>
+<div class="highlight"><pre><span></span><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="mi">4</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="mf">2.0</span>
+<span class="kt">Prelude</span><span class="o">&gt;</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="mf">2.5</span>
+<span class="kt">Prelude</span><span class="o">&gt;</span> <span class="mi">5</span> <span class="o">/</span> <span class="mf">2.5</span>
+<span class="mf">2.0</span>
+<span class="kt">Prelude</span><span class="o">&gt;</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span>
+<span class="mf">0.30000000000000004</span>
+
+<span class="kt">Prelude</span><span class="o">&gt;</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">==</span> <span class="mf">0.3</span>
+<span class="kt">False</span>
+<span class="kt">Prelude</span><span class="o">&gt;</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">/=</span> <span class="mf">0.3</span>
+<span class="kt">True</span>
+</pre></div>
+
+
+<p><a href="https://pymi.vn/blog/why-not-float/">0.1 + 0.1 + 0.1 /= 0.3</a></p>
+<h2>Boolean</h2>
+<div class="highlight"><pre><span></span>Prelude&gt; <span class="m">2</span> &lt; <span class="m">5</span>
+True
+Prelude&gt; <span class="m">2</span> &gt; <span class="m">5</span>
+False
+Prelude&gt; <span class="m">1</span> + <span class="nv">1</span> <span class="o">==</span> <span class="m">2</span>
+True
+Prelude&gt; <span class="m">2</span> - <span class="m">1</span> /<span class="o">=</span> <span class="m">0</span>
+True
+Prelude&gt; <span class="m">2</span> &lt;<span class="o">=</span> <span class="m">2</span>
+True
+Prelude&gt; <span class="m">1</span>/0
+Infinity
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>Prelude&gt; True <span class="o">&amp;&amp;</span> True
+True
+Prelude&gt; True <span class="o">&amp;&amp;</span> False
+False
+Prelude&gt; False <span class="o">&amp;&amp;</span> True
+False
+Prelude&gt; False <span class="o">&amp;&amp;</span> False
+False
+</pre></div>
+
+
+<p>Haskell boolean có tính <a href="https://pymi.vn/tutorial/boolean/">short-circuit</a> - dừng lại ngay khi có thể.
+Đây là điều hiển nhiên nhờ một tính năng nổi bật của Haskell: <strong>Lazy</strong>.</p>
+<h2>type</h2>
+<p>Các câu lệnh trong <code>ghci</code></p>
+<ul>
+<li><code>:help</code></li>
+<li><code>:info</code></li>
+</ul>
+<div class="highlight"><pre><span></span><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="kt">:</span><span class="n">info</span> <span class="n">mod</span>
+<span class="kr">type</span> <span class="kt">Integral</span> <span class="ow">::</span> <span class="o">*</span> <span class="ow">-&gt;</span> <span class="kt">Constraint</span>
+<span class="kr">class</span> <span class="p">(</span><span class="kt">Real</span> <span class="n">a</span><span class="p">,</span> <span class="kt">Enum</span> <span class="n">a</span><span class="p">)</span> <span class="ow">=&gt;</span> <span class="kt">Integral</span> <span class="n">a</span> <span class="kr">where</span>
+  <span class="o">...</span>
+  <span class="n">mod</span> <span class="ow">::</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">a</span>
+  <span class="o">...</span>
+    <span class="c1">-- Defined in ‘GHC.Real’</span>
+<span class="kr">infixl</span> <span class="mi">7</span> <span class="p">`</span><span class="n">mod</span><span class="p">`</span>
+
+<span class="kt">Prelude</span><span class="o">&gt;</span> <span class="kt">:</span><span class="n">info</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span>
+<span class="kr">type</span> <span class="kt">Num</span> <span class="ow">::</span> <span class="o">*</span> <span class="ow">-&gt;</span> <span class="kt">Constraint</span>
+<span class="kr">class</span> <span class="kt">Num</span> <span class="n">a</span> <span class="kr">where</span>
+  <span class="p">(</span><span class="o">+</span><span class="p">)</span> <span class="ow">::</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">a</span>
+  <span class="o">...</span>
+    <span class="c1">-- Defined in ‘GHC.Num’</span>
+<span class="kr">infixl</span> <span class="mi">6</span> <span class="o">+</span>
+</pre></div>
+
+
+<p>Hiển thị type:</p>
+<div class="highlight"><pre><span></span><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="kt">:</span><span class="n">set</span> <span class="o">+</span><span class="n">t</span>
+
+<span class="kt">Prelude</span><span class="o">&gt;</span> <span class="mi">1</span>
+<span class="mi">1</span>
+<span class="nf">it</span> <span class="ow">::</span> <span class="kt">Num</span> <span class="n">p</span> <span class="ow">=&gt;</span> <span class="n">p</span>
+
+<span class="kt">Prelude</span><span class="o">&gt;</span> <span class="mf">0.1</span>
+<span class="mf">0.1</span>
+<span class="nf">it</span> <span class="ow">::</span> <span class="kt">Fractional</span> <span class="n">p</span> <span class="ow">=&gt;</span> <span class="n">p</span>
+
+<span class="kt">Prelude</span><span class="o">&gt;</span> <span class="kt">True</span>
+<span class="kt">True</span>
+<span class="nf">it</span> <span class="ow">::</span> <span class="kt">Bool</span>
+
+<span class="kt">Prelude</span><span class="o">&gt;</span> <span class="s">&quot;ahihi PyMi.vn&quot;</span>
+<span class="s">&quot;ahihi PyMi.vn&quot;</span>
+<span class="nf">it</span> <span class="ow">::</span> <span class="p">[</span><span class="kt">Char</span><span class="p">]</span>
+
+<span class="kt">Prelude</span><span class="o">&gt;</span> <span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="mi">10</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
+<span class="nf">it</span> <span class="ow">::</span> <span class="p">(</span><span class="kt">Num</span> <span class="n">a</span><span class="p">,</span> <span class="kt">Enum</span> <span class="n">a</span><span class="p">)</span> <span class="ow">=&gt;</span> <span class="p">[</span><span class="n">a</span><span class="p">]</span>
+</pre></div>
+
+
+<p><code>it</code> là biểu thức/kết quả cuối cùng bạn đã gõ. Tương tự <code>_</code> trong Python interpreter.</p>
+<div class="highlight"><pre><span></span><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="mi">1</span>
+<span class="mi">1</span>
+<span class="nf">it</span> <span class="ow">::</span> <span class="kt">Num</span> <span class="n">p</span> <span class="ow">=&gt;</span> <span class="n">p</span>
+<span class="kt">Prelude</span><span class="o">&gt;</span> <span class="n">it</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="mi">3</span>
+<span class="nf">it</span> <span class="ow">::</span> <span class="kt">Num</span> <span class="n">a</span> <span class="ow">=&gt;</span> <span class="n">a</span>
+</pre></div>
+
+
+<h2>ProjectEuler problem 1</h2>
+<p>https://projecteuler.net/problem=1</p>
+<blockquote>
+<p>If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
+Find the sum of all the multiples of 3 or 5 below 1000.</p>
+</blockquote>
+<p>Tạo list các số từ 1 đến 5</p>
+<div class="highlight"><pre><span></span><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="mi">5</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+
+
+<p>Haskell không dùng <code>%</code> cho phép chia lấy phần dư (modulo/remainder), code Python <code>10 % 3</code> tương đương với viết Haskell <code>mod 10 3</code></p>
+<p>Haskell dùng <code>|| &amp;&amp;</code> thay Python <code>or and</code></p>
+<p><a href="https://docs.python.org/3/whatsnew/2.0.html#list-comprehensions">Python 2.0 <strong>MƯỢN</strong> list comprehension từ Haskell</a></p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="nb">sum</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">])</span>
+<span class="mi">233168</span>
+</pre></div>
+
+
+<p>Haskell dùng <code>|</code> thay chữ <code>for</code>, dùng <code>&lt;-</code> thay chữ <code>in</code>, dùng <code>,</code> thay chữ <code>if</code> so với Python</p>
+<div class="highlight"><pre><span></span><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="n">sum</span> <span class="p">[</span><span class="n">i</span> <span class="o">|</span> <span class="n">i</span> <span class="ow">&lt;-</span> <span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="mi">999</span><span class="p">],</span> <span class="n">mod</span> <span class="n">i</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">mod</span> <span class="n">i</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<span class="mi">233168</span>
+</pre></div>
+
+
+<h2>Các đặc tính nổi biệt của Haskell</h2>
+<p>https://wiki.haskell.org/Introduction</p>
+<blockquote>
+<p>Haskell is a computer programming language. In particular, it is a polymorphically statically typed, lazy, purely functional language, quite different from most other programming languages. The language is named for Haskell Brooks Curry, whose work in mathematical logic serves as a foundation for functional languages. Haskell is based on the lambda calculus, hence the lambda we use as a logo.</p>
+</blockquote>
+<ul>
+<li>polymorphically statically typed</li>
+<li>lazy</li>
+<li>purely functional</li>
+</ul>
+<p>hoặc xem phần features trên https://www.haskell.org/</p>
+<h3>lập trình hàm là gì</h3>
+<p>Haskell là ngôn ngữ thuộc nhóm functional (lập trình hàm).</p>
+<p>Trên lý thuyết,
+có nghĩa nó dựa trên một nhóm lý thuyết có tên <a href="https://wiki.haskell.org/Lambda_calculus">"lambda calculus"</a>, một mô hình/hệ thống
+tính toán dựa trên các function (hàm toán học), khác với mô hình các ngôn ngữ lập trình
+C, Java, Python, Go... dựa trên gọi là Turing Machine.
+Hai mô hình này được chứng minh về mặt toán học là có khả năng như nhau.</p>
+<p>Về mặt thực hành, code với 1 ngôn ngữ functional thường có nghĩa là:
+- không dùng vòng lặp for/while mà dùng các function có sẵn để làm việc tương tự
+(vd: map, filter, fold, reduce,...) hoặc viết các <a href="https://pymi.vn/blog/print-recursively/">recursive function</a> để thu được
+kết quả tương ứng.
+- Các kiểu dữ liệu thường là immutable, tức thay vì thay đổi 1 list, Haskell sẽ
+tạo ra 1 list mới với những thay đổi đã thực hiện (và bỏ list cũ đi).</p>
+<h3>Haskell purely functional là gì</h3>
+<p>pure function là một function không có "side effect". Side effect là việc
+function thực hiện 1 thay đổi nào đó (thay đổi phần tử 1 list, đọc ghi 1 file,
+in ra màn hình, kết nối internet, ...) nghe hơi vô lý nhưng Haskell sẽ dựa trên
+1 khái niệm/cơ chế hoàn toàn khác để thực hiện các việc nói trên.</p>
+<h3>Haskell lazy là gì</h3>
+<p>lazy là việc function chỉ thực hiện tính toán khi thực sự cần tới giá trị.
+Ví dụ có thể viết code tạo ra 1 list từ 1 tới vô cùng, nhưng vì Haskell lazy,
+nó chỉ lấy ra phần tử nó cần, chứ không tạo list từ 1 tới vô hạn từ đầu.</p>
+<div class="highlight"><pre><span></span><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="n">take</span> <span class="mi">10</span> <span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
+<span class="kt">Prelude</span><span class="o">&gt;</span> <span class="n">take</span> <span class="mi">20</span> <span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="mi">20</span><span class="p">]</span>
+</pre></div>
+
+
+<h2>Kết luận</h2>
+<p>Ngày đầu của Haskell không hề khó hơn ngày đầu học Python. Đừng vì "cộng đồng
+mạng" nói khó mà chưa thử đã tin!</p>
+<h2>Tham khảo</h2>
+<ul>
+<li>https://pymi.vn/tutorial/python-integer/</li>
+<li>https://pymi.vn/tutorial/python-calculation-2/</li>
+<li><a href="http://book.realworldhaskell.org/read/getting-started.html">Rrealworldhaskel</a></li>
+</ul>
+  </div>
+  <!-- /.entry-content -->
+</section>
+<section class="container">
+  <div class="comments">
+    <h3>Comments</h3>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'pymier';
+      var disqus_identifier = 'article/haskell1/';
+      var disqus_url = 'http://pp.pymi.vn/article/haskell1/';
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//pymier.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the comments.</noscript>
+  </div>
+</section>
+
+    <section class="container footer">
+      <footer>
+        <address>
+        Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+        which takes great advantage of <a href="http://python.org">Python</a>.
+        </address>
+        <address>
+          Học lập trình Python tại <a href="https://pymi.vn/">Pymi.vn</a>
+        </address>
+      </footer>
+    </section>
+  </main>
+
+<script type="text/javascript">
+var images = document.getElementsByTagName("img");
+var i;
+
+for(i = 0; i < images.length; i++) {
+  images[i].className += " centered";
+}
+</script>
+</body>
+
+</html>
