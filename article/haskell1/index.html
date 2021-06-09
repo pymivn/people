@@ -257,10 +257,21 @@ kết quả tương ứng.</li>
 tạo ra 1 list mới với những thay đổi đã thực hiện (và bỏ list cũ đi).</li>
 </ul>
 <h3>Haskell purely functional là gì</h3>
-<p>pure function là một function không có "side effect". Side effect là việc
+<p>pure function là một function không có "side effect", giống hàm toán học, kết
+quả đầu ra chỉ phụ thuộc đầu vào.</p>
+<div class="highlight"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="mi">2</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">f</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="n">luôn</span> <span class="n">luôn</span> <span class="n">bằng</span> <span class="mi">61</span>
+</pre></div>
+
+
+<p>Side effect là việc
 function thực hiện 1 thay đổi nào đó (thay đổi phần tử 1 list, đọc ghi 1 file,
-in ra màn hình, kết nối internet, ...) nghe hơi vô lý nhưng Haskell sẽ dựa trên
-1 khái niệm/cơ chế hoàn toàn khác để thực hiện các việc nói trên.</p>
+in ra màn hình, kết nối internet, sleep chương trình, ...) hay phụ thuộc vào
+yếu tố khác với đầu vào (một chương trình phụ thuộc vào thời gian lúc nó chạy)
+nghe hơi vô lý khi
+một ngôn ngữ mà không tương tác với thế giới bên ngoài thì... chỉ để học toán.
+Nhưng Haskell sẽ dựa trên 1 khái niệm/cơ chế hoàn toàn khác để thực hiện các
+việc nói trên.</p>
 <h3>Haskell lazy là gì</h3>
 <p>lazy là việc function chỉ thực hiện tính toán khi thực sự cần tới giá trị.
 Ví dụ có thể viết code tạo ra list từ 1 tới vô cùng, nhưng vì Haskell lazy,
