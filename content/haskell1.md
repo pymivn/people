@@ -236,8 +236,8 @@ in ra màn hình, kết nối internet, ...) nghe hơi vô lý nhưng Haskell s�
 
 ### Haskell lazy là gì
 lazy là việc function chỉ thực hiện tính toán khi thực sự cần tới giá trị.
-Ví dụ có thể viết code tạo ra 1 list từ 1 tới vô cùng, nhưng vì Haskell lazy,
-nó chỉ lấy ra phần tử nó cần, chứ không tạo list từ 1 tới vô hạn từ đầu.
+Ví dụ có thể viết code tạo ra list từ 1 tới vô cùng, nhưng vì Haskell lazy,
+nó chỉ lấy ra phần tử nó cần, chứ không tạo list từ 1 tới vô cùng từ đầu.
 
 ```hs
 Prelude> take 10 [1..]
@@ -245,6 +245,8 @@ Prelude> take 10 [1..]
 Prelude> take 20 [1..]
 [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 ```
+
+Trong Python, khái niệm gần nhất với lazy là [`generator`](https://pp.pymi.vn/article/tuple_comps/)
 ## Kết luận
 Ngày đầu của Haskell không hề khó hơn ngày đầu học Python. Đừng vì "cộng đồng
 mạng" nói khó mà chưa thử đã tin!
