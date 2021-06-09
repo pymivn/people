@@ -11,6 +11,7 @@ Summary: ngôn ngữ lập trình luôn được xếp vào nhóm "khó học nh
 
 Haskell (/ˈhæskəl/) - visub: ha-s-kồ - 1990.
 
+![Haskell](https://www.haskell.org/img/haskell-logo.svg)
 Trang chủ: [https://www.haskell.org/](https://www.haskell.org/)
 
 Haskell là ngôn ngữ functional (lập trình hàm), thuộc nhóm "pure" blah blah blah
