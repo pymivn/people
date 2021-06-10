@@ -21,15 +21,16 @@ The Glorious Glasgow Haskell Compilation System, version 8.10.5
 
 
 &lt;h2&gt;REPL&lt;/h2&gt;
-&lt;p&gt;REPL - Read Eval Print Loop, là môi trường nhận đầu vào từ người dùng (Read), chạy input đó (Eval), in kết quả ra màn hình (Print), và cứ tiếp tục vậy (Loop).&lt;/p&gt;
+&lt;p&gt;REPL - Read Eval Print Loop, là chương trình nhận code người dùng nhập vào
+(Read), chạy code đó (Eval), in kết quả ra màn hình (Print), và cứ tiếp tục vậy
+(Loop).&lt;/p&gt;
 &lt;p&gt;Khái niệm này bắt nguồn từ ngôn ngữ lập trình cổ thứ 2 thế giới: LISP.&lt;/p&gt;
 &lt;p&gt;Việc viết code khi dùng các ngôn ngữ có REPL thường theo các bước:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;bật REPL lên
-gõ code thử cho tới khi thu được kết quả mong muốn
-copy code đó vào editor/IDE
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;ul&gt;
+&lt;li&gt;bật REPL lên&lt;/li&gt;
+&lt;li&gt;gõ code thử cho tới khi thu được kết quả mong muốn&lt;/li&gt;
+&lt;li&gt;copy code đó vào editor/IDE&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;Câu lệnh bật REPL của Haskell có tên &lt;code&gt;ghci&lt;/code&gt;.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;ghci&lt;/span&gt;
 &lt;span class="kt"&gt;GHCi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;version&lt;/span&gt; &lt;span class="mf"&gt;8.10&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="kt"&gt;:&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="kt"&gt;://&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;haskell&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ghc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;  &lt;span class="kt"&gt;:?&lt;/span&gt; &lt;span class="n"&gt;for&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;
