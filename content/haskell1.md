@@ -230,9 +230,9 @@ hoặc xem phần features trên https://www.haskell.org/
 Haskell là ngôn ngữ thuộc nhóm functional (lập trình hàm).
 
 Trên lý thuyết,
-có nghĩa nó dựa trên một nhóm lý thuyết có tên ["lambda calculus"](https://wiki.haskell.org/Lambda_calculus), một mô hình/hệ thống
-tính toán dựa trên các function (hàm toán học), khác với mô hình các ngôn ngữ lập trình
-C, Java, Python, Go... dựa trên gọi là Turing Machine.
+có nghĩa nó dựa trên ["lambda calculus"](https://wiki.haskell.org/Lambda_calculus), một mô hình/hệ thống
+tính toán dùng các function (hàm toán học), khác với mô hình Turing Machine mà
+các ngôn ngữ lập trình C, Java, Python, Go... dựa trên.
 Hai mô hình này được chứng minh về mặt toán học là có khả năng như nhau.
 
 Về mặt thực hành, code với 1 ngôn ngữ functional thường có nghĩa là:
@@ -240,8 +240,11 @@ Về mặt thực hành, code với 1 ngôn ngữ functional thường có nghĩ
 - không dùng vòng lặp for/while mà dùng các function có sẵn để làm việc tương tự
 (vd: map, filter, fold, reduce,...) hoặc viết các [recursive function](https://pymi.vn/blog/print-recursively/) để thu được
 kết quả tương ứng.
-- Các kiểu dữ liệu thường là immutable, tức thay vì thay đổi 1 list, Haskell sẽ
+- Các kiểu dữ liệu thường là immutable, khi thay đổi 1 list, Haskell sẽ
 tạo ra 1 list mới với những thay đổi đã thực hiện (và bỏ list cũ đi).
+- First class function: quen với việc dùng function này làm đầu vào cho function
+khác. Ví dụ map `map (\x -> x * 2) [1..5]` nhận function `\x -> x * 2` và 1 list
+để thực hiện function đó trên tất cả các phần tử trong list.
 
 ### Haskell purely functional là gì
 pure function là một function không có "side effect", giống hàm toán học, kết
