@@ -215,7 +215,7 @@ Prelude> sum [i | i <- [1..999], mod i 3 == 0 || mod i 5 == 0]
 233168
 ```
 
-## Các đặc tính nổi biệt của Haskell
+## Các đặc tính nổi bật của Haskell
 Theo [wiki Haskell](https://wiki.haskell.org/Introduction)
 
 > Haskell is a computer programming language. In particular, it is a polymorphically statically typed, lazy, purely functional language, quite different from most other programming languages. The language is named for Haskell Brooks Curry, whose work in mathematical logic serves as a foundation for functional languages. Haskell is based on the lambda calculus, hence the lambda we use as a logo.
@@ -262,7 +262,7 @@ Nhưng Haskell sẽ dựa trên 1 khái niệm/cơ chế hoàn toàn khác để
 việc nói trên.
 
 ### Haskell lazy là gì
-lazy là việc function chỉ thực hiện tính toán khi thực sự cần tới giá trị.
+lazy là chỉ thực hiện tính toán khi thực sự cần tới giá trị.
 Ví dụ có thể viết code tạo ra list từ 1 tới vô cùng, nhưng vì Haskell lazy,
 nó chỉ lấy ra phần tử nó cần, chứ không tạo list từ 1 tới vô cùng từ đầu.
 
