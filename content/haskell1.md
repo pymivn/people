@@ -4,7 +4,7 @@ Category: Trang chủ
 Tags: haskell
 Slug: haskell1
 Authors: hvnsweeting
-Summary: ngôn ngữ lập trình luôn được xếp vào nhóm "khó học nhất" lại trở nên đơn giản khi học theo cách của Pymi.vn và giống Python bất ngờ - phần 1.
+Summary: ngôn ngữ lập trình luôn được xếp vào nhóm "khó học nhất" - giống Python bất ngờ - phần 1.
 
 - Cảnh báo: rất giống Python
 - Chú ý: không cần biết Python
