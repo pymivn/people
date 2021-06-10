@@ -148,8 +148,27 @@ Prelude> not False
 True
 ```
 
-Haskell boolean có tính [short-circuit](https://pymi.vn/tutorial/boolean/) - dừng lại ngay khi có thể.
-Đây là điều hiển nhiên nhờ một tính năng nổi bật của Haskell: **Lazy**.
+Haskell boolean có tính [short-circuit](https://pymi.vn/tutorial/boolean/) -
+dừng lại ngay khi có thể kết luận kết quả biểu thức boolean.
+
+```hs
+Prelude> error "huhu"
+*** Exception: huhu
+CallStack (from HasCallStack):
+  error, called at <interactive>:2:1 in interactive:Ghci2
+Prelude> True || error "huhu"
+True
+Prelude> False && error "huhu"
+False
+```
+hay nói cụ thể:
+
+- `||` sẽ dừng lại và trả về kết quả ngay khi gặp `True`
+- `&&` sẽ dừng lại và trả về kết quả ngay khi gặp `False`
+
+Với các ngôn ngữ khác, boolean có short-circuit hay không thì tùy từng ngôn
+ngữ quyết định, nhưng với một tính năng nổi bật của Haskell: **Lazy**,
+short-circuit là chuyện đương nhiên.
 
 ## type
 Các câu lệnh trong `ghci`
