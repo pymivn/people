@@ -21,6 +21,16 @@ The Glorious Glasgow Haskell Compilation System, version 8.10.5
 
 
 &lt;h2&gt;REPL&lt;/h2&gt;
+&lt;p&gt;REPL - Read Eval Print Loop, là môi trường nhận đầu vào từ người dùng (Read), chạy input đó (Eval), in kết quả ra màn hình (Print), và cứ tiếp tục vậy (Loop).&lt;/p&gt;
+&lt;p&gt;Khái niệm này bắt nguồn từ ngôn ngữ lập trình cổ thứ 2 thế giới: LISP.&lt;/p&gt;
+&lt;p&gt;Việc viết code khi dùng các ngôn ngữ có REPL thường theo các bước:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;bật REPL lên
+gõ code thử cho tới khi thu được kết quả mong muốn
+copy code đó vào editor/IDE
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Câu lệnh bật REPL của Haskell có tên &lt;code&gt;ghci&lt;/code&gt;.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;ghci&lt;/span&gt;
 &lt;span class="kt"&gt;GHCi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;version&lt;/span&gt; &lt;span class="mf"&gt;8.10&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="kt"&gt;:&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="kt"&gt;://&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;haskell&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ghc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;  &lt;span class="kt"&gt;:?&lt;/span&gt; &lt;span class="n"&gt;for&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;
 &lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
@@ -245,7 +255,9 @@ mạng" nói khó mà chưa thử đã tin!&lt;/p&gt;
 &lt;li&gt;https://pymi.vn/tutorial/python-calculation-2/&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://book.realworldhaskell.org/read/getting-started.html"&gt;RealWorldHaskell&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2&gt;Ủng hộ tác giả viết phần tiếp theo&lt;/h2&gt;
+&lt;h2&gt;What next?&lt;/h2&gt;
+&lt;p&gt;Loạt bài viết dự kiến có 6-8 bài, ứng với 6-8 buổi &lt;a href="https://pymi.vn"&gt;học Python tại pymi.vn&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;Ủng hộ tác giả viết phần tiếp theo&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://www.familug.org/p/ung-ho.html"&gt;Ủng hộ tác giả 🍺&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content><category term="Trang chủ"></category><category term="haskell"></category></entry><entry><title>Python free variable</title><link href="http://pp.pymi.vn/article/free/" rel="alternate"></link><published>2021-06-07T00:00:00+07:00</published><updated>2021-06-07T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2021-06-07:/article/free/</id><summary type="html">&lt;p&gt;tự do như biến&lt;/p&gt;</summary><content type="html">&lt;p&gt;Python có 2 loại variable (biến): local, global, và free (đếm từ 0, tất nhiên).&lt;/p&gt;
