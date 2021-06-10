@@ -4,7 +4,8 @@ Category: Trang chủ
 Tags: haskell
 Slug: haskell1
 Authors: hvnsweeting
-Summary: ngôn ngữ lập trình luôn được xếp vào nhóm "khó học nhất" - giống Python bất ngờ.
+Summary: ngôn ngữ lập trình luôn được xếp vào nhóm "khó học nhất" lại trở nên
+đơn giản khi học theo cách của Pymi.vn và giống Python bất ngờ - phần 1.
 
 - Cảnh báo: rất giống Python
 - Chú ý: không cần biết Python
@@ -169,7 +170,11 @@ Prelude> it + 2
 ```
 
 ## ProjectEuler problem 1
-https://projecteuler.net/problem=1
+[https://projecteuler.net/problem=1](https://projecteuler.net/problem=1)
+
+Chú ý: theo chương trình học của [Pymi.vn](https://pymi.vn), phần này được
+học ở buổi số 4. Bạn đọc cần biết Python để hiểu phần này hoặc chỉ cần
+gõ theo. Có thể đọc thêm tại [đây](https://pp.pymi.vn/article/tuple_comps/).
 
 > If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
 > Find the sum of all the multiples of 3 or 5 below 1000.
@@ -199,7 +204,7 @@ Prelude> sum [i | i <- [1..999], mod i 3 == 0 || mod i 5 == 0]
 ```
 
 ## Các đặc tính nổi biệt của Haskell
-https://wiki.haskell.org/Introduction
+Theo [wiki Haskell](https://wiki.haskell.org/Introduction)
 
 > Haskell is a computer programming language. In particular, it is a polymorphically statically typed, lazy, purely functional language, quite different from most other programming languages. The language is named for Haskell Brooks Curry, whose work in mathematical logic serves as a foundation for functional languages. Haskell is based on the lambda calculus, hence the lambda we use as a logo.
 
@@ -265,3 +270,6 @@ mạng" nói khó mà chưa thử đã tin!
 - https://pymi.vn/tutorial/python-integer/
 - https://pymi.vn/tutorial/python-calculation-2/
 - [RealWorldHaskell](http://book.realworldhaskell.org/read/getting-started.html)
+
+## Ủng hộ tác giả viết phần tiếp theo
+- [Ủng hộ tác giả 🍺](https://www.familug.org/p/ung-ho.html)
