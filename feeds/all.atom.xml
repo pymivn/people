@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2021-06-10T00:00:00+07:00</updated><entry><title>Học Haskell không phải trầm trồ - theo cách Pymi.vn</title><link href="http://pp.pymi.vn/article/haskell1/" rel="alternate"></link><published>2021-06-10T00:00:00+07:00</published><updated>2021-06-10T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2021-06-10:/article/haskell1/</id><summary type="html">&lt;p&gt;ngôn ngữ lập trình luôn được xếp vào nhóm "khó học nhất" - giống Python bất ngờ.&lt;/p&gt;</summary><content type="html">&lt;ul&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2021-06-10T00:00:00+07:00</updated><entry><title>Học Haskell không phải trầm trồ - theo cách Pymi.vn</title><link href="http://pp.pymi.vn/article/haskell1/" rel="alternate"></link><published>2021-06-10T00:00:00+07:00</published><updated>2021-06-10T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2021-06-10:/article/haskell1/</id><summary type="html">&lt;p&gt;ngôn ngữ lập trình luôn được xếp vào nhóm "khó học nhất" lại trở nên&lt;/p&gt;</summary><content type="html">&lt;p&gt;đơn giản khi học theo cách của Pymi.vn và giống Python bất ngờ - phần 1.&lt;/p&gt;
+&lt;ul&gt;
 &lt;li&gt;Cảnh báo: rất giống Python&lt;/li&gt;
 &lt;li&gt;Chú ý: không cần biết Python&lt;/li&gt;
 &lt;/ul&gt;
@@ -154,7 +155,10 @@ False
 
 
 &lt;h2&gt;ProjectEuler problem 1&lt;/h2&gt;
-&lt;p&gt;https://projecteuler.net/problem=1&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://projecteuler.net/problem=1"&gt;https://projecteuler.net/problem=1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Chú ý: theo chương trình học của &lt;a href="https://pymi.vn"&gt;Pymi.vn&lt;/a&gt;, phần này được
+học ở buổi số 4. Bạn đọc cần biết Python để hiểu phần này hoặc chỉ cần
+gõ theo. Có thể đọc thêm tại &lt;a href="https://pp.pymi.vn/article/tuple_comps/"&gt;đây&lt;/a&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
 Find the sum of all the multiples of 3 or 5 below 1000.&lt;/p&gt;
@@ -180,7 +184,7 @@ Find the sum of all the multiples of 3 or 5 below 1000.&lt;/p&gt;
 
 
 &lt;h2&gt;Các đặc tính nổi biệt của Haskell&lt;/h2&gt;
-&lt;p&gt;https://wiki.haskell.org/Introduction&lt;/p&gt;
+&lt;p&gt;Theo &lt;a href="https://wiki.haskell.org/Introduction"&gt;wiki Haskell&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Haskell is a computer programming language. In particular, it is a polymorphically statically typed, lazy, purely functional language, quite different from most other programming languages. The language is named for Haskell Brooks Curry, whose work in mathematical logic serves as a foundation for functional languages. Haskell is based on the lambda calculus, hence the lambda we use as a logo.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -241,6 +245,10 @@ mạng" nói khó mà chưa thử đã tin!&lt;/p&gt;
 &lt;li&gt;https://pymi.vn/tutorial/python-integer/&lt;/li&gt;
 &lt;li&gt;https://pymi.vn/tutorial/python-calculation-2/&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://book.realworldhaskell.org/read/getting-started.html"&gt;RealWorldHaskell&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Ủng hộ tác giả viết phần tiếp theo&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.familug.org/p/ung-ho.html"&gt;Ủng hộ tác giả 🍺&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content><category term="Trang chủ"></category><category term="haskell"></category></entry><entry><title>Python free variable</title><link href="http://pp.pymi.vn/article/free/" rel="alternate"></link><published>2021-06-07T00:00:00+07:00</published><updated>2021-06-07T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2021-06-07:/article/free/</id><summary type="html">&lt;p&gt;tự do như biến&lt;/p&gt;</summary><content type="html">&lt;p&gt;Python có 2 loại variable (biến): local, global, và free (đếm từ 0, tất nhiên).&lt;/p&gt;
 &lt;p&gt;&lt;img alt="free" src="https://images.unsplash.com/photo-1546672117-f83291ce87a9?crop=entropy&amp;amp;cs=tinysrgb&amp;amp;fit=max&amp;amp;fm=jpg&amp;amp;ixid=MnwyMzI1MzN8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjMwNzQxNTI&amp;amp;ixlib=rb-1.2.1&amp;amp;q=80&amp;amp;w=600"&gt;&lt;/p&gt;
 &lt;h2&gt;binding&lt;/h2&gt;
