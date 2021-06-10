@@ -3,7 +3,7 @@
 &lt;li&gt;Cảnh báo: rất giống Python&lt;/li&gt;
 &lt;li&gt;Chú ý: không cần biết Python&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Haskell (/ˈhæskəl/) - visub: ha-s-kồ - 1990.
+&lt;p&gt;Haskell (/ˈhæskəl/) - visub: ha-s-kồ - 1990 (lớn hơn Python 1 tuổi)
 Trang chủ: &lt;a href="https://www.haskell.org/"&gt;https://www.haskell.org/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Haskell" src="https://www.haskell.org/img/haskell-logo.svg"&gt;&lt;/p&gt;
 &lt;p&gt;Haskell là ngôn ngữ functional (lập trình hàm), thuộc nhóm "pure" blah blah blah
@@ -76,7 +76,7 @@ Prelude&amp;gt; &lt;span class="m"&gt;2&lt;/span&gt; ^ &lt;span class="m"&gt;100
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;a href="https://pymi.vn/blog/why-not-float/"&gt;0.1 + 0.1 + 0.1 /= 0.3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://pymi.vn/blog/why-not-float/"&gt;Tại sao 0.1 + 0.1 + 0.1 /= 0.3&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;Boolean&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Prelude&amp;gt; &lt;span class="m"&gt;2&lt;/span&gt; &amp;lt; &lt;span class="m"&gt;5&lt;/span&gt;
 True
@@ -141,21 +141,34 @@ False
 &lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mf"&gt;0.1&lt;/span&gt;
 &lt;span class="mf"&gt;0.1&lt;/span&gt;
 &lt;span class="nf"&gt;it&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Fractional&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="ow"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
-&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;True&lt;/span&gt;
+
+&lt;p&gt;số nguyên 1 có kiểu &lt;code&gt;Num&lt;/code&gt;, số float &lt;code&gt;0.1&lt;/code&gt; có kiểu &lt;code&gt;Fractional&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;True&lt;/span&gt;
 &lt;span class="kt"&gt;True&lt;/span&gt;
 &lt;span class="nf"&gt;it&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Bool&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
-&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;ahihi PyMi.vn&amp;quot;&lt;/span&gt;
-&lt;span class="s"&gt;&amp;quot;ahihi PyMi.vn&amp;quot;&lt;/span&gt;
+
+&lt;p&gt;giá trị boolean True có kiểu &lt;code&gt;Bool&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;con mèo trèo&amp;quot;&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot;con m&lt;/span&gt;&lt;span class="se"&gt;\232&lt;/span&gt;&lt;span class="s"&gt;o tr&lt;/span&gt;&lt;span class="se"&gt;\232&lt;/span&gt;&lt;span class="s"&gt;o&amp;quot;&lt;/span&gt;
 &lt;span class="nf"&gt;it&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;Char&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;length&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;con mèo trèo&amp;quot;&lt;/span&gt;
+&lt;span class="mi"&gt;12&lt;/span&gt;
+&lt;span class="nf"&gt;it&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Int&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
-&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;..&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;p&gt;string là 1 list của các &lt;code&gt;Char&lt;/code&gt; (character - ký tự)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;..&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="nf"&gt;it&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;Num&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;Enum&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;p&gt;kiểu list được biểu diễn bởi dấu &lt;code&gt;[]&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;it&lt;/code&gt; là biểu thức/kết quả cuối cùng bạn đã gõ. Tương tự &lt;code&gt;_&lt;/code&gt; trong Python interpreter.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
 &lt;span class="mi"&gt;1&lt;/span&gt;
@@ -250,6 +263,14 @@ nó chỉ lấy ra phần tử nó cần, chứ không tạo list từ 1 tới v
 
 
 &lt;p&gt;Trong Python, khái niệm gần nhất với lazy là &lt;a href="https://pp.pymi.vn/article/tuple_comps/"&gt;&lt;code&gt;generator&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Để Haskell bắt buộc phải tính list [1..] tới vô cùng, ta dùng 1 function cần
+phải duyệt đến phần tử cuối cùng của list - như tính độ dài : &lt;code&gt;length&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;length&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;..&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="kt"&gt;CInterrupted&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;code này sẽ chạy mãi cho tới khi người dùng tắt chương trình hoặc bấm Ctrl-C.&lt;/p&gt;
 &lt;h2&gt;Kết luận&lt;/h2&gt;
 &lt;p&gt;Ngày đầu của Haskell không hề khó hơn ngày đầu học Python. Đừng vì "cộng đồng
 mạng" nói khó mà chưa thử đã tin!&lt;/p&gt;

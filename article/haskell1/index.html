@@ -54,7 +54,7 @@
 <li>Cảnh báo: rất giống Python</li>
 <li>Chú ý: không cần biết Python</li>
 </ul>
-<p>Haskell (/ˈhæskəl/) - visub: ha-s-kồ - 1990.
+<p>Haskell (/ˈhæskəl/) - visub: ha-s-kồ - 1990 (lớn hơn Python 1 tuổi)
 Trang chủ: <a href="https://www.haskell.org/">https://www.haskell.org/</a></p>
 <p><img alt="Haskell" src="https://www.haskell.org/img/haskell-logo.svg"></p>
 <p>Haskell là ngôn ngữ functional (lập trình hàm), thuộc nhóm "pure" blah blah blah
@@ -127,7 +127,7 @@ Prelude&gt; <span class="m">2</span> ^ <span class="m">1000</span>
 </pre></div>
 
 
-<p><a href="https://pymi.vn/blog/why-not-float/">0.1 + 0.1 + 0.1 /= 0.3</a></p>
+<p><a href="https://pymi.vn/blog/why-not-float/">Tại sao 0.1 + 0.1 + 0.1 /= 0.3</a></p>
 <h2>Boolean</h2>
 <div class="highlight"><pre><span></span>Prelude&gt; <span class="m">2</span> &lt; <span class="m">5</span>
 True
@@ -192,21 +192,34 @@ False
 <span class="kt">Prelude</span><span class="o">&gt;</span> <span class="mf">0.1</span>
 <span class="mf">0.1</span>
 <span class="nf">it</span> <span class="ow">::</span> <span class="kt">Fractional</span> <span class="n">p</span> <span class="ow">=&gt;</span> <span class="n">p</span>
+</pre></div>
 
-<span class="kt">Prelude</span><span class="o">&gt;</span> <span class="kt">True</span>
+
+<p>số nguyên 1 có kiểu <code>Num</code>, số float <code>0.1</code> có kiểu <code>Fractional</code></p>
+<div class="highlight"><pre><span></span><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="kt">True</span>
 <span class="kt">True</span>
 <span class="nf">it</span> <span class="ow">::</span> <span class="kt">Bool</span>
+</pre></div>
 
-<span class="kt">Prelude</span><span class="o">&gt;</span> <span class="s">&quot;ahihi PyMi.vn&quot;</span>
-<span class="s">&quot;ahihi PyMi.vn&quot;</span>
+
+<p>giá trị boolean True có kiểu <code>Bool</code></p>
+<div class="highlight"><pre><span></span><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="s">&quot;con mèo trèo&quot;</span>
+<span class="s">&quot;con m</span><span class="se">\232</span><span class="s">o tr</span><span class="se">\232</span><span class="s">o&quot;</span>
 <span class="nf">it</span> <span class="ow">::</span> <span class="p">[</span><span class="kt">Char</span><span class="p">]</span>
+<span class="kt">Prelude</span><span class="o">&gt;</span> <span class="n">length</span> <span class="s">&quot;con mèo trèo&quot;</span>
+<span class="mi">12</span>
+<span class="nf">it</span> <span class="ow">::</span> <span class="kt">Int</span>
+</pre></div>
 
-<span class="kt">Prelude</span><span class="o">&gt;</span> <span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="mi">10</span><span class="p">]</span>
+
+<p>string là 1 list của các <code>Char</code> (character - ký tự)</p>
+<div class="highlight"><pre><span></span><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="mi">10</span><span class="p">]</span>
 <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
 <span class="nf">it</span> <span class="ow">::</span> <span class="p">(</span><span class="kt">Num</span> <span class="n">a</span><span class="p">,</span> <span class="kt">Enum</span> <span class="n">a</span><span class="p">)</span> <span class="ow">=&gt;</span> <span class="p">[</span><span class="n">a</span><span class="p">]</span>
 </pre></div>
 
 
+<p>kiểu list được biểu diễn bởi dấu <code>[]</code></p>
 <p><code>it</code> là biểu thức/kết quả cuối cùng bạn đã gõ. Tương tự <code>_</code> trong Python interpreter.</p>
 <div class="highlight"><pre><span></span><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="mi">1</span>
 <span class="mi">1</span>
@@ -301,6 +314,14 @@ nó chỉ lấy ra phần tử nó cần, chứ không tạo list từ 1 tới v
 
 
 <p>Trong Python, khái niệm gần nhất với lazy là <a href="https://pp.pymi.vn/article/tuple_comps/"><code>generator</code></a></p>
+<p>Để Haskell bắt buộc phải tính list [1..] tới vô cùng, ta dùng 1 function cần
+phải duyệt đến phần tử cuối cùng của list - như tính độ dài : <code>length</code></p>
+<div class="highlight"><pre><span></span><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="n">length</span> <span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="p">]</span>
+<span class="o">^</span><span class="kt">CInterrupted</span><span class="o">.</span>
+</pre></div>
+
+
+<p>code này sẽ chạy mãi cho tới khi người dùng tắt chương trình hoặc bấm Ctrl-C.</p>
 <h2>Kết luận</h2>
 <p>Ngày đầu của Haskell không hề khó hơn ngày đầu học Python. Đừng vì "cộng đồng
 mạng" nói khó mà chưa thử đã tin!</p>
