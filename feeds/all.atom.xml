@@ -93,6 +93,7 @@ Infinity
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;p&gt;and&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Prelude&amp;gt; True &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; True
 True
 Prelude&amp;gt; True &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; False
@@ -101,6 +102,26 @@ Prelude&amp;gt; False &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; True
 False
 Prelude&amp;gt; False &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; False
 False
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;or&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;True&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="kt"&gt;True&lt;/span&gt;
+&lt;span class="kt"&gt;True&lt;/span&gt;
+&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;True&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="kt"&gt;False&lt;/span&gt;
+&lt;span class="kt"&gt;True&lt;/span&gt;
+&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;False&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="kt"&gt;True&lt;/span&gt;
+&lt;span class="kt"&gt;True&lt;/span&gt;
+&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;False&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="kt"&gt;False&lt;/span&gt;
+&lt;span class="kt"&gt;False&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;not&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="kt"&gt;True&lt;/span&gt;
+&lt;span class="kt"&gt;False&lt;/span&gt;
+&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="kt"&gt;False&lt;/span&gt;
+&lt;span class="kt"&gt;True&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
