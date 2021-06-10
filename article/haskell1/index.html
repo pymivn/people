@@ -181,8 +181,27 @@ False
 </pre></div>
 
 
-<p>Haskell boolean có tính <a href="https://pymi.vn/tutorial/boolean/">short-circuit</a> - dừng lại ngay khi có thể.
-Đây là điều hiển nhiên nhờ một tính năng nổi bật của Haskell: <strong>Lazy</strong>.</p>
+<p>Haskell boolean có tính <a href="https://pymi.vn/tutorial/boolean/">short-circuit</a> -
+dừng lại ngay khi có thể kết luận kết quả biểu thức boolean.</p>
+<div class="highlight"><pre><span></span><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="ne">error</span> <span class="s">&quot;huhu&quot;</span>
+<span class="o">***</span> <span class="kt">Exception:</span> <span class="n">huhu</span>
+<span class="kt">CallStack</span> <span class="p">(</span><span class="n">from</span> <span class="kt">HasCallStack</span><span class="p">)</span><span class="kt">:</span>
+  <span class="ne">error</span><span class="p">,</span> <span class="n">called</span> <span class="n">at</span> <span class="o">&lt;</span><span class="n">interactive</span><span class="o">&gt;:</span><span class="mi">2</span><span class="kt">:</span><span class="mi">1</span> <span class="kr">in</span> <span class="n">interactive</span><span class="kt">:Ghci2</span>
+<span class="kt">Prelude</span><span class="o">&gt;</span> <span class="kt">True</span> <span class="o">||</span> <span class="ne">error</span> <span class="s">&quot;huhu&quot;</span>
+<span class="kt">True</span>
+<span class="kt">Prelude</span><span class="o">&gt;</span> <span class="kt">False</span> <span class="o">&amp;&amp;</span> <span class="ne">error</span> <span class="s">&quot;huhu&quot;</span>
+<span class="kt">False</span>
+</pre></div>
+
+
+<p>hay nói cụ thể:</p>
+<ul>
+<li><code>||</code> sẽ dừng lại và trả về kết quả ngay khi gặp <code>True</code></li>
+<li><code>&amp;&amp;</code> sẽ dừng lại và trả về kết quả ngay khi gặp <code>False</code></li>
+</ul>
+<p>Với các ngôn ngữ khác, boolean có short-circuit hay không thì tùy từng ngôn
+ngữ quyết định, nhưng với một tính năng nổi bật của Haskell: <strong>Lazy</strong>,
+short-circuit là chuyện đương nhiên.</p>
 <h2>type</h2>
 <p>Các câu lệnh trong <code>ghci</code></p>
 <ul>

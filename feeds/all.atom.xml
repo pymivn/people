@@ -130,8 +130,27 @@ False
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Haskell boolean có tính &lt;a href="https://pymi.vn/tutorial/boolean/"&gt;short-circuit&lt;/a&gt; - dừng lại ngay khi có thể.
-Đây là điều hiển nhiên nhờ một tính năng nổi bật của Haskell: &lt;strong&gt;Lazy&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Haskell boolean có tính &lt;a href="https://pymi.vn/tutorial/boolean/"&gt;short-circuit&lt;/a&gt; -
+dừng lại ngay khi có thể kết luận kết quả biểu thức boolean.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="ne"&gt;error&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;huhu&amp;quot;&lt;/span&gt;
+&lt;span class="o"&gt;***&lt;/span&gt; &lt;span class="kt"&gt;Exception:&lt;/span&gt; &lt;span class="n"&gt;huhu&lt;/span&gt;
+&lt;span class="kt"&gt;CallStack&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="kt"&gt;HasCallStack&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="kt"&gt;:&lt;/span&gt;
+  &lt;span class="ne"&gt;error&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;called&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;interactive&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;:&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="kt"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="kr"&gt;in&lt;/span&gt; &lt;span class="n"&gt;interactive&lt;/span&gt;&lt;span class="kt"&gt;:Ghci2&lt;/span&gt;
+&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;True&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="ne"&gt;error&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;huhu&amp;quot;&lt;/span&gt;
+&lt;span class="kt"&gt;True&lt;/span&gt;
+&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;False&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="ne"&gt;error&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;huhu&amp;quot;&lt;/span&gt;
+&lt;span class="kt"&gt;False&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;hay nói cụ thể:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;||&lt;/code&gt; sẽ dừng lại và trả về kết quả ngay khi gặp &lt;code&gt;True&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt; sẽ dừng lại và trả về kết quả ngay khi gặp &lt;code&gt;False&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Với các ngôn ngữ khác, boolean có short-circuit hay không thì tùy từng ngôn
+ngữ quyết định, nhưng với một tính năng nổi bật của Haskell: &lt;strong&gt;Lazy&lt;/strong&gt;,
+short-circuit là chuyện đương nhiên.&lt;/p&gt;
 &lt;h2&gt;type&lt;/h2&gt;
 &lt;p&gt;Các câu lệnh trong &lt;code&gt;ghci&lt;/code&gt;&lt;/p&gt;
 &lt;ul&gt;
