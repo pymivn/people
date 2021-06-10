@@ -29,6 +29,12 @@ ghci --version
 The Glorious Glasgow Haskell Compilation System, version 8.10.5
 ```
 
+Trên Ubuntu có thể dùng:
+
+```sh
+sudo apt-get update && sudo apt-get install -y haskell-stack
+```
+
 ## REPL
 
 REPL - Read Eval Print Loop, là chương trình nhận code người dùng nhập vào
