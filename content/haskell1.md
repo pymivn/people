@@ -9,7 +9,7 @@ Summary: ngôn ngữ lập trình luôn được xếp vào nhóm "khó học nh
 - Cảnh báo: rất giống Python
 - Chú ý: không cần biết Python
 
-Haskell (/ˈhæskəl/) - visub: ha-s-kồ - 1990.
+Haskell (/ˈhæskəl/) - visub: ha-s-kồ - 1990 (lớn hơn Python 1 tuổi)
 Trang chủ: [https://www.haskell.org/](https://www.haskell.org/)
 
 ![Haskell](https://www.haskell.org/img/haskell-logo.svg)
@@ -91,7 +91,7 @@ Prelude> 0.1 + 0.1 + 0.1 /= 0.3
 True
 ```
 
-[0.1 + 0.1 + 0.1 /= 0.3](https://pymi.vn/blog/why-not-float/)
+[Tại sao 0.1 + 0.1 + 0.1 /= 0.3](https://pymi.vn/blog/why-not-float/)
 
 ## Boolean
 
@@ -150,6 +150,7 @@ infixl 6 +
 ```
 
 Hiển thị type:
+
 ```hs
 Prelude> :set +t
 
@@ -160,19 +161,33 @@ it :: Num p => p
 Prelude> 0.1
 0.1
 it :: Fractional p => p
+```
 
+số nguyên 1 có kiểu `Num`, số float `0.1` có kiểu `Fractional`
+
+```hs
 Prelude> True
 True
 it :: Bool
+```
+giá trị boolean True có kiểu `Bool`
 
-Prelude> "ahihi PyMi.vn"
-"ahihi PyMi.vn"
+```hs
+Prelude> "con mèo trèo"
+"con m\232o tr\232o"
 it :: [Char]
+Prelude> length "con mèo trèo"
+12
+it :: Int
+```
+string là 1 list của các `Char` (character - ký tự)
 
+```hs
 Prelude> [1..10]
 [1,2,3,4,5,6,7,8,9,10]
 it :: (Num a, Enum a) => [a]
 ```
+kiểu list được biểu diễn bởi dấu `[]`
 
 `it` là biểu thức/kết quả cuối cùng bạn đã gõ. Tương tự `_` trong Python interpreter.
 ```hs
@@ -278,6 +293,16 @@ Prelude> take 20 [1..]
 ```
 
 Trong Python, khái niệm gần nhất với lazy là [`generator`](https://pp.pymi.vn/article/tuple_comps/)
+
+Để Haskell bắt buộc phải tính list [1..] tới vô cùng, ta dùng 1 function cần
+phải duyệt đến phần tử cuối cùng của list - như tính độ dài : `length`
+
+```hs
+Prelude> length [1..]
+^CInterrupted.
+```
+code này sẽ chạy mãi cho tới khi người dùng tắt chương trình hoặc bấm Ctrl-C.
+
 
 ## Kết luận
 Ngày đầu của Haskell không hề khó hơn ngày đầu học Python. Đừng vì "cộng đồng
