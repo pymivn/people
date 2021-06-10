@@ -31,6 +31,19 @@ The Glorious Glasgow Haskell Compilation System, version 8.10.5
 
 ## REPL
 
+REPL - Read Eval Print Loop, là môi trường nhận đầu vào từ người dùng (Read), chạy input đó (Eval), in kết quả ra màn hình (Print), và cứ tiếp tục vậy (Loop).
+
+Khái niệm này bắt nguồn từ ngôn ngữ lập trình cổ thứ 2 thế giới: LISP.
+
+Việc viết code khi dùng các ngôn ngữ có REPL thường theo các bước:
+
+    bật REPL lên
+    gõ code thử cho tới khi thu được kết quả mong muốn
+    copy code đó vào editor/IDE
+
+
+Câu lệnh bật REPL của Haskell có tên `ghci`.
+
 ```hs
 $ ghci
 GHCi, version 8.10.5: https://www.haskell.org/ghc/  :? for help
@@ -261,6 +274,7 @@ Prelude> take 20 [1..]
 ```
 
 Trong Python, khái niệm gần nhất với lazy là [`generator`](https://pp.pymi.vn/article/tuple_comps/)
+
 ## Kết luận
 Ngày đầu của Haskell không hề khó hơn ngày đầu học Python. Đừng vì "cộng đồng
 mạng" nói khó mà chưa thử đã tin!
@@ -270,5 +284,8 @@ mạng" nói khó mà chưa thử đã tin!
 - https://pymi.vn/tutorial/python-calculation-2/
 - [RealWorldHaskell](http://book.realworldhaskell.org/read/getting-started.html)
 
-## Ủng hộ tác giả viết phần tiếp theo
+## What next?
+Loạt bài viết dự kiến có 6-8 bài, ứng với 6-8 buổi [học Python tại pymi.vn](https://pymi.vn)
+
+#### Ủng hộ tác giả viết phần tiếp theo
 - [Ủng hộ tác giả 🍺](https://www.familug.org/p/ung-ho.html)
