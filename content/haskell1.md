@@ -110,7 +110,7 @@ Prelude> 1/0
 Infinity
 ```
 
-
+and
 ```sh
 Prelude> True && True
 True
@@ -120,6 +120,26 @@ Prelude> False && True
 False
 Prelude> False && False
 False
+```
+
+or
+```hs
+Prelude> True || True
+True
+Prelude> True || False
+True
+Prelude> False || True
+True
+Prelude> False || False
+False
+```
+
+not
+```hs
+Prelude> not True
+False
+Prelude> not False
+True
 ```
 
 Haskell boolean có tính [short-circuit](https://pymi.vn/tutorial/boolean/) - dừng lại ngay khi có thể.
