@@ -192,7 +192,7 @@ Find the sum of all the multiples of 3 or 5 below 1000.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h2&gt;Các đặc tính nổi biệt của Haskell&lt;/h2&gt;
+&lt;h2&gt;Các đặc tính nổi bật của Haskell&lt;/h2&gt;
 &lt;p&gt;Theo &lt;a href="https://wiki.haskell.org/Introduction"&gt;wiki Haskell&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Haskell is a computer programming language. In particular, it is a polymorphically statically typed, lazy, purely functional language, quite different from most other programming languages. The language is named for Haskell Brooks Curry, whose work in mathematical logic serves as a foundation for functional languages. Haskell is based on the lambda calculus, hence the lambda we use as a logo.&lt;/p&gt;
@@ -235,7 +235,7 @@ một ngôn ngữ mà không tương tác với thế giới bên ngoài thì...
 Nhưng Haskell sẽ dựa trên 1 khái niệm/cơ chế hoàn toàn khác để thực hiện các
 việc nói trên.&lt;/p&gt;
 &lt;h3&gt;Haskell lazy là gì&lt;/h3&gt;
-&lt;p&gt;lazy là việc function chỉ thực hiện tính toán khi thực sự cần tới giá trị.
+&lt;p&gt;lazy là chỉ thực hiện tính toán khi thực sự cần tới giá trị.
 Ví dụ có thể viết code tạo ra list từ 1 tới vô cùng, nhưng vì Haskell lazy,
 nó chỉ lấy ra phần tử nó cần, chứ không tạo list từ 1 tới vô cùng từ đầu.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;take&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;..&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
