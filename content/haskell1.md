@@ -31,16 +31,17 @@ The Glorious Glasgow Haskell Compilation System, version 8.10.5
 
 ## REPL
 
-REPL - Read Eval Print Loop, là môi trường nhận đầu vào từ người dùng (Read), chạy input đó (Eval), in kết quả ra màn hình (Print), và cứ tiếp tục vậy (Loop).
+REPL - Read Eval Print Loop, là chương trình nhận code người dùng nhập vào
+(Read), chạy code đó (Eval), in kết quả ra màn hình (Print), và cứ tiếp tục vậy
+(Loop).
 
 Khái niệm này bắt nguồn từ ngôn ngữ lập trình cổ thứ 2 thế giới: LISP.
 
 Việc viết code khi dùng các ngôn ngữ có REPL thường theo các bước:
 
-    bật REPL lên
-    gõ code thử cho tới khi thu được kết quả mong muốn
-    copy code đó vào editor/IDE
-
+- bật REPL lên
+- gõ code thử cho tới khi thu được kết quả mong muốn
+- copy code đó vào editor/IDE
 
 Câu lệnh bật REPL của Haskell có tên `ghci`.
 
