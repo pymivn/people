@@ -237,7 +237,8 @@ Find the sum of all the multiples of 3 or 5 below 1000.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Haskell không dùng &lt;code&gt;%&lt;/code&gt; cho phép chia lấy phần dư (modulo/remainder), code Python &lt;code&gt;10 % 3&lt;/code&gt; tương đương với viết Haskell &lt;code&gt;mod 10 3&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Haskell không dùng &lt;code&gt;%&lt;/code&gt; cho phép chia lấy phần dư (modulo/remainder), code Python &lt;code&gt;10 % 3&lt;/code&gt; tương đương với viết Haskell &lt;code&gt;mod 10 3&lt;/code&gt; hoặc
+&lt;code&gt;rem 10 3&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;Haskell dùng &lt;code&gt;|| &amp;amp;&amp;amp;&lt;/code&gt; thay Python &lt;code&gt;or and&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://docs.python.org/3/whatsnew/2.0.html#list-comprehensions"&gt;Python 2.0 &lt;strong&gt;MƯỢN&lt;/strong&gt; list comprehension từ Haskell&lt;/a&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
@@ -248,6 +249,16 @@ Find the sum of all the multiples of 3 or 5 below 1000.&lt;/p&gt;
 &lt;p&gt;Haskell dùng &lt;code&gt;|&lt;/code&gt; thay chữ &lt;code&gt;for&lt;/code&gt;, dùng &lt;code&gt;&amp;lt;-&lt;/code&gt; thay chữ &lt;code&gt;in&lt;/code&gt;, dùng &lt;code&gt;,&lt;/code&gt; thay chữ &lt;code&gt;if&lt;/code&gt; so với Python&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;sum&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;..&lt;/span&gt;&lt;span class="mi"&gt;999&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;mod&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;mod&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="mi"&gt;233168&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Bonus:
+bài &lt;a href="https://projecteuler.net/problem=16"&gt;PE16&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Tính tổng các chữ số của 2 mũ 1000&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;Prelude&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;sum&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Integer&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;show&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
+&lt;span class="mi"&gt;1366&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 

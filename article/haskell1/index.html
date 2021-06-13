@@ -288,7 +288,8 @@ Find the sum of all the multiples of 3 or 5 below 1000.</p>
 </pre></div>
 
 
-<p>Haskell không dùng <code>%</code> cho phép chia lấy phần dư (modulo/remainder), code Python <code>10 % 3</code> tương đương với viết Haskell <code>mod 10 3</code></p>
+<p>Haskell không dùng <code>%</code> cho phép chia lấy phần dư (modulo/remainder), code Python <code>10 % 3</code> tương đương với viết Haskell <code>mod 10 3</code> hoặc
+<code>rem 10 3</code></p>
 <p>Haskell dùng <code>|| &amp;&amp;</code> thay Python <code>or and</code></p>
 <p><a href="https://docs.python.org/3/whatsnew/2.0.html#list-comprehensions">Python 2.0 <strong>MƯỢN</strong> list comprehension từ Haskell</a></p>
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="nb">sum</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">])</span>
@@ -299,6 +300,16 @@ Find the sum of all the multiples of 3 or 5 below 1000.</p>
 <p>Haskell dùng <code>|</code> thay chữ <code>for</code>, dùng <code>&lt;-</code> thay chữ <code>in</code>, dùng <code>,</code> thay chữ <code>if</code> so với Python</p>
 <div class="highlight"><pre><span></span><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="n">sum</span> <span class="p">[</span><span class="n">i</span> <span class="o">|</span> <span class="n">i</span> <span class="ow">&lt;-</span> <span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="mi">999</span><span class="p">],</span> <span class="n">mod</span> <span class="n">i</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">mod</span> <span class="n">i</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
 <span class="mi">233168</span>
+</pre></div>
+
+
+<p>Bonus:
+bài <a href="https://projecteuler.net/problem=16">PE16</a>:</p>
+<blockquote>
+<p>Tính tổng các chữ số của 2 mũ 1000</p>
+</blockquote>
+<div class="highlight"><pre><span></span><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="n">sum</span> <span class="p">[</span><span class="n">read</span> <span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">::</span> <span class="kt">Integer</span> <span class="o">|</span> <span class="n">i</span> <span class="ow">&lt;-</span> <span class="n">show</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">1000</span><span class="p">)]</span>
+<span class="mi">1366</span>
 </pre></div>
 
 
