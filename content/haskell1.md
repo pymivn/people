@@ -276,6 +276,16 @@ Prelude> sum [i | i <- [1..999], mod i 3 == 0 || mod i 5 == 0]
 233168
 ```
 
+Bonus:
+bài [PE16](https://projecteuler.net/problem=16):
+
+> Tính tổng các chữ số của 2 mũ 1000
+
+```hs
+Prelude> sum [read [i] :: Integer | i <- show (2^1000)]
+1366
+```
+
 ## Các đặc tính nổi bật của Haskell
 Theo [wiki Haskell](https://wiki.haskell.org/Introduction)
 
