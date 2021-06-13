@@ -258,7 +258,8 @@ Prelude> [1..5]
 [1,2,3,4,5]
 ```
 
-Haskell không dùng `%` cho phép chia lấy phần dư (modulo/remainder), code Python `10 % 3` tương đương với viết Haskell `mod 10 3`
+Haskell không dùng `%` cho phép chia lấy phần dư (modulo/remainder), code Python `10 % 3` tương đương với viết Haskell `mod 10 3` hoặc
+`rem 10 3`
 
 Haskell dùng `|| &&` thay Python `or and`
 
