@@ -15,7 +15,7 @@ Trang chủ: [https://www.haskell.org/](https://www.haskell.org/)
 ![Haskell](https://www.haskell.org/img/haskell-logo.svg)
 
 Haskell là ngôn ngữ functional (lập trình hàm), thuộc nhóm "pure" blah blah blah
-có thể bỏ qua và gõ cho đến cuối bài, work first, talk cheap, later.
+có thể bỏ qua và gõ cho đến cuối bài, work first, talk is cheap, later.
 
 ## Cài đặt
 Hướng dẫn [trang chủ](https://www.haskell.org/downloads/#linux-mac-freebsd), hỗ trợ cả Windows
