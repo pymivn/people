@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2021-06-19T00:00:00+07:00</updated><entry><title>Có Salt không lo chết đói</title><link href="http://pp.pymi.vn/article/salt/" rel="alternate"></link><published>2021-06-19T00:00:00+07:00</published><updated>2021-06-19T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2021-06-19:/article/salt/</id><summary type="html">&lt;p&gt;Tự động hóa cài đặt, cấu hình (deploy) Python app với SaltStack&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="salt" src="https://gitlab.com/saltstack/open/salt-branding-guide/-/raw/master/logos/SaltProject_altlogo_teal.png?inline=true"&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2021-06-19T00:00:00+07:00</updated><entry><title>Có Salt không lo chết đói</title><link href="http://pp.pymi.vn/article/salt/" rel="alternate"></link><published>2021-06-19T00:00:00+07:00</published><updated>2021-06-19T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2021-06-19:/article/salt/</id><summary type="html">&lt;p&gt;Tự động hóa cài đặt, cấu hình (deploy) Python app với Salt&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="salt" src="https://gitlab.com/saltstack/open/salt-branding-guide/-/raw/master/logos/SaltProject_altlogo_teal.png?inline=true"&gt;&lt;/p&gt;
 &lt;h2&gt;Salt là gì&lt;/h2&gt;
-&lt;p&gt;SaltStack (từ đây gọi tắt là Salt /sɔːlt/ /sɒlt/) là một phần mềm mã nguồn mở, một hệ thống
+&lt;p&gt;Salt /sɔːlt/ /sɒlt/) là một phần mềm mã nguồn mở, một hệ thống
 thuộc nhóm Configuration Management (CM), viết bằng Python, sử dụng YAML làm ngôn
 ngữ giao tiếp với người dùng.&lt;/p&gt;
 &lt;h2&gt;Salt làm gì?&lt;/h2&gt;
@@ -211,7 +211,7 @@ mục &lt;code&gt;/home/hvn/saltlab/states&lt;/code&gt; trên máy master.&lt;/p
 &lt;p&gt;Jinja2 có for if/else như Python, xem
 &lt;a href="https://docs.saltproject.io/en/getstarted/config/jinja.html"&gt;Jinja2 template&lt;/a&gt;
 để tìm hiểu thêm.&lt;/p&gt;
-&lt;h3&gt;1 phút dành cho lý thuyết: grains pillar&lt;/h3&gt;
+&lt;h3&gt;5 phút dành cho lý thuyết: grains pillar&lt;/h3&gt;
 &lt;p&gt;1 nhược điểm của Salt là theo mốt thời 2010, đặt tên cho mọi khái niệm, và tên
 đó không thực sự có nhiều ý nghĩa - đơn giản chỉ là bịa ra (theo mốt của
 &lt;a href="https://www.chef.io/"&gt;Chef&lt;/a&gt; - một đối thủ viết bằng Ruby).&lt;/p&gt;
@@ -229,21 +229,21 @@ máy minion. state.apply&lt;/p&gt;
         &lt;span class="l l-Scalar l-Scalar-Plain"&gt;Name&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;/tmp/ahihi.yml&lt;/span&gt;
       &lt;span class="l l-Scalar l-Scalar-Plain"&gt;Result&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;True&lt;/span&gt;
      &lt;span class="l l-Scalar l-Scalar-Plain"&gt;Comment&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;File /tmp/ahihi.yml is in the correct state&lt;/span&gt;
-     &lt;span class="l l-Scalar l-Scalar-Plain"&gt;Started&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;15:37:34.775460&lt;/span&gt;
-    &lt;span class="nt"&gt;Duration&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;46.881 ms&lt;/span&gt;
+     &lt;span class="l l-Scalar l-Scalar-Plain"&gt;Started&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;19:33:25.337228&lt;/span&gt;
+    &lt;span class="nt"&gt;Duration&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;34.549 ms&lt;/span&gt;
      &lt;span class="l l-Scalar l-Scalar-Plain"&gt;Changes&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt;
 &lt;span class="l l-Scalar l-Scalar-Plain"&gt;----------&lt;/span&gt;
           &lt;span class="l l-Scalar l-Scalar-Plain"&gt;ID&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;now run a command&lt;/span&gt;
     &lt;span class="l l-Scalar l-Scalar-Plain"&gt;Function&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;cmd.run&lt;/span&gt;
-        &lt;span class="l l-Scalar l-Scalar-Plain"&gt;Name&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;cat /tmp/ahihi.yml&lt;/span&gt;
+        &lt;span class="l l-Scalar l-Scalar-Plain"&gt;Name&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;cat /tmp/ahihi.yml | head&lt;/span&gt;
       &lt;span class="l l-Scalar l-Scalar-Plain"&gt;Result&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;True&lt;/span&gt;
-     &lt;span class="l l-Scalar l-Scalar-Plain"&gt;Comment&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;Command &amp;quot;cat /tmp/ahihi.yml&amp;quot; run&lt;/span&gt;
-     &lt;span class="l l-Scalar l-Scalar-Plain"&gt;Started&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;15:37:34.824872&lt;/span&gt;
-    &lt;span class="l l-Scalar l-Scalar-Plain"&gt;Duration&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;7.323 ms&lt;/span&gt;
+     &lt;span class="l l-Scalar l-Scalar-Plain"&gt;Comment&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;Command &amp;quot;cat /tmp/ahihi.yml | head&amp;quot; run&lt;/span&gt;
+     &lt;span class="l l-Scalar l-Scalar-Plain"&gt;Started&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;19:33:25.372408&lt;/span&gt;
+    &lt;span class="l l-Scalar l-Scalar-Plain"&gt;Duration&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;7.672 ms&lt;/span&gt;
      &lt;span class="l l-Scalar l-Scalar-Plain"&gt;Changes&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt;
               &lt;span class="l l-Scalar l-Scalar-Plain"&gt;----------&lt;/span&gt;
               &lt;span class="l l-Scalar l-Scalar-Plain"&gt;pid&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt;
-                  &lt;span class="l l-Scalar l-Scalar-Plain"&gt;37968&lt;/span&gt;
+                  &lt;span class="l l-Scalar l-Scalar-Plain"&gt;42905&lt;/span&gt;
               &lt;span class="nt"&gt;retcode&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
                   &lt;span class="l l-Scalar l-Scalar-Plain"&gt;0&lt;/span&gt;
               &lt;span class="nt"&gt;stderr&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -273,8 +273,7 @@ tv:
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h4&gt;salt pillar&lt;/h4&gt;
-&lt;p&gt;Pillar chỉ nằm trên master, nên nó phân cấu trúc thư mục và map file nào
-dành cho minion nào. File &lt;code&gt;top.sls&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Pillar chỉ nằm trên master, nó map file nào dành cho minion nào. File &lt;code&gt;top.sls&lt;/code&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;base:
   &amp;#39;*&amp;#39;:
     - common
@@ -296,7 +295,7 @@ của Python. Ví dụ: &lt;code&gt;uds.sls&lt;/code&gt;:&lt;/p&gt;
 &lt;p&gt;Để liệt kê tất cả pillar item dành cho minion, dùng Salt command &lt;code&gt;pillar.items&lt;/code&gt;
 (chú ý grains có s, pillar không có).&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ salt-ssh -c ~/saltlab trau pillar.items
-tv:
+trau:
     ----------
     database:
         ----------
@@ -343,7 +342,7 @@ state, dùng chúng như các viên gạch để tự động quá trình cài �
 phần mềm trên hệ thống.
 Cách thực hành đơn giản nhất là dùng Salt cài các phần mềm trên chính máy tính
 của mình đang dùng, thay vì gọi &lt;code&gt;salt-ssh&lt;/code&gt;, dùng&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo salt-call state.sls -linfo FORMULA_NAME
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo salt-call --local state.apply FORMULA_NAME -linfo
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h2&gt;Kết luận&lt;/h2&gt;
@@ -363,7 +362,7 @@ không phải nhọc nhằn code bash.&lt;/p&gt;
 &lt;li&gt;https://github.com/saltstack/salt/issues/59942&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.familug.org/2015/06/saltstack-chao-muoi-em-la-ai.html"&gt;Chào Muối, em là ai? &lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;https://docs.saltproject.io/en/latest/contents.html&lt;/li&gt;
-&lt;li&gt;Các formula cộng đồng https://github.com/saltstack-formulas&lt;/li&gt;
+&lt;li&gt;Các formula cộng đồng &lt;a href="https://github.com/saltstack-formulas"&gt;saltstack-formulas&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;Ủng hộ tác giả&lt;/h3&gt;
 &lt;p&gt;HVN at &lt;a href="http://pymi.vn"&gt;http://pymi.vn&lt;/a&gt; and &lt;a href="https://www.familug.org"&gt;https://www.familug.org&lt;/a&gt;.&lt;/p&gt;

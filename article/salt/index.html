@@ -57,7 +57,7 @@
   <div class="entry-content">
     <p><img alt="salt" src="https://gitlab.com/saltstack/open/salt-branding-guide/-/raw/master/logos/SaltProject_altlogo_teal.png?inline=true"></p>
 <h2>Salt là gì</h2>
-<p>SaltStack (từ đây gọi tắt là Salt /sɔːlt/ /sɒlt/) là một phần mềm mã nguồn mở, một hệ thống
+<p>Salt /sɔːlt/ /sɒlt/) là một phần mềm mã nguồn mở, một hệ thống
 thuộc nhóm Configuration Management (CM), viết bằng Python, sử dụng YAML làm ngôn
 ngữ giao tiếp với người dùng.</p>
 <h2>Salt làm gì?</h2>
@@ -267,7 +267,7 @@ mục <code>/home/hvn/saltlab/states</code> trên máy master.</p>
 <p>Jinja2 có for if/else như Python, xem
 <a href="https://docs.saltproject.io/en/getstarted/config/jinja.html">Jinja2 template</a>
 để tìm hiểu thêm.</p>
-<h3>1 phút dành cho lý thuyết: grains pillar</h3>
+<h3>5 phút dành cho lý thuyết: grains pillar</h3>
 <p>1 nhược điểm của Salt là theo mốt thời 2010, đặt tên cho mọi khái niệm, và tên
 đó không thực sự có nhiều ý nghĩa - đơn giản chỉ là bịa ra (theo mốt của
 <a href="https://www.chef.io/">Chef</a> - một đối thủ viết bằng Ruby).</p>
@@ -285,21 +285,21 @@ máy minion. state.apply</p>
         <span class="l l-Scalar l-Scalar-Plain">Name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/tmp/ahihi.yml</span>
       <span class="l l-Scalar l-Scalar-Plain">Result</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
      <span class="l l-Scalar l-Scalar-Plain">Comment</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">File /tmp/ahihi.yml is in the correct state</span>
-     <span class="l l-Scalar l-Scalar-Plain">Started</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">15:37:34.775460</span>
-    <span class="nt">Duration</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">46.881 ms</span>
+     <span class="l l-Scalar l-Scalar-Plain">Started</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">19:33:25.337228</span>
+    <span class="nt">Duration</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">34.549 ms</span>
      <span class="l l-Scalar l-Scalar-Plain">Changes</span><span class="p p-Indicator">:</span>
 <span class="l l-Scalar l-Scalar-Plain">----------</span>
           <span class="l l-Scalar l-Scalar-Plain">ID</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">now run a command</span>
     <span class="l l-Scalar l-Scalar-Plain">Function</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cmd.run</span>
-        <span class="l l-Scalar l-Scalar-Plain">Name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cat /tmp/ahihi.yml</span>
+        <span class="l l-Scalar l-Scalar-Plain">Name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cat /tmp/ahihi.yml | head</span>
       <span class="l l-Scalar l-Scalar-Plain">Result</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
-     <span class="l l-Scalar l-Scalar-Plain">Comment</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Command &quot;cat /tmp/ahihi.yml&quot; run</span>
-     <span class="l l-Scalar l-Scalar-Plain">Started</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">15:37:34.824872</span>
-    <span class="l l-Scalar l-Scalar-Plain">Duration</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">7.323 ms</span>
+     <span class="l l-Scalar l-Scalar-Plain">Comment</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Command &quot;cat /tmp/ahihi.yml | head&quot; run</span>
+     <span class="l l-Scalar l-Scalar-Plain">Started</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">19:33:25.372408</span>
+    <span class="l l-Scalar l-Scalar-Plain">Duration</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">7.672 ms</span>
      <span class="l l-Scalar l-Scalar-Plain">Changes</span><span class="p p-Indicator">:</span>
               <span class="l l-Scalar l-Scalar-Plain">----------</span>
               <span class="l l-Scalar l-Scalar-Plain">pid</span><span class="p p-Indicator">:</span>
-                  <span class="l l-Scalar l-Scalar-Plain">37968</span>
+                  <span class="l l-Scalar l-Scalar-Plain">42905</span>
               <span class="nt">retcode</span><span class="p">:</span>
                   <span class="l l-Scalar l-Scalar-Plain">0</span>
               <span class="nt">stderr</span><span class="p">:</span>
@@ -329,8 +329,7 @@ tv:
 </code></pre></div>
 
 <h4>salt pillar</h4>
-<p>Pillar chỉ nằm trên master, nên nó phân cấu trúc thư mục và map file nào
-dành cho minion nào. File <code>top.sls</code></p>
+<p>Pillar chỉ nằm trên master, nó map file nào dành cho minion nào. File <code>top.sls</code></p>
 <div class="highlight"><pre><span></span><code>base:
   &#39;*&#39;:
     - common
@@ -352,7 +351,7 @@ của Python. Ví dụ: <code>uds.sls</code>:</p>
 <p>Để liệt kê tất cả pillar item dành cho minion, dùng Salt command <code>pillar.items</code>
 (chú ý grains có s, pillar không có).</p>
 <div class="highlight"><pre><span></span><code>$ salt-ssh -c ~/saltlab trau pillar.items
-tv:
+trau:
     ----------
     database:
         ----------
@@ -399,7 +398,7 @@ state, dùng chúng như các viên gạch để tự động quá trình cài �
 phần mềm trên hệ thống.
 Cách thực hành đơn giản nhất là dùng Salt cài các phần mềm trên chính máy tính
 của mình đang dùng, thay vì gọi <code>salt-ssh</code>, dùng</p>
-<div class="highlight"><pre><span></span><code>sudo salt-call state.sls -linfo FORMULA_NAME
+<div class="highlight"><pre><span></span><code>sudo salt-call --local state.apply FORMULA_NAME -linfo
 </code></pre></div>
 
 <h2>Kết luận</h2>
@@ -419,7 +418,7 @@ không phải nhọc nhằn code bash.</p>
 <li>https://github.com/saltstack/salt/issues/59942</li>
 <li><a href="https://www.familug.org/2015/06/saltstack-chao-muoi-em-la-ai.html">Chào Muối, em là ai? </a></li>
 <li>https://docs.saltproject.io/en/latest/contents.html</li>
-<li>Các formula cộng đồng https://github.com/saltstack-formulas</li>
+<li>Các formula cộng đồng <a href="https://github.com/saltstack-formulas">saltstack-formulas</a></li>
 </ul>
 <h3>Ủng hộ tác giả</h3>
 <p>HVN at <a href="http://pymi.vn">http://pymi.vn</a> and <a href="https://www.familug.org">https://www.familug.org</a>.</p>
