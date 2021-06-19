@@ -4,14 +4,14 @@ Category: Trang chủ
 Tags: saltstack, salt, deploy, devops, ansible, sysadmin
 Slug: salt
 Authors: hvnsweeting
-Summary: Tự động hóa cài đặt, cấu hình (deploy) Python app với SaltStack
+Summary: Tự động hóa cài đặt, cấu hình (deploy) Python app với Salt
 
 
 ![salt](https://gitlab.com/saltstack/open/salt-branding-guide/-/raw/master/logos/SaltProject_altlogo_teal.png?inline=true)
 
 ## Salt là gì
 
-SaltStack (từ đây gọi tắt là Salt /sɔːlt/ /sɒlt/) là một phần mềm mã nguồn mở, một hệ thống
+Salt /sɔːlt/ /sɒlt/) là một phần mềm mã nguồn mở, một hệ thống
 thuộc nhóm Configuration Management (CM), viết bằng Python, sử dụng YAML làm ngôn
 ngữ giao tiếp với người dùng.
 
@@ -46,7 +46,6 @@ và mang lại cảm giác giống đang dùng [Ansible](https://www.familug.org
 
 Kết quả: deploy uds bot - 1 chương trình Python lên máy Ubuntu 18.04, cấu hình
 systemd chạy vù vù.
-
 
 ## 3 phút dành cho lý thuyết
 - Máy ra lệnh gọi là salt master
@@ -267,7 +266,7 @@ Jinja2 có for if/else như Python, xem
 [Jinja2 template](https://docs.saltproject.io/en/getstarted/config/jinja.html)
 để tìm hiểu thêm.
 
-### 1 phút dành cho lý thuyết: grains pillar
+### 5 phút dành cho lý thuyết: grains pillar
 1 nhược điểm của Salt là theo mốt thời 2010, đặt tên cho mọi khái niệm, và tên
 đó không thực sự có nhiều ý nghĩa - đơn giản chỉ là bịa ra (theo mốt của
 [Chef](https://www.chef.io/) - một đối thủ viết bằng Ruby).
@@ -288,21 +287,21 @@ máy minion. state.apply
         Name: /tmp/ahihi.yml
       Result: True
      Comment: File /tmp/ahihi.yml is in the correct state
-     Started: 15:37:34.775460
-    Duration: 46.881 ms
+     Started: 19:33:25.337228
+    Duration: 34.549 ms
      Changes:
 ----------
           ID: now run a command
     Function: cmd.run
-        Name: cat /tmp/ahihi.yml
+        Name: cat /tmp/ahihi.yml | head
       Result: True
-     Comment: Command "cat /tmp/ahihi.yml" run
-     Started: 15:37:34.824872
-    Duration: 7.323 ms
+     Comment: Command "cat /tmp/ahihi.yml | head" run
+     Started: 19:33:25.372408
+    Duration: 7.672 ms
      Changes:
               ----------
               pid:
-                  37968
+                  42905
               retcode:
                   0
               stderr:
@@ -334,8 +333,7 @@ tv:
 ```
 
 #### salt pillar
-Pillar chỉ nằm trên master, nên nó phân cấu trúc thư mục và map file nào
-dành cho minion nào. File `top.sls`
+Pillar chỉ nằm trên master, nó map file nào dành cho minion nào. File `top.sls`
 
 ```
 base:
@@ -364,7 +362,7 @@ database:
 
 ```sh
 $ salt-ssh -c ~/saltlab trau pillar.items
-tv:
+trau:
     ----------
     database:
         ----------
@@ -422,7 +420,7 @@ Cách thực hành đơn giản nhất là dùng Salt cài các phần mềm tr�
 của mình đang dùng, thay vì gọi `salt-ssh`, dùng
 
 ```
-sudo salt-call state.sls -linfo FORMULA_NAME
+sudo salt-call --local state.apply FORMULA_NAME -linfo
 ```
 
 ## Kết luận
@@ -442,7 +440,7 @@ không phải nhọc nhằn code bash.
 - https://github.com/saltstack/salt/issues/59942
 - [Chào Muối, em là ai? ](https://www.familug.org/2015/06/saltstack-chao-muoi-em-la-ai.html)
 - https://docs.saltproject.io/en/latest/contents.html
-- Các formula cộng đồng https://github.com/saltstack-formulas
+- Các formula cộng đồng [saltstack-formulas](https://github.com/saltstack-formulas)
 
 ### Ủng hộ tác giả
 HVN at [http://pymi.vn](http://pymi.vn) and [https://www.familug.org](https://www.familug.org).
