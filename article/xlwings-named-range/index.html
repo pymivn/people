@@ -61,15 +61,14 @@
 <li><strong>REST API</strong>: cung cấp REST API cho Excel workbook.</li>
 </ul>
 <h2>Cài đặt:</h2>
-<div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">xlwings</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="n">pip</span> <span class="n">install</span> <span class="n">xlwings</span>
+</code></pre></div>
 
 <h2>Sử dụng:</h2>
 <ol>
 <li>Một số thao tác cơ bản:</li>
 </ol>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xlwings</span> <span class="kn">as</span> <span class="nn">xw</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">xlwings</span> <span class="k">as</span> <span class="nn">xw</span>
 
 <span class="c1"># mở workbook mới</span>
 <span class="n">new_wb</span> <span class="o">=</span> <span class="n">xw</span><span class="o">.</span><span class="n">Book</span><span class="p">()</span>
@@ -83,15 +82,14 @@
 
 <span class="c1"># Làm việc với dữ liệu trong 1 sheet</span>
 <span class="n">sht</span> <span class="o">=</span> <span class="n">xw</span><span class="o">.</span><span class="n">sheets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="n">sht</span><span class="o">.</span><span class="n">range</span><span class="p">(</span><span class="s1">&#39;A1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sht</span><span class="o">.</span><span class="n">range</span><span class="p">(</span><span class="s1">&#39;A1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 <span class="n">sht</span><span class="o">.</span><span class="n">range</span><span class="p">(</span><span class="s1">&#39;A1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="s1">&#39;xxx&#39;</span>
 
 <span class="c1"># tự động tìm bảng</span>
 <span class="c1"># https://docs.xlwings.org/en/stable/datastructures.html#range-expanding</span>
 <span class="n">sht</span><span class="o">.</span><span class="n">range</span><span class="p">(</span><span class="s1">&#39;A1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">expand</span><span class="p">()</span>
 <span class="c1"># ...</span>
-</pre></div>
-
+</code></pre></div>
 
 <p><strong>Ngoài ra, <a href="https://docs.xlwings.org/en/stable/datastructures.html#pandas-dataframes">xlwings còn tích hợp pandas</a>.</strong></p>
 <ol>
