@@ -423,6 +423,11 @@ của mình đang dùng, thay vì gọi `salt-ssh`, dùng
 sudo salt-call --local state.apply FORMULA_NAME -linfo
 ```
 
+## Hành động của chúng ta
+Tạo 1 salt formula để deploy app Flask hello world chạy bằng gunicorn
+với NGINX server rồi tạo Pull Request vào [pymivn/flask-salt](https://github.com/pymivn/flask-salt)
+để trăm hay đều như tay quen.
+
 ## Kết luận
 Năm COVID-19 thứ 2, 2021, Salt, Ansible, Chef hay Puppet không còn mới mẻ gì,
 từng là "điểm cộng" trong các vòng tuyển dụng thì giờ là yêu cầu hiển nhiên
