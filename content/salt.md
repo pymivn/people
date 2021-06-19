@@ -126,7 +126,7 @@ trau:
   port: 22022
 ```
 
-ở đây định nghĩa 2 minion, 1 tên tv và 1 tên `trau`, minion `tv` sẽ là đối
+ở đây định nghĩa 2 minion, 1 tên `tv` và 1 tên `trau`, minion `tv` sẽ là đối
 tượng của bài này.
 
 ```
@@ -160,7 +160,7 @@ tv:
 
 ## Apply Salt state
 Saltstate file là [file YAML](https://docs.saltproject.io/en/latest/topics/yaml/index.html) có đuôi `.sls`, khai báo (declare)
-trạng thái của hệ thống mong muốn đạt được.
+trạng thái của hệ thống mong muốn đạt được. File `htop.sls`
 
 ```yaml
 install htop:   #  ID của "state"
@@ -217,6 +217,8 @@ Total states run:     1
 Xem đầy đủ các option, các function khác của `pkg state module` tại [module-salt.states.pkg](https://docs.saltproject.io/en/latest/ref/states/all/salt.states.pkg.html#module-salt.states.pkg)
 
 ### Copy/render file và chạy câu lệnh
+
+File `example.sls`
 
 ```yaml
 render a config file:
@@ -396,7 +398,7 @@ Khi kêt quả chạy apply không thành công, thêm `-ldebug` để xem log c
 
 ## Dùng Ansible "xịn hơn" không?
 Không, Ansible giống Salt đến bất ngờ, cũng viết bằng Python với các module
-tương ứng, cũng dùng Jinja2, cũng viết cấu hình bằng file YAML với Jinja2.
+tương ứng, cũng dùng Jinja2, cũng viết cấu hình bằng file YAML.
 
 [Xem ví dụ](https://github.com/hvnsweeting/elbisna/blob/master/redis/roles/redis/tasks/main.yml).
 
