@@ -94,7 +94,7 @@ tới thư mục &lt;code&gt;states&lt;/code&gt;, thư mục states sẽ chứa 
   &lt;span class="nt"&gt;port&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;22022&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;ở đây định nghĩa 2 minion, 1 tên tv và 1 tên &lt;code&gt;trau&lt;/code&gt;, minion &lt;code&gt;tv&lt;/code&gt; sẽ là đối
+&lt;p&gt;ở đây định nghĩa 2 minion, 1 tên &lt;code&gt;tv&lt;/code&gt; và 1 tên &lt;code&gt;trau&lt;/code&gt;, minion &lt;code&gt;tv&lt;/code&gt; sẽ là đối
 tượng của bài này.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;saltlab/
 ├── master
@@ -122,7 +122,7 @@ tv:
 
 &lt;h2&gt;Apply Salt state&lt;/h2&gt;
 &lt;p&gt;Saltstate file là &lt;a href="https://docs.saltproject.io/en/latest/topics/yaml/index.html"&gt;file YAML&lt;/a&gt; có đuôi &lt;code&gt;.sls&lt;/code&gt;, khai báo (declare)
-trạng thái của hệ thống mong muốn đạt được.&lt;/p&gt;
+trạng thái của hệ thống mong muốn đạt được. File &lt;code&gt;htop.sls&lt;/code&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;install htop&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;   &lt;span class="c1"&gt;#  ID của &amp;quot;state&amp;quot;&lt;/span&gt;
   &lt;span class="nt"&gt;pkg.installed&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;  &lt;span class="c1"&gt;# loại state - tương ứng với 1 python function&lt;/span&gt;
     &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;htop&lt;/span&gt;   &lt;span class="c1"&gt;# các tham số - function argument&lt;/span&gt;
@@ -170,6 +170,7 @@ Total states run:     &lt;span class="m"&gt;1&lt;/span&gt;
 
 &lt;p&gt;Xem đầy đủ các option, các function khác của &lt;code&gt;pkg state module&lt;/code&gt; tại &lt;a href="https://docs.saltproject.io/en/latest/ref/states/all/salt.states.pkg.html#module-salt.states.pkg"&gt;module-salt.states.pkg&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Copy/render file và chạy câu lệnh&lt;/h3&gt;
+&lt;p&gt;File &lt;code&gt;example.sls&lt;/code&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;render a config file&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
   &lt;span class="nt"&gt;file.managed&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;source&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;salt://template.j2&lt;/span&gt;
@@ -325,7 +326,7 @@ bot telegram &lt;code&gt;uds&lt;/code&gt; chạy trên Ubuntu 18.04 với system
 &lt;p&gt;Khi kêt quả chạy apply không thành công, thêm &lt;code&gt;-ldebug&lt;/code&gt; để xem log chi tiết.&lt;/p&gt;
 &lt;h2&gt;Dùng Ansible "xịn hơn" không?&lt;/h2&gt;
 &lt;p&gt;Không, Ansible giống Salt đến bất ngờ, cũng viết bằng Python với các module
-tương ứng, cũng dùng Jinja2, cũng viết cấu hình bằng file YAML với Jinja2.&lt;/p&gt;
+tương ứng, cũng dùng Jinja2, cũng viết cấu hình bằng file YAML.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://github.com/hvnsweeting/elbisna/blob/master/redis/roles/redis/tasks/main.yml"&gt;Xem ví dụ&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Ngày nay, Ansible phổ biến hơn nhờ nó đơn giản hơn để bắt đầu, do ít
 từ khóa hay khái niệm lạ. Năm 2015, RedHat mua lại Ansible khiến cho nó

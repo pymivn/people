@@ -150,7 +150,7 @@ tới thư mục <code>states</code>, thư mục states sẽ chứa các file "s
   <span class="nt">port</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">22022</span>
 </code></pre></div>
 
-<p>ở đây định nghĩa 2 minion, 1 tên tv và 1 tên <code>trau</code>, minion <code>tv</code> sẽ là đối
+<p>ở đây định nghĩa 2 minion, 1 tên <code>tv</code> và 1 tên <code>trau</code>, minion <code>tv</code> sẽ là đối
 tượng của bài này.</p>
 <div class="highlight"><pre><span></span><code>saltlab/
 ├── master
@@ -178,7 +178,7 @@ tv:
 
 <h2>Apply Salt state</h2>
 <p>Saltstate file là <a href="https://docs.saltproject.io/en/latest/topics/yaml/index.html">file YAML</a> có đuôi <code>.sls</code>, khai báo (declare)
-trạng thái của hệ thống mong muốn đạt được.</p>
+trạng thái của hệ thống mong muốn đạt được. File <code>htop.sls</code></p>
 <div class="highlight"><pre><span></span><code><span class="nt">install htop</span><span class="p">:</span>   <span class="c1">#  ID của &quot;state&quot;</span>
   <span class="nt">pkg.installed</span><span class="p">:</span>  <span class="c1"># loại state - tương ứng với 1 python function</span>
     <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">htop</span>   <span class="c1"># các tham số - function argument</span>
@@ -226,6 +226,7 @@ Total states run:     <span class="m">1</span>
 
 <p>Xem đầy đủ các option, các function khác của <code>pkg state module</code> tại <a href="https://docs.saltproject.io/en/latest/ref/states/all/salt.states.pkg.html#module-salt.states.pkg">module-salt.states.pkg</a></p>
 <h3>Copy/render file và chạy câu lệnh</h3>
+<p>File <code>example.sls</code></p>
 <div class="highlight"><pre><span></span><code><span class="nt">render a config file</span><span class="p">:</span>
   <span class="nt">file.managed</span><span class="p">:</span>
     <span class="p p-Indicator">-</span> <span class="nt">source</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">salt://template.j2</span>
@@ -381,7 +382,7 @@ bot telegram <code>uds</code> chạy trên Ubuntu 18.04 với systemd.
 <p>Khi kêt quả chạy apply không thành công, thêm <code>-ldebug</code> để xem log chi tiết.</p>
 <h2>Dùng Ansible "xịn hơn" không?</h2>
 <p>Không, Ansible giống Salt đến bất ngờ, cũng viết bằng Python với các module
-tương ứng, cũng dùng Jinja2, cũng viết cấu hình bằng file YAML với Jinja2.</p>
+tương ứng, cũng dùng Jinja2, cũng viết cấu hình bằng file YAML.</p>
 <p><a href="https://github.com/hvnsweeting/elbisna/blob/master/redis/roles/redis/tasks/main.yml">Xem ví dụ</a>.</p>
 <p>Ngày nay, Ansible phổ biến hơn nhờ nó đơn giản hơn để bắt đầu, do ít
 từ khóa hay khái niệm lạ. Năm 2015, RedHat mua lại Ansible khiến cho nó
