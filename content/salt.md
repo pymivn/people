@@ -62,7 +62,14 @@ apt). [Salt có hỗ trợ Windows](https://docs.saltproject.io/en/latest/topics
 - Sudo không password: thêm `saltuser ALL=(ALL) NOPASSWD: ALL` vào cuối file /etc/sudoers
 
 ## Trên máy master
-Copy ssh pub key vào minion:
+
+Tạo SSH key nếu chưa có:
+
+```sh
+ls ~/.ssh/id_rsa || ssh-keygen
+```
+
+Copy ssh public key vào minion:
 
 ```sh
 ssh-copy-id saltuser@192.168.0.110
@@ -89,21 +96,21 @@ Có 2 file cần tạo: `master` và `roster`
 Tạo 1 thư mục tên saltlab:
 
 ```sh
-mkdir -p ~/saltlab/base
+mkdir -p ~/saltlab/states
 cd ~/saltlab
 pwd
 ```
 
 File `master` chứa 2 dòng, `root_dir` giá trị là đường dẫn đầy đủ tới
-thư muc saltlab, `file_roots` có `base` với giá trị là đường dẫn đầy đủ
-tới thư mục `base`, thư mục base sẽ chứa các file "saltstate"
+thư muc saltlab, `file_roots` có `states` với giá trị là đường dẫn đầy đủ
+tới thư mục `states`, thư mục states sẽ chứa các file "saltstate"
 
 
 ```yaml
 root_dir: /home/hvn/saltlab
 file_roots:
   base:
-    - /home/hvn/saltlab/base
+    - /home/hvn/saltlab/states
 ```
 
 File `roster` chứa thông tin về các máy minion:
@@ -238,7 +245,7 @@ trong ví dụ này nó copy file từ salt://template.j2 tới minion rồi ren
 ghi vào `/tmp/ahihi.yml` và chmod 0400.
 
 `salt://` trong ví dụ này là `file_roots` trong file cấu hình master, tức thư
-mục `/home/hvn/saltlab/base` trên máy master.
+mục `/home/hvn/saltlab/states` trên máy master.
 
 Nội dung file template.j2:
 
