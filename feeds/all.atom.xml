@@ -345,6 +345,10 @@ của mình đang dùng, thay vì gọi &lt;code&gt;salt-ssh&lt;/code&gt;, dùng
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo salt-call --local state.apply FORMULA_NAME -linfo
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
+&lt;h2&gt;Hành động của chúng ta&lt;/h2&gt;
+&lt;p&gt;Tạo 1 salt formula để deploy app Flask hello world chạy bằng gunicorn
+với NGINX server rồi tạo Pull Request vào &lt;a href="https://github.com/pymivn/flask-salt"&gt;pymivn/flask-salt&lt;/a&gt;
+để trăm hay đều như tay quen.&lt;/p&gt;
 &lt;h2&gt;Kết luận&lt;/h2&gt;
 &lt;p&gt;Năm COVID-19 thứ 2, 2021, Salt, Ansible, Chef hay Puppet không còn mới mẻ gì,
 từng là "điểm cộng" trong các vòng tuyển dụng thì giờ là yêu cầu hiển nhiên

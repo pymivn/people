@@ -401,6 +401,10 @@ của mình đang dùng, thay vì gọi <code>salt-ssh</code>, dùng</p>
 <div class="highlight"><pre><span></span><code>sudo salt-call --local state.apply FORMULA_NAME -linfo
 </code></pre></div>
 
+<h2>Hành động của chúng ta</h2>
+<p>Tạo 1 salt formula để deploy app Flask hello world chạy bằng gunicorn
+với NGINX server rồi tạo Pull Request vào <a href="https://github.com/pymivn/flask-salt">pymivn/flask-salt</a>
+để trăm hay đều như tay quen.</p>
 <h2>Kết luận</h2>
 <p>Năm COVID-19 thứ 2, 2021, Salt, Ansible, Chef hay Puppet không còn mới mẻ gì,
 từng là "điểm cộng" trong các vòng tuyển dụng thì giờ là yêu cầu hiển nhiên
