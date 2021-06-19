@@ -45,7 +45,11 @@ apt). &lt;a href="https://docs.saltproject.io/en/latest/topics/installation/wind
 &lt;li&gt;Sudo không password: thêm &lt;code&gt;saltuser ALL=(ALL) NOPASSWD: ALL&lt;/code&gt; vào cuối file /etc/sudoers&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;Trên máy master&lt;/h2&gt;
-&lt;p&gt;Copy ssh pub key vào minion:&lt;/p&gt;
+&lt;p&gt;Tạo SSH key nếu chưa có:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;ls ~/.ssh/id_rsa &lt;span class="o"&gt;||&lt;/span&gt; ssh-keygen
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Copy ssh public key vào minion:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;ssh-copy-id saltuser@192.168.0.110
 &lt;span class="c1"&gt;# rồi gõ password saltuser vừa tạo&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -65,18 +69,18 @@ salt-ssh &lt;span class="m"&gt;3002&lt;/span&gt;
 &lt;h3&gt;Cấu hình master&lt;/h3&gt;
 &lt;p&gt;Có 2 file cần tạo: &lt;code&gt;master&lt;/code&gt; và &lt;code&gt;roster&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;Tạo 1 thư mục tên saltlab:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;mkdir -p ~/saltlab/base
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;mkdir -p ~/saltlab/states
 &lt;span class="nb"&gt;cd&lt;/span&gt; ~/saltlab
 &lt;span class="nb"&gt;pwd&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;File &lt;code&gt;master&lt;/code&gt; chứa 2 dòng, &lt;code&gt;root_dir&lt;/code&gt; giá trị là đường dẫn đầy đủ tới
-thư muc saltlab, &lt;code&gt;file_roots&lt;/code&gt; có &lt;code&gt;base&lt;/code&gt; với giá trị là đường dẫn đầy đủ
-tới thư mục &lt;code&gt;base&lt;/code&gt;, thư mục base sẽ chứa các file "saltstate"&lt;/p&gt;
+thư muc saltlab, &lt;code&gt;file_roots&lt;/code&gt; có &lt;code&gt;states&lt;/code&gt; với giá trị là đường dẫn đầy đủ
+tới thư mục &lt;code&gt;states&lt;/code&gt;, thư mục states sẽ chứa các file "saltstate"&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;root_dir&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;/home/hvn/saltlab&lt;/span&gt;
 &lt;span class="nt"&gt;file_roots&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
   &lt;span class="nt"&gt;base&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;/home/hvn/saltlab/base&lt;/span&gt;
+    &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;/home/hvn/saltlab/states&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;File &lt;code&gt;roster&lt;/code&gt; chứa thông tin về các máy minion:&lt;/p&gt;
@@ -190,7 +194,7 @@ trong ví dụ này nó copy file từ salt://template.j2 tới minion rồi ren
 &lt;a href="https://docs.saltproject.io/en/getstarted/config/jinja.html"&gt;Jinja2 template&lt;/a&gt;,
 ghi vào &lt;code&gt;/tmp/ahihi.yml&lt;/code&gt; và chmod 0400.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;salt://&lt;/code&gt; trong ví dụ này là &lt;code&gt;file_roots&lt;/code&gt; trong file cấu hình master, tức thư
-mục &lt;code&gt;/home/hvn/saltlab/base&lt;/code&gt; trên máy master.&lt;/p&gt;
+mục &lt;code&gt;/home/hvn/saltlab/states&lt;/code&gt; trên máy master.&lt;/p&gt;
 &lt;p&gt;Nội dung file template.j2:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="cp"&gt;{%&lt;/span&gt;- &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;i&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;meo&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;bo&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;ga&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="cp"&gt;%}&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;span class="x"&gt;  - &lt;/span&gt;&lt;span class="cp"&gt;{{&lt;/span&gt; &lt;span class="nv"&gt;i&lt;/span&gt; &lt;span class="cp"&gt;}}&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;

@@ -101,7 +101,11 @@ apt). <a href="https://docs.saltproject.io/en/latest/topics/installation/windows
 <li>Sudo không password: thêm <code>saltuser ALL=(ALL) NOPASSWD: ALL</code> vào cuối file /etc/sudoers</li>
 </ul>
 <h2>Trên máy master</h2>
-<p>Copy ssh pub key vào minion:</p>
+<p>Tạo SSH key nếu chưa có:</p>
+<div class="highlight"><pre><span></span><code>ls ~/.ssh/id_rsa <span class="o">||</span> ssh-keygen
+</code></pre></div>
+
+<p>Copy ssh public key vào minion:</p>
 <div class="highlight"><pre><span></span><code>ssh-copy-id saltuser@192.168.0.110
 <span class="c1"># rồi gõ password saltuser vừa tạo</span>
 </code></pre></div>
@@ -121,18 +125,18 @@ salt-ssh <span class="m">3002</span>
 <h3>Cấu hình master</h3>
 <p>Có 2 file cần tạo: <code>master</code> và <code>roster</code></p>
 <p>Tạo 1 thư mục tên saltlab:</p>
-<div class="highlight"><pre><span></span><code>mkdir -p ~/saltlab/base
+<div class="highlight"><pre><span></span><code>mkdir -p ~/saltlab/states
 <span class="nb">cd</span> ~/saltlab
 <span class="nb">pwd</span>
 </code></pre></div>
 
 <p>File <code>master</code> chứa 2 dòng, <code>root_dir</code> giá trị là đường dẫn đầy đủ tới
-thư muc saltlab, <code>file_roots</code> có <code>base</code> với giá trị là đường dẫn đầy đủ
-tới thư mục <code>base</code>, thư mục base sẽ chứa các file "saltstate"</p>
+thư muc saltlab, <code>file_roots</code> có <code>states</code> với giá trị là đường dẫn đầy đủ
+tới thư mục <code>states</code>, thư mục states sẽ chứa các file "saltstate"</p>
 <div class="highlight"><pre><span></span><code><span class="nt">root_dir</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/home/hvn/saltlab</span>
 <span class="nt">file_roots</span><span class="p">:</span>
   <span class="nt">base</span><span class="p">:</span>
-    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/home/hvn/saltlab/base</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/home/hvn/saltlab/states</span>
 </code></pre></div>
 
 <p>File <code>roster</code> chứa thông tin về các máy minion:</p>
@@ -246,7 +250,7 @@ trong ví dụ này nó copy file từ salt://template.j2 tới minion rồi ren
 <a href="https://docs.saltproject.io/en/getstarted/config/jinja.html">Jinja2 template</a>,
 ghi vào <code>/tmp/ahihi.yml</code> và chmod 0400.</p>
 <p><code>salt://</code> trong ví dụ này là <code>file_roots</code> trong file cấu hình master, tức thư
-mục <code>/home/hvn/saltlab/base</code> trên máy master.</p>
+mục <code>/home/hvn/saltlab/states</code> trên máy master.</p>
 <p>Nội dung file template.j2:</p>
 <div class="highlight"><pre><span></span><code><span class="cp">{%</span>- <span class="k">for</span> <span class="nv">i</span> <span class="k">in</span> <span class="o">[</span><span class="s1">&#39;meo&#39;</span><span class="o">,</span> <span class="s1">&#39;bo&#39;</span><span class="o">,</span> <span class="s1">&#39;ga&#39;</span><span class="o">]</span> <span class="cp">%}</span><span class="x"></span>
 <span class="x">  - </span><span class="cp">{{</span> <span class="nv">i</span> <span class="cp">}}</span><span class="x"></span>
