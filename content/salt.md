@@ -11,7 +11,7 @@ Summary: Tự động hóa cài đặt, cấu hình (deploy) Python app với Sa
 
 ## Salt là gì
 
-Salt /sɔːlt/ /sɒlt/) là một phần mềm mã nguồn mở, một hệ thống
+Salt (/sɔːlt/ /sɒlt/) là một phần mềm mã nguồn mở, một hệ thống
 thuộc nhóm Configuration Management (CM), viết bằng Python, sử dụng YAML làm ngôn
 ngữ giao tiếp với người dùng.
 
