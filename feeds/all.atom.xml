@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2021-06-19T00:00:00+07:00</updated><entry><title>Có Salt không lo chết đói</title><link href="http://pp.pymi.vn/article/salt/" rel="alternate"></link><published>2021-06-19T00:00:00+07:00</published><updated>2021-06-19T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2021-06-19:/article/salt/</id><summary type="html">&lt;p&gt;Tự động hóa cài đặt, cấu hình (deploy) Python app với Salt&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="salt" src="https://gitlab.com/saltstack/open/salt-branding-guide/-/raw/master/logos/SaltProject_altlogo_teal.png?inline=true"&gt;&lt;/p&gt;
 &lt;h2&gt;Salt là gì&lt;/h2&gt;
-&lt;p&gt;Salt /sɔːlt/ /sɒlt/) là một phần mềm mã nguồn mở, một hệ thống
+&lt;p&gt;Salt (/sɔːlt/ /sɒlt/) là một phần mềm mã nguồn mở, một hệ thống
 thuộc nhóm Configuration Management (CM), viết bằng Python, sử dụng YAML làm ngôn
 ngữ giao tiếp với người dùng.&lt;/p&gt;
 &lt;h2&gt;Salt làm gì?&lt;/h2&gt;
