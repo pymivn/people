@@ -152,13 +152,15 @@ tới thư mục <code>states</code>, thư mục states sẽ chứa các file "s
 
 <p>ở đây định nghĩa 2 minion, 1 tên <code>tv</code> và 1 tên <code>trau</code>, minion <code>tv</code> sẽ là đối
 tượng của bài này.</p>
+<p>File này tương tự file inventory (hay có tên là <code>hosts</code>) của Ansible.</p>
+<p>Cấu trúc thư mục trông như sau</p>
 <div class="highlight"><pre><span></span><code>saltlab/
 ├── master
+├── roster
 ├── pillars
 │   ├── common.sls
 │   ├── top.sls
 │   └── uds.sls
-├── roster
 └── states
     ├── example.sls
     ├── htop.sls
@@ -167,7 +169,6 @@ tượng của bài này.</p>
     └── uds.systemd
 </code></pre></div>
 
-<p>File này tương tự file inventory (hay có tên là <code>hosts</code>) của Ansible.</p>
 <h2>Chạy câu lệnh Salt</h2>
 <p>Từ master, trong venv saltenv, gõ lệnh <code>salt-ssh</code> với đối tượng <code>tv</code>, câu lệnh
 salt <code>cmd.run</code>, câu lệnh chạy trên <code>tv</code> là <code>uname -a</code>:</p>

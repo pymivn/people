@@ -96,13 +96,15 @@ tới thư mục &lt;code&gt;states&lt;/code&gt;, thư mục states sẽ chứa 
 
 &lt;p&gt;ở đây định nghĩa 2 minion, 1 tên &lt;code&gt;tv&lt;/code&gt; và 1 tên &lt;code&gt;trau&lt;/code&gt;, minion &lt;code&gt;tv&lt;/code&gt; sẽ là đối
 tượng của bài này.&lt;/p&gt;
+&lt;p&gt;File này tương tự file inventory (hay có tên là &lt;code&gt;hosts&lt;/code&gt;) của Ansible.&lt;/p&gt;
+&lt;p&gt;Cấu trúc thư mục trông như sau&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;saltlab/
 ├── master
+├── roster
 ├── pillars
 │   ├── common.sls
 │   ├── top.sls
 │   └── uds.sls
-├── roster
 └── states
     ├── example.sls
     ├── htop.sls
@@ -111,7 +113,6 @@ tượng của bài này.&lt;/p&gt;
     └── uds.systemd
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;File này tương tự file inventory (hay có tên là &lt;code&gt;hosts&lt;/code&gt;) của Ansible.&lt;/p&gt;
 &lt;h2&gt;Chạy câu lệnh Salt&lt;/h2&gt;
 &lt;p&gt;Từ master, trong venv saltenv, gõ lệnh &lt;code&gt;salt-ssh&lt;/code&gt; với đối tượng &lt;code&gt;tv&lt;/code&gt;, câu lệnh
 salt &lt;code&gt;cmd.run&lt;/code&gt;, câu lệnh chạy trên &lt;code&gt;tv&lt;/code&gt; là &lt;code&gt;uname -a&lt;/code&gt;:&lt;/p&gt;
