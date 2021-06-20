@@ -128,14 +128,18 @@ trau:
 ở đây định nghĩa 2 minion, 1 tên `tv` và 1 tên `trau`, minion `tv` sẽ là đối
 tượng của bài này.
 
+File này tương tự file inventory (hay có tên là `hosts`) của Ansible.
+
+Cấu trúc thư mục trông như sau
+
 ```
 saltlab/
 ├── master
+├── roster
 ├── pillars
 │   ├── common.sls
 │   ├── top.sls
 │   └── uds.sls
-├── roster
 └── states
     ├── example.sls
     ├── htop.sls
@@ -143,8 +147,6 @@ saltlab/
     ├── uds.sls
     └── uds.systemd
 ```
-
-File này tương tự file inventory (hay có tên là `hosts`) của Ansible.
 
 
 ## Chạy câu lệnh Salt
