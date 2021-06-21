@@ -98,7 +98,8 @@ apt). <a href="https://docs.saltproject.io/en/latest/topics/installation/windows
 <h2>Trên máy minion</h2>
 <ul>
 <li>Tạo 1 user mới: <code>sudo adduser saltuser</code>, trả lời các câu hỏi và gõ password</li>
-<li>Sudo không password: thêm <code>saltuser ALL=(ALL) NOPASSWD: ALL</code> vào cuối file /etc/sudoers</li>
+<li>sudo không password: thêm <code>saltuser ALL=(ALL) NOPASSWD: ALL</code> vào cuối file /etc/sudoers</li>
+<li>Có chương trình sshd listen trên port 22, cài bằng lệnh <code>sudo apt install openssh-server</code>, gõ <code>ss -nlt | grep 22</code> thấy có kết quả là ok.</li>
 </ul>
 <h2>Trên máy master</h2>
 <p>Tạo SSH key nếu chưa có:</p>

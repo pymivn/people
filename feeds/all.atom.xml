@@ -42,7 +42,8 @@ apt). &lt;a href="https://docs.saltproject.io/en/latest/topics/installation/wind
 &lt;h2&gt;Trên máy minion&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Tạo 1 user mới: &lt;code&gt;sudo adduser saltuser&lt;/code&gt;, trả lời các câu hỏi và gõ password&lt;/li&gt;
-&lt;li&gt;Sudo không password: thêm &lt;code&gt;saltuser ALL=(ALL) NOPASSWD: ALL&lt;/code&gt; vào cuối file /etc/sudoers&lt;/li&gt;
+&lt;li&gt;sudo không password: thêm &lt;code&gt;saltuser ALL=(ALL) NOPASSWD: ALL&lt;/code&gt; vào cuối file /etc/sudoers&lt;/li&gt;
+&lt;li&gt;Có chương trình sshd listen trên port 22, cài bằng lệnh &lt;code&gt;sudo apt install openssh-server&lt;/code&gt;, gõ &lt;code&gt;ss -nlt | grep 22&lt;/code&gt; thấy có kết quả là ok.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;Trên máy master&lt;/h2&gt;
 &lt;p&gt;Tạo SSH key nếu chưa có:&lt;/p&gt;
