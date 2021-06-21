@@ -58,7 +58,8 @@ apt). [Salt có hỗ trợ Windows](https://docs.saltproject.io/en/latest/topics
 
 ## Trên máy minion
 - Tạo 1 user mới: `sudo adduser saltuser`, trả lời các câu hỏi và gõ password
-- Sudo không password: thêm `saltuser ALL=(ALL) NOPASSWD: ALL` vào cuối file /etc/sudoers
+- sudo không password: thêm `saltuser ALL=(ALL) NOPASSWD: ALL` vào cuối file /etc/sudoers
+- Có chương trình sshd listen trên port 22, cài bằng lệnh `sudo apt install openssh-server`, gõ `ss -nlt | grep 22` thấy có kết quả là ok.
 
 ## Trên máy master
 
