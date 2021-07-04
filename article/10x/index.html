@@ -447,11 +447,7 @@ dùng regex.</p>
 <p>Chú ý trong phần tối ưu này, nhằm mục tiêu giữ lại code gần giống với code
 ban đầu nhất, không thay đổi gì quá nhiều, tác giả đã không viết lại đoạn code 
 lọc ra urlpath và statuscode mà vẫn giữ nguyên regex như code ban đầu.</p>
-<h2>Tăng tốc kafka</h2>
-<p>Đây là phiên bản đầy đủ của chương trình trước khi mang đi tối ưu: nó
-đọc file log <a href="https://aws.amazon.com/premiumsupport/knowledge-center/athena-analyze-access-logs/">AWS ALB</a>
-đã nén <code>.gz</code>, lấy ra urlpath và status code bằng regex, rồi gửi
-kết quả đến kafka.</p>
+<h2>Tăng tốc gửi message kafka</h2>
 <h3>Kafka là gì</h3>
 <blockquote>
 <p>Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications. </p>
@@ -480,6 +476,10 @@ bin/kafka-server-start.sh config/server.properties
 
 
 <h4>Kafka producer</h4>
+<p>Phiên bản đầy đủ của chương trình trước khi mang đi tối ưu: nó
+đọc file log <a href="https://aws.amazon.com/premiumsupport/knowledge-center/athena-analyze-access-logs/">AWS ALB</a>
+đã nén <code>.gz</code>, lấy ra urlpath và status code bằng regex, rồi gửi
+kết quả đến kafka.</p>
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gzip</span>                                                                     
 <span class="kn">import</span> <span class="nn">re</span>                                                                       
 <span class="kn">from</span> <span class="nn">kafka</span> <span class="kn">import</span> <span class="n">KafkaProducer</span>                                                 
