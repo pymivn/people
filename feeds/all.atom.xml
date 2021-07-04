@@ -390,9 +390,9 @@ cho các chuyên gia công nghệ bán "khoá học làm chủ regex để học
 &lt;/blockquote&gt;
 &lt;p&gt;Khi một bài toán có thể giải quyết theo 1 cách khác đơn giản hơn, thì nên tránh
 dùng regex.&lt;/p&gt;
-&lt;p&gt;Chú ý trong phần tối ưu này, nhằm mục tiêu giữ lại code gần giống với code
-ban đầu nhất, không thay đổi gì quá nhiều, tác giả đã không viết lại đoạn code
-lọc ra urlpath và statuscode mà vẫn giữ nguyên regex như code ban đầu.&lt;/p&gt;
+&lt;p&gt;Chú ý: trong ví dụ này, nhằm mục tiêu giữ lại code gần giống với code
+ban đầu nhất, không thay đổi quá nhiều, nên đã không viết lại đoạn code
+lọc ra urlpath và statuscode mà vẫn dùng regex.&lt;/p&gt;
 &lt;h2&gt;Tăng tốc gửi message đến kafka&lt;/h2&gt;
 &lt;h3&gt;Kafka là gì&lt;/h3&gt;
 &lt;blockquote&gt;
