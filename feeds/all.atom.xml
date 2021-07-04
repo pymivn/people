@@ -256,7 +256,8 @@ nó sẽ trả về tất cả các tên file có đuôi &lt;code&gt;.py&lt;/cod
 &lt;p&gt;Mọi người đều biết "chung chung" là email có dạng &lt;code&gt;gìđó@gìđấy.đuôi&lt;/code&gt;, vậy
 regex có thể là &lt;code&gt;.+@.+\..+&lt;/code&gt;. Chú ý dấu &lt;code&gt;.&lt;/code&gt; trong tên miền phải gõ &lt;code&gt;\.&lt;/code&gt;, vì
 dấu &lt;code&gt;.&lt;/code&gt; là 1 ký hiệu regex đặc biệt đã nói ở trên.
-Đây là &lt;a href="http://www.ex-parrot.com/~pdw/Mail-RFC822-Address.html"&gt;regex đầy đủ để kiểm tra 1 địa chỉ email&lt;/a&gt;.&lt;/p&gt;
+Đây là &lt;a href="http://www.ex-parrot.com/~pdw/Mail-RFC822-Address.html"&gt;regex đầy đủ để kiểm tra 1 địa chỉ email&lt;/a&gt;,
+và không có một ai trên trái đất này cho rằng nó đơn giản cả.&lt;/p&gt;
 &lt;p&gt;Đến đây, đã có 1 manh mối để tối ưu tốc độ rồi...
 Nếu chưa thấy, hãy đảm bảo bạn đã gõ đoạn code trên. &lt;code&gt;re&lt;/code&gt; là standard library
 của Python, có sẵn, không cài gì cả. Nhưng đoạn code
