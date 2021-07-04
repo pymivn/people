@@ -55,11 +55,11 @@
                 </address>     <em>Tags</em>:     <a href="http://pp.pymi.vn/tag/python/"><em>python</em></a>,     <a href="http://pp.pymi.vn/tag/regex/"><em>regex</em></a>,     <a href="http://pp.pymi.vn/tag/lambda/"><em>lambda</em></a>,     <a href="http://pp.pymi.vn/tag/kafka/"><em>kafka</em></a>,     <a href="http://pp.pymi.vn/tag/profile/"><em>profile</em></a>,     <a href="http://pp.pymi.vn/tag/cprofile/"><em>cprofile</em></a>    </footer>
   <br>
   <div class="entry-content">
-    <h2>Huyền thoại 3x 4x 5x ... 10x (xxxxxxxxxx)</h2>
-<p>10x engineer là một huyền thoại (myth) lâu đời trong giới IT, mơ tưởng về
+    <p>10x engineer là một thần thoại (myth) lâu đời trong giới IT, mơ tưởng về
 1 developer có khả năng code "hơn" người bình thường 10 lần (hoặc hơn).
 Vì là "myth", nên có người tin, có người không.</p>
 <p><a href="https://youtu.be/QoVeAANfESY"><img alt="The Myth" src="https://img.youtube.com/vi/QoVeAANfESY/0.jpg"></a></p>
+<h2>Thần thoại 3x 4x 5x ... 10x (xxxxxxxxxx)</h2>
 <p>Việc lên internet tìm kiếm 10x engineer trên thế giới không quá khó khăn, nhưng
 gặp khi đi làm ngoài thực tế là chuyện không nhiều.
 10x thế giới tạm kể:</p>
@@ -73,7 +73,7 @@ gặp khi đi làm ngoài thực tế là chuyện không nhiều.
 <p>những ví dụ trên chỉ phục vụ mục đích dễ hình dung, bởi họ thuộc cỡ 100 hay 1000x
 chứ không phải 10x.
 Bí quyết là gì không rõ, nhưng điểm chung: họ đều đã ngoài 40 và dành hơn nửa
-cuộc đời làm software. Không có ai 30 đã về nghỉ hay lên làm manager cả. </p>
+cuộc đời làm software. Không có ai 30 đã về nghỉ hay lên làm manager cả.</p>
 <p>Tiêu chí 10x không rõ ràng, vì đây là "myth", nên mỗi người nghĩ theo
 1 kiểu. Theo một tiêu chí ví dụ, mrX gõ nhanh hơn mrY 10 lần, nên cũng có khi
 được gọi là 10x engineer.</p>
@@ -305,7 +305,7 @@ nó sẽ trả về tất cả các tên file có đuôi <code>.py</code></p>
 </pre></div>
 
 
-<p>Có thể chỉ định số lần match với cú pháp <code>{ít nhất, nhiều nhất}</code>, pattern 
+<p>Có thể chỉ định số lần match với cú pháp <code>{ít nhất, nhiều nhất}</code>, pattern
 <code>0[0-9]{9, 10}</code> match số điện thoại di động ở Việt Nam.</p>
 <p>Đơn giản, đúng không? Hãy viết 1 đoạn regex để kiểm tra 1 email có hợp lệ không.</p>
 <p>Mọi người đều biết "chung chung" là email có dạng <code>gìđó@gìđấy.đuôi</code>, vậy
@@ -333,7 +333,7 @@ nhất/gọi nhiều lần nhất.</p>
 <ul>
 <li><code>tottime</code> total time: tổng thời gian function chạy sau N lần,
 không tính chuyện gọi function khác.</li>
-<li><code>cumtime</code> cummulative time: tổng thời gian function chạy sau N lần, bao 
+<li><code>cumtime</code> cummulative time: tổng thời gian function chạy sau N lần, bao
 gồm cả việc gọi các function khác.</li>
 </ul>
 <div class="highlight"><pre><span></span>$ /usr/bin/time -v python3 -m cProfile -s tottime albv1.py
@@ -383,12 +383,12 @@ dùng <code>.*</code> chỗ đó có vẻ chậm/sai/cần tối ưu (khác vớ
 gặp dấu : thì dừng lại. Đoạn này <a href="https://regex101.com/r/1HqLtV/1">match sau 524 bước</a></p>
 <p>Chú ý đoạn code mới cho rằng mọi url đều bắt đầu với http hay https, điều này
 có thể sai (ví dụ wss:// cho websocket), tùy theo yêu cầu bài toán.</p>
-<p>Một cách khác, là dùng pattern <code>[^:]+:[^:]+:</code> match mọi thứ có dạng 
+<p>Một cách khác, là dùng pattern <code>[^:]+:[^:]+:</code> match mọi thứ có dạng
 something:something dừng lại khi gặp dấu : thứ 2.
 Pattern sẽ match <code>wss://abcde</code> trong string <code>wss://abcde:443</code>,
 pattern này <a href="https://regex101.com/r/pjDFEk/1">match sau 518 bước</a>.</p>
 <p>Dấu đóng mở ngoặc <code>()</code> dùng để "capture", kết quả match thành công sẽ được lưu
-lại thành 1 group, đánh theo thứ tự xuất hiện. 
+lại thành 1 group, đánh theo thứ tự xuất hiện.
 Đoạn code trong bài lấy ra group 17 và 11
 từ kết quả match.</p>
 <div class="highlight"><pre><span></span>$ /usr/bin/time -v python3 -m cProfile -s tottime albv1_regex.py
@@ -413,7 +413,7 @@ Proceeded <span class="m">50000</span> lines
 
 <p>45 giây -&gt; xuống còn 0.3 giây cho ta cảm giác code mới chắc là sai nên mới 150x như vậy.</p>
 <h4>Sửa regex xong làm sao biết đúng sai?</h4>
-<p>Một cách đơn giản là thử, cho 2 pattern match và lấy kết quả ra rồi so sánh lần 
+<p>Một cách đơn giản là thử, cho 2 pattern match và lấy kết quả ra rồi so sánh lần
 lượt với mỗi dòng log, qua cả file đều giống nhau là có vẻ ổn rồi.</p>
 <div class="highlight"><pre><span></span><span class="n">p1</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">pattern1</span><span class="p">)</span>
 <span class="n">p2</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">pattern2</span><span class="p">)</span>
@@ -421,17 +421,17 @@ lượt với mỗi dòng log, qua cả file đều giống nhau là có vẻ �
 <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">m1</span> <span class="o">=</span> <span class="n">p1</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
     <span class="n">m2</span> <span class="o">=</span> <span class="n">p2</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">m1</span><span class="p">:</span> 
+    <span class="k">if</span> <span class="n">m1</span><span class="p">:</span>
         <span class="k">assert</span> <span class="n">m1</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span> <span class="o">==</span> <span class="n">m2</span><span class="o">.</span><span class="n">group</span><span class="p">(),</span> <span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
 </pre></div>
 
 
-<p>PS: khi tối ưu đoạn code này, vô tình phát hiện ra đoạn code ban đầu xử lý 
+<p>PS: khi tối ưu đoạn code này, vô tình phát hiện ra đoạn code ban đầu xử lý
 không đúng khi URL path có chứa dấu <code>:</code>, 2 phiên bản mới không gặp phải vấn
 đề này.</p>
 <p><strong>Kết luận 2:</strong> 150x là có thật và không cần phải học "regex" nâng cao.</p>
 <h4>Học và dùng regex</h4>
-<p>Python có viết 1 tài liệu cơ bản về regex trong mục <a href="https://docs.python.org/3/howto/regex.html">howto</a>, 
+<p>Python có viết 1 tài liệu cơ bản về regex trong mục <a href="https://docs.python.org/3/howto/regex.html">howto</a>,
 nếu một ngày buồn chán quá không có gì làm, hay muốn tìm hiểu về ý nghĩa của cuộc sống, bạn có thể ngồi học regex.</p>
 <p><img alt="xkcd" src="https://imgs.xkcd.com/comics/regular_expressions.png"></p>
 <p>Hoặc đi tìm một "khóa học regex"? cái này chưa có, cơ hội khởi nghiệp làm giàu còn rất rộng mở
@@ -445,16 +445,16 @@ cho các chuyên gia công nghệ bán "khoá học làm chủ regex để học
 <p>Khi một bài toán có thể giải quyết theo 1 cách khác đơn giản hơn, thì nên tránh
 dùng regex.</p>
 <p>Chú ý trong phần tối ưu này, nhằm mục tiêu giữ lại code gần giống với code
-ban đầu nhất, không thay đổi gì quá nhiều, tác giả đã không viết lại đoạn code 
+ban đầu nhất, không thay đổi gì quá nhiều, tác giả đã không viết lại đoạn code
 lọc ra urlpath và statuscode mà vẫn giữ nguyên regex như code ban đầu.</p>
 <h2>Tăng tốc gửi message đến kafka</h2>
 <h3>Kafka là gì</h3>
 <blockquote>
-<p>Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications. </p>
+<p>Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.</p>
 </blockquote>
 <p><a href="https://kafka.apache.org/">https://kafka.apache.org/</a></p>
 <p>Nói đơn giản, Kafka như hệ thống ống nước, mạng lưới điện, mạng lưới viễn thông,
-nó đủ phức tạp để đáp ứng mọi nhu cầu truyền tải dữ liệu từ nhiều nguồn đến 
+nó đủ phức tạp để đáp ứng mọi nhu cầu truyền tải dữ liệu từ nhiều nguồn đến
 nhiều đích. Kafka được dùng phổ biến trong các doanh nghiệp, các hệ thống xử
 lý data, logging...</p>
 <p>Kafka có nhiều tính năng, bài này sử dụng nó như 1 hệ thống pub-sub, tức có 1
@@ -480,27 +480,27 @@ bin/kafka-server-start.sh config/server.properties
 đọc file log <a href="https://aws.amazon.com/premiumsupport/knowledge-center/athena-analyze-access-logs/">AWS ALB</a>
 đã nén <code>.gz</code>, lấy ra urlpath và status code bằng regex, rồi gửi
 kết quả đến kafka.</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gzip</span>                                                                     
-<span class="kn">import</span> <span class="nn">re</span>                                                                       
-<span class="kn">from</span> <span class="nn">kafka</span> <span class="kn">import</span> <span class="n">KafkaProducer</span>                                                 
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gzip</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">kafka</span> <span class="kn">import</span> <span class="n">KafkaProducer</span>
 
 <span class="n">producer</span> <span class="o">=</span> <span class="n">KafkaProducer</span><span class="p">(</span><span class="n">linger_ms</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">65536</span><span class="p">,</span> <span class="n">acks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">compression_type</span><span class="o">=</span><span class="s2">&quot;lz4&quot;</span><span class="p">)</span>
 
-<span class="n">pattern</span> <span class="o">=</span> <span class="s1">&#39;(.*?) (.*?) (.*?) ([0-9.]+):([0-9]*) ([0-9.]+):([0-9]*) ([.0-9]*) ([.0-9]*) ([.0-9]*) (-|[0-9]*) (-|[0-9]*) ([-0-9]*) ([-0-9]*) &quot;(.*?) [^:]+:[^:]+:([0-9]+)([^? ]*)(</span><span class="se">\\</span><span class="s1">x3f?.*?) (.*?)&quot; &quot;(.*?)&quot; (.*?) (.*?) (.*?) &quot;(.*?)&quot; *$&#39;</span>                                                                                                                                              
-<span class="n">p</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>                                                         
+<span class="n">pattern</span> <span class="o">=</span> <span class="s1">&#39;(.*?) (.*?) (.*?) ([0-9.]+):([0-9]*) ([0-9.]+):([0-9]*) ([.0-9]*) ([.0-9]*) ([.0-9]*) (-|[0-9]*) (-|[0-9]*) ([-0-9]*) ([-0-9]*) &quot;(.*?) [^:]+:[^:]+:([0-9]+)([^? ]*)(</span><span class="se">\\</span><span class="s1">x3f?.*?) (.*?)&quot; &quot;(.*?)&quot; (.*?) (.*?) (.*?) &quot;(.*?)&quot; *$&#39;</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
 
-<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>                                                                           
-<span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;bigfile.log.gz&quot;</span><span class="p">,</span> <span class="s2">&quot;rt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>                                    
-    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>                                                              
-        <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>                                                               
-        <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">10000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>                                                      
-            <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>                                                            
-        <span class="n">m</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>                                                       
-        <span class="k">if</span> <span class="n">m</span><span class="p">:</span>                                                                   
-            <span class="n">result</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span>                                  
-            <span class="n">producer</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;alblog&quot;</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>                     
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;bigfile.log.gz&quot;</span><span class="p">,</span> <span class="s2">&quot;rt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">10000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">m</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span>
+            <span class="n">producer</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;alblog&quot;</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Processed {} lines&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> 
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Processed {} lines&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
 </pre></div>
 
 
@@ -533,17 +533,17 @@ máy, code chạy mất 60s (khi profile chậm hơn nữa do quá trình profil
 
 <p>Việc gửi 1.5 triệu message tới kafka chạy cùng máy mất tới 73s (cumtime)
 trong output profiling. Trong đó có dòng thứ 3, 4 và 5 đều là "append".
-Mở code của thư viện <a href="https://github.com/dpkp/kafka-python/">kafka-python</a> 
+Mở code của thư viện <a href="https://github.com/dpkp/kafka-python/">kafka-python</a>
 ra xem, phần <a href="https://github.com/dpkp/kafka-python/blob/2.0.2/kafka/producer/record_accumulator.py#L200">này</a>
 append các message vào
-1 list "accumulator", để bao giờ đủ 65536 phần tử mới gửi đi 
-(batch_size=65536 lúc tạo producer). Batching là tính năng phổ biến trong các 
+1 list "accumulator", để bao giờ đủ 65536 phần tử mới gửi đi
+(batch_size=65536 lúc tạo producer). Batching là tính năng phổ biến trong các
 thư viện liên quan tới network, do việc gửi nhận qua network thường chậm, nên
 gom lại một đống rồi gửi đi để giảm số lần gửi/nhận. Nhưng trong ví dụ này,
 việc batching tốn tới 20s thì có vẻ không ổn.
 Sau một hồi chỉnh sửa các tham số (batch_size, linger_ms ...), giải pháp lại là
 "think outside of the box", tìm xem Python còn có thư viện kafka nào khác không.</p>
-<p>Thư viện <a href="https://github.com/confluentinc/confluent-kafka-python">confluent-kafka-python</a> sử dụng 
+<p>Thư viện <a href="https://github.com/confluentinc/confluent-kafka-python">confluent-kafka-python</a> sử dụng
 <a href="https://github.com/edenhill/librdkafka">librdkafka</a> viết bằng C hứa hẹn cho một performance
 tốt hơn nhiều</p>
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gzip</span>
@@ -611,8 +611,8 @@ tốt hơn nhiều</p>
 <p>Sau 3 lần tối ưu, code mới dùng 100x ít RAM hơn, nhanh gấp 150 * 4 == 600 lần
 code ban đầu, chi phí giảm: 600 lần so với ban đầu. Giả sử đoạn code này hiện
 đang tốn $6000/tháng (6 * 12 = $72k/năm), thì sau khi tối ưu còn $10/tháng -&gt; $120/năm.</p>
-<p>$70.000 mỗi năm được tiết kiệm này nên dùng để thưởng nóng cho 10x dev hay 
-chỉ thưởng $7k? </p>
+<p>$70.000 mỗi năm được tiết kiệm này nên dùng để thưởng nóng cho 10x dev hay
+chỉ thưởng $7k?</p>
 <p>Thực tế (kinh tế) thì không phải thế, thưởng nóng $1-2-3k đã là nhiều lắm rồi.
 Không bàn tới chuyện quản lý doanh nghiệp/nhân sự/kinh tế ở đây, nhưng có thể
 thấy 1 điều, 1 lập trình viên có mức lương cao ngất ngưởng không phải là
@@ -621,10 +621,10 @@ tối ưu code.</p>
 <h2>Kết luận</h2>
 <p>10x engineering không phải chuyện hư cấu, là có thật. 10x phụ thuộc vào
 hoàn cảnh, tiêu chí đánh giá, nhưng học Python tại PyMi.vn rõ ràng là khoản đầu tư 10x.
-Việc tối ưu code, sử dụng cProfile của Python là một công việc thú vị, nhưng 
-cần đặt vào đúng chỗ. Tối ưu đoạn code tiêu tốn $72k/năm để còn $120/năm 
-mang lại lợi ích kinh tế khác biệt so với tối ưu đoạn code $72/năm còn $0.12/năm. </p>
-<p>Bạn đọc đam mê có thể tiếp tục tối ưu và gửi kết quả tới tác giả bằng cách 
+Việc tối ưu code, sử dụng cProfile của Python là một công việc thú vị, nhưng
+cần đặt vào đúng chỗ. Tối ưu đoạn code tiêu tốn $72k/năm để còn $120/năm
+mang lại lợi ích kinh tế khác biệt so với tối ưu đoạn code $72/năm còn $0.12/năm.</p>
+<p>Bạn đọc đam mê có thể tiếp tục tối ưu và gửi kết quả tới tác giả bằng cách
 tạo <a href="https://github.com/pymivn/people/pulls">1 pull request trên GitHub</a>.
 Ngoài ra, có thể viết hẳn 1 chương trình hẳn hoi giúp lấy log AWS load balancer
 về rồi gửi tới 1 đích đến tùy ý. Đây là <a href="https://www.google.com/search?q=parse+aws+application+load+balancer+logs&amp;hl=en">một vấn đề phổ biến khi dùng AWS Load Balancer
