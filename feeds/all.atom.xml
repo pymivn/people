@@ -139,6 +139,12 @@ chỉ dùng &amp;lt; 10MB (với giả thiết kích thước mỗi dòng không
 "cloud computing" là thời thượng, chạy code trên &lt;a href="https://www.familug.org/2017/08/serverless.html"&gt;AWS lambda&lt;/a&gt;
 giúp chuyện tính tiền dễ như học
 toán cấp 1. Xem &lt;a href="https://aws.amazon.com/lambda/pricing/"&gt;AWS Lambda pricing&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Tiền&lt;/strong&gt; cũng là thước đo lý tưởng khi các công ty ngày nay đua theo
+"performance review", 360 review, "data driven"... Một dòng review ghi:
+"cắt giảm chi phí 70.000 đô la Biden/năm nhờ tối ưu code" sẽ giúp manager dễ
+hiểu, dễ đánh giá hơn hẳn viết "tăng tốc chương trình 100 lần nhờ tối ưu regex
+sử dụng non greedy-matching" hay "cải thiện tính đọc được và tính ổn định của
+code".&lt;/p&gt;
 &lt;p&gt;Theo thử nghiệm trên máy, hai phiên bản v1 và v2 chạy về tốc độ là như nhau
 (hoặc chênh 1 2 3 giây trên tổng 60s không đáng kể),
 thì phần còn lại của biểu thức phụ thuộc vào lượng RAM sử dụng.
@@ -178,6 +184,13 @@ ngành kinh tế trên mây (cloud economics) với các chuyên gia có nghệ 
 "thuyết tương đối".
 Việc giảm 8x RAM ở đây không làm giảm chi phí, công việc tiếp theo là cắt giảm
 chi phí bằng cách tăng tốc code.&lt;/p&gt;
+&lt;p&gt;Tuy không cải thiện về đơn vị đo của bài này là &lt;strong&gt;tiền&lt;/strong&gt;,
+nhưng một đoạn code không
+chỉ có mỗi tiền, ngoài hiệu năng, nó còn nhiều tiêu chí khác khó đánh giá hơn
+như "tính đọc được" (code dễ đọc), "tính ổn định",...
+Dùng &lt;code&gt;for line in f&lt;/code&gt; cải thiện được tính ổn định của chương trình, cho phép nó
+chạy ngon lành khi kích thước file đầu vào tăng lên - trong khi chương trình
+ban đầu sẽ lỗi do không đủ RAM.&lt;/p&gt;
 &lt;h2&gt;Tăng tốc regex&lt;/h2&gt;
 &lt;p&gt;Phiên bản sau thêm công đoạn xử lý từng dòng để lọc ra các giá trị mong
 muốn, sử dụng công cụ: &lt;a href="https://docs.python.org/3/howto/regex.html"&gt;"regular expression"&lt;/a&gt; - hay gọi ngắn là &lt;strong&gt;regex&lt;/strong&gt;.
@@ -241,7 +254,7 @@ cũng ok. &lt;code&gt;.*&lt;/code&gt; là pattern match được mọi thứ.&lt
 &lt;p&gt;Tránh nhầm lẫn dấu &lt;code&gt;*&lt;/code&gt; hay thấy khi gõ câu lệnh Linux, kiểu như &lt;code&gt;ls ~/*.py&lt;/code&gt;,
 &lt;code&gt;*&lt;/code&gt; này không phải regex, đây là khái niệm &lt;code&gt;globbing&lt;/code&gt;, mặc dù tác dụng hơi giống,
 nó sẽ trả về tất cả các tên file có đuôi &lt;code&gt;.py&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;Dấu &lt;code&gt;?&lt;/code&gt; match 0 hoặc 1 lần, pattern &lt;code&gt;https?&lt;/code&gt; sẽ match cả &lt;code&gt;http&lt;/code&gt; lẫn &lt;code&gt;https&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Dấu &lt;code&gt;?&lt;/code&gt; match 0 hoặc 1 lần, pattern &lt;code&gt;https?&lt;/code&gt; sẽ match cả &lt;code&gt;http&lt;/code&gt; lẫn &lt;code&gt;https&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Dùng trang &lt;a href="https://regex101.com/r/2f1NKt/1"&gt;regex101.com&lt;/a&gt; để thử các pattern và xem kết quả cho tiện.&lt;/p&gt;
 &lt;p&gt;Hay bật python3 lên rồi gõ&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt;&amp;gt;&amp;gt; import re
@@ -333,8 +346,10 @@ có thể sai (ví dụ wss:// cho websocket), tùy theo yêu cầu bài toán.&
 something:something dừng lại khi gặp dấu : thứ 2.
 Pattern sẽ match &lt;code&gt;wss://abcde&lt;/code&gt; trong string &lt;code&gt;wss://abcde:443&lt;/code&gt;,
 pattern này &lt;a href="https://regex101.com/r/pjDFEk/1"&gt;match sau 518 bước&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Một cách khác nữa, là dùng &lt;a href="https://docs.python.org/3/howto/regex.html#greedy-versus-non-greedy"&gt;non-greedy&lt;/a&gt; &lt;code&gt;.+?:.+?:&lt;/code&gt;. &lt;code&gt;.+&lt;/code&gt; bình thường sẽ match
-nhiều nhất có thể, thì khi thêm &lt;code&gt;?&lt;/code&gt; sau nó, nó sẽ match ít nhất có thể.&lt;/p&gt;
+&lt;p&gt;Một cách khác nữa, là dùng &lt;code&gt;.+?:.+?:&lt;/code&gt;.
+ &lt;code&gt;+&lt;/code&gt; và &lt;code&gt;*&lt;/code&gt; bình thường sẽ match
+nhiều nhất có thể, thì khi thêm &lt;code&gt;?&lt;/code&gt; sau nó, &lt;code&gt;+?&lt;/code&gt; hay &lt;code&gt;*?&lt;/code&gt;  sẽ match ít nhất có thể.
+Đây gọi là tính năng &lt;a href="https://docs.python.org/3/howto/regex.html#greedy-versus-non-greedy"&gt;non-greedy&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Cho string &lt;code&gt;abcdabcd&lt;/code&gt;, &lt;code&gt;a.+d&lt;/code&gt; sẽ match &lt;code&gt;abcdabcd&lt;/code&gt; nhưng &lt;code&gt;a.+?d&lt;/code&gt; chỉ
 match &lt;code&gt;abcd&lt;/code&gt;.  Pattern này &lt;a href="https://regex101.com/r/qSEnKp/1"&gt;match sau 543 bước&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Dấu đóng mở ngoặc &lt;code&gt;()&lt;/code&gt; dùng để "capture", kết quả match thành công sẽ được lưu
@@ -584,6 +599,20 @@ tạo &lt;a href="https://github.com/pymivn/people/pulls"&gt;1 pull request trê
 Ngoài ra, có thể viết hẳn 1 chương trình hẳn hoi giúp lấy log AWS load balancer
 về rồi gửi tới 1 đích đến tùy ý. Đây là &lt;a href="https://www.google.com/search?q=parse+aws+application+load+balancer+logs&amp;amp;hl=en"&gt;một vấn đề phổ biến khi dùng AWS Load Balancer
 mà chưa có giải pháp triệt để.&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Không phải kết luận&lt;/h2&gt;
+&lt;p&gt;Giống như mọi bài viết về optimize/benchmark, kết quả rất phụ thuộc và bài toán
+cụ thể, môi trường (phiên bản, hệ điều hành ...) cụ thể.
+Bài viết này &lt;strong&gt;KHÔNG&lt;/strong&gt; kết luận:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;for line in f&lt;/code&gt; nhanh hay chậm hơn &lt;code&gt;for line in f.readlines()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Lib &lt;code&gt;re&lt;/code&gt; nhanh hơn lib &lt;code&gt;regex&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;confluent-kafka-python nhanh hơn kafka-python&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Kết quả có thể hoàn toàn bị đảo ngược khi test trên 1 hệ điều hành khác (như
+MacOS, Windows) hay một phiên bản Python/thư viện khác, hay từng đoạn code
+chạy riêng sẽ khác với khi 2,3 đoạn code kết hợp lại.
+Kết luận chỉ nên đưa ra khi đem đi chạy thật với tình huống cụ thể, đến lúc
+tính tiền.&lt;/p&gt;
 &lt;h2&gt;References&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://www.familug.org/2017/08/serverless.html"&gt;serverless&lt;/a&gt;&lt;/li&gt;

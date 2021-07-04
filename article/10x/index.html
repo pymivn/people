@@ -195,6 +195,12 @@ chỉ dùng &lt; 10MB (với giả thiết kích thước mỗi dòng không qu�
 "cloud computing" là thời thượng, chạy code trên <a href="https://www.familug.org/2017/08/serverless.html">AWS lambda</a>
 giúp chuyện tính tiền dễ như học
 toán cấp 1. Xem <a href="https://aws.amazon.com/lambda/pricing/">AWS Lambda pricing</a></p>
+<p><strong>Tiền</strong> cũng là thước đo lý tưởng khi các công ty ngày nay đua theo
+"performance review", 360 review, "data driven"... Một dòng review ghi:
+"cắt giảm chi phí 70.000 đô la Biden/năm nhờ tối ưu code" sẽ giúp manager dễ
+hiểu, dễ đánh giá hơn hẳn viết "tăng tốc chương trình 100 lần nhờ tối ưu regex
+sử dụng non greedy-matching" hay "cải thiện tính đọc được và tính ổn định của
+code".</p>
 <p>Theo thử nghiệm trên máy, hai phiên bản v1 và v2 chạy về tốc độ là như nhau
 (hoặc chênh 1 2 3 giây trên tổng 60s không đáng kể),
 thì phần còn lại của biểu thức phụ thuộc vào lượng RAM sử dụng.
@@ -234,6 +240,13 @@ ngành kinh tế trên mây (cloud economics) với các chuyên gia có nghệ 
 "thuyết tương đối".
 Việc giảm 8x RAM ở đây không làm giảm chi phí, công việc tiếp theo là cắt giảm
 chi phí bằng cách tăng tốc code.</p>
+<p>Tuy không cải thiện về đơn vị đo của bài này là <strong>tiền</strong>,
+nhưng một đoạn code không
+chỉ có mỗi tiền, ngoài hiệu năng, nó còn nhiều tiêu chí khác khó đánh giá hơn
+như "tính đọc được" (code dễ đọc), "tính ổn định",...
+Dùng <code>for line in f</code> cải thiện được tính ổn định của chương trình, cho phép nó
+chạy ngon lành khi kích thước file đầu vào tăng lên - trong khi chương trình
+ban đầu sẽ lỗi do không đủ RAM.</p>
 <h2>Tăng tốc regex</h2>
 <p>Phiên bản sau thêm công đoạn xử lý từng dòng để lọc ra các giá trị mong
 muốn, sử dụng công cụ: <a href="https://docs.python.org/3/howto/regex.html">"regular expression"</a> - hay gọi ngắn là <strong>regex</strong>.
@@ -297,7 +310,7 @@ cũng ok. <code>.*</code> là pattern match được mọi thứ.</p>
 <p>Tránh nhầm lẫn dấu <code>*</code> hay thấy khi gõ câu lệnh Linux, kiểu như <code>ls ~/*.py</code>,
 <code>*</code> này không phải regex, đây là khái niệm <code>globbing</code>, mặc dù tác dụng hơi giống,
 nó sẽ trả về tất cả các tên file có đuôi <code>.py</code></p>
-<p>Dấu <code>?</code> match 0 hoặc 1 lần, pattern <code>https?</code> sẽ match cả <code>http</code> lẫn <code>https</code></p>
+<p>Dấu <code>?</code> match 0 hoặc 1 lần, pattern <code>https?</code> sẽ match cả <code>http</code> lẫn <code>https</code>.</p>
 <p>Dùng trang <a href="https://regex101.com/r/2f1NKt/1">regex101.com</a> để thử các pattern và xem kết quả cho tiện.</p>
 <p>Hay bật python3 lên rồi gõ</p>
 <div class="highlight"><pre><span></span>&gt;&gt;&gt; import re
@@ -389,8 +402,10 @@ có thể sai (ví dụ wss:// cho websocket), tùy theo yêu cầu bài toán.<
 something:something dừng lại khi gặp dấu : thứ 2.
 Pattern sẽ match <code>wss://abcde</code> trong string <code>wss://abcde:443</code>,
 pattern này <a href="https://regex101.com/r/pjDFEk/1">match sau 518 bước</a>.</p>
-<p>Một cách khác nữa, là dùng <a href="https://docs.python.org/3/howto/regex.html#greedy-versus-non-greedy">non-greedy</a> <code>.+?:.+?:</code>. <code>.+</code> bình thường sẽ match
-nhiều nhất có thể, thì khi thêm <code>?</code> sau nó, nó sẽ match ít nhất có thể.</p>
+<p>Một cách khác nữa, là dùng <code>.+?:.+?:</code>.
+ <code>+</code> và <code>*</code> bình thường sẽ match
+nhiều nhất có thể, thì khi thêm <code>?</code> sau nó, <code>+?</code> hay <code>*?</code>  sẽ match ít nhất có thể.
+Đây gọi là tính năng <a href="https://docs.python.org/3/howto/regex.html#greedy-versus-non-greedy">non-greedy</a></p>
 <p>Cho string <code>abcdabcd</code>, <code>a.+d</code> sẽ match <code>abcdabcd</code> nhưng <code>a.+?d</code> chỉ
 match <code>abcd</code>.  Pattern này <a href="https://regex101.com/r/qSEnKp/1">match sau 543 bước</a>.</p>
 <p>Dấu đóng mở ngoặc <code>()</code> dùng để "capture", kết quả match thành công sẽ được lưu
@@ -640,6 +655,20 @@ tạo <a href="https://github.com/pymivn/people/pulls">1 pull request trên GitH
 Ngoài ra, có thể viết hẳn 1 chương trình hẳn hoi giúp lấy log AWS load balancer
 về rồi gửi tới 1 đích đến tùy ý. Đây là <a href="https://www.google.com/search?q=parse+aws+application+load+balancer+logs&amp;hl=en">một vấn đề phổ biến khi dùng AWS Load Balancer
 mà chưa có giải pháp triệt để.</a></p>
+<h2>Không phải kết luận</h2>
+<p>Giống như mọi bài viết về optimize/benchmark, kết quả rất phụ thuộc và bài toán
+cụ thể, môi trường (phiên bản, hệ điều hành ...) cụ thể.
+Bài viết này <strong>KHÔNG</strong> kết luận:</p>
+<ul>
+<li><code>for line in f</code> nhanh hay chậm hơn <code>for line in f.readlines()</code></li>
+<li>Lib <code>re</code> nhanh hơn lib <code>regex</code></li>
+<li>confluent-kafka-python nhanh hơn kafka-python</li>
+</ul>
+<p>Kết quả có thể hoàn toàn bị đảo ngược khi test trên 1 hệ điều hành khác (như
+MacOS, Windows) hay một phiên bản Python/thư viện khác, hay từng đoạn code
+chạy riêng sẽ khác với khi 2,3 đoạn code kết hợp lại.
+Kết luận chỉ nên đưa ra khi đem đi chạy thật với tình huống cụ thể, đến lúc
+tính tiền.</p>
 <h2>References</h2>
 <ul>
 <li><a href="https://www.familug.org/2017/08/serverless.html">serverless</a></li>
