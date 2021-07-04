@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2021-06-30T00:00:00+07:00</updated><entry><title>10x engineer - cắt giảm chi phí 10 lần</title><link href="http://pp.pymi.vn/article/10x/" rel="alternate"></link><published>2021-06-30T00:00:00+07:00</published><updated>2021-06-30T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2021-06-30:/article/10x/</id><summary type="html">&lt;p&gt;với regex, lambda, kafka - nhờ học hành Python tử tế&lt;/p&gt;</summary><content type="html">&lt;p&gt;10x engineer là một thần thoại (myth) lâu đời trong giới IT, mơ tưởng về
-1 developer có khả năng code "hơn" người bình thường 10 lần (hoặc hơn).
+1 developer có khả năng code "hơn" người bình thường 10 lần.
 Vì là "myth", nên có người tin, có người không.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://youtu.be/QoVeAANfESY"&gt;&lt;img alt="The Myth" src="https://img.youtube.com/vi/QoVeAANfESY/0.jpg"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;Thần thoại 3x 4x 5x ... 10x (xxxxxxxxxx)&lt;/h2&gt;
