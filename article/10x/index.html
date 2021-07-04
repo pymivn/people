@@ -461,6 +461,7 @@ nhiều đích. Kafka được dùng phổ biến trong các doanh nghiệp, cá
 lý data, logging...</p>
 <p>Kafka có nhiều tính năng, bài này sử dụng nó như 1 hệ thống pub-sub, tức có 1
 bên gửi message đi, và 1/nhiều bên nhận message.</p>
+<h3>Cài đặt kafka</h3>
 <p>Cài Java</p>
 <div class="highlight"><pre><span></span>sudo apt-get update <span class="o">&amp;&amp;</span> sudo apt-get install -y openjdk-11-jre-headless
 </pre></div>
@@ -477,11 +478,15 @@ bin/kafka-server-start.sh config/server.properties
 </pre></div>
 
 
-<h4>Kafka producer</h4>
+<h4>Python Kafka producer</h4>
 <p>Phiên bản đầy đủ của chương trình trước khi mang đi tối ưu: nó
 đọc file log <a href="https://aws.amazon.com/premiumsupport/knowledge-center/athena-analyze-access-logs/">AWS ALB</a>
 đã nén <code>.gz</code>, lấy ra urlpath và status code bằng regex, rồi gửi
 kết quả đến kafka.</p>
+<div class="highlight"><pre><span></span>pip install kafka-python
+</pre></div>
+
+
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gzip</span>
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">from</span> <span class="nn">kafka</span> <span class="kn">import</span> <span class="n">KafkaProducer</span>

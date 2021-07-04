@@ -405,6 +405,7 @@ nhiều đích. Kafka được dùng phổ biến trong các doanh nghiệp, cá
 lý data, logging...&lt;/p&gt;
 &lt;p&gt;Kafka có nhiều tính năng, bài này sử dụng nó như 1 hệ thống pub-sub, tức có 1
 bên gửi message đi, và 1/nhiều bên nhận message.&lt;/p&gt;
+&lt;h3&gt;Cài đặt kafka&lt;/h3&gt;
 &lt;p&gt;Cài Java&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo apt-get update &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt-get install -y openjdk-11-jre-headless
 &lt;/pre&gt;&lt;/div&gt;
@@ -421,11 +422,15 @@ bin/kafka-server-start.sh config/server.properties
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h4&gt;Kafka producer&lt;/h4&gt;
+&lt;h4&gt;Python Kafka producer&lt;/h4&gt;
 &lt;p&gt;Phiên bản đầy đủ của chương trình trước khi mang đi tối ưu: nó
 đọc file log &lt;a href="https://aws.amazon.com/premiumsupport/knowledge-center/athena-analyze-access-logs/"&gt;AWS ALB&lt;/a&gt;
 đã nén &lt;code&gt;.gz&lt;/code&gt;, lấy ra urlpath và status code bằng regex, rồi gửi
 kết quả đến kafka.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install kafka-python
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;gzip&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;re&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;kafka&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;KafkaProducer&lt;/span&gt;
