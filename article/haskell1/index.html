@@ -61,17 +61,20 @@ Trang chủ: <a href="https://www.haskell.org/">https://www.haskell.org/</a></p>
 có thể bỏ qua và gõ cho đến cuối bài, work first, talk is cheap, later.</p>
 <h2>Cài đặt</h2>
 <p>Hướng dẫn <a href="https://www.haskell.org/downloads/#linux-mac-freebsd">trang chủ</a>, hỗ trợ cả Windows</p>
-<div class="highlight"><pre><span></span><code>curl --proto <span class="s1">&#39;=https&#39;</span> --tlsv1.2 -sSf https://get-ghcup.haskell.org <span class="p">|</span> sh
-</code></pre></div>
+<div class="highlight"><pre><span></span>curl --proto <span class="s1">&#39;=https&#39;</span> --tlsv1.2 -sSf https://get-ghcup.haskell.org <span class="p">|</span> sh
+</pre></div>
+
 
 <p>enter enter enter ... rồi mở terminal mới, gõ <code>ghci</code>.</p>
-<div class="highlight"><pre><span></span><code>ghci --version
+<div class="highlight"><pre><span></span>ghci --version
 The Glorious Glasgow Haskell Compilation System, version 8.10.5
-</code></pre></div>
+</pre></div>
+
 
 <p>Trên Ubuntu có thể dùng:</p>
-<div class="highlight"><pre><span></span><code>sudo apt-get update <span class="o">&amp;&amp;</span> sudo apt-get install -y haskell-stack
-</code></pre></div>
+<div class="highlight"><pre><span></span>sudo apt-get update <span class="o">&amp;&amp;</span> sudo apt-get install -y haskell-stack
+</pre></div>
+
 
 <h2>REPL</h2>
 <p>REPL - Read Eval Print Loop, là chương trình nhận code người dùng nhập vào
@@ -85,7 +88,7 @@ The Glorious Glasgow Haskell Compilation System, version 8.10.5
 <li>copy code đó vào editor/IDE</li>
 </ul>
 <p>Câu lệnh bật REPL của Haskell có tên <code>ghci</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="o">$</span> <span class="n">ghci</span>
+<div class="highlight"><pre><span></span><span class="o">$</span> <span class="n">ghci</span>
 <span class="kt">GHCi</span><span class="p">,</span> <span class="n">version</span> <span class="mf">8.10</span><span class="o">.</span><span class="mi">5</span><span class="kt">:</span> <span class="n">https</span><span class="kt">://</span><span class="n">www</span><span class="o">.</span><span class="n">haskell</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">ghc</span><span class="o">/</span>  <span class="kt">:?</span> <span class="n">for</span> <span class="n">help</span>
 <span class="kt">Prelude</span><span class="o">&gt;</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span>
 <span class="mi">2</span>
@@ -94,23 +97,26 @@ The Glorious Glasgow Haskell Compilation System, version 8.10.5
 
 <span class="kt">Prelude</span><span class="o">&gt;</span> <span class="kt">:</span><span class="n">quit</span>
 <span class="kt">Leaving</span> <span class="kt">GHCi</span><span class="o">.</span>
-</code></pre></div>
+</pre></div>
+
 
 <h2>Haskell Hello world</h2>
-<div class="highlight"><pre><span></span><code>Prelude&gt; print <span class="s2">&quot;Hello Pymier!&quot;</span>
+<div class="highlight"><pre><span></span>Prelude&gt; print <span class="s2">&quot;Hello Pymier!&quot;</span>
 <span class="s2">&quot;Hello Pymier!&quot;</span>
-</code></pre></div>
+</pre></div>
+
 
 <h2>Integer</h2>
 <p>cộng <code>+</code> trừ <code>-</code> nhân <code>*</code> mũ/lũy thừa <code>^</code></p>
-<div class="highlight"><pre><span></span><code>Prelude&gt; <span class="m">54</span> + <span class="m">5</span> * <span class="o">(</span><span class="m">2</span> + <span class="m">1</span><span class="o">)</span>
+<div class="highlight"><pre><span></span>Prelude&gt; <span class="m">54</span> + <span class="m">5</span> * <span class="o">(</span><span class="m">2</span> + <span class="m">1</span><span class="o">)</span>
 <span class="m">69</span>
 Prelude&gt; <span class="m">2</span> ^ <span class="m">1000</span>
 <span class="m">10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652624386837205668069376</span>
-</code></pre></div>
+</pre></div>
+
 
 <h2>Float</h2>
-<div class="highlight"><pre><span></span><code><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="mi">4</span> <span class="o">/</span> <span class="mi">2</span>
+<div class="highlight"><pre><span></span><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="mi">4</span> <span class="o">/</span> <span class="mi">2</span>
 <span class="mf">2.0</span>
 <span class="kt">Prelude</span><span class="o">&gt;</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">2</span>
 <span class="mf">2.5</span>
@@ -123,11 +129,12 @@ Prelude&gt; <span class="m">2</span> ^ <span class="m">1000</span>
 <span class="kt">False</span>
 <span class="kt">Prelude</span><span class="o">&gt;</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">/=</span> <span class="mf">0.3</span>
 <span class="kt">True</span>
-</code></pre></div>
+</pre></div>
+
 
 <p><a href="https://pymi.vn/blog/why-not-float/">Tại sao 0.1 + 0.1 + 0.1 /= 0.3</a></p>
 <h2>Boolean</h2>
-<div class="highlight"><pre><span></span><code>Prelude&gt; <span class="m">2</span> &lt; <span class="m">5</span>
+<div class="highlight"><pre><span></span>Prelude&gt; <span class="m">2</span> &lt; <span class="m">5</span>
 True
 Prelude&gt; <span class="m">2</span> &gt; <span class="m">5</span>
 False
@@ -139,10 +146,11 @@ Prelude&gt; <span class="m">2</span> &lt;<span class="o">=</span> <span class="m
 True
 Prelude&gt; <span class="m">1</span>/0
 Infinity
-</code></pre></div>
+</pre></div>
+
 
 <p>and</p>
-<div class="highlight"><pre><span></span><code>Prelude&gt; True <span class="o">&amp;&amp;</span> True
+<div class="highlight"><pre><span></span>Prelude&gt; True <span class="o">&amp;&amp;</span> True
 True
 Prelude&gt; True <span class="o">&amp;&amp;</span> False
 False
@@ -150,10 +158,11 @@ Prelude&gt; False <span class="o">&amp;&amp;</span> True
 False
 Prelude&gt; False <span class="o">&amp;&amp;</span> False
 False
-</code></pre></div>
+</pre></div>
+
 
 <p>or</p>
-<div class="highlight"><pre><span></span><code><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="kt">True</span> <span class="o">||</span> <span class="kt">True</span>
+<div class="highlight"><pre><span></span><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="kt">True</span> <span class="o">||</span> <span class="kt">True</span>
 <span class="kt">True</span>
 <span class="kt">Prelude</span><span class="o">&gt;</span> <span class="kt">True</span> <span class="o">||</span> <span class="kt">False</span>
 <span class="kt">True</span>
@@ -161,18 +170,20 @@ False
 <span class="kt">True</span>
 <span class="kt">Prelude</span><span class="o">&gt;</span> <span class="kt">False</span> <span class="o">||</span> <span class="kt">False</span>
 <span class="kt">False</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>not</p>
-<div class="highlight"><pre><span></span><code><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="n">not</span> <span class="kt">True</span>
+<div class="highlight"><pre><span></span><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="n">not</span> <span class="kt">True</span>
 <span class="kt">False</span>
 <span class="kt">Prelude</span><span class="o">&gt;</span> <span class="n">not</span> <span class="kt">False</span>
 <span class="kt">True</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>Haskell boolean có tính <a href="https://pymi.vn/tutorial/boolean/">short-circuit</a> -
 dừng lại ngay khi có thể kết luận kết quả biểu thức boolean.</p>
-<div class="highlight"><pre><span></span><code><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="ne">error</span> <span class="s">&quot;huhu&quot;</span>
+<div class="highlight"><pre><span></span><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="ne">error</span> <span class="s">&quot;huhu&quot;</span>
 <span class="o">***</span> <span class="kt">Exception:</span> <span class="n">huhu</span>
 <span class="kt">CallStack</span> <span class="p">(</span><span class="n">from</span> <span class="kt">HasCallStack</span><span class="p">)</span><span class="kt">:</span>
   <span class="ne">error</span><span class="p">,</span> <span class="n">called</span> <span class="n">at</span> <span class="o">&lt;</span><span class="n">interactive</span><span class="o">&gt;:</span><span class="mi">2</span><span class="kt">:</span><span class="mi">1</span> <span class="kr">in</span> <span class="n">interactive</span><span class="kt">:Ghci2</span>
@@ -180,7 +191,8 @@ dừng lại ngay khi có thể kết luận kết quả biểu thức boolean.<
 <span class="kt">True</span>
 <span class="kt">Prelude</span><span class="o">&gt;</span> <span class="kt">False</span> <span class="o">&amp;&amp;</span> <span class="ne">error</span> <span class="s">&quot;huhu&quot;</span>
 <span class="kt">False</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>hay nói cụ thể:</p>
 <ul>
@@ -196,7 +208,7 @@ short-circuit là chuyện đương nhiên.</p>
 <li><code>:help</code></li>
 <li><code>:info</code></li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="kt">:</span><span class="n">info</span> <span class="n">mod</span>
+<div class="highlight"><pre><span></span><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="kt">:</span><span class="n">info</span> <span class="n">mod</span>
 <span class="kr">type</span> <span class="kt">Integral</span> <span class="ow">::</span> <span class="o">*</span> <span class="ow">-&gt;</span> <span class="kt">Constraint</span>
 <span class="kr">class</span> <span class="p">(</span><span class="kt">Real</span> <span class="n">a</span><span class="p">,</span> <span class="kt">Enum</span> <span class="n">a</span><span class="p">)</span> <span class="ow">=&gt;</span> <span class="kt">Integral</span> <span class="n">a</span> <span class="kr">where</span>
   <span class="o">...</span>
@@ -212,10 +224,11 @@ short-circuit là chuyện đương nhiên.</p>
   <span class="o">...</span>
     <span class="c1">-- Defined in ‘GHC.Num’</span>
 <span class="kr">infixl</span> <span class="mi">6</span> <span class="o">+</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>Hiển thị type:</p>
-<div class="highlight"><pre><span></span><code><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="kt">:</span><span class="n">set</span> <span class="o">+</span><span class="n">t</span>
+<div class="highlight"><pre><span></span><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="kt">:</span><span class="n">set</span> <span class="o">+</span><span class="n">t</span>
 
 <span class="kt">Prelude</span><span class="o">&gt;</span> <span class="mi">1</span>
 <span class="mi">1</span>
@@ -224,36 +237,41 @@ short-circuit là chuyện đương nhiên.</p>
 <span class="kt">Prelude</span><span class="o">&gt;</span> <span class="mf">0.1</span>
 <span class="mf">0.1</span>
 <span class="nf">it</span> <span class="ow">::</span> <span class="kt">Fractional</span> <span class="n">p</span> <span class="ow">=&gt;</span> <span class="n">p</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>số nguyên 1 có kiểu <code>Num</code>, số float <code>0.1</code> có kiểu <code>Fractional</code></p>
-<div class="highlight"><pre><span></span><code><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="kt">True</span>
+<div class="highlight"><pre><span></span><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="kt">True</span>
 <span class="kt">True</span>
 <span class="nf">it</span> <span class="ow">::</span> <span class="kt">Bool</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>giá trị boolean True có kiểu <code>Bool</code></p>
-<div class="highlight"><pre><span></span><code><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="s">&quot;con mèo trèo&quot;</span>
+<div class="highlight"><pre><span></span><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="s">&quot;con mèo trèo&quot;</span>
 <span class="s">&quot;con m</span><span class="se">\232</span><span class="s">o tr</span><span class="se">\232</span><span class="s">o&quot;</span>
 <span class="nf">it</span> <span class="ow">::</span> <span class="p">[</span><span class="kt">Char</span><span class="p">]</span>
 <span class="kt">Prelude</span><span class="o">&gt;</span> <span class="n">length</span> <span class="s">&quot;con mèo trèo&quot;</span>
 <span class="mi">12</span>
 <span class="nf">it</span> <span class="ow">::</span> <span class="kt">Int</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>string là 1 list của các <code>Char</code> (character - ký tự)</p>
-<div class="highlight"><pre><span></span><code><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="mi">10</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="mi">10</span><span class="p">]</span>
 <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
 <span class="nf">it</span> <span class="ow">::</span> <span class="p">(</span><span class="kt">Num</span> <span class="n">a</span><span class="p">,</span> <span class="kt">Enum</span> <span class="n">a</span><span class="p">)</span> <span class="ow">=&gt;</span> <span class="p">[</span><span class="n">a</span><span class="p">]</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>kiểu list được biểu diễn bởi dấu <code>[]</code></p>
 <p><code>it</code> là biểu thức/kết quả cuối cùng bạn đã gõ. Tương tự <code>_</code> trong Python interpreter.</p>
-<div class="highlight"><pre><span></span><code><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="mi">1</span>
+<div class="highlight"><pre><span></span><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="mi">1</span>
 <span class="mi">1</span>
 <span class="kt">Prelude</span><span class="o">&gt;</span> <span class="n">it</span> <span class="o">+</span> <span class="mi">2</span>
 <span class="mi">3</span>
-</code></pre></div>
+</pre></div>
+
 
 <h2>ProjectEuler problem 1</h2>
 <p><a href="https://projecteuler.net/problem=1">https://projecteuler.net/problem=1</a></p>
@@ -265,31 +283,35 @@ gõ theo. Có thể đọc thêm tại <a href="https://pp.pymi.vn/article/tuple
 Find the sum of all the multiples of 3 or 5 below 1000.</p>
 </blockquote>
 <p>Tạo list các số từ 1 đến 5</p>
-<div class="highlight"><pre><span></span><code><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="mi">5</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="mi">5</span><span class="p">]</span>
 <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>Haskell không dùng <code>%</code> cho phép chia lấy phần dư (modulo/remainder), code Python <code>10 % 3</code> tương đương với viết Haskell <code>mod 10 3</code> hoặc
 <code>rem 10 3</code></p>
 <p>Haskell dùng <code>|| &amp;&amp;</code> thay Python <code>or and</code></p>
 <p><a href="https://docs.python.org/3/whatsnew/2.0.html#list-comprehensions">Python 2.0 <strong>MƯỢN</strong> list comprehension từ Haskell</a></p>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">sum</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="nb">sum</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">])</span>
 <span class="mi">233168</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>Haskell dùng <code>|</code> thay chữ <code>for</code>, dùng <code>&lt;-</code> thay chữ <code>in</code>, dùng <code>,</code> thay chữ <code>if</code> so với Python</p>
-<div class="highlight"><pre><span></span><code><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="n">sum</span> <span class="p">[</span><span class="n">i</span> <span class="o">|</span> <span class="n">i</span> <span class="ow">&lt;-</span> <span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="mi">999</span><span class="p">],</span> <span class="n">mod</span> <span class="n">i</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">mod</span> <span class="n">i</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="n">sum</span> <span class="p">[</span><span class="n">i</span> <span class="o">|</span> <span class="n">i</span> <span class="ow">&lt;-</span> <span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="mi">999</span><span class="p">],</span> <span class="n">mod</span> <span class="n">i</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">mod</span> <span class="n">i</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
 <span class="mi">233168</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>Bonus:
 bài <a href="https://projecteuler.net/problem=16">PE16</a>:</p>
 <blockquote>
 <p>Tính tổng các chữ số của 2 mũ 1000</p>
 </blockquote>
-<div class="highlight"><pre><span></span><code><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="n">sum</span> <span class="p">[</span><span class="n">read</span> <span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">::</span> <span class="kt">Integer</span> <span class="o">|</span> <span class="n">i</span> <span class="ow">&lt;-</span> <span class="n">show</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">1000</span><span class="p">)]</span>
+<div class="highlight"><pre><span></span><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="n">sum</span> <span class="p">[</span><span class="n">read</span> <span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">::</span> <span class="kt">Integer</span> <span class="o">|</span> <span class="n">i</span> <span class="ow">&lt;-</span> <span class="n">show</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">1000</span><span class="p">)]</span>
 <span class="mi">1366</span>
-</code></pre></div>
+</pre></div>
+
 
 <h2>Các đặc tính nổi bật của Haskell</h2>
 <p>Theo <a href="https://wiki.haskell.org/Introduction">wiki Haskell</a></p>
@@ -323,9 +345,10 @@ khác. Ví dụ map <code>map (\x -&gt; x * 2) [1..5]</code> nhận function <co
 <h3>Haskell purely functional là gì</h3>
 <p>pure function là một function không có "side effect", giống hàm toán học, kết
 quả đầu ra chỉ phụ thuộc đầu vào.</p>
-<div class="highlight"><pre><span></span><code><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="mi">2</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+<div class="highlight"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="mi">2</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
 <span class="n">f</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="n">luôn</span> <span class="n">luôn</span> <span class="n">bằng</span> <span class="mi">61</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>Side effect là việc
 function thực hiện 1 thay đổi nào đó (thay đổi phần tử 1 list, đọc ghi 1 file,
@@ -339,18 +362,20 @@ việc nói trên.</p>
 <p>lazy là chỉ thực hiện tính toán khi thực sự cần tới giá trị.
 Ví dụ có thể viết code tạo ra list từ 1 tới vô cùng, nhưng vì Haskell lazy,
 nó chỉ lấy ra phần tử nó cần, chứ không tạo list từ 1 tới vô cùng từ đầu.</p>
-<div class="highlight"><pre><span></span><code><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="n">take</span> <span class="mi">10</span> <span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="n">take</span> <span class="mi">10</span> <span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="p">]</span>
 <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
 <span class="kt">Prelude</span><span class="o">&gt;</span> <span class="n">take</span> <span class="mi">20</span> <span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="p">]</span>
 <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="mi">20</span><span class="p">]</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>Trong Python, khái niệm gần nhất với lazy là <a href="https://pp.pymi.vn/article/tuple_comps/"><code>generator</code></a></p>
 <p>Để Haskell bắt buộc phải tính list [1..] tới vô cùng, ta dùng 1 function cần
 phải duyệt đến phần tử cuối cùng của list - như tính độ dài : <code>length</code></p>
-<div class="highlight"><pre><span></span><code><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="n">length</span> <span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="n">length</span> <span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="p">]</span>
 <span class="o">^</span><span class="kt">CInterrupted</span><span class="o">.</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>code này sẽ chạy mãi cho tới khi người dùng tắt chương trình hoặc bấm Ctrl-C.</p>
 <h2>Kết luận</h2>

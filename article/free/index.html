@@ -58,54 +58,61 @@ Tham khảo thêm tại bài <a href="https://pymi.vn/blog/call-by/">Python call
 <h2>3 loại variable trong Python</h2>
 <h3>global variable</h3>
 <p>Đoạn code sau</p>
-<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="mi">42</span>
-</code></pre></div>
+</pre></div>
+
 
 <p><code>x</code> viết sát lề, gọi là global variable. Chạy đoạn code trên sẽ hiện ra
 exception:</p>
-<div class="highlight"><pre><span></span><code><span class="ne">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="s1">&#39;x&#39;</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="ne">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="s1">&#39;x&#39;</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span>
+</pre></div>
+
 
 <p>do code dùng x trước khi x được bind tới object 42.</p>
 <h3>local variable</h3>
 <p>Đoạn code tiếp theo, chạy sẽ thấy gì? Gợi ý: không phải NameError:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="mi">42</span>
 
 <span class="n">foo</span><span class="p">()</span>
-</code></pre></div>
+</pre></div>
+
 
 <p><code>x = 42</code> nằm trong 1 block (trong thân function hay class), gọi là local variable.
 Trong 1 block, dùng 1 variable/name trước khi bind nó (tức là có bind, nhưng
 bind sau khi dùng), exception sẽ xảy ra là</p>
-<div class="highlight"><pre><span></span><code><span class="ne">UnboundLocalError</span><span class="p">:</span> <span class="n">local</span> <span class="n">variable</span> <span class="s1">&#39;x&#39;</span> <span class="n">referenced</span> <span class="n">before</span> <span class="n">assignment</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="ne">UnboundLocalError</span><span class="p">:</span> <span class="n">local</span> <span class="n">variable</span> <span class="s1">&#39;x&#39;</span> <span class="n">referenced</span> <span class="n">before</span> <span class="n">assignment</span>
+</pre></div>
+
 
 <h3>free variable</h3>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
 <span class="n">foo</span><span class="p">()</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>Xóa <code>x = 42</code> trong ví dụ phần local, ta chạy đoạn code này, lại thấy NameError.</p>
-<div class="highlight"><pre><span></span><code><span class="ne">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="s1">&#39;x&#39;</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="ne">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="s1">&#39;x&#39;</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span>
+</pre></div>
+
 
 <p>Lần này không xảy ra UnboundLocalError, do đoạn code không bind x = 42
 trong thân function (block). <code>x</code> ở đây là một free variable.</p>
 <p>Free variable hoạt động theo cách ... rất tự do. Khi không tìm thấy x trong
 foo, Python sẽ đi tìm x ở global (bên ngoài function foo).</p>
-<div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="mi">42</span>
+<div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">42</span>
 <span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="mi">96</span>
 <span class="n">foo</span><span class="p">()</span>
 <span class="n">x</span> <span class="o">=</span> <span class="mi">100</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>Màn hình sẽ hiện ra <code>42</code>, <code>100</code> hay <code>96</code>?</p>
 <p>Việc tính toán tên <code>x</code> có giá trị gì, được thực hiện khi function <strong>CHẠY</strong>.
@@ -118,52 +125,56 @@ có thể tính luôn</a>, hay các tính năng
 tích hợp sẵn của IDE như Pycharm.</p>
 <p><code>flake8</code> cơ bản giống <code>pep8</code> (tên mới là <code>pycodestyle</code>), thêm tính năng phát
 hiện thư viện không dùng tới/ hay biến không tồn tại.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">math</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
 <span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="mi">42</span>
 <span class="n">foo</span><span class="p">()</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>khi chạy <code>flake8</code> với file code, <code>flake8</code> sẽ phát hiện ra thư viện
 <code>math</code> được import nhưng không dùng, tên <code>x</code> chưa được định nghĩa.</p>
-<div class="highlight"><pre><span></span><code><span class="err">$</span> <span class="n">flake8</span> <span class="n">scope</span><span class="o">.</span><span class="n">py</span>
+<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">flake8</span> <span class="n">scope</span><span class="o">.</span><span class="n">py</span>
 <span class="n">scope</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span> <span class="n">F401</span> <span class="s1">&#39;math&#39;</span> <span class="n">imported</span> <span class="n">but</span> <span class="n">unused</span>
 <span class="n">scope</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">5</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span> <span class="n">F821</span> <span class="n">undefined</span> <span class="n">name</span> <span class="s1">&#39;x&#39;</span>
 <span class="n">scope</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">6</span><span class="p">:</span><span class="mi">5</span><span class="p">:</span> <span class="n">F841</span> <span class="n">local</span> <span class="n">variable</span> <span class="s1">&#39;x&#39;</span> <span class="ow">is</span> <span class="n">assigned</span> <span class="n">to</span> <span class="n">but</span> <span class="n">never</span> <span class="n">used</span>
-</code></pre></div>
+</pre></div>
+
 
 <p><code>flake8</code> rất hữu ích khi dễ dàng phát hiện các lỗi đơn giản như gõ nhầm tên
 biến hay dùng biến không tồn tại như trên.
 Nhưng khi <code>x</code> là free variable, không công cụ nào của Python có thể phát hiện
 ra lỗi này cho tới khi chạy mới thấy exception:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">n_pymi_vn</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">n_pymi_vn</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="n">s</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="n">s</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">n_pymi_vn</span><span class="p">()</span>
 <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
-</code></pre></div>
+<span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</pre></div>
+
 
 <p>Do <code>x</code> là free variable, các công cụ phải quét hết cả file code để tìm <code>x</code>,
 và nó tìm thấy, nên tin rằng <code>x</code> có tồn tại, nhưng đã quá muộn rồi.
 Một ví dụ vô lý hơn nữa, để thấy sự bất lực của các công cụ static analysis:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">n_pymi_vn</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">n_pymi_vn</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="n">s</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="n">s</span>
 
 <span class="k">if</span> <span class="mi">1</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
     <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">r</span> <span class="o">=</span> <span class="n">n_pymi_vn</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
-</code></pre></div>
+<span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</pre></div>
+
 
 <h2>Hành động của chúng ta</h2>
 <p>Hạn chế hết mức việc sử dụng global variable, free variable, cần biến gì thì
 đưa argument vào function biến đó, code "sát tường" cho hết vào 1 function
 main và gọi main() nếu cần chạy.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">n_pymi_vn</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">n_pymi_vn</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="n">s</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="n">s</span>
 
@@ -171,15 +182,16 @@ main và gọi main() nếu cần chạy.</p>
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="n">r</span> <span class="o">=</span> <span class="n">n_pymi_vn</span><span class="p">()</span>
     <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
 
 <span class="n">main</span><span class="p">()</span>
-</code></pre></div>
+</pre></div>
+
 
 <p><code>flake8</code> sẽ làm tốt nhiệm vụ phát hiện ra <code>x</code> chưa được định nghĩa trong ví dụ trên:
 <code>F821 undefined name 'x'</code>, và đoạn code này có thể viết lại để không
 còn dùng global/free variable nữa:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">n_pymi_vn</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">n_pymi_vn</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="n">s</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="n">s</span>
 
@@ -187,10 +199,11 @@ còn dùng global/free variable nữa:</p>
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
     <span class="n">r</span> <span class="o">=</span> <span class="n">n_pymi_vn</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
 
 <span class="n">main</span><span class="p">()</span>
-</code></pre></div>
+</pre></div>
+
 
 <h2>Kết luận</h2>
 <p>Tính dynamic của Python khiến các công cụ khó có thể xử lý mọi trường hợp,

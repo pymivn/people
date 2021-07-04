@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+   <title> 10x engineer - cắt giảm chi phí 10 lần  - The PyMiers</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="robots" content="" />
+  <link rel="stylesheet" type="text/css" href="/theme/css/app.css">
+<link rel="stylesheet" type="text/css" href="http://pp.pymi.vn/theme/css/pygment.css">
+  <!--
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+  -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    <meta name="author" content="Pymiers" />
+  <meta name="description" content="" />    <link href="http://pp.pymi.vn/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="The PyMiers Full Atom Feed" />         
+  <meta name="tags" content="python" />
+  <meta name="tags" content="regex" />
+  <meta name="tags" content="lambda" />
+  <meta name="tags" content="kafka" />
+  <meta name="tags" content="profile" />
+  <meta name="tags" content="cprofile" />
+</head>
+
+<body>
+  <main class="wrapper">
+    <section class="container">
+      <header class='column'>
+        <h1 class='title'><a href="http://pp.pymi.vn/">The PyMiers</a></h1>
+      </header>
+
+      <div class="section">
+        <div class="row navbar">
+          <div class="column nav-item is-active"><a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a></div>
+           <div class="column nav-item "><a href="http://pp.pymi.vn/pages/about/">About</a></div>
+          <div class="column nav-item "><a href="http://pp.pymi.vn/pages/add/">Tạo bài viết</a></div>
+          <div class="column nav-item "><a href="http://pp.pymi.vn/pages/rss/">RSS</a></div>
+          <div class="column nav-item"><a href="/archives">Archives</a></div>
+        </div>
+      </div>
+    </section>
+
+<section class="container">
+  <header>
+    <h2 class="entry-title">
+      <a href="http://pp.pymi.vn/article/10x/" rel="bookmark"
+         title="Permalink to 10x engineer - cắt giảm chi phí 10 lần">10x engineer - cắt giảm chi phí 10 lần</a></h2>  
+  </header>
+  <footer class='center'>
+    <time class="published" datetime="2021-06-30T00:00:00+07:00"> 30/06/2021 </time>
+    <address class="vcard author">By
+                    <a class="url fn" href="http://pp.pymi.vn/author/hvnsweeting/">hvnsweeting</a>
+ in <a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a>
+                </address>     <em>Tags</em>:     <a href="http://pp.pymi.vn/tag/python/"><em>python</em></a>,     <a href="http://pp.pymi.vn/tag/regex/"><em>regex</em></a>,     <a href="http://pp.pymi.vn/tag/lambda/"><em>lambda</em></a>,     <a href="http://pp.pymi.vn/tag/kafka/"><em>kafka</em></a>,     <a href="http://pp.pymi.vn/tag/profile/"><em>profile</em></a>,     <a href="http://pp.pymi.vn/tag/cprofile/"><em>cprofile</em></a>    </footer>
+  <br>
+  <div class="entry-content">
+    <h2>Huyền thoại 3x 4x 5x ... 10x (xxxxxxxxxx)</h2>
+<p>10x engineer là một huyền thoại (myth) lâu đời trong giới IT, mơ tưởng về
+1 developer có khả năng code "hơn" người bình thường 10 lần (hoặc hơn).
+Vì là "myth", nên có người tin, có người không.</p>
+<p><a href="https://youtu.be/QoVeAANfESY"><img alt="The Myth" src="https://img.youtube.com/vi/QoVeAANfESY/0.jpg"></a></p>
+<p>Việc lên internet tìm kiếm 10x engineer trên thế giới không quá khó khăn, nhưng
+gặp khi đi làm ngoài thực tế là chuyện không nhiều.
+10x thế giới tạm kể:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Linus_Torvalds">Linus Torvard</a> - tác giả Linux, git</li>
+<li><a href="https://en.wikipedia.org/wiki/Fabrice_Bellard">Fabrice Bellard</a> - tác giả FFmpeg, QEMU, tiny C compiler (tcc), quickJS</li>
+<li><a href="https://en.wikipedia.org/wiki/John_Carmack">John Carmack</a> - tác giả game Doom, Quake</li>
+<li><a href="https://norvig.com/">Peter Norvig</a> - Director of Research Google</li>
+<li><a href="http://antirez.com/latest/0">Antirez</a> - tác giả redis, hping</li>
+</ul>
+<p>những ví dụ trên chỉ phục vụ mục đích dễ hình dung, bởi họ thuộc cỡ 100 hay 1000x
+chứ không phải 10x.
+Bí quyết là gì không rõ, nhưng điểm chung: họ đều đã ngoài 40 và dành hơn nửa
+cuộc đời làm software. Không có ai 30 đã về nghỉ hay lên làm manager cả. </p>
+<p>Tiêu chí 10x không rõ ràng, vì đây là "myth", nên mỗi người nghĩ theo
+1 kiểu. Theo một tiêu chí ví dụ, mrX gõ nhanh hơn mrY 10 lần, nên cũng có khi
+được gọi là 10x engineer.</p>
+<p>Bài viết này không liên quan tới chuyện các 10x nói trên, mà đơn giản chỉ là
+tiết kiệm 10x chi phí chạy code Python, nhờ được học Python "tử tế".</p>
+<h2>Ví dụ</h2>
+<p>Sinh ra 1 file .log.gz ví dụ chứa 1_500_000 dòng (từ 3 dòng lặp đi lặp lại)</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gzip</span>
+
+<span class="n">lines</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;http 2015-05-13T23:39:43.945958Z my-loadbalancer 192.168.131.39:2817 10.0.0.1:80 0.000073 0.001048 0.000057 200 200 0 29 &quot;GET http://www.example.com:80/index HTTP/1.1&quot; &quot;curl/7.38.0&quot; - - arn:aws:elasticloadbalancing:us-west-2:123456789012:targetgroup/my-targets/73e2d6bc24d8a067 &quot;Root=1-58337262-36d228ad5d99923122bbe354&quot;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;https 2015-05-13T23:39:43.945958Z my-loadbalancer 192.168.131.39:2817 10.0.0.1:80 0.000086 0.001048 0.001337 200 200 0 57 &quot;GET https://mytest-111.ap-northeast-1.elb.amazonaws.com:443/p/a/t/h?foo=bar&amp;hoge=fuga HTTP/1.1&quot; &quot;curl/7.38.0&quot; DHE-RSA-AES128-SHA TLSv1.2 arn:aws:elasticloadbalancing:us-west-2:123456789012:targetgroup/my-targets/73e2d6bc24d8a067 &quot;Root=1-58337262-36d228ad5d99923122bbe354&quot;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;https 2015-05-13T23:39:43.945958Z my-loadbalancer 192.168.131.39:2817 10.0.0.1:80 0.000086 0.001048 0.001337 200 200 0 57 &quot;GET https://mytest-111.ap-northeast-1.elb.amazonaws.com:443/p/a/t/h?foo=bar&amp;hoge=fuga:904abc HTTP/1.1&quot; &quot;curl/7.38.0&quot; DHE-RSA-AES128-SHA TLSv1.2 arn:aws:elasticloadbalancing:us-west-2:123456789012:targetgroup/my-targets/73e2d6bc24d8a067 &quot;Root=1-58337262-36d228ad5d99923122bbe354&quot;&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;bigfile.log.gz&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fout</span><span class="p">:</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="n">_500_000</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)]</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">fout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+
+
+<p>File này có kích thước khá nhỏ (&lt;1MB)</p>
+<div class="highlight"><pre><span></span>$ python makelog.py<span class="p">;</span> ls -la bigfile.log.gz
+-rw-rw-r-- <span class="m">1</span> hvn hvn <span class="m">2960897</span> Jun <span class="m">30</span> <span class="m">22</span>:42 bigfile.log.gz
+$ gunzip bigfile.log.gz<span class="p">;</span> wc -l bigfile.log<span class="p">;</span> ls -l bigfile.log
+<span class="m">1500000</span> bigfile.log
+-rw-rw-r-- <span class="m">1</span> hvn hvn <span class="m">559000000</span> Jun <span class="m">30</span> <span class="m">22</span>:42 bigfile.log
+$ ls -lh bigfile.log
+-rw-rw-r-- <span class="m">1</span> hvn hvn 534M Jun <span class="m">30</span> <span class="m">22</span>:42 bigfile.log
+</pre></div>
+
+
+<p>nhưng khi giải nén, kích thước lớn hơn rất nhiều lần
+(do dữ liệu trùng lặp nhiều nên nén lại từ to thành rất nhỏ).</p>
+<p>Đây là đoạn code ban đầu, nó đọc các dòng text từ 1 file có đuôi <code>.log.gz</code> ra,
+rồi gửi đến 1 chỗ khác. Hãy xem kỹ xem bạn có
+thể "tối ưu" được bao nhiêu bước và trở thành mấy x từ đây?</p>
+<p>Code albv1.py</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gzip</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;bigfile.log.gz&quot;</span><span class="p">,</span> <span class="s2">&quot;rt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">10</span><span class="p">:</span>
+            <span class="k">break</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Proceeded {} lines&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+</pre></div>
+
+
+<p>File nén có đuôi <code>.gz</code> được tạo bởi các chương trình <code>gzip</code>, bên dưới dùng
+thư viện <a href="https://www.zlib.net/"><code>zlib</code></a>.
+<a href="https://docs.python.org/3/library/gzip.html">Thư viện <code>gzip</code> của Python</a>
+cho phép mở file .gz như file text bình thường,
+nó thực hiện giải nén phía sau bức màn bí mật. Mode mở file <code>rt</code> giúp lib gzip
+hiểu ta muốn thu được <code>str</code> sau khi giải nén, còn khi mặc định nó mở ở mode <code>rb</code>, trả
+về kiểu <code>bytes</code>. Chạy đoạn code trên, sử dụng
+<code>/usr/bin/time -v</code> để đo thời gian chạy và các thông số chi tiết về bộ nhớ max.
+(trên MacOS dùng -l)</p>
+<div class="highlight"><pre><span></span>$ /usr/bin/time -v python3 albv1.py
+Proceeded <span class="m">10</span> lines
+    ...
+    Maximum resident <span class="nb">set</span> size <span class="o">(</span>kbytes<span class="o">)</span>: <span class="m">693652</span>
+    ...
+</pre></div>
+
+
+<p>Code này dùng ~ 600 MB RAM.</p>
+<p>Sau khi thay đổi, code chỉ còn dùng ~ 9MB RAM</p>
+<div class="highlight"><pre><span></span>$ /usr/bin/time -v python3 albv2.py
+Proceeded <span class="m">10</span> lines
+    ...
+    Maximum resident <span class="nb">set</span> size <span class="o">(</span>kbytes<span class="o">)</span>: <span class="m">9752</span>
+    ...
+</pre></div>
+
+
+<p>Chỉ thay đổi duy nhất 1 dòng:</p>
+<div class="highlight"><pre><span></span>$ diff albv1.py albv2.py
+12c12
+&lt;     <span class="k">for</span> line in f.readlines<span class="o">()</span>:
+---
+&gt;     <span class="k">for</span> line in f:
+</pre></div>
+
+
+<p>Điều này bất kỳ học viên <a href="https://pymi.vn/">Pymi.vn</a> nào cũng phát hiện ra
+ngay, bởi trong hệ thống bài tập đã có 1 bài xử lý file 30 triệu dòng nặng hơn
+500 MB tương tự. Cách xử lý từng dòng một:</p>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+</pre></div>
+
+
+<p>mà không dùng <code>f.readlines()</code> hay <code>f.read()</code>, vì chúng đọc toàn bộ nội dung
+file từ ổ cứng vào RAM.
+Chú ý cả sự chênh lệch, Python đọc file text 534MB vào thành 670MB RAM.</p>
+<p>"Bí kíp" đọc file theo dòng này dù chẳng có gì đặc biệt, ghi rõ trong tài liệu
+trang chủ nhưng lại trở thành chuyện lạ với hàng ngàn bài hướng dẫn trên mạng,
+thậm chí cả sách cũng dạy dùng readlines.
+Hãy thử <a href="https://github.com/search?q=%22readlines%22+language%3APython&amp;type=Code">search
+github</a>
+có tới hơn 2 triệu kết quả, dù cho github không search chính xác được, thì
+chuyện này vẫn không phải là hiếm.</p>
+<p>Search <a href="https://stackoverflow.com/questions/3925614/how-do-you-read-a-file-into-a-list-in-python">StackOverFlow python read file into list</a>, trả về hàng loạt kết quả cũng không ổn tí nào.</p>
+<p><code>readlines</code> hay <code>read</code> hoàn toàn ok khi lập trình viên làm chủ được kích thước
+file đầu vào (file cố định, file được cam kết là nhỏ), nhưng khi file có size
+tới hàng
+MB, nó sẽ chiếm không ít RAM để chạy chương trình.</p>
+<p>Phiên bản <code>v2</code> có thể xử lý file có kích thước lớn tùy ý, 10GB, 100GB, đều vẫn
+chỉ dùng &lt; 10MB (với giả thiết kích thước mỗi dòng không quá khác biệt).</p>
+<p>Vậy chỉ cần được học Python tử tế, đã trở thành 10x rồi.</p>
+<h3>Độ đo</h3>
+<p>Để tính mấy x cho rõ ràng, bài này sẽ sử dụng đơn vị đo mà loài người ưa chuộng nhất: tiền.</p>
+<p>Tính tiền 1 chương trình trong 1 cái máy thì khá khó, nhưng ngày nay, khi
+"cloud computing" là thời thượng, chạy code trên <a href="https://www.familug.org/2017/08/serverless.html">AWS lambda</a>
+giúp chuyện tính tiền dễ như học
+toán cấp 1. Xem <a href="https://aws.amazon.com/lambda/pricing/">AWS Lambda pricing</a></p>
+<p>Theo thử nghiệm trên máy, hai phiên bản v1 và v2 chạy về tốc độ là như nhau
+(hoặc chênh 1 2 3 giây trên tổng 60s không đáng kể),
+thì phần còn lại của biểu thức phụ thuộc vào lượng RAM sử dụng.
+Nói đơn giản thì RAM cấu hình cho Lambda function bao nhiêu, thì giá gấp bấy nhiêu.
+Code đăng ký dùng 256 MB RAM sẽ đắt gấp đôi code đăng ký 128MB.
+Với ví dụ trong bài, mỗi file log kích thước cỡ 300-600 MB, lập trình viên sẽ thường
+để mức an toàn là 1024MB (1GB) tránh tình trạng có file 800MB xuất hiện mà thiếu RAM.</p>
+<p>Code v2 luôn dùng 10MB RAM (=&gt; 100x), nhưng mức tối thiểu AWS Lambda cho phép là
+128MB, vậy ở đây tiết kiệm 8 lần =&gt; 8x.</p>
+<p><strong>Cú twist giật mình</strong>: câu chuyện thực ra không đơn giản vậy, với nhiều RAM hơn,
+AWS Lambda sẽ cấp thêm
+"năng lượng" cho CPU tỷ lệ với RAM, trong ví dụ này, nếu hầu hết thời gian
+chương trình đều để dùng CPU, giảm 8x RAM đăng ký đồng nghĩa với giảm tốc độ CPU 8 lần.
+Hay kết quả là v2 chạy mất 8s x 128MB thì v1 chạy mất 1s x 1024 MB, và giá tiền là như nhau.</p>
+<blockquote>
+<p>Lambda allocates CPU power in proportion to the amount of memory configured.
+Memory is the amount of memory available to your Lambda function at runtime.
+You can increase or decrease the memory and CPU power allocated to your
+function using the Memory (MB) setting. To configure the memory for your
+function, set a value between 128 MB and 10,240 MB in 1-MB increments. At
+1,769 MB, a function has the equivalent of one vCPU (one vCPU-second of
+credits per second).</p>
+</blockquote>
+<p>https://docs.aws.amazon.com/lambda/latest/dg/configuration-memory.html</p>
+<p>Với đoạn chú ý này, nếu function chỉ sử dụng 1 core (code không sử dụng thư viện
+multiprocess), tốc độ CPU của nó đạt tối
+đa khi cấu hình 1769MB, dù có tăng RAM lên 2048MB thì chỉ tăng thêm 1 core nữa
+chứ không làm core ban đầu mạnh lên, hay nói cách khác: không làm code chạy nhanh
+hơn.</p>
+<p>PS: trong môi trường lượng CPU là cố định (máy ảo, máy vật lý...), v2 vẫn là 100x.</p>
+<p><strong>Cú twist số 2</strong>: việc tính tiền trên các hệ thống cloud không hề đơn giản,
+có hàng ngàn dịch vụ <a href="https://www.lastweekinaws.com/">cung cấp giải pháp phân tích, đọc hiểu, tối ưu code cloud</a>.
+Hay mọc cả ra nghề <a href="https://www.finops.org/introduction/what-is-finops/">FinOps</a>
+chuyên về tối ưu hóa <a href="https://aws.amazon.com/blogs/enterprise-strategy/introducing-finops-excuse-me-devsecfinbizops/">cloud cost</a>,
+ngành kinh tế trên mây (cloud economics) với các chuyên gia có nghệ danh "cloud economist".</p>
+<p><strong>Kết luận 1:</strong> 100x là có thật, nhưng còn phụ thuộc vào hoàn cảnh, không nằm ngoài
+"thuyết tương đối".
+Việc giảm 8x RAM ở đây không làm giảm chi phí, công việc tiếp theo là cắt giảm
+chi phí bằng cách tăng tốc code.</p>
+<h2>Tăng tốc regex</h2>
+<p>Phiên bản sau thêm công đoạn xử lý từng dòng để lọc ra các giá trị mong
+muốn, sử dụng công cụ: <a href="https://docs.python.org/3/howto/regex.html">"regular expression"</a> - hay gọi ngắn là <strong>regex</strong>.
+Bạn đọc không nên quá tập trung hay sợ hãi khi nhìn vào phần "pattern" viết đống giun dế gì, vì
+không nhiều người có khả năng đọc, hiểu, phân tích đoạn này, kể cả có
+10 năm đi code hay làm sysadmin. Code regex thường khó đọc khó hiểu,
+khi cần dùng chủ yếu các lập trình viên đi copy, đoạn bên dưới cũng là
+copy từ link trong comment.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gzip</span>
+<span class="kn">import</span> <span class="nn">regex</span>
+
+<span class="c1"># copied and edited from https://gist.github.com/szinck/d456fbf691483ab77d2453c316db3371</span>
+<span class="n">pattern</span> <span class="o">=</span> <span class="s1">&#39;(.*?) (.*?) (.*?) ([0-9.]+):([0-9]*) ([0-9.]+):([0-9]*) ([.0-9]*) ([.0-9]*) ([.0-9]*) (-|[0-9]*) (-|[0-9]*) ([-0-9]*) ([-0-9]*) &quot;(.*?) .*:([0-9]+)([^? ]*)(</span><span class="se">\\</span><span class="s1">x3f?.*?) (.*?)&quot; &quot;(.*?)&quot; (.*?) (.*?) (.*?) &quot;(.*?)&quot; *$&#39;</span>
+<span class="c1"># example in AWS docs does not work directly with python https://docs.aws.amazon.com/athena/latest/ug/application-load-balancer-logs.html</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;bigfile.log.gz&quot;</span><span class="p">,</span> <span class="s2">&quot;rt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">m</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span>
+            <span class="c1"># print(&quot;sending&quot;, result)</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">10</span><span class="p">:</span>
+            <span class="k">break</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Proceeded {} lines&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+</pre></div>
+
+
+<p>Không hiểu gì thì làm sao mà tăng tốc?</p>
+<h3>Học regex trong 7 phút</h3>
+<p>7 phút đủ để quán bia làm xong món "giò nóng 7 phút".
+Trong 7 phút đủ để bạn có kiến thức regex bằng với 90% lập trình viên trên thế
+giới.</p>
+<h4>regex là gì</h4>
+<p>regex là một ngôn ngữ dùng để mô tả pattern (tiếng Việt hay dịch là dạng, mẫu)
+của 1 giá trị.
+Ví dụ: một số điện thoại di động ở Việt Nam là một số có 10 hay 11 chữ số.
+Các pattern sau sẽ "match" (khớp mẫu) số điện thoại:</p>
+<ul>
+<li><code>\d+</code></li>
+<li><code>[0-9]+</code></li>
+</ul>
+<p>Hai pattern này tương đương, nó sẽ match với 1 hoặc nhiều chữ số viết liền nhau.
+Dấu <code>+</code> theo sau là biểu diễn cho "1 hoặc nhiều".
+Phổ biến không kém dấu <code>+</code>, là dấu <code>*</code>. Dấu <code>*</code> có nghĩa là match 0 hoặc nhiều:</p>
+<ul>
+<li><code>\d*</code></li>
+<li><code>[0-9]*</code></li>
+</ul>
+<p>cũng sẽ match số điện thoại di động ở Việt Nam.</p>
+<p>Dùng <code>+</code> khẳng định phải có ít nhất 1 số từ 0 đến 9 (ký hiệu <code>[0-9]</code>),
+thì dùng <code>*</code> dễ
+dãi hơn, không có số nào cũng được. Pattern <code>.*</code> là pattern phổ biến nhất với
+người học regex với thời lượng dưới 5 ngày.</p>
+<p><code>.</code> đại diện cho 1 ký tự nào đó, nào cũng được, a b c hay 0 1 2 hay % = # gì
+cũng ok. <code>.*</code> là pattern match được mọi thứ.</p>
+<p>Tránh nhầm lẫn dấu <code>*</code> hay thấy khi gõ câu lệnh Linux, kiểu như <code>ls ~/*.py</code>,
+<code>*</code> này không phải regex, đây là khái niệm <code>globbing</code>, mặc dù tác dụng hơi giống,
+nó sẽ trả về tất cả các tên file có đuôi <code>.py</code></p>
+<p>Dấu <code>?</code> match 0 hoặc 1 lần, pattern <code>https?</code> sẽ match cả <code>http</code> lẫn <code>https</code></p>
+<p>Dùng trang <a href="https://regex101.com/r/2f1NKt/1">regex101.com</a> để thử các pattern và xem kết quả cho tiện.</p>
+<p>Hay bật python3 lên rồi gõ</p>
+<div class="highlight"><pre><span></span>&gt;&gt;&gt; import re
+&gt;&gt;&gt; re.findall<span class="o">(</span><span class="s1">&#39;.*&#39;</span>, <span class="s1">&#39;0987654321&#39;</span><span class="o">)</span>
+<span class="o">[</span><span class="s1">&#39;0987654321&#39;</span>, <span class="s1">&#39;&#39;</span><span class="o">]</span>
+</pre></div>
+
+
+<p>Có thể chỉ định số lần match với cú pháp <code>{ít nhất, nhiều nhất}</code>, pattern 
+<code>0[0-9]{9, 10}</code> match số điện thoại di động ở Việt Nam.</p>
+<p>Đơn giản, đúng không? Hãy viết 1 đoạn regex để kiểm tra 1 email có hợp lệ không.</p>
+<p>Mọi người đều biết "chung chung" là email có dạng <code>gìđó@gìđấy.đuôi</code>, vậy
+regex có thể là <code>.+@.+\..+</code>. Chú ý dấu <code>.</code> trong tên miền phải gõ <code>\.</code>, vì
+dấu <code>.</code> là 1 ký hiệu regex đặc biệt đã nói ở trên.
+Đây là <a href="http://www.ex-parrot.com/~pdw/Mail-RFC822-Address.html">regex đầy đủ để kiểm tra 1 địa chỉ email</a>.</p>
+<p>Đến đây, đã có 1 manh mối để tối ưu tốc độ rồi...
+Nếu chưa thấy, hãy đảm bảo bạn đã gõ đoạn code trên. <code>re</code> là standard library
+của Python, có sẵn, không cài gì cả. Nhưng đoạn code
+trên lại import 1 thư viện tên <a href="https://pypi.org/project/regex/"><code>regex</code></a>.
+Đây là thư viện phải cài thêm,</p>
+<blockquote>
+<p>This regex implementation is backwards-compatible with the standard ‘re’
+module, but offers additional functionality.</p>
+</blockquote>
+<p>Thử thay <code>regex</code> bằng <code>re</code> giúp cắt giảm 10s trong đoạn code chạy 60s trên máy
+tác giả.
+Có thể "đoán" rằng <code>re</code> có trong stdlib và được tối ưu đủ trò nên chạy nhanh hơn.
+Những việc đoán này phải dựa trên cơ sở đo. Để đo tốc độ trong Python,
+python có sãn thư viện <code>cProfile</code>.</p>
+<h3>Profiling Python với cProfile</h3>
+<p>Thay regex bằng re,
+chạy lại đoạn code với câu lệnh sau để xem các function nào dùng nhiều thời gian
+nhất/gọi nhiều lần nhất.</p>
+<ul>
+<li><code>tottime</code> total time: tổng thời gian function chạy sau N lần,
+không tính chuyện gọi function khác.</li>
+<li><code>cumtime</code> cummulative time: tổng thời gian function chạy sau N lần, bao 
+gồm cả việc gọi các function khác.</li>
+</ul>
+<div class="highlight"><pre><span></span>$ /usr/bin/time -v python3 -m cProfile -s tottime albv1.py
+Proceeded <span class="m">50000</span> lines
+         <span class="m">252074</span> <span class="k">function</span> calls <span class="o">(</span><span class="m">251832</span> primitive calls<span class="o">)</span> in <span class="m">45</span>.948 seconds
+
+   Ordered by: internal <span class="nb">time</span>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno<span class="o">(</span><span class="k">function</span><span class="o">)</span>
+    <span class="m">50000</span>   <span class="m">45</span>.834    <span class="m">0</span>.001   <span class="m">45</span>.834    <span class="m">0</span>.001 <span class="o">{</span>method <span class="s1">&#39;match&#39;</span> of <span class="s1">&#39;re.Pattern&#39;</span> objects<span class="o">}</span>
+        <span class="m">1</span>    <span class="m">0</span>.033    <span class="m">0</span>.033   <span class="m">45</span>.948   <span class="m">45</span>.948 albv1.py:1<span class="o">(</span>&lt;module&gt;<span class="o">)</span>
+        <span class="m">1</span>    <span class="m">0</span>.016    <span class="m">0</span>.016    <span class="m">0</span>.061    <span class="m">0</span>.061 <span class="o">{</span>method <span class="s1">&#39;readlines&#39;</span> of <span class="s1">&#39;_io._IOBase&#39;</span> objects<span class="o">}</span>
+     <span class="m">2277</span>    <span class="m">0</span>.014    <span class="m">0</span>.000    <span class="m">0</span>.014    <span class="m">0</span>.000 <span class="o">{</span>built-in method zlib.crc32<span class="o">}</span>
+    <span class="m">50000</span>    <span class="m">0</span>.012    <span class="m">0</span>.000    <span class="m">0</span>.012    <span class="m">0</span>.000 <span class="o">{</span>method <span class="s1">&#39;group&#39;</span> of <span class="s1">&#39;re.Match&#39;</span> objects<span class="o">}</span>
+     <span class="m">2275</span>    <span class="m">0</span>.008    <span class="m">0</span>.000    <span class="m">0</span>.008    <span class="m">0</span>.000 <span class="o">{</span>method <span class="s1">&#39;decompress&#39;</span> of <span class="s1">&#39;zlib.Decompress&#39;</span> objects<span class="o">}</span>
+    <span class="m">50054</span>    <span class="m">0</span>.005    <span class="m">0</span>.000    <span class="m">0</span>.005    <span class="m">0</span>.000 <span class="o">{</span>method <span class="s1">&#39;join&#39;</span> of <span class="s1">&#39;str&#39;</span> objects<span class="o">}</span>
+    <span class="m">52282</span>    <span class="m">0</span>.004    <span class="m">0</span>.000    <span class="m">0</span>.004    <span class="m">0</span>.000 gzip.py:314<span class="o">(</span>closed<span class="o">)</span>
+     <span class="m">2276</span>    <span class="m">0</span>.004    <span class="m">0</span>.000    <span class="m">0</span>.034    <span class="m">0</span>.000 _compression.py:66<span class="o">(</span>readinto<span class="o">)</span>
+</pre></div>
+
+
+<p>Kết quả cho thấy hầu hết thời gian đều dùng vào việc chạy regex method <code>match</code>.
+<a href="https://github.com/python/cpython/blob/3.10/Modules/_sre.c"><code>re</code> viết bằng C</a>,
+lẽ ra phải chạy rất nhanh, thì khi copy thử pattern và 1
+ví dụ lên regex101, sẽ thấy lý do vì sao nó chậm. Để kiểm tra pattern có match
+string ví dụ sau không, <a href="https://regex101.com/r/hmXaTV/1">re phải dùng tới 112690 bước!!!</a></p>
+<blockquote>
+<p>http 2015-05-13T23:39:43.945958Z my-loadbalancer 192.168.131.39:2817 10.0.0.1:80 0.000073 0.001048 0.000057 200 200 0 29 "GET http://www.    example.com:80/index HTTP/1.1" "curl/7.38.0" - - arn:aws:elasticloadbalancing:us-west-2:123456789012:targetgroup/my-targets/73e2d6bc24d8a067 "    Root=1-58337262-36d228ad5d99923122bbe354"</p>
+</blockquote>
+<p>con số này quá lớn, dù có viết đoạn code lằng nhằng với 20 câu if, cũng
+không thể tới 112690 bước.
+Tăng tốc regex không phải chuyện dễ, nhưng có 1 tip rất phổ biến: chỗ nào
+dùng <code>.*</code> chỗ đó có vẻ chậm/sai/cần tối ưu.</p>
+<p>Đoạn regex mới</p>
+<div class="highlight"><pre><span></span><span class="n">pattern</span> <span class="o">=</span> <span class="s1">&#39;(.*?) (.*?) (.*?) ([0-9.]+):([0-9]*) ([0-9.]+):([0-9]*) ([.0-9]*) ([.0-9]*) ([.0-9]*) (-|[0-9]*) (-|[0-9]*) ([-0-9]*) ([-0-9]*) &quot;(.*?) https?://[^:]+:([0-9]+)([^? ]*)(</span><span class="se">\\</span><span class="s1">x3f?.*?) (.*?)&quot; &quot;(.*?)&quot; (.*?) (.*?) (.*?) &quot;(.*?)&quot; *$&#39;</span>
+</pre></div>
+
+
+<p>có 1 điểm khác so với đoạn cũ</p>
+<div class="highlight"><pre><span></span><span class="n">pattern</span> <span class="o">=</span> <span class="s1">&#39;(.*?) (.*?) (.*?) ([0-9.]+):([0-9]*) ([0-9.]+):([0-9]*) ([.0-9]*) ([.0-9]*) ([.0-9]*) (-|[0-9]*) (-|[0-9]*) ([-0-9]*) ([-0-9]*) &quot;(.*?) .*:([0-9]+)([^? ]*)(</span><span class="se">\\</span><span class="s1">x3f?.*?) (.*?)&quot; &quot;(.*?)&quot; (.*?) (.*?) (.*?) &quot;(.*?)&quot; *$&#39;</span>
+</pre></div>
+
+
+<p>chỗ <code>.*:([0-9]+)</code> dùng để match domain và port như https://pymi.vn:443, thay <code>.*</code> trong
+đoạn này với <code>https?://[^:]+</code> cho tác dụng tương đương. <code>https?://[^:]+</code> match
+1 đoạn text bắt đầu bằng http hay https, rồi :// rồi bất cứ thứ gì cho tới khi
+gặp dấu : thì dừng lại. Đoạn này <a href="https://regex101.com/r/1HqLtV/1">match sau 524 bước</a></p>
+<p>Chú ý đoạn code mới cho rằng mọi url đều bắt đầu với http hay https, điều này
+có thể sai (ví dụ wss:// cho websocket), tùy theo yêu cầu bài toán.</p>
+<p>Một cách khác, là dùng pattern <code>[^:]+:[^:]+:</code> match mọi thứ có dạng 
+something:something dừng lại khi gặp dấu : thứ 2.
+VD patter sẽ match <code>wss://abcde</code> trong string <code>wss://abcde:443</code>, 
+pattern này <a href="https://regex101.com/r/pjDFEk/1">match sau 518 bước</a>.</p>
+<p>Dấu đóng mở ngoặc <code>()</code> dùng để "capture", kết quả match thành công sẽ được lưu
+lại thành 1 group, đánh theo thứ tự xuất hiện. 
+Đoạn code trong bài lấy ra group 17 và 11
+từ kết quả match.</p>
+<div class="highlight"><pre><span></span>$ /usr/bin/time -v python3 -m cProfile -s tottime albv1_regex.py
+
+Proceeded <span class="m">50000</span> lines
+         <span class="m">252201</span> <span class="k">function</span> calls <span class="o">(</span><span class="m">251956</span> primitive calls<span class="o">)</span> in <span class="m">0</span>.310 seconds
+
+   Ordered by: internal <span class="nb">time</span>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno<span class="o">(</span><span class="k">function</span><span class="o">)</span>
+    <span class="m">50000</span>    <span class="m">0</span>.208    <span class="m">0</span>.000    <span class="m">0</span>.208    <span class="m">0</span>.000 <span class="o">{</span>method <span class="s1">&#39;match&#39;</span> of <span class="s1">&#39;re.Pattern&#39;</span> objects<span class="o">}</span>
+        <span class="m">1</span>    <span class="m">0</span>.026    <span class="m">0</span>.026    <span class="m">0</span>.310    <span class="m">0</span>.310 albv1_regex.py:1<span class="o">(</span>&lt;module&gt;<span class="o">)</span>
+        <span class="m">1</span>    <span class="m">0</span>.016    <span class="m">0</span>.016    <span class="m">0</span>.061    <span class="m">0</span>.061 <span class="o">{</span>method <span class="s1">&#39;readlines&#39;</span> of <span class="s1">&#39;_io._IOBase&#39;</span> objects<span class="o">}</span>
+     <span class="m">2277</span>    <span class="m">0</span>.014    <span class="m">0</span>.000    <span class="m">0</span>.014    <span class="m">0</span>.000 <span class="o">{</span>built-in method zlib.crc32<span class="o">}</span>
+    <span class="m">50000</span>    <span class="m">0</span>.008    <span class="m">0</span>.000    <span class="m">0</span>.008    <span class="m">0</span>.000 <span class="o">{</span>method <span class="s1">&#39;group&#39;</span> of <span class="s1">&#39;re.Match&#39;</span> objects<span class="o">}</span>
+     <span class="m">2275</span>    <span class="m">0</span>.008    <span class="m">0</span>.000    <span class="m">0</span>.008    <span class="m">0</span>.000 <span class="o">{</span>method <span class="s1">&#39;decompress&#39;</span> of <span class="s1">&#39;zlib.Decompress&#39;</span> objects<span class="o">}</span>
+    <span class="m">52282</span>    <span class="m">0</span>.004    <span class="m">0</span>.000    <span class="m">0</span>.004    <span class="m">0</span>.000 gzip.py:314<span class="o">(</span>closed<span class="o">)</span>
+    <span class="m">50054</span>    <span class="m">0</span>.004    <span class="m">0</span>.000    <span class="m">0</span>.004    <span class="m">0</span>.000 <span class="o">{</span>method <span class="s1">&#39;join&#39;</span> of <span class="s1">&#39;str&#39;</span> objects<span class="o">}</span>
+     <span class="m">2276</span>    <span class="m">0</span>.004    <span class="m">0</span>.000    <span class="m">0</span>.030    <span class="m">0</span>.000 gzip.py:454<span class="o">(</span><span class="nb">read</span><span class="o">)</span>
+</pre></div>
+
+
+<p>45 giây -&gt; xuống còn 0.3 giây cho ta cảm giác code mới chắc là sai nên mới 150x như vậy.</p>
+<h4>Sửa regex xong làm sao biết đúng sai?</h4>
+<p>Một cách đơn giản là thử, cho 2 pattern match và lấy kết quả ra rồi so sánh lần 
+lượt với mỗi dòng log, qua cả file đều giống nhau là có vẻ ổn rồi.</p>
+<div class="highlight"><pre><span></span><span class="n">p1</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">pattern1</span><span class="p">)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">pattern2</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">m1</span> <span class="o">=</span> <span class="n">p1</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    <span class="n">m2</span> <span class="o">=</span> <span class="n">p2</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">m1</span><span class="p">:</span> 
+        <span class="k">assert</span> <span class="n">m1</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span> <span class="o">==</span> <span class="n">m2</span><span class="o">.</span><span class="n">group</span><span class="p">(),</span> <span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+</pre></div>
+
+
+<p>PS: khi tối ưu đoạn code này, vô tình phát hiện ra đoạn code ban đầu xử lý 
+không đúng khi URL path có chứa dấu <code>:</code>, 2 phiên bản mới không gặp phải vấn
+đề này.</p>
+<p>Kết luận 2: 150x là có thật và không cần phải học "regex" nâng cao.</p>
+<h4>Học và dùng regex</h4>
+<p>Python có viết 1 tài liệu cơ bản về regex trong mục <a href="https://docs.python.org/3/howto/regex.html">howto</a>, 
+nếu một ngày buồn chán quá không có gì làm, hay muốn tìm hiểu về ý nghĩa của cuộc sống, bạn có thể ngồi học regex.</p>
+<p><img alt="xkcd" src="https://imgs.xkcd.com/comics/regular_expressions.png"></p>
+<p>Hoặc đi tìm một "khóa học regex"? cái này chưa có, cơ hội khởi nghiệp làm giàu còn rất rộng mở
+cho các chuyên gia công nghệ bán "khoá học làm chủ regex để học sâu với trí tuệ nhân tạo 4.0".</p>
+<p>Regex là một công cụ mạnh, nhưng khó dùng đúng, nó giải quyết được 1 số bài toán,
+<a href="https://stackoverflow.com/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags?noredirect=1&amp;lq=1">1 số thì không và nên dùng cách khác đơn giản hơn như parse HTML</a>.</p>
+<p>regex <a href="https://blog.codinghorror.com/regular-expressions-now-you-have-two-problems/">nổi tiếng phức tạp</a>, và từng tạo ra không ít <a href="https://stackstatus.net/post/147710624694/outage-postmortem-july-20-2016">sự cố trong các hệ thống lớn toàn cầu</a>.</p>
+<blockquote>
+<p>Some people, when confronted with a problem, think "I know, I'll use regular expressions." Now they have two problems.</p>
+</blockquote>
+<p>Khi một bài toán có thể giải quyết theo 1 cách khác đơn giản hơn, thì nên tránh
+dùng regex.</p>
+<p>Chú ý trong phần tối ưu này, nhằm mục tiêu giữ lại code gần giống với code
+ban đầu nhất, không thay đổi gì quá nhiều, tác giả đã không viết lại đoạn code 
+lọc ra urlpath và statuscode mà vẫn giữ nguyên regex như code ban đầu.</p>
+<h2>Tăng tốc kafka</h2>
+<p>Đây là phiên bản đầy đủ của chương trình trước khi mang đi tối ưu: nó
+đọc file log <a href="https://aws.amazon.com/premiumsupport/knowledge-center/athena-analyze-access-logs/">AWS ALB</a>
+đã nén <code>.gz</code>, lấy ra urlpath và status code bằng regex, rồi gửi
+kết quả đến kafka.</p>
+<h3>Kafka là gì</h3>
+<blockquote>
+<p>Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications. </p>
+</blockquote>
+<p><a href="https://kafka.apache.org/">https://kafka.apache.org/</a></p>
+<p>Nói đơn giản, Kafka như hệ thống ống nước, mạng lưới điện, mạng lưới viễn thông,
+nó đủ phức tạp để đáp ứng mọi nhu cầu truyền tải dữ liệu từ nhiều nguồn đến 
+nhiều đích. Kafka được dùng phổ biến trong các doanh nghiệp, các hệ thống xử
+lý data, logging...</p>
+<p>Kafka có nhiều tính năng, bài này sử dụng nó như 1 hệ thống pub-sub, tức có 1
+bên gửi message đi, và 1/nhiều bên nhận message.</p>
+<p>Cài Java</p>
+<div class="highlight"><pre><span></span>sudo apt-get update <span class="o">&amp;&amp;</span> sudo apt-get install -y openjdk-11-jre-headless
+</pre></div>
+
+
+<p>Cài đặt kafka đơn giản với <a href="https://kafka.apache.org/quickstart">5 bước không cần sudo</a></p>
+<div class="highlight"><pre><span></span>curl -LO https://mirror.downloadvn.com/apache/kafka/2.8.0/kafka_2.13-2.8.0.tgz
+tar xvf kafka_2.13-2.8.0.tgz
+<span class="nb">cd</span> kafka_2.13-2.8.0
+bin/zookeeper-server-start.sh config/zookeeper.properties
+<span class="c1">## mở 1 terminal khác</span>
+<span class="nb">cd</span> kafka_2.13-2.8.0
+bin/kafka-server-start.sh config/server.properties
+</pre></div>
+
+
+<h4>Kafka producer</h4>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gzip</span>                                                                     
+<span class="kn">import</span> <span class="nn">re</span>                                                                       
+<span class="kn">from</span> <span class="nn">kafka</span> <span class="kn">import</span> <span class="n">KafkaProducer</span>                                                 
+
+<span class="n">producer</span> <span class="o">=</span> <span class="n">KafkaProducer</span><span class="p">(</span><span class="n">linger_ms</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">65536</span><span class="p">,</span> <span class="n">acks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">compression_type</span><span class="o">=</span><span class="s2">&quot;lz4&quot;</span><span class="p">)</span>
+
+<span class="n">pattern</span> <span class="o">=</span> <span class="s1">&#39;(.*?) (.*?) (.*?) ([0-9.]+):([0-9]*) ([0-9.]+):([0-9]*) ([.0-9]*) ([.0-9]*) ([.0-9]*) (-|[0-9]*) (-|[0-9]*) ([-0-9]*) ([-0-9]*) &quot;(.*?) [^:]+:[^:]+:([0-9]+)([^? ]*)(</span><span class="se">\\</span><span class="s1">x3f?.*?) (.*?)&quot; &quot;(.*?)&quot; (.*?) (.*?) (.*?) &quot;(.*?)&quot; *$&#39;</span>                                                                                                                                              
+<span class="n">p</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>                                                         
+
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>                                                                           
+<span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;bigfile.log.gz&quot;</span><span class="p">,</span> <span class="s2">&quot;rt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>                                    
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>                                                              
+        <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>                                                               
+        <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">10000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>                                                      
+            <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>                                                            
+        <span class="n">m</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>                                                       
+        <span class="k">if</span> <span class="n">m</span><span class="p">:</span>                                                                   
+            <span class="n">result</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span>                                  
+            <span class="n">producer</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;alblog&quot;</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>                     
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Processed {} lines&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> 
+</pre></div>
+
+
+<p>Khi chưa gửi message tới kafka, code chạy mất 8s, khi gửi đến kafka trên cùng
+máy, code chạy mất 60s (khi profile chậm hơn nữa do quá trình profile can thiệp ảnh hưởng tới tốc độ):</p>
+<div class="highlight"><pre><span></span>Processed 1500000 lines
+         133875187 function calls (133873425 primitive calls) in 91.895 seconds
+
+   Ordered by: internal time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+  1500001    8.978    0.000    8.978    0.000 {method &#39;match&#39; of &#39;re.Pattern&#39; objects}
+  1500000    8.602    0.000   73.735    0.000 kafka.py:538(send)
+  1500282    7.845    0.000   14.095    0.000 default_records.py:406(append)
+  1500000    6.948    0.000   39.138    0.000 record_accumulator.py:200(append)
+  1500282    4.675    0.000   28.579    0.000 record_accumulator.py:57(try_append)
+        1    4.299    4.299   92.439   92.439 albv1_regex2.py:1(&lt;module&gt;)
+  1500000    4.147    0.000    6.439    0.000 future.py:32(__init__)
+  7501128    3.138    0.000    4.001    0.000 util.py:10(encode_varint)
+  1500000    2.754    0.000   12.242    0.000 kafka.py:716(_partition)
+  3000001    2.270    0.000    2.688    0.000 cluster.py:106(partitions_for_topic)
+  1500000    1.946    0.000    4.090    0.000 cluster.py:119(available_partitions_for_topic)
+  1500000    1.840    0.000    4.318    0.000 kafka.py:664(_wait_on_metadata)
+    65554    1.721    0.000    1.721    0.000 {built-in method zlib.crc32}
+  1500000    1.682    0.000    2.811    0.000 default_records.py:563(size_of)
+15397286/15397055    1.615    0.000    1.615    0.000 {built-in method builtins.len}
+...
+</pre></div>
+
+
+<p>Việc gửi 1.5 triệu message tới kafka chạy cùng máy mất tới 73s (cumtime)
+trong output profiling. Trong đó có dòng thứ 3, 4 và 5 đều là "append".
+Mở code của thư viện <a href="https://github.com/dpkp/kafka-python/">kafka-python</a> 
+ra xem, phần <a href="https://github.com/dpkp/kafka-python/blob/2.0.2/kafka/producer/record_accumulator.py#L200">này</a>
+append các message vào
+1 list "accumulator", để bao giờ đủ 65536 phần tử mới gửi đi 
+(batch_size=65536 lúc tạo producer). Batching là tính năng phổ biến trong các 
+thư viện liên quan tới network, do việc gửi nhận qua network thường chậm, nên
+gom lại một đống rồi gửi đi để giảm số lần gửi/nhận. Nhưng trong ví dụ này,
+việc batching tốn tới 20s thì có vẻ không ổn.
+Sau một hồi chỉnh sửa các tham số (batch_size, linger_ms ...), giải pháp lại là
+"think outside of the box", tìm xem Python còn có thư viện kafka nào khác không.</p>
+<p>Thư viện <a href="https://github.com/confluentinc/confluent-kafka-python">confluent-kafka-python</a> sử dụng 
+<a href="https://github.com/edenhill/librdkafka">librdkafka</a> viết bằng C hứa hẹn cho một performance
+tốt hơn nhiều</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gzip</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">confluent_kafka</span> <span class="kn">import</span> <span class="n">Producer</span>
+
+
+<span class="n">producer</span> <span class="o">=</span> <span class="n">Producer</span><span class="p">(</span>
+    <span class="p">{</span><span class="s1">&#39;bootstrap.servers&#39;</span><span class="p">:</span> <span class="s2">&quot;localhost:9092&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;queue.buffering.max.messages&#39;</span><span class="p">:</span> <span class="mi">65536</span><span class="p">,</span>
+    <span class="s1">&#39;acks&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+     <span class="s1">&#39;compression.type&#39;</span><span class="p">:</span> <span class="s1">&#39;lz4&#39;</span><span class="p">}</span>
+<span class="p">)</span>
+
+
+<span class="n">pattern</span> <span class="o">=</span> <span class="s1">&#39;(.*?) (.*?) (.*?) ([0-9.]+):([0-9]*) ([0-9.]+):([0-9]*) ([.0-9]*) ([.0-9]*) ([.0-9]*) (-|[0-9]*) (-|[0-9]*) ([-0-9]*) ([-0-9]*) &quot;(.*?) [^:]+:[^:]+:([0-9]+)([^? ]*)(</span><span class="se">\\</span><span class="s1">x3f?.*?) (.*?)&quot; &quot;(.*?)&quot; (.*?) (.*?) (.*?) &quot;(.*?)&quot; *$&#39;</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;bigfile.log.gz&quot;</span><span class="p">,</span> <span class="s2">&quot;rt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">10000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">m</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">producer</span><span class="o">.</span><span class="n">produce</span><span class="p">(</span><span class="s2">&quot;alblog&quot;</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+                <span class="n">producer</span><span class="o">.</span><span class="n">poll</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">BufferError</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Buffer full, waiting for free space on the queue&quot;</span><span class="p">)</span>
+                <span class="n">producer</span><span class="o">.</span><span class="n">poll</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">producer</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Processed {} lines&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+</pre></div>
+
+
+<p>và thực nghiệm thấy đúng là như thế:</p>
+<div class="highlight"><pre><span></span><span class="n">Processed</span> <span class="mi">1500000</span> <span class="n">lines</span>
+         <span class="mi">11882360</span> <span class="n">function</span> <span class="n">calls</span> <span class="p">(</span><span class="mi">11882085</span> <span class="n">primitive</span> <span class="n">calls</span><span class="p">)</span> <span class="ow">in</span> <span class="mf">21.700</span> <span class="n">seconds</span>
+
+   <span class="n">Ordered</span> <span class="n">by</span><span class="p">:</span> <span class="n">internal</span> <span class="n">time</span>
+
+   <span class="n">ncalls</span>  <span class="n">tottime</span>  <span class="n">percall</span>  <span class="n">cumtime</span>  <span class="n">percall</span> <span class="n">filename</span><span class="p">:</span><span class="n">lineno</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
+  <span class="mi">1500000</span>    <span class="mf">9.328</span>    <span class="mf">0.000</span>    <span class="mf">9.328</span>    <span class="mf">0.000</span> <span class="p">{</span><span class="n">method</span> <span class="s1">&#39;match&#39;</span> <span class="n">of</span> <span class="s1">&#39;re.Pattern&#39;</span> <span class="n">objects</span><span class="p">}</span>
+  <span class="mi">1500000</span>    <span class="mf">4.197</span>    <span class="mf">0.000</span>    <span class="mf">4.197</span>    <span class="mf">0.000</span> <span class="p">{</span><span class="n">method</span> <span class="s1">&#39;produce&#39;</span> <span class="n">of</span> <span class="s1">&#39;cimpl.Producer&#39;</span> <span class="n">objects</span><span class="p">}</span>
+        <span class="mi">1</span>    <span class="mf">3.457</span>    <span class="mf">3.457</span>   <span class="mf">21.700</span>   <span class="mf">21.700</span> <span class="n">albv1_regex2</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">1</span><span class="p">(</span><span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span><span class="p">)</span>
+  <span class="mi">1500000</span>    <span class="mf">1.511</span>    <span class="mf">0.000</span>    <span class="mf">1.511</span>    <span class="mf">0.000</span> <span class="p">{</span><span class="n">method</span> <span class="s1">&#39;poll&#39;</span> <span class="n">of</span> <span class="s1">&#39;cimpl.Producer&#39;</span> <span class="n">objects</span><span class="p">}</span>
+    <span class="mi">65554</span>    <span class="mf">0.519</span>    <span class="mf">0.000</span>    <span class="mf">0.519</span>    <span class="mf">0.000</span> <span class="p">{</span><span class="n">built</span><span class="o">-</span><span class="ow">in</span> <span class="n">method</span> <span class="n">zlib</span><span class="o">.</span><span class="n">crc32</span><span class="p">}</span>
+  <span class="mi">1500000</span>    <span class="mf">0.410</span>    <span class="mf">0.000</span>    <span class="mf">0.410</span>    <span class="mf">0.000</span> <span class="p">{</span><span class="n">method</span> <span class="s1">&#39;group&#39;</span> <span class="n">of</span> <span class="s1">&#39;re.Match&#39;</span> <span class="n">objects</span><span class="p">}</span>
+    <span class="mi">65552</span>    <span class="mf">0.386</span>    <span class="mf">0.000</span>    <span class="mf">0.386</span>    <span class="mf">0.000</span> <span class="p">{</span><span class="n">method</span> <span class="s1">&#39;decompress&#39;</span> <span class="n">of</span> <span class="s1">&#39;zlib.Decompress&#39;</span> <span class="n">objects</span><span class="p">}</span>
+  <span class="mi">1565559</span>    <span class="mf">0.255</span>    <span class="mf">0.000</span>    <span class="mf">0.255</span>    <span class="mf">0.000</span> <span class="n">gzip</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">314</span><span class="p">(</span><span class="n">closed</span><span class="p">)</span>
+  <span class="mi">1500117</span>    <span class="mf">0.232</span>    <span class="mf">0.000</span>    <span class="mf">0.232</span>    <span class="mf">0.000</span> <span class="p">{</span><span class="n">method</span> <span class="s1">&#39;join&#39;</span> <span class="n">of</span> <span class="s1">&#39;str&#39;</span> <span class="n">objects</span><span class="p">}</span>
+    <span class="mi">65553</span>    <span class="mf">0.218</span>    <span class="mf">0.000</span>    <span class="mf">1.687</span>    <span class="mf">0.000</span> <span class="n">_compression</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">66</span><span class="p">(</span><span class="n">readinto</span><span class="p">)</span>
+    <span class="mi">65553</span>    <span class="mf">0.207</span>    <span class="mf">0.000</span>    <span class="mf">1.417</span>    <span class="mf">0.000</span> <span class="n">gzip</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">454</span><span class="p">(</span><span class="n">read</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Từ 91s -&gt; 21.7s, ta rút gọn thêm được 4x.</p>
+<p>Kết luận 3: thư viện có this có that, hãy tự đo và kiểm tra các options.</p>
+<h2>Kết quả</h2>
+<p>Sau 3 lần tối ưu, code mới dùng 100x ít RAM hơn, nhanh gấp 150 * 4 == 600 lần
+code ban đầu, chi phí giảm: 600 lần so với ban đầu. Giả sử đoạn code này hiện
+đang tốn $6000/tháng (6 * 12 = $72k/năm), thì sau khi tối ưu còn $10/tháng -&gt; $120/năm.</p>
+<p>$70.000 mỗi năm được tiết kiệm này nên dùng để thưởng nóng cho 10x dev hay 
+chỉ thưởng $7k? </p>
+<p>Thực tế (kinh tế) thì không phải thế, thưởng nóng $1-2-3k đã là nhiều lắm rồi.
+Không bàn tới chuyện quản lý doanh nghiệp/nhân sự/kinh tế ở đây, nhưng có thể
+thấy 1 điều, 1 lập trình viên có mức lương cao ngất ngưởng không phải là
+chuyện vô lý, khi họ có thể tự trả lương cho mình 1 vài năm trong vòng 1 2 ngày
+tối ưu code.</p>
+<h2>Kết luận</h2>
+<p>10x engineering không phải chuyện hư cấu, là có thật. 10x phụ thuộc vào
+hoàn cảnh, tiêu chí đánh giá, nhưng học Python tại PyMi.vn rõ ràng là khoản đầu tư 10x.
+Việc tối ưu code, sử dụng cProfile của Python là một công việc thú vị, nhưng 
+cần đặt vào đúng chỗ. Tối ưu đoạn code tiêu tốn $72k/năm để còn $120/năm 
+mang lại lợi ích kinh tế khác biệt so với tối ưu đoạn code $72/năm còn $0.12/năm. </p>
+<p>Bạn đọc đam mê có thể tiếp tục tối ưu và gửi kết quả tới tác giả bằng cách 
+tạo <a href="https://github.com/pymivn/people/pulls">1 pull request trên GitHub</a>.
+Ngoài ra, có thể viết hẳn 1 chương trình hẳn hoi giúp lấy log AWS load balancer
+về rồi gửi tới 1 đích đến tùy ý. Đây là <a href="https://www.google.com/search?q=parse+aws+application+load+balancer+logs&amp;hl=en">một vấn đề phổ biến khi dùng AWS Load Balancer
+mà chưa có giải pháp triệt để.</a></p>
+<h2>References</h2>
+<ul>
+<li><a href="https://www.familug.org/2017/08/serverless.html">serverless</a></li>
+</ul>
+<h2>Hết</h2>
+<p>Bài viết thực hiện trên</p>
+<div class="highlight"><pre><span></span>$ grep <span class="nv">VERSION</span><span class="o">=</span> /etc/os-release<span class="p">;</span> python3 --version
+<span class="nv">VERSION</span><span class="o">=</span><span class="s2">&quot;20.04.2 LTS (Focal Fossa)&quot;</span>
+Python <span class="m">3</span>.8.5
+</pre></div>
+
+
+<p>HVN at <a href="http://pymi.vn">http://pymi.vn</a> and <a href="https://www.familug.org">https://www.familug.org</a>.</p>
+<ul>
+<li><a href="https://www.familug.org/p/ung-ho.html">Ủng hộ tác giả 🍺</a></li>
+</ul>
+  </div>
+  <!-- /.entry-content -->
+</section>
+<section class="container">
+  <div class="comments">
+    <h3>Comments</h3>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'pymier';
+      var disqus_identifier = 'article/10x/';
+      var disqus_url = 'http://pp.pymi.vn/article/10x/';
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//pymier.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the comments.</noscript>
+  </div>
+</section>
+
+    <section class="container footer">
+      <footer>
+        <address>
+        Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+        which takes great advantage of <a href="http://python.org">Python</a>.
+        </address>
+        <address>
+          Học lập trình Python tại <a href="https://pymi.vn/">Pymi.vn</a>
+        </address>
+      </footer>
+    </section>
+  </main>
+
+<script type="text/javascript">
+var images = document.getElementsByTagName("img");
+var i;
+
+for(i = 0; i < images.length; i++) {
+  images[i].className += " centered";
+}
+</script>
+</body>
+
+</html>

@@ -104,12 +104,13 @@ như f-string, type annotation, asyncio...
 (vì thế nên yêu cầu Python3.6+ để chạy, mặc dù vẫn có thể format code 2.7)</p>
 <h2>Dùng black để format code Python</h2>
 <p>Ví dụ có 1 file foo.py</p>
-<div class="highlight"><pre><span></span><code><span class="nv">def</span> <span class="nv">sum_two</span><span class="ss">(</span><span class="nv">a</span>,<span class="nv">b</span><span class="ss">)</span>:
-    <span class="nv">c</span><span class="o">=</span> <span class="nv">a</span>  <span class="o">+</span> <span class="nv">b</span>
+<div class="highlight"><pre><span></span>def sum_two(a,b):
+    c= a  + b
 
 
-    <span class="k">return</span> <span class="nv">c</span>
-</code></pre></div>
+    return c
+</pre></div>
+
 
 <p>Nếu thành thạo PEP8, thấy ngay có 4 chỗ phải sửa ở đây:
 <code>a,b</code> thiếu dấu space sau <code>,</code>, <code>c</code> thiếu dấu space theo sau, sau <code>a</code> thừa 1
@@ -118,7 +119,7 @@ trống trước return. Vậy chỉ 3 dòng code, người review phải gõ ra
 về style, và người code ra 3 dòng này, khi đọc review cũng chẳng vui vẻ gì,
 kể cả người ta nói đúng.</p>
 <p>Chạy:</p>
-<div class="highlight"><pre><span></span><code>$ black foo.py
+<div class="highlight"><pre><span></span>$ black foo.py
 reformatted foo.py
 All <span class="k">done</span>! ✨ 🍰 ✨
 <span class="m">1</span> file reformatted.
@@ -128,15 +129,17 @@ def sum_two<span class="o">(</span>a, b<span class="o">)</span>:
     <span class="nv">c</span> <span class="o">=</span> a + b
 
     <span class="k">return</span> c
-</code></pre></div>
+</pre></div>
+
 
 <p>Đẹp, chuẩn, ngon! Không còn gì mong đợi thêm.
 black có nhiều option để chỉnh style cho phù hợp với tiêu chuẩn của bạn,
 hay dùng nhất là để set độ dài của 1 dòng, vốn là 79 ký tự theo chuẩn PEP8,
 thì black mặc định là 88:</p>
-<div class="highlight"><pre><span></span><code>  -l, --line-length INTEGER       How many characters per line to allow.
+<div class="highlight"><pre><span></span>  -l, --line-length INTEGER       How many characters per line to allow.
                                   <span class="o">[</span>default: <span class="m">88</span><span class="o">]</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>Bạn có thể gọi <code>black -l79 .</code> để theo PEP8.</p>
 <h2>Hành động của chúng ta</h2>
@@ -144,24 +147,27 @@ thì black mặc định là 88:</p>
 của PEP8, format code hãy để cho đen (black) không vâu lo - việc này để
 đen không vâu lo.
 Thêm dòng này vào <code>Makefile</code> của bạn:</p>
-<div class="highlight"><pre><span></span><code><span class="n">fmt</span><span class="o">:</span>
+<div class="highlight"><pre><span></span><span class="n">fmt</span><span class="o">:</span>
     <span class="n">black</span> <span class="o">-</span><span class="n">l79</span> <span class="o">.</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>hay cài đặt text editor/IDE tự động chạy <code>black</code> sau mỗi lần save code.</p>
 <p>Thêm dòng sau vào CI để bắt quả tang thằng nào không dùng black:</p>
-<div class="highlight"><pre><span></span><code>black --check .
-</code></pre></div>
+<div class="highlight"><pre><span></span>black --check .
+</pre></div>
+
 
 <p>Black sẽ thông báo các file chưa chuẩn format:</p>
-<div class="highlight"><pre><span></span><code>$ black --check .
+<div class="highlight"><pre><span></span>$ black --check .
 would reformat /home/hvn/me/people/content/mypy_simple.py
 would reformat /home/hvn/me/people/publishconf.py
 would reformat /home/hvn/me/people/pelicanconf.py
 would reformat /home/hvn/me/people/fabfile.py
 Oh no! 💥 💔 💥
 <span class="m">4</span> files would be reformatted, <span class="m">1</span> file would be left unchanged.
-</code></pre></div>
+</pre></div>
+
 
 <h2>Kết luận</h2>
 <p>Hãy dùng <code>black</code>! Và đừng quên share bài viết này, để cộng đồng code Python
