@@ -312,7 +312,7 @@ string ví dụ sau không, &lt;a href="https://regex101.com/r/hmXaTV/1"&gt;re p
 &lt;p&gt;con số này quá lớn, dù có viết đoạn code lằng nhằng với 20 câu if, cũng
 không thể tới 112690 bước.
 Tăng tốc regex không phải chuyện dễ, nhưng có 1 tip rất phổ biến: chỗ nào
-dùng &lt;code&gt;.*&lt;/code&gt; chỗ đó có vẻ chậm/sai/cần tối ưu (khác với &lt;code&gt;.*?&lt;/code&gt;).&lt;/p&gt;
+dùng &lt;code&gt;.*&lt;/code&gt; chỗ đó có vẻ chậm/sai/cần tối ưu &lt;a href="https://docs.python.org/3/howto/regex.html#greedy-versus-non-greedy"&gt;(khác với &lt;code&gt;.*?&lt;/code&gt;)&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Đoạn regex mới&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pattern&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;(.*?) (.*?) (.*?) ([0-9.]+):([0-9]*) ([0-9.]+):([0-9]*) ([.0-9]*) ([.0-9]*) ([.0-9]*) (-|[0-9]*) (-|[0-9]*) ([-0-9]*) ([-0-9]*) &amp;quot;(.*?) https?://[^:]+:([0-9]+)([^? ]*)(&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;x3f?.*?) (.*?)&amp;quot; &amp;quot;(.*?)&amp;quot; (.*?) (.*?) (.*?) &amp;quot;(.*?)&amp;quot; *$&amp;#39;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -333,6 +333,10 @@ có thể sai (ví dụ wss:// cho websocket), tùy theo yêu cầu bài toán.&
 something:something dừng lại khi gặp dấu : thứ 2.
 Pattern sẽ match &lt;code&gt;wss://abcde&lt;/code&gt; trong string &lt;code&gt;wss://abcde:443&lt;/code&gt;,
 pattern này &lt;a href="https://regex101.com/r/pjDFEk/1"&gt;match sau 518 bước&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Một cách khác nữa, là dùng &lt;a href="https://docs.python.org/3/howto/regex.html#greedy-versus-non-greedy"&gt;non-greedy&lt;/a&gt; &lt;code&gt;.+?:.+?:&lt;/code&gt;. &lt;code&gt;.+&lt;/code&gt; bình thường sẽ match
+nhiều nhất có thể, thì khi thêm &lt;code&gt;?&lt;/code&gt; sau nó, nó sẽ match ít nhất có thể.&lt;/p&gt;
+&lt;p&gt;Cho string &lt;code&gt;abcdabcd&lt;/code&gt;, &lt;code&gt;a.+d&lt;/code&gt; sẽ match &lt;code&gt;abcdabcd&lt;/code&gt; nhưng &lt;code&gt;a.+?d&lt;/code&gt; chỉ
+match &lt;code&gt;abcd&lt;/code&gt;.  Pattern này &lt;a href="https://regex101.com/r/qSEnKp/1"&gt;match sau 543 bước&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Dấu đóng mở ngoặc &lt;code&gt;()&lt;/code&gt; dùng để "capture", kết quả match thành công sẽ được lưu
 lại thành 1 group, đánh theo thứ tự xuất hiện.
 Đoạn code trong bài lấy ra group 17 và 11

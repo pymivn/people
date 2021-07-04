@@ -368,7 +368,7 @@ string ví dụ sau không, <a href="https://regex101.com/r/hmXaTV/1">re phải 
 <p>con số này quá lớn, dù có viết đoạn code lằng nhằng với 20 câu if, cũng
 không thể tới 112690 bước.
 Tăng tốc regex không phải chuyện dễ, nhưng có 1 tip rất phổ biến: chỗ nào
-dùng <code>.*</code> chỗ đó có vẻ chậm/sai/cần tối ưu (khác với <code>.*?</code>).</p>
+dùng <code>.*</code> chỗ đó có vẻ chậm/sai/cần tối ưu <a href="https://docs.python.org/3/howto/regex.html#greedy-versus-non-greedy">(khác với <code>.*?</code>)</a>.</p>
 <p>Đoạn regex mới</p>
 <div class="highlight"><pre><span></span><span class="n">pattern</span> <span class="o">=</span> <span class="s1">&#39;(.*?) (.*?) (.*?) ([0-9.]+):([0-9]*) ([0-9.]+):([0-9]*) ([.0-9]*) ([.0-9]*) ([.0-9]*) (-|[0-9]*) (-|[0-9]*) ([-0-9]*) ([-0-9]*) &quot;(.*?) https?://[^:]+:([0-9]+)([^? ]*)(</span><span class="se">\\</span><span class="s1">x3f?.*?) (.*?)&quot; &quot;(.*?)&quot; (.*?) (.*?) (.*?) &quot;(.*?)&quot; *$&#39;</span>
 </pre></div>
@@ -389,6 +389,10 @@ có thể sai (ví dụ wss:// cho websocket), tùy theo yêu cầu bài toán.<
 something:something dừng lại khi gặp dấu : thứ 2.
 Pattern sẽ match <code>wss://abcde</code> trong string <code>wss://abcde:443</code>,
 pattern này <a href="https://regex101.com/r/pjDFEk/1">match sau 518 bước</a>.</p>
+<p>Một cách khác nữa, là dùng <a href="https://docs.python.org/3/howto/regex.html#greedy-versus-non-greedy">non-greedy</a> <code>.+?:.+?:</code>. <code>.+</code> bình thường sẽ match
+nhiều nhất có thể, thì khi thêm <code>?</code> sau nó, nó sẽ match ít nhất có thể.</p>
+<p>Cho string <code>abcdabcd</code>, <code>a.+d</code> sẽ match <code>abcdabcd</code> nhưng <code>a.+?d</code> chỉ
+match <code>abcd</code>.  Pattern này <a href="https://regex101.com/r/qSEnKp/1">match sau 543 bước</a>.</p>
 <p>Dấu đóng mở ngoặc <code>()</code> dùng để "capture", kết quả match thành công sẽ được lưu
 lại thành 1 group, đánh theo thứ tự xuất hiện.
 Đoạn code trong bài lấy ra group 17 và 11
