@@ -41,7 +41,7 @@ tiết kiệm 10x chi phí chạy code Python, nhờ được học Python "tử
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;File này có kích thước khá nhỏ (&amp;lt;1MB)&lt;/p&gt;
+&lt;p&gt;File này có kích thước khá nhỏ (&amp;lt;10MB)&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ python makelog.py&lt;span class="p"&gt;;&lt;/span&gt; ls -la bigfile.log.gz
 -rw-rw-r-- &lt;span class="m"&gt;1&lt;/span&gt; hvn hvn &lt;span class="m"&gt;2960897&lt;/span&gt; Jun &lt;span class="m"&gt;30&lt;/span&gt; &lt;span class="m"&gt;22&lt;/span&gt;:42 bigfile.log.gz
 $ gunzip bigfile.log.gz&lt;span class="p"&gt;;&lt;/span&gt; wc -l bigfile.log&lt;span class="p"&gt;;&lt;/span&gt; ls -l bigfile.log
