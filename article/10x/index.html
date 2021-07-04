@@ -405,10 +405,11 @@ pattern này <a href="https://regex101.com/r/pjDFEk/1">match sau 518 bước</a>
 <p>Một cách khác nữa, là dùng <code>.+?:.+?:</code>.
  <code>+</code> và <code>*</code> bình thường sẽ match
 nhiều nhất có thể, thì khi thêm <code>?</code> sau nó, <code>+?</code> hay <code>*?</code>  sẽ match ít nhất có thể.
-Đây gọi là tính năng <a href="https://docs.python.org/3/howto/regex.html#greedy-versus-non-greedy">non-greedy</a></p>
-<p>Cho string <code>abcdabcd</code>, <code>a.+d</code> sẽ match <code>abcdabcd</code> nhưng <code>a.+?d</code> chỉ
+Đây gọi là tính năng <a href="https://docs.python.org/3/howto/regex.html#greedy-versus-non-greedy">non-greedy</a>
+Cho string <code>abcdabcd</code>, <code>a.+d</code> sẽ match <code>abcdabcd</code> nhưng <code>a.+?d</code> chỉ
 match <code>abcd</code>.  Pattern này <a href="https://regex101.com/r/qSEnKp/1">match sau 543 bước</a>.</p>
-<p>Dấu đóng mở ngoặc <code>()</code> dùng để "capture", kết quả match thành công sẽ được lưu
+<p>Dấu đóng mở ngoặc <code>()</code> dùng để capture kết quả,
+kết quả match thành công sẽ được lưu
 lại thành 1 group, đánh theo thứ tự xuất hiện.
 Đoạn code trong bài lấy ra group 17 và 11
 từ kết quả match.</p>

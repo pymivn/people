@@ -349,10 +349,11 @@ pattern này &lt;a href="https://regex101.com/r/pjDFEk/1"&gt;match sau 518 bư�
 &lt;p&gt;Một cách khác nữa, là dùng &lt;code&gt;.+?:.+?:&lt;/code&gt;.
  &lt;code&gt;+&lt;/code&gt; và &lt;code&gt;*&lt;/code&gt; bình thường sẽ match
 nhiều nhất có thể, thì khi thêm &lt;code&gt;?&lt;/code&gt; sau nó, &lt;code&gt;+?&lt;/code&gt; hay &lt;code&gt;*?&lt;/code&gt;  sẽ match ít nhất có thể.
-Đây gọi là tính năng &lt;a href="https://docs.python.org/3/howto/regex.html#greedy-versus-non-greedy"&gt;non-greedy&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Cho string &lt;code&gt;abcdabcd&lt;/code&gt;, &lt;code&gt;a.+d&lt;/code&gt; sẽ match &lt;code&gt;abcdabcd&lt;/code&gt; nhưng &lt;code&gt;a.+?d&lt;/code&gt; chỉ
+Đây gọi là tính năng &lt;a href="https://docs.python.org/3/howto/regex.html#greedy-versus-non-greedy"&gt;non-greedy&lt;/a&gt;
+Cho string &lt;code&gt;abcdabcd&lt;/code&gt;, &lt;code&gt;a.+d&lt;/code&gt; sẽ match &lt;code&gt;abcdabcd&lt;/code&gt; nhưng &lt;code&gt;a.+?d&lt;/code&gt; chỉ
 match &lt;code&gt;abcd&lt;/code&gt;.  Pattern này &lt;a href="https://regex101.com/r/qSEnKp/1"&gt;match sau 543 bước&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Dấu đóng mở ngoặc &lt;code&gt;()&lt;/code&gt; dùng để "capture", kết quả match thành công sẽ được lưu
+&lt;p&gt;Dấu đóng mở ngoặc &lt;code&gt;()&lt;/code&gt; dùng để capture kết quả,
+kết quả match thành công sẽ được lưu
 lại thành 1 group, đánh theo thứ tự xuất hiện.
 Đoạn code trong bài lấy ra group 17 và 11
 từ kết quả match.&lt;/p&gt;
