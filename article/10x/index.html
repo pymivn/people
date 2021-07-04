@@ -218,8 +218,8 @@ function, set a value between 128 MB and 10,240 MB in 1-MB increments. At
 1,769 MB, a function has the equivalent of one vCPU (one vCPU-second of
 credits per second).</p>
 </blockquote>
-<p>https://docs.aws.amazon.com/lambda/latest/dg/configuration-memory.html</p>
-<p>Với đoạn chú ý này, nếu function chỉ sử dụng 1 core (code không sử dụng thư viện
+<p><a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-memory.html">Lambda configuration memory</a></p>
+<p>Theo tài liệu này, nếu function chỉ sử dụng 1 core (code không sử dụng thư viện
 multiprocess), tốc độ CPU của nó đạt tối
 đa khi cấu hình 1769MB, dù có tăng RAM lên 2048MB thì chỉ tăng thêm 1 core nữa
 chứ không làm core ban đầu mạnh lên, hay nói cách khác: không làm code chạy nhanh
