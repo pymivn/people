@@ -80,7 +80,7 @@ cuộc đời làm software. Không có ai 30 đã về nghỉ hay lên làm man
 <p>Bài viết này không liên quan tới chuyện các 10x nói trên, mà đơn giản chỉ là
 tiết kiệm 10x chi phí chạy code Python, nhờ được học Python "tử tế".</p>
 <h2>Ví dụ</h2>
-<p>Sinh ra 1 file .log.gz ví dụ chứa 1_500_000 dòng (từ 3 dòng lặp đi lặp lại)</p>
+<p>Sinh ra 1 file .log.gz chứa 1_500_000 dòng (từ 3 dòng lặp đi lặp lại)</p>
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gzip</span>
 
 <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span>
@@ -110,8 +110,8 @@ $ ls -lh bigfile.log
 
 <p>nhưng khi giải nén, kích thước lớn hơn rất nhiều lần
 (do dữ liệu trùng lặp nhiều nên nén lại từ to thành rất nhỏ).</p>
-<p>Đây là đoạn code ban đầu, nó đọc các dòng text từ 1 file có đuôi <code>.log.gz</code> ra,
-rồi gửi đến 1 chỗ khác. Hãy xem kỹ xem bạn có
+<p>Đây là đoạn code ban đầu, nó đọc các dòng text từ 1 file có đuôi <code>.log.gz</code> ra.
+Hãy xem kỹ xem bạn có
 thể "tối ưu" được bao nhiêu bước và trở thành mấy x từ đây?</p>
 <p>Code albv1.py</p>
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gzip</span>
@@ -173,8 +173,9 @@ ngay, bởi trong hệ thống bài tập đã có 1 bài xử lý file 30 tri�
 <p>mà không dùng <code>f.readlines()</code> hay <code>f.read()</code>, vì chúng đọc toàn bộ nội dung
 file từ ổ cứng vào RAM.
 Chú ý cả sự chênh lệch, Python đọc file text 534MB vào thành 670MB RAM.</p>
-<p>"Bí kíp" đọc file theo dòng này dù chẳng có gì đặc biệt, ghi rõ trong tài liệu
-trang chủ nhưng lại trở thành chuyện lạ với hàng ngàn bài hướng dẫn trên mạng,
+<p>"Bí kíp" đọc file theo dòng này dù chẳng có gì đặc biệt, <a href="https://docs.python.org/3/tutorial/inputoutput.html#methods-of-file-objects">ghi rõ trong tài liệu
+trang chủ</a>
+nhưng lại trở thành chuyện lạ với hàng ngàn bài hướng dẫn trên mạng,
 thậm chí cả sách cũng dạy dùng readlines.
 Hãy thử <a href="https://github.com/search?q=%22readlines%22+language%3APython&amp;type=Code">search
 github</a>

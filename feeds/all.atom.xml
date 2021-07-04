@@ -24,7 +24,7 @@ cuộc đời làm software. Không có ai 30 đã về nghỉ hay lên làm man
 &lt;p&gt;Bài viết này không liên quan tới chuyện các 10x nói trên, mà đơn giản chỉ là
 tiết kiệm 10x chi phí chạy code Python, nhờ được học Python "tử tế".&lt;/p&gt;
 &lt;h2&gt;Ví dụ&lt;/h2&gt;
-&lt;p&gt;Sinh ra 1 file .log.gz ví dụ chứa 1_500_000 dòng (từ 3 dòng lặp đi lặp lại)&lt;/p&gt;
+&lt;p&gt;Sinh ra 1 file .log.gz chứa 1_500_000 dòng (từ 3 dòng lặp đi lặp lại)&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;gzip&lt;/span&gt;
 
 &lt;span class="n"&gt;lines&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
@@ -54,8 +54,8 @@ $ ls -lh bigfile.log
 
 &lt;p&gt;nhưng khi giải nén, kích thước lớn hơn rất nhiều lần
 (do dữ liệu trùng lặp nhiều nên nén lại từ to thành rất nhỏ).&lt;/p&gt;
-&lt;p&gt;Đây là đoạn code ban đầu, nó đọc các dòng text từ 1 file có đuôi &lt;code&gt;.log.gz&lt;/code&gt; ra,
-rồi gửi đến 1 chỗ khác. Hãy xem kỹ xem bạn có
+&lt;p&gt;Đây là đoạn code ban đầu, nó đọc các dòng text từ 1 file có đuôi &lt;code&gt;.log.gz&lt;/code&gt; ra.
+Hãy xem kỹ xem bạn có
 thể "tối ưu" được bao nhiêu bước và trở thành mấy x từ đây?&lt;/p&gt;
 &lt;p&gt;Code albv1.py&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;gzip&lt;/span&gt;
@@ -117,8 +117,9 @@ ngay, bởi trong hệ thống bài tập đã có 1 bài xử lý file 30 tri�
 &lt;p&gt;mà không dùng &lt;code&gt;f.readlines()&lt;/code&gt; hay &lt;code&gt;f.read()&lt;/code&gt;, vì chúng đọc toàn bộ nội dung
 file từ ổ cứng vào RAM.
 Chú ý cả sự chênh lệch, Python đọc file text 534MB vào thành 670MB RAM.&lt;/p&gt;
-&lt;p&gt;"Bí kíp" đọc file theo dòng này dù chẳng có gì đặc biệt, ghi rõ trong tài liệu
-trang chủ nhưng lại trở thành chuyện lạ với hàng ngàn bài hướng dẫn trên mạng,
+&lt;p&gt;"Bí kíp" đọc file theo dòng này dù chẳng có gì đặc biệt, &lt;a href="https://docs.python.org/3/tutorial/inputoutput.html#methods-of-file-objects"&gt;ghi rõ trong tài liệu
+trang chủ&lt;/a&gt;
+nhưng lại trở thành chuyện lạ với hàng ngàn bài hướng dẫn trên mạng,
 thậm chí cả sách cũng dạy dùng readlines.
 Hãy thử &lt;a href="https://github.com/search?q=%22readlines%22+language%3APython&amp;amp;type=Code"&gt;search
 github&lt;/a&gt;
