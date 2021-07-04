@@ -400,7 +400,7 @@ lọc ra urlpath và statuscode mà vẫn dùng regex.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;a href="https://kafka.apache.org/"&gt;https://kafka.apache.org/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Nói đơn giản, Kafka như hệ thống ống nước, mạng lưới điện, mạng lưới viễn thông,
-nó đủ phức tạp để đáp ứng mọi nhu cầu truyền tải dữ liệu từ nhiều nguồn đến
+nó đủ tính năng để đáp ứng mọi nhu cầu truyền tải dữ liệu từ nhiều nguồn đến
 nhiều đích. Kafka được dùng phổ biến trong các doanh nghiệp, các hệ thống xử
 lý data, logging...&lt;/p&gt;
 &lt;p&gt;Kafka có nhiều tính năng, bài này sử dụng nó như 1 hệ thống pub-sub, tức có 1
