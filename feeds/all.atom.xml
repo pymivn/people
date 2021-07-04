@@ -398,7 +398,7 @@ không đúng khi URL path có chứa dấu &lt;code&gt;:&lt;/code&gt;, 3 phiên
 &lt;p&gt;&lt;strong&gt;Kết luận 2:&lt;/strong&gt; 150x là có thật và không cần phải học "regex" nâng cao.&lt;/p&gt;
 &lt;h4&gt;Học và dùng regex&lt;/h4&gt;
 &lt;p&gt;Python có viết 1 tài liệu cơ bản về regex trong mục &lt;a href="https://docs.python.org/3/howto/regex.html"&gt;howto&lt;/a&gt;,
-nếu một ngày buồn chán quá không có gì làm, hay muốn tìm hiểu về ý nghĩa của cuộc sống, bạn có thể ngồi học regex.&lt;/p&gt;
+nếu một ngày buồn chán quá không có gì làm, hay muốn tìm ý nghĩa của cuộc sống, bạn có thể ngồi học regex.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="xkcd" src="https://imgs.xkcd.com/comics/regular_expressions.png"&gt;&lt;/p&gt;
 &lt;p&gt;Hoặc đi tìm một "khóa học regex"? cái này chưa có, cơ hội khởi nghiệp làm giàu còn rất rộng mở
 cho các chuyên gia công nghệ bán "khoá học làm chủ regex để học sâu với trí tuệ nhân tạo 4.0".&lt;/p&gt;
