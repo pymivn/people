@@ -196,7 +196,7 @@ chỉ dùng &lt; 10MB (với giả thiết kích thước mỗi dòng không qu�
 giúp chuyện tính tiền dễ như học
 toán cấp 1. Xem <a href="https://aws.amazon.com/lambda/pricing/">AWS Lambda pricing</a></p>
 <p><strong>Tiền</strong> cũng là thước đo lý tưởng khi các công ty ngày nay đua theo
-"performance review", 360 review, "data driven"... Một dòng review ghi:
+"performance review", "360 review", "data driven"... Một dòng review ghi:
 "cắt giảm chi phí 70.000 đô la Biden/năm nhờ tối ưu code" sẽ giúp manager dễ
 hiểu, dễ đánh giá hơn hẳn viết "tăng tốc chương trình 100 lần nhờ tối ưu regex
 sử dụng non greedy-matching" hay "cải thiện tính đọc được và tính ổn định của
@@ -204,8 +204,8 @@ code".</p>
 <p>Theo thử nghiệm trên máy, hai phiên bản v1 và v2 chạy về tốc độ là như nhau
 (hoặc chênh 1 2 3 giây trên tổng 60s không đáng kể),
 thì phần còn lại của biểu thức phụ thuộc vào lượng RAM sử dụng.
-Nói đơn giản thì RAM cấu hình cho Lambda function bao nhiêu, thì giá gấp bấy nhiêu.
-Code đăng ký dùng 256 MB RAM sẽ đắt gấp đôi code đăng ký 128MB.
+Tăng cấu hình RAM cho Lambda function bao nhiêu lần, thì giá gấp bấy nhiêu.
+Code đăng ký dùng 256 MB RAM sẽ có giá đắt gấp đôi code đăng ký 128MB.
 Với ví dụ trong bài, mỗi file log kích thước cỡ 300-600 MB, lập trình viên sẽ thường
 để mức an toàn là 1024MB (1GB) tránh tình trạng có file 800MB xuất hiện mà thiếu RAM.</p>
 <p>Code v2 luôn dùng 10MB RAM (=&gt; 100x), nhưng mức tối thiểu AWS Lambda cho phép là
