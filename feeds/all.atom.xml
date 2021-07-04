@@ -310,7 +310,7 @@ string ví dụ sau không, &lt;a href="https://regex101.com/r/hmXaTV/1"&gt;re p
 &lt;p&gt;con số này quá lớn, dù có viết đoạn code lằng nhằng với 20 câu if, cũng
 không thể tới 112690 bước.
 Tăng tốc regex không phải chuyện dễ, nhưng có 1 tip rất phổ biến: chỗ nào
-dùng &lt;code&gt;.*&lt;/code&gt; chỗ đó có vẻ chậm/sai/cần tối ưu.&lt;/p&gt;
+dùng &lt;code&gt;.*&lt;/code&gt; chỗ đó có vẻ chậm/sai/cần tối ưu (khác với &lt;code&gt;.*?&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;Đoạn regex mới&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pattern&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;(.*?) (.*?) (.*?) ([0-9.]+):([0-9]*) ([0-9.]+):([0-9]*) ([.0-9]*) ([.0-9]*) ([.0-9]*) (-|[0-9]*) (-|[0-9]*) ([-0-9]*) ([-0-9]*) &amp;quot;(.*?) https?://[^:]+:([0-9]+)([^? ]*)(&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;x3f?.*?) (.*?)&amp;quot; &amp;quot;(.*?)&amp;quot; (.*?) (.*?) (.*?) &amp;quot;(.*?)&amp;quot; *$&amp;#39;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -329,7 +329,7 @@ gặp dấu : thì dừng lại. Đoạn này &lt;a href="https://regex101.com/r
 có thể sai (ví dụ wss:// cho websocket), tùy theo yêu cầu bài toán.&lt;/p&gt;
 &lt;p&gt;Một cách khác, là dùng pattern &lt;code&gt;[^:]+:[^:]+:&lt;/code&gt; match mọi thứ có dạng 
 something:something dừng lại khi gặp dấu : thứ 2.
-VD patter sẽ match &lt;code&gt;wss://abcde&lt;/code&gt; trong string &lt;code&gt;wss://abcde:443&lt;/code&gt;, 
+Pattern sẽ match &lt;code&gt;wss://abcde&lt;/code&gt; trong string &lt;code&gt;wss://abcde:443&lt;/code&gt;,
 pattern này &lt;a href="https://regex101.com/r/pjDFEk/1"&gt;match sau 518 bước&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Dấu đóng mở ngoặc &lt;code&gt;()&lt;/code&gt; dùng để "capture", kết quả match thành công sẽ được lưu
 lại thành 1 group, đánh theo thứ tự xuất hiện. 
@@ -373,7 +373,7 @@ lượt với mỗi dòng log, qua cả file đều giống nhau là có vẻ �
 &lt;p&gt;PS: khi tối ưu đoạn code này, vô tình phát hiện ra đoạn code ban đầu xử lý 
 không đúng khi URL path có chứa dấu &lt;code&gt;:&lt;/code&gt;, 2 phiên bản mới không gặp phải vấn
 đề này.&lt;/p&gt;
-&lt;p&gt;Kết luận 2: 150x là có thật và không cần phải học "regex" nâng cao.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Kết luận 2:&lt;/strong&gt; 150x là có thật và không cần phải học "regex" nâng cao.&lt;/p&gt;
 &lt;h4&gt;Học và dùng regex&lt;/h4&gt;
 &lt;p&gt;Python có viết 1 tài liệu cơ bản về regex trong mục &lt;a href="https://docs.python.org/3/howto/regex.html"&gt;howto&lt;/a&gt;, 
 nếu một ngày buồn chán quá không có gì làm, hay muốn tìm hiểu về ý nghĩa của cuộc sống, bạn có thể ngồi học regex.&lt;/p&gt;
@@ -391,7 +391,7 @@ dùng regex.&lt;/p&gt;
 &lt;p&gt;Chú ý trong phần tối ưu này, nhằm mục tiêu giữ lại code gần giống với code
 ban đầu nhất, không thay đổi gì quá nhiều, tác giả đã không viết lại đoạn code 
 lọc ra urlpath và statuscode mà vẫn giữ nguyên regex như code ban đầu.&lt;/p&gt;
-&lt;h2&gt;Tăng tốc gửi message kafka&lt;/h2&gt;
+&lt;h2&gt;Tăng tốc gửi message đến kafka&lt;/h2&gt;
 &lt;h3&gt;Kafka là gì&lt;/h3&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications. &lt;/p&gt;
@@ -550,7 +550,7 @@ tốt hơn nhiều&lt;/p&gt;
 
 
 &lt;p&gt;Từ 91s -&amp;gt; 21.7s, ta rút gọn thêm được 4x.&lt;/p&gt;
-&lt;p&gt;Kết luận 3: thư viện có this có that, hãy tự đo và kiểm tra các options.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Kết luận 3:&lt;/strong&gt; thư viện có this có that, hãy tự đo và kiểm tra các options.&lt;/p&gt;
 &lt;h2&gt;Kết quả&lt;/h2&gt;
 &lt;p&gt;Sau 3 lần tối ưu, code mới dùng 100x ít RAM hơn, nhanh gấp 150 * 4 == 600 lần
 code ban đầu, chi phí giảm: 600 lần so với ban đầu. Giả sử đoạn code này hiện
