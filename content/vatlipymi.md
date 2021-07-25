@@ -234,8 +234,8 @@ LED làm phát sáng LED, rồi tới GPIO14.
 Hiệu điện thế (hay điện áp) - ký hiệu ở Việt Nam là U, ký hiệu bên tây là V.
 Đơn vị: **volt** - ký hiệu **V**.
 
-Hiệu là kết quả của phép trừ, ở đây chỉ độ chênh lệch về điện thế,
-hay "áp lực".
+Hiệu là kết quả của phép trừ, ở đây chỉ độ chênh lệch về điện thế (electric potential).
+Có thể tưởng tượng hiệu điện thế giống như 1 loại áp lực.
 
 ### Current - cường độ dòng điện
 Cường độ dòng điện - ký hiệu là I.
@@ -269,7 +269,7 @@ vận tốc = quãng đường / thời gian
 ```
 
 Ba khái niệm này có thể hình dung như một thác nước chảy từ trên cao xuống (U),
-và vào đá giữa dòng (R) mà giảm tốc độ (I).
+va vào đá giữa dòng (R) mà giảm tốc độ (I).
 
 Trong điện dùng hàng ngày, các thiết bị điện hầu hết có điện trở R cố định,
 nên khi U lớn thì I cũng sẽ lớn theo (tỷ lệ thuận).
@@ -290,18 +290,25 @@ Cụ thể:
 ```
 
 ### Không dùng điện trở có sao không?
+Cháy LED.
+
 Thứ phá hỏng thiết bị điện khi cắm nhầm thiết bị 110V vào điện 220V là do hiệu
 điện thế (như 1 loại áp lực) của dòng cao hơn của thiết bị có thể chịu được.
 Cường độ dòng điện không phải là nguyên nhân.
 
 ### Điện trong nhà mắc nối tiếp hay song song
+Song song.
+
 Khi mắc song song, V không đổi tại mọi điểm.
 V là thứ quan trọng nhất khi nói về dòng điện, vậy nên các thiết bị trong nhà
 nối song song để có V như nhau - như được cấp (220V).
 Thiết bị này không bị tụt áp V khi dùng thiết bị khác.
 
 ### Đấu ngược chân LED có sao không?
-LED không chịu được voltage ngược, nên cũng sẽ cháy.
+LED không chịu được voltage ngược lớn, nên cũng có thể sẽ cháy.
+
+PS: "cháy" thường là hiện tượng LED nóng và hỏng, có thể có ít khói, chứ hiếm mà
+có cả lửa.
 
 ## Kết luận
 
