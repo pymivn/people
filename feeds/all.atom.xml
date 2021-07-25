@@ -37,8 +37,8 @@ còn môn Lý chắc là tự bật cái công tắc bóng đèn nhà mình.&lt;
 &lt;ul&gt;
 &lt;li&gt;Cắm 1 dây vào pin ghi chữ G của ESP8266, nối đầu dây còn lại vào 1 đầu của điện trở&lt;/li&gt;
 &lt;li&gt;chân còn lại của điện trở nối vào chân ngắn của đèn LED&lt;/li&gt;
-&lt;li&gt;chân dài của đèn LED nối vào Pin 14 của ESP8266. Trên Wemos D1 mini là D5.&lt;/li&gt;
-&lt;li&gt;cắm điện cho ESP8266&lt;/li&gt;
+&lt;li&gt;chân dài của đèn LED nối vào GPIO Pin 14 của ESP8266. Trên Wemos D1 mini là D5.&lt;/li&gt;
+&lt;li&gt;cắm điện cổng USB cho ESP8266.&lt;/li&gt;
 &lt;li&gt;bật terminal, kết nối vào ESP8266 qua câu lệnh picocom:&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo picocom /dev/ttyUSB0 --baud 115200
