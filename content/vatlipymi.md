@@ -151,7 +151,7 @@ Pinout là tài liệu liệt kê nối pin trên mạch ứng với GPIO pin n�
 
 ## Resistor - điện trở
 Resistor /rɪˈzɪstə/ điện trở, là thứ cản trở dòng điện. Trong bài này dùng để giảm
-cường độ dòng điện/hiệu điện thế trước khi gặp đèn LED - tránh cháy nổ. Trên
+hiệu điện thế trước khi gặp đèn LED - tránh cháy nổ. Trên
 resistor thường có 4 vạch màu (color band) trở lên với 10 màu để ký hiệu nó có
 điện trở bao nhiêu Ω (đơn vị Ohm. Việt sub: ôm).
 
