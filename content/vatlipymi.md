@@ -202,7 +202,7 @@ dùng điện làm nóng dây tóc dẫn tới phát sáng.
 Tubelight - nói đến hình dạng cái ống của nó. Nếu ngày nay
 dịch như ngày xưa, ta sẽ lên `Diu Tuýp` để xem clip. Loại đèn này sử dụng bột
 phốt pho để phát sáng khi có các ánh sáng cực tím va vào. Ánh sáng cực tím
-được tạo ra bằng cách phóng điện vào khí làm thủy ngân bay hơi.
+được tạo ra bằng cách phóng điện vào khí trơ (như Argon/Neon) làm thủy ngân bay hơi.
 Đèn huỳnh quang có chứa thủy ngân, rất độc hại khi thải ra môi trường.
 - Bóng đèn compact: compact tiếng Anh nghĩa là thu gọn/chặt lại. Cái tên được
 giữ 1 phần gốc tiếng Anh, tên đầy đủ là compact fluorescent lamp (CFL). Về
@@ -322,7 +322,7 @@ Vì là môn thực hành, nên bạn phải tận tay cắm mạch, thấy bón
 LED khói mù mịt nổ văng tung tóe mới cảm nhận được cảm giác thỏa mãn này.
 
 Khó có thể có cảm giác gì khi đọc "lý thuyết đánh đàn" hay "các bước nấu bún
-đậu mắm tôm".
+giả cầy".
 
 ## Học thêm
 Nếu có đam mê về phần cơ học, con lắc, điện xoay chiều, vũ trụ, lượng tử, ...
@@ -337,7 +337,6 @@ cô [VatliMinhThu](https://www.facebook.com/VatliMinhThu/) nhé!
 - [Mạch nối tiếp và song song](https://vi.wikipedia.org/wiki/M%E1%BA%A1ch_n%E1%BB%91i_ti%E1%BA%BFp_v%C3%A0_song_song)
 
 ## Hết
-
 HVN at [http://pymi.vn](http://pymi.vn) and [https://www.familug.org](https://www.familug.org).
 
 - [Ủng hộ tác giả 🍺](https://www.familug.org/p/ung-ho.html)
