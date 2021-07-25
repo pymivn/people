@@ -114,9 +114,10 @@ Chú ý cách đánh số khác nhau giữa pin vật lý (D5) so với GPIO pin
 chúng không có quy luật, để biết chính xác cần tra tài liệu cho từng mạch.&lt;/p&gt;
 &lt;p&gt;Khi lập trình điều khiển các GPIO pin, có thể đổi chúng ở 2 trạng thái:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;high (on) - điện 3.3V&lt;/li&gt;
-&lt;li&gt;low (off) - điện 0V&lt;/li&gt;
+&lt;li&gt;high (on - 1)&lt;/li&gt;
+&lt;li&gt;low (off - 0)&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;Trên Wemos D1 mini, các digital pin đều có điện thế 3.3V khi high, 0V khi low.&lt;/p&gt;
 &lt;p&gt;Pinout là tài liệu liệt kê nối pin trên mạch ứng với GPIO pin nào.&lt;/p&gt;
 &lt;h2&gt;Resistor - điện trở&lt;/h2&gt;
 &lt;p&gt;Resistor /rɪˈzɪstə/ điện trở, là thứ cản trở dòng điện. Trong bài này dùng để giảm
