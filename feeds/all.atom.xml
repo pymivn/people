@@ -193,8 +193,8 @@ LED làm phát sáng LED, rồi tới GPIO14.&lt;/p&gt;
 &lt;h3&gt;Voltage - hiệu điện thế&lt;/h3&gt;
 &lt;p&gt;Hiệu điện thế (hay điện áp) - ký hiệu ở Việt Nam là U, ký hiệu bên tây là V.
 Đơn vị: &lt;strong&gt;volt&lt;/strong&gt; - ký hiệu &lt;strong&gt;V&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Hiệu là kết quả của phép trừ, ở đây chỉ độ chênh lệch về điện thế,
-hay "áp lực".&lt;/p&gt;
+&lt;p&gt;Hiệu là kết quả của phép trừ, ở đây chỉ độ chênh lệch về điện thế (electric potential).
+Có thể tưởng tượng hiệu điện thế giống như 1 loại áp lực.&lt;/p&gt;
 &lt;h3&gt;Current - cường độ dòng điện&lt;/h3&gt;
 &lt;p&gt;Cường độ dòng điện - ký hiệu là I.
 Đơn vị: &lt;strong&gt;ampere&lt;/strong&gt; - ký hiệu &lt;strong&gt;A&lt;/strong&gt;.&lt;/p&gt;
@@ -223,7 +223,7 @@ là từ đây ra.&lt;/p&gt;
 
 
 &lt;p&gt;Ba khái niệm này có thể hình dung như một thác nước chảy từ trên cao xuống (U),
-và vào đá giữa dòng (R) mà giảm tốc độ (I).&lt;/p&gt;
+va vào đá giữa dòng (R) mà giảm tốc độ (I).&lt;/p&gt;
 &lt;p&gt;Trong điện dùng hàng ngày, các thiết bị điện hầu hết có điện trở R cố định,
 nên khi U lớn thì I cũng sẽ lớn theo (tỷ lệ thuận).&lt;/p&gt;
 &lt;h3&gt;Công thức&lt;/h3&gt;
@@ -240,16 +240,20 @@ Cụ thể:&lt;/p&gt;
 
 
 &lt;h3&gt;Không dùng điện trở có sao không?&lt;/h3&gt;
+&lt;p&gt;Cháy LED.&lt;/p&gt;
 &lt;p&gt;Thứ phá hỏng thiết bị điện khi cắm nhầm thiết bị 110V vào điện 220V là do hiệu
 điện thế (như 1 loại áp lực) của dòng cao hơn của thiết bị có thể chịu được.
 Cường độ dòng điện không phải là nguyên nhân.&lt;/p&gt;
 &lt;h3&gt;Điện trong nhà mắc nối tiếp hay song song&lt;/h3&gt;
+&lt;p&gt;Song song.&lt;/p&gt;
 &lt;p&gt;Khi mắc song song, V không đổi tại mọi điểm.
 V là thứ quan trọng nhất khi nói về dòng điện, vậy nên các thiết bị trong nhà
 nối song song để có V như nhau - như được cấp (220V).
 Thiết bị này không bị tụt áp V khi dùng thiết bị khác.&lt;/p&gt;
 &lt;h3&gt;Đấu ngược chân LED có sao không?&lt;/h3&gt;
-&lt;p&gt;LED không chịu được voltage ngược, nên cũng sẽ cháy.&lt;/p&gt;
+&lt;p&gt;LED không chịu được voltage ngược lớn, nên cũng có thể sẽ cháy.&lt;/p&gt;
+&lt;p&gt;PS: "cháy" thường là hiện tượng LED nóng và hỏng, có thể có ít khói, chứ hiếm mà
+có cả lửa.&lt;/p&gt;
 &lt;h2&gt;Kết luận&lt;/h2&gt;
 &lt;p&gt;Việc học tập, ngoài mục tiêu thu nhận "kiến thức", thì phải vui, không vui học
 làm sao vào?
