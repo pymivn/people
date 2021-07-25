@@ -141,10 +141,13 @@ chúng không có quy luật, để biết chính xác cần tra tài liệu cho
 
 Khi lập trình điều khiển các GPIO pin, có thể đổi chúng ở 2 trạng thái:
 
-- high (on) - điện 3.3V
-- low (off) - điện 0V
+- high (on - 1)
+- low (off - 0)
+
+Trên Wemos D1 mini, các digital pin đều có điện thế 3.3V khi high, 0V khi low.
 
 Pinout là tài liệu liệt kê nối pin trên mạch ứng với GPIO pin nào.
+
 
 ## Resistor - điện trở
 Resistor /rɪˈzɪstə/ điện trở, là thứ cản trở dòng điện. Trong bài này dùng để giảm
