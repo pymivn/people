@@ -1,4 +1,4 @@
-Title: Học Vật lý với Python
+Title: Học Vật Lý với Python
 Date: 2021-07-24
 Category: Trang chủ
 Tags: python, vật lý, điện, esp8266, IoT, voltage, GPIO
