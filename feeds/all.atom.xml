@@ -121,7 +121,7 @@ chúng không có quy luật, để biết chính xác cần tra tài liệu cho
 &lt;p&gt;Pinout là tài liệu liệt kê nối pin trên mạch ứng với GPIO pin nào.&lt;/p&gt;
 &lt;h2&gt;Resistor - điện trở&lt;/h2&gt;
 &lt;p&gt;Resistor /rɪˈzɪstə/ điện trở, là thứ cản trở dòng điện. Trong bài này dùng để giảm
-cường độ dòng điện/hiệu điện thế trước khi gặp đèn LED - tránh cháy nổ. Trên
+hiệu điện thế trước khi gặp đèn LED - tránh cháy nổ. Trên
 resistor thường có 4 vạch màu (color band) trở lên với 10 màu để ký hiệu nó có
 điện trở bao nhiêu Ω (đơn vị Ohm. Việt sub: ôm).&lt;/p&gt;
 &lt;h3&gt;Cách đọc vạch màu trên điện trở&lt;/h3&gt;
