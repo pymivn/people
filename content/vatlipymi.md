@@ -53,8 +53,8 @@ Hình vẽ sử dụng [circuit-diagram](https://www.circuit-diagram.org/editor/
 ## Nối mạch
 - Cắm 1 dây vào pin ghi chữ G của ESP8266, nối đầu dây còn lại vào 1 đầu của điện trở
 - chân còn lại của điện trở nối vào chân ngắn của đèn LED
-- chân dài của đèn LED nối vào Pin 14 của ESP8266. Trên Wemos D1 mini là D5.
-- cắm điện cho ESP8266
+- chân dài của đèn LED nối vào GPIO Pin 14 của ESP8266. Trên Wemos D1 mini là D5.
+- cắm điện cổng USB cho ESP8266.
 - bật terminal, kết nối vào ESP8266 qua câu lệnh picocom:
 
 ```
