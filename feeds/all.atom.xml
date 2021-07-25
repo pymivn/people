@@ -1,5 +1,290 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2021-06-30T00:00:00+07:00</updated><entry><title>10x engineer - cắt giảm chi phí 10 lần</title><link href="http://pp.pymi.vn/article/10x/" rel="alternate"></link><published>2021-06-30T00:00:00+07:00</published><updated>2021-06-30T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2021-06-30:/article/10x/</id><summary type="html">&lt;p&gt;với regex, lambda, kafka - nhờ học hành Python tử tế&lt;/p&gt;</summary><content type="html">&lt;p&gt;10x engineer là một thần thoại (myth) lâu đời trong giới IT, mơ tưởng về
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2021-07-24T00:00:00+07:00</updated><entry><title>Học Vật lý với Python</title><link href="http://pp.pymi.vn/article/vatlipymi/" rel="alternate"></link><published>2021-07-24T00:00:00+07:00</published><updated>2021-07-24T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2021-07-24:/article/vatlipymi/</id><summary type="html">&lt;p&gt;Ôn tập môn điện dùng MicroPython trên ESP8266&lt;/p&gt;</summary><content type="html">&lt;p&gt;Trong không khí toàn dân ở nhà ôn tập môn Vật Lý vào năm Covid-19 thứ 2,
+một "thầy giáo Python" cũng không thể giấu nổi tình yêu với môn học của tự nhiên
+này và quyết chuyển sang mở lớp ôn tập môn điện.&lt;/p&gt;
+&lt;p&gt;Sau 30 phút chăm chỉ và tập trung, các học viên sẽ có thể thắp sáng 1 cái
+đèn (LED) sử dụng MicroPython trên vi xử lý ESP8266.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="hi" src="http://pp.pymi.vn/images/bulb.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;Trong 3 môn học "tự nhiên" của trường phổ thông, Toán được cho là "công thức",
+"trừu tượng", "khô khan",
+thì Lý, Hóa lẽ ra phải gần hơn với thực hành.
+Ở các trường học "dưới xuôi" có điều kiện, được thực hành trong phòng thí nghiệm,
+chơi với mô hình,
+thì với học sinh miền núi năm 200X chúng tôi, thứ thực hành duy nhất trong
+môn Hóa là giấy quỳ tím thả vào axit chuyển sang đỏ,
+còn môn Lý chắc là tự bật cái công tắc bóng đèn nhà mình.&lt;/p&gt;
+&lt;p&gt;Cảnh báo: tác giả không có bằng cấp sư phạm môn Vật Lý, cũng không phải kỹ sư
+điện.&lt;/p&gt;
+&lt;p&gt;Vì là giờ học thực hành, nên học viên cố gắng kiếm thiết bị để làm theo nhé.&lt;/p&gt;
+&lt;h2&gt;Chuẩn bị dụng cụ&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Một thiết bị vi xử lý ESP 8266 (mức giá &amp;lt; 60.000 VND). Ví dụ &lt;a href="https://shopee.vn/M%E1%BA%A1ch-Thu-Ph%C3%A1t-WiFi-ESP8266-Wemos-D1-mini-(NodeMCU-Mini-D1)-c%C3%B3-k%C3%A8m-b%E1%BB%99-Jump-c%E1%BA%AFm-i.106323333.1791339648?position=11"&gt;Wemos D1 Mini&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Máy tính có Python (tốt nhất là dùng hệ điều hành Ubuntu hay MacOS)&lt;/li&gt;
+&lt;li&gt;1 Điện trở 220 Ohm (1000 VND?)&lt;/li&gt;
+&lt;li&gt;2 dây nối (1000 VND?)&lt;/li&gt;
+&lt;li&gt;1 đèn LED (1000 VND?)&lt;/li&gt;
+&lt;li&gt;(Khuyến khích - cho đơn giản) hay mua một bộ kit cơ bản gồm cả 3 thứ trên với
+  &lt;a href="https://www.cytrontech.vn/p-raspberry-pi-pico-basic-kit-without-pico"&gt;giá 95.000 VND&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Cài đặt MicroPython lên ESP8266&lt;/h2&gt;
+&lt;p&gt;Làm theo hướng dẫn trong bài &lt;a href="http://pp.pymi.vn/article/micropython/"&gt;Dùng MicroPython với wifi board ESP-8266&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Mạch điện&lt;/h2&gt;
+&lt;p&gt;Hình vẽ sử dụng &lt;a href="https://www.circuit-diagram.org/editor/"&gt;circuit-diagram&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://pp.pymi.vn/images/circuit.svg"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://pp.pymi.vn/images/circuit_h.jpg" width=500&gt;
+&lt;img src="http://pp.pymi.vn/images/circuit_topdown.jpg" width=300&gt;&lt;/p&gt;
+&lt;h2&gt;Nối mạch&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Cắm 1 dây vào pin ghi chữ G của ESP8266, nối đầu dây còn lại vào 1 đầu của điện trở&lt;/li&gt;
+&lt;li&gt;chân còn lại của điện trở nối vào chân ngắn của đèn LED&lt;/li&gt;
+&lt;li&gt;chân dài của đèn LED nối vào Pin 14 của ESP8266. Trên Wemos D1 mini là D5.&lt;/li&gt;
+&lt;li&gt;cắm điện cho ESP8266&lt;/li&gt;
+&lt;li&gt;bật terminal, kết nối vào ESP8266 qua câu lệnh picocom:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo picocom /dev/ttyUSB0 --baud 115200
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Gõ code Python&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;machine&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;machine&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;freq&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="mi"&gt;80000000&lt;/span&gt;
+
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;machine&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Pin&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;led&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Pin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;14&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Pin&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;OUT&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;led&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;led&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;off&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Sẽ thấy đèn LED sáng sau khi &lt;code&gt;led.on()&lt;/code&gt; rồi tắt sau &lt;code&gt;led.off()&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://pp.pymi.vn/images/circuit_on.webp" width=300&gt;&lt;/p&gt;
+&lt;h2&gt;Pin là gì&lt;/h2&gt;
+&lt;p&gt;&lt;img src="https://www.wemos.cc/en/latest/_images/d1_mini_v3.1.0_1_16x16.jpg" width=300&gt;&lt;/p&gt;
+&lt;p&gt;16 ô tròn nhỏ trong hình là 16 pin của mạch Wemos D1 Mini.&lt;/p&gt;
+&lt;p&gt;Pin là điểm tiếp xúc kim loại, là nơi để vi xử lý tương tác với bên ngoài (như đọc/ghi "dữ liệu",...)
+bật tắt bóng đèn, đọc thông tin từ các sensor (cảm biến) như đo nhiệt độ, ...&lt;/p&gt;
+&lt;p&gt;Mỗi Pin có chức năng riêng, để biết mỗi mạch có pin nào làm gì, cần tìm tài liệu
+của mạch đó (thường ở trang chủ) hoặc trong tài liệu kèm khi bán.
+Theo &lt;a href="https://www.wemos.cc/en/latest/d1/d1_mini.html"&gt;wemos.cc&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;+------+------------------------------+--------------+
+| Pin  | Function                     | ESP-8266 Pin |
++======+==============================+==============+
+| TX   | TXD                          | TXD          |
++------+------------------------------+--------------+
+| RX   | RXD                          | RXD          |
++------+------------------------------+--------------+
+| A0   | Analog input, max 3.2V       | A0           |
++------+------------------------------+--------------+
+| D0   | IO                           | GPIO16       |
++------+------------------------------+--------------+
+| D1   | IO, SCL                      | GPIO5        |
++------+------------------------------+--------------+
+| D2   | IO, SDA                      | GPIO4        |
++------+------------------------------+--------------+
+| D3   | IO, 10k Pull-up              | GPIO0        |
++------+------------------------------+--------------+
+| D4   | IO, 10k Pull-up, BUILTIN_LED | GPIO2        |
++------+------------------------------+--------------+
+| D5   | IO, SCK                      | GPIO14       |
++------+------------------------------+--------------+
+| D6   | IO, MISO                     | GPIO12       |
++------+------------------------------+--------------+
+| D7   | IO, MOSI                     | GPIO13       |
++------+------------------------------+--------------+
+| D8   | IO, 10k Pull-down, SS        | GPIO15       |
++------+------------------------------+--------------+
+| G    | Ground                       | GND          |
++------+------------------------------+--------------+
+| 5V   | 5V                           | \-           |
++------+------------------------------+--------------+
+| 3V3  | 3.3V                         | 3.3V         |
++------+------------------------------+--------------+
+| RST  | Reset                        | RST          |
++------+------------------------------+--------------+
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;GPIO là gì&lt;/h2&gt;
+&lt;p&gt;General-Purpose Input/Output (GPIO) là khái niệm về mặt logic chứ không phải vật
+lý như pin nói trên.&lt;/p&gt;
+&lt;p&gt;Trong 16 pin của Wemos D1 mini, chỉ có 11 pin được gọi là digital pin D0-D8, G,
+RX, TX tương ứng với các GPIO pin.
+Chú ý cách đánh số khác nhau giữa pin vật lý (D5) so với GPIO pin (GPIO14),
+chúng không có quy luật, để biết chính xác cần tra tài liệu cho từng mạch.&lt;/p&gt;
+&lt;p&gt;Khi lập trình điều khiển các GPIO pin, có thể đổi chúng ở 2 trạng thái:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;high (on) - điện 3.3V&lt;/li&gt;
+&lt;li&gt;low (off) - điện 0V&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Pinout là tài liệu liệt kê nối pin trên mạch ứng với GPIO pin nào.&lt;/p&gt;
+&lt;h2&gt;Resistor - điện trở&lt;/h2&gt;
+&lt;p&gt;Resistor /rɪˈzɪstə/ điện trở, là thứ cản trở dòng điện. Trong bài này dùng để giảm
+cường độ dòng điện/hiệu điện thế trước khi gặp đèn LED - tránh cháy nổ. Trên
+resistor thường có 4 vạch màu (color band) trở lên với 10 màu để ký hiệu nó có
+điện trở bao nhiêu Ω (đơn vị Ohm. Việt sub: ôm).&lt;/p&gt;
+&lt;h3&gt;Cách đọc vạch màu trên điện trở&lt;/h3&gt;
+&lt;p&gt;Hai vạch đầu đổi trực tiếp ra số, vạch tiếp theo là hệ số nhân, và vạch cuối cùng là
+khả năng chịu đựng sai lệch tính theo phần trăm.&lt;/p&gt;
+&lt;p&gt;Trong bài, sử dụng "đỏ đỏ nâu vàng":&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;đỏ(2) đỏ(2) nâu(x10) = 22 * 10 = 220Ω&lt;/li&gt;
+&lt;li&gt;vàng = +-5%&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Cách nhớ các màu theo tiếng Anh:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Bad Beer Rots Out Your Guts But Vodka Goes Well – Get Some Now.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Bad - Black: 0&lt;/li&gt;
+&lt;li&gt;Beer - Brown: 1&lt;/li&gt;
+&lt;li&gt;Rots - Red: 2&lt;/li&gt;
+&lt;li&gt;Out - Orange: 3&lt;/li&gt;
+&lt;li&gt;Your - Yellow: 4&lt;/li&gt;
+&lt;li&gt;Guts - Green: 5&lt;/li&gt;
+&lt;li&gt;But - Blue: 6&lt;/li&gt;
+&lt;li&gt;Vodka - Violet: 7&lt;/li&gt;
+&lt;li&gt;Goes - Grey: 8&lt;/li&gt;
+&lt;li&gt;Well - White: 9&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src="http://pp.pymi.vn/images/resistors.jpg" width=600&gt;&lt;/p&gt;
+&lt;h2&gt;LED là gì&lt;/h2&gt;
+&lt;p&gt;Light-Emitting Diode (LED) - là một Diode (Việt sub: "đi ốt") có khả năng phát
+ra ánh sáng. Trong tiếng Việt thường hay gọi là lét, nhưng trong tiếng Anh,
+người ta vẫn đọc từng chữ cái L-E-D (Việt sub: eo-l i đi).&lt;/p&gt;
+&lt;p&gt;LED phát ra ánh sáng nhờ việc electron
+trong semiconductor (chất bán dẫn) kết hợp với các hố electron (nguyên tử mà bị
+thiếu electron) sinh ra năng lượng ở dạng photon ánh sáng. Được phát minh từ
+&lt;a href="https://en.wikipedia.org/wiki/Light-emitting_diode"&gt;1907 nhưng mãi tới 1962&lt;/a&gt;
+mới được đưa vào sản xuất. Ngày nay LED là công nghệ phát sáng rất quan
+trọng được dùng phổ biến để làm bóng đèn,&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.nobelprize.org/prizes/physics/2014/summary/"&gt;Năm 2014, giải Nobel Vật Lý được trao cho nhóm phát minh ra LED ánh sáng xanh lam (blue)&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Các loại bóng đèn&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Bóng đèn dây tóc - loại bóng đèn đầu tiên trên thế giới, được phát minh đồng thời
+&lt;a href="https://en.wikipedia.org/wiki/Edison_light_bulb"&gt;bởi Joseph Swan và Edison năm 1879&lt;/a&gt;,
+dùng điện làm nóng dây tóc dẫn tới phát sáng.&lt;/li&gt;
+&lt;li&gt;Đèn tuýp / đèn huỳnh quang (Fluorescent Lamp): đèn tuýp tên tiếng Anh là
+Tubelight - nói đến hình dạng cái ống của nó. Nếu ngày nay
+dịch như ngày xưa, ta sẽ lên &lt;code&gt;Diu Tuýp&lt;/code&gt; để xem clip. Loại đèn này sử dụng bột
+phốt pho để phát sáng khi có các ánh sáng cực tím va vào. Ánh sáng cực tím
+được tạo ra bằng cách phóng điện vào khí trơ (như Argon/Neon) làm thủy ngân bay hơi.
+Đèn huỳnh quang có chứa thủy ngân, rất độc hại khi thải ra môi trường.&lt;/li&gt;
+&lt;li&gt;Bóng đèn compact: compact tiếng Anh nghĩa là thu gọn/chặt lại. Cái tên được
+giữ 1 phần gốc tiếng Anh, tên đầy đủ là compact fluorescent lamp (CFL). Về
+mặt nguyên lý vẫn là đèn huỳnh quang, nhưng nhỏ gọn, cho hiệu năng cao hơn,
+hay tiết kiệm điện hơn.&lt;/li&gt;
+&lt;li&gt;Bóng đèn LED: bóng đèn sử dụng các LED để tạo ánh sáng trắng thay các công
+nghệ nói trên. Đây là công nghệ hiện đại nhất ngày này: tiết kiệm, hiệu quả,
+ít hại môi trường. LED là công nghệ, nó có thể thay thế cho đèn huỳnh quang và
+đóng vai 1 bóng đèn tuýp, hay thay đèn dây tóc như bóng đèn tròn.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;LED thường có 2 chân, chân dài là anode (đầu dương +), và chân ngắn là cathode
+(đầu âm -).&lt;/p&gt;
+&lt;h2&gt;Điện hoạt động thế nào ở đây&lt;/h2&gt;
+&lt;p&gt;&lt;img src="http://pp.pymi.vn/images/circuit.svg"&gt;&lt;/p&gt;
+&lt;p&gt;Khi code &lt;code&gt;led.on()&lt;/code&gt; chạy xong, ESP8266 đặt hiệu điện thế 3.3V tại GPIO14 (Pin D5),
+dòng điện chạy qua chân + của LED, qua chân - tới điện trở rồi theo dây nối
+tới pin G (ground - nối đất, điện thế là ~0V). Chiều dòng điện ngược với chiều của electron.
+Các electron chạy từ G qua điện trở R, giảm điện thế hai đầu LED, election qua
+LED làm phát sáng LED, rồi tới GPIO14.&lt;/p&gt;
+&lt;h2&gt;Các câu hỏi vật lý&lt;/h2&gt;
+&lt;h3&gt;Voltage - hiệu điện thế&lt;/h3&gt;
+&lt;p&gt;Hiệu điện thế (hay điện áp) - ký hiệu ở Việt Nam là U, ký hiệu bên tây là V.
+Đơn vị: &lt;strong&gt;volt&lt;/strong&gt; - ký hiệu &lt;strong&gt;V&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Hiệu là kết quả của phép trừ, ở đây chỉ độ chênh lệch về điện thế,
+hay "áp lực".&lt;/p&gt;
+&lt;h3&gt;Current - cường độ dòng điện&lt;/h3&gt;
+&lt;p&gt;Cường độ dòng điện - ký hiệu là I.
+Đơn vị: &lt;strong&gt;ampere&lt;/strong&gt; - ký hiệu &lt;strong&gt;A&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Cường độ là độ mạnh của dòng điện.&lt;/p&gt;
+&lt;h3&gt;Ohm's law - định luật Ohm&lt;/h3&gt;
+&lt;p&gt;Khi qua vật dẫn điện, hiệu điện thế và cường độ dòng điện tỷ lệ thuận với nhau.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;I = V/R
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;hay&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;R = V/I
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;tỷ lệ này gọi là "resistance" (điện trở) của vật dẫn điện, ký hiệu chữ R
+là từ đây ra.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;1 Ohm = 1 Volt / 1 Ampere.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Thứ khái niệm kiểu tỷ lệ như này khá phổ biến trong Vật Lý, như&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;vận tốc = quãng đường / thời gian
+1 m/s = 1m / 1s
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Ba khái niệm này có thể hình dung như một thác nước chảy từ trên cao xuống (U),
+và vào đá giữa dòng (R) mà giảm tốc độ (I).&lt;/p&gt;
+&lt;p&gt;Trong điện dùng hàng ngày, các thiết bị điện hầu hết có điện trở R cố định,
+nên khi U lớn thì I cũng sẽ lớn theo (tỷ lệ thuận).&lt;/p&gt;
+&lt;h3&gt;Công thức&lt;/h3&gt;
+&lt;p&gt;Trong mạch mắc nối tiếp, I không đổi tại mọi điểm.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;V = I*R + I*R_led
+V = V1 + I*R_led
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Như vậy việc cho điện trở 220 Ohm vào nhằm giảm hiệu điện thế cho LED.
+Cụ thể:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;3.3V = I*220 + I*R_led
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Không dùng điện trở có sao không?&lt;/h3&gt;
+&lt;p&gt;Thứ phá hỏng thiết bị điện khi cắm nhầm thiết bị 110V vào điện 220V là do hiệu
+điện thế (như 1 loại áp lực) của dòng cao hơn của thiết bị có thể chịu được.
+Cường độ dòng điện không phải là nguyên nhân.&lt;/p&gt;
+&lt;h3&gt;Điện trong nhà mắc nối tiếp hay song song&lt;/h3&gt;
+&lt;p&gt;Khi mắc song song, V không đổi tại mọi điểm.
+V là thứ quan trọng nhất khi nói về dòng điện, vậy nên các thiết bị trong nhà
+nối song song để có V như nhau - như được cấp (220V).
+Thiết bị này không bị tụt áp V khi dùng thiết bị khác.&lt;/p&gt;
+&lt;h3&gt;Đấu ngược chân LED có sao không?&lt;/h3&gt;
+&lt;p&gt;LED không chịu được voltage ngược, nên cũng sẽ cháy.&lt;/p&gt;
+&lt;h2&gt;Kết luận&lt;/h2&gt;
+&lt;p&gt;Việc học tập, ngoài mục tiêu thu nhận "kiến thức", thì phải vui, không vui học
+làm sao vào?
+Ngày nay, người học đi học như gánh nặng, người dạy đi dạy như cho xong, trả
+bài. Chẳng còn thấy mấy ai nói "đi học cho vui", "vui được đi học" nữa.&lt;/p&gt;
+&lt;p&gt;Nếu ngày càng có nhiều giáo viên mang lại hứng thú với môn Vật Lý như trên
+mạng những ngày qua, tôi tin rằng một ngày không xa, ở Việt Nam, người người
+nói về Vật Lý, ăn Vật Lý, ngủ Vật Lý (như người Nga trong &lt;a href="https://www.imdb.com/title/tt10048342/"&gt;The Queen's
+Gambit&lt;/a&gt; mê
+chơi cờ vua) thì chẳng bao lâu nữa, Việt Nam sẽ trở thành một cường quốc Vật Lý,
+&lt;a href="https://vnexpress.net/viet-nam-gianh-ba-huy-chuong-vang-olympic-vat-ly-quoc-te-4329711.html"&gt;giỏi cả lý
+thuyết&lt;/a&gt;
+lẫn thực hành như trên các khẩu hiệu. Phóng lên trời, bay qua
+Sao Hỏa, bỏ lại xa đằng sau cả Mỹ lẫn Tàu...&lt;/p&gt;
+&lt;h2&gt;Đọc bài viết tôi không thấy vui&lt;/h2&gt;
+&lt;p&gt;Vì là môn thực hành, nên bạn phải tận tay cắm mạch, thấy bóng đèn sáng, làm cháy
+LED khói mù mịt nổ văng tung tóe mới cảm nhận được cảm giác thỏa mãn này.&lt;/p&gt;
+&lt;p&gt;Khó có thể có cảm giác gì khi đọc "lý thuyết đánh đàn" hay "các bước nấu bún
+giả cầy".&lt;/p&gt;
+&lt;h2&gt;Học thêm&lt;/h2&gt;
+&lt;p&gt;Nếu có đam mê về phần cơ học, con lắc, điện xoay chiều, vũ trụ, lượng tử, ...
+hay tất tần tật Vật Lý phổ thông, hãy tham gia lớp học miễn phí của
+cô &lt;a href="https://www.facebook.com/VatliMinhThu/"&gt;VatliMinhThu&lt;/a&gt; nhé!&lt;/p&gt;
+&lt;h2&gt;Tham khảo&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;https://electronics.stackexchange.com/a/20689&lt;/li&gt;
+&lt;li&gt;https://www.raspberrypi.org/documentation/usage/gpio/&lt;/li&gt;
+&lt;li&gt;https://www.arduino.cc/en/reference/board&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Electronic_color_code#Resistor_code"&gt;Color band system&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://vi.wikipedia.org/wiki/M%E1%BA%A1ch_n%E1%BB%91i_ti%E1%BA%BFp_v%C3%A0_song_song"&gt;Mạch nối tiếp và song song&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Hết&lt;/h2&gt;
+&lt;p&gt;HVN at &lt;a href="http://pymi.vn"&gt;http://pymi.vn&lt;/a&gt; and &lt;a href="https://www.familug.org"&gt;https://www.familug.org&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.familug.org/p/ung-ho.html"&gt;Ủng hộ tác giả 🍺&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Trang chủ"></category><category term="python"></category><category term="vật lý"></category><category term="điện"></category><category term="esp8266"></category><category term="IoT"></category><category term="voltage"></category><category term="GPIO"></category></entry><entry><title>10x engineer - cắt giảm chi phí 10 lần</title><link href="http://pp.pymi.vn/article/10x/" rel="alternate"></link><published>2021-06-30T00:00:00+07:00</published><updated>2021-06-30T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2021-06-30:/article/10x/</id><summary type="html">&lt;p&gt;với regex, lambda, kafka - nhờ học hành Python tử tế&lt;/p&gt;</summary><content type="html">&lt;p&gt;10x engineer là một thần thoại (myth) lâu đời trong giới IT, mơ tưởng về
 1 developer có khả năng code "hơn" người bình thường 10 lần.
 Vì là "myth", nên có người tin, có người không.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://youtu.be/QoVeAANfESY"&gt;&lt;img alt="The Myth" src="https://img.youtube.com/vi/QoVeAANfESY/0.jpg"&gt;&lt;/a&gt;&lt;/p&gt;
