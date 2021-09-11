@@ -66,7 +66,7 @@ cho thấy Youtube chạy ngon lành thế nào.
 Đó là đỉnh cao tại Việt Nam, đất nước ~ 100 triệu dân, thì max là 1% xem cùng
 một lúc (không ít người ở nước ngoài). Đừng tưởng tượng nước có 100 triệu dân
 thì có cái gì 50 triệu người cùng làm một lúc.&lt;/li&gt;
-&lt;li&gt;9/2021, &lt;a href="https://tuoitre.vn/chu-tich-ubnd-tp-hcm-tra-loi-truc-tuyen-vung-xanh-duoc-di-cho-1-tuan-lan-mo-dan-mot-so-dich-vu-20210906184222848.htm"&gt;chủ tịch thành phố HCM lên livestream giải đáp thắc mắc của người
+&lt;li&gt;6/9/2021, &lt;a href="https://tuoitre.vn/chu-tich-ubnd-tp-hcm-tra-loi-truc-tuyen-vung-xanh-duoc-di-cho-1-tuan-lan-mo-dan-mot-so-dich-vu-20210906184222848.htm"&gt;chủ tịch thành phố HCM lên livestream giải đáp thắc mắc của người
 dân&lt;/a&gt;
 , có thể đoán hầu hết chỉ có người dân TPHCM mới xem, lượng view chụp trong ảnh là 74k,
 trên tổng &lt;a href="https://tuoitre.vn/toc-do-tiem-vac-xin-o-tp-hcm-dan-tang-cao-da-co-hon-1-trieu-nguoi-tiem-mui-2-20210911085618942.htm"&gt;dân số &amp;gt;=18 tuổi TPHCM cỡ khoảng 7.2 triệu người&lt;/a&gt; - tại thời điểm hầu hết
@@ -77,7 +77,9 @@ Nhaccuatui.vn - trang nghe nhạc lớn nhì, ba tại Việt
 Nam, chỉ xếp #14,770. Vậy trừ khi bạn làm tại các công ty có website chạy top
 50 VN, bạn mới có 2000 RPS.&lt;/li&gt;
 &lt;li&gt;2000 RPS =&amp;gt; 2000 * 86400 = 172.800.000 requests/day. &lt;strong&gt;172 triệu lượt truy cập&lt;/strong&gt;
-mỗi ngày. Trang web của bạn/ công ty/ startup của bạn liệu có được 86400 reqs/day? (1 RPS).&lt;/li&gt;
+mỗi ngày. Trang web của bạn/ công ty/ startup của bạn liệu có được 86400 reqs/day? (1 RPS).
+Việc có một website với trung bình 2000RPS - top 6000 thế giới, khó hơn nhiều nhiều nhiều
+lần so với việc viết code xử lý 2000 RPS.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://mark.mcnally.je/blog/post/My%20%C2%A34%20a%20month%20server%20can%20handle%204.2%20million%20requests%20a%20day"&gt;Một lập trình viên đâu đó ngồi đo&lt;/a&gt; thử với 1 cái máy ảo cloud 1CPU 2GB RAM £4 (5.5 USD == 126.000VND).
 có thể chạy web Django với 54.3 RPS (54 * 86400 == 4.665.600 reqs/day),
 thêm cache sẽ được 63.50RPS, và nếu chỉ có HTML/JS là 180.54 RPS.
@@ -162,9 +164,9 @@ ngang ngửa với Ruby/PHP&lt;/p&gt;
 &lt;p&gt;Riêng FastAPI cùng khu với Elixir, NodeJS, Java&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Go Gin (162/436)&lt;/li&gt;
-&lt;li&gt;NodeJS Express MySQL (287/436)&lt;/li&gt;
 &lt;li&gt;FastAPI (247/436)&lt;/li&gt;
 &lt;li&gt;Elixir Phoenix (251/436)&lt;/li&gt;
+&lt;li&gt;NodeJS Express MySQL (287/436)&lt;/li&gt;
 &lt;li&gt;Java Spring (317/436)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;vậy kết luận dùng &lt;a href="http://pp.pymi.vn/article/go/"&gt;Go&lt;/a&gt; chạy nhanh hơn và đập hết Django, Java, Ruby app đi viết
@@ -201,8 +203,6 @@ Công cụ để benchmark web site:&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;Thử benchmark code Flask+Gunicorn hello world, 1000 CCU:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;flask&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt;
-
 
 &lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="vm"&gt;__name__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
@@ -261,13 +261,13 @@ wrk a211dd5 &lt;span class="o"&gt;[&lt;/span&gt;epoll&lt;span class="o"&gt;]&lt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h2&gt;Python trong hệ thống&lt;/h2&gt;
-&lt;p&gt;Hai trường hợp minh họa code Python chạy đủ nhanh:&lt;/p&gt;
+&lt;p&gt;Vài trường hợp minh họa code Python viết rất nhanh và chạy đủ nhanh:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://pp.pymi.vn/article/10x/"&gt;Khi sử dụng Kafka trong bài tăng tốc độ
 10x&lt;/a&gt;, dùng thư viện
 https://github.com/confluentinc/confluent-kafka-python, bên dưới thực chất gọi code C librdkafka,
 thay Python bằng code Go &lt;a href="https://github.com/confluentinc/confluent-kafka-go/issues/490#issuecomment-655339047"&gt;không làm nhanh
-hơn&lt;/a&gt;
+hơn&lt;/a&gt;,
 &lt;a href="https://github.com/confluentinc/confluent-kafka-go/issues/567"&gt;thậm chí còn chậm
 hơn&lt;/a&gt;, giải pháp
 có thể là

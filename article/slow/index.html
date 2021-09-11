@@ -118,7 +118,7 @@ cho thấy Youtube chạy ngon lành thế nào.
 Đó là đỉnh cao tại Việt Nam, đất nước ~ 100 triệu dân, thì max là 1% xem cùng
 một lúc (không ít người ở nước ngoài). Đừng tưởng tượng nước có 100 triệu dân
 thì có cái gì 50 triệu người cùng làm một lúc.</li>
-<li>9/2021, <a href="https://tuoitre.vn/chu-tich-ubnd-tp-hcm-tra-loi-truc-tuyen-vung-xanh-duoc-di-cho-1-tuan-lan-mo-dan-mot-so-dich-vu-20210906184222848.htm">chủ tịch thành phố HCM lên livestream giải đáp thắc mắc của người
+<li>6/9/2021, <a href="https://tuoitre.vn/chu-tich-ubnd-tp-hcm-tra-loi-truc-tuyen-vung-xanh-duoc-di-cho-1-tuan-lan-mo-dan-mot-so-dich-vu-20210906184222848.htm">chủ tịch thành phố HCM lên livestream giải đáp thắc mắc của người
 dân</a>
 , có thể đoán hầu hết chỉ có người dân TPHCM mới xem, lượng view chụp trong ảnh là 74k,
 trên tổng <a href="https://tuoitre.vn/toc-do-tiem-vac-xin-o-tp-hcm-dan-tang-cao-da-co-hon-1-trieu-nguoi-tiem-mui-2-20210911085618942.htm">dân số &gt;=18 tuổi TPHCM cỡ khoảng 7.2 triệu người</a> - tại thời điểm hầu hết
@@ -129,7 +129,9 @@ Nhaccuatui.vn - trang nghe nhạc lớn nhì, ba tại Việt
 Nam, chỉ xếp #14,770. Vậy trừ khi bạn làm tại các công ty có website chạy top
 50 VN, bạn mới có 2000 RPS.</li>
 <li>2000 RPS =&gt; 2000 * 86400 = 172.800.000 requests/day. <strong>172 triệu lượt truy cập</strong>
-mỗi ngày. Trang web của bạn/ công ty/ startup của bạn liệu có được 86400 reqs/day? (1 RPS).</li>
+mỗi ngày. Trang web của bạn/ công ty/ startup của bạn liệu có được 86400 reqs/day? (1 RPS).
+Việc có một website với trung bình 2000RPS - top 6000 thế giới, khó hơn nhiều nhiều nhiều
+lần so với việc viết code xử lý 2000 RPS.</li>
 <li><a href="https://mark.mcnally.je/blog/post/My%20%C2%A34%20a%20month%20server%20can%20handle%204.2%20million%20requests%20a%20day">Một lập trình viên đâu đó ngồi đo</a> thử với 1 cái máy ảo cloud 1CPU 2GB RAM £4 (5.5 USD == 126.000VND).
 có thể chạy web Django với 54.3 RPS (54 * 86400 == 4.665.600 reqs/day),
 thêm cache sẽ được 63.50RPS, và nếu chỉ có HTML/JS là 180.54 RPS.
@@ -214,9 +216,9 @@ ngang ngửa với Ruby/PHP</p>
 <p>Riêng FastAPI cùng khu với Elixir, NodeJS, Java</p>
 <ul>
 <li>Go Gin (162/436)</li>
-<li>NodeJS Express MySQL (287/436)</li>
 <li>FastAPI (247/436)</li>
 <li>Elixir Phoenix (251/436)</li>
+<li>NodeJS Express MySQL (287/436)</li>
 <li>Java Spring (317/436)</li>
 </ul>
 <p>vậy kết luận dùng <a href="http://pp.pymi.vn/article/go/">Go</a> chạy nhanh hơn và đập hết Django, Java, Ruby app đi viết
@@ -253,8 +255,6 @@ Công cụ để benchmark web site:</p>
 </ul>
 <p>Thử benchmark code Flask+Gunicorn hello world, 1000 CCU:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
-<span class="kn">import</span> <span class="nn">time</span>
-
 
 <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -313,13 +313,13 @@ wrk a211dd5 <span class="o">[</span>epoll<span class="o">]</span> Copyright <spa
 </code></pre></div>
 
 <h2>Python trong hệ thống</h2>
-<p>Hai trường hợp minh họa code Python chạy đủ nhanh:</p>
+<p>Vài trường hợp minh họa code Python viết rất nhanh và chạy đủ nhanh:</p>
 <ul>
 <li><a href="https://pp.pymi.vn/article/10x/">Khi sử dụng Kafka trong bài tăng tốc độ
 10x</a>, dùng thư viện
 https://github.com/confluentinc/confluent-kafka-python, bên dưới thực chất gọi code C librdkafka,
 thay Python bằng code Go <a href="https://github.com/confluentinc/confluent-kafka-go/issues/490#issuecomment-655339047">không làm nhanh
-hơn</a>
+hơn</a>,
 <a href="https://github.com/confluentinc/confluent-kafka-go/issues/567">thậm chí còn chậm
 hơn</a>, giải pháp
 có thể là
