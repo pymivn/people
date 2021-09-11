@@ -86,7 +86,7 @@ cho thấy Youtube chạy ngon lành thế nào.
 Đó là đỉnh cao tại Việt Nam, đất nước ~ 100 triệu dân, thì max là 1% xem cùng
 một lúc (không ít người ở nước ngoài). Đừng tưởng tượng nước có 100 triệu dân
 thì có cái gì 50 triệu người cùng làm một lúc.
-- 9/2021, [chủ tịch thành phố HCM lên livestream giải đáp thắc mắc của người
+- 6/9/2021, [chủ tịch thành phố HCM lên livestream giải đáp thắc mắc của người
 dân](https://tuoitre.vn/chu-tich-ubnd-tp-hcm-tra-loi-truc-tuyen-vung-xanh-duoc-di-cho-1-tuan-lan-mo-dan-mot-so-dich-vu-20210906184222848.htm)
 , có thể đoán hầu hết chỉ có người dân TPHCM mới xem, lượng view chụp trong ảnh là 74k,
 trên tổng [dân số >=18 tuổi TPHCM cỡ khoảng 7.2 triệu người](https://tuoitre.vn/toc-do-tiem-vac-xin-o-tp-hcm-dan-tang-cao-da-co-hon-1-trieu-nguoi-tiem-mui-2-20210911085618942.htm) - tại thời điểm hầu hết
@@ -98,6 +98,8 @@ Nam, chỉ xếp #14,770. Vậy trừ khi bạn làm tại các công ty có web
 50 VN, bạn mới có 2000 RPS.
 - 2000 RPS => 2000 * 86400 = 172.800.000 requests/day. **172 triệu lượt truy cập**
 mỗi ngày. Trang web của bạn/ công ty/ startup của bạn liệu có được 86400 reqs/day? (1 RPS).
+Việc có một website với trung bình 2000RPS - top 6000 thế giới, khó hơn nhiều nhiều nhiều
+lần so với việc viết code xử lý 2000 RPS.
 - [Một lập trình viên đâu đó ngồi đo](https://mark.mcnally.je/blog/post/My%20%C2%A34%20a%20month%20server%20can%20handle%204.2%20million%20requests%20a%20day) thử với 1 cái máy ảo cloud 1CPU 2GB RAM £4 (5.5 USD == 126.000VND).
 có thể chạy web Django với 54.3 RPS (54 * 86400 == 4.665.600 reqs/day),
 thêm cache sẽ được 63.50RPS, và nếu chỉ có HTML/JS là 180.54 RPS.
@@ -194,9 +196,9 @@ ngang ngửa với Ruby/PHP
 Riêng FastAPI cùng khu với Elixir, NodeJS, Java
 
 - Go Gin (162/436)
-- NodeJS Express MySQL (287/436)
 - FastAPI (247/436)
 - Elixir Phoenix (251/436)
+- NodeJS Express MySQL (287/436)
 - Java Spring (317/436)
 
 vậy kết luận dùng [Go]({filename}/go1.md) chạy nhanh hơn và đập hết Django, Java, Ruby app đi viết
@@ -241,8 +243,6 @@ Thử benchmark code Flask+Gunicorn hello world, 1000 CCU:
 
 ```py
 from flask import Flask
-import time
-
 
 app = Flask(__name__)
 
@@ -309,13 +309,13 @@ wrk a211dd5 [epoll] Copyright (C) 2012 Will Glozer
 ```
 
 ## Python trong hệ thống
-Hai trường hợp minh họa code Python chạy đủ nhanh:
+Vài trường hợp minh họa code Python viết rất nhanh và chạy đủ nhanh:
 
 - [Khi sử dụng Kafka trong bài tăng tốc độ
 10x](https://pp.pymi.vn/article/10x/), dùng thư viện
 https://github.com/confluentinc/confluent-kafka-python, bên dưới thực chất gọi code C librdkafka,
 thay Python bằng code Go [không làm nhanh
-hơn](https://github.com/confluentinc/confluent-kafka-go/issues/490#issuecomment-655339047)
+hơn](https://github.com/confluentinc/confluent-kafka-go/issues/490#issuecomment-655339047),
 [thậm chí còn chậm
 hơn](https://github.com/confluentinc/confluent-kafka-go/issues/567), giải pháp
 có thể là
