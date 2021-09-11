@@ -10,9 +10,7 @@ Summary: Python chậm hơn các ngôn ngữ lập trình khác nhưng có đủ
 học xong đi làm luôn. Chúng tôi đưa thẳng vấn đề với học viên
 một sự thật về Python mà không hề giấu diếm: Python **chạy** chậm hơn (hầu hết) các
 ngôn ngữ lập trình khác. Điều này được đưa vào bài học và học viên được
-tự tay đo xem máy của mình tính được bao nhiêu phép +1 trong một giây.
-
-Xem kết quả tại: [cpu.pymi.vn](https://cpu.pymi.vn/)
+tự tay đo xem máy của mình tính được bao nhiêu phép +1 trong một giây. Xem kết quả tại: [cpu.pymi.vn](https://cpu.pymi.vn/)
 
 Kết quả trung bình ở khoảng 15-30 triệu phép cộng / giây với các máy tính Intel i3 i5 i7.
 Để làm mốc so sánh, code C tương tự có thể tính khoảng 1 tỷ phép cộng / giây (30-70x).
@@ -38,14 +36,13 @@ và mang các phương án (ngôn ngữ/framework) ra so.
 
 Trang web
 [https://benchmarksgame-team.pages.debian.net/benchmarksgame/](https://benchmarksgame-team.pages.debian.net/benchmarksgame/)
-
 thực hiện giải các bài toán/thuật toán cần tính toán nhiều và đưa ra kết quả.
 Python trong bảng so sánh này, chỉ nhanh hơn hai ngôn ngữ phổ biến: Perl và Ruby.
 
 <img src="https://benchmarksgame-team.pages.debian.net/benchmarksgame/download/fastest-more.svg" width="800">
 
-[Top 4 đầu bảng: C++, C, Rust, Fortran](https://benchmarksgame-team.pages.debian.net/benchmarksgame/box-plot-summary-charts.html)
-Chú ý dòng kết luận quan trọng trên trang viết:
+[Top 4 đầu bảng: C++, C, Rust, Fortran](https://benchmarksgame-team.pages.debian.net/benchmarksgame/box-plot-summary-charts.html),
+chú ý dòng kết luận quan trọng trên trang viết:
 
 > It's important to be realistic: most people don't care about program performance most of the time.
 
@@ -56,13 +53,12 @@ có lẽ là Instagram.com - mạng xã hội hình ảnh ban đầu là 1 start
 đã được Facebook mua lại.
 
 Tại thời điểm viết bài, Instagram.com đứng thứ 21 toàn cầu về lượt truy cập
-trên bảng xếp hạng của Alexa.com, sau Netflix.com, trước Microsoft.com.
-
-Blog về Python tại [https://instagram-engineering.com/tagged/python](https://instagram-engineering.com/tagged/python).
+trên bảng xếp hạng của [Alexa](https://alexa.com), sau Netflix.com, trước Microsoft.com.
+Instagram engineer blog về Python tại [https://instagram-engineering.com/tagged/python](https://instagram-engineering.com/tagged/python).
 
 Một số ví dụ khác như [Uber core dùng Python](https://eng.uber.com/building-tincup-microservice-implementation/),
 [DropBox dùng Python](https://dropbox.tech/tag-results.python),
-hay [Youtube trước khi bị Google mua lại dùng Python](https://opensource.googleblog.com/2017/01/grumpy-go-running-python.html)
+hay [Youtube trước khi Google mua lại dùng Python](https://opensource.googleblog.com/2017/01/grumpy-go-running-python.html)
 phục vụ hàng triệu request mỗi giây.
 
 > The front-end server that drives youtube.com and YouTube’s APIs is primarily
@@ -80,7 +76,7 @@ Các trang này viết bằng công nghệ nào không rõ, nhưng rõ ràng là
 ### Các đơn vị đo tốc độ trang web
 #### Request per seconds (RPS) - throughput
 RPS - có nơi viết là reqs/s, thường là đơn vị chính dùng để đo xem 1 trang web
-có thể phục vụ được bao nhiêu yêu cầu mỗi giây. RPS còn có tên khác là "throughput".
+có thể phục vụ được bao nhiêu yêu cầu mỗi giây. RPS còn có tên khác là ["throughput"](https://www.techempower.com/blog/2016/02/10/think-about-performance-before-building-a-web-application/).
 Để bạn đọc hình dung được độ lớn của RPS tại các website thế nào, sau đây là vài ví dụ:
 
 - Năm 2020, chương trình Rap Việt đạt kỷ lục có lượng người xem cùng lúc [cao
@@ -94,13 +90,13 @@ thì có cái gì 50 triệu người cùng làm một lúc.
 dân](https://tuoitre.vn/chu-tich-ubnd-tp-hcm-tra-loi-truc-tuyen-vung-xanh-duoc-di-cho-1-tuan-lan-mo-dan-mot-so-dich-vu-20210906184222848.htm)
 , có thể đoán hầu hết chỉ có người dân TPHCM mới xem, lượng view chụp trong ảnh là 74k,
 trên tổng [dân số >=18 tuổi TPHCM cỡ khoảng 7.2 triệu người](https://tuoitre.vn/toc-do-tiem-vac-xin-o-tp-hcm-dan-tang-cao-da-co-hon-1-trieu-nguoi-tiem-mui-2-20210911085618942.htm) - tại thời điểm hầu hết
-người dân đều ở nhà giãn cách xã hội theo chỉ thị 16). Cho thấy Facebook livestream ngon lành thế nào.
+người dân đều ở nhà giãn cách xã hội theo chỉ thị 16, cho thấy Facebook livestream ngon lành thế nào.
 - [mangadex.org với trung bình ~2000 rps](https://mangadex.dev/mangadex-v5-infrastructure-overview/) - #5,895 trên Alexa.com.
 soha.vn - 1 trang báo mạng khá lớn của VCCorp, #50 VN, xếp #5,789 thế giới - gần với mangadex.
 Nhaccuatui.vn - trang nghe nhạc lớn nhì, ba tại Việt
 Nam, chỉ xếp #14,770. Vậy trừ khi bạn làm tại các công ty có website chạy top
 50 VN, bạn mới có 2000 RPS.
-- 2000 RPS => 2000 * 86400 = 172.800.000 requests/day. 172 TRIỆU LƯỢT TRUY CẬP
+- 2000 RPS => 2000 * 86400 = 172.800.000 requests/day. **172 triệu lượt truy cập**
 mỗi ngày. Trang web của bạn/ công ty/ startup của bạn liệu có được 86400 reqs/day? (1 RPS).
 - [Một lập trình viên đâu đó ngồi đo](https://mark.mcnally.je/blog/post/My%20%C2%A34%20a%20month%20server%20can%20handle%204.2%20million%20requests%20a%20day) thử với 1 cái máy ảo cloud 1CPU 2GB RAM £4 (5.5 USD == 126.000VND).
 có thể chạy web Django với 54.3 RPS (54 * 86400 == 4.665.600 reqs/day),
@@ -109,6 +105,11 @@ Mức giá này khá rẻ, tại [DigitalOcean](https://bit.ly/dohvn),
 cấu hình tương đương có giá 10USD/tháng. (Note: link refer, đăng ký bằng link
 này được $100 miễn phí cho bạn, $20 cho Pymi.vn).
 hay [BIZFLY CLOUD](https://bizflycloud.vn/cloud-server/bang-gia) của Việt Nam cũng giá ~200.000.
+
+Chú ý: việc tính RPS thường tính trung bình, nhưng trên thực tế, mỗi website có
+một "pattern" truy cập khác nhau. Ví dụ tại một vài thời điểm trong ngày, sẽ
+có nhiều người truy cập đọc báo hơn là lúc 4h sáng. Các website thương mại điện
+tử sẽ luôn "peak" khi chạy các khuyến mãi 6-6, 9-9, 11-11, black friday...
 
 #### Concurrent User (CCU) - đơn vị mà chủ doanh nghiệp quan tâm
 RPS mang tính chất con số về mặt kỹ thuật, nhưng khi truy cập 1 website, người
@@ -338,6 +339,7 @@ một ngôn ngữ X chạy nhanh hơn.
 
 ## References
 - [Ủng hộ tác giả 🍺](https://www.familug.org/p/ung-ho.html)
+- [techempower - Think about Performance Before Building a Web Application](https://www.techempower.com/blog/2016/02/10/think-about-performance-before-building-a-web-application/)
 - [page load time vs response time](https://www.pingdom.com/blog/page-load-time-vs-response-time-what-is-the-difference/)
 - [Quantile](https://en.wikipedia.org/wiki/Quantile)
 - [Percentile](https://en.wikipedia.org/wiki/Percentile)
