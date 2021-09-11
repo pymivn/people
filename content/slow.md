@@ -152,8 +152,8 @@ Nhưng nếu kết quả response lúc nhanh lúc chậm thì biết lấy số 
 cần lôi bộ môn [thống
 kê](https://medium.com/pymi/d%C3%B9ng-python-%C4%91%E1%BB%83-h%E1%BB%8Dc-th%E1%BB%91ng-k%C3%AA-8e41dfdaaf97)
 ra để trình bày. Cách đơn giản nhất là lấy trung bình cộng,
-nghe thì dễ, nhưng kết quả này thường vô dụng, bởi 198 lần load 1s mà 2 lần 901s
-thì trung bình là: (99 * 2 + 901 * 2)/200 == 10.0s.
+nghe thì dễ, nhưng kết quả này thường vô dụng, bởi (99*2) 198 lần load 1s mà 2 lần 901s
+thì trung bình là: (99 * 2 + 901 * 2)/200 == 10s.
 
 Cách làm phổ biến là dùng quantile 99 (hay 95) để đo: tức giá trị mà
 99% các giá trị khác đều nhỏ hơn hoặc bằng, còn có tên gọi p99 (99th percentile).
@@ -165,6 +165,12 @@ Xem thêm về quantile và percentile ở phần link tham khảo.
 Tại sao lại bỏ đi 1% như vậy? vì kết quả đo đạc có thể có các sai số do nhiều
 lý do khác nhau và không có ý nghĩa với vấn đề (chậm do mạng bị cá mập cắn
 trong 1 request, chẳng hạn).
+
+Giá trị latency gần 0ms là khủng, 100ms là tốt, 500ms là OK, vài giây là lởm,
+nhiều giây là rất không ra gì:
+
+> ~0ms is superb; 100ms is good; 500ms is okay; a few seconds is bad; and several seconds may be approaching awful. - www.techempower.com
+
 
 ### Tốc độ lý thuyết
 Tương tự website benchmark
@@ -187,13 +193,13 @@ ngang ngửa với Ruby/PHP
 
 Riêng FastAPI cùng khu với Elixir, NodeJS, Java
 
-- Golang Gin (162/436)
+- Go Gin (162/436)
 - NodeJS Express MySQL (287/436)
 - FastAPI (247/436)
 - Elixir Phoenix (251/436)
 - Java Spring (317/436)
 
-vậy kết luận dùng Go chạy nhanh hơn và đập hết Django, Java, Ruby app đi viết
+vậy kết luận dùng [Go]({filename}/go1.md) chạy nhanh hơn và đập hết Django, Java, Ruby app đi viết
 lại ?
 
 **Đừng!**
@@ -202,12 +208,10 @@ Kết quả của việc benchmark rất khó để đưa ra kết luận, và t
 thuộc vào bài toán cụ thể chứ không phải dựa và kết luận "hello world" của
 framework.
 
-Dù điểm trung bình của Golang + Gin framework (nhanh) hơn của FastAPI, nhưng
+Dù điểm trung bình của Go + Gin framework (nhanh) hơn của FastAPI, nhưng
 khi xem từng test cụ thể, như test data update (có sự ảnh hưởng lớn của database)
-thì FastAPI bỏ xa xa xa Go + Gin. Website của bạn có update DB không? tùy trường
-hợp. Khi chỉ đơn thuần tính toán và không động vào DB, Go rõ ràng dành chiến thắng.
-
-Xem thêm phần [thắc mắc về tốc độ của FastAPI tại đây](https://github.com/tiangolo/fastapi/issues/1664#issuecomment-653580642).
+thì FastAPI bỏ xa xa xa Go + Gin. Website của bạn có update DB không? hầu hết là có, tùy trường
+hợp. Khi chỉ đơn thuần tính toán và không động vào DB, Go rõ ràng dành chiến thắng. Xem thêm phần [thắc mắc về tốc độ của FastAPI tại đây](https://github.com/tiangolo/fastapi/issues/1664#issuecomment-653580642).
 
 Các kết quả benchmark dễ dàng bị đảo ngược chỉ với vài thay đổi phụ thuộc bài toán, như
 trường hợp benchmark Flask sau:
@@ -231,7 +235,7 @@ Công cụ để benchmark web site:
 - ab (Apache benchmark tool) `sudo apt-get install apache2-utils`
 - [Go hey](https://github.com/rakyll/hey)
 - [C wrk](https://github.com/wg/wrk)
-- [Locust.io python + webUI + distributed + graph report](https://locust.io/)
+- [Python Locust.io + webUI + distributed + graph report](https://locust.io/)
 
 Thử benchmark code Flask+Gunicorn hello world, 1000 CCU:
 
