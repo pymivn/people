@@ -1,7 +1,7 @@
 Title: Python lên sao kê chậm - làm web được không?
 Date: 2021-09-11
 Category: Trang chủ
-Tags: python, performance
+Tags: python, performance, benchmark, webframework
 Slug: slow
 Authors: hvnsweeting
 Summary: Python chậm hơn các ngôn ngữ lập trình khác nhưng có đủ nhanh cho bạn?
