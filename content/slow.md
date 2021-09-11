@@ -112,6 +112,8 @@ Chú ý: việc tính RPS thường tính trung bình, nhưng trên thực tế,
 một "pattern" truy cập khác nhau. Ví dụ tại một vài thời điểm trong ngày, sẽ
 có nhiều người truy cập đọc báo hơn là lúc 4h sáng. Các website thương mại điện
 tử sẽ luôn "peak" khi chạy các khuyến mãi 6-6, 9-9, 11-11, black friday...
+Con số mà các lập trình viên/sysadmin quan tâm là RPS lúc peak, số truy cập
+đồng thời cao nhất mà hệ thống chịu được.
 
 #### Concurrent User (CCU) - đơn vị mà chủ doanh nghiệp quan tâm
 RPS mang tính chất con số về mặt kỹ thuật, nhưng khi truy cập 1 website, người
