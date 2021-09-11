@@ -337,12 +337,12 @@ bằng: tốc độ phát triển tính năng/ dự án, chi phí bỏ ra để 
 một ngôn ngữ X chạy nhanh hơn.
 
 ## References
-- https://www.pingdom.com/blog/page-load-time-vs-response-time-what-is-the-difference/
+- [Ủng hộ tác giả 🍺](https://www.familug.org/p/ung-ho.html)
+- [page load time vs response time](https://www.pingdom.com/blog/page-load-time-vs-response-time-what-is-the-difference/)
 - [Quantile](https://en.wikipedia.org/wiki/Quantile)
 - [Percentile](https://en.wikipedia.org/wiki/Percentile)
-- [Ủng hộ tác giả 🍺](https://www.familug.org/p/ung-ho.html)
 - [FastAPI is fast](https://github.com/tiangolo/fastapi/issues/1664#issuecomment-653580642)
-- https://stackoverflow.com/questions/14205096/c11-regex-slower-than-python
-- https://stackoverflow.com/questions/9371238/why-is-reading-lines-from-stdin-much-slower-in-c-than-python?rq=1
+- [c11-regex-slower-than-python](https://stackoverflow.com/questions/14205096/c11-regex-slower-than-python)
+- [why-is-reading-lines-from-stdin-much-slower-in-c-than-python](https://stackoverflow.com/questions/9371238/why-is-reading-lines-from-stdin-much-slower-in-c-than-python?rq=1)
 
 HVN at [http://pymi.vn](http://pymi.vn) and [https://www.familug.org](https://www.familug.org)
