@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+   <title> Python lên sao kê chậm - làm web được không?  - The PyMiers</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="robots" content="" />
+  <link rel="stylesheet" type="text/css" href="/theme/css/app.css">
+<link rel="stylesheet" type="text/css" href="http://pp.pymi.vn/theme/css/pygment.css">
+  <!--
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+  -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    <meta name="author" content="Pymiers" />
+  <meta name="description" content="" />    <link href="http://pp.pymi.vn/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="The PyMiers Full Atom Feed" />         
+  <meta name="tags" content="python" />
+  <meta name="tags" content="performance" />
+</head>
+
+<body>
+  <main class="wrapper">
+    <section class="container">
+      <header class='column'>
+        <h1 class='title'><a href="http://pp.pymi.vn/">The PyMiers</a></h1>
+      </header>
+
+      <div class="section">
+        <div class="row navbar">
+          <div class="column nav-item is-active"><a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a></div>
+           <div class="column nav-item "><a href="http://pp.pymi.vn/pages/about/">About</a></div>
+          <div class="column nav-item "><a href="http://pp.pymi.vn/pages/add/">Tạo bài viết</a></div>
+          <div class="column nav-item "><a href="http://pp.pymi.vn/pages/rss/">RSS</a></div>
+          <div class="column nav-item"><a href="/archives">Archives</a></div>
+        </div>
+      </div>
+    </section>
+
+<section class="container">
+  <header>
+    <h2 class="entry-title">
+      <a href="http://pp.pymi.vn/article/slow/" rel="bookmark"
+         title="Permalink to Python lên sao kê chậm - làm web được không?">Python lên sao kê chậm - làm web được không?</a></h2>  
+  </header>
+  <footer class='center'>
+    <time class="published" datetime="2021-09-11T00:00:00+07:00"> 11/09/2021 </time>
+    <address class="vcard author">By
+                    <a class="url fn" href="http://pp.pymi.vn/author/hvnsweeting/">hvnsweeting</a>
+ in <a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a>
+                </address>     <em>Tags</em>:     <a href="http://pp.pymi.vn/tag/python/"><em>python</em></a>,     <a href="http://pp.pymi.vn/tag/performance/"><em>performance</em></a>    </footer>
+  <br>
+  <div class="entry-content">
+    <p><a href="https://pymi.vn">Pymi.vn</a> là một đơn vị đào tạo Python thực chiến ở Việt Nam,
+học xong đi làm luôn. Chúng tôi đưa thẳng vấn đề với học viên
+một sự thật về Python mà không hề giấu diếm: Python <strong>chạy</strong> chậm hơn (hầu hết) các
+ngôn ngữ lập trình khác. Điều này được đưa vào bài học và học viên được
+tự tay đo xem máy của mình tính được bao nhiêu phép +1 trong một giây. Xem kết quả tại: <a href="https://cpu.pymi.vn/">cpu.pymi.vn</a></p>
+<p>Kết quả trung bình ở khoảng 15-30 triệu phép cộng / giây với các máy tính Intel i3 i5 i7.
+Để làm mốc so sánh, code C tương tự có thể tính khoảng 1 tỷ phép cộng / giây (30-70x).</p>
+<p>Đa số người mới đi học Python đều không hề biết chuyện này, họ đi học vì sự hot,
+sự đơn giản,
+ứng dụng khắp nơi của Python từ AI ML, DeepLearning, Blockchain, ...etc. Điều ấy
+cho thấy một phần quan trọng về tính chất của người dùng: chọn ngôn ngữ lập trình
+không phải vì nó CHẠY nhanh, họ không tìm học C/C++ hay Fortran.</p>
+<p>Trong đó mâu thuẫn hơn cả, là ML/DeepLearning, lĩnh vực cần tính toán cực nhiều,
+lại dùng Python phổ biến nhất.
+Mâu thuẫn này thường để dành hỏi phỏng vấn các "data scientist" xem có hiểu tại
+sao không? Còn với bạn đọc, chúng tôi để dành câu trả lời ở cuối bài.</p>
+<p><img alt="fast" src="https://images.unsplash.com/photo-1555980483-93e7b3529e1a?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;dl=kiril-dobrev-UB0QiVPsXgc-unsplash.jpg&amp;w=800"></p>
+<p><center>Photo by <a href="https://unsplash.com/@kirildobrev?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kiril Dobrev</a> on <a href="https://unsplash.com/s/photos/vietnam-hanoi?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></center></p>
+<p>Để so sánh tốc độ, người dùng thực hiện các "benchmark", giải một bài toán cụ thể
+và mang các phương án (ngôn ngữ/framework) ra so.</p>
+<p>Trang web
+<a href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/">https://benchmarksgame-team.pages.debian.net/benchmarksgame/</a>
+thực hiện giải các bài toán/thuật toán cần tính toán nhiều và đưa ra kết quả.
+Python trong bảng so sánh này, chỉ nhanh hơn hai ngôn ngữ phổ biến: Perl và Ruby.</p>
+<p><img src="https://benchmarksgame-team.pages.debian.net/benchmarksgame/download/fastest-more.svg" width="800"></p>
+<p><a href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/box-plot-summary-charts.html">Top 4 đầu bảng: C++, C, Rust, Fortran</a>,
+chú ý dòng kết luận quan trọng trên trang viết:</p>
+<blockquote>
+<p>It's important to be realistic: most people don't care about program performance most of the time.</p>
+</blockquote>
+<h2>Python trong làm web</h2>
+<h3>Trên thế giới</h3>
+<p>Trang web viết bằng Python có lượng người truy cập lớn nhất thế giới hiện nay
+có lẽ là Instagram.com - mạng xã hội hình ảnh ban đầu là 1 startup, sau đó
+đã được Facebook mua lại.</p>
+<p>Tại thời điểm viết bài, Instagram.com đứng thứ 21 toàn cầu về lượt truy cập
+trên bảng xếp hạng của <a href="https://alexa.com">Alexa</a>, sau Netflix.com, trước Microsoft.com.
+Instagram engineer blog về Python tại <a href="https://instagram-engineering.com/tagged/python">https://instagram-engineering.com/tagged/python</a>.</p>
+<p>Một số ví dụ khác như <a href="https://eng.uber.com/building-tincup-microservice-implementation/">Uber core dùng Python</a>,
+<a href="https://dropbox.tech/tag-results.python">DropBox dùng Python</a>,
+hay <a href="https://opensource.googleblog.com/2017/01/grumpy-go-running-python.html">Youtube trước khi Google mua lại dùng Python</a>
+phục vụ hàng triệu request mỗi giây.</p>
+<blockquote>
+<p>The front-end server that drives youtube.com and YouTube’s APIs is primarily
+written in Python, and it serves millions of requests per second!</p>
+</blockquote>
+<h3>Ở Việt Nam</h3>
+<p>Tại thời điểm viết bài 2021-09-11, Vnexpress.net là trang web của Việt Nam
+đứng thứ #4 VietNam và #396 toàn cầu trên <a href="https://www.alexa.com/topsites/countries/VN">Alexa.com</a>
+3 trang top VN là Google, Youtube, Facebook. Nếu xem tiếp top 50 Việt Nam,
+các tên hầu hết là các trang báo mạng, hay thương mại điện tử lớn như Shopee,
+Lazada, Tiki.
+Các trang này viết bằng công nghệ nào không rõ, nhưng rõ ràng là lượt truy cập
+đều ít hơn Instagram đáng kể.</p>
+<h3>Các đơn vị đo tốc độ trang web</h3>
+<h4>Request per seconds (RPS) - throughput</h4>
+<p>RPS - có nơi viết là reqs/s, thường là đơn vị chính dùng để đo xem 1 trang web
+có thể phục vụ được bao nhiêu yêu cầu mỗi giây. RPS còn có tên khác là <a href="https://www.techempower.com/blog/2016/02/10/think-about-performance-before-building-a-web-application/">"throughput"</a>.
+Để bạn đọc hình dung được độ lớn của RPS tại các website thế nào, sau đây là vài ví dụ:</p>
+<ul>
+<li>Năm 2020, chương trình Rap Việt đạt kỷ lục có lượng người xem cùng lúc <a href="https://tienphong.vn/thuc-hu-cau-chuyen-rap-viet-lap-ki-luc-nguoi-xem-cao-nhat-the-gioi-post1290225.tpo">cao
+nhất tại Việt Nam với con số
+1.051.000</a>...
+cho thấy Youtube chạy ngon lành thế nào.
+Đó là đỉnh cao tại Việt Nam, đất nước ~ 100 triệu dân, thì max là 1% xem cùng
+một lúc (không ít người ở nước ngoài). Đừng tưởng tượng nước có 100 triệu dân
+thì có cái gì 50 triệu người cùng làm một lúc.</li>
+<li>9/2021, <a href="https://tuoitre.vn/chu-tich-ubnd-tp-hcm-tra-loi-truc-tuyen-vung-xanh-duoc-di-cho-1-tuan-lan-mo-dan-mot-so-dich-vu-20210906184222848.htm">chủ tịch thành phố HCM lên livestream giải đáp thắc mắc của người
+dân</a>
+, có thể đoán hầu hết chỉ có người dân TPHCM mới xem, lượng view chụp trong ảnh là 74k,
+trên tổng <a href="https://tuoitre.vn/toc-do-tiem-vac-xin-o-tp-hcm-dan-tang-cao-da-co-hon-1-trieu-nguoi-tiem-mui-2-20210911085618942.htm">dân số &gt;=18 tuổi TPHCM cỡ khoảng 7.2 triệu người</a> - tại thời điểm hầu hết
+người dân đều ở nhà giãn cách xã hội theo chỉ thị 16, cho thấy Facebook livestream ngon lành thế nào.</li>
+<li><a href="https://mangadex.dev/mangadex-v5-infrastructure-overview/">mangadex.org với trung bình ~2000 rps</a> - #5,895 trên Alexa.com.
+soha.vn - 1 trang báo mạng khá lớn của VCCorp, #50 VN, xếp #5,789 thế giới - gần với mangadex.
+Nhaccuatui.vn - trang nghe nhạc lớn nhì, ba tại Việt
+Nam, chỉ xếp #14,770. Vậy trừ khi bạn làm tại các công ty có website chạy top
+50 VN, bạn mới có 2000 RPS.</li>
+<li>2000 RPS =&gt; 2000 * 86400 = 172.800.000 requests/day. <strong>172 triệu lượt truy cập</strong>
+mỗi ngày. Trang web của bạn/ công ty/ startup của bạn liệu có được 86400 reqs/day? (1 RPS).</li>
+<li><a href="https://mark.mcnally.je/blog/post/My%20%C2%A34%20a%20month%20server%20can%20handle%204.2%20million%20requests%20a%20day">Một lập trình viên đâu đó ngồi đo</a> thử với 1 cái máy ảo cloud 1CPU 2GB RAM £4 (5.5 USD == 126.000VND).
+có thể chạy web Django với 54.3 RPS (54 * 86400 == 4.665.600 reqs/day),
+thêm cache sẽ được 63.50RPS, và nếu chỉ có HTML/JS là 180.54 RPS.
+Mức giá này khá rẻ, tại <a href="https://bit.ly/dohvn">DigitalOcean</a>,
+cấu hình tương đương có giá 10USD/tháng. (Note: link refer, đăng ký bằng link
+này được $100 miễn phí cho bạn, $20 cho Pymi.vn).
+hay <a href="https://bizflycloud.vn/cloud-server/bang-gia">BIZFLY CLOUD</a> của Việt Nam cũng giá ~200.000.</li>
+</ul>
+<p>Chú ý: việc tính RPS thường tính trung bình, nhưng trên thực tế, mỗi website có
+một "pattern" truy cập khác nhau. Ví dụ tại một vài thời điểm trong ngày, sẽ
+có nhiều người truy cập đọc báo hơn là lúc 4h sáng. Các website thương mại điện
+tử sẽ luôn "peak" khi chạy các khuyến mãi 6-6, 9-9, 11-11, black friday...</p>
+<h4>Concurrent User (CCU) - đơn vị mà chủ doanh nghiệp quan tâm</h4>
+<p>RPS mang tính chất con số về mặt kỹ thuật, nhưng khi truy cập 1 website, người
+dùng thường thực hiện nhiều hơn 1 request. Ví dụ khi truy cập
+<a href="https://pymi.vn">https://pymi.vn</a>, trình duyệt
+sẽ thực hiện 8 requests (các file HTML/CSS/Javascript/ảnh), còn khi truy cập
+vnexpress.net, trình duyệt thực hiện tới 73 requests.</p>
+<p>Chủ doanh nghiệp, website, chỉ quan tâm con số mang tính chất kinh tế,
+là có bao nhiêu người dang dùng mà không quan tâm có bao nhiêu request, vậy
+nên con số Concurrent User (CCU - số người truy cập cùng lúc) ra đời.
+Trong ví dụ Rap Việt trên, có 1 triệu người xem cùng lúc - 1 triệu CCU.
+1 triệu CCU tương ứng với tối thiểu 1 triệu RPS, nhưng thường RPS cao hơn nhiều lần.</p>
+<p>Một điều đáng nói khác, rằng không phải 73 requests đều gọi vào vnexpress.net mà
+gọi đến các trang khác chứa ảnh, video...</p>
+<p>Khi nói về CCU, chủ doanh nghiệp cũng không quan tâm hệ thống sử dụng bao
+nhiêu máy tính ở đây. Nói 1 triệu RPS, không có nghĩa là phải dùng 1 máy,
+1 triệu RPS/máy là rất cao, trên thế giới <a href="https://blog.whatsapp.com/1-million-is-so-2011/?lang=en">Whatsapp đã làm được 1m TCP conn từ
+2011</a>,
+<a href="https://www.phoenixframework.org/blog/the-road-to-2-million-websocket-connections">Elixir Phoenix fullstack web-framework chạy 2 triệu websocket
+connections</a>
+năm 2015. Nhưng không ai cấm bạn chạy 200 máy sau load-balancer cả.
+1.000.000 / 200 = 5.000 RPS.</p>
+<p><a href="https://en.wikipedia.org/wiki/C10k_problem">C10k</a> là 1 vấn đề rất năm 2000, để
+xử lý 10.000 connection, cùng với sự ra đời của NGINX.</p>
+<h4>Response time - latency, p95, p99</h4>
+<p>Một đơn vị quan trọng khác khi nói về tốc độ website là <strong>response time</strong> tên
+khác là latency - thời
+gian tính tức lúc người dùng gửi request đi cho tới khi nhận được nội dung trang web.
+Con số này nói đơn giản chính là sự nhanh/chậm của website.
+Response time là 10 giây thì người dùng sau khi vào thanh địa chỉ gõ enter, 10
+giây sau mới nhìn thấy nội dung trang web.
+(để thấy TOÀN BỘ nội dung trang web, người ta dùng thêm đơn vị đo "load time")</p>
+<p>Nhưng nếu kết quả response lúc nhanh lúc chậm thì biết lấy số nào? đó là lúc
+cần lôi bộ môn <a href="https://medium.com/pymi/d%C3%B9ng-python-%C4%91%E1%BB%83-h%E1%BB%8Dc-th%E1%BB%91ng-k%C3%AA-8e41dfdaaf97">thống
+kê</a>
+ra để trình bày. Cách đơn giản nhất là lấy trung bình cộng,
+nghe thì dễ, nhưng kết quả này thường vô dụng, bởi (99*2) 198 lần load 1s mà 2 lần 901s
+thì trung bình là: (99 * 2 + 901 * 2)/200 == 10s.</p>
+<p>Cách làm phổ biến là dùng quantile 99 (hay 95) để đo: tức giá trị mà
+99% các giá trị khác đều nhỏ hơn hoặc bằng, còn có tên gọi p99 (99th percentile).
+Trong ví dụ trên, p99 là 1: <code>int(99/100 * 200 số) = 198</code>, sắp xếp các số tăng
+dần thì số thứ 198 có giá trị là 1,
+p100 ít khi được nhắc tới, đó là số lớn nhất trong tập.
+Xem thêm về quantile và percentile ở phần link tham khảo.</p>
+<p>Tại sao lại bỏ đi 1% như vậy? vì kết quả đo đạc có thể có các sai số do nhiều
+lý do khác nhau và không có ý nghĩa với vấn đề (chậm do mạng bị cá mập cắn
+trong 1 request, chẳng hạn).</p>
+<p>Giá trị latency gần 0ms là khủng, 100ms là tốt, 500ms là OK, vài giây là lởm,
+nhiều giây là rất không ra gì:</p>
+<blockquote>
+<p>~0ms is superb; 100ms is good; 500ms is okay; a few seconds is bad; and several seconds may be approaching awful. - www.techempower.com</p>
+</blockquote>
+<h3>Tốc độ lý thuyết</h3>
+<p>Tương tự website benchmark
+tốc độ tính toán của các ngôn ngữ, có website benchmark các webframework:
+<a href="https://www.techempower.com/benchmarks/#section=data-r20">techempower</a></p>
+<p>tại đây, mỗi framework thực hiện 7 loại test và được chấm điểm, đầu bảng hầu hết
+là C++ hay Rust, luôn dành chiến thắng về tốc độ, nhưng không mấy ai làm web
+site bằng C++ cả.</p>
+<blockquote>
+<p>Nhớ rằng: Instagram dùng Django.</p>
+</blockquote>
+<p>Các web framework phổ biến của Python hầu như đều ở phía dưới bảng xếp hạng,
+ngang ngửa với Ruby/PHP</p>
+<ul>
+<li>Django (359/436)</li>
+<li>Flask (370/436)</li>
+<li>Ruby On Rails (377/436)</li>
+<li>PHP Lavarel (388/436)</li>
+</ul>
+<p>Riêng FastAPI cùng khu với Elixir, NodeJS, Java</p>
+<ul>
+<li>Go Gin (162/436)</li>
+<li>NodeJS Express MySQL (287/436)</li>
+<li>FastAPI (247/436)</li>
+<li>Elixir Phoenix (251/436)</li>
+<li>Java Spring (317/436)</li>
+</ul>
+<p>vậy kết luận dùng <a href="http://pp.pymi.vn/article/go/">Go</a> chạy nhanh hơn và đập hết Django, Java, Ruby app đi viết
+lại ?</p>
+<p><strong>Đừng!</strong></p>
+<p>Kết quả của việc benchmark rất khó để đưa ra kết luận, và tốc độ thực sự phụ
+thuộc vào bài toán cụ thể chứ không phải dựa và kết luận "hello world" của
+framework.</p>
+<p>Dù điểm trung bình của Go + Gin framework (nhanh) hơn của FastAPI, nhưng
+khi xem từng test cụ thể, như test data update (có sự ảnh hưởng lớn của database)
+thì FastAPI bỏ xa xa xa Go + Gin. Website của bạn có update DB không? hầu hết là có, tùy trường
+hợp. Khi chỉ đơn thuần tính toán và không động vào DB, Go rõ ràng dành chiến thắng. Xem thêm phần <a href="https://github.com/tiangolo/fastapi/issues/1664#issuecomment-653580642">thắc mắc về tốc độ của FastAPI tại đây</a>.</p>
+<p>Các kết quả benchmark dễ dàng bị đảo ngược chỉ với vài thay đổi phụ thuộc bài toán, như
+trường hợp benchmark Flask sau:</p>
+<ul>
+<li><a href="https://calpaterson.com/async-python-is-not-faster.html">bài này benchmark kết luận async Python không nhanh hơn sync</a></li>
+<li><a href="https://blog.miguelgrinberg.com/post/ignore-all-web-performance-benchmarks-including-this-one">bài này chỉnh sửa lại 1 chút, và cho kết quả khác hoàn toàn</a></li>
+</ul>
+<p>Tác giả <a href="https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world">Flask mega tutorial Miguel Grinberg</a> chỉ đưa ra kết luận cuối cùng với tên bài viết:</p>
+<blockquote>
+<p>Ignore All Web Performance Benchmarks, Including This One</p>
+</blockquote>
+<p>Một bài viết khác thực hiện cải thiện website dùng <a href="https://suade.org/dev/12-requests-per-second-with-python/">Flask + SQLAlchemy ORM từ 12RPS thành 75RPS</a>.</p>
+<p>Trong các trang web, tốc độ của website phần lớn phụ thuộc vào database,
+kiến trúc, cache, hơn là phụ thuộc vào tốc độ của web framework.</p>
+<h3>Load test Python</h3>
+<p>Cách để rút ra được kết quả chuẩn nhất, có ý nghĩa nhất là tự đo code của mình.
+Công cụ để benchmark web site:</p>
+<ul>
+<li>ab (Apache benchmark tool) <code>sudo apt-get install apache2-utils</code></li>
+<li><a href="https://github.com/rakyll/hey">Go hey</a></li>
+<li><a href="https://github.com/wg/wrk">C wrk</a></li>
+<li><a href="https://locust.io/">Python Locust.io + webUI + distributed + graph report</a></li>
+</ul>
+<p>Thử benchmark code Flask+Gunicorn hello world, 1000 CCU:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/fast&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fast</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s2">&quot;yes&quot;</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>$ gunicorn app:app -w <span class="m">9</span> -k gthread
+</code></pre></div>
+
+<p>Rồi chạy <code>wrk</code>:</p>
+<div class="highlight"><pre><span></span><code>$ ./wrk -c <span class="m">1000</span> -d 10s http://localhost:8000/fast
+Running 10s <span class="nb">test</span> @ http://localhost:8000/fast
+  <span class="m">2</span> threads and <span class="m">1000</span> connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   <span class="m">233</span>.14ms   <span class="m">61</span>.78ms <span class="m">371</span>.49ms   <span class="m">68</span>.27%
+    Req/Sec     <span class="m">2</span>.13k   <span class="m">222</span>.09     <span class="m">2</span>.75k    <span class="m">67</span>.50%
+  <span class="m">42372</span> requests <span class="k">in</span> <span class="m">10</span>.08s, <span class="m">6</span>.47MB <span class="nb">read</span>
+Requests/sec:   <span class="m">4202</span>.64
+Transfer/sec:    <span class="m">656</span>.75KB
+</code></pre></div>
+
+<p>4200rps với latency avg 200ms, max cũng chỉ là 371ms.</p>
+<p>hay <code>ab</code>:</p>
+<div class="highlight"><pre><span></span><code>$  ab -n <span class="m">10000</span> -c <span class="m">1000</span> http://localhost:8000/fast
+
+Concurrency Level:      <span class="m">1000</span>
+Requests per second:    <span class="m">3706</span>.73 <span class="o">[</span><span class="c1">#/sec] (mean)</span>
+
+Percentage of the requests served within a certain <span class="nb">time</span> <span class="o">(</span>ms<span class="o">)</span>
+  <span class="m">50</span>%    <span class="m">264</span>
+  <span class="m">66</span>%    <span class="m">293</span>
+  <span class="m">75</span>%    <span class="m">312</span>
+  <span class="m">80</span>%    <span class="m">327</span>
+  <span class="m">90</span>%    <span class="m">360</span>
+  <span class="m">95</span>%    <span class="m">397</span>
+  <span class="m">98</span>%    <span class="m">426</span>
+  <span class="m">99</span>%    <span class="m">448</span>
+ <span class="m">100</span>%    <span class="m">476</span> <span class="o">(</span>longest request<span class="o">)</span>
+</code></pre></div>
+
+<p>Test trên</p>
+<div class="highlight"><pre><span></span><code>AMD Ryzen <span class="m">3</span> 4300U - <span class="m">4</span> cores - 8GB RAM
+
+$ lsb_release -d<span class="p">;</span> python3 --version
+Description:    Ubuntu <span class="m">20</span>.04.3 LTS
+Python <span class="m">3</span>.8.10
+
+
+Flask               <span class="m">2</span>.0.1
+gunicorn            <span class="m">20</span>.1.0
+
+$ ./wrk --version
+wrk a211dd5 <span class="o">[</span>epoll<span class="o">]</span> Copyright <span class="o">(</span>C<span class="o">)</span> <span class="m">2012</span> Will Glozer
+</code></pre></div>
+
+<h2>Python trong hệ thống</h2>
+<p>Hai trường hợp minh họa code Python chạy đủ nhanh:</p>
+<ul>
+<li><a href="https://pp.pymi.vn/article/10x/">Khi sử dụng Kafka trong bài tăng tốc độ
+10x</a>, dùng thư viện
+https://github.com/confluentinc/confluent-kafka-python, bên dưới thực chất gọi code C librdkafka,
+thay Python bằng code Go <a href="https://github.com/confluentinc/confluent-kafka-go/issues/490#issuecomment-655339047">không làm nhanh
+hơn</a>
+<a href="https://github.com/confluentinc/confluent-kafka-go/issues/567">thậm chí còn chậm
+hơn</a>, giải pháp
+có thể là
+tìm một thư viện Kafka viết bằng Go rồi benchmark lại.</li>
+<li>Code C++ thường được coi là <strong>hiển nhiên</strong> nhanh hơn Python, <a href="https://stackoverflow.com/questions/9371238/why-is-reading-lines-from-stdin-much-slower-in-c-than-python?rq=1">nhưng phải biết
+bật tắt đúng thứ không sẽ chậm hơn</a></li>
+<li><a href="https://stackoverflow.com/questions/14205096/c11-regex-slower-than-python">c++11 regex slower than python - và nhớ rằng tuy nói là Python, nhưng rất nhiều chỗ của Python thực chất gọi code C bên dưới</a></li>
+</ul>
+<h2>Python trong xử lý data</h2>
+<p>Các thư viện tính toán khoa học trong Python đều sử dụng các ngôn ngữ tính toán
+nhanh bên dưới, như Numpy/Pandas dùng C, PyTorch/Tensorflow dùng C++. Kết hợp
+với cú pháp Python ở trên, tạo nên sự hoàn hảo của cả 2 thế giới: code đẹp, đơn
+giản của Python, và tính nhanh (gần) như C/C++/Fortran.</p>
+<h2>Kết luận</h2>
+<p>Đọc kết quả benchmark trên mạng rồi đưa ra kết luận là một việc làm rất nguy hiểm,
+nên tự học cách benchmark cho trường hợp cụ thể của mình.</p>
+<p>Tốc độ của ngôn ngữ lập trình &amp; framework trên thực tế thường không quan trọng
+bằng: tốc độ phát triển tính năng/ dự án, chi phí bỏ ra để viết lại bằng
+một ngôn ngữ X chạy nhanh hơn.</p>
+<h2>References</h2>
+<ul>
+<li><a href="https://www.familug.org/p/ung-ho.html">Ủng hộ tác giả 🍺</a></li>
+<li><a href="https://www.techempower.com/blog/2016/02/10/think-about-performance-before-building-a-web-application/">techempower - Think about Performance Before Building a Web Application</a></li>
+<li><a href="https://www.pingdom.com/blog/page-load-time-vs-response-time-what-is-the-difference/">page load time vs response time</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Quantile">Quantile</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Percentile">Percentile</a></li>
+<li><a href="https://github.com/tiangolo/fastapi/issues/1664#issuecomment-653580642">FastAPI is fast</a></li>
+<li><a href="https://stackoverflow.com/questions/14205096/c11-regex-slower-than-python">c11-regex-slower-than-python</a></li>
+<li><a href="https://stackoverflow.com/questions/9371238/why-is-reading-lines-from-stdin-much-slower-in-c-than-python?rq=1">why-is-reading-lines-from-stdin-much-slower-in-c-than-python</a></li>
+</ul>
+<p>HVN at <a href="http://pymi.vn">http://pymi.vn</a> and <a href="https://www.familug.org">https://www.familug.org</a></p>
+  </div>
+  <!-- /.entry-content -->
+</section>
+<section class="container">
+  <div class="comments">
+    <h3>Comments</h3>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'pymier';
+      var disqus_identifier = 'article/slow/';
+      var disqus_url = 'http://pp.pymi.vn/article/slow/';
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//pymier.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the comments.</noscript>
+  </div>
+</section>
+
+    <section class="container footer">
+      <footer>
+        <address>
+        Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+        which takes great advantage of <a href="http://python.org">Python</a>.
+        </address>
+        <address>
+          Học lập trình Python tại <a href="https://pymi.vn/">Pymi.vn</a>
+        </address>
+      </footer>
+    </section>
+  </main>
+
+<script type="text/javascript">
+var images = document.getElementsByTagName("img");
+var i;
+
+for(i = 0; i < images.length; i++) {
+  images[i].className += " centered";
+}
+</script>
+</body>
+
+</html>
