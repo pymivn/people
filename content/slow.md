@@ -4,7 +4,7 @@ Category: Trang chủ
 Tags: python, performance, benchmark, webframework
 Slug: slow
 Authors: hvnsweeting
-Summary: Python chậm hơn các ngôn ngữ lập trình khác nhưng có đủ nhanh cho bạn?
+Summary: Python chạy chậm hơn các ngôn ngữ lập trình khác nhưng có đủ nhanh cho bạn?
 
 [Pymi.vn](https://pymi.vn) là một đơn vị đào tạo Python thực chiến ở Việt Nam,
 học xong đi làm luôn. Chúng tôi đưa thẳng vấn đề với học viên
