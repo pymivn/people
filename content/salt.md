@@ -111,6 +111,10 @@ root_dir: /home/hvn/saltlab
 file_roots:
   base:
     - /home/hvn/saltlab/states
+pillar_roots:
+  base:
+    - /home/hvn/saltlab/pillars
+
 ```
 
 File `roster` chứa thông tin về các máy minion:
