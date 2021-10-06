@@ -336,3 +336,6 @@ TODO
 
 ## Kết luận
 TODO
+
+## Ref
+- [Học regex trong 7 phút https://pp.pymi.vn/article/10x/](https://pp.pymi.vn/article/10x/)
