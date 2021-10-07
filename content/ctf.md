@@ -358,8 +358,8 @@ Ref
 
 Đề cho 1 file Docker image chứa "kho báu". Tải file này về,
 không nhớ chính xác là tên gì, tạm gọi là `file.tar`.
-
 Bản chất các file "chương trình"/"data" trên máy tính thường là một dạng file archive/nén như zip/tar.
+Docker image cũng vậy:
 
 ```
 # tar xf ../file.tar
