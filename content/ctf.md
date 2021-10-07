@@ -33,6 +33,11 @@ nổi tiếng nhất có thể kể tới DEF CON CTF, phổ biến nhất có t
 phát hiện lỗi bảo mật tích hợp vào hệ thống khi phát triển phần mềm ở các doanh
 nghiệp và cộng đồng opensource. Năm nay snyk tổ chức CTF và team pymi nhận được
 lời quảng cáo trên "PythonWeekly" email, chiến thôi.
+Đây là lần thứ 2 HVN tham gia một giải CTF, lần đầu là tại [Framgia
+Code War
+2017](https://viblo.asia/p/code-war-2017-online-round-write-ups-part-1-aWj531Y1Z6m),
+bẵng cái 4 năm, không có kinh nghiệm gì mới do công
+việc chẳng liên quan tới hắc hiếc gì.
 
 ```
 https://ctf.snyk.io/ Fetch the Flag at SnykCon 2021!
@@ -360,10 +365,10 @@ kết luận ở đây là thành thạo thêm một ngôn ngữ backup phổ bi
 
 ## Steganography (stego - giấu tin trong ảnh)
 
-### [qrrr](https://ctf.snyk.io/challenges#qrrr-82)
+### qrrr
 via [khanhduy8](https://github.com/khanhduy8)
 
-![File QR](https://i.ibb.co/j686m4y/flag.png)
+![qr]({static}/images/ctf_qrrr.png)
 
 Bài cho một file ảnh QR đủ màu sắc.
 Lấy zalo ra quét thử không được, như vậy file này thực ra không phải QR đúng chuẩn.
@@ -371,13 +376,17 @@ Nhìn vào màu sắc của hình thì có vẻ như QR này gồm 3 mã QR tư�
 OK. Giờ dùng một công cụ đơn giản để xử lý file ảnh này. Link Tool: [stegonline.georgeom.net](https://stegonline.georgeom.net/upload)
 Một file ảnh màu RGB này có 3 bit planes là (Red, Green, Blue).
 Thử với plane Red với giá trị là 6/8 [ta có](https://i.ibb.co/zX5y40c/red.png),
-trông có vẻ ổn nhưng với ảnh QR để quét thì ta cần reverse lại. Sau khi reverse ta được
-![Reverse Try 1](https://i.ibb.co/x5ppDF5/download.png)
+trông có vẻ ổn nhưng với ảnh QR để quét thì ta cần reverse lại màu. Sau khi reverse ta được
+
+![reversed]({static}/images/ctf_qrrr1.png)
+
 Quét mã này ra: `12d99aa3a92f1abbb7d40786`
 Do không có {} nên đây chắc là đoạn giữa
 Tương tự thử với Green 6 được: SNYK{6947bd4818ffc1768f2
 Với Green 7: 5ff8d4e4958d8007a3897}
 Ghép 3 đoạn lại ra flag: `SNYK{6947bd4818ffc1768f212d99aa3a92f1abbb7d407865ff8d4e4958d8007a3897}`
+
+PS: ngày hôm sau, khanhduy8 nhận ra qrrr là lời gợi ý về 3 mã qr.
 
 ## Exploit (khai thác lỗ hổng bảo mật)
 
@@ -389,7 +398,7 @@ Có thể đọc source, thấy nghi nghi rồi google thư viện `lodash`, nh�
 setup [công cụ của Snyk](https://docs.snyk.io/)
 để quét rồi nên ta có kết quả vulnerbility
 
-![photo-2021-10-05-21-05-17](https://i.ibb.co/2vGzxFv/photo-2021-10-05-21-05-17.jpg)
+![snyk scan]({static}/images/ctf_snyk_scan.jpeg)
 
 Chú ý đến vul thứ 2. Đây là PoC của exploit vul này [Prototype Pollution in lodash | Snyk](https://snyk.io/vuln/SNYK-JS-LODASH-450202)
 Trong file source code có đoạn check:
@@ -414,7 +423,8 @@ sang
 khi này thì Object đã bị thêm vào thuộc tính `flag:true`
 Do đó `output.flag` sẽ trả về true. Ta có response chứa flag:
 `SNYK{6a6a6fff87f3cfdca056a077804838d4e87f25f6a11e09627062c06f142b10dd}`
-![enter image description here](https://i.ibb.co/NmYc1vK/photo-2021-10-05-22-47-33.jpg)
+
+![snyk scan]({static}/images/ctf_lodash.jpeg)
 
 ## TODO write-up pham
 
@@ -435,11 +445,12 @@ kéo dài 24h để đảm bảo công bằng.
 TODO
 
 ## Kết luận
-
-how to start
-
-https://overthewire.org/wargames/
-Google CTF
+CTF là một **trò chơi** thú vị. Như mọi trò chơi khác, nó dễ gây nghiện, và
+nghiện quá là không tốt. CTF có loại khó, có loại không khó tẹo nào, để bắt đầu
+chơi, hãy học dùng lệnh trên Linux, lập trình 1 ngôn ngữ bất kỳ
+và tham gia thử các game dễ như trên [overthewire.org](https://overthewire.org/wargames/)
+hay khó hơn là [Google CTF beginners quest](https://capturetheflag.withgoogle.com/beginners-quest)
+chơi nhiều là khác quen, và làm quen với không phải bài nào mình cũng giải được.
 
 ## Ref
 - [Học regex trong 7 phút https://pp.pymi.vn/article/10x/](https://pp.pymi.vn/article/10x/)
