@@ -395,7 +395,7 @@ Một file ảnh màu RGB này có 3 bit planes là (Red, Green, Blue).
 Thử với plane Red với giá trị là 6/8 [ta có](https://i.ibb.co/zX5y40c/red.png),
 trông có vẻ ổn nhưng với ảnh QR để quét thì ta cần reverse lại màu. Sau khi reverse ta được
 
-![reversed]({static}/images/ctf_qrrr1.png)
+![reversed]({static}/images/ctf_qrrr2.png)
 
 Quét mã này ra: `12d99aa3a92f1abbb7d40786`
 Do không có {} nên đây chắc là đoạn giữa
@@ -409,7 +409,7 @@ PPS: hvn dùng Firefox trên Android mở ra ngay phần đuôi trong 3 mã, k�
 
 ## Exploit (khai thác lỗ hổng bảo mật)
 
-### [Invisible Ink](https://ctf.snyk.io/challenges#Invisible%20Ink-78)
+### Invisible Ink - javascript
 via [khanhduy8](https://github.com/khanhduy8)
 
 Bài này cho 1 link web và một [file source code]({static}/ctf/index.js), 1 file [package.json]({static}/ctf/package.json).
