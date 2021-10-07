@@ -67,7 +67,7 @@ Chỉ nên dùng để tham khảo, tránh dùng làm văn mẫu.
 Bài cho 1 user `u`, password và 1 địa chỉ để SSH vào.
 Sau khi login, thấy như sau:
 
-```
+```sh
 all-your-flags-are-belong-to-root-p4j0:~$
 ```
 
@@ -77,11 +77,11 @@ Nhìn lại, nếu hiểu ý của đề thì đó là lời gợi ý file flag 
 Gõ thử `sudo` không có, gõ `su -l` để
 trở thành root nhận được 1 message:
 
-```
+```sh
 all-your-flags-are-belong-to-root-p4j0:/$ su -l
 su: must be suid to work properly
 
-$ ls -la which su
+$ ls -la `which su`
 lrwxrwxrwx    1 root     root            12 Jun 15 14:34 /bin/su -> /bin/busybox
 ```
 
