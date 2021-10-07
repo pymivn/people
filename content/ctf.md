@@ -69,7 +69,9 @@ nhưng thật ra, không liên quan gì để tìm đáp án bài này cả.
 
 `SUID` là khái niệm ít phổ biến với người dùng CLI thông thường, họ học hết chmod 755 777 400 là khá đủ rồi.
 
-`SUID` là một giá trị đặc biệt để cấp quyền cho user, khi chạy, sẽ dùng UID/GID của người sở hữu file. Khi chmod, set SUID sử dụng số `4` trước số chmod thông thường. Ví dụ `4755`.
+`SUID` là một giá trị đặc biệt để cấp quyền cho user, khi user chạy chương trình sẽ dùng UID của người sở hữu file thay vì UID của user, hay
+nói cách khác, trở thành người sở hữu / "chiếm quyền" trong lúc chạy chương trình này.
+Khi chmod, set SUID sử dụng số `4` trước số chmod thông thường. Ví dụ `4755`.
 
 Lệnh `su` ở trên là 1 ví dụ có SUID.
 Lý do mình biết tới SUID, do công việc trước đây có viết một chương trình thực hiện gửi ICMP (ping), mà lại yêu cầu quyền root. Trong khi bình thường gõ lệnh ping thì không phải sudo/su bao giờ. Hóa ra lệnh ping (ngày xưa) set SUID (giờ ko set nữa).
@@ -89,6 +91,7 @@ SNYK{06b0e0ae4995af71335eda2882fecbc5008b01d95990982b439f3f8365fc07f7}
 
 Ref
 
+- https://security.stackexchange.com/a/222800/11544
 - https://www.redhat.com/sysadmin/suid-sgid-sticky-bit
 - https://www.linuxjournal.com/content/gettin-sticky-it
 - https://www.linuxnix.com/suid-set-suid-linuxunix/
