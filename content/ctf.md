@@ -363,8 +363,9 @@ kết luận ở đây là thành thạo thêm một ngôn ngữ backup phổ bi
 ### [qrrr](https://ctf.snyk.io/challenges#qrrr-82)
 via [khanhduy8](https://github.com/khanhduy8)
 
-Bài này cho một file ảnh QR đủ màu sắc.
 ![File QR](https://i.ibb.co/j686m4y/flag.png)
+
+Bài cho một file ảnh QR đủ màu sắc.
 Lấy zalo ra quét thử không được, như vậy file này thực ra không phải QR đúng chuẩn.
 Nhìn vào màu sắc của hình thì có vẻ như QR này gồm 3 mã QR tương ứng với 3 đoạn mà khi ghép lại với nhau ta có được flag.
 OK. Giờ dùng một công cụ đơn giản để xử lý file ảnh này. Link Tool: [stegonline.georgeom.net](https://stegonline.georgeom.net/upload)
