@@ -39,11 +39,9 @@ Code War
 bẵng cái 4 năm, không có kinh nghiệm gì mới do công
 việc chẳng liên quan tới hắc hiếc gì.
 
-```
-https://ctf.snyk.io/ Fetch the Flag at SnykCon 2021!
+**https://ctf.snyk.io/ Fetch the Flag at SnykCon 2021!**
 
-October 5, 9:00 am - 7:00 pm ET
-```
+**October 5, 9:00 am - 7:00 pm ET**
 
 đăng ký rồi rủ rê team 5 người.
 
@@ -121,10 +119,10 @@ SNYK{06b0e0ae4995af71335eda2882fecbc5008b01d95990982b439f3f8365fc07f7}
 
 Ref
 
-- https://security.stackexchange.com/a/222800/11544
-- https://www.redhat.com/sysadmin/suid-sgid-sticky-bit
-- https://www.linuxjournal.com/content/gettin-sticky-it
-- https://www.linuxnix.com/suid-set-suid-linuxunix/
+- [https://security.stackexchange.com/a/222800/11544](https://security.stackexchange.com/a/222800/11544)
+- [https://www.redhat.com/sysadmin/suid-sgid-sticky-bit](https://www.redhat.com/sysadmin/suid-sgid-sticky-bit)
+- [https://www.linuxjournal.com/content/gettin-sticky-it](https://www.linuxjournal.com/content/gettin-sticky-it)
+- [https://www.linuxnix.com/suid-set-suid-linuxunix/](https://www.linuxnix.com/suid-set-suid-linuxunix/)
 
 ### Robert Louis Stevenson - docker
 
@@ -144,10 +142,10 @@ ak/pp/tv/bc/22/flag:1:SNYK{23acc4111e1905ba1832cab7f1660284e3d1b91d3c2ead7bcec41
 
 Ref:
 
-- https://www.familug.org/2012/09/nen-giai-nen-bang-command-line-trong.html
-- https://github.com/moby/moby/blob/master/image/spec/v1.2.md#combined-image-json--filesystem-changeset-format
-- https://github.com/hvnsweeting/pocker
-- grep: https://www.familug.org/2012/10/vai-combo-lenh-de-nho-d-se-uoc-update.html
+- [https://www.familug.org/2012/09/nen-giai-nen-bang-command-line-trong.html](https://www.familug.org/2012/09/nen-giai-nen-bang-command-line-trong.html)
+- [https://github.com/moby/moby/blob/master/image/spec/v1.2.md#combined-image-json--filesystem-changeset-format](https://github.com/moby/moby/blob/master/image/spec/v1.2.md#combined-image-json--filesystem-changeset-format)
+- [https://github.com/hvnsweeting/pocker](https://github.com/hvnsweeting/pocker)
+- [grep: https://www.familug.org/2012/10/vai-combo-lenh-de-nho-d-se-uoc-update.html](grep: https://www.familug.org/2012/10/vai-combo-lenh-de-nho-d-se-uoc-update.html)
 
 ## Coding
 ### CALC-UL8R
@@ -175,14 +173,15 @@ Vậy có 2 việc cần làm:
 - đọc biểu thức và tính ra kết quả
 
 Do lần đầu dùng [`telnetlib`](https://docs.python.org/3/library/telnetlib.html#telnet-example), nên cũng khá vất vả một lúc mới tìm
-ra cách đọc dùng regex thay vì dùng string.
+ra cách đọc dùng [regex](https://pp.pymi.vn/article/10x/)
+thay vì dùng string.
 
 - `read_until("string")` sẽ đọc đến khi thấy "string" thì trả nội dung về
 - `expect(list, timeout=None)`  đọc đến khi 1 trong các regex  pattern match.
 
 Sau khi đã gửi nhận được, cần viết code giải phương trình, ban đầu mình có tự viết code để giải phương trình bằng cách thay biến trong phương trình (1 ký tự, dùng regex) bằng số 0, rồi chuyển vế các phép tính còn lại. Cách làm đơn giản này đúng cho đến khi nó sai: biểu thức có phép nhân. Nghĩ tới giải phương trình trên Python là nghĩ tới sympy, search `sympy solve equation` thấy ngay
 
-- https://stackoverflow.com/a/30776918/807703
+- [https://stackoverflow.com/a/30776918/807703](https://stackoverflow.com/a/30776918/807703)
 
 sửa lại để nhận mọi biến, PS: ở đây mình ko chăm chỉ viết tay từ a đến z mà gõ 1 dòng Python là xong
 
@@ -220,7 +219,7 @@ Thực hiện gửi nhận liên tục các phép tính cho đến khi server tr
 ```
 
 File Jupyter Notebook dùng giải bài này
-https://gist.github.com/hvnsweeting/7e00e139912b9d65a1ec7c1913fdb513
+[https://gist.github.com/hvnsweeting/7e00e139912b9d65a1ec7c1913fdb513](https://gist.github.com/hvnsweeting/7e00e139912b9d65a1ec7c1913fdb513)
 
 ### Random flag generator - python
 Một bài được tag thẻ `python`, cho 1 file code python và 1 file log:
@@ -290,7 +289,7 @@ Sau 30 phút, 1 tiếng không ra kêt quả, và giải xong 1 bài khác trong
 Thay vì tính hết output của mỗi seed, cho nó dừng lại ngay nếu dòng log đầu tiên khác với dòng đầu tiên trong log.txt.
 Sau 1-2 phút đã có kết quả.
 
-Code: https://gist.github.com/hvnsweeting/619ecf04aa9b57bd6b44f3fcc57fe8c2
+Code: [https://gist.github.com/hvnsweeting/619ecf04aa9b57bd6b44f3fcc57fe8c2](https://gist.github.com/hvnsweeting/619ecf04aa9b57bd6b44f3fcc57fe8c2)
 
 ### Russian doll
 Đề bài cho ở dạng đã mã hóa, và sau khi 1 thành viên trong team [dùng tool](https://planetcalc.com/1434/) để giải mã ROT thì thu được nội dung:
@@ -302,7 +301,9 @@ Giờ để ý lại tên bài, cũng với hàm ý tương tự, Russian doll M
 
 ![doll](https://images.unsplash.com/photo-1613981948475-6e2407d8b589?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=didssph-PB80D_B4g7c-unsplash.jpg&w=640)
 
+<center>
 Photo by <a href="https://unsplash.com/@didsss?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Didssph</a> on <a href="https://unsplash.com/s/photos/russian-doll?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+</center>
 
 với lượng điểm thu được cho bài này là 490/500 lúc  October 6th, 2:44:17 AM, sau ~7 tiếng, thì đây rõ là 1 bài khó.
 
@@ -312,13 +313,12 @@ Cho một thuật toán mã hóa cho trước, với key là 4 ký tự, hẳn k
 
 Đen thay, 2 thư viện tìm thấy đầu tiên, đều có vẻ không dùng được
 
-- https://pypi.org/project/xxtea/
+- [https://pypi.org/project/xxtea/](https://pypi.org/project/xxtea/)
 
 có 1 dòng yêu cầu ` # Key must be a 16-byte string.`
 Trong khi bài này key là 4 ký tự.
-PS: có thể padding key cho đủ 16-byte, bạn đọc có thể tự thử https://github.com/ifduyue/xxtea#padding nhưng trong 1 cuộc thi CTF với sức ép khủng khiếp về thời gian, không mấy ai ngồi đọc doc lib từ đầu tới cuối cả.
 
-- https://pypi.org/project/xxtea-py/
+- [https://pypi.org/project/xxtea-py/](https://pypi.org/project/xxtea-py/)
 
 một cái lib khá oái oăm khi cài thì ok mà dùng thì lại đòi cffi, và hầu hết mọi người dừng lại ở đó.
 
@@ -361,9 +361,18 @@ func main() {
 }
 ```
 
-https://gist.github.com/hvnsweeting/b8d518fdd67b85e9bf9f6a16af6221af
+[Code](https://gist.github.com/hvnsweeting/b8d518fdd67b85e9bf9f6a16af6221af)
 
-kết luận ở đây là thành thạo thêm một ngôn ngữ backup phổ biến như C/C++/Java/C#/Golang sẽ rất hữu ích khi không dùng được Python. Nói thì dễ, chứ thành thạo 1 ngôn ngữ đến mức dùng được lúc áp lực thời gian không phải chuyện ai cũng có thời gian/tiền của đầu tư, giải pháp khác có vẻ dễ hơn là kiếm team member với tool set khác nhau.
+kết luận ở đây là thành thạo thêm một ngôn ngữ backup phổ biến như
+C/C++/Java/C#/Golang sẽ rất hữu ích khi không dùng được Python. Nói thì dễ, chứ
+thành thạo 1 ngôn ngữ đến mức dùng được lúc áp lực thời gian không phải chuyện
+ai cũng có thời gian/tiền của đầu tư, giải pháp khác có vẻ dễ hơn là kiếm team
+member với tool set khác nhau.
+
+PS: python lib `xxtea` có thể padding key cho đủ 16-byte, bạn đọc có thể tự thử
+[https://github.com/ifduyue/xxtea#padding ](https://github.com/ifduyue/xxtea#padding )
+nhưng trong 1 cuộc thi CTF với sức ép
+khủng khiếp về thời gian, không mấy ai ngồi đọc doc lib từ đầu tới cuối cả.
 
 ## Steganography (stego - giấu tin trong ảnh)
 
@@ -437,7 +446,7 @@ ae lăn quay hết nên tụt hạng mạnh :))
 ![44]({static}/images/ctf_rank.png)
 
 Theo đánh giá của 1 dân chơi thì giải CTF này thuộc loại trung bình, chưa khó,
-nhưng không phải game chuyên nghiệp do chỉ kéo dài 8 tiếng và lợi thế về
+nhưng không phải game chuyên nghiệp do chỉ kéo dài 10 tiếng và lợi thế về
 múi giờ cho bên đông Mỹ (8PM giờ Việt Nam -> 6AM), các giải chuyên nghiệp sẽ
 kéo dài 24h để đảm bảo công bằng.
 
@@ -453,6 +462,3 @@ chơi, hãy học dùng lệnh trên Linux, lập trình 1 ngôn ngữ bất k�
 và tham gia thử các game dễ như trên [overthewire.org](https://overthewire.org/wargames/)
 hay khó hơn là [Google CTF beginners quest](https://capturetheflag.withgoogle.com/beginners-quest)
 chơi nhiều là khác quen, và làm quen với không phải bài nào mình cũng giải được.
-
-## Ref
-- [Học regex trong 7 phút https://pp.pymi.vn/article/10x/](https://pp.pymi.vn/article/10x/)
