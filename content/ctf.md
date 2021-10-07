@@ -1,10 +1,10 @@
-Title: Ký sự check cờ tại SNYK CTF 2021
+Title: Ký sự chiếm cờ tại SNYK CTF 2021
 Date: 2021-10-06
 Category: Trang chủ
 Tags: python, regex, golang, ctf, hacking
 Slug: ctf
 Authors: hvnsweeting, các Pymiers và khách mời
-Summary: TODO
+Summary: SNYK CTF 2021 write-up
 
 
 ## TODO intro what is CTF
@@ -13,6 +13,7 @@ Summary: TODO
 - Some simple start
 https://capturetheflag.withgoogle.com/beginners-quest
 https://www.familug.org/search/label/CTF
+- các dạng bài
 
 
 ## SNYK CTF 2021
@@ -32,6 +33,7 @@ Cách tính điểm: 500 cho mỗi bài, giảm dần theo số lượt giải. 
 Code trong các cuộc thi CTF thường được viết ra nhanh nhất, nên thường không theo các chuẩn sạch gọn đẹp hay tối ưu, nó đơn giản là thứ bạn viết ra khi có sức ép về mặt thời gian và mục tiêu là kết quả.
 Chỉ nên dùng để tham khảo, tránh dùng làm văn mẫu.
 
+## Linux/system
 ### All your flags are belong to root - Linux CLI
 
 Bài cho 1 user `u`, password và 1 địa chỉ để SSH vào.
@@ -114,6 +116,7 @@ Ref:
 - https://github.com/hvnsweeting/pocker
 - grep: https://www.familug.org/2012/10/vai-combo-lenh-de-nho-d-se-uoc-update.html
 
+## Coding
 ### CALC-UL8R
 
 Đề cho 1 địa chỉ để nc vào
@@ -328,6 +331,8 @@ func main() {
 https://gist.github.com/hvnsweeting/b8d518fdd67b85e9bf9f6a16af6221af
 
 kết luận ở đây là thành thạo thêm một ngôn ngữ backup phổ biến như C/C++/Java/C#/Golang sẽ rất hữu ích khi không dùng được Python. Nói thì dễ, chứ thành thạo 1 ngôn ngữ đến mức dùng được lúc áp lực thời gian không phải chuyện ai cũng có thời gian/tiền của đầu tư, giải pháp khác có vẻ dễ hơn là kiếm team member với tool set khác nhau.
+
+## Exploit
 
 ## TODO write-up pham/hoduy
 
