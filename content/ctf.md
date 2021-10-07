@@ -211,7 +211,7 @@ Sau 1-2 phút đã có kết quả.
 Code: [https://gist.github.com/hvnsweeting/619ecf04aa9b57bd6b44f3fcc57fe8c2](https://gist.github.com/hvnsweeting/619ecf04aa9b57bd6b44f3fcc57fe8c2)
 
 ### Russian doll
-Đề bài cho ở dạng đã mã hóa, và sau khi 1 thành viên trong team [dùng tool](https://planetcalc.com/1434/) để giải mã ROT thì thu được nội dung:
+Đề bài cho ở dạng đã mã hóa, và sau khi 1 thành viên trong team [dùng tool](https://planetcalc.com/1434/) để giải mã [ROT](https://www.familug.org/2014/12/programming-phe-rot13.html) thì thu được nội dung:
 
 > ROT15  The flag is SDZcVdXvZHhKkxopTPYbTvmxTHwFZyyvnutAwsjijXwDqeOg XXTEA encrypted. Password hint: xxxx.
 
