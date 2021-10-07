@@ -173,6 +173,7 @@ cần tính giá trị của biến, trong ví dụ này là `o`, rồi nhập v
 Cứ nhập xong, enter, phía server sẽ trả về 1 phép tính khác.
 
 Vậy có 2 việc cần làm:
+
 - kết nối đến server để nhận đề và gửi kết quả: việc này có thể dùng Python telnetlib
 - đọc biểu thức và tính ra kết quả
 
