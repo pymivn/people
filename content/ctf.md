@@ -465,4 +465,4 @@ nghiện quá là không tốt. CTF có loại khó, có loại không khó tẹ
 chơi, hãy học dùng lệnh trên Linux, lập trình 1 ngôn ngữ bất kỳ
 và tham gia thử các game dễ như trên [overthewire.org](https://overthewire.org/wargames/)
 hay khó hơn là [Google CTF beginners quest](https://capturetheflag.withgoogle.com/beginners-quest)
-chơi nhiều là khác quen, và làm quen với không phải bài nào mình cũng giải được.
+chơi nhiều là khác quen, và làm quen với chuyện "không phải bài nào mình cũng giải được".
