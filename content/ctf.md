@@ -57,6 +57,10 @@ theo các chuẩn sạch gọn đẹp hay tối ưu, nó đơn giản là thứ 
 sức ép về mặt thời gian và mục tiêu là kết quả.
 Chỉ nên dùng để tham khảo, tránh dùng làm văn mẫu.
 
+### Cảnh báo 2
+Bạn đọc chưa quen phần nào có thể bỏ qua phần đó, các bài chia theo các lĩnh
+vực khác nhau.
+
 ## Các bài đã giải trong thời gian thi đấu
 
 ![done]({static}/images/ctf_solved.jpg)
@@ -144,6 +148,8 @@ Ref:
 - [https://github.com/moby/moby/blob/master/image/spec/v1.2.md#combined-image-json--filesystem-changeset-format](https://github.com/moby/moby/blob/master/image/spec/v1.2.md#combined-image-json--filesystem-changeset-format)
 - [https://github.com/hvnsweeting/pocker](https://github.com/hvnsweeting/pocker)
 - [grep: https://www.familug.org/2012/10/vai-combo-lenh-de-nho-d-se-uoc-update.html](grep: https://www.familug.org/2012/10/vai-combo-lenh-de-nho-d-se-uoc-update.html)
+
+PS: Robert Louis Stevenson là tác giả của truyện "đảo giấu vàng" (Treasure Island)
 
 ## Coding
 ### CALC-UL8R
@@ -448,7 +454,8 @@ nhưng không phải game chuyên nghiệp do chỉ kéo dài 10 tiếng và l�
 múi giờ cho bên đông Mỹ (8PM giờ Việt Nam -> 6AM), các giải chuyên nghiệp sẽ
 kéo dài 24h để đảm bảo công bằng.
 
-Đi thi với tinh thần cọ sát, các bài thi rất thú vị nên rất vui.
+Đi thi với tinh thần cọ sát, các bài thi rất thú vị, học được nhiều điều mới
+nên rất vui.
 
 ## Bài học
 TODO
