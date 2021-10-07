@@ -405,6 +405,8 @@ Ghép 3 đoạn lại ra flag: `SNYK{6947bd4818ffc1768f212d99aa3a92f1abbb7d40786
 
 PS: ngày hôm sau, khanhduy8 nhận ra qrrr là lời gợi ý về 3 mã qr.
 
+PPS: hvn dùng Firefox trên Android mở ra ngay phần đuôi trong 3 mã, kết luận: không dùng zalo.
+
 ## Exploit (khai thác lỗ hổng bảo mật)
 
 ### [Invisible Ink](https://ctf.snyk.io/challenges#Invisible%20Ink-78)
