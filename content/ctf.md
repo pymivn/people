@@ -197,7 +197,7 @@ Flag created 🎉
 
 Đọc code thấy để tìm được flag, cần tìm ra
 giá trị `seed` mà người ra đề đã dùng.
-Các học viên học Python tại Pymi đều được học: các function trong `random` chỉ là "gỉa ngẫu nhiên" và thực chất là chạy thuật toán sinh số ngẫu nhiên dựa trên giá trị `seed`. `seed` trong bài này gợi ý là UNIX timestamp, chạy từ 0 tới khoảng 1 tỷ 6 (1633537375).
+Các học viên [học Python tại Pymi.vn](https://pymi.vn) đều được học: các function trong `random` chỉ là "gỉa ngẫu nhiên" và thực chất là chạy thuật toán sinh số ngẫu nhiên dựa trên giá trị `seed`. `seed` trong bài này gợi ý là UNIX timestamp, chạy từ 0 tới khoảng 1 tỷ 6 (1633537375).
 Cách tìm đơn giản là sửa lại code, chạy lần lượt với từng seed, so sánh đầu ra (thay vì print thì cho vào 1 string) với file log. Nếu giống nhau tức đó là gía trị seed cần tìm.
 
 Vấn đề ở cách làm này, khi Python thực hiện khoảng 16 triệu phép +1 mỗi giây (xem [cpu.pymi.vn](https://cpu.pymi.vn/)), thì để tính 1 tỷ 6 phải mất ít nhất 100 giây.
@@ -227,10 +227,7 @@ Photo by <a href="https://unsplash.com/@didsss?utm_source=unsplash&utm_medium=re
 với lượng điểm thu được cho bài này là 490/500 lúc  October 6th, 2:44:17 AM, sau ~7 tiếng, thì đây rõ là 1 bài khó.
 
 hoặc tiết lộ 1 phần về công cụ của người chơi đều là Python, vì sao hay đọc tiếp...
-
-Cho một thuật toán mã hóa cho trước, với key là 4 ký tự, hẳn không khó khăn gì các team có thể tải ngay lib Python trên mạng về và bruteforce vài phút là có ngay kết quả.
-
-Đen thay, 2 thư viện tìm thấy đầu tiên, đều có vẻ không dùng được
+Cho một thuật toán mã hóa cho trước, với key là 4 ký tự, hẳn không khó khăn gì các team có thể tải ngay lib Python trên mạng về và bruteforce vài phút là có ngay kết quả. Đen thay, 2 thư viện tìm thấy đầu tiên, đều có vẻ không dùng được
 
 - [https://pypi.org/project/xxtea/](https://pypi.org/project/xxtea/)
 
