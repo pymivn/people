@@ -3,35 +3,58 @@ Date: 2021-10-06
 Category: Trang chủ
 Tags: python, regex, golang, ctf, hacking
 Slug: ctf
-Authors: hvnsweeting, các Pymiers và khách mời
+Authors: hvnsweeting, khanhduy8, các Pymiers và khách mời
 Summary: SNYK CTF 2021 write-up
 
+## CTF là gì?
 
-## TODO intro what is CTF
-- Where to look at
-- How to learn
-- Some simple start
-https://capturetheflag.withgoogle.com/beginners-quest
-https://www.familug.org/search/label/CTF
-- các dạng bài
+Capture the Flag (CTF) là một trò chơi được ưa chuộng của những người trong
+ngành bảo mật thông tin, thường tổ chức theo dạng cuộc thi với nhiều đội
+tham gia và có đội dành chiến thắng.
 
+CTF có 3 dạng phổ biến:
+
+- Jeopardy-style CTFs: Đề thi thường gồm nhiều dạng bài thuộc
+các lĩnh vực khác nhau trong ngành: cryptography, stego, binary analysis,
+reverse engineering, mobile security, web hacking, OS, Linux...
+- attack-defence: mỗi đội được giao cho 1 hệ thống có các lỗi bảo mật, và 2 đội
+sẽ vá hệ thống của mình đồng thời tấn công hệ thống của đội khác.
+- mixed: đủ dạng
+
+CTF với người làm bảo mật giống như
+[LOL](https://www.leagueoflegends.com/en-us/) với các thanh niên chơi esport
+vậy, cũng có các giải đấu lớn thế giới.
+Danh sách các giải đấu lớn có thể xem trên [ctftime](https://ctftime.org/ctfs),
+nổi tiếng nhất có thể kể tới DEF CON CTF, phổ biến nhất có thể gọi tên Google CTF.
 
 ## SNYK CTF 2021
-https://ctf.snyk.io/
 
-Fetch the Flag at SnykCon 2021!
+[SNYK.io](https://snyk.io/) là một công ty làm về bảo mật, cung cấp các dịch vụ
+phát hiện lỗi bảo mật tích hợp vào hệ thống khi phát triển phần mềm ở các doanh
+nghiệp và cộng đồng opensource. Năm nay snyk tổ chức CTF và team pymi nhận được
+lời quảng cáo trên "PythonWeekly" email, chiến thôi.
+
+```
+https://ctf.snyk.io/ Fetch the Flag at SnykCon 2021!
 
 October 5, 9:00 am - 7:00 pm ET
+```
 
-Team 5.
+đăng ký rồi rủ rê team 5 người.
 
-Cách tính điểm: 500 cho mỗi bài, giảm dần theo số lượt giải. Tức giải xong sớm thì sẽ được điểm cao, sau khi giảm dần, điểm có thể tới min là 50.
+Cách tính điểm: 500 cho mỗi bài, giảm dần theo số lượt giải. Tức giải xong sớm
+thì sẽ được điểm cao, sau khi giảm dần, điểm có thể tới min là 50.
 
-### TODO: add pics
+Các bài thi sẽ cần đi tìm 1 đoạn flag dạng `SNYK{...}` rồi điền vào website
+của snyk.
 
 ## Cảnh báo
 Code trong các cuộc thi CTF thường được viết ra nhanh nhất, nên thường không theo các chuẩn sạch gọn đẹp hay tối ưu, nó đơn giản là thứ bạn viết ra khi có sức ép về mặt thời gian và mục tiêu là kết quả.
 Chỉ nên dùng để tham khảo, tránh dùng làm văn mẫu.
+
+## Các bài đã giải trong thời gian thi đấu
+
+![done]({static}/images/ctf_solved.jpg)
 
 ## Linux/system
 ### All your flags are belong to root - Linux CLI
@@ -335,15 +358,87 @@ https://gist.github.com/hvnsweeting/b8d518fdd67b85e9bf9f6a16af6221af
 
 kết luận ở đây là thành thạo thêm một ngôn ngữ backup phổ biến như C/C++/Java/C#/Golang sẽ rất hữu ích khi không dùng được Python. Nói thì dễ, chứ thành thạo 1 ngôn ngữ đến mức dùng được lúc áp lực thời gian không phải chuyện ai cũng có thời gian/tiền của đầu tư, giải pháp khác có vẻ dễ hơn là kiếm team member với tool set khác nhau.
 
-## Exploit
+## Steganography (stego - giấu tin trong ảnh)
 
-## TODO write-up pham/hoduy
+### [qrrr](https://ctf.snyk.io/challenges#qrrr-82)
+via [khanhduy8](https://github.com/khanhduy8)
+
+Bài này cho một file ảnh QR đủ màu sắc.
+![File QR](https://i.ibb.co/j686m4y/flag.png)
+Lấy zalo ra quét thử không được, như vậy file này thực ra không phải QR đúng chuẩn.
+Nhìn vào màu sắc của hình thì có vẻ như QR này gồm 3 mã QR tương ứng với 3 đoạn mà khi ghép lại với nhau ta có được flag.
+OK. Giờ dùng một công cụ đơn giản để xử lý file ảnh này. Link Tool: [stegonline.georgeom.net](https://stegonline.georgeom.net/upload)
+Một file ảnh màu RGB này có 3 bit planes là (Red, Green, Blue).
+Thử với plane Red với giá trị là 6/8 [ta có](https://i.ibb.co/zX5y40c/red.png),
+trông có vẻ ổn nhưng với ảnh QR để quét thì ta cần reverse lại. Sau khi reverse ta được
+![Reverse Try 1](https://i.ibb.co/x5ppDF5/download.png)
+Quét mã này ra: `12d99aa3a92f1abbb7d40786`
+Do không có {} nên đây chắc là đoạn giữa
+Tương tự thử với Green 6 được: SNYK{6947bd4818ffc1768f2
+Với Green 7: 5ff8d4e4958d8007a3897}
+Ghép 3 đoạn lại ra flag: `SNYK{6947bd4818ffc1768f212d99aa3a92f1abbb7d407865ff8d4e4958d8007a3897}`
+
+## Exploit (khai thác lỗ hổng bảo mật)
+
+### [Invisible Ink](https://ctf.snyk.io/challenges#Invisible%20Ink-78)
+via [khanhduy8](https://github.com/khanhduy8)
+
+Bài này cho 1 link web và một [file source code]({static}/ctf/index.js), 1 file [package.json]({static}/ctf/package.json).
+Có thể đọc source, thấy nghi nghi rồi google thư viện `lodash`, nhưng pro @hvn
+setup [công cụ của Snyk](https://docs.snyk.io/)
+để quét rồi nên ta có kết quả vulnerbility
+
+![photo-2021-10-05-21-05-17](https://i.ibb.co/2vGzxFv/photo-2021-10-05-21-05-17.jpg)
+
+Chú ý đến vul thứ 2. Đây là PoC của exploit vul này [Prototype Pollution in lodash | Snyk](https://snyk.io/vuln/SNYK-JS-LODASH-450202)
+Trong file source code có đoạn check:
+`if(output.flag)`
+nếu `true` sẽ response giá trị của flag
+biến output hiện tại đang là:
+`output = {}` nên sẽ không trả về kết quả chúng ta cần
+Trong source code có sử dụng Unsafe Object recursive merge
+
+```
+merge (target, source)
+	foreach property of source
+	if property exists and is an object on both the target and the source
+		merge(target[property], source[property])
+	else target[property] = source[property]
+```
+
+trong đó target là output còn source là request nên chỉ cần thay request bình thường từ:
+`{"message": "ping"}`
+sang
+`{"constructor": {"prototype": {"flag": true}}}`
+khi này thì Object đã bị thêm vào thuộc tính `flag:true`
+Do đó `output.flag` sẽ trả về true. Ta có response chứa flag:
+`SNYK{6a6a6fff87f3cfdca056a077804838d4e87f25f6a11e09627062c06f142b10dd}`
+![enter image description here](https://i.ibb.co/NmYc1vK/photo-2021-10-05-22-47-33.jpg)
+
+## TODO write-up pham
+
+## Kết quả
+Team PyMi xếp thứ 44 / 537 đội có ghi điểm, có lúc xếp thứ 24. 3h buồn ngủ quá
+ae lăn quay hết nên tụt hạng mạnh :))
+
+![44]({static}/images/ctf_rank.png)
+
+Theo đánh giá của 1 dân chơi thì giải CTF này thuộc loại trung bình, chưa khó,
+nhưng không phải game chuyên nghiệp do chỉ kéo dài 8 tiếng và lợi thế về
+múi giờ cho bên đông Mỹ (8PM giờ Việt Nam -> 6AM), các giải chuyên nghiệp sẽ
+kéo dài 24h để đảm bảo công bằng.
+
+Đi thi với tinh thần cọ sát, các bài thi rất thú vị nên rất vui.
 
 ## Bài học
 TODO
 
 ## Kết luận
-TODO
+
+how to start
+
+https://overthewire.org/wargames/
+Google CTF
 
 ## Ref
 - [Học regex trong 7 phút https://pp.pymi.vn/article/10x/](https://pp.pymi.vn/article/10x/)
