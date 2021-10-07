@@ -301,7 +301,6 @@ all-your-flags-are-belong-to-root-p4j0:~$
 ```
 
 gõ `ls` không thấy file gì. `cd` lung tung, tới `/`, `ls` thấy file `/flag` nhưng file này chỉ `root` mới đọc được.
-Nhìn lại, nếu hiểu ý của đề thì đó là lời gợi ý file flag nằm ở `/`.
 
 Gõ thử `sudo` không có, gõ `su -l` để
 trở thành root nhận được 1 message:
@@ -321,7 +320,6 @@ File su này khá khác thường so với máy bình thường:
 -rwsr-xr-x 1 root root 67816 Jul 21  2020 /usr/bin/su
 ```
 
-nhưng thật ra, không liên quan gì để tìm đáp án bài này cả.
 Để từ user thường chiếm được quyền root đọc file /flag, cần "làm cách nào đó", và lời gợi ý là **suid**.
 
 `SUID` là khái niệm ít phổ biến với người dùng CLI thông thường, họ học hết chmod 755 777 400 là khá đủ rồi.
@@ -343,6 +341,8 @@ Tìm thấy file lệnh `curl`. `curl` là chương trình thường dùng để
 all-your-flags-are-belong-to-root-p4j0:/$ curl file:///flag
 SNYK{06b0e0ae4995af71335eda2882fecbc5008b01d95990982b439f3f8365fc07f7}
 ```
+
+PS: Nhìn lại, nếu hiểu ý của đề thì đó là lời gợi ý file flag nằm ở `/` (root).
 
 Ref
 
