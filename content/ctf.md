@@ -229,8 +229,7 @@ Photo by <a href="https://unsplash.com/@didsss?utm_source=unsplash&utm_medium=re
 </center>
 
 với lượng điểm thu được cho bài này là 490/500 lúc  October 6th, 2:44:17 AM, sau ~7 tiếng, thì đây rõ là 1 bài khó.
-
-hoặc tiết lộ 1 phần về công cụ của người chơi đều là Python, vì sao hay đọc tiếp...
+Hoặc nó tiết lộ 1 phần về công cụ của người chơi đều là Python, vì sao hay đọc tiếp...
 Cho một thuật toán mã hóa cho trước, với key là 4 ký tự, hẳn không khó khăn gì các team có thể tải ngay lib Python trên mạng về và bruteforce vài phút là có ngay kết quả. Đen thay, 2 thư viện tìm thấy đầu tiên, đều có vẻ không dùng được
 
 - [https://pypi.org/project/xxtea/](https://pypi.org/project/xxtea/)
