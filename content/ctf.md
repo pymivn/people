@@ -96,11 +96,9 @@ nhưng thật ra, không liên quan gì để tìm đáp án bài này cả.
 Để từ user thường chiếm được quyền root đọc file /flag, cần "làm cách nào đó", và lời gợi ý là **suid**.
 
 `SUID` là khái niệm ít phổ biến với người dùng CLI thông thường, họ học hết chmod 755 777 400 là khá đủ rồi.
-
 `SUID` là một giá trị đặc biệt để cấp quyền cho user, khi user chạy chương trình sẽ dùng UID của người sở hữu file thay vì UID của user, hay
 nói cách khác, trở thành người sở hữu / "chiếm quyền" trong lúc chạy chương trình này.
 Khi chmod, set SUID sử dụng số `4` trước số chmod thông thường. Ví dụ `4755`.
-
 Lệnh `su` ở trên là 1 ví dụ có SUID.
 Lý do mình biết tới SUID, do công việc trước đây có viết một chương trình thực hiện gửi ICMP (ping), mà lại yêu cầu quyền root. Trong khi bình thường gõ lệnh ping thì không phải sudo/su bao giờ. Hóa ra lệnh ping (ngày xưa) set SUID (giờ ko set nữa).
 
