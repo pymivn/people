@@ -1,7 +1,7 @@
 Title: Ký sự chiếm cờ tại SNYK CTF 2021
 Date: 2021-10-06
 Category: Trang chủ
-Tags: python, regex, golang, ctf, hacking
+Tags: ctf, hacking, python, docker, regex, golang, stego
 Slug: ctf
 Authors: hvnsweeting, khanhduy8, các Pymiers và khách mời
 Summary: SNYK CTF 2021 write-up
@@ -64,92 +64,6 @@ vực khác nhau.
 ## Các bài đã giải trong thời gian thi đấu
 
 ![done]({static}/images/ctf_solved.jpg)
-
-## Linux/system
-### All your flags are belong to root - Linux CLI
-
-Bài cho 1 user `u`, password và 1 địa chỉ để SSH vào.
-Sau khi login, thấy như sau:
-
-```sh
-all-your-flags-are-belong-to-root-p4j0:~$
-```
-
-gõ `ls` không thấy file gì. `cd` lung tung, tới `/`, `ls` thấy file `/flag` nhưng file này chỉ `root` mới đọc được.
-Nhìn lại, nếu hiểu ý của đề thì đó là lời gợi ý file flag nằm ở `/`.
-
-Gõ thử `sudo` không có, gõ `su -l` để
-trở thành root nhận được 1 message:
-
-```sh
-all-your-flags-are-belong-to-root-p4j0:/$ su -l
-su: must be suid to work properly
-
-$ ls -la `which su`
-lrwxrwxrwx    1 root     root            12 Jun 15 14:34 /bin/su -> /bin/busybox
-```
-
-File su này khá khác thường so với máy bình thường:
-
-```
-~$ ls -la `which su`
--rwsr-xr-x 1 root root 67816 Jul 21  2020 /usr/bin/su
-```
-
-nhưng thật ra, không liên quan gì để tìm đáp án bài này cả.
-Để từ user thường chiếm được quyền root đọc file /flag, cần "làm cách nào đó", và lời gợi ý là **suid**.
-
-`SUID` là khái niệm ít phổ biến với người dùng CLI thông thường, họ học hết chmod 755 777 400 là khá đủ rồi.
-`SUID` là một giá trị đặc biệt để cấp quyền cho user, khi user chạy chương trình sẽ dùng UID của người sở hữu file thay vì UID của user, hay
-nói cách khác, trở thành người sở hữu / "chiếm quyền" trong lúc chạy chương trình này.
-Khi chmod, set SUID sử dụng số `4` trước số chmod thông thường. Ví dụ `4755`.
-Lệnh `su` ở trên là 1 ví dụ có SUID.
-Lý do mình biết tới SUID, do công việc trước đây có viết một chương trình thực hiện gửi ICMP (ping), mà lại yêu cầu quyền root. Trong khi bình thường gõ lệnh ping thì không phải sudo/su bao giờ. Hóa ra lệnh ping (ngày xưa) set SUID (giờ ko set nữa).
-
-Dùng `find` tìm trên máy các file có set SUID:
-
-```
-$ find / -perm -4000
-```
-
-Tìm thấy file lệnh `curl`. `curl` là chương trình thường dùng để gửi HTTP request, nó cũng đọc được file khi thay `http://` bằng `file://`
-
-```
-all-your-flags-are-belong-to-root-p4j0:/$ curl file:///flag
-SNYK{06b0e0ae4995af71335eda2882fecbc5008b01d95990982b439f3f8365fc07f7}
-```
-
-Ref
-
-- [https://security.stackexchange.com/a/222800/11544](https://security.stackexchange.com/a/222800/11544)
-- [https://www.redhat.com/sysadmin/suid-sgid-sticky-bit](https://www.redhat.com/sysadmin/suid-sgid-sticky-bit)
-- [https://www.linuxjournal.com/content/gettin-sticky-it](https://www.linuxjournal.com/content/gettin-sticky-it)
-- [https://www.linuxnix.com/suid-set-suid-linuxunix/](https://www.linuxnix.com/suid-set-suid-linuxunix/)
-
-### Robert Louis Stevenson - docker
-
-Đề cho 1 file Docker image chứa "kho báu". Tải file này về,
-không nhớ chính xác là tên gì, tạm gọi là `file.tar`.
-
-Bản chất các file "chương trình"/"data" trên máy tính thường là một dạng file archive/nén như zip/tar.
-
-```
-# tar xf ../file.tar
-# grep -Rin SNYK .
-Binary file ./b3b0b5528b213a9d35315784c9907fdeb5d8bf89a0bb012ee63546b3a1c2e10b/layer.tar matches
-# tar xf .././b3b0b5528b213a9d35315784c9907fdeb5d8bf89a0bb012ee63546b3a1c2e10b/layer.tar
-# grep -Rin SNYK
-ak/pp/tv/bc/22/flag:1:SNYK{23acc4111e1905ba1832cab7f1660284e3d1b91d3c2ead7bcec41ee8a4bd5ce9}
-```
-
-Ref:
-
-- [https://www.familug.org/2012/09/nen-giai-nen-bang-command-line-trong.html](https://www.familug.org/2012/09/nen-giai-nen-bang-command-line-trong.html)
-- [https://github.com/moby/moby/blob/master/image/spec/v1.2.md#combined-image-json--filesystem-changeset-format](https://github.com/moby/moby/blob/master/image/spec/v1.2.md#combined-image-json--filesystem-changeset-format)
-- [https://github.com/hvnsweeting/pocker](https://github.com/hvnsweeting/pocker)
-- [grep: https://www.familug.org/2012/10/vai-combo-lenh-de-nho-d-se-uoc-update.html](grep: https://www.familug.org/2012/10/vai-combo-lenh-de-nho-d-se-uoc-update.html)
-
-PS: Robert Louis Stevenson là tác giả của truyện "đảo giấu vàng" (Treasure Island)
 
 ## Coding
 ### CALC-UL8R
@@ -378,6 +292,93 @@ PS: python lib `xxtea` có thể padding key cho đủ 16-byte, bạn đọc có
 [https://github.com/ifduyue/xxtea#padding ](https://github.com/ifduyue/xxtea#padding )
 nhưng trong 1 cuộc thi CTF với sức ép
 khủng khiếp về thời gian, không mấy ai ngồi đọc doc lib từ đầu tới cuối cả.
+
+## Linux/system
+### All your flags are belong to root - Linux CLI
+
+Bài cho 1 user `u`, password và 1 địa chỉ để SSH vào.
+Sau khi login, thấy như sau:
+
+```sh
+all-your-flags-are-belong-to-root-p4j0:~$
+```
+
+gõ `ls` không thấy file gì. `cd` lung tung, tới `/`, `ls` thấy file `/flag` nhưng file này chỉ `root` mới đọc được.
+Nhìn lại, nếu hiểu ý của đề thì đó là lời gợi ý file flag nằm ở `/`.
+
+Gõ thử `sudo` không có, gõ `su -l` để
+trở thành root nhận được 1 message:
+
+```sh
+all-your-flags-are-belong-to-root-p4j0:/$ su -l
+su: must be suid to work properly
+
+$ ls -la `which su`
+lrwxrwxrwx    1 root     root            12 Jun 15 14:34 /bin/su -> /bin/busybox
+```
+
+File su này khá khác thường so với máy bình thường:
+
+```
+~$ ls -la `which su`
+-rwsr-xr-x 1 root root 67816 Jul 21  2020 /usr/bin/su
+```
+
+nhưng thật ra, không liên quan gì để tìm đáp án bài này cả.
+Để từ user thường chiếm được quyền root đọc file /flag, cần "làm cách nào đó", và lời gợi ý là **suid**.
+
+`SUID` là khái niệm ít phổ biến với người dùng CLI thông thường, họ học hết chmod 755 777 400 là khá đủ rồi.
+`SUID` là một giá trị đặc biệt để cấp quyền cho user, khi user chạy chương trình sẽ dùng UID của người sở hữu file thay vì UID của user, hay
+nói cách khác, trở thành người sở hữu / "chiếm quyền" trong lúc chạy chương trình này.
+Khi chmod, set SUID sử dụng số `4` trước số chmod thông thường. Ví dụ `4755`.
+Lệnh `su` ở trên là 1 ví dụ có SUID.
+Lý do mình biết tới SUID, do công việc trước đây có viết một chương trình thực hiện gửi ICMP (ping), mà lại yêu cầu quyền root. Trong khi bình thường gõ lệnh ping thì không phải sudo/su bao giờ. Hóa ra lệnh ping (ngày xưa) set SUID (giờ ko set nữa).
+
+Dùng `find` tìm trên máy các file có set SUID:
+
+```
+$ find / -perm -4000
+```
+
+Tìm thấy file lệnh `curl`. `curl` là chương trình thường dùng để gửi HTTP request, nó cũng đọc được file khi thay `http://` bằng `file://`
+
+```
+all-your-flags-are-belong-to-root-p4j0:/$ curl file:///flag
+SNYK{06b0e0ae4995af71335eda2882fecbc5008b01d95990982b439f3f8365fc07f7}
+```
+
+Ref
+
+- [https://security.stackexchange.com/a/222800/11544](https://security.stackexchange.com/a/222800/11544)
+- [https://www.redhat.com/sysadmin/suid-sgid-sticky-bit](https://www.redhat.com/sysadmin/suid-sgid-sticky-bit)
+- [https://www.linuxjournal.com/content/gettin-sticky-it](https://www.linuxjournal.com/content/gettin-sticky-it)
+- [https://www.linuxnix.com/suid-set-suid-linuxunix/](https://www.linuxnix.com/suid-set-suid-linuxunix/)
+
+### Robert Louis Stevenson - docker
+
+Đề cho 1 file Docker image chứa "kho báu". Tải file này về,
+không nhớ chính xác là tên gì, tạm gọi là `file.tar`.
+
+Bản chất các file "chương trình"/"data" trên máy tính thường là một dạng file archive/nén như zip/tar.
+
+```
+# tar xf ../file.tar
+# grep -Rin SNYK .
+Binary file ./b3b0b5528b213a9d35315784c9907fdeb5d8bf89a0bb012ee63546b3a1c2e10b/layer.tar matches
+# tar xf .././b3b0b5528b213a9d35315784c9907fdeb5d8bf89a0bb012ee63546b3a1c2e10b/layer.tar
+# grep -Rin SNYK
+ak/pp/tv/bc/22/flag:1:SNYK{23acc4111e1905ba1832cab7f1660284e3d1b91d3c2ead7bcec41ee8a4bd5ce9}
+```
+
+Ref:
+
+- [https://www.familug.org/2012/09/nen-giai-nen-bang-command-line-trong.html](https://www.familug.org/2012/09/nen-giai-nen-bang-command-line-trong.html)
+- [https://github.com/moby/moby/blob/master/image/spec/v1.2.md#combined-image-json--filesystem-changeset-format](https://github.com/moby/moby/blob/master/image/spec/v1.2.md#combined-image-json--filesystem-changeset-format)
+- [https://github.com/hvnsweeting/pocker](https://github.com/hvnsweeting/pocker)
+- [grep: https://www.familug.org/2012/10/vai-combo-lenh-de-nho-d-se-uoc-update.html](grep: https://www.familug.org/2012/10/vai-combo-lenh-de-nho-d-se-uoc-update.html)
+
+PS: Robert Louis Stevenson là tác giả của truyện "đảo giấu vàng" (Treasure Island)
+
 
 ## Steganography (stego - giấu tin trong ảnh)
 
