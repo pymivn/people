@@ -32,7 +32,7 @@ nổi tiếng nhất có thể kể tới DEF CON CTF, phổ biến nhất có t
 [SNYK.io](https://snyk.io/) là một công ty làm về bảo mật, cung cấp các dịch vụ
 phát hiện lỗi bảo mật tích hợp vào hệ thống khi phát triển phần mềm ở các doanh
 nghiệp và cộng đồng opensource. Năm nay snyk tổ chức CTF và team pymi nhận được
-lời quảng cáo trên "PythonWeekly" email, chiến thôi.
+[lời quảng cáo trên "PythonWeekly" email](https://mailchi.mp/pythonweekly/python-weekly-issue-519), chiến thôi.
 Đây là lần thứ 2 HVN tham gia một giải CTF, lần đầu là tại [Framgia
 Code War
 2017](https://viblo.asia/p/code-war-2017-online-round-write-ups-part-1-aWj531Y1Z6m),
@@ -54,7 +54,9 @@ Các bài thi sẽ cần đi tìm 1 đoạn flag dạng `SNYK{...}` rồi điề
 của snyk.
 
 ## Cảnh báo
-Code trong các cuộc thi CTF thường được viết ra nhanh nhất, nên thường không theo các chuẩn sạch gọn đẹp hay tối ưu, nó đơn giản là thứ bạn viết ra khi có sức ép về mặt thời gian và mục tiêu là kết quả.
+Code trong các cuộc thi CTF thường được viết ra nhanh nhất, nên thường không
+theo các chuẩn sạch gọn đẹp hay tối ưu, nó đơn giản là thứ bạn viết ra khi có
+sức ép về mặt thời gian và mục tiêu là kết quả.
 Chỉ nên dùng để tham khảo, tránh dùng làm văn mẫu.
 
 ## Các bài đã giải trong thời gian thi đấu
