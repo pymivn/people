@@ -211,9 +211,13 @@ Sau 1-2 phút đã có kết quả.
 Code: [https://gist.github.com/hvnsweeting/619ecf04aa9b57bd6b44f3fcc57fe8c2](https://gist.github.com/hvnsweeting/619ecf04aa9b57bd6b44f3fcc57fe8c2)
 
 ### Russian doll
-Đề bài cho ở dạng đã mã hóa, và sau khi 1 thành viên trong team [dùng tool](https://planetcalc.com/1434/) để giải mã [ROT](https://www.familug.org/2014/12/programming-phe-rot13.html) thì thu được nội dung:
+Đề bài cho ở dạng đã mã hóa:
 
-> ROT15  The flag is SDZcVdXvZHhKkxopTPYbTvmxTHwFZyyvnutAwsjijXwDqeOg XXTEA encrypted. Password hint: xxxx.
+> Esp qwlr td DOKnGoIgKSsVvizaEAJmEgxiEShQKjjgyfeLhdutuIhObpZr IIEPL pyncjaepo. Alddhzco stye: iiii.
+
+và sau khi @pham [dùng tool](https://planetcalc.com/1434/) để giải mã [ROT15](https://www.familug.org/2014/12/programming-phe-rot13.html) thì thu được nội dung:
+
+> The flag is SDZcVdXvZHhKkxopTPYbTvmxTHwFZyyvnutAwsjijXwDqeOg XXTEA encrypted. Password hint: xxxx.
 
 CTF thường là vậy, sau lớp này sẽ qua lớp khác.
 Giờ để ý lại tên bài, cũng với hàm ý tương tự, Russian doll Matryoshka, trong con này là con khác.
