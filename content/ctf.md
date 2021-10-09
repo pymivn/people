@@ -1,7 +1,7 @@
 Title: Ký sự chiếm cờ tại SNYK CTF 2021
 Date: 2021-10-06
 Category: Trang chủ
-Tags: ctf, hacking, python, docker, regex, golang, stego
+Tags: ctf, hacking, python, docker, regex, golang, stego, javascript
 Slug: ctf
 Authors: hvnsweeting, khanhduy8, các Pymiers và khách mời
 Summary: SNYK CTF 2021 write-up
@@ -60,6 +60,8 @@ Chỉ nên dùng để tham khảo, tránh dùng làm văn mẫu.
 ### Cảnh báo 2
 Bạn đọc chưa quen phần nào có thể bỏ qua phần đó, các bài chia theo các lĩnh
 vực khác nhau.
+
+Bài viết bởi HVN, các phần do các tác giả khác viết có ghi rõ trong từng bài.
 
 ## Các bài đã giải trong thời gian thi đấu
 
@@ -288,10 +290,22 @@ thành thạo 1 ngôn ngữ đến mức dùng được lúc áp lực thời gi
 ai cũng có thời gian/tiền của đầu tư, giải pháp khác có vẻ dễ hơn là kiếm team
 member với tool set khác nhau.
 
-PS: python lib `xxtea` có thể padding key cho đủ 16-byte, bạn đọc có thể tự thử
-[https://github.com/ifduyue/xxtea#padding ](https://github.com/ifduyue/xxtea#padding )
-nhưng trong 1 cuộc thi CTF với sức ép
-khủng khiếp về thời gian, không mấy ai ngồi đọc doc lib từ đầu tới cuối cả.
+PS: lib `xxtea-py` sau khi cài `sudo apt install -y build-essential python3-dev`
+và `pip install cffi xxtea-py` trên Ubuntu 20.04, chạy được ra kết quả
+
+```py
+import base64
+import xxtea
+
+s = 'SDZcVdXvZHhKkxopTPYbTvmxTHwFZyyvnutAwsjijXwDqeOg'
+secret = base64.decodestring(s.encode("utf-8"))
+for a in range(10):
+    for b in range(10):
+        for c in range(10):
+            for d in range(10):
+                r = xxtea.decrypt(secret, "{}{}{}{}".format(a,b,c,d))
+                if b"SNYK" in r: exit(r)
+```
 
 ## Linux/system
 ### All your flags are belong to root - Linux CLI
@@ -330,7 +344,7 @@ File su này khá khác thường so với máy bình thường:
 nói cách khác, trở thành người sở hữu / "chiếm quyền" trong lúc chạy chương trình này.
 Khi chmod, set SUID sử dụng số `4` trước số chmod thông thường. Ví dụ `4755`.
 Lệnh `su` ở trên là 1 ví dụ có SUID.
-Lý do mình biết tới SUID, do công việc trước đây có viết một chương trình thực hiện gửi ICMP (ping), mà lại yêu cầu quyền root. Trong khi bình thường gõ lệnh ping thì không phải sudo/su bao giờ. Hóa ra lệnh ping (ngày xưa) set SUID (giờ ko set nữa).
+Lý do mình biết tới SUID, do công việc trước đây có viết một chương trình thực hiện gửi ICMP (ping), mà lại yêu cầu quyền root. Trong khi bình thường gõ lệnh ping thì không phải sudo/su bao giờ. Hóa ra [lệnh ping (ngày xưa) set SUID](https://security.stackexchange.com/a/222800/11544) (giờ ko set nữa).
 
 Dùng `find` tìm trên máy các file có set SUID:
 
@@ -471,3 +485,9 @@ chơi, hãy học dùng lệnh trên Linux, lập trình 1 ngôn ngữ bất k�
 và tham gia thử các game dễ như trên [overthewire.org](https://overthewire.org/wargames/)
 hay khó hơn là [Google CTF beginners quest](https://capturetheflag.withgoogle.com/beginners-quest)
 chơi nhiều là khác quen, và làm quen với chuyện "không phải bài nào mình cũng giải được".
+
+## Hết
+
+HVN at [http://pymi.vn](http://pymi.vn) and [https://www.familug.org](https://www.familug.org).
+
+- [Ủng hộ tác giả 🍺](https://www.familug.org/p/ung-ho.html)
