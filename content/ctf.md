@@ -459,8 +459,6 @@ Do đó `output.flag` sẽ trả về true. Ta có response chứa flag:
 
 ![snyk scan]({static}/images/ctf_lodash.jpeg)
 
-## TODO write-up pham
-
 ## Kết quả
 Team PyMi xếp thứ 44 / 537 đội có ghi điểm, có lúc xếp thứ 24. 3h buồn ngủ quá
 ae lăn quay hết nên tụt hạng mạnh :))
@@ -475,9 +473,6 @@ kéo dài 24h để đảm bảo công bằng.
 Đi thi với tinh thần cọ sát, các bài thi rất thú vị, học được nhiều điều mới
 nên rất vui.
 
-## Bài học
-TODO
-
 ## Kết luận
 CTF là một **trò chơi** thú vị. Như mọi trò chơi khác, nó dễ gây nghiện, và
 nghiện quá là không tốt. CTF có loại khó, có loại không khó tẹo nào, để bắt đầu
@@ -486,7 +481,8 @@ và tham gia thử các game dễ như trên [overthewire.org](https://overthewi
 hay khó hơn là [Google CTF beginners quest](https://capturetheflag.withgoogle.com/beginners-quest)
 chơi nhiều là khác quen, và làm quen với chuyện "không phải bài nào mình cũng giải được".
 
-## Hết
+## Còn tiếp
+Gần 1/2 các bài write-up vẫn chưa được hoàn thiện sẽ được đăng trong phần sau.
 
 HVN at [http://pymi.vn](http://pymi.vn) and [https://www.familug.org](https://www.familug.org).
 
