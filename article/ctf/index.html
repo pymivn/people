@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+   <title> Ký sự chiếm cờ tại SNYK CTF 2021  - The PyMiers</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="robots" content="" />
+  <link rel="stylesheet" type="text/css" href="/theme/css/app.css">
+<link rel="stylesheet" type="text/css" href="http://pp.pymi.vn/theme/css/pygment.css">
+  <!--
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+  -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    <meta name="author" content="Pymiers" />
+  <meta name="description" content="" />    <link href="http://pp.pymi.vn/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="The PyMiers Full Atom Feed" />         
+  <meta name="tags" content="ctf" />
+  <meta name="tags" content="hacking" />
+  <meta name="tags" content="python" />
+  <meta name="tags" content="docker" />
+  <meta name="tags" content="regex" />
+  <meta name="tags" content="golang" />
+  <meta name="tags" content="stego" />
+  <meta name="tags" content="javascript" />
+</head>
+
+<body>
+  <main class="wrapper">
+    <section class="container">
+      <header class='column'>
+        <h1 class='title'><a href="http://pp.pymi.vn/">The PyMiers</a></h1>
+      </header>
+
+      <div class="section">
+        <div class="row navbar">
+          <div class="column nav-item is-active"><a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a></div>
+           <div class="column nav-item "><a href="http://pp.pymi.vn/pages/about/">About</a></div>
+          <div class="column nav-item "><a href="http://pp.pymi.vn/pages/add/">Tạo bài viết</a></div>
+          <div class="column nav-item "><a href="http://pp.pymi.vn/pages/rss/">RSS</a></div>
+          <div class="column nav-item"><a href="/archives">Archives</a></div>
+        </div>
+      </div>
+    </section>
+
+<section class="container">
+  <header>
+    <h2 class="entry-title">
+      <a href="http://pp.pymi.vn/article/ctf/" rel="bookmark"
+         title="Permalink to Ký sự chiếm cờ tại SNYK CTF 2021">Ký sự chiếm cờ tại SNYK CTF 2021</a></h2>  
+  </header>
+  <footer class='center'>
+    <time class="published" datetime="2021-10-06T00:00:00+07:00"> 06/10/2021 </time>
+    <address class="vcard author">By
+                    <a class="url fn" href="http://pp.pymi.vn/author/hvnsweeting/">hvnsweeting</a>
+                    <a class="url fn" href="http://pp.pymi.vn/author/khanhduy8/">khanhduy8</a>
+                    <a class="url fn" href="http://pp.pymi.vn/author/cac-pymiers-va-khach-moi/">các Pymiers và khách mời</a>
+ in <a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a>
+                </address>     <em>Tags</em>:     <a href="http://pp.pymi.vn/tag/ctf/"><em>ctf</em></a>,     <a href="http://pp.pymi.vn/tag/hacking/"><em>hacking</em></a>,     <a href="http://pp.pymi.vn/tag/python/"><em>python</em></a>,     <a href="http://pp.pymi.vn/tag/docker/"><em>docker</em></a>,     <a href="http://pp.pymi.vn/tag/regex/"><em>regex</em></a>,     <a href="http://pp.pymi.vn/tag/golang/"><em>golang</em></a>,     <a href="http://pp.pymi.vn/tag/stego/"><em>stego</em></a>,     <a href="http://pp.pymi.vn/tag/javascript/"><em>javascript</em></a>    </footer>
+  <br>
+  <div class="entry-content">
+    <h2>CTF là gì?</h2>
+<p>Capture the Flag (CTF) là một trò chơi được ưa chuộng của những người trong
+ngành bảo mật thông tin, thường tổ chức theo dạng cuộc thi với nhiều đội
+tham gia và có đội dành chiến thắng.</p>
+<p>CTF có 3 dạng phổ biến:</p>
+<ul>
+<li>Jeopardy-style CTFs: Đề thi thường gồm nhiều dạng bài thuộc
+các lĩnh vực khác nhau trong ngành: cryptography, stego, binary analysis,
+reverse engineering, mobile security, web hacking, OS, Linux...</li>
+<li>attack-defence: mỗi đội được giao cho 1 hệ thống có các lỗi bảo mật, và 2 đội
+sẽ vá hệ thống của mình đồng thời tấn công hệ thống của đội khác.</li>
+<li>mixed: đủ dạng</li>
+</ul>
+<p>CTF với người làm bảo mật giống như
+<a href="https://www.leagueoflegends.com/en-us/">LOL</a> với các thanh niên chơi esport
+vậy, cũng có các giải đấu lớn thế giới.
+Danh sách các giải đấu lớn có thể xem trên <a href="https://ctftime.org/ctfs">ctftime</a>,
+nổi tiếng nhất có thể kể tới DEF CON CTF, phổ biến nhất có thể gọi tên Google CTF.</p>
+<h2>SNYK CTF 2021</h2>
+<p><a href="https://snyk.io/">SNYK.io</a> là một công ty làm về bảo mật, cung cấp các dịch vụ
+phát hiện lỗi bảo mật tích hợp vào hệ thống khi phát triển phần mềm ở các doanh
+nghiệp và cộng đồng opensource. Năm nay snyk tổ chức CTF và team pymi nhận được
+<a href="https://mailchi.mp/pythonweekly/python-weekly-issue-519">lời quảng cáo trên "PythonWeekly" email</a>, chiến thôi.
+Đây là lần thứ 2 HVN tham gia một giải CTF, lần đầu là tại <a href="https://viblo.asia/p/code-war-2017-online-round-write-ups-part-1-aWj531Y1Z6m">Framgia
+Code War
+2017</a>,
+bẵng cái 4 năm, không có kinh nghiệm gì mới do công
+việc chẳng liên quan tới hắc hiếc gì.</p>
+<p><strong>https://ctf.snyk.io/ Fetch the Flag at SnykCon 2021!</strong></p>
+<p><strong>October 5, 9:00 am - 7:00 pm ET</strong></p>
+<p>đăng ký rồi rủ rê team 5 người.</p>
+<p>Cách tính điểm: 500 cho mỗi bài, giảm dần theo số lượt giải. Tức giải xong sớm
+thì sẽ được điểm cao, sau khi giảm dần, điểm có thể tới min là 50.</p>
+<p>Các bài thi sẽ cần đi tìm 1 đoạn flag dạng <code>SNYK{...}</code> rồi điền vào website
+của snyk.</p>
+<h2>Cảnh báo</h2>
+<p>Code trong các cuộc thi CTF thường được viết ra nhanh nhất, nên thường không
+theo các chuẩn sạch gọn đẹp hay tối ưu, nó đơn giản là thứ bạn viết ra khi có
+sức ép về mặt thời gian và mục tiêu là kết quả.
+Chỉ nên dùng để tham khảo, tránh dùng làm văn mẫu.</p>
+<h3>Cảnh báo 2</h3>
+<p>Bạn đọc chưa quen phần nào có thể bỏ qua phần đó, các bài chia theo các lĩnh
+vực khác nhau.</p>
+<p>Bài viết bởi HVN, các phần do các tác giả khác viết có ghi rõ trong từng bài.</p>
+<h2>Các bài đã giải trong thời gian thi đấu</h2>
+<p><img alt="done" src="http://pp.pymi.vn/images/ctf_solved.jpg"></p>
+<h2>Coding</h2>
+<h3>CALC-UL8R</h3>
+<p>Đề cho 1 địa chỉ để nc vào</p>
+<div class="highlight"><pre><span></span><code>$ nc <span class="m">35</span>.211.207.36 <span class="m">8000</span>
+  ____    _    _     ____      _   _ _     ___  ____
+ / ___<span class="p">|</span>  / <span class="se">\ </span> <span class="p">|</span> <span class="p">|</span>   / ___<span class="p">|</span>    <span class="p">|</span> <span class="p">|</span> <span class="p">|</span> <span class="p">|</span> <span class="p">|</span>   <span class="o">(</span> _ <span class="o">)</span><span class="p">|</span>  _ <span class="se">\</span>
+<span class="p">|</span> <span class="p">|</span>     / _ <span class="se">\ </span><span class="p">|</span> <span class="p">|</span>  <span class="p">|</span> <span class="p">|</span>   _____<span class="p">|</span> <span class="p">|</span> <span class="p">|</span> <span class="p">|</span> <span class="p">|</span>   / _ <span class="se">\|</span> <span class="p">|</span>_<span class="o">)</span> <span class="p">|</span>
+<span class="p">|</span> <span class="p">|</span>___ / ___ <span class="se">\|</span> <span class="o">||</span> <span class="o">||</span>_____<span class="p">|</span> <span class="p">|</span>_<span class="p">|</span> <span class="p">|</span> <span class="p">|</span>__<span class="p">|</span> <span class="o">(</span>_<span class="o">)</span> <span class="p">|</span>  _ &lt;
+ <span class="se">\_</span>___/_/   <span class="se">\_\_</span>____<span class="se">\_</span>___<span class="p">|</span>     <span class="se">\_</span>__/<span class="p">|</span>_____<span class="se">\_</span>__/<span class="p">|</span>_<span class="p">|</span> <span class="se">\_\</span>
+
+
+<span class="m">31521</span> * <span class="m">2455</span> - <span class="m">29590</span> - o - <span class="m">40881</span> + <span class="nv">34681</span> <span class="o">=</span> <span class="m">77331423</span>
+<span class="nv">o</span> <span class="o">=</span>
+</code></pre></div>
+
+<p>cần tính giá trị của biến, trong ví dụ này là <code>o</code>, rồi nhập vào.
+Cứ nhập xong, enter, phía server sẽ trả về 1 phép tính khác.</p>
+<p>Vậy có 2 việc cần làm:</p>
+<ul>
+<li>kết nối đến server để nhận đề và gửi kết quả: việc này có thể dùng Python telnetlib</li>
+<li>đọc biểu thức và tính ra kết quả</li>
+</ul>
+<p>Do lần đầu dùng <a href="https://docs.python.org/3/library/telnetlib.html#telnet-example"><code>telnetlib</code></a>, nên cũng khá vất vả một lúc mới tìm
+ra cách đọc dùng <a href="https://pp.pymi.vn/article/10x/">regex</a>
+thay vì dùng string.</p>
+<ul>
+<li><code>read_until("string")</code> sẽ đọc đến khi thấy "string" thì trả nội dung về</li>
+<li><code>expect(list, timeout=None)</code>  đọc đến khi 1 trong các regex  pattern match.</li>
+</ul>
+<p>Sau khi đã gửi nhận được, cần viết code giải phương trình, ban đầu mình có tự viết code để giải phương trình bằng cách thay biến trong phương trình (1 ký tự, dùng regex) bằng số 0, rồi chuyển vế các phép tính còn lại. Cách làm đơn giản này đúng cho đến khi nó sai: biểu thức có phép nhân. Nghĩ tới giải phương trình trên Python là nghĩ tới sympy, search <code>sympy solve equation</code> thấy ngay</p>
+<ul>
+<li><a href="https://stackoverflow.com/a/30776918/807703">https://stackoverflow.com/a/30776918/807703</a></li>
+</ul>
+<p>sửa lại để nhận mọi biến, PS: ở đây mình ko chăm chỉ viết tay từ a đến z mà gõ 1 dòng Python là xong</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">string</span><span class="p">;</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="p">)</span>
+<span class="s1">&#39;a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z&#39;</span>
+</code></pre></div>
+
+<p>Code giải phương trình</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">solve</span>
+<span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="kn">import</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">o</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span>
+<span class="kn">from</span> <span class="nn">sympy.parsing.sympy_parser</span> <span class="kn">import</span> <span class="n">parse_expr</span>
+
+<span class="k">def</span> <span class="nf">solve_meThis</span><span class="p">(</span><span class="n">string_</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">lhs</span> <span class="o">=</span>  <span class="n">parse_expr</span><span class="p">(</span><span class="n">string_</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">rhs</span> <span class="o">=</span>  <span class="n">parse_expr</span><span class="p">(</span><span class="n">string_</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">solution</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">lhs</span><span class="o">-</span><span class="n">rhs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">solution</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;invalid equation&quot;</span><span class="p">)</span>
+
+
+<span class="n">equation</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">valid_text</span> <span class="o">=</span> <span class="n">equation</span>
+
+<span class="p">[</span><span class="n">result</span><span class="p">]</span> <span class="o">=</span> <span class="n">solve_meThis</span><span class="p">(</span><span class="n">valid_text</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Thực hiện gửi nhận liên tục các phép tính cho đến khi server trả về kết quả:</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">SNYK</span><span class="si">{37d779963c037715c02624b6963008f55e92d12e8714a15b7a905c1c997d1afc}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>File Jupyter Notebook dùng giải bài này
+<a href="https://gist.github.com/hvnsweeting/7e00e139912b9d65a1ec7c1913fdb513">https://gist.github.com/hvnsweeting/7e00e139912b9d65a1ec7c1913fdb513</a></p>
+<h3>Random flag generator - python</h3>
+<p>Một bài được tag thẻ <code>python</code>, cho 1 file code python và 1 file log:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">hashlib</span>
+
+<span class="n">seed</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())</span>
+
+<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">rnd</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+
+    <span class="nb">hash</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">rnd</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+    <span class="n">flag</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;SNYK</span><span class="se">{{</span><span class="si">{</span><span class="nb">hash</span><span class="si">}</span><span class="se">}}</span><span class="s2">&quot;</span>
+
+    <span class="k">if</span> <span class="s2">&quot;5bc&quot;</span> <span class="ow">in</span> <span class="nb">hash</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;./flag&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+        <span class="k">break</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bad random value: </span><span class="si">{</span><span class="n">rnd</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Flag created 🎉&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">3719072557403058</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">3702330745519661</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">0634360689087381</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">2952684217196877</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">49843979869018884</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">7895773927381043</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">2917373566923527</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">9030776618431813</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">7181809628413409</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">28050872595896736</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">17458286936713008</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">2767390568969583</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">5492478684168797</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">2641653670084557</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">5156703392963877</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">32839693347899057</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">6998299885658202</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">5811672985185747</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">4644468325648108</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">49982517906634727</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">9333988943747559</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">7513893164652713</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">18638831058360805</span>
+<span class="nv">Flag</span> <span class="nv">created</span> 🎉
+</code></pre></div>
+
+<p>Đọc code thấy để tìm được flag, cần tìm ra
+giá trị <code>seed</code> mà người ra đề đã dùng.
+Các học viên <a href="https://pymi.vn">học Python tại Pymi.vn</a> đều được học: các function trong <code>random</code> chỉ là "gỉa ngẫu nhiên" và thực chất là chạy thuật toán sinh số ngẫu nhiên dựa trên giá trị <code>seed</code>. <code>seed</code> trong bài này gợi ý là UNIX timestamp, chạy từ 0 tới khoảng 1 tỷ 6 (1633537375).
+Cách tìm đơn giản là sửa lại code, chạy lần lượt với từng seed, so sánh đầu ra (thay vì print thì cho vào 1 string) với file log. Nếu giống nhau tức đó là gía trị seed cần tìm.</p>
+<p>Vấn đề ở cách làm này, khi Python thực hiện khoảng 16 triệu phép +1 mỗi giây (xem <a href="https://cpu.pymi.vn/">cpu.pymi.vn</a>), thì để tính 1 tỷ 6 phải mất ít nhất 100 giây.
+Mỗi giá trị seed lại sinh nhiều random value, thời gian sẽ gấp thêm 20 - 30 lần. Và khi mang chạy thật, mỗi giây nó tính khoảng được 5000-10000 seed. Tức quá chậm và cần tăng tốc.
+Ném thêm các giải pháp như dùng thread/multiprocess cũng không khá hơn là bao.
+Sau 30 phút, 1 tiếng không ra kêt quả, và giải xong 1 bài khác trong thời gian chờ này, mình quay lại tối ưu code.</p>
+<p>Thay vì tính hết output của mỗi seed, cho nó dừng lại ngay nếu dòng log đầu tiên khác với dòng đầu tiên trong log.txt.
+Sau 1-2 phút đã có kết quả.</p>
+<p>Code: <a href="https://gist.github.com/hvnsweeting/619ecf04aa9b57bd6b44f3fcc57fe8c2">https://gist.github.com/hvnsweeting/619ecf04aa9b57bd6b44f3fcc57fe8c2</a></p>
+<h3>Russian doll</h3>
+<p>Đề bài cho ở dạng đã mã hóa:</p>
+<blockquote>
+<p>Esp qwlr td DOKnGoIgKSsVvizaEAJmEgxiEShQKjjgyfeLhdutuIhObpZr IIEPL pyncjaepo. Alddhzco stye: iiii.</p>
+</blockquote>
+<p>và sau khi @pham <a href="https://planetcalc.com/1434/">dùng tool</a> để giải mã <a href="https://www.familug.org/2014/12/programming-phe-rot13.html">ROT15</a> thì thu được nội dung:</p>
+<blockquote>
+<p>The flag is SDZcVdXvZHhKkxopTPYbTvmxTHwFZyyvnutAwsjijXwDqeOg XXTEA encrypted. Password hint: xxxx.</p>
+</blockquote>
+<p>CTF thường là vậy, sau lớp này sẽ qua lớp khác.
+Giờ để ý lại tên bài, cũng với hàm ý tương tự, Russian doll Matryoshka, trong con này là con khác.</p>
+<p><img alt="doll" src="https://images.unsplash.com/photo-1613981948475-6e2407d8b589?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;dl=didssph-PB80D_B4g7c-unsplash.jpg&amp;w=640"></p>
+<p><center>
+Photo by <a href="https://unsplash.com/@didsss?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Didssph</a> on <a href="https://unsplash.com/s/photos/russian-doll?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+</center></p>
+<p>với lượng điểm thu được cho bài này là 490/500 lúc  October 6th, 2:44:17 AM, sau ~7 tiếng, thì đây rõ là 1 bài khó.
+Hoặc nó tiết lộ 1 phần về công cụ của người chơi đều là Python, vì sao hãy đọc tiếp...
+Cho một thuật toán mã hóa cho trước, với key là 4 ký tự, hẳn không khó khăn gì các team có thể tải ngay lib Python trên mạng về và bruteforce vài phút là có ngay kết quả. Đen thay, 2 thư viện tìm thấy đầu tiên, đều có vẻ không dùng được</p>
+<ul>
+<li><a href="https://pypi.org/project/xxtea/">https://pypi.org/project/xxtea/</a></li>
+</ul>
+<p>có 1 dòng yêu cầu <code># Key must be a 16-byte string.</code>
+Trong khi bài này key là 4 ký tự.</p>
+<ul>
+<li><a href="https://pypi.org/project/xxtea-py/">https://pypi.org/project/xxtea-py/</a></li>
+</ul>
+<p>một cái lib khá oái oăm khi cài thì ok mà dùng thì lại đòi cffi, và hầu hết mọi người dừng lại ở đó.</p>
+<p>Vậy phải làm sao? kết quả khi search cũng trả về nhiều thư viện cho ngôn ngữ khác như C, C++, Golang... mà ngồi viết C sau 10 năm không viết thì rất căng.
+Nhưng cuối cùng, Golang lại là giải pháp, nhờ vài năm code Go ăn tiền, sau 5 phút, ten ten có luôn kết quả:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;encoding/base64&quot;</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;log&quot;</span>
+    <span class="s">&quot;strings&quot;</span>
+
+    <span class="s">&quot;github.com/xxtea/xxtea-go/xxtea&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">encodedString</span> <span class="o">:=</span> <span class="s">&quot;SDZcVdXvZHhKkxopTPYbTvmxTHwFZyyvnutAwsjijXwDqeOg&quot;</span>
+    <span class="nx">originalStringBytes</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">base64</span><span class="p">.</span><span class="nx">StdEncoding</span><span class="p">.</span><span class="nx">DecodeString</span><span class="p">(</span><span class="nx">encodedString</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">&quot;Some error occured during base64 decode. Error %s&quot;</span><span class="p">,</span> <span class="nx">err</span><span class="p">.</span><span class="nx">Error</span><span class="p">())</span>
+    <span class="p">}</span>
+
+    <span class="nx">key</span> <span class="o">:=</span> <span class="s">&quot;1234567890&quot;</span>
+    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">a</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">key</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">b</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">key</span> <span class="p">{</span>
+            <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">c</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">key</span> <span class="p">{</span>
+                <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">d</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">key</span> <span class="p">{</span>
+                    <span class="nx">keyNow</span> <span class="o">:=</span> <span class="nb">string</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="o">+</span> <span class="nb">string</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span> <span class="o">+</span> <span class="nb">string</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span> <span class="o">+</span> <span class="nb">string</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span>
+                    <span class="nx">decrypt_data</span> <span class="o">:=</span> <span class="nb">string</span><span class="p">(</span><span class="nx">xxtea</span><span class="p">.</span><span class="nx">Decrypt</span><span class="p">(</span><span class="nx">originalStringBytes</span><span class="p">,</span> <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">keyNow</span><span class="p">)))</span>
+                    <span class="k">if</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">Contains</span><span class="p">(</span><span class="nx">decrypt_data</span><span class="p">,</span> <span class="s">&quot;SNYK&quot;</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%s\n&quot;</span><span class="p">,</span> <span class="nx">decrypt_data</span><span class="p">)</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><a href="https://gist.github.com/hvnsweeting/b8d518fdd67b85e9bf9f6a16af6221af">Code</a></p>
+<p>kết luận ở đây là thành thạo thêm một ngôn ngữ backup phổ biến như
+C/C++/Java/C#/Golang sẽ rất hữu ích khi không dùng được Python. Nói thì dễ, chứ
+thành thạo 1 ngôn ngữ đến mức dùng được lúc áp lực thời gian không phải chuyện
+ai cũng có thời gian/tiền của đầu tư, giải pháp khác có vẻ dễ hơn là kiếm team
+member với tool set khác nhau.</p>
+<p>PS: lib <code>xxtea-py</code> sau khi cài <code>sudo apt install -y build-essential python3-dev</code>
+và <code>pip install cffi xxtea-py</code> trên Ubuntu 20.04, chạy được ra kết quả</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">import</span> <span class="nn">xxtea</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;SDZcVdXvZHhKkxopTPYbTvmxTHwFZyyvnutAwsjijXwDqeOg&#39;</span>
+<span class="n">secret</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">decodestring</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="n">xxtea</span><span class="o">.</span><span class="n">decrypt</span><span class="p">(</span><span class="n">secret</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{}{}{}{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">))</span>
+                <span class="k">if</span> <span class="sa">b</span><span class="s2">&quot;SNYK&quot;</span> <span class="ow">in</span> <span class="n">r</span><span class="p">:</span> <span class="n">exit</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</code></pre></div>
+
+<h2>Linux/system</h2>
+<h3>All your flags are belong to root - Linux CLI</h3>
+<p>Bài cho 1 user <code>u</code>, password và 1 địa chỉ để SSH vào.
+Sau khi login, thấy như sau:</p>
+<div class="highlight"><pre><span></span><code>all-your-flags-are-belong-to-root-p4j0:~$
+</code></pre></div>
+
+<p>gõ <code>ls</code> không thấy file gì. <code>cd</code> lung tung, tới <code>/</code>, <code>ls</code> thấy file <code>/flag</code> nhưng file này chỉ <code>root</code> mới đọc được.</p>
+<p>Gõ thử <code>sudo</code> không có, gõ <code>su -l</code> để
+trở thành root nhận được 1 message:</p>
+<div class="highlight"><pre><span></span><code>all-your-flags-are-belong-to-root-p4j0:/$ su -l
+su: must be suid to work properly
+
+$ ls -la <span class="sb">`</span>which su<span class="sb">`</span>
+lrwxrwxrwx    <span class="m">1</span> root     root            <span class="m">12</span> Jun <span class="m">15</span> <span class="m">14</span>:34 /bin/su -&gt; /bin/busybox
+</code></pre></div>
+
+<p>File su này khá khác thường so với máy bình thường:</p>
+<div class="highlight"><pre><span></span><code>~$ ls -la `which su`
+-rwsr-xr-x 1 root root 67816 Jul 21  2020 /usr/bin/su
+</code></pre></div>
+
+<p>Để từ user thường chiếm được quyền root đọc file /flag, cần "làm cách nào đó", và lời gợi ý là <strong>suid</strong>.</p>
+<p><code>SUID</code> là khái niệm ít phổ biến với người dùng CLI thông thường, họ học hết chmod 755 777 400 là khá đủ rồi.
+<code>SUID</code> là một giá trị đặc biệt để cấp quyền cho user, khi user chạy chương trình sẽ dùng UID của người sở hữu file thay vì UID của user, hay
+nói cách khác, trở thành người sở hữu / "chiếm quyền" trong lúc chạy chương trình này.
+Khi chmod, set SUID sử dụng số <code>4</code> trước số chmod thông thường. Ví dụ <code>4755</code>.
+Lệnh <code>su</code> ở trên là 1 ví dụ có SUID.
+Lý do mình biết tới SUID, do công việc trước đây có viết một chương trình thực hiện gửi ICMP (ping), mà lại yêu cầu quyền root. Trong khi bình thường gõ lệnh ping thì không phải sudo/su bao giờ. Hóa ra <a href="https://security.stackexchange.com/a/222800/11544">lệnh ping (ngày xưa) set SUID</a> (giờ ko set nữa).</p>
+<p>Dùng <code>find</code> tìm trên máy các file có set SUID:</p>
+<div class="highlight"><pre><span></span><code>$ find / -perm -4000
+</code></pre></div>
+
+<p>Tìm thấy file lệnh <code>curl</code>. <code>curl</code> là chương trình thường dùng để gửi HTTP request, nó cũng đọc được file khi thay <code>http://</code> bằng <code>file://</code></p>
+<div class="highlight"><pre><span></span><code>all-your-flags-are-belong-to-root-p4j0:/$ curl file:///flag
+SNYK{06b0e0ae4995af71335eda2882fecbc5008b01d95990982b439f3f8365fc07f7}
+</code></pre></div>
+
+<p>PS: Nhìn lại, nếu hiểu ý của đề thì đó là lời gợi ý file flag nằm ở <code>/</code> (root).</p>
+<p>Ref</p>
+<ul>
+<li><a href="https://security.stackexchange.com/a/222800/11544">https://security.stackexchange.com/a/222800/11544</a></li>
+<li><a href="https://www.redhat.com/sysadmin/suid-sgid-sticky-bit">https://www.redhat.com/sysadmin/suid-sgid-sticky-bit</a></li>
+<li><a href="https://www.linuxjournal.com/content/gettin-sticky-it">https://www.linuxjournal.com/content/gettin-sticky-it</a></li>
+<li><a href="https://www.linuxnix.com/suid-set-suid-linuxunix/">https://www.linuxnix.com/suid-set-suid-linuxunix/</a></li>
+</ul>
+<h3>Robert Louis Stevenson - docker</h3>
+<p>Đề cho 1 file Docker image chứa "kho báu". Tải file này về,
+không nhớ chính xác là tên gì, tạm gọi là <code>file.tar</code>.
+Bản chất các file "chương trình"/"data" trên máy tính thường là một dạng file archive/nén như zip/tar.
+Docker image cũng vậy:</p>
+<div class="highlight"><pre><span></span><code># tar xf ../file.tar
+# grep -Rin SNYK .
+Binary file ./b3b0b5528b213a9d35315784c9907fdeb5d8bf89a0bb012ee63546b3a1c2e10b/layer.tar matches
+# tar xf .././b3b0b5528b213a9d35315784c9907fdeb5d8bf89a0bb012ee63546b3a1c2e10b/layer.tar
+# grep -Rin SNYK
+ak/pp/tv/bc/22/flag:1:SNYK{23acc4111e1905ba1832cab7f1660284e3d1b91d3c2ead7bcec41ee8a4bd5ce9}
+</code></pre></div>
+
+<p>Ref:</p>
+<ul>
+<li><a href="https://www.familug.org/2012/09/nen-giai-nen-bang-command-line-trong.html">https://www.familug.org/2012/09/nen-giai-nen-bang-command-line-trong.html</a></li>
+<li><a href="https://github.com/moby/moby/blob/master/image/spec/v1.2.md#combined-image-json--filesystem-changeset-format">https://github.com/moby/moby/blob/master/image/spec/v1.2.md#combined-image-json--filesystem-changeset-format</a></li>
+<li><a href="https://github.com/hvnsweeting/pocker">https://github.com/hvnsweeting/pocker</a></li>
+<li><a href="grep: https://www.familug.org/2012/10/vai-combo-lenh-de-nho-d-se-uoc-update.html">grep: https://www.familug.org/2012/10/vai-combo-lenh-de-nho-d-se-uoc-update.html</a></li>
+</ul>
+<p>PS: Robert Louis Stevenson là tác giả của truyện "đảo giấu vàng" (Treasure Island)</p>
+<h2>Steganography (stego - giấu tin trong ảnh)</h2>
+<h3>qrrr</h3>
+<p>via <a href="https://github.com/khanhduy8">khanhduy8</a></p>
+<p><img alt="qr" src="http://pp.pymi.vn/images/ctf_qrrr.png"></p>
+<p>Bài cho một file ảnh QR đủ màu sắc.
+Lấy zalo ra quét thử không được, như vậy file này thực ra không phải QR đúng chuẩn.
+Nhìn vào màu sắc của hình thì có vẻ như QR này gồm 3 mã QR tương ứng với 3 đoạn mà khi ghép lại với nhau ta có được flag.
+OK. Giờ dùng một công cụ đơn giản để xử lý file ảnh này. Link Tool: <a href="https://stegonline.georgeom.net/upload">stegonline.georgeom.net</a>
+Một file ảnh màu RGB này có 3 bit planes là (Red, Green, Blue).
+Thử với plane Red với giá trị là 6/8 <a href="https://i.ibb.co/zX5y40c/red.png">ta có</a>,
+trông có vẻ ổn nhưng với ảnh QR để quét thì ta cần reverse lại màu. Sau khi reverse ta được</p>
+<p><img alt="reversed" src="http://pp.pymi.vn/images/ctf_qrrr2.png"></p>
+<p>Quét mã này ra: <code>12d99aa3a92f1abbb7d40786</code>
+Do không có {} nên đây chắc là đoạn giữa
+Tương tự thử với Green 6 được: SNYK{6947bd4818ffc1768f2
+Với Green 7: 5ff8d4e4958d8007a3897}
+Ghép 3 đoạn lại ra flag: <code>SNYK{6947bd4818ffc1768f212d99aa3a92f1abbb7d407865ff8d4e4958d8007a3897}</code></p>
+<p>PS: ngày hôm sau, khanhduy8 nhận ra qrrr là lời gợi ý về 3 mã qr.</p>
+<p>PPS: hvn dùng Firefox trên Android mở ra ngay phần đuôi trong 3 mã, kết luận: không dùng zalo.</p>
+<h2>Exploit (khai thác lỗ hổng bảo mật)</h2>
+<h3>Invisible Ink - javascript</h3>
+<p>via <a href="https://github.com/khanhduy8">khanhduy8</a></p>
+<p>Bài này cho 1 link web và một <a href="http://pp.pymi.vn/ctf/index.js">file source code</a>, 1 file <a href="http://pp.pymi.vn/ctf/package.json">package.json</a>.
+Có thể đọc source, thấy nghi nghi rồi google thư viện <code>lodash</code>, nhưng pro @hvn
+setup <a href="https://docs.snyk.io/">công cụ của Snyk</a>
+để quét rồi nên ta có kết quả vulnerbility</p>
+<p><img alt="snyk scan" src="http://pp.pymi.vn/images/ctf_snyk_scan.jpeg"></p>
+<p>Chú ý đến vul thứ 2. Đây là PoC của exploit vul này <a href="https://snyk.io/vuln/SNYK-JS-LODASH-450202">Prototype Pollution in lodash | Snyk</a>
+Trong file source code có đoạn check:
+<code>if(output.flag)</code>
+nếu <code>true</code> sẽ response giá trị của flag
+biến output hiện tại đang là:
+<code>output = {}</code> nên sẽ không trả về kết quả chúng ta cần
+Trong source code có sử dụng Unsafe Object recursive merge</p>
+<div class="highlight"><pre><span></span><code><span class="k">merge</span><span class="w"> </span><span class="p">(</span><span class="n">target</span><span class="p">,</span><span class="w"> </span><span class="n">source</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">foreach</span><span class="w"> </span><span class="n">property</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">source</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">property</span><span class="w"> </span><span class="ow">exists</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="k">object</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="k">both</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">target</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">source</span><span class="w"></span>
+<span class="w">        </span><span class="k">merge</span><span class="p">(</span><span class="n">target</span><span class="o">[</span><span class="n">property</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">source</span><span class="o">[</span><span class="n">property</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="n">target</span><span class="o">[</span><span class="n">property</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">source</span><span class="o">[</span><span class="n">property</span><span class="o">]</span><span class="w"></span>
+</code></pre></div>
+
+<p>trong đó target là output còn source là request nên chỉ cần thay request bình thường từ:
+<code>{"message": "ping"}</code>
+sang
+<code>{"constructor": {"prototype": {"flag": true}}}</code>
+khi này thì Object đã bị thêm vào thuộc tính <code>flag:true</code>
+Do đó <code>output.flag</code> sẽ trả về true. Ta có response chứa flag:
+<code>SNYK{6a6a6fff87f3cfdca056a077804838d4e87f25f6a11e09627062c06f142b10dd}</code></p>
+<p><img alt="snyk scan" src="http://pp.pymi.vn/images/ctf_lodash.jpeg"></p>
+<h2>Kết quả</h2>
+<p>Team PyMi xếp thứ 44 / 537 đội có ghi điểm, có lúc xếp thứ 24. 3h buồn ngủ quá
+ae lăn quay hết nên tụt hạng mạnh :))</p>
+<p><img alt="44" src="http://pp.pymi.vn/images/ctf_rank.png"></p>
+<p>Theo đánh giá của 1 dân chơi thì giải CTF này thuộc loại trung bình, chưa khó,
+nhưng không phải game chuyên nghiệp do chỉ kéo dài 10 tiếng và lợi thế về
+múi giờ cho bên đông Mỹ (8PM giờ Việt Nam -&gt; 6AM), các giải chuyên nghiệp sẽ
+kéo dài 24h để đảm bảo công bằng.</p>
+<p>Đi thi với tinh thần cọ sát, các bài thi rất thú vị, học được nhiều điều mới
+nên rất vui.</p>
+<h2>Kết luận</h2>
+<p>CTF là một <strong>trò chơi</strong> thú vị. Như mọi trò chơi khác, nó dễ gây nghiện, và
+nghiện quá là không tốt. CTF có loại khó, có loại không khó tẹo nào, để bắt đầu
+chơi, hãy học dùng lệnh trên Linux, lập trình 1 ngôn ngữ bất kỳ
+và tham gia thử các game dễ như trên <a href="https://overthewire.org/wargames/">overthewire.org</a>
+hay khó hơn là <a href="https://capturetheflag.withgoogle.com/beginners-quest">Google CTF beginners quest</a>
+chơi nhiều là khác quen, và làm quen với chuyện "không phải bài nào mình cũng giải được".</p>
+<h2>Còn tiếp</h2>
+<p>Gần 1/2 các bài write-up vẫn chưa được hoàn thiện sẽ được đăng trong phần sau.</p>
+<p>HVN at <a href="http://pymi.vn">http://pymi.vn</a> and <a href="https://www.familug.org">https://www.familug.org</a>.</p>
+<ul>
+<li><a href="https://www.familug.org/p/ung-ho.html">Ủng hộ tác giả 🍺</a></li>
+</ul>
+  </div>
+  <!-- /.entry-content -->
+</section>
+<section class="container">
+  <div class="comments">
+    <h3>Comments</h3>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'pymier';
+      var disqus_identifier = 'article/ctf/';
+      var disqus_url = 'http://pp.pymi.vn/article/ctf/';
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//pymier.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the comments.</noscript>
+  </div>
+</section>
+
+    <section class="container footer">
+      <footer>
+        <address>
+        Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+        which takes great advantage of <a href="http://python.org">Python</a>.
+        </address>
+        <address>
+          Học lập trình Python tại <a href="https://pymi.vn/">Pymi.vn</a>
+        </address>
+      </footer>
+    </section>
+  </main>
+
+<script type="text/javascript">
+var images = document.getElementsByTagName("img");
+var i;
+
+for(i = 0; i < images.length; i++) {
+  images[i].className += " centered";
+}
+</script>
+</body>
+
+</html>
