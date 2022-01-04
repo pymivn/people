@@ -77,7 +77,7 @@ khác sẽ cần tự cài đặt thêm thủ công hơn.&lt;/p&gt;
 &lt;li&gt;Và nhiều tài liệu khác tại &lt;a href="https://www.rust-lang.org/learn"&gt;https://www.rust-lang.org/learn&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;Cách học&lt;/h3&gt;
-&lt;p&gt;Đọc 4 chương đầu + chương 8 trong
+&lt;p&gt;Gõ &lt;code&gt;rustup doc&lt;/code&gt;, đọc 4 chương đầu + chương 8 trong
 &lt;a href="https://doc.rust-lang.org/book/"&gt;https://doc.rust-lang.org/book/&lt;/a&gt;
 là đủ để code.&lt;/p&gt;
 &lt;h3&gt;Build &amp;amp; run&lt;/h3&gt;
@@ -161,7 +161,7 @@ biểu diễn của 1 macro.&lt;/p&gt;
 &lt;p&gt;Rust giống C/C++/Java, dùng &lt;code&gt;{}&lt;/code&gt;làm khối lệnh nhóm các câu lệnh trong if/for/function,
 khác với Python dùng indentation (thụt vào 4 dấu space).
 Biến trong Rust mặc định không
-thay đổi được sau khi tạo, phải thêm từ khóa &lt;code&gt;mut&lt;/code&gt; (viết tắc của mutable): &lt;code&gt;let mut result = 0;&lt;/code&gt; để thay đổi &lt;code&gt;result&lt;/code&gt;.
+thay đổi được sau khi tạo, phải thêm từ khóa &lt;code&gt;mut&lt;/code&gt; (viết tắt của mutable): &lt;code&gt;let mut result = 0;&lt;/code&gt; để thay đổi &lt;code&gt;result&lt;/code&gt;.
 &lt;code&gt;println!&lt;/code&gt; chỉ nhận 1 string, với &lt;code&gt;{}&lt;/code&gt; để format các giá trị theo sau.&lt;/p&gt;
 &lt;p&gt;Rust có kiểu vector &lt;code&gt;Vec&lt;/code&gt;, tương tự như Python &lt;code&gt;list&lt;/code&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;fn&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
@@ -650,6 +650,9 @@ thích nhất, còn bạn?&lt;/p&gt;
 &lt;p&gt;Và nhớ đừng quên đọc &lt;a href="https://github.com/norvig/pytudes/blob/main/ipynb/Advent-2021.ipynb"&gt;văn mẫu&lt;/a&gt; từ giám đốc nghiên cứu Google nhé!&lt;/p&gt;
 &lt;p&gt;Tạm biệt 2021, chúc mừng năm mới 2022!&lt;/p&gt;
 &lt;h2&gt;Finish&lt;/h2&gt;
+&lt;p&gt;Toàn bộ code giải 25 bài
+(trừ bài 23 giải bằng giấy và bút) có trong &lt;a href="https://github.com/hvnsweeting/adventofcode/tree/master/2021/src"&gt;repo&lt;/a&gt;
+PS: đây là code của 1 Rust newbie.&lt;/p&gt;
 &lt;p&gt;&lt;img src="http://pp.pymi.vn/images/aoc21.png" width=800&gt;&lt;/p&gt;
 &lt;h2&gt;Tham khảo&lt;/h2&gt;
 &lt;ul&gt;
