@@ -424,6 +424,9 @@ phải đến ngày thứ 10 trở đi, hay đọc xong [chương 13 trong "The 
 với `zip`, dãy thứ 2 bắt đầu từ phần tử index 1, và filter (lọc)
 ra các cặp mà có giá trị sau lớn hơn giá trị trước, rồi đếm.
 
+`|(prev, next)| next > prev` là một closure, giống như Python lambda nhưng viết
+bao nhiêu dòng cũng được. Code này tương tự Python `lambda t: t[1] > t[0]`.
+
 Sau khi nhập kết quả giải xong phần 1, đề phần 2 hiện ra yêu cầu thay vì đếm số
 sau lớn hơn số trước thì đếm tổng 3 số sau lớn hơn tổng 3 số trước.
 
