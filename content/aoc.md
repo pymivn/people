@@ -98,7 +98,7 @@ khác sẽ cần tự cài đặt thêm thủ công hơn.
 - Và nhiều tài liệu khác tại [https://www.rust-lang.org/learn](https://www.rust-lang.org/learn)
 
 ### Cách học
-Đọc 4 chương đầu + chương 8 trong
+Gõ `rustup doc`, đọc 4 chương đầu + chương 8 trong
 [https://doc.rust-lang.org/book/](https://doc.rust-lang.org/book/)
 là đủ để code.
 
@@ -202,7 +202,7 @@ print("Kết quả {}".format(result))
 Rust giống C/C++/Java, dùng `{}`làm khối lệnh nhóm các câu lệnh trong if/for/function,
 khác với Python dùng indentation (thụt vào 4 dấu space).
 Biến trong Rust mặc định không
-thay đổi được sau khi tạo, phải thêm từ khóa `mut` (viết tắc của mutable): `let mut result = 0;` để thay đổi `result`.
+thay đổi được sau khi tạo, phải thêm từ khóa `mut` (viết tắt của mutable): `let mut result = 0;` để thay đổi `result`.
 `println!` chỉ nhận 1 string, với `{}` để format các giá trị theo sau.
 
 Rust có kiểu vector `Vec`, tương tự như Python `list`:
@@ -709,6 +709,10 @@ Và nhớ đừng quên đọc [văn mẫu](https://github.com/norvig/pytudes/bl
 Tạm biệt 2021, chúc mừng năm mới 2022!
 
 ## Finish
+Toàn bộ code giải 25 bài
+(trừ bài 23 giải bằng giấy và bút) có trong [repo](https://github.com/hvnsweeting/adventofcode/tree/master/2021/src)
+PS: đây là code của 1 Rust newbie.
+
 <img src="{static}/images/aoc21.png" width=800>
 
 ## Tham khảo
