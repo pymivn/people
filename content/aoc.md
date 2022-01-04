@@ -701,6 +701,7 @@ PyMi AoC 2021 kết thúc vào 12 giờ trưa ngày 26/12/2021, với giải th�
 - giải nhất: [tung491](https://github.com/tung491/advent_to_code_2021) học viên PyMiHN1706
 - giải nhì: [thevivotran](https://github.com/thevivotran) học viên PyMiHCM2008.
 - giải ba: stuncb97 học viên PyMiHN2010 - cựu vô địch 2020.
+- (ban tổ chức 2nd và khách mời 3rd không trong cơ cấu tính giải).
 
 Một tràng pháo tay cho các game thủ dù bận công việc vẫn nhịn ăn trưa cày
 marathon code suốt 25 ngày 🎉😍
