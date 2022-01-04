@@ -75,6 +75,8 @@ khác sẽ cần tự cài đặt thêm thủ công hơn.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;“the book” The Rust Programming Language: &lt;a href="https://doc.rust-lang.org/book/"&gt;https://doc.rust-lang.org/book/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Nửa giờ học Rust &lt;a href="https://fasterthanli.me/articles/a-half-hour-to-learn-rust"&gt;https://fasterthanli.me/articles/a-half-hour-to-learn-rust&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Rust &amp;amp; WebAssembly &lt;a href="https://rustwasm.github.io/docs/book/"&gt;https://rustwasm.github.io/docs/book/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://rust-cli.github.io/book/index.html"&gt;Command Line Applications in Rust&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Và nhiều tài liệu khác tại &lt;a href="https://www.rust-lang.org/learn"&gt;https://www.rust-lang.org/learn&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;Cách học&lt;/h3&gt;
