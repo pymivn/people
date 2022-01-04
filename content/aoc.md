@@ -140,6 +140,12 @@ Hello, world!
 $ cargo test
 ```
 
+Để format code, gõ
+
+```
+$ cargo fmt
+```
+
 ### Hello, World!
 Gõ lệnh `cargo new` đã tự tạo ra code hello world, trong file src/main.rs:
 
@@ -408,16 +414,16 @@ Rust hơn. Một phiên bản khác sử dụng `iterator` mang phong cách func
 phải đến ngày thứ 10 trở đi, hay đọc xong [chương 13 trong "The Rust Book"](https://doc.rust-lang.org/stable/book/ch13-00-functional-features.html) mới quen được kiểu này:
 
 ```rs
-  fn main() {
-      let s = std::fs::read_to_string("input01").unwrap();
-      let lines: Vec<i32> = s.lines().map(|i| i.parse().unwrap()).collect();
-      let increases_count = lines
-          .iter()
-          .zip(&lines[1..])
-          .filter(|(prev, next)| next > prev)
-          .count();
-      println!("{}", increases_count);
-  }
+fn main() {
+    let s = std::fs::read_to_string("input01").unwrap();
+    let lines: Vec<i32> = s.lines().map(|i| i.parse().unwrap()).collect();
+    let increases_count = lines
+        .iter()
+        .zip(&lines[1..])
+        .filter(|(prev, next)| next > prev)
+        .count();
+    println!("{}", increases_count);
+}
 ```
 
 Ý tưởng khác một chút, thay vì duyệt qua dãy số, ta duyệt qua 2 dãy cùng 1 lúc
@@ -443,12 +449,12 @@ Tạo 1 list mới chứa tổng của 3 số liên tiếp, sau đó dùng list
 đó làm đầu vào cho code của phần 1.
 
 ```rs
-      let lines: Vec<i32> = lines
-          .iter()
-          .zip(&lines[1..])
-          .zip(&lines[2..])
-          .map(|((x1, x2), x3)| x1 + x2 + x3)
-          .collect();
+let lines: Vec<i32> = lines
+    .iter()
+    .zip(&lines[1..])
+    .zip(&lines[2..])
+    .map(|((x1, x2), x3)| x1 + x2 + x3)
+    .collect();
 ```
 
 ở đây một lần nữa dùng zip để duyệt qua 3 dãy số cùng lúc.
