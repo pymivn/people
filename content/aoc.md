@@ -96,6 +96,8 @@ khác sẽ cần tự cài đặt thêm thủ công hơn.
 ### Tài liệu
 - “the book” The Rust Programming Language: [https://doc.rust-lang.org/book/](https://doc.rust-lang.org/book/)
 - Nửa giờ học Rust [https://fasterthanli.me/articles/a-half-hour-to-learn-rust](https://fasterthanli.me/articles/a-half-hour-to-learn-rust)
+- Rust & WebAssembly [https://rustwasm.github.io/docs/book/](https://rustwasm.github.io/docs/book/)
+- [Command Line Applications in Rust](https://rust-cli.github.io/book/index.html)
 - Và nhiều tài liệu khác tại [https://www.rust-lang.org/learn](https://www.rust-lang.org/learn)
 
 ### Cách học
