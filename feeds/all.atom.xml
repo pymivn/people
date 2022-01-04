@@ -162,7 +162,7 @@ biểu diễn của 1 macro.&lt;/p&gt;
 khác với Python dùng indentation (thụt vào 4 dấu space).
 Biến trong Rust mặc định không
 thay đổi được sau khi tạo, phải thêm từ khóa &lt;code&gt;mut&lt;/code&gt; (viết tắt của mutable): &lt;code&gt;let mut result = 0;&lt;/code&gt; để thay đổi &lt;code&gt;result&lt;/code&gt;.
-&lt;code&gt;println!&lt;/code&gt; chỉ nhận 1 string, với &lt;code&gt;{}&lt;/code&gt; để format các giá trị theo sau.&lt;/p&gt;
+&lt;code&gt;println!&lt;/code&gt; nhận 1 string, với &lt;code&gt;{}&lt;/code&gt; để format, rồi tới các giá trị theo sau.&lt;/p&gt;
 &lt;p&gt;Rust có kiểu vector &lt;code&gt;Vec&lt;/code&gt;, tương tự như Python &lt;code&gt;list&lt;/code&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;fn&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;mut&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;vec&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="fm"&gt;vec!&lt;/span&gt;&lt;span class="p"&gt;[];&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
