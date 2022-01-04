@@ -203,7 +203,7 @@ Rust giống C/C++/Java, dùng `{}`làm khối lệnh nhóm các câu lệnh tro
 khác với Python dùng indentation (thụt vào 4 dấu space).
 Biến trong Rust mặc định không
 thay đổi được sau khi tạo, phải thêm từ khóa `mut` (viết tắt của mutable): `let mut result = 0;` để thay đổi `result`.
-`println!` chỉ nhận 1 string, với `{}` để format các giá trị theo sau.
+`println!` nhận 1 string, với `{}` để format, rồi tới các giá trị theo sau.
 
 Rust có kiểu vector `Vec`, tương tự như Python `list`:
 
