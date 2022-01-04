@@ -272,6 +272,9 @@ là giống.&lt;/p&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;dbg!&lt;/code&gt; để &lt;strong&gt;print debug&lt;/strong&gt; trong Rust.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h5&gt;HashMap&lt;/h5&gt;
 &lt;p&gt;HashMap key không có thứ tự, tương tự với Python dict trước 3.6,
 cú pháp import &lt;code&gt;use std::collections::HashMap;&lt;/code&gt;
@@ -404,6 +407,8 @@ phải đến ngày thứ 10 trở đi, hay đọc xong &lt;a href="https://doc.
 &lt;p&gt;Ý tưởng khác một chút, thay vì duyệt qua dãy số, ta duyệt qua 2 dãy cùng 1 lúc
 với &lt;code&gt;zip&lt;/code&gt;, dãy thứ 2 bắt đầu từ phần tử index 1, và filter (lọc)
 ra các cặp mà có giá trị sau lớn hơn giá trị trước, rồi đếm.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;|(prev, next)| next &amp;gt; prev&lt;/code&gt; là một closure, giống như Python lambda nhưng viết
+bao nhiêu dòng cũng được. Code này tương tự Python &lt;code&gt;lambda t: t[1] &amp;gt; t[0]&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Sau khi nhập kết quả giải xong phần 1, đề phần 2 hiện ra yêu cầu thay vì đếm số
 sau lớn hơn số trước thì đếm tổng 3 số sau lớn hơn tổng 3 số trước.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="mf"&gt;1&lt;/span&gt;

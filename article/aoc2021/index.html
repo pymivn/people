@@ -325,6 +325,9 @@ là giống.</p>
 <span class="p">}</span><span class="w"></span>
 </code></pre></div>
 
+<ul>
+<li><code>dbg!</code> để <strong>print debug</strong> trong Rust.</li>
+</ul>
 <h5>HashMap</h5>
 <p>HashMap key không có thứ tự, tương tự với Python dict trước 3.6,
 cú pháp import <code>use std::collections::HashMap;</code>
@@ -457,6 +460,8 @@ phải đến ngày thứ 10 trở đi, hay đọc xong <a href="https://doc.rus
 <p>Ý tưởng khác một chút, thay vì duyệt qua dãy số, ta duyệt qua 2 dãy cùng 1 lúc
 với <code>zip</code>, dãy thứ 2 bắt đầu từ phần tử index 1, và filter (lọc)
 ra các cặp mà có giá trị sau lớn hơn giá trị trước, rồi đếm.</p>
+<p><code>|(prev, next)| next &gt; prev</code> là một closure, giống như Python lambda nhưng viết
+bao nhiêu dòng cũng được. Code này tương tự Python <code>lambda t: t[1] &gt; t[0]</code>.</p>
 <p>Sau khi nhập kết quả giải xong phần 1, đề phần 2 hiện ra yêu cầu thay vì đếm số
 sau lớn hơn số trước thì đếm tổng 3 số sau lớn hơn tổng 3 số trước.</p>
 <div class="highlight"><pre><span></span><code><span class="mf">1</span>
