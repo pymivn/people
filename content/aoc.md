@@ -23,6 +23,7 @@ xuất hiện lần đầu vào [năm 2015](https://adventofcode.com/2015), ngà
 lập trình viên toàn cầu mong chờ mỗi tháng 12.
 
 [![Back to December](https://img.youtube.com/vi/QUwxKWT6m7U/0.jpg)](https://www.youtube.com/watch?v=QUwxKWT6m7U)
+<center>🎥 Taylor Swift - Back To December</center>
 
 Để thêm phần gay cấn, AoC có [bảng xếp hạng toàn cầu leaderboard](https://adventofcode.com/2021/leaderboard), người giải đầu tiên mỗi phần sẽ được 100 điểm và giảm dần. Người chơi cũng có thể tự tạo bảng xếp hạng riêng,
 giúp các cộng đồng có thể tự chơi với nhóm của mình. PyMi tổ chức AoC với giải
