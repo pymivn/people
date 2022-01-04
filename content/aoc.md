@@ -277,6 +277,8 @@ fn main() {
 }
 ```
 
+- `dbg!` để **print debug** trong Rust.
+
 ##### HashMap
 
 HashMap key không có thứ tự, tương tự với Python dict trước 3.6,
