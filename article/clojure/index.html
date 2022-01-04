@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+   <title> Học clojure thật bất ngờ  - The PyMiers</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="robots" content="" />
+  <link rel="stylesheet" type="text/css" href="/theme/css/app.css">
+<link rel="stylesheet" type="text/css" href="http://pp.pymi.vn/theme/css/pygment.css">
+  <!--
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+  -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    <meta name="author" content="Pymiers" />
+  <meta name="description" content="" />    <link href="http://pp.pymi.vn/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="The PyMiers Full Atom Feed" />         
+  <meta name="tags" content="clojure" />
+  <meta name="tags" content="LISP" />
+  <meta name="tags" content="JVM" />
+  <meta name="tags" content="java" />
+</head>
+
+<body>
+  <main class="wrapper">
+    <section class="container">
+      <header class='column'>
+        <h1 class='title'><a href="http://pp.pymi.vn/">The PyMiers</a></h1>
+      </header>
+
+      <div class="section">
+        <div class="row navbar">
+          <div class="column nav-item is-active"><a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a></div>
+           <div class="column nav-item "><a href="http://pp.pymi.vn/pages/about/">About</a></div>
+          <div class="column nav-item "><a href="http://pp.pymi.vn/pages/add/">Tạo bài viết</a></div>
+          <div class="column nav-item "><a href="http://pp.pymi.vn/pages/rss/">RSS</a></div>
+          <div class="column nav-item"><a href="/archives">Archives</a></div>
+        </div>
+      </div>
+    </section>
+
+<section class="container">
+  <header>
+    <h2 class="entry-title">
+      <a href="http://pp.pymi.vn/article/clojure/" rel="bookmark"
+         title="Permalink to Học clojure thật bất ngờ">Học clojure thật bất ngờ</a></h2>  
+  </header>
+  <footer class='center'>
+    <time class="published" datetime="2021-10-20T00:00:00+07:00"> 20/10/2021 </time>
+    <address class="vcard author">By
+                    <a class="url fn" href="http://pp.pymi.vn/author/hvnsweeting/">hvnsweeting</a>
+ in <a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a>
+                </address>     <em>Tags</em>:     <a href="http://pp.pymi.vn/tag/clojure/"><em>clojure</em></a>,     <a href="http://pp.pymi.vn/tag/lisp/"><em>LISP</em></a>,     <a href="http://pp.pymi.vn/tag/jvm/"><em>JVM</em></a>,     <a href="http://pp.pymi.vn/tag/java/"><em>java</em></a>    </footer>
+  <br>
+  <div class="entry-content">
+    <p>Series bài viết giúp lập trình viên đã biết Python làm quen với ngôn ngữ lập trình
+được <a href="https://insights.stackoverflow.com/survey/2021#section-top-paying-technologies-top-paying-technologies">trả lương cao nhất năm 2021 - Clojure</a>. </p>
+<p>Thước đo tiền có lẽ là dễ mang ra quảng cáo nhất, dù không phải là thứ trực tiếp
+liên quan tới các tính chất/ tính năng của một ngôn ngữ lập trình.
+Thêm một chú ý rằng kết quả trên chủ yếu là đo tại Mỹ, chứ ở Việt Nam tìm 01 việc
+làm Clojure còn khó. Nên nếu bạn ở Việt Nam và tính học Clojure để làm giàu, thì 
+có các cách khác dễ hơn nhiều.</p>
+<p>Theo phong cách PyMi, bài viết được đặt tên để giúp lập trình viên Việt đọc đúng tên ngôn ngữ, <code>clojure</code> (/ˈkloʊʒər/, like closure) giống như <code>CLOse</code> + <code>futURE</code>, Việtsub: "clâu-giơ".</p>
+<p>Python dev học Clojure có thể dễ hơn học Golang, nhờ các điểm tương đồng:</p>
+<ul>
+<li>dynamic typing</li>
+<li><a href="https://pp.pymi.vn/article/repl/">REPL</a> </li>
+<li>ưa chuộng dùng các kiểu dữ liệu built-in: list, set, dict, tuple thay vì tạo class mới</li>
+<li>sử dụng exception</li>
+</ul>
+<h2>Clojure là gì</h2>
+<p>Clojure tự giới thiệu tại trang chủ clojure.org</p>
+<blockquote>
+<p>Clojure is a robust, practical, and fast programming language 
+with a set of useful features that together form a 
+simple, coherent, and powerful tool.</p>
+</blockquote>
+<p>Với 6 tính năng nổi bật sẽ được phân tích lần lượt trong bài viết:</p>
+<ul>
+<li>Dynamic Development</li>
+<li>Functional Programming</li>
+<li><a href="./#lisp">LISP</a></li>
+<li>Runtime Polymorphism</li>
+<li>Concurrent Programming</li>
+<li><a href="./#jvm">Hosted on the JVM</a></li>
+</ul>
+<p>Clojure là một ngôn ngữ lập trình <a href="https://github.com/clojure/clojure/">mã nguồn mở</a> được phát minh bởi <a href="https://www.youtube.com/watch?v=LKtk3HCgTa8">Rich Hickey</a>
+vào năm 2005,
+chạy trên máy ảo JVM (của Java), thuộc họ ngôn ngữ LISP.
+<a href="https://clojurescript.org/">ClojureScript</a> là một compiler có thể biến 
+code Clojure thành code JavaScript.
+Vậy nên có thể gọi Clojure là một ngôn ngữ "full-stack", vì được dùng để viết
+cả front-end lẫn back-end, share chung code, tương tác với 
+nhau 1 cách diệu kỳ. Khác với nhiều ngôn ngữ lập trình <strong>có thể</strong> viết front-end
+như Brython, PyJS, ... ClojureScript ở dạng "production-ready", tức được dùng 
+thật trong các doanh nghiệp, rộng rãi, chứ không dừng ở dạng <strong>có thể</strong>.</p>
+<p>Clojure chạy trên máy ảo JVM, nên có thể dùng mọi thư viện của Java, đây là
+một ưu điểm rất lớn mang tính sống còn cho một ngôn ngữ lập trình mới
+vì không lo thiếu thư viện. Java luôn là ngôn ngữ loại VIP, được hỗ trợ ở
+mọi nơi. Ví dụ <a href="https://aws.amazon.com/getting-started/tools-sdks/">AWS cloud cung cấp thư viện (SDK) cho các ngôn ngữ Python, Java, 
+C++, C#, JavaScript, PHP, Ruby và Golang</a>
+nhưng chưa có SDK cho các ngôn ngữ mới hay không phổ biến như Rust, Common-Lisp, Ocaml, Erlang...
+Clojure dùng được lib Java nên nó có thể dùng chỗ nào Java chạy được.
+Chạy trên JVM, khiến Clojure dễ dàng xâm nhập vào môi trường doanh nghiệp,
+tách nó ra khỏi nhóm ngôn ngữ "quái dị"/học cho vui/ít chỗ dùng, đặc biệt là
+các ngôn ngữ họ nhà LISP.</p>
+<p>Clojure được dùng thành công ở các doanh nghiệp, đáng kể có Walmart (chuỗi bán lẻ có doanh thu lớn nhất toàn cầu), Nubank (ngân hàng fintech lớn nhất Mỹ Latin), atlassian (công ty phần mềm với các sản phẩm phổ biến như Jira, Confluence), GO-JEK, ... xem thêm tại <a href="https://clojure.org/community/success_stories">success_stories</a>. Trong cộng đồng mã nguồn mở, các sản phẩm nổi bật dùng Clojure có <a href="https://github.com/metabase/metabase">Metabase (BI/analytics tool)</a>, <a href="https://github.com/riemann/riemann">riemann (monitors distributed systems)</a>.</p>
+<h3 id="lisp">LISP</h3>
+<p>Clojure không phải một ý tưởng hoàn toàn mới, nó thuộc họ nhà LISP.
+LISP là ngôn ngữ lập trình lâu đời thứ 2 trên thế giới (1958) chỉ sau FORTRAN.
+Các ngôn ngữ thuộc họ nhà LISP có đặc điểm chung về mặt cú pháp: sử dụng dấu
+<code>()</code> và các phép toán ở dạng infix.</p>
+<p>Một đoạn code ví dụ về cú pháp của Clojure giải bài <a href="https://github.com/clojure/clojure/">ProjectEuler.net số 1</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nb">reduce + </span><span class="p">(</span><span class="nb">filter </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nb">or </span><span class="p">(</span><span class="nb">= </span><span class="mi">0</span> <span class="p">(</span><span class="nb">rem </span><span class="nv">x</span> <span class="mi">3</span><span class="p">))</span> <span class="p">(</span><span class="nb">= </span><span class="mi">0</span> <span class="p">(</span><span class="nb">rem </span><span class="nv">x</span> <span class="mi">5</span><span class="p">))))</span> <span class="p">(</span><span class="nb">range </span><span class="mi">1000</span><span class="p">)))</span>
+<span class="c1">; Kêt quả 233168</span>
+</code></pre></div>
+
+<p>Code Racket, một ngôn ngữ khác trong họ nhà LISP, chú ý lần này viết xuống 
+dòng khiến dễ đọc hơn hẳn:</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nb">foldl</span> <span class="nb">+</span> 
+   <span class="mi">0</span>
+   <span class="p">(</span><span class="nb">filter</span> 
+      <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span> 
+        <span class="p">(</span><span class="k">or</span> <span class="p">(</span><span class="nb">=</span> <span class="mi">0</span> <span class="p">(</span><span class="nb">remainder</span> <span class="n">x</span> <span class="mi">3</span><span class="p">))</span> 
+            <span class="p">(</span><span class="nb">=</span> <span class="mi">0</span> <span class="p">(</span><span class="nb">remainder</span> <span class="n">x</span> <span class="mi">5</span><span class="p">))))</span>
+      <span class="p">(</span><span class="nb">range</span> <span class="mi">1000</span><span class="p">)))</span>
+<span class="c1">; Kêt quả 233168</span>
+</code></pre></div>
+
+<p>Thoáng nhìn, có vẻ hơi đáng sợ vì có nhiều dấu <code>(</code> <code>)</code> và thứ tự prefix của các
+phép toán: <code>+ x 1</code> thay vì infix <code>x + 1</code>, đây cũng là thứ đầu tiên
+khiến hàng loạt người bỏ cuộc với LISP. Nhưng nếu vượt qua được nỗi sợ này,
+thậm chí bạn còn thấy nó đẹp, đơn giản. Chính thứ cú pháp đơn giản này tạo nên
+sức mạnh có 1 không 2 của họ nhà LISP: code-as-data và hệ thống macro.
+Code này cũng ngắn gọn (hơn) ngang ngửa Python, và rõ ràng là không dài như Java.</p>
+<p>Code Python3, viết theo kiểu <a href="https://docs.python.org/3/howto/functional.html">"functional"</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span>
+<span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">,</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)))</span>
+<span class="c1"># Kết quả 233168</span>
+</code></pre></div>
+
+<p>hay khi cho đủ các dấu <code>()</code> vào </p>
+<div class="highlight"><pre><span></span><code><span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">),</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">((</span><span class="n">x</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">x</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)))</span>
+</code></pre></div>
+
+<p>Code Python sử dụng nhiều loại ký tự hơn:
+<code>% , : ()</code>, code Clojure chỉ có <code>() []</code>, code Racket thậm chỉ chỉ có <code>()</code>.</p>
+<p>Một khi đã quen với cú pháp họ nhà LISP, thì có thể dễ dàng chuyển sang các
+ngôn ngữ khác cũng trong họ LISP, như Common Lisp, Racket, Chicken Scheme
+hay trên Python có <a href="https://docs.hylang.org/">Hylang</a>.</p>
+<h3 id="jvm">JVM</h3>
+<p>Java Virtual Machine (JVM) là máy ảo ban đầu được viết để chạy code Java, 
+từ xưa (1995) tới nay đã được các doanh nghiệp đổ hàng tấn tiền để tối ưu.
+Cuối những năm 2000, xuất hiện hàng loạt 
+các ngôn ngữ chạy trên JVM, có thể kể tới:</p>
+<ul>
+<li>Scala</li>
+<li>Kotlin</li>
+<li>Groovy</li>
+<li>Clojure
+...</li>
+</ul>
+<p>các ngôn ngữ này đều muốn có ưu điểm sử dụng JVM, nhưng chúng xuất hiện hầu
+hết với lý do Java cũ (phiên bản 5, 6) rất dài dòng và phát triển chậm (ít thêm các 
+tính năng hiện mới).</p>
+<p>Clojure có tốc độ chạy <a href="https://web.archive.org/web/20161125094132/http://benchmarksgame.alioth.debian.org/u64q/clojure.html">chậm hơn Java 1.5-2 lần</a>, Java có tốc độ chạy ngang ngửa với Go, tức <a href="https://web.archive.org/web/20160306083233/http://benchmarksgame.alioth.debian.org/u64q/compare.php?lang=clojure&amp;lang2=python3">nhanh hơn hẳn Python nhiều lần</a>, nhưng thường dùng nhiều RAM hơn.</p>
+<p>Chú ý các link trên link tới phiên bản cũ của <a href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/">benchmarksgame</a> do tháng 4/2017, tác giả của 
+trang web quyết định không hỗ trợ Clojure nữa. Xem thêm tại <a href="https://github.com/jafingerhut/clojure-benchmarks">https://github.com/jafingerhut/clojure-benchmarks</a>.</p>
+<p>Clojure là 1 ví dụ điển hình cho một ngôn ngữ lập trình dynamic typing mà lại cần phải compile, hay nói cách khác, không phải cứ compile là static typing.</p>
+<h2>Học lập trình Clojure</h2>
+<h3>Tài liệu</h3>
+<ul>
+<li>Tài liệu trang chủ <a href="https://clojure.org/guides/learn/syntax">https://clojure.org/guides/learn/syntax</a></li>
+<li><a href="https://learnxinyminutes.com/docs/clojure/">Learn X in Y minutes Where X=clojure</a></li>
+<li>Sách <a href="https://www.braveclojure.com/foreword/">Clojure for the Brave and True</a> đọc online free.</li>
+<li><a href="https://aphyr.com/posts/301-clojure-from-the-ground-up-welcome">Clojure from the ground up</a></li>
+<li>Xem thêm tại <a href="https://clojure.org/community/resources">https://clojure.org/community/resources</a></li>
+</ul>
+<h3>Cài đặt</h3>
+<p>Trên Ubuntu 20.04, gõ </p>
+<div class="highlight"><pre><span></span><code>sudo apt-get update &amp;&amp; sudo apt-get install -y clojure leiningen
+</code></pre></div>
+
+<p>Package clojure chứa clojure và cài Java Runtime Environment (JRE) để chạy code JVM.</p>
+<p>Trên các hệ điều hành khác xem hướng dẫn tại <a href="https://clojure.org/guides/getting_started#_clojure_installer_and_cli_tools">trang chủ</a>.</p>
+<h3>Viết code Clojure</h3>
+<p>leiningen là build tool phổ biến nhất của Clojure. Để bắt đầu 1 project tên <code>clj-playground</code>, gõ</p>
+<div class="highlight"><pre><span></span><code>$ lein new app clj-playground
+Generating a project called clj-playground based on the <span class="s1">&#39;app&#39;</span> template.
+$ <span class="nb">cd</span> clj-playground/
+</code></pre></div>
+
+<h4>Viết code chạy trực tiếp trên REPL</h4>
+<div class="highlight"><pre><span></span><code><span class="nv">$</span> <span class="nv">lein</span> <span class="nv">repl</span>
+<span class="nv">nREPL</span> <span class="nv">server</span> <span class="nv">started</span> <span class="nv">on</span> <span class="nv">port</span> <span class="mi">45477</span> <span class="nv">on</span> <span class="nv">host</span> <span class="mf">127.0</span><span class="nv">.0.1</span> <span class="nb">- </span><span class="nv">nrepl</span><span class="ss">://127.0.0.1:45477</span>
+<span class="nv">REPL-y</span> <span class="mf">0.4</span><span class="nv">.3</span>, <span class="nv">nREPL</span> <span class="mf">0.6</span><span class="nv">.0</span>
+<span class="nv">Clojure</span> <span class="mf">1.10</span><span class="nv">.0</span>
+<span class="nv">OpenJDK</span> <span class="mi">64</span><span class="nv">-Bit</span> <span class="nv">Server</span> <span class="nv">VM</span> <span class="mf">11.0</span><span class="nv">.11+9-Ubuntu-0ubuntu2.20.04</span>
+    <span class="nv">Docs</span><span class="err">:</span> <span class="p">(</span><span class="nb">doc </span><span class="nv">function-name-here</span><span class="p">)</span>
+          <span class="p">(</span><span class="nb">find-doc </span><span class="s">&quot;part-of-name-here&quot;</span><span class="p">)</span>
+  <span class="nv">Source</span><span class="err">:</span> <span class="p">(</span><span class="nf">source</span> <span class="nv">function-name-here</span><span class="p">)</span>
+ <span class="nv">Javadoc</span><span class="err">:</span> <span class="p">(</span><span class="nf">javadoc</span> <span class="nv">java-object-or-class-here</span><span class="p">)</span>
+    <span class="nv">Exit</span><span class="err">:</span> <span class="nv">Control+D</span> <span class="nb">or </span><span class="p">(</span><span class="nf">exit</span><span class="p">)</span> <span class="nb">or </span><span class="p">(</span><span class="nf">quit</span><span class="p">)</span>
+ <span class="nv">Results</span><span class="err">:</span> <span class="nv">Stored</span> <span class="nv">in</span> <span class="nv">vars</span> <span class="nv">*1</span>, <span class="nv">*2</span>, <span class="nv">*3</span>, <span class="nv">an</span> <span class="nv">exception</span> <span class="nv">in</span> <span class="nv">*e</span>
+
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">* </span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">)</span>
+<span class="mi">120</span>
+</code></pre></div>
+
+<p><code>repl</code> của Clojure rất tiện dụng, tương tự Python interactive mode (gõ python hay dùng ipython). Nó có đủ tiện ích để thử nghiệm, khám phá, học và dùng hàng ngày.</p>
+<p>Các function tiện lợi:</p>
+<ul>
+<li><code>(doc gì-đó)</code> giống python <code>help(gì-đó)</code></li>
+<li><code>(find-doc "gì-đó")</code> để tìm các function có tên hay tài liệu chứa 1 từ khóa </li>
+<li><code>(source gì-đó)</code> xem code của function <code>gì đó</code>.</li>
+<li><code>(class gì-đó)</code> để xem kiểu (type) của <code>gì đó</code> - như <code>type(gì-đó)</code> trong Python.</li>
+<li><code>(exit)</code> để thoát</li>
+</ul>
+<h4>Viết code vào file và chạy</h4>
+<p>lein tạo ra file <code>src/clj_playground/core.clj</code>: </p>
+<div class="highlight"><pre><span></span><code><span class="c1">; src/clj_playground/core.clj </span>
+<span class="p">(</span><span class="kd">ns </span><span class="nv">clj-playground.core</span>
+  <span class="p">(</span><span class="ss">:gen-class</span><span class="p">))</span>
+
+<span class="p">(</span><span class="kd">defn </span><span class="nv">-main</span>
+  <span class="s">&quot;I don&#39;t do a whole lot ... yet.&quot;</span>
+  <span class="p">[</span><span class="o">&amp;</span> <span class="nv">args</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">println </span><span class="s">&quot;Hello, World!&quot;</span><span class="p">))</span>
+</code></pre></div>
+
+<p>Gõ để chạy function <code>-main</code>:</p>
+<div class="highlight"><pre><span></span><code>$ lein run
+Hello, World!
+</code></pre></div>
+
+<p>Sản phẩm của việc build Java app là 1 file <code>.jar</code>, Clojure dùng <code>lein  uberjar</code> để tạo ra file này, và chạy với lệnh <code>java</code> khi mang đi "chạy thật" (deploy).</p>
+<div class="highlight"><pre><span></span><code>$ lein uberjar
+Compiling clj-playground.core
+Created /home/hvn/me/clj-playground/target/uberjar/clj-playground-0.1.0-SNAPSHOT.jar
+Created /home/hvn/me/clj-playground/target/uberjar/clj-playground-0.1.0-SNAPSHOT-standalone.jar
+
+$ java -jar /home/hvn/me/clj-playground/target/uberjar/clj-playground-0.1.0-SNAPSHOT-standalone.jar
+Hello, World!
+</code></pre></div>
+
+<p>Do dùng JVM nên để in ra "hello world", dùng tới 90MB RAM, chạy mất 0.67s, và sử dụng nhiều CPU cùng lúc:</p>
+<div class="highlight"><pre><span></span><code> $ /usr/bin/time -v java -jar /home/hvn/me/clj-playground/target/uberjar/clj-playground-0.1.0-SNAPSHOT-standalone.jar
+Hello, World! 
+        User <span class="nb">time</span> <span class="o">(</span>seconds<span class="o">)</span>: <span class="m">1</span>.46
+        System <span class="nb">time</span> <span class="o">(</span>seconds<span class="o">)</span>: <span class="m">0</span>.05
+        Percent of CPU this job got: <span class="m">225</span>%
+        Elapsed <span class="o">(</span>wall clock<span class="o">)</span> <span class="nb">time</span> <span class="o">(</span>h:mm:ss or m:ss<span class="o">)</span>: <span class="m">0</span>:00.67
+        Maximum resident <span class="nb">set</span> size <span class="o">(</span>kbytes<span class="o">)</span>: <span class="m">94560</span>
+</code></pre></div>
+
+<p>so với Python</p>
+<div class="highlight"><pre><span></span><code>$ /usr/bin/time -v python3 -c <span class="s1">&#39;print(&quot;Hello, World!&quot;)&#39;</span>
+Hello, World!
+        Command being timed: <span class="s2">&quot;python3 -c print(&quot;</span>Hello, World!<span class="s2">&quot;)&quot;</span>
+        User <span class="nb">time</span> <span class="o">(</span>seconds<span class="o">)</span>: <span class="m">0</span>.00
+        System <span class="nb">time</span> <span class="o">(</span>seconds<span class="o">)</span>: <span class="m">0</span>.00
+        Percent of CPU this job got: <span class="m">92</span>%
+        Elapsed <span class="o">(</span>wall clock<span class="o">)</span> <span class="nb">time</span> <span class="o">(</span>h:mm:ss or m:ss<span class="o">)</span>: <span class="m">0</span>:00.01
+        Maximum resident <span class="nb">set</span> size <span class="o">(</span>kbytes<span class="o">)</span>: <span class="m">8640</span>
+</code></pre></div>
+
+<p>đây là lý do Java/Clojure hiếm khi được dùng để viết các CLI tool - thường có yêu cầu dùng ít tài nguyên, khởi động/kết thúc nhanh, mà hợp với các chương trình "lớn", chạy lâu hơn.
+Năm 2019, Oracle (công ty mua lại Java) cho ra mắt <a href="https://www.graalvm.org/">GraalVM</a>, có thể chạy code JVM nhanh hơn và sử dụng ít tài nguyên hơn nhiều lần, khiến việc dùng Java/Clojure viết CLI tool trở nên khả thi hơn.</p>
+<h3>Syntax</h3>
+<p>Mọi đoạn code trong Clojure đều là expression (biểu thức), tức luôn trả về giá trị.</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&lt; </span><span class="mi">3</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="s">&quot;Yes&quot;</span>
+    <span class="s">&quot;No&quot;</span><span class="p">)</span> 
+</code></pre></div>
+
+<p>sẽ trả về "Yes", nên có thể đặt r bằng kết quả trả về:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="k">def </span><span class="nv">r</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&lt; </span><span class="mi">3</span> <span class="mi">5</span><span class="p">)</span> <span class="s">&quot;Yes&quot;</span> <span class="s">&quot;No&quot;</span><span class="p">))</span>
+<span class="o">#</span><span class="ss">&#39;clj-playground.core/r</span>
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">println </span><span class="nv">r</span><span class="p">)</span>
+<span class="nv">Yes</span>
+<span class="nv">nil</span>
+</code></pre></div>
+
+<p>Chú ý giá trị <code>nil</code> cuối cùng, là giá trị function <code>println</code> trả về. Tương tự trong Python3, print() trả về None.</p>
+<p>Trong Python, if/else, for/while là các statement (câu lệnh), không trả về giá trị.</p>
+<p>Mọi expression trong Clojure có dạng</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nf">phép-toán</span> <span class="nv">arg1</span> <span class="nv">arg2</span> <span class="nv">arg3</span><span class="p">)</span>
+</code></pre></div>
+
+<h3>Clojure is simple</h3>
+<ul>
+<li>No use ; ,</li>
+<li>Use only ()</li>
+</ul>
+<h3>Call Java lib</h3>
+<h3>macro</h3>
+<h4>data-as-code</h4>
+<h4>macro</h4>
+<h4>REPL driven development</h4>
+<p>Cách lập trình phổ biến với lập trình viên C/Java/Go, viết code vào 1 file và dùng IDE thì Clojure lại ưa chuộng việc sử dụng REPL trực tiếp để khám phá và viết code (tương tự Python). Nhưng thậm chí còn hơn Python, Clojure thừa hưởng 1 tính năng của họ nhà LISP với REPL có khả năng kết nối vào chương trình đang chạy và soi mói trực tiếp những gì cần.
+LINK TO repl-driven talk </p>
+<h3>Data types</h3>
+<p>Clojure có các kiểu dữ liệu: integer, float, boolean, character, string, symbol. Dùng <code>class</code> để xem kiểu bên dưới Java).
+Clojure float dùng kiểu Java Double, <a href="https://pymi.vn/blog/why-not-float/">tuân theo chuẩn IEEE754, giống Python, 0.1 + 0.1 + 0.1 không bằng 0.3</a></p>
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">+ </span><span class="mf">0.1</span> <span class="mf">0.1</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="mf">0.30000000000000004</span>
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nb">+ </span><span class="mf">0.1</span> <span class="mf">0.1</span> <span class="mf">0.1</span><span class="p">)</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="nv">false</span>
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">+ </span><span class="mf">0.1</span> <span class="mf">0.1</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="mf">0.30000000000000004</span>
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nb">+ </span><span class="mf">0.1</span> <span class="mf">0.1</span> <span class="mf">0.1</span><span class="p">)</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="nv">false</span>
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">class </span><span class="mf">0.1</span><span class="p">)</span>
+<span class="nv">java.lang.Double</span>
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">class </span><span class="mi">42</span><span class="p">)</span>
+<span class="nv">java.lang.Long</span>
+</code></pre></div>
+
+<p>Phép chia số nguyên trong Clojure không trả về float mà trả về kiểu Ratio (phân số):</p>
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">/ </span><span class="mi">4</span> <span class="mi">2</span><span class="p">)</span>
+<span class="mi">2</span>
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">/ </span><span class="mi">4</span> <span class="mi">3</span><span class="p">)</span>
+<span class="mi">4</span><span class="nv">/3</span>
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">class </span><span class="p">(</span><span class="nb">/ </span><span class="mi">4</span> <span class="mi">3</span><span class="p">))</span>
+<span class="nv">clojure.lang.Ratio</span>
+
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nb">/ </span><span class="mi">1</span> <span class="mi">3</span><span class="p">)</span> <span class="p">(</span><span class="nb">/ </span><span class="mi">1</span> <span class="mi">3</span><span class="p">)</span> <span class="p">(</span><span class="nb">/ </span><span class="mi">1</span> <span class="mi">3</span><span class="p">))</span>
+<span class="mi">1</span><span class="nv">N</span>
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nf">type</span> <span class="nv">*1</span><span class="p">)</span>
+<span class="nv">clojure.lang.BigInt</span>
+</code></pre></div>
+
+<p>để thu được float, biến một trong các giá trị trong phép tính thành kiểu float</p>
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">/ </span><span class="mi">1</span> <span class="mf">3.0</span><span class="p">)</span>
+<span class="mf">0.3333333333333333</span>
+</code></pre></div>
+
+<p>phép chia lấy dư sử dụng function <code>rem</code> (remainder) thay vì ký hiệu % trong Python:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">rem </span><span class="mi">8</span> <span class="mi">5</span><span class="p">)</span>
+<span class="mi">3</span>
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">rem </span><span class="mi">5</span> <span class="mi">8</span><span class="p">)</span>
+<span class="mi">5</span>
+</code></pre></div>
+
+<p>integer trong Clojure dùng kiểu Double của Java nên có giới hạn về độ lớn, kiểu BigInt (thêm chữ N sau số) không có giới hạn độ lớn - giống Python:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">* </span><span class="mi">123213213121</span> <span class="mi">123112312312321</span><span class="p">)</span>
+<span class="nv">Execution</span> <span class="nv">error</span> <span class="p">(</span><span class="nf">ArithmeticException</span><span class="p">)</span> <span class="nv">at</span> <span class="nv">clj-playground.core/eval1584</span> <span class="p">(</span><span class="nf">form-init3339943865471581683.clj</span><span class="ss">:1</span><span class="p">)</span><span class="nv">.</span>
+<span class="nv">integer</span> <span class="nv">overflow</span>
+
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">* </span><span class="mi">123213213121</span><span class="nv">N</span> <span class="mi">123112312312321</span><span class="p">)</span>
+<span class="mi">15169063574757119687163841</span><span class="nv">N</span>
+</code></pre></div>
+
+<p>Không có sẵn phép tính lũy thừa (khi code Python trong công việc hàng ngày, bạn đã phải tính lũy thừa bao nhiêu lần?):</p>
+<div class="highlight"><pre><span></span><code><span class="o">##</span> <span class="nv">Tính</span> <span class="mi">2</span> <span class="nv">mũ</span> <span class="mi">1000</span>
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">reduce * </span><span class="p">(</span><span class="nb">repeat </span><span class="mi">1000</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nv">Execution</span> <span class="nv">error</span> <span class="p">(</span><span class="nf">ArithmeticException</span><span class="p">)</span> <span class="nv">at</span> <span class="nv">clj-playground.core/eval1594</span> <span class="p">(</span><span class="nf">form-init3339943865471581683.clj</span><span class="ss">:1</span><span class="p">)</span><span class="nv">.</span>
+<span class="nv">integer</span> <span class="nv">overflow</span>
+
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">reduce * </span><span class="p">(</span><span class="nb">repeat </span><span class="mi">1000</span> <span class="mi">2</span><span class="nv">N</span><span class="p">))</span>
+<span class="mi">10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652624386837205668069376</span><span class="nv">N</span>
+</code></pre></div>
+
+<p>1/0 xảy ra Exception, tương tự Python</p>
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">/ </span><span class="mi">1</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nv">Execution</span> <span class="nv">error</span> <span class="p">(</span><span class="nf">ArithmeticException</span><span class="p">)</span> <span class="nv">at</span> <span class="nv">clj-playground.core/eval1598</span> <span class="p">(</span><span class="nf">form-init3339943865471581683.clj</span><span class="ss">:1</span><span class="p">)</span><span class="nv">.</span>
+<span class="nv">Divide</span> <span class="nv">by</span> <span class="nv">zero</span>
+</code></pre></div>
+
+<p>boolean viết <code>true</code> và <code>false</code>, có tính <a href="https://pymi.vn/tutorial/boolean/"><code>short-circuit</code> - dừng lại sớm nhất có thể</a></p>
+<div class="highlight"><pre><span></span><code>clj-playground.core=&gt; (and true false)
+false
+clj-playground.core=&gt; (or true (/ 1 0))
+true
+clj-playground.core=&gt; (or (not false) (/ 1 0))
+true
+</code></pre></div>
+
+<p>string/char/</p>
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">class </span><span class="nv">nil</span><span class="p">)</span>
+<span class="nv">nil</span>
+<span class="nv">clj-playground.core=&gt;</span> <span class="nv">nil</span>
+<span class="nv">nil</span>
+
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">class </span><span class="s">&quot;Hello&quot;</span><span class="p">)</span>
+<span class="nv">java.lang.String</span>
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">class </span><span class="sc">\h</span><span class="p">)</span>
+<span class="nv">java.lang.Character</span>
+
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">println </span><span class="s">&quot;Hello, &quot;</span> <span class="mi">42</span><span class="p">)</span>
+<span class="nv">Hello</span>,  <span class="mi">42</span>
+<span class="nv">nil</span>
+</code></pre></div>
+
+<p><code>nil</code> là một giá trị đặc biệt đại diện cho không tồn tại, không gì cả, tương tự như None trong Python.</p>
+<p>Symbol là các ký tự dùng để  chỉ (refer) một thứ khác. Symbol x có thể chỉ tới giá trị 5, symbol println chỉ tới 1 function...</p>
+<p>Keyword là symbol bắt đầu bằng dấu <code>:</code>,
+keyword không có trong Python</p>
+<div class="highlight"><pre><span></span><code>clj-playground.core=&gt; (class :name)
+clojure.lang.Keyword
+clj-playground.core=&gt; (class :my-name)
+clojure.lang.Keyword
+</code></pre></div>
+
+<p>Keyword thường được dùng làm key của map (dictionary), với 
+ưu điểm dùng ít bộ nhớ hơn và dễ so sánh = hơn.</p>
+<p>Dùng <code>def</code> để nối một symbol với 1 giá trị (ngôn ngữ khác còn gọi là gán giá trị cho biến, gán name cho giá trị, hay viết x = 5):</p>
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="k">def </span><span class="nv">x</span> <span class="mi">5</span><span class="p">)</span>
+<span class="o">#</span><span class="ss">&#39;clj-playground.core/x</span>
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">println </span><span class="nv">x</span><span class="p">)</span>
+<span class="mi">5</span>
+<span class="nv">nil</span>
+</code></pre></div>
+
+<p>Các symbol <code>- ? /</code> hợp lệ trong Clojure, không hợp lệ trong Python:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nf">clojure.core/coll?</span> <span class="p">[])</span>
+<span class="nv">true</span>
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="k">def </span><span class="nv">my-name</span> <span class="s">&quot;Pymier&quot;</span><span class="p">)</span>
+<span class="o">#</span><span class="ss">&#39;clj-playground.core/my-name</span>
+</code></pre></div>
+
+<p>Clojure sẽ bỏ qua comment theo sau dấu <code>;</code>.</p>
+<h4>Collections</h4>
+<p>Clojure có 4 collections chủ đạo: vector, list, set, map.
+So sánh với Python:</p>
+<ul>
+<li>vector: như list của Python</li>
+<li>set: như set của Python</li>
+<li>map: như dict của Python</li>
+</ul>
+<p>list trong Clojure là linked-list, không có sẵn trong Python. Clojure không có tuple, nhưng các kiểu dữ liệu đều là immutable như Python tuple. 
+So với các ngôn ngữ nhà LISP thường chỉ có kiểu list (linked-list), Clojure phát triển riêng cho mình 3 kiểu dữ liệu vector, set, map.</p>
+<h5>Immutable</h5>
+<p>Trong Clojure, các kiểu dữ liệu đều là immutable, tức một khi đã tạo ra thì không thay đổi được. 
+Đây là tính chất chung của các ngôn ngữ lập trình "functional programming", như Haskell, Ocaml, F#, Erlang, Elixir...</p>
+<p>Tính năng này khiến code ít có bug hơn, dễ lập trình concurrency hơn (chương trình có nhiều "luồng" code chạy cùng lúc). Người dùng vẫn có thể thêm hay bớt từ 1 collection, nhưng thực chất bên dưới, Clojure sẽ tạo ra 1 giá trị mới với thay đổi đã thực hiện, phần dùng chung với giá trị cũ được chia sẻ AN TOÀN, do immutable, cũng không lo tốn RAM, do được chia sẻ dùng chung.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="k">def </span><span class="nv">vec1</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">])</span>
+<span class="o">#</span><span class="ss">&#39;clj-playground.core/vec1</span>
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="k">def </span><span class="nv">vec2</span> <span class="p">(</span><span class="nb">conj </span><span class="nv">vec1</span> <span class="mi">4</span><span class="p">))</span>
+<span class="o">#</span><span class="ss">&#39;clj-playground.core/vec2</span>
+<span class="nv">clj-playground.core=&gt;</span> <span class="nv">vec1</span>
+<span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">]</span>
+<span class="nv">clj-playground.core=&gt;</span> <span class="nv">vec2</span>
+<span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">]</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">vector </span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">]</span>
+</code></pre></div>
+
+<p>Clojure có cú pháp riêng để tạo vector với dấu <code>[]</code></p>
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">]</span>
+</code></pre></div>
+
+<p>Dấu <code>,</code> không có ý nghĩa trong Clojure, được coi như dấu space. Vậy nên copy 1 list trong Python paste vào Clojure vẫn chạy:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="p">[</span><span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">4</span>,<span class="mi">3</span>,<span class="mi">2</span>,<span class="mi">1</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">4</span> <span class="mi">3</span> <span class="mi">2</span> <span class="mi">1</span><span class="p">]</span>
+</code></pre></div>
+
+<p>Tạo list, thấy output là <code>(1 2 3 4)</code> nhưng gõ lại sẽ gặp exception:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">list </span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">)</span>
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">)</span>
+<span class="nv">Execution</span> <span class="nv">error</span> <span class="p">(</span><span class="nf">ClassCastException</span><span class="p">)</span> <span class="nv">at</span> <span class="nv">clj-playground.core/eval1697</span> <span class="p">(</span><span class="nf">form-init3339943865471581683.clj</span><span class="ss">:1</span><span class="p">)</span><span class="nv">.</span>
+<span class="nb">class </span><span class="nv">java.lang.Long</span> <span class="nv">cannot</span> <span class="nv">be</span> <span class="nb">cast </span><span class="nv">to</span> <span class="nb">class </span><span class="nv">clojure.lang.IFn</span> <span class="p">(</span><span class="nf">java.lang.Long</span> <span class="nv">is</span> <span class="nv">in</span> <span class="nv">module</span> <span class="nv">java.base</span> <span class="nv">of</span> <span class="nv">loader</span> <span class="ss">&#39;bootstrap</span><span class="o">&#39;</span><span class="c1">; clojure.lang.IFn is in unnamed module of loader &#39;app&#39;)</span>
+</code></pre></div>
+
+<p>do Clojure sẽ nghĩ <code>1</code> ở đây là function, nó gọi 1 với đầu vào 2 3 4 và xảy ra exception ClassCastException với nội dung không thể biến interger (kiểu Long) thành function (kiểu IFn).</p>
+<p>Dùng quote <code>'</code> trước expression để biểu diễn list</p>
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">)</span>
+<span class="nv">clj-playground.core=&gt;</span> <span class="o">&#39;</span><span class="p">(</span><span class="nb">+ </span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">+ </span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">+ </span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
+<span class="mi">6</span>
+</code></pre></div>
+
+<h5>Khác biệt giữa list và vector</h5>
+<ul>
+<li>Vector dựa trên kiểu dữ liệu array, có đánh index của mọi phần tử nên truy cập bằng index với tốc độ tức thì O(1).</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">[A] [B] [C] [D]</span>
+ <span class="na">0   1   2   3</span>
+</code></pre></div>
+
+<ul>
+<li>List dựa trên kiểu dữ liệu linked-list, nên khi cần truy cập đến phần tử thứ <code>n</code> thì phải duyệt qua <code>n</code> phần tử - có độ phức tạp O(n). Hình vẽ mô tả các bước truy cập vào phần tử thứ 3 (đếm từ 0) trong list:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">C</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">D</span><span class="p">)</span>
+</code></pre></div>
+
+<ul>
+<li>Thêm một phần tử vào list chỉ mất 1, 2 thao tác "nối" phần tử đó vào phần tử trước/sau nó, tức có độ phức tạp O(1)</li>
+<li>Thêm một phần tử vào đầu vector sẽ đòi hỏi phải đánh lại index cho toàn bộ vector (tăng thêm 1), tức độ phức tạp O(n).</li>
+</ul>
+<h5>các phép biến đổi vector - như 11 Python list methods</h5>
+<p>PS: các function này có thể cho kết quả khác nếu dùng list, đọc (doc function) để xem chi tiết.</p>
+<ul>
+<li>biến list thành vector: <code>vec</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nf">vec</span> <span class="p">(</span><span class="nb">list </span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+<span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">]</span>
+</code></pre></div>
+
+<ul>
+<li>append thêm vào cuối: <code>conj</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">conj </span><span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">]</span> <span class="mi">4</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">]</span>
+</code></pre></div>
+
+<ul>
+<li>pop bỏ phần tử cuối: <code>pop</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">pop </span><span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">])</span>
+<span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">]</span>
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">pop </span><span class="p">[])</span>
+<span class="nv">Execution</span> <span class="nv">error</span> <span class="p">(</span><span class="nf">IllegalStateException</span><span class="p">)</span> <span class="nv">at</span> <span class="nv">clj-playground.core/eval1747</span> <span class="p">(</span><span class="nf">form-init3339943865471581683.clj</span><span class="ss">:1</span><span class="p">)</span><span class="nv">.</span>
+<span class="nv">Can</span><span class="ss">&#39;t</span> <span class="nb">pop </span><span class="nv">empty</span> <span class="nv">vector</span>
+</code></pre></div>
+
+<ul>
+<li>L[-1] trả về phần tử cuối <code>peek</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">peek </span><span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">])</span>
+<span class="mi">4</span>
+</code></pre></div>
+
+<ul>
+<li>L[n] truy cập phần tử bằng index: <code>nth</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="p">([</span><span class="ss">:a</span> <span class="ss">:b</span> <span class="ss">:c</span> <span class="ss">:d</span><span class="p">]</span> <span class="mi">3</span><span class="p">)</span>
+<span class="ss">:d</span>
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">nth </span><span class="p">[</span><span class="ss">:a</span> <span class="ss">:b</span> <span class="ss">:c</span> <span class="ss">:d</span><span class="p">]</span> <span class="mi">3</span><span class="p">)</span>
+<span class="ss">:d</span>
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">nth </span><span class="p">[</span><span class="ss">:a</span> <span class="ss">:b</span> <span class="ss">:c</span> <span class="ss">:d</span><span class="p">]</span> <span class="mi">4</span><span class="p">)</span>
+<span class="nv">Execution</span> <span class="nv">error</span> <span class="p">(</span><span class="nf">IndexOutOfBoundsException</span><span class="p">)</span> <span class="nv">at</span> <span class="nv">clj-playground.core/eval1801</span> <span class="p">(</span><span class="nf">form-init3339943865471581683.clj</span><span class="ss">:1</span><span class="p">)</span><span class="nv">.</span>
+<span class="nv">null</span>
+</code></pre></div>
+
+<ul>
+<li>len số phần tử: <code>count</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">count </span><span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">])</span>
+<span class="mi">4</span>
+</code></pre></div>
+
+<ul>
+<li>slicing lấy một tập con của vector: <code>subvec</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">subvec </span><span class="p">[</span><span class="ss">:a</span> <span class="ss">:b</span> <span class="ss">:c</span> <span class="ss">:d</span><span class="p">]</span> <span class="mi">2</span><span class="p">)</span>
+<span class="p">[</span><span class="ss">:c</span> <span class="ss">:d</span><span class="p">]</span>
+</code></pre></div>
+
+<ul>
+<li>kiểm tra có empty không: <code>empty?</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nf">empty?</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">])</span>
+<span class="nv">false</span>
+</code></pre></div>
+
+<ul>
+<li>extend mở rộng vector bằng cách thêm các phần tử từ tập khác: <code>concat</code> trả về 1 list</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">concat </span><span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">]</span> <span class="p">[</span><span class="ss">:a</span> <span class="ss">:b</span> <span class="ss">:c</span><span class="p">])</span>
+<span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="ss">:a</span> <span class="ss">:b</span> <span class="ss">:c</span><span class="p">)</span>
+</code></pre></div>
+
+<ul>
+<li>reverse đảo ngược 1 vector: <code>rseq</code> trả về 1 list</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">rseq </span><span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">])</span>
+<span class="p">(</span><span class="mi">3</span> <span class="mi">2</span> <span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+
+<ul>
+<li>sort sắp xếp: <code>sort</code> trả về 1 list</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">sort </span><span class="p">[</span><span class="mi">2</span> <span class="mi">3</span> <span class="mi">1</span><span class="p">])</span>
+<span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">sort </span><span class="p">[</span><span class="s">&quot;meo&quot;</span> <span class="s">&quot;bo&quot;</span> <span class="s">&quot;ga&quot;</span><span class="p">])</span>
+<span class="p">(</span><span class="s">&quot;bo&quot;</span> <span class="s">&quot;ga&quot;</span> <span class="s">&quot;meo&quot;</span><span class="p">)</span>
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">sort </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">a</span> <span class="nv">b</span><span class="p">]</span> <span class="p">(</span><span class="nb">&lt; </span><span class="nv">a</span> <span class="nv">b</span><span class="p">))</span> <span class="p">[</span><span class="mi">2</span> <span class="mi">3</span> <span class="mi">1</span><span class="p">])</span>
+<span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">sort </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">a</span> <span class="nv">b</span><span class="p">]</span> <span class="p">(</span><span class="nb">&gt; </span><span class="nv">a</span> <span class="nv">b</span><span class="p">))</span> <span class="p">[</span><span class="mi">2</span> <span class="mi">3</span> <span class="mi">1</span><span class="p">])</span>
+<span class="p">(</span><span class="mi">3</span> <span class="mi">2</span> <span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+
+<ul>
+<li><code>i in L</code> tìm kiếm: <code>some</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">some </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nb">= </span><span class="nv">x</span> <span class="mi">3</span><span class="p">))</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">])</span>
+<span class="nv">true</span>
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">some </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nb">&gt; </span><span class="nv">x</span> <span class="mi">1</span><span class="p">))</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">])</span>
+<span class="nv">true</span>
+</code></pre></div>
+
+<p>cần viết một lambda function để đưa ra chỉ tiêu tìm kiếm. Với Python, <code>i in L</code> là tìm giá trị <code>==</code> i, thì với Clojure, người dùng tùy ý quyết định cách tìm, ví dụ như ví dụ thứ hai, tìm xem có số nào lớn hơn 1 không.</p>
+<ul>
+<li>remove(V) bỏ một phần tử có giá trị bằng V. Không có code sẵn trong Clojure làm việc này, xem function tự viết dùng <code>split-with</code> tại https://stackoverflow.com/questions/7662447/what-is-idiomatic-clojure-to-remove-a-single-instance-from-many-in-a-list</li>
+</ul>
+<p>Đến đây ta thực hiện được mọi phép tính với Python list tương ứng trên Clojure Vector. Điểm khác biệt cơ bản là các Python list method thường thay đổi list được dùng, và return None, trong khi Clojure vector là immutable, mọi thay đổi sẽ trả về "phiên bản mới".</p>
+<h3>lazy or function on list?</h3>
+<h3>Control flow (if/else/for)</h3>
+<h4>if</h4>
+<p><code>if</code> là một "Special Form" trong Clojure, nhưng về cú pháp, nhìn nó vẫn như một function bình thường và có thể xem doc với <code>(doc if)</code>.</p>
+<div class="highlight"><pre><span></span><code> <span class="p">(</span><span class="nb">doc </span><span class="nv">if</span><span class="p">)</span>
+<span class="nv">-------------------------</span>
+<span class="nv">if</span>
+  <span class="p">(</span><span class="k">if </span><span class="nb">test </span><span class="nv">then</span> <span class="nv">else?</span><span class="p">)</span>
+</code></pre></div>
+
+<p>if trả về giá trị của biểu thức "then" nếu "test" được coi là true, hoặc trả về biểu thức "else?" nếu test trả về nil hoặc false. Nếu không có phần "else", trả về <code>nil</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="mi">3</span> <span class="mi">5</span><span class="p">)</span> <span class="s">&quot;equal&quot;</span> <span class="s">&quot;not equal&quot;</span><span class="p">)</span>
+<span class="s">&quot;not equal&quot;</span>
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="mi">3</span> <span class="mi">5</span><span class="p">)</span> <span class="s">&quot;equal&quot;</span><span class="p">)</span>
+<span class="nv">nil</span>
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="mi">3</span> <span class="mi">3</span><span class="p">)</span> <span class="s">&quot;equal&quot;</span><span class="p">)</span>
+<span class="s">&quot;equal&quot;</span>
+</code></pre></div>
+
+<p>không có từ khóa "else" trong if. </p>
+<p>Để thực hiện if/elif/elif/else trong Clojure, sử dụng <code>cond</code>, có :else keyword để xử lý trường hợp "else". Code ví dụ kiểm tra tuổi lấy chồng:</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">def </span><span class="nv">x</span> <span class="mi">20</span><span class="p">)</span>
+
+<span class="p">(</span><span class="nb">cond </span><span class="p">(</span><span class="nb">&lt; </span><span class="nv">x</span> <span class="mi">18</span><span class="p">)</span> <span class="s">&quot;Small&quot;</span>
+      <span class="p">(</span><span class="nb">= </span><span class="nv">x</span> <span class="mi">18</span><span class="p">)</span> <span class="s">&quot;Ok lah&quot;</span>
+      <span class="ss">:else</span>    <span class="s">&quot;Go go&quot;</span><span class="p">)</span>
+<span class="c1">; &quot;Go go&quot;</span>
+</code></pre></div>
+
+<h4>for</h4>
+<ul>
+<li>KHÔNG CÓ VÒNG LẶP FOR.</li>
+<li>KHÔNG CÓ VÒNG LẶP FOR.</li>
+<li>KHÔNG CÓ VÒNG LẶP FOR.</li>
+</ul>
+<p>Không có for(while) thì làm sao lập trình? đó là câu hỏi 
+hiển nhiên đến từ người lập trình C/Java/Python...</p>
+<p>Câu trả lời là tuy không có for/while, nhưng có những thứ tương tự để giúp thu được kết quả tương đương.</p>
+<p>Tại sao phải mệt thế, sao không thêm for/while vào?
+Vì for/while hoạt động dựa trên việc thay đổi 1 giá trị (i) để thực hiện, và việc đó không hợp với tính immutable của functional programming.</p>
+<p>Các ngôn ngữ functional programming thay vì dùng for, sẽ cung cấp một bộ vài chục các function đủ tính năng để thay thế for. Và trong trường hợp xấu nhất, viết recursive function để có kết quả như for/while.</p>
+<p>Ưu điểm của cách làm này là mục tiêu của các đoạn code sẽ trở nên rõ ràng, dễ đọc, do ý đồ của đoạn lặp đã được biểu hiện bằng các tên function như map, filter, reduce ... người đọc code không phải dịch ngược để tìm ý tưởng của tác giả lặp để làm gì. </p>
+<h4>map/filter/reduce</h4>
+<p>80% (số liệu bịa ra) các đoạn code dùng vòng lặp for/while để thực hiện biến đổi map/filter/reduce.</p>
+<p>Ví dụ đoạn code Python:</p>
+<div class="highlight"><pre><span></span><code><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;java&quot;</span><span class="p">,</span> <span class="s2">&quot;clojure&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;go&quot;</span><span class="p">,</span> <span class="s2">&quot;javascript&quot;</span><span class="p">]</span>
+<span class="n">upper_names</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="n">upper_name</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+</code></pre></div>
+
+<p>không khó để đoán mục tiêu là lọc ra các name lớn hơn 4 ký tự, rồi biến chúng thành chữ hoa. Nhưng phải mất công sức đọc kỹ để hiểu. Python có list-comprehension, viết gọn hơn:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="n">n</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">names</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">]</span>
+</code></pre></div>
+
+<p>Code này rõ ràng dễ đọc hơn code trên, với ý đồ chia rõ
+hai phần: lọc ra các tên có độ dài hơn 4, rồi biến upper() tất cả. Lọc tiếng anh là filter, việc biến toàn bộ giá trị theo 1 phép biến đổi gọi là map. Thậm chí sử dụng chính Python cũng có thể làm những việc này:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">upper</span><span class="p">,</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">,</span> <span class="n">names</span><span class="p">)))</span>
+<span class="p">[</span><span class="s1">&#39;CLOJURE&#39;</span><span class="p">,</span> <span class="s1">&#39;JAVASCRIPT&#39;</span><span class="p">]</span>
+</code></pre></div>
+
+<p>Code này sẽ phải đọc từ trong ra ngoài, ban đầu có <code>names</code>, <code>filter</code> xong thì <code>map</code>, list để biến kết quả từ 1 iterator thành 1 list.</p>
+<p>Code Clojure tương ứng, tương tự code Python functional:</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">def </span><span class="nv">names</span> <span class="p">[</span><span class="s">&quot;java&quot;</span>, <span class="s">&quot;clojure&quot;</span>, <span class="s">&quot;c&quot;</span>, <span class="s">&quot;go&quot;</span>, <span class="s">&quot;javascript&quot;</span><span class="p">])</span>
+
+<span class="p">(</span><span class="nb">map </span><span class="nv">clojure.string/upper-case</span> 
+    <span class="p">(</span><span class="nb">filter </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">n</span><span class="p">]</span> <span class="p">(</span><span class="nb">&gt; </span><span class="p">(</span><span class="nb">count </span><span class="nv">n</span><span class="p">)</span> <span class="mi">4</span><span class="p">))</span>
+            <span class="nv">names</span><span class="p">))</span>
+<span class="c1">; (&quot;CLOJURE&quot; &quot;JAVASCRIPT&quot;)</span>
+</code></pre></div>
+
+<p>Việc đọc từ trong ra ngoài không phải chuyện của riêng Clojure, Python cũng không khác gì. Nhưng Clojure có thêm 2 tính năng đặc sắc để không phải đọc từ trong ra ngoài (học theo pipeline của các functional programming như Ocaml, F#, Elixir):</p>
+<p>Dấu <code>-&gt; và -&gt;&gt;</code> gọi là thread trong Clojure (không liên quan gì đến khái niệm multi-thread trong Java hay Python):</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="nv">names</span> 
+<span class="p">(</span><span class="nb">filter </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">n</span><span class="p">]</span> <span class="p">(</span><span class="nb">&gt; </span><span class="p">(</span><span class="nb">count </span><span class="nv">n</span><span class="p">)</span> <span class="mi">4</span><span class="p">)))</span>
+<span class="p">(</span><span class="nb">map </span><span class="nv">clojure.string/upper-case</span><span class="p">))</span>
+</code></pre></div>
+
+<p><code>-&gt;&gt;</code> sẽ biến names thành argument cuối cùng của filter, sau đó lấy kết quả này, biến thành argument cuối cùng của map, code này có thể đọc dễ dàng từ trên xuống theo thứ tự nó chạy.
+<code>-&gt;</code> tương tự, nhưng nhét giá trị vào argument đầu tiên của function tiếp theo.</p>
+<p>Đọc 3 dòng code này, hiểu rõ lập trình viên muốn filter rồi map, không phải "dịch ngược"/đoán từ các vòng for/while.</p>
+<p>Sau khi thi được 1 list như mong muốn, các bài toán thường kết thúc bằng việt kết hợp các giá trị này theo một cách nào đó, ví dụ như 1 list số thì có thể cộng hay nhân với nhau, một list string có thể nối với nhau. Việc biến một tập hợp thu gọn lại còn 1 giá trị cuối cùng có tên gọi là "reduce". MapReduce chính là công nghệ tiên phong dẫn tới sự ra đời của ngành "big-data", chính dựa trên các khái niệm này.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">reduce * </span><span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">])</span>
+<span class="mi">24</span>
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">reduce + </span><span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">])</span>
+<span class="mi">10</span>
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">reduce - </span><span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">])</span>
+<span class="mi">-8</span>
+</code></pre></div>
+
+<p><code>reduce</code> thực hiện phép toán với 2 phần tử đầu tiên, lấy kết quả thực hiện tiếp với phần tử tiếp theo... cho tới khi hết collection. Python function <code>sum</code>, chi là 1 trường hợp đặc biệt của reduce khi function là phép +, muốn thực hiện * hay - đều không thể dùng được và phải viết for/while.</p>
+<h4>Bài tập tự kiểm</h4>
+<p>Tìm tất cả code sử dụng for/while trong code các project của bạn, xem bao nhiêu có thể viết lại dùng map/filter/reduce.</p>
+<h4>Các function khác</h4>
+<p>Khi 80% lần lặp được giải quyết bằng 3 function map/filter/reduce, thì 20% trường hợp còn lại sẽ được giải quyết bằng vài chục function khác nhau xem tại https://clojure.org/reference/sequences.</p>
+<p>Người mới học Clojure chưa nhớ được các function có thể tra ở cheatsheet https://clojure.org/api/cheatsheet </p>
+<p>TODO: is their a better way?</p>
+<h3>doseq, dotimes, for, while</h3>
+<p>Khi muốn in ra màn hình 5 lần, rõ ràng không rơi vào trường hợp có thể dùng map/filter/reduce, in ra màn hình là thực hiện một hành động làm thay đổi trạng thái của màn hình, hay Funtional Programming gọi là thực hiện một "side-effect", hành động này thường không trả về kết quả gì (nil).</p>
+<p><code>dotimes</code> thực hiện 1 hành động n lần, <code>doseq</code> duyệt qua một sequence (như list/vector) thực hiện một hành động:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">dotimes </span><span class="p">[</span><span class="nv">i</span> <span class="mi">5</span><span class="p">]</span> <span class="p">(</span><span class="nb">println </span><span class="nv">i</span><span class="p">))</span>
+<span class="mi">0</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="mi">4</span>
+<span class="nv">nil</span>
+<span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">doseq </span><span class="p">[</span><span class="nv">n</span> <span class="p">[</span><span class="s">&quot;meo&quot;</span> <span class="s">&quot;bo&quot;</span> <span class="s">&quot;ga&quot;</span><span class="p">]]</span> <span class="p">(</span><span class="nb">println </span><span class="nv">n</span><span class="p">))</span>
+<span class="nv">meo</span>
+<span class="nv">bo</span>
+<span class="nv">ga</span>
+<span class="nv">nil</span>
+</code></pre></div>
+
+<p><code>for</code> để thực hiện list-comprehension, hỗ trợ filter với :when hoặc :while:</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nb">for </span><span class="p">[</span><span class="nv">x</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">]</span>
+      <span class="nv">y</span> <span class="p">[</span><span class="ss">:a</span> <span class="ss">:b</span> <span class="ss">:c</span><span class="p">]</span>
+      <span class="ss">:when</span> <span class="p">(</span><span class="nb">&gt; </span><span class="nv">x</span> <span class="mi">1</span><span class="p">)]</span>
+     <span class="p">(</span><span class="nb">list </span><span class="nv">x</span> <span class="nv">y</span><span class="p">))</span>
+<span class="p">((</span><span class="mi">2</span> <span class="ss">:a</span><span class="p">)</span> <span class="p">(</span><span class="mi">2</span> <span class="ss">:b</span><span class="p">)</span> <span class="p">(</span><span class="mi">2</span> <span class="ss">:c</span><span class="p">)</span> <span class="p">(</span><span class="mi">3</span> <span class="ss">:a</span><span class="p">)</span> <span class="p">(</span><span class="mi">3</span> <span class="ss">:b</span><span class="p">)</span> <span class="p">(</span><span class="mi">3</span> <span class="ss">:c</span><span class="p">))</span>
+</code></pre></div>
+
+<p>Code Python tương tự:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="p">[(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]</span>
+<span class="p">[(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">)]</span>
+</code></pre></div>
+
+<p>Clojure có <code>while</code> , xem (doc while), nhưng để dùng được cần hiểu thêm một số khái niệm nâng cao khác, và ít được dùng.</p>
+<h3>Function</h3>
+<p>Function được định nghĩa với <code>defn</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="kd">defn </span><span class="nv">greet</span> <span class="p">[</span><span class="nb">name </span><span class="nv">born</span><span class="p">]</span> 
+  <span class="s">&quot;Docstring&quot;</span>
+  <span class="p">(</span><span class="k">def </span><span class="nv">age</span> <span class="p">(</span><span class="nb">- </span><span class="mi">2021</span> <span class="nv">born</span><span class="p">))</span>
+  <span class="p">(</span><span class="nb">str </span><span class="s">&quot;Xin chao &quot;</span> <span class="nb">name </span><span class="s">&quot; &quot;</span> <span class="nv">age</span> <span class="s">&quot; tuoi&quot;</span><span class="p">))</span>
+
+<span class="c1">; =&gt; (greet &quot;PyMier&quot; 2015)</span>
+<span class="c1">; &quot;Xin chao PyMier 6 tuoi&quot;</span>
+</code></pre></div>
+
+<p>sau <code>defn</code> là tên function "greet", sau đó là vector chứa 0, 1 hoặc nhiều paramater (đầu vào). Phần thân function là một hoặc nhiều các biểu thức.
+Function luôn trả về kết quả của biểu thức cuối cùng.</p>
+<h4>Anonymous function (lambda)</h4>
+<p>là function không có tên, định nghĩa bằng fn:</p>
+<p>(fn [x] (* x 2))</p>
+<p>Hoặc dạng viết ngắn hơn nữa <code>#(* % 2)</code></p>
+<p><code>%</code> là viết tắt của <code>%1</code>, argument thứ nhất.
+<code>#()</code> biểu diễn đó là 1 function. <code>(fn [x y] (+ x y))</code>
+có thể viết lại thành 
+<code>#(+ %1 %2)</code></p>
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">reduce </span><span class="o">#</span><span class="p">(</span><span class="nb">* </span><span class="nv">%1</span> <span class="nv">%2</span><span class="p">)</span> <span class="p">[</span><span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span><span class="p">])</span>
+<span class="mi">120</span>
+</code></pre></div>
+
+<h4>defn</h4>
+<p><code>defn</code> có thể hiểu là <code>def + fn</code>: <code>(def function (fn ...))</code> </p>
+<p>TODO: Curry?
+TODO: Partial?</p>
+<h4>Higher order function - HOF</h4>
+<p>Higher order function là function nhận function khác làm đầu vào, ví dụ như map:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">map </span><span class="o">#</span><span class="p">(</span><span class="nb">* </span><span class="nv">%</span> <span class="mi">2</span><span class="p">)</span> <span class="p">[</span><span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span><span class="p">])</span>
+<span class="p">(</span><span class="mi">2</span> <span class="mi">4</span> <span class="mi">6</span> <span class="mi">8</span> <span class="mi">10</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Trong các ngôn ngữ functional programming cũng như Clojure, HOF được ưa chuộng và sử dụng rộng rãi.
+Nó đơn giản chỉ là tên gọi chứ không có gì đặc biệt.
+Trong Python, cũng có thể dùng HOF, như <code>map</code> có sẵn hay 
+người dùng tự viết:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">double</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="o">...</span>     <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="o">...</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">double</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]))</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">twice</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="o">...</span>     <span class="k">return</span> <span class="n">fn</span><span class="p">(</span><span class="n">fn</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="o">...</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="n">twice</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="mi">8</span>
+</code></pre></div>
+
+<p><code>twice</code> là một higher order function, nhận lambda làm đầu vào.</p>
+<h3>Error handling</h3>
+<p>Clojure sử dụng Exception khi có "lỗi" xảy ra, rất giống với Python:</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nf">try</span> 
+  <span class="p">(</span><span class="nb">/ </span><span class="mi">1</span> <span class="mi">0</span><span class="p">)</span> 
+  <span class="p">(</span><span class="nf">catch</span> <span class="nv">ArithmeticException</span> <span class="nv">e</span> 
+    <span class="p">(</span><span class="nb">println </span><span class="s">&quot;Chia 0&quot;</span><span class="p">))</span>
+  <span class="p">(</span><span class="nf">catch</span> <span class="nv">Exception</span> <span class="nv">e</span> 
+    <span class="p">(</span><span class="nb">println </span><span class="nv">e</span><span class="p">)))</span>
+</code></pre></div>
+
+<p>TODO: catch all
+TODO: finally
+TODO: else branch?</p>
+<h3>Import</h3>
+<h3>Package &amp; Install 3rd packages</h3>
+<h3>IO: read/write file</h3>
+<h3>Tốc độ chạy</h3>
+<p>Function <code>time</code> dùng để print ra thời gian chạy của 1 đoạn code. Khi gõ trên REPL, hay dùng <code>lein run</code> tốc độ sẽ thường chậm (nhưng vẫn  nhanh gấp đôi Python3.8 trên máy này):</p>
+<div class="highlight"><pre><span></span><code><span class="nv">clj-playground.core=&gt;</span> <span class="p">(</span><span class="nb">time </span><span class="p">(</span><span class="nb">reduce + </span><span class="p">(</span><span class="nb">range </span><span class="mi">1</span> <span class="mi">100000000</span><span class="p">)))</span>
+<span class="s">&quot;Elapsed time: 3479.555076 msecs&quot;</span>
+<span class="mi">4999999950000000</span>
+</code></pre></div>
+
+<p>Nhưng khi build ra uberjar và chạy, tốc độ nhanh hơn đáng kể (ở ví dụ này là 4 lần): </p>
+<div class="highlight"><pre><span></span><code>$ java -jar clj-playground-0.1.0-SNAPSHOT-standalone.jar
+<span class="s2">&quot;Elapsed time: 857.133266 msecs&quot;</span>
+</code></pre></div>
+
+<h2>Hành động của chúng ta</h2>
+<p>Giải bài <a href="https://projecteuler.net/problem=16">Project Euler 16</a></p>
+<blockquote>
+<p>What is the sum of the digits of the number 2 to the power of 1000?</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nf">-&gt;&gt;</span>
+<span class="p">(</span><span class="nb">repeat </span><span class="mi">1000</span> <span class="mi">2</span><span class="nv">N</span><span class="p">)</span>  <span class="c1">; tạo 1000 số 2</span>
+<span class="p">(</span><span class="nb">reduce </span><span class="nv">*</span><span class="p">)</span>  <span class="c1">; nhân lại với nhau -&gt; 2 mũ 1000</span>
+<span class="p">(</span><span class="nf">str</span><span class="p">)</span> <span class="c1">; biến thành string </span>
+<span class="p">(</span><span class="nf">seq</span><span class="p">)</span> <span class="c1">; rồi convert thành các ký tự</span>
+<span class="p">(</span><span class="nb">map </span><span class="nv">str</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">map </span><span class="nv">clojure.edn/read-string</span><span class="p">)</span> <span class="c1">; biến các string thành các số int</span>
+<span class="p">(</span><span class="nb">reduce </span><span class="nv">+</span><span class="p">))</span>  <span class="c1">; tính tổng các chữ số</span>
+</code></pre></div>
+
+<p>Cách 2, không dùng tới string:</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nf">-&gt;&gt;</span>
+<span class="p">(</span><span class="nb">repeat </span><span class="mi">1000</span> <span class="mi">2</span><span class="nv">N</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">reduce </span><span class="nv">*</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">iterate </span><span class="o">#</span><span class="p">(</span><span class="nb">quot </span><span class="nv">%1</span> <span class="mi">10</span><span class="p">))</span> <span class="c1">; tạo 1 lazy sequence các kết quả thu được khi liên tiếp chia cho 10</span>
+<span class="p">(</span><span class="nb">take-while </span><span class="nv">pos?</span><span class="p">)</span> <span class="c1">; chỉ lấy các số dương</span>
+<span class="p">(</span><span class="nb">map </span><span class="o">#</span><span class="p">(</span><span class="nb">rem </span><span class="nv">%1</span> <span class="mi">10</span><span class="p">))</span> <span class="c1">; chia lấy dư các số này cho 10 thu được các chữ số </span>
+<span class="p">(</span><span class="nb">reduce </span><span class="nv">+</span><span class="p">))</span>
+</code></pre></div>
+
+<h2>People &amp; Community</h2>
+<p>Go có cộng đồng trên toàn cầu, có forum/slack/IRC để thảo luận, xem tại <a href="https://golang.org/help/#help">help</a> - có cả bằng Tiếng Việt.</p>
+<p>Những nhân vật đáng chú ý/follow trong cộng đồng Go gồm các tác giả, core dev, ...</p>
+<ul>
+<li><a href="https://blog.golang.org/index">Go blog</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Rob_Pike">Rob Pike</a></li>
+<li><a href="https://dave.cheney.net/category/golang">Dave Cheney</a></li>
+<li><a href="https://swtch.com/~rsc/">Russ Cox</a></li>
+</ul>
+<h2>Kết luận</h2>
+<blockquote>
+<p>LISP is worth learning for a different reason — the profound enlightenment
+experience you will have when you finally get it. That experience will make
+you a better programmer for the rest of your days,
+even if you never actually use LISP itself a lot.</p>
+</blockquote>
+<p>Eric Steven Raymond (ESR) <a href="http://www.catb.org/~esr/faqs/hacker-howto.html">How to become a hacker</a></p>
+<p>UNIX hacker Eric S. Raymond cho rằng, dù không bao giờ dùng LISP trong công việc
+hàng ngày, vẫn nên học nó để có một trải nghiệm "khai sáng", kinh nghiệm ấy
+sẽ biến bạn thành lập trình viên giỏi hơn trong suốt quãng đời về sau.</p>
+<p>Nếu lỡ lần này học không thành công, bạn có thể thử lại vào 6 tháng, 1 năm,
+2 năm sau, coi như 1 mục tiêu 5 10 năm mà không cần vội vã.</p>
+<h2>References</h2>
+<ul>
+<li><a href="https://pp.pymi.vn/article/scm1/">PyMi post Chicken Scheme</a></li>
+<li><a href="https://docs.python.org/3/howto/functional.html">Functional Python</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Lisp_(programming_language)#Timeline">LISP history</a></li>
+</ul>
+<h2>Next</h2>
+<p>Đã có phần 2 <a href="http://pp.pymi.vn/article/go12/"><strong>Cứ đi là đến</strong></a>.</p>
+<p>HVN at <a href="http://pymi.vn">http://pymi.vn</a> and <a href="https://www.familug.org">https://www.familug.org</a>.</p>
+  </div>
+  <!-- /.entry-content -->
+</section>
+<section class="container">
+  <div class="comments">
+    <h3>Comments</h3>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'pymier';
+      var disqus_identifier = 'article/clojure/';
+      var disqus_url = 'http://pp.pymi.vn/article/clojure/';
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//pymier.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the comments.</noscript>
+  </div>
+</section>
+
+    <section class="container footer">
+      <footer>
+        <address>
+        Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+        which takes great advantage of <a href="http://python.org">Python</a>.
+        </address>
+        <address>
+          Học lập trình Python tại <a href="https://pymi.vn/">Pymi.vn</a>
+        </address>
+      </footer>
+    </section>
+  </main>
+
+<script type="text/javascript">
+var images = document.getElementsByTagName("img");
+var i;
+
+for(i = 0; i < images.length; i++) {
+  images[i].className += " centered";
+}
+</script>
+</body>
+
+</html>

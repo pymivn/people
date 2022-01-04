@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+   <title> Chinh phục Advent of Code 2021 bằng Rust  - The PyMiers</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="robots" content="" />
+  <link rel="stylesheet" type="text/css" href="/theme/css/app.css">
+<link rel="stylesheet" type="text/css" href="http://pp.pymi.vn/theme/css/pygment.css">
+  <!--
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+  -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    <meta name="author" content="Pymiers" />
+  <meta name="description" content="" />    <link href="http://pp.pymi.vn/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="The PyMiers Full Atom Feed" />         
+  <meta name="tags" content="aoc" />
+  <meta name="tags" content="adventofcode" />
+  <meta name="tags" content="rust" />
+</head>
+
+<body>
+  <main class="wrapper">
+    <section class="container">
+      <header class='column'>
+        <h1 class='title'><a href="http://pp.pymi.vn/">The PyMiers</a></h1>
+      </header>
+
+      <div class="section">
+        <div class="row navbar">
+          <div class="column nav-item is-active"><a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a></div>
+           <div class="column nav-item "><a href="http://pp.pymi.vn/pages/about/">About</a></div>
+          <div class="column nav-item "><a href="http://pp.pymi.vn/pages/add/">Tạo bài viết</a></div>
+          <div class="column nav-item "><a href="http://pp.pymi.vn/pages/rss/">RSS</a></div>
+          <div class="column nav-item"><a href="/archives">Archives</a></div>
+        </div>
+      </div>
+    </section>
+
+<section class="container">
+  <header>
+    <h2 class="entry-title">
+      <a href="http://pp.pymi.vn/article/aoc2021/" rel="bookmark"
+         title="Permalink to Chinh phục Advent of Code 2021 bằng Rust">Chinh phục Advent of Code 2021 bằng Rust</a></h2>  
+  </header>
+  <footer class='center'>
+    <time class="published" datetime="2022-01-04T00:00:00+07:00"> 04/01/2022 </time>
+    <address class="vcard author">By
+                    <a class="url fn" href="http://pp.pymi.vn/author/hvnsweeting/">hvnsweeting</a>
+ in <a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a>
+                </address>     <em>Tags</em>:     <a href="http://pp.pymi.vn/tag/aoc/"><em>aoc</em></a>,     <a href="http://pp.pymi.vn/tag/adventofcode/"><em>adventofcode</em></a>,     <a href="http://pp.pymi.vn/tag/rust/"><em>rust</em></a>    </footer>
+  <br>
+  <div class="entry-content">
+    <p>Advent of code (viết tắt AoC) là một cuộc thi code hàng năm kéo dài suốt 25 ngày trong tháng 12.
+Mỗi ngày, lúc 12h trưa giờ Việt Nam (UTC+7), một bài toán đố nhỏ gồm 2 phần dưới dạng
+câu chuyện "giải cứu đêm noel" sẽ được mở. Người chơi giải được phần 1 mới được chơi phần 2, giải
+xong mỗi phần sẽ nhận được 1 sao. 12 giờ trưa ngày 25/12 sẽ ra bài cuối cùng, chỉ có 1 phần,
+người chơi đủ 49 sao sẽ được tặng 1 sao và kết thúc trò chơi.</p>
+<p><a href="https://www.lexico.com/definition/advent">Advent</a> /ˈadvɛnt/ trong tiếng Anh nghĩa là</p>
+<blockquote>
+<p>The first season of the Church year, leading up to Christmas and including the four preceding Sundays.</p>
+<p>(tôn giáo) kỳ trông đợi, mùa vọng (bốn tuần lễ trước ngày giáng sinh của Chúa) - theo <a href="http://tratu.soha.vn/dict/en_vn/Advent">tratu.soha.vn</a></p>
+</blockquote>
+<p>Trang web <a href="https://adventofcode.com/">adventofcode.com</a> được tạo bởi <a href="http://was.tl/">Eric Wastl</a>
+xuất hiện lần đầu vào <a href="https://adventofcode.com/2015">năm 2015</a>, ngày càng phổ biến và được cộng đồng
+lập trình viên toàn cầu mong chờ mỗi tháng 12.</p>
+<p><a href="https://www.youtube.com/watch?v=QUwxKWT6m7U"><img alt="Back to December" src="https://img.youtube.com/vi/QUwxKWT6m7U/0.jpg"></a></p>
+<p>Để thêm phần gay cấn, AoC có <a href="https://adventofcode.com/2021/leaderboard">bảng xếp hạng toàn cầu leaderboard</a>, người giải đầu tiên mỗi phần sẽ được 100 điểm và giảm dần. Người chơi cũng có thể tự tạo bảng xếp hạng riêng,
+giúp các cộng đồng có thể tự chơi với nhóm của mình. PyMi tổ chức AoC với giải
+thưởng hấp dẫn từ 2020, bảng xếp hạng tại <a href="https://adventofcode.com/2021/leaderboard/private">đây</a> nhập mã  <code>416592-f7938347</code></p>
+<p>Trò chơi thu hút cả những lập trình viên nổi tiếng thế giới như:</p>
+<ul>
+<li><a href="http://norvig.com/">Peter Norvig</a> - giáo sư đầu ngành AI, giám đốc nghiên
+cứu của Google. Năm 2020, <a href="https://github.com/norvig/pytudes/blob/main/ipynb/Advent-2021.ipynb">2021</a> giải gần như tất cả các bài bằng Python trong 1 file Jupyter Notebook.</li>
+<li>José Valim - tác giả ngôn ngữ lập trình <a href="https://elixir-lang.org/">Elixir</a>, <a href="https://www.twitch.tv/collections/k_DLnk2tvBa-fQ">livestream trên twitch</a> năm nay giải AoC với Elixir LiveBook (tương đương Jupyter Notebook).</li>
+<li><a href="https://en.wikipedia.org/wiki/George_Hotz">geohot</a> - hacker, người đầu tiên jailbreak iOS, hack PS3, ... https://www.youtube.com/watch?v=OxDp11u-GUo</li>
+</ul>
+<p>Mỗi người chơi đến với AdventOfCode có một lý do khác nhau: có người để đua top
+giật giải, có người dùng để học ngôn ngữ lập trình mới, phương pháp lập trình
+mới (như Test Drive Development - TDD), người dùng để giải trí, thoát khỏi công việc nhàm chán
+hàng ngày, người lại dùng để "ôn tập hàng năm" các kiến thức cấu trúc dữ liệu giải thuật "căn bản"
+từng học trên giấy mà 10 năm đi làm
+chưa dùng bao giờ như thuật toán Dijkstra, Priority queue, binary tree...</p>
+<p>AoC có <a href="https://www.reddit.com/r/adventofcode/">cộng đồng Reddit</a> đông đảo với
+hơn 30 nghìn thành viên, nơi chia sẻ code bài giải, những video
+thực hiện hiển thị, game hóa bài toán/bài giải và nhiều điều hấp dẫn khác.</p>
+<p>Là một người chơi AoC lâu năm <a href="https://github.com/hvnsweeting/adventofcode">từ 2018</a>,
+với 3 năm liền dùng Elixir, năm nay tôi quyết định chơi bằng Rust.</p>
+<h2>Rust - ngôn ngữ lập trình tham lam: Performance, Reliability, Productivity - chọn cả 3!</h2>
+<p><img alt="Rust" src="https://www.rust-lang.org/logos/rust-logo-blk.svg"></p>
+<p>Ngôn ngữ hiện đại (từ 2010), <a href="https://stackoverflow.blog/2020/01/20/what-is-rust-and-why-is-it-so-popular/">6 năm liền</a>
+được bình chọn là ngôn ngữ được <a href="https://insights.stackoverflow.com/survey/2021#section-most-loved-dreaded-and-wanted-programming-scripting-and-markup-languages">yêu thích nhất theo khảo sát của StackOverflow</a>.</p>
+<p>Rust có thể dùng để thay cho:</p>
+<ul>
+<li>C++: <a href="https://hacks.mozilla.org/2016/07/shipping-rust-in-firefox/">https://hacks.mozilla.org/2016/07/shipping-rust-in-firefox/</a></li>
+<li>Go: <a href="https://blog.discord.com/why-discord-is-switching-from-go-to-rust-a190bbca2b1f">https://blog.discord.com/why-discord-is-switching-from-go-to-rust-a190bbca2b1f</a></li>
+<li>Python: <a href="https://dropbox.tech/infrastructure/rewriting-the-heart-of-our-sync-engine">https://dropbox.tech/infrastructure/rewriting-the-heart-of-our-sync-engine</a></li>
+<li>Ruby: <a href="https://deliveroo.engineering/2019/02/14/moving-from-ruby-to-rust.html">https://deliveroo.engineering/2019/02/14/moving-from-ruby-to-rust.html</a></li>
+<li>NodeJS: <a href="https://www.rust-lang.org/static/pdfs/Rust-npm-Whitepaper.pdf">https://www.rust-lang.org/static/pdfs/Rust-npm-Whitepaper.pdf</a></li>
+</ul>
+<p>Rust thường được dùng để thay C++, C, được chọn khi một phần của hệ
+thống cần tốc độ tối đa. Rust luôn đứng top đầu về tốc độ trong các bảng xếp hạng
+benchmark [<a href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/box-plot-summary-charts.html">1</a>] [<a href="https://www.techempower.com/benchmarks/">2</a>].</p>
+<h3>Các phần mềm phổ biến viết bằng Rust</h3>
+<ul>
+<li><a href="https://github.com/servo/servo">Servo</a> browser engine trong trình duyệt FireFox</li>
+<li><a href="https://github.com/BurntSushi/ripgrep">ripgrep (rg)</a> - thay cho grep command line, nhanh hơn, xịn hơn</li>
+<li>một phần của NodeJS npm: <a href="https://www.rust-lang.org/static/pdfs/Rust-npm-Whitepaper.pdf">https://www.rust-lang.org/static/pdfs/Rust-npm-Whitepaper.pdf</a></li>
+<li>FireCracker VM (để chạy các container phía dưới AWS Lambda) <a href="https://github.com/firecracker-microvm/firecracker">https://github.com/firecracker-microvm/firecracker</a></li>
+<li>Linux kernel hỗ trợ Rust bên cạnh C <a href="https://lore.kernel.org/lkml/20211206140313.5653-1-ojeda@kernel.org/">https://lore.kernel.org/lkml/20211206140313.5653-1-ojeda@kernel.org/</a></li>
+</ul>
+<p>Bài viết sẽ giới thiệu vừa đủ các khái niệm của Rust đã dùng để chinh phục
+50 bài toán đố của AoC 2021.</p>
+<h3>Cài đặt</h3>
+<p>Chạy lệnh ghi trên trang <a href="https://rustup.rs/">rustup.rs</a> để cài:</p>
+<div class="highlight"><pre><span></span><code>curl --proto &#39;=https&#39; --tlsv1.2 -sSf https://sh.rustup.rs | sh
+</code></pre></div>
+
+<p>Mặc dù các hệ điều hành đều có package manager để cài Rust như Ubuntu <code>apt</code>, Fedora <code>yum</code>, hay MacOS <code>homebrew</code>,
+<code>rustup</code> là công cụ được khuyên dùng chính thức vì nó có khả năng cài thêm các phần liên quan
+đến việc code Rust như: document, auto-complete engine,... mà thường không có khi
+cài qua package manager.</p>
+<p>Code Rust có thể dùng <a href="https://www.jetbrains.com/rust/">IntelliJ</a>, hay <a href="https://marketplace.visualstudio.com/items?itemName=rust-lang.rust">VSCode</a> để có hỗ trợ auto-complete, các editor
+khác sẽ cần tự cài đặt thêm thủ công hơn.</p>
+<h3>Tài liệu</h3>
+<ul>
+<li>“the book” The Rust Programming Language: <a href="https://doc.rust-lang.org/book/">https://doc.rust-lang.org/book/</a></li>
+<li>Nửa giờ học Rust <a href="https://fasterthanli.me/articles/a-half-hour-to-learn-rust">https://fasterthanli.me/articles/a-half-hour-to-learn-rust</a></li>
+<li>Và nhiều tài liệu khác tại <a href="https://www.rust-lang.org/learn">https://www.rust-lang.org/learn</a></li>
+</ul>
+<h3>Cách học</h3>
+<p>Đọc 4 chương đầu + chương 8 trong
+<a href="https://doc.rust-lang.org/book/">https://doc.rust-lang.org/book/</a>
+là đủ để code.</p>
+<h3>Build &amp; run</h3>
+<p>Rust compile code thành file binary rồi chạy.
+Rust compiler có câu lệnh <code>rustc</code>, gõ <code>rustc file.rs</code> để compile, rồi chạy <code>./file</code>.
+Nhưng Rust có kèm "cargo", package manager của Rust, như pip của Python, như
+npm của nodejs... cargo hỗ trợ mọi tác vụ cần để code 1 Rust project.</p>
+<p>Để tạo 1 Rust project, gõ:</p>
+<div class="highlight"><pre><span></span><code>$ cargo new project-name
+     Created binary <span class="o">(</span>application<span class="o">)</span> <span class="sb">`</span>project-name<span class="sb">`</span> package
+$ <span class="nb">cd</span> project-name/
+</code></pre></div>
+
+<p>lệnh này sinh ra file config cho cargo <code>Cargo.toml</code> và code 1 chương trình hello world
+nằm trong src/main.rs</p>
+<div class="highlight"><pre><span></span><code>./Cargo.toml
+./src
+./src/main.rs
+</code></pre></div>
+
+<p>rồi chạy:</p>
+<div class="highlight"><pre><span></span><code>$ cargo run
+   Compiling project-name v0.1.0 <span class="o">(</span>/tmp/project-name<span class="o">)</span>
+    Finished dev <span class="o">[</span>unoptimized + debuginfo<span class="o">]</span> target<span class="o">(</span>s<span class="o">)</span> <span class="k">in</span> <span class="m">0</span>.60s
+     Running <span class="sb">`</span>target/debug/project-name<span class="sb">`</span>
+Hello, world!
+</code></pre></div>
+
+<p>Để chạy test, gõ</p>
+<div class="highlight"><pre><span></span><code>$ cargo <span class="nb">test</span>
+</code></pre></div>
+
+<h3>Hello, World!</h3>
+<p>Gõ lệnh <code>cargo new</code> đã tự tạo ra code hello world, trong file src/main.rs:</p>
+<div class="highlight"><pre><span></span><code><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+
+<p>Code của chương trình Rust nằm trong file <code>main.rs</code> và chạy từ function <code>main</code>.
+<code>fn main() {...}</code> định nghĩa 1 function tên <code>main</code>, sử dụng từ khóa <code>fn</code>, thân
+function nằm trong cặp <code>{}</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+
+<p>không khác Python là mấy:</p>
+<div class="highlight"><pre><span></span><code>print(&quot;Hello, world!&quot;)
+</code></pre></div>
+
+<p><code>println!()</code> trông như 1 function, nhưng trong Rust, khi thấy dấu <code>!</code> thì đó là
+biểu diễn của 1 macro.</p>
+<ul>
+<li>macro <strong>sinh ra code</strong> thực hiện việc "in ra màn hình"</li>
+<li>Python <code>print</code> function thực hiện việc "in ra màn hình"</li>
+</ul>
+<p>Mọi câu lệnh trong Rust kết thúc bằng dấu chấm phẩy <code>;</code></p>
+<h3><a href="https://projecteuler.net/problem=1">ProjectEuler.net problem 1</a></h3>
+<blockquote>
+<p>Tính tổng các số tự nhiên nhỏ hơn 1000 chia hết cho 3 hoặc 5.</p>
+</blockquote>
+<p>Để tạo 1 biến, gõ <code>let tên = giá trị;</code></p>
+<div class="highlight"><pre><span></span><code><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">0</span><span class="o">..</span><span class="mi">1000</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">result</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;Kết quả: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+
+<p>Cũng không quá khác code Python:</p>
+<div class="highlight"><pre><span></span><code><span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">+=</span> <span class="n">i</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Kết quả </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+</code></pre></div>
+
+<p>Rust giống C/C++/Java, dùng <code>{}</code>làm khối lệnh nhóm các câu lệnh trong if/for/function,
+khác với Python dùng indentation (thụt vào 4 dấu space).
+Biến trong Rust mặc định không
+thay đổi được sau khi tạo, phải thêm từ khóa <code>mut</code> (viết tắc của mutable): <code>let mut result = 0;</code> để thay đổi <code>result</code>.
+<code>println!</code> chỉ nhận 1 string, với <code>{}</code> để format các giá trị theo sau.</p>
+<p>Rust có kiểu vector <code>Vec</code>, tương tự như Python <code>list</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[];</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">0</span><span class="o">..</span><span class="mi">1000</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">vec</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">i</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">result</span>: <span class="kt">i32</span> <span class="o">=</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">iter</span><span class="p">().</span><span class="n">sum</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+
+<p>nhưng...</p>
+<p>mặc dù có không ít khái niệm tương tự Python, hay syntax rút gọn trông cũng gần
+giống, thì Rust lại là một con quái vật hoàn toàn khác, khác Python nhiều hơn
+là giống.</p>
+<h4>Giống Python</h4>
+<p>Rust có các kiểu dữ liệu built-in tương tự Python:</p>
+<table>
+<thead>
+<tr>
+<th>Python</th>
+<th>Rust</th>
+<th>Chú thích cho Rust</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>list</td>
+<td>Vec</td>
+<td>vector</td>
+</tr>
+<tr>
+<td>dict</td>
+<td>HashMap</td>
+<td></td>
+</tr>
+<tr>
+<td>set</td>
+<td>HashSet</td>
+<td></td>
+</tr>
+<tr>
+<td>tuple</td>
+<td>(a, b)</td>
+<td>dùng cú pháp, không có kiểu ở dạng tên</td>
+</tr>
+<tr>
+<td>int</td>
+<td>i64, i32..</td>
+<td>có u64 u32... cho kiểu không âm, usize cho kích thước</td>
+</tr>
+<tr>
+<td>float</td>
+<td>f64, f32</td>
+<td></td>
+</tr>
+<tr>
+<td>bool</td>
+<td>bool</td>
+<td></td>
+</tr>
+<tr>
+<td>str</td>
+<td>&amp;str, String</td>
+<td></td>
+</tr>
+<tr>
+<td>KHÔNG CÓ</td>
+<td>char</td>
+<td></td>
+</tr>
+<tr>
+<td>None</td>
+<td>None</td>
+<td>giá trị</td>
+</tr>
+</tbody>
+</table>
+<h5>Tuple</h5>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;PYMI&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+
+<h5>Vector</h5>
+<p>Vector tương tự như Python list. Lặp qua các phần tử của 1 vector:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="n">vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">];</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">vec</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+
+<h5>HashSet</h5>
+<div class="highlight"><pre><span></span><code><span class="k">use</span><span class="w"> </span><span class="n">std</span>::<span class="n">collections</span>::<span class="n">HashSet</span><span class="p">;</span><span class="w"></span>
+<span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">set</span>: <span class="nc">HashSet</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HashSet</span>::<span class="n">from</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">]);</span><span class="w"></span>
+<span class="w">    </span><span class="n">set</span><span class="p">.</span><span class="n">extend</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">]);</span><span class="w"></span>
+<span class="w">    </span><span class="fm">dbg!</span><span class="p">(</span><span class="o">&amp;</span><span class="n">set</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="p">[</span><span class="n">src</span><span class="o">/</span><span class="n">main</span><span class="p">.</span><span class="n">rs</span>:<span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">&amp;</span><span class="n">set</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="mi">5</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="mi">4</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="mi">3</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+
+<h5>HashMap</h5>
+<p>HashMap key không có thứ tự, tương tự với Python dict trước 3.6,
+cú pháp import <code>use std::collections::HashMap;</code>
+như Python <code>from collections import Counter</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span><span class="w"> </span><span class="n">std</span>::<span class="n">collections</span>::<span class="n">HashMap</span><span class="p">;</span><span class="w"></span>
+<span class="k">fn</span> <span class="nf">double</span><span class="p">(</span><span class="n">x</span>: <span class="kt">i32</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">i32</span> <span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">d</span>: <span class="nc">HashMap</span><span class="o">&lt;&amp;</span><span class="kt">str</span><span class="p">,</span><span class="w"> </span><span class="kt">i32</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HashMap</span>::<span class="n">from</span><span class="p">([(</span><span class="s">&quot;Hà Nội&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1_612</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Cà Mau&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">967</span><span class="p">)]);</span><span class="w"></span>
+<span class="w">    </span><span class="n">d</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="s">&quot;TP HCM&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">687</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{}: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">double</span><span class="p">(</span><span class="n">v</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="c1">//Hà Nội: 1612</span>
+<span class="c1">//TP HCM: 687</span>
+<span class="c1">//Cà Mau: 967</span>
+</code></pre></div>
+
+<p>Cú pháp type của function tương tự Python:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">double</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">d</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="s2">&quot;Hà Nội&quot;</span><span class="p">,</span> <span class="mi">1_612</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;Cà Mau&quot;</span><span class="p">,</span> <span class="mi">967</span><span class="p">)])</span>
+    <span class="n">d</span><span class="p">[</span><span class="s2">&quot;TP HCM&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">687</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">double</span><span class="p">(</span><span class="n">v</span><span class="p">)))</span>
+<span class="n">main</span><span class="p">()</span>
+</code></pre></div>
+
+<p>Khác với đoạn code giải Project Euler 1, code trên có khai báo type
+cho các biến. Rust không bắt buộc phải khai báo type khi nó có thể tự
+suy luận được,
+vì vậy đa số code không cần ghi type, khi nào cần, Rust compiler sẽ thông báo.</p>
+<h3>Giải <a href="https://adventofcode.com/2021/day/1">ngày 1</a></h3>
+<p>Nhìn chung các bài trong 7-8 ngày đầu tiên thường dễ, độ khó tăng dần về sau,
+đặc biệt là tuần cuối cùng.</p>
+<blockquote>
+<p>How many measurements are larger than the previous measurement?</p>
+</blockquote>
+<p>Cho một dãy số tự nhiên (độ sâu của tàu ngầm) tăng giảm tùy ý.
+Có bao nhiêu lần độ sâu tăng so với lần trước. Ví dụ:</p>
+<div class="highlight"><pre><span></span><code><span class="mf">199</span> <span class="p">(</span><span class="n">N</span><span class="o">/</span><span class="n">A</span> <span class="o">-</span> <span class="n">no</span> <span class="n">previous</span> <span class="n">measurement</span><span class="p">)</span>
+<span class="mf">200</span> <span class="p">(</span><span class="n">increased</span><span class="p">)</span>
+<span class="mf">208</span> <span class="p">(</span><span class="n">increased</span><span class="p">)</span>
+<span class="mf">210</span> <span class="p">(</span><span class="n">increased</span><span class="p">)</span>
+<span class="mf">200</span> <span class="p">(</span><span class="n">decreased</span><span class="p">)</span>
+<span class="mf">207</span> <span class="p">(</span><span class="n">increased</span><span class="p">)</span>
+<span class="mf">240</span> <span class="p">(</span><span class="n">increased</span><span class="p">)</span>
+<span class="mf">269</span> <span class="p">(</span><span class="n">increased</span><span class="p">)</span>
+<span class="mf">260</span> <span class="p">(</span><span class="n">decreased</span><span class="p">)</span>
+<span class="mf">263</span> <span class="p">(</span><span class="n">increased</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Phần chú thích trong <code>()</code> là hướng dẫn, đề chỉ cho 1 file chứa các số, mỗi số 1 dòng.
+Ví dụ trên có 7 lần tăng.</p>
+<p>Các bước làm:</p>
+<ul>
+<li>đọc file input vào thành các dòng chứa các string</li>
+<li>biến kiểu string thành integer (số nguyên)</li>
+<li>lặp qua các giá trị, đếm số lần giá trị sau lớn hơn giá trị trước.</li>
+</ul>
+<p>Bài giải, theo kiểu dùng vòng lặp:</p>
+<div class="highlight"><pre><span></span><code><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;199</span>
+<span class="s">200</span>
+<span class="s">208</span>
+<span class="s">210</span>
+<span class="s">200</span>
+<span class="s">207</span>
+<span class="s">240</span>
+<span class="s">269</span>
+<span class="s">260</span>
+<span class="s">263&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">lines</span>: <span class="nb">Vec</span><span class="o">&lt;&amp;</span><span class="kt">str</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">lines</span><span class="p">().</span><span class="n">collect</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">increases_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">prev</span>: <span class="kp">&amp;</span><span class="kt">str</span> <span class="o">=</span><span class="w"> </span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">&amp;</span><span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="p">]</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">n</span>: <span class="kt">i32</span> <span class="o">=</span><span class="w"> </span><span class="n">line</span><span class="p">.</span><span class="n">parse</span><span class="p">().</span><span class="n">unwrap</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">p</span>: <span class="kt">i32</span> <span class="o">=</span><span class="w"> </span><span class="n">prev</span><span class="p">.</span><span class="n">parse</span><span class="p">().</span><span class="n">unwrap</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">increases_count</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">prev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">line</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">increases_count</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+
+<p>Người chơi có thể dùng <code>std::fs::read_to_string</code> để đọc từ file, nhưng ngày đầu
+tiên dùng Rust, với một bài khởi động đơn giản thế này thì phần cản trở tốc độ giải cũng chính là
+Rust. Bỏ qua việc đọc file trong lúc gấp gáp này hoàn toàn chấp nhận được.
+Một vài điểm chú ý:</p>
+<ul>
+<li><code>line.parse()</code> để parse string thành integer. Rust tự biết parse thành kiểu
+gì do vế trái khai báo kiểu cho kết quả <code>let n: i32</code>. <code>parse</code> không trả ngay về
+số mà trả về kiểu <code>Result</code>, Result chứa số kiểu i32, hoặc chứa Error
+nếu không parse được. <code>.unwrap()</code> để lấy ra giá trị <code>i32</code> hoặc panic dừng chương
+trình luôn nếu parse gặp lỗi.</li>
+<li>Python chỉ có kiểu <code>int</code> duy nhất cho integer, trong Rust có nhiều kiểu số: <code>i32</code>
+cho kiểu integer với kích thước 32 bit, giá trị từ <code>-2**31</code> tới <code>2**31-1</code> (-2147483648..=2147483647), tương tự
+với <code>i64</code>. Ngoài ra còn có kiểu <code>u32</code> (unsigned int), chỉ chứa số không âm, với
+<code>u32</code> có giá trị từ <code>0</code> tới <code>2**32-1</code> (<code>0..=4294967295</code>), tương tự cho <code>u64</code>.</li>
+<li><code>&amp;str</code> là 1 trong 2 kiểu string hay dùng trong Rust, kiểu còn lại là <code>String</code>,
+ngoài ra Rust có nhiều kiểu string khác dùng trong các trường hợp riêng biệt.</li>
+<li><code>s.lines()</code> không trả ngay về một <code>Vec&lt;&amp;str&gt;</code>, nó trả về kiểu <code>Lines</code>. Để biến
+thành kiểu <code>Vec</code>, dùng <code>collect()</code>. Chú ý vế trái phải khai báo kiểu do Rust
+không thể tự suy ở đây vì người dùng có thể gọi <code>collect()</code> mà nhận được nhiều
+kiểu khác nhau như Vec, HashSet, ... tùy ý.</li>
+<li><code>&amp;lines[1..]</code>, Vector có slice như Python, thay cú pháp <code>[a:b]</code> bằng <code>[a..b]</code> và
+không có index âm (như -1).</li>
+</ul>
+<p>Cách trên không được coi là code theo kiểu Rust, mà giống viết code C/Python dịch sang
+Rust hơn. Một phiên bản khác sử dụng <code>iterator</code> mang phong cách functional programming,
+phải đến ngày thứ 10 trở đi, hay đọc xong <a href="https://doc.rust-lang.org/stable/book/ch13-00-functional-features.html">chương 13 trong "The Rust Book"</a> mới quen được kiểu này:</p>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="kd">let</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span>::<span class="n">fs</span>::<span class="n">read_to_string</span><span class="p">(</span><span class="s">&quot;input01&quot;</span><span class="p">).</span><span class="n">unwrap</span><span class="p">();</span><span class="w"></span>
+<span class="w">      </span><span class="kd">let</span><span class="w"> </span><span class="n">lines</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">lines</span><span class="p">().</span><span class="n">map</span><span class="p">(</span><span class="o">|</span><span class="n">i</span><span class="o">|</span><span class="w"> </span><span class="n">i</span><span class="p">.</span><span class="n">parse</span><span class="p">().</span><span class="n">unwrap</span><span class="p">()).</span><span class="n">collect</span><span class="p">();</span><span class="w"></span>
+<span class="w">      </span><span class="kd">let</span><span class="w"> </span><span class="n">increases_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lines</span><span class="w"></span>
+<span class="w">          </span><span class="p">.</span><span class="n">iter</span><span class="p">()</span><span class="w"></span>
+<span class="w">          </span><span class="p">.</span><span class="n">zip</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="p">])</span><span class="w"></span>
+<span class="w">          </span><span class="p">.</span><span class="n">filter</span><span class="p">(</span><span class="o">|</span><span class="p">(</span><span class="n">prev</span><span class="p">,</span><span class="w"> </span><span class="n">next</span><span class="p">)</span><span class="o">|</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">prev</span><span class="p">)</span><span class="w"></span>
+<span class="w">          </span><span class="p">.</span><span class="n">count</span><span class="p">();</span><span class="w"></span>
+<span class="w">      </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">increases_count</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+
+<p>Ý tưởng khác một chút, thay vì duyệt qua dãy số, ta duyệt qua 2 dãy cùng 1 lúc
+với <code>zip</code>, dãy thứ 2 bắt đầu từ phần tử index 1, và filter (lọc)
+ra các cặp mà có giá trị sau lớn hơn giá trị trước, rồi đếm.</p>
+<p>Sau khi nhập kết quả giải xong phần 1, đề phần 2 hiện ra yêu cầu thay vì đếm số
+sau lớn hơn số trước thì đếm tổng 3 số sau lớn hơn tổng 3 số trước.</p>
+<div class="highlight"><pre><span></span><code><span class="mf">1</span>
+<span class="mf">2</span>
+<span class="mf">3</span>
+<span class="mf">4</span>
+</code></pre></div>
+
+<p>thì có 2+3+4 &gt; 1+2+3.</p>
+<p>Tạo 1 list mới chứa tổng của 3 số liên tiếp, sau đó dùng list
+đó làm đầu vào cho code của phần 1.</p>
+<div class="highlight"><pre><span></span><code><span class="w">      </span><span class="kd">let</span><span class="w"> </span><span class="n">lines</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lines</span><span class="w"></span>
+<span class="w">          </span><span class="p">.</span><span class="n">iter</span><span class="p">()</span><span class="w"></span>
+<span class="w">          </span><span class="p">.</span><span class="n">zip</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="p">])</span><span class="w"></span>
+<span class="w">          </span><span class="p">.</span><span class="n">zip</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lines</span><span class="p">[</span><span class="mi">2</span><span class="o">..</span><span class="p">])</span><span class="w"></span>
+<span class="w">          </span><span class="p">.</span><span class="n">map</span><span class="p">(</span><span class="o">|</span><span class="p">((</span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">x2</span><span class="p">),</span><span class="w"> </span><span class="n">x3</span><span class="p">)</span><span class="o">|</span><span class="w"> </span><span class="n">x1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x3</span><span class="p">)</span><span class="w"></span>
+<span class="w">          </span><span class="p">.</span><span class="n">collect</span><span class="p">();</span><span class="w"></span>
+</code></pre></div>
+
+<p>ở đây một lần nữa dùng zip để duyệt qua 3 dãy số cùng lúc.</p>
+<h3>Giải <a href="https://adventofcode.com/2021/day/3">ngày 3</a></h3>
+<p>Tính năng lượng tiêu thụ của tàu dựa trên báo cáo</p>
+<div class="highlight"><pre><span></span><code><span class="mf">00100</span>
+<span class="mf">11110</span>
+<span class="mf">10110</span>
+<span class="mf">10111</span>
+<span class="mf">10101</span>
+<span class="mf">01111</span>
+<span class="mf">00111</span>
+<span class="mf">11100</span>
+<span class="mf">10000</span>
+<span class="mf">11001</span>
+<span class="mf">00010</span>
+<span class="mf">01010</span>
+</code></pre></div>
+
+<p>Cách tính: <code>power = epsilon rate * gamma rate</code>.
+Với gamma rate là các bit xuất hiện nhiều nhất ở mỗi cột trong tất cả các số.
+Và epsilon rate là các bit xuất hiện ít nhất ở mỗi cột.
+Ví dụ trên: cột 1 có nhiều số 1 nhất, cột 2 có nhiều số 0 nhất, ...
+sau 5 cột ta có <code>10110</code>, đổi ra hệ cơ số 10 được giá trị 22.</p>
+<p>Giải phần này, chỉ cần làm đúng như các bước mà đề bài mô tả, lấy các giá trị
+theo từng cột, đếm giá trị nào nhiều nhất rồi cho vào 1 list, cuối cùng biến
+thành số.</p>
+<div class="highlight"><pre><span></span><code><span class="k">fn</span> <span class="nf">day02</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="kt">i32</span> <span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span>::<span class="n">fs</span>::<span class="n">read_to_string</span><span class="p">(</span><span class="s">&quot;input02&quot;</span><span class="p">).</span><span class="n">unwrap</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">gamma_bits</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="n">_</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[];</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">epsilon_bits</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="n">_</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[];</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">lines</span>: <span class="nb">Vec</span><span class="o">&lt;&amp;</span><span class="kt">str</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">lines</span><span class="p">().</span><span class="n">collect</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">idx</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">0</span><span class="o">..</span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">len</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">one</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">zero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">lines</span><span class="p">.</span><span class="n">iter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="n">chars</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">line</span><span class="p">.</span><span class="n">chars</span><span class="p">().</span><span class="n">collect</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">chars</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;0&#39;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">zero</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">one</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">one</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">zero</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">gamma_bits</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">epsilon_bits</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">gamma_bits</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">epsilon_bits</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">to_i32</span><span class="p">(</span><span class="n">gamma_bits</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">to_i32</span><span class="p">(</span><span class="n">epsilon_bits</span><span class="p">)</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="k">fn</span> <span class="nf">to_i32</span><span class="p">(</span><span class="n">bits</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">i32</span> <span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">idx</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">bits</span><span class="p">.</span><span class="n">iter</span><span class="p">().</span><span class="n">enumerate</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">r</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="k">i32</span><span class="p">.</span><span class="n">pow</span><span class="p">((</span><span class="n">bits</span><span class="p">.</span><span class="n">len</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">idx</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">u32</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">r</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+
+<p>Các điểm chú ý:</p>
+<ul>
+<li>Rust dùng các kiểu khác nhau cho các loại số khác nhau. <code>bits.len()</code> hay <code>enumerate()</code>
+là kiểu <code>usize</code>, chứa số nguyên không âm, dùng để đo kích thước. Nghe thì giống
+u32 hay u64 nhưng Rust hay C++ coi đây là kiểu riêng biệt và lập trình viên phải
+tự convert sang kiểu khác nếu muốn dùng khác đi. Số mũ của pow phải là kiểu u32.
+Dùng <code>as u32</code> để ép kiểu từ <code>usize</code>. Cũng không thể viết <code>2.pow()</code> mà phải dùng
+<code>2i32</code> để chỉ rõ kiểu của nó.</li>
+<li>Dùng <code>vec.push(i)</code> để thêm <code>i</code> vào cuối <code>vec</code>, như Python list.append.</li>
+<li><code>for (idx, b) in bits.iter().enumerate()</code> như Python <code>for idx, b in enumerate(bits)</code>,
+tuple trong Python không cần thiết có <code>()</code> còn trong Rust là bắt buộc.</li>
+<li>Có thể bỏ trống kiểu phần tử của Vec bằng dấu gạch dưới <code>_</code>: <code>Vec&lt;_&gt;</code> do đoạn
+code sau có phần push(), Rust sẽ tự suy ra kiểu dựa vào kiểu của giá trị được push.</li>
+<li>Rust tự return dòng cuối cùng không có dấu <code>;</code>. Cũng có thể viết <code>return to_i32(gamma_bits) * to_i32(epsilon_bits);</code></li>
+</ul>
+<h3>Các bài hay, nổi bật</h3>
+<ul>
+<li>Day 15: tìm đường đi ít nguy hiểm nhất, có thể sử dụng thuật toán trong
+  sách giáo khoa "cấu trúc dữ liệu và giải thuật": Dijkstra (/ˈdaɪkstrəz/).
+  Google code sẵn hoặc lên <a href="https://en.wikipedia.org/wiki/Dijkstra's_algorithm#Pseudocode">wikipedia xem pseudocode</a> rồi viết lại.
+  Điểm thú vị là để tăng tốc thuật toán này, cần dùng khái niệm có tên
+  <a href="https://en.wikipedia.org/wiki/Dijkstra's_algorithm#Using_a_priority_queue">Priority Queue</a>, một loại queue đặc biệt, giúp tìm kiếm min hay max tức thì <code>O(1)</code>.
+  Trong Python có thể dùng <a href="https://docs.python.org/3/library/heapq.html"><code>import heapq</code></a>, trong Rust có sẵn kiểu <a href="https://doc.rust-lang.org/std/collections/struct.BinaryHeap.html">BinaryHeap</a>.</li>
+<li>Không ít bài toán người chơi sẽ phải viết các "hàm đệ quy" - (Recursive function)
+  để giải, như <strong>metaverse</strong> của <a href="https://adventofcode.com/2021/day/21">day 21</a>.</li>
+<li>Năm nay vắng bóng <a href="https://github.com/norvig/pytudes/blob/main/ipynb/Life.ipynb">"game of life"</a>, nhưng vẫn có một phiên bản trá hình trong <a href="https://adventofcode.com/2021/day/20">day 20</a>.</li>
+<li>Day 16, người chơi phải viết 1 parser và chạy đoạn code <strong>BITS</strong> để tính toán,
+  hệ thống này giống một ngôn ngữ <a href="https://pp.pymi.vn/article/scm1/">nhà LISP</a> và có thể "cheat" ra <a href="https://github.com/hvnsweeting/adventofcode/blob/master/2021/src/day16.rs">dùng
+  LISP để giải cho nhanh</a></li>
+<li>Day 18 có kiểu dữ liệu Binary Tree, nếu chưa đọc hết <a href="https://doc.rust-lang.org/stable/book/ch15-01-box.html#enabling-recursive-types-with-boxes">chương 15 "The Rust Book"</a> thì sẽ
+  khá khó để biểu diễn kiểu dữ liệu recursive này trên Rust. Nên tạm "cheat" ra
+  <a href="https://github.com/hvnsweeting/adventofcode/blob/master/2021/src/day18.ipynb">dùng Python để giải</a>.</li>
+<li>Day 19 là bài phải code code trâu bò nhất. Tương tự day 20 của năm 2020, ám
+  ảnh người chơi mãi về sau với lượng code vài trăm dòng cần viết. Lý do: bài này
+  được ra vào ngày thứ 7/chủ nhật cuối cùng trong giải.</li>
+<li>Và cũng có những bài giải tay nhiều khi nhanh hơn viết code như <a href="https://adventofcode.com/2021/day/23">day 23</a>. Giải
+  tay giống như đang chơi game.
+  Thậm chí có người chơi trên reddit đã <a href="https://www.reddit.com/r/adventofcode/comments/rmspb7/2021_day_23_it_was_nice_on_paper_but_its_even/">viết game
+  để giải bài này</a>.</li>
+</ul>
+<h2>Ownership, move, borrow &amp; clone</h2>
+<p>Khó có thể code Rust 25 ngày mà không động đến khái niệm borrow-checker, ownership.</p>
+<p>Rust không có Garbage Collector (viết tắc GC).</p>
+<p>Các ngôn ngữ như JavaScript, Python, Ruby, PHP, Go, Java, C# có GC nên lập
+trình viên có thể tạo các giá trị tùy ý, GC sẽ theo dõi và tự xóa đi các giá trị
+không dùng nữa.</p>
+<p>Code C/C++ không có GC, lập trình viên cần tự viết code cấp phát (allocate) và giải phóng
+ (free) bộ nhớ (memory) để tạo các kiểu dữ liệu (trên heap).</p>
+<p>Rust theo cách riêng của mình, đưa ra khái niệm "ownership" để biết ai là chủ
+của 1 giá trị, giúp quản lý bộ nhớ mà không cần tới GC.</p>
+<h4>Real "hello, Rust!"</h4>
+<p>Chương trình sau, dựa vào các kiến thức từ ví dụ đã đưa ra, kết hợp kinh nghiệm
+lập trình các ngôn ngữ khác thì thấy hoàn toàn hợp lý, Rust
+compile báo lỗi:</p>
+<div class="highlight"><pre><span></span><code><span class="k">fn</span> <span class="nf">sum</span><span class="p">(</span><span class="n">v</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">i32</span> <span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">s</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="k">fn</span> <span class="nf">product</span><span class="p">(</span><span class="n">v</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">i32</span> <span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">v</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="n">_</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">_s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">_p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">product</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+
+<p>Compile lỗi:</p>
+<div class="highlight"><pre><span></span><code><span class="k">error</span><span class="err">[</span><span class="n">E0382</span><span class="err">]</span><span class="o">:</span> <span class="k">use</span> <span class="k">of</span> <span class="n">moved</span> <span class="k">value</span><span class="o">:</span> <span class="n n-Quoted">`v`</span>
+  <span class="o">--&gt;</span> <span class="n">main</span><span class="p">.</span><span class="n">rs</span><span class="o">:</span><span class="mi">14</span><span class="o">:</span><span class="mi">22</span>
+   <span class="o">|</span>
+<span class="mi">12</span> <span class="o">|</span>     <span class="n">let</span> <span class="n">v</span><span class="o">:</span> <span class="n">Vec</span><span class="o">&lt;</span><span class="n">_</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">vec</span><span class="o">!</span><span class="err">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="err">]</span><span class="p">;</span>
+   <span class="o">|</span>         <span class="o">-</span> <span class="n">move</span> <span class="n">occurs</span> <span class="n">because</span> <span class="n n-Quoted">`v`</span> <span class="n">has</span> <span class="k">type</span> <span class="n n-Quoted">`Vec&lt;i32&gt;`</span><span class="p">,</span> <span class="n">which</span> <span class="n">does</span> <span class="k">not</span> <span class="n">implement</span> <span class="n">the</span> <span class="n n-Quoted">`Copy`</span> <span class="n">trait</span>
+<span class="mi">13</span> <span class="o">|</span>     <span class="n">let</span> <span class="n">_s</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+   <span class="o">|</span>                  <span class="o">-</span> <span class="k">value</span> <span class="n">moved</span> <span class="n">here</span>
+<span class="mi">14</span> <span class="o">|</span>     <span class="n">let</span> <span class="n">_p</span> <span class="o">=</span> <span class="n">product</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+   <span class="o">|</span>                      <span class="o">^</span> <span class="k">value</span> <span class="n">used</span> <span class="n">here</span> <span class="k">after</span> <span class="n">move</span>
+</code></pre></div>
+
+<p>Rust compiler hướng dẫn chi tiết về vấn đề xảy ra, thậm chí đôi khi
+đưa ra cả hướng dẫn sửa code. Lỗi xảy ra <code>use of moved value: v</code> với chỉ dẫn:</p>
+<ul>
+<li>tại dòng 13, sum nhận đầu vào v: "value moved here".</li>
+<li>dòng 14, product nhận đầu vào v: "value used here after move".</li>
+</ul>
+<p>trong các ngôn ngữ lập trình khác, việc các đoạn code dùng chung 1 giá trị là chuyện
+hoàn toàn bình thường và không có gì phải suy nghĩ, Rust thì khác.</p>
+<h4>owner và move</h4>
+<p>Khi gán biến,</p>
+<div class="highlight"><pre><span></span><code>let x = vec![1,2,3];
+let y = x;
+let z = x; // not work, compile error:  value used here after move
+</code></pre></div>
+
+<p>Ban đầu, <code>x = vec![1,2,3]</code>, x là owner (chủ sở hữu) của giá trị <code>vec![1,2,3]</code>.
+Khi viết <code>y = x</code>, quyền sở hữu được chuyển
+sang cho y. Sau dòng này, x không còn dính dáng tới <code>vec![1,2,3]</code>, hay không còn giá trị,
+không thể dùng được nữa, nên không thể gán cho z được.</p>
+<p>Tương tự, khi gọi function sum, sum sẽ trở thành chủ sở hữu mới của giá trị mà v đang chứa,
+sau dòng này, v không còn hợp lệ. Việc chuyển đổi quyền sở hữu này gọi là
+"move" ownership.</p>
+<p>Thay vì chuyển quyền sở hữu, có thể thực hiện "mượn": borrow. Function sẽ khai báo
+mình muốn own (sở hữu), hay muốn borrow (mượn).</p>
+<p>Function sum viết lại để borrow, thêm dấu <code>&amp;</code> trước kiểu của xs:
+<code>fn sum(xs: &amp;Vec&lt;i32&gt;) -&gt; i32 {</code></p>
+<p>và khi gọi function: <code>sum(&amp;vec)</code>.</p>
+<p>Ký hiệu <code>&amp;</code> gọi là reference. <code>&amp;v</code> tạo một reference <strong>refer</strong> (chỉ) đến giá trị của
+vec nhưng không own nó.</p>
+<div class="highlight"><pre><span></span><code><span class="k">fn</span> <span class="nf">sum</span><span class="p">(</span><span class="n">v</span>: <span class="kp">&amp;</span><span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">i32</span> <span class="p">{</span><span class="w"></span>
+<span class="c1">//...không đổi...</span>
+<span class="p">}</span><span class="w"></span>
+<span class="k">fn</span> <span class="nf">product</span><span class="p">(</span><span class="n">v</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">i32</span> <span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">v</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="n">_</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">_s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum</span><span class="p">(</span><span class="o">&amp;</span><span class="n">v</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">_p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">product</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+
+<p>Code mới sẽ chạy được, do sum chỉ borrow giá trị của v, chứ không own,
+v vẫn là chủ của vector để sau đó, move cho product trở thành owner.</p>
+<h4>Stack và heap <id="heap"></h4>
+<p>Trong máy tính, có 2 loại bộ nhớ cấu trúc theo cách khác nhau:</p>
+<p>Stack <strong>thường</strong> có kích thước nhỏ (VD: 2KB, 4KB, 8KB,... cũng có thể <a href="https://dave.cheney.net/2013/06/02/why-is-a-goroutines-stack-infinite">lớn dần lên đến vô cùng</a>), hoạt động như kiểu dữ liệu "stack" (last in first out - LIFO),
+dữ liệu nhét vào stack (push) phải có kích thước biết trước (khi compile),
+lấy dữ liệu từ stack (pop) thường nhanh hơn heap.
+Các kiểu dữ liệu có thể chứa trong stack có kích thước biết trước: như
+số (i32 - 32 bits, i64, f64, ...), string cố định (&amp;str), array (<code>[3;i32]</code>).</p>
+<p>Heap là vùng bộ nhớ tự do, khi muốn dùng phải yêu cầu hệ điều hành cấp cho (allocate),
+dùng xong nếu không giải phóng trả lại hệ điều hành thì chương trình sẽ dùng
+ngày càng nhiều RAM, gọi là memleak (memory leak).</p>
+<p>Khi tạo 1 Vector hay HashMap trong Rust, kích thước của chúng có thể thay đổi
+khi chạy (VD: thêm phần tử vào vector), nên chúng nằm trên heap. Lý do không
+thấy code để alloc/free ở các ví dụ trên bởi Rust thực hiên tự động free giá trị khi biến
+"out of scope" (thường là ra khỏi block <code>{}</code>).</p>
+<p>Với các kiểu dữ liệu trên stack, không cần borrow bởi chúng sẽ tự copy do
+các giá trị này nhỏ. Với các kiểu dữ liệu trên heap, cần gọi <code>.clone()</code> để
+copy giá trị. Người mới code Rust có thể dùng <code>clone()</code> để tránh các vấn đề
+ban đầu về ownership cho tới khi nắm được ownership &amp; borrow.</p>
+<p>Xem thêm tại <a href="https://doc.rust-lang.org/stable/book/ch04-01-what-is-ownership.html">đây</a>.</p>
+<h2>Kết quả</h2>
+<p>PyMi AoC 2021 kết thúc vào 12 giờ trưa ngày 26/12/2021, với giải thưởng:</p>
+<p><img alt="leaderboard" src="http://pp.pymi.vn/images/aoc21_leaderboard.png"></p>
+<ul>
+<li>giải nhất: <a href="https://github.com/tung491/advent_to_code_2021">tung491</a> học viên PyMiHN1706</li>
+<li>giải nhì: <a href="https://github.com/thevivotran">thevivotran</a> học viên PyMiHCM2008.</li>
+<li>giải ba: stuncb97 học viên PyMiHN2010 - cựu vô địch 2020.</li>
+</ul>
+<p>Một tràng pháo tay cho các game thủ dù bận công việc vẫn nhịn ăn trưa cày
+marathon code suốt 25 ngày 🎉😍</p>
+<h2>Kết luận</h2>
+<p>Advent of Code là một chuyến phiêu lưu thú vị hàng năm, là cơ hội tuyệt vời
+để "vui vẻ" với code, học được thêm không ít điều mới mẻ.</p>
+<p>Rust dù hơi dài dòng
+so với Python, không hợp để code nhanh trong các cuộc thi, nhưng không phải
+quá khó, lại là một vũ khí hạng nặng ngang C/C++ cho vào balo mang đi chiến khi cần.
+Hàng ngàn lập trình viên đã liên tục vote Rust là ngôn ngữ yêu
+thích nhất, còn bạn?</p>
+<p>Và nhớ đừng quên đọc <a href="https://github.com/norvig/pytudes/blob/main/ipynb/Advent-2021.ipynb">văn mẫu</a> từ giám đốc nghiên cứu Google nhé!</p>
+<p>Tạm biệt 2021, chúc mừng năm mới 2022!</p>
+<h2>Finish</h2>
+<p><img src="http://pp.pymi.vn/images/aoc21.png" width=800></p>
+<h2>Tham khảo</h2>
+<ul>
+<li>Stack vs Heap <a href="https://doc.rust-lang.org/stable/book/ch04-01-what-is-ownership.html">https://doc.rust-lang.org/stable/book/ch04-01-what-is-ownership.html</a></li>
+<li><a href="https://matklad.github.io//2020/09/20/why-not-rust.html">https://matklad.github.io//2020/09/20/why-not-rust.html</a></li>
+</ul>
+<h2>Ủng hộ tác giả</h2>
+<ul>
+<li><a href="https://www.familug.org/p/ung-ho.html">Ủng hộ tác giả 🍺</a></li>
+</ul>
+  </div>
+  <!-- /.entry-content -->
+</section>
+<section class="container">
+  <div class="comments">
+    <h3>Comments</h3>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'pymier';
+      var disqus_identifier = 'article/aoc2021/';
+      var disqus_url = 'http://pp.pymi.vn/article/aoc2021/';
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//pymier.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the comments.</noscript>
+  </div>
+</section>
+
+    <section class="container footer">
+      <footer>
+        <address>
+        Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+        which takes great advantage of <a href="http://python.org">Python</a>.
+        </address>
+        <address>
+          Học lập trình Python tại <a href="https://pymi.vn/">Pymi.vn</a>
+        </address>
+      </footer>
+    </section>
+  </main>
+
+<script type="text/javascript">
+var images = document.getElementsByTagName("img");
+var i;
+
+for(i = 0; i < images.length; i++) {
+  images[i].className += " centered";
+}
+</script>
+</body>
+
+</html>
