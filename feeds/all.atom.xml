@@ -1067,8 +1067,72 @@ chơi, hãy học dùng lệnh trên Linux, lập trình 1 ngôn ngữ bất k�
 và tham gia thử các game dễ như trên &lt;a href="https://overthewire.org/wargames/"&gt;overthewire.org&lt;/a&gt;
 hay khó hơn là &lt;a href="https://capturetheflag.withgoogle.com/beginners-quest"&gt;Google CTF beginners quest&lt;/a&gt;
 chơi nhiều là khác quen, và làm quen với chuyện "không phải bài nào mình cũng giải được".&lt;/p&gt;
-&lt;h2&gt;Còn tiếp&lt;/h2&gt;
-&lt;p&gt;Gần 1/2 các bài write-up vẫn chưa được hoàn thiện sẽ được đăng trong phần sau.&lt;/p&gt;
+&lt;h2&gt;Updated 2022-02-10 - phần 2 by @pham&lt;/h2&gt;
+&lt;h4&gt;Lời nói đầu&lt;/h4&gt;
+&lt;p&gt;Đây là một giải CTF của snyk.io - một tổ chức phát triển platform dạng "Audit source code", như nhận định ban đầu thì các task thiên về dạng programming, misc, và một số bài là lỗ hổng web mức độ medium.&lt;/p&gt;
+&lt;p&gt;Trong giải thì mình khá là phế khi không giải được mấy task quan trọng, mặc dù đã nhìn ra cách giải, nhưng payload không hiểu sao không work, thật là buồn, thôi năm sau phục thù cùng anh em&lt;/p&gt;
+&lt;p&gt;Sau cuộc thi thì mình không viết writeup ngay, đến giờ viết lại thì nội dung không được trọn vẹn, ae thông cảm :)&lt;/p&gt;
+&lt;h4&gt;Task Magician&lt;/h4&gt;
+&lt;p&gt;Đây là một task old-school về &lt;code&gt;PHP Type Juggling Vulnerabilities&lt;/code&gt;
+dạng như:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;var_dump&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;md5&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;240610708&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;md5&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;QNKCDZO&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Do không sử dụng toán tử &lt;code&gt;===&lt;/code&gt; (giống nhau về cả value và type) mà sử dụng &lt;code&gt;==&lt;/code&gt;  (chỉ cần giống nhau về value), ta hoàn toàn có thể tìm được strings có md5 thỏa mãn điều kiện bài toán.&lt;/p&gt;
+&lt;p&gt;Tham chiếu thêm tại:
+&lt;a href="https://www.netsparker.com/blog/web-security/php-type-juggling-vulnerabilities/"&gt;https://www.netsparker.com/blog/web-security/php-type-juggling-vulnerabilities/&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;Task not_hot_dog&lt;/h4&gt;
+&lt;p&gt;Task cung cấp cho mình bộ ba &lt;code&gt;n,e,c&lt;/code&gt; ta có thể biết ngay đây là một bài attack RSA, với c là bản mã, sau khi giải mã ra sẽ thu được FLAG.&lt;/p&gt;
+&lt;p&gt;Do khi implement RSA họ sử dụng e lớn, nên sẽ bị ảnh hưởng bởi  Wiener attack (đây cũng là dạng old-school RSA trong các giải CTF)
+Sử dụng công cụ tại: https://github.com/orisano/owiener để thu được flag.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;owiener&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;387825392787200906676631198961098070912332865442137539919413714790310139653713077586557654409565459752133439009280843965856789151962860193830258244424149230046832475959852771134503754778007132465468717789936602755336332984790622132641288576440161244396963980583318569320681953570111708877198371377792396775817&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;609983533322177402468580314139090006939877955334245068261469677806169434040069069770928535701086364941983428090933795745853896746458472620457491993499511798536747668197186857850887990812746855062415626715645223089415186093589721763366994454776521466115355580659841153428179997121984448771910872629371808169183&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;owiener&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;attack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="mi"&gt;40127490441880177477224469176371044914847896019034308382923938039797354608313&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;Task Browser preview&lt;/h4&gt;
+&lt;p&gt;&lt;img alt="done" src="http://pp.pymi.vn/images/browser_preview.png"&gt;&lt;/p&gt;
+&lt;p&gt;Với tên và cách setup task này thì có thể thấy đây là một task về bug SSRF (Server-side request forgery)
+SSRF như tên gọi thì attacker sẽ khiến cho server thực hiện những request tùy ý (tùy vào từng trường hợp mà các protocol sẽ là http/dns/ftp/smpt/gopher...) như vậy khi có bug SSRF chúng ta sẽ bypass được các bộ filter về source IP  - do request đến từ chính server (localhost)&lt;/p&gt;
+&lt;p&gt;Chức năng của web là nhập vào một URL, ta sẽ preview được nội dung trang web đó.
+URL phải validate dạng như sau:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;    &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;boolean&lt;/span&gt; &lt;span class="nf"&gt;isUrlValid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;Pattern&lt;/span&gt; &lt;span class="n"&gt;domainPattern&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Pattern&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;compile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;^https?://[a-z-0-9]+[.][a-z]+.*$&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Pattern&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;CASE_INSENSITIVE&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;Matcher&lt;/span&gt; &lt;span class="n"&gt;matcher&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;domainPattern&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;matcher&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;matcher&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;find&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Đọc source thì thấy tiếp  server có handler ở port 7654, có thể read flag thông qua phương thức này.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;DebugServer&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;run&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="kd"&gt;throws&lt;/span&gt; &lt;span class="n"&gt;IOException&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;HttpServer&lt;/span&gt; &lt;span class="n"&gt;server&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;HttpServer&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;InetSocketAddress&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;7654&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;server&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;createContext&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/flag&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;FlagHandler&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+        &lt;span class="n"&gt;server&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setExecutor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;server&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;start&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Như vậy ý đồ là quá rõ  ràng, mình sẽ nhập vào một URL dạng localhost:7654/flag để get flag, URL làm sao thỏa mãn được bộ filter trên là OK.
+Mình sử dụng URL dạng: http://domain.localhost:7654/flag
+Có thể kham khảo các cách &lt;code&gt;bypass localhost&lt;/code&gt; của hacktrick
+https://book.hacktricks.xyz/pentesting-web/ssrf-server-side-request-forgery&lt;/p&gt;
+&lt;h4&gt;Electronbuzz&lt;/h4&gt;
+&lt;p&gt;grep nội dung là ra được FLAG.&lt;/p&gt;
+&lt;h4&gt;Instant flag checker&lt;/h4&gt;
+&lt;p&gt;Task này mình cũng không còn nhớ rõ đề và script hôm đó viết, chắc hôm đó giải lẹ qua nên viết console luôn, không lưu lại file.&lt;/p&gt;
+&lt;p&gt;Về ý tưởng của bài này là dạng bruteforce để thu được flag, vậy tại sao để bruteforce được thành công ?&lt;/p&gt;
+&lt;p&gt;Đó là sử dụng time-based, các giá trị đúng sẽ có response time khác với với các giá trị sai.
+Trong những vấn đề mà server không phản hồi cho mình nội dung response (tức là bị blind) thì việc áp dụng kỹ thuật time-based (bắt server thực hiện các heavy task) hoặc sử dụng kỹ thuật outbound (đẩy http request hay dns request ra public server khác) thực sự hữu ý.&lt;/p&gt;
+&lt;h4&gt;Tổng kết&lt;/h4&gt;
+&lt;p&gt;Chân thành cảm ơn các anh em @bác Hưng, @đăng hoàng, @Duy Hồ, @ Khang lê hôm đó đã thức đêm làm cùng.
+Hy vọng năm sau ae sẽ phục thì dành được rank cao hơn (target top 20)&lt;/p&gt;
 &lt;p&gt;HVN at &lt;a href="http://pymi.vn"&gt;http://pymi.vn&lt;/a&gt; and &lt;a href="https://www.familug.org"&gt;https://www.familug.org&lt;/a&gt;.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://www.familug.org/p/ung-ho.html"&gt;Ủng hộ tác giả 🍺&lt;/a&gt;&lt;/li&gt;
