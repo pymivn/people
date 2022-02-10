@@ -481,8 +481,96 @@ và tham gia thử các game dễ như trên [overthewire.org](https://overthewi
 hay khó hơn là [Google CTF beginners quest](https://capturetheflag.withgoogle.com/beginners-quest)
 chơi nhiều là khác quen, và làm quen với chuyện "không phải bài nào mình cũng giải được".
 
-## Còn tiếp
-Gần 1/2 các bài write-up vẫn chưa được hoàn thiện sẽ được đăng trong phần sau.
+## Updated 2022-02-10 - phần 2 by @pham
+#### Lời nói đầu
+
+Đây là một giải CTF của snyk.io - một tổ chức phát triển platform dạng "Audit source code", như nhận định ban đầu thì các task thiên về dạng programming, misc, và một số bài là lỗ hổng web mức độ medium.
+
+Trong giải thì mình khá là phế khi không giải được mấy task quan trọng, mặc dù đã nhìn ra cách giải, nhưng payload không hiểu sao không work, thật là buồn, thôi năm sau phục thù cùng anh em
+
+Sau cuộc thi thì mình không viết writeup ngay, đến giờ viết lại thì nội dung không được trọn vẹn, ae thông cảm :)
+
+#### Task Magician
+Đây là một task old-school về `PHP Type Juggling Vulnerabilities`
+dạng như:
+
+```
+var_dump(md5('240610708') == md5('QNKCDZO'));
+```
+
+Do không sử dụng toán tử `===` (giống nhau về cả value và type) mà sử dụng `==`  (chỉ cần giống nhau về value), ta hoàn toàn có thể tìm được strings có md5 thỏa mãn điều kiện bài toán.
+
+Tham chiếu thêm tại:
+[https://www.netsparker.com/blog/web-security/php-type-juggling-vulnerabilities/](https://www.netsparker.com/blog/web-security/php-type-juggling-vulnerabilities/ )
+
+#### Task not_hot_dog
+Task cung cấp cho mình bộ ba `n,e,c` ta có thể biết ngay đây là một bài attack RSA, với c là bản mã, sau khi giải mã ra sẽ thu được FLAG.
+
+Do khi implement RSA họ sử dụng e lớn, nên sẽ bị ảnh hưởng bởi  Wiener attack (đây cũng là dạng old-school RSA trong các giải CTF)
+Sử dụng công cụ tại: https://github.com/orisano/owiener để thu được flag.
+
+```py
+>>> import owiener
+>>> e = 387825392787200906676631198961098070912332865442137539919413714790310139653713077586557654409565459752133439009280843965856789151962860193830258244424149230046832475959852771134503754778007132465468717789936602755336332984790622132641288576440161244396963980583318569320681953570111708877198371377792396775817
+>>> n = 609983533322177402468580314139090006939877955334245068261469677806169434040069069770928535701086364941983428090933795745853896746458472620457491993499511798536747668197186857850887990812746855062415626715645223089415186093589721763366994454776521466115355580659841153428179997121984448771910872629371808169183
+>>> d = owiener.attack(e, n)
+
+>>> print (d)
+40127490441880177477224469176371044914847896019034308382923938039797354608313
+```
+
+#### Task Browser preview
+![done]({static}/images/browser_preview.png)
+
+Với tên và cách setup task này thì có thể thấy đây là một task về bug SSRF (Server-side request forgery)
+SSRF như tên gọi thì attacker sẽ khiến cho server thực hiện những request tùy ý (tùy vào từng trường hợp mà các protocol sẽ là http/dns/ftp/smpt/gopher...) như vậy khi có bug SSRF chúng ta sẽ bypass được các bộ filter về source IP  - do request đến từ chính server (localhost)
+
+Chức năng của web là nhập vào một URL, ta sẽ preview được nội dung trang web đó.
+URL phải validate dạng như sau:
+
+```java
+    static boolean isUrlValid(String url) {
+        Pattern domainPattern = Pattern.compile("^https?://[a-z-0-9]+[.][a-z]+.*$", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = domainPattern.matcher(url);
+
+        return matcher.find();
+    }
+
+```
+
+Đọc source thì thấy tiếp  server có handler ở port 7654, có thể read flag thông qua phương thức này.
+```java
+class DebugServer {
+    public void run() throws IOException {
+        HttpServer server = HttpServer.create(new InetSocketAddress(7654), 0);
+        server.createContext("/flag", new FlagHandler());
+        server.setExecutor(null);
+        server.start();
+    }
+}
+```
+Như vậy ý đồ là quá rõ  ràng, mình sẽ nhập vào một URL dạng localhost:7654/flag để get flag, URL làm sao thỏa mãn được bộ filter trên là OK.
+Mình sử dụng URL dạng: http://domain.localhost:7654/flag
+Có thể kham khảo các cách `bypass localhost` của hacktrick
+https://book.hacktricks.xyz/pentesting-web/ssrf-server-side-request-forgery
+
+#### Electronbuzz
+grep nội dung là ra được FLAG.
+
+#### Instant flag checker
+
+Task này mình cũng không còn nhớ rõ đề và script hôm đó viết, chắc hôm đó giải lẹ qua nên viết console luôn, không lưu lại file.
+
+Về ý tưởng của bài này là dạng bruteforce để thu được flag, vậy tại sao để bruteforce được thành công ?
+
+Đó là sử dụng time-based, các giá trị đúng sẽ có response time khác với với các giá trị sai.
+Trong những vấn đề mà server không phản hồi cho mình nội dung response (tức là bị blind) thì việc áp dụng kỹ thuật time-based (bắt server thực hiện các heavy task) hoặc sử dụng kỹ thuật outbound (đẩy http request hay dns request ra public server khác) thực sự hữu ý.
+
+
+#### Tổng kết
+Chân thành cảm ơn các anh em @bác Hưng, @đăng hoàng, @Duy Hồ, @ Khang lê hôm đó đã thức đêm làm cùng.
+Hy vọng năm sau ae sẽ phục thì dành được rank cao hơn (target top 20)
+
 
 HVN at [http://pymi.vn](http://pymi.vn) and [https://www.familug.org](https://www.familug.org).
 
