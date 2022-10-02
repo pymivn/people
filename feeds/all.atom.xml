@@ -154,7 +154,7 @@ Tất nhiên để làm được nhiều bài khó hơn thì cần biết code i
 &lt;p&gt;Tool rất quan trọng, và có nhiều tool rất xịn.
 Các cầu thủ đá bóng đi toàn giày đinh loại cực xịn, các runner đi Nike airflow màu hồng phá kỷ lục thế giới,
 các game thủ dùng bàn phím độ trễ siêu thấp, chuột có dăm ba nút phụ để combat cho nhanh, chả nghề nào chân trần phi vào quái thú để thất bại rồi ra nghĩa địa cả (trở về là còn tốt).&lt;/p&gt;
-&lt;p&gt;Các pwn thủ, rev thủ toàn dùng &lt;a href="https://hex-rays.com/ida-pro/"&gt;IDA Pro&lt;/a&gt; bản trả tiền, &lt;a href="https://binary.ninja/"&gt;Ninja&lt;/a&gt; hàng xịn, hàng free như Ghidra hay radare2 nhiều khi không xịn bằng, chứ đừng nói tới dump code Assembly rồi đọc chay.&lt;/p&gt;
+&lt;p&gt;Các pwn thủ, rev thủ toàn dùng &lt;a href="https://hex-rays.com/ida-pro/"&gt;IDA Pro&lt;/a&gt; bản trả tiền, &lt;a href="https://binary.ninja/"&gt;Ninja&lt;/a&gt; hàng xịn, bấm một nút là biến asm thành code C ngay (ahuhu vẫn phải đọc code C), hàng free như Ghidra hay radare2 nhiều khi không xịn bằng, chứ đừng nói tới dump code Assembly rồi đọc chay.&lt;/p&gt;
 &lt;h4&gt;Chơi crypto phải giỏi toán&lt;/h4&gt;
 &lt;p&gt;Giỏi toán (mà phải đúng loại toán) đúng là có lợi, có thể giải nhiều bài khó,
 nhưng crypto cũng có nhiều tool sẵn như &lt;a href="https://github.com/RsaCtfTool/RsaCtfTool"&gt;RSACTFtool&lt;/a&gt;, nhét đề vào viết thêm tí code là giải được cả mớ. Nhớ luyện hết theo &lt;a href="https://cryptohack.org/challenges/rsa/"&gt;CryptoHack&lt;/a&gt;, đọc cả blog vì có mấy lần đề KHÓ ra trúng &lt;a href="https://blog.cryptohack.org/twitter-secrets"&gt;bài blog trên cryptohack&lt;/a&gt;.&lt;/p&gt;
