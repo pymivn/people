@@ -238,7 +238,7 @@ thời điểm đầu tháng 10 này. Cục diện thay đổi hoàn toàn, nh�
 
 Thứ hai, ctftime.org chỉ là phần nổi của tảng băng (rất chìm), đâu phải hacker nào cũng rảnh mà đi thi, còn đang bận hack cả thế giới. Riêng có giải [HTB Business](https://ctftime.org/event/1685) mới thấy các team security của các công ty ló mặt.
 
-#### Pickle vô dụng
+#### Python Pickle vô dụng
 Một loại bài gần như giải nào cũng có, là lỗi bảo mật liên quan đến pickle. Nếu chơi cho vui thì nghe cũng được,
 nhưng thứ không bảo mật thế giờ còn ai dùng? tìm mỏi mắt còn không thấy, đầu tư thời gian vào pickle chỉ để chơi CTF,
 không có tác dụng trong thực tế... cho đến khi thấy nó: Bottle - một web framework rất phổ biến của Python, vẫn
