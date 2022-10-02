@@ -290,6 +290,7 @@ Sang năm phấn đấu theo web và pwn cho nó thực chiến.
 bảo mật hay gặp nhất, lập team CTF chơi mục web hàng tuần.
 ### Bắt đầu từ đâu?
 Tài liệu vô biên, search là ra cả đống tham khảo:
+
 - [python cho hack với byte](https://n.pymi.vn/byt351.html)
 - [PyMi SNYK 2021 writeup]({filename}/ctf.md)
 - [repo của team CTF PyMi](https://n.pymi.vn/byt351.html)
