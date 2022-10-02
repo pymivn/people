@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2022-10-02T00:00:00+07:00</updated><entry><title>Ký sự một năm cướp giật (capture the flag)</title><link href="http://pp.pymi.vn/article/pymictf/" rel="alternate"></link><published>2022-10-02T00:00:00+07:00</published><updated>2022-10-02T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2022-10-02:/article/pymictf/</id><summary type="html">&lt;p&gt;1 năm sau SNYK CTF 2021, team PyMi đã đứng top 10 Việt Nam trên ctftime.org, học được rất rất nhiều.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Tháng 10 năm 2021, tình cờ tham gia SNYK CTF sau 1 tin quảng cáo dạo trên email, lập team sau vài ngày rồi cháy 24 giờ, &lt;a href="http://pp.pymi.vn/article/ctf/"&gt;đứng thứ 42 bảng xếp hạng SNYK.io&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Kể từ ngày ấy, đều đặn mỗi 2 ngày cuối tuần, &lt;a href="https://ctftime.org/team/175619"&gt;team CTF PyMi&lt;/a&gt; đi chiến tất cả các giải lớn nhỏ.
+&lt;p&gt;Kể từ ngày ấy, đều đặn mỗi 2 ngày cuối tuần, &lt;a href="https://ctftime.org/team/175619"&gt;team CTF PyMi&lt;/a&gt; đi chiến 36 giải lớn nhỏ.
 Từ newbie với ước mơ nhỏ bé "chỉ cần giải được 1 bài", giờ đã trở thành "thi thoảng mới giải được 1 bài, còn toàn giải được 2 bài trở lên".&lt;/p&gt;
 &lt;p&gt;Chơi CTF xong có một cảm giác thôi: sợ.
 Sợ đến mức phải rút dây điện ra để không còn bị hack nữa.
@@ -194,9 +194,10 @@ Thò tay vào làm mà vẫn khó lên khó xuống với &lt;a href="https://n.
 &lt;li&gt;0CTF&lt;/li&gt;
 &lt;li&gt;3DCTF&lt;/li&gt;
 &lt;li&gt;PPP&lt;/li&gt;
+&lt;li&gt;DEFCON&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;hai giải đầu của Trung Quốc, các hacker Trung Quốc thì khét tiếng khỏi nói rồi.
-PPP top 1 ctftime.org nhiều năm.&lt;/p&gt;
+PPP top 1 ctftime.org nhiều năm. DEFCON lừng danh blackhat.&lt;/p&gt;
 &lt;p&gt;Các giải này chỉ vào đọc đề rồi hì hục cả 2 ngày vẫn không ra gì. Sợ.&lt;/p&gt;
 &lt;h3&gt;Mục tiêu kế tiếp&lt;/h3&gt;
 &lt;p&gt;Sau năm đầu, cá nhân mình chơi tất cả các thể loại, từ misc, forensics qua crypto, tới
@@ -207,16 +208,17 @@ Sang năm phấn đấu theo web và pwn cho nó thực chiến.&lt;/p&gt;
 &lt;li&gt;Biển học vô biên, bị điên thì học. Cứ ngỡ mình Python ngon ăn lắm, mà nhiều bài Pyjail (phá ra khỏi chương trình Python đã bị giới hạn các tính năng để chạy lệnh thoải mái - RCE) vẫn không giải được. Bước sang web hay binary thì
 ôi thôi cả một chân trời mới. Lại newbie lại từ đầu.&lt;/li&gt;
 &lt;li&gt;Kiểu &lt;a href="https://n.pymi.vn/byt351.html"&gt;byte&lt;/a&gt; ngày ngày đi code, 10 năm không bao giờ dùng thì đi chơi CTF giải nào cũng dùng.&lt;/li&gt;
-&lt;li&gt;Khi đi code, sử dụng các công cụ phát hiện lỗi bảo mật trong code như semgrep, bandit, snyk, ...&lt;/li&gt;
+&lt;li&gt;Khi đi code, hãy sử dụng các công cụ phát hiện lỗi bảo mật trong code như semgrep, bandit, snyk, ...&lt;/li&gt;
 &lt;li&gt;Các công ty hãy cho nghỉ làm 1 ngày để các dev tự tập hack website của chính mình, training hand-on hack các lỗ hổng
 bảo mật hay gặp nhất, lập team CTF chơi mục web hàng tuần.&lt;/li&gt;
+&lt;li&gt;Team PyMi chơi ít giải đi, mà chất hơn.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;Bắt đầu từ đâu?&lt;/h3&gt;
-&lt;p&gt;Tài liệu vô biên, search là ra cả đống tham khảo:&lt;/p&gt;
+&lt;p&gt;Tài liệu vô biên, search là ra cả đống, tham khảo:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://n.pymi.vn/byt351.html"&gt;python cho hack với byte&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://pp.pymi.vn/article/ctf/"&gt;PyMi SNYK 2021 writeup&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://n.pymi.vn/byt351.html"&gt;repo của team CTF PyMi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/pymivn/ctf"&gt;repo của team CTF PyMi&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;Kết luận&lt;/h3&gt;
 &lt;p&gt;Cám ơn các anh em team CTF PyMi đã cùng chiến đấu suốt 1 năm trời, nhiều anh em
