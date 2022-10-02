@@ -115,6 +115,7 @@ render_template_string("<div>{{ name }}</div>", name=request.args.get("name"))
 ##### XSS - Cross Site Scripting
 XSS thực sự khó hơn 2 cái lỗi trên đối với lập trình viên Python, bởi nó dùng JavaScript.
 Nhưng ở mức khó bình thường, nên vẫn học được. Cơ chế cơ bản như sau:
+
 - Trang web cho người dùng nhập vào (ví dụ user), và sau đó sẽ hiển thị giá trị đó ở 1 trang khác
 - Hacker nhập vào đoạn code javascript, phổ biến nhất là `<script>alert(1);</script>`
 - Khi người dùng khác, hay nguy hiểm hơn là admin đọc nội dung này, nó sẽ chạy đoạn code JavaScript hacker đưa vào
