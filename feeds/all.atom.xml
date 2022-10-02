@@ -78,12 +78,14 @@ các giá trị lọt vào không qua đường template render mà xử lý nga
 
 &lt;h5&gt;XSS - Cross Site Scripting&lt;/h5&gt;
 &lt;p&gt;XSS thực sự khó hơn 2 cái lỗi trên đối với lập trình viên Python, bởi nó dùng JavaScript.
-Nhưng ở mức khó bình thường, nên vẫn học được. Cơ chế cơ bản như sau:
-- Trang web cho người dùng nhập vào (ví dụ user), và sau đó sẽ hiển thị giá trị đó ở 1 trang khác
-- Hacker nhập vào đoạn code javascript, phổ biến nhất là &lt;code&gt;&amp;lt;script&amp;gt;alert(1);&amp;lt;/script&amp;gt;&lt;/code&gt;
-- Khi người dùng khác, hay nguy hiểm hơn là admin đọc nội dung này, nó sẽ chạy đoạn code JavaScript hacker đưa vào
+Nhưng ở mức khó bình thường, nên vẫn học được. Cơ chế cơ bản như sau:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Trang web cho người dùng nhập vào (ví dụ user), và sau đó sẽ hiển thị giá trị đó ở 1 trang khác&lt;/li&gt;
+&lt;li&gt;Hacker nhập vào đoạn code javascript, phổ biến nhất là &lt;code&gt;&amp;lt;script&amp;gt;alert(1);&amp;lt;/script&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Khi người dùng khác, hay nguy hiểm hơn là admin đọc nội dung này, nó sẽ chạy đoạn code JavaScript hacker đưa vào
 trên máy họ. Đoạn code JavaScript thì có thể làm đủ trò, đơn giản nhất là gửi cookie của người dùng tới một trang khác để đánh cắp cookie này. Hacker sau đó lấy cookie này đăng nhập vào tài khoản người dùng, chiếm quyền.
-Nguy hiểm nhất khi người bị hack là admin -&amp;gt; xong, hết bài.&lt;/p&gt;
+Nguy hiểm nhất khi người bị hack là admin -&amp;gt; xong, hết bài.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;Dùng framework cũng không miễn nhiễm với XSS. Ví dụ trang chủ của Flask:&lt;/p&gt;
 &lt;p&gt;Bug:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nd"&gt;@app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/index/&amp;lt;msg&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;

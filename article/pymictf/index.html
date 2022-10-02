@@ -138,12 +138,14 @@ các giá trị lọt vào không qua đường template render mà xử lý nga
 
 <h5>XSS - Cross Site Scripting</h5>
 <p>XSS thực sự khó hơn 2 cái lỗi trên đối với lập trình viên Python, bởi nó dùng JavaScript.
-Nhưng ở mức khó bình thường, nên vẫn học được. Cơ chế cơ bản như sau:
-- Trang web cho người dùng nhập vào (ví dụ user), và sau đó sẽ hiển thị giá trị đó ở 1 trang khác
-- Hacker nhập vào đoạn code javascript, phổ biến nhất là <code>&lt;script&gt;alert(1);&lt;/script&gt;</code>
-- Khi người dùng khác, hay nguy hiểm hơn là admin đọc nội dung này, nó sẽ chạy đoạn code JavaScript hacker đưa vào
+Nhưng ở mức khó bình thường, nên vẫn học được. Cơ chế cơ bản như sau:</p>
+<ul>
+<li>Trang web cho người dùng nhập vào (ví dụ user), và sau đó sẽ hiển thị giá trị đó ở 1 trang khác</li>
+<li>Hacker nhập vào đoạn code javascript, phổ biến nhất là <code>&lt;script&gt;alert(1);&lt;/script&gt;</code></li>
+<li>Khi người dùng khác, hay nguy hiểm hơn là admin đọc nội dung này, nó sẽ chạy đoạn code JavaScript hacker đưa vào
 trên máy họ. Đoạn code JavaScript thì có thể làm đủ trò, đơn giản nhất là gửi cookie của người dùng tới một trang khác để đánh cắp cookie này. Hacker sau đó lấy cookie này đăng nhập vào tài khoản người dùng, chiếm quyền.
-Nguy hiểm nhất khi người bị hack là admin -&gt; xong, hết bài.</p>
+Nguy hiểm nhất khi người bị hack là admin -&gt; xong, hết bài.</li>
+</ul>
 <p>Dùng framework cũng không miễn nhiễm với XSS. Ví dụ trang chủ của Flask:</p>
 <p>Bug:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/index/&lt;msg&gt;&quot;</span><span class="p">)</span>
