@@ -8,7 +8,7 @@ Summary: 1 năm sau SNYK CTF 2021, team PyMi đã đứng top 10 Việt Nam trê
 
 Tháng 10 năm 2021, tình cờ tham gia SNYK CTF sau 1 tin quảng cáo dạo trên email, lập team sau vài ngày rồi cháy 24 giờ, [đứng thứ 42 bảng xếp hạng SNYK.io]({filename}/ctf.md).
 
-Kể từ ngày ấy, đều đặn mỗi 2 ngày cuối tuần, [team CTF PyMi](https://ctftime.org/team/175619) đi chiến tất cả các giải lớn nhỏ.
+Kể từ ngày ấy, đều đặn mỗi 2 ngày cuối tuần, [team CTF PyMi](https://ctftime.org/team/175619) đi chiến 36 giải lớn nhỏ.
 Từ newbie với ước mơ nhỏ bé "chỉ cần giải được 1 bài", giờ đã trở thành "thi thoảng mới giải được 1 bài, còn toàn giải được 2 bài trở lên".
 
 Chơi CTF xong có một cảm giác thôi: sợ.
@@ -272,9 +272,10 @@ Trong CTF kiểu Jeopady, web và pwn là hai mục có tính "hack" nhất.
 - 0CTF
 - 3DCTF
 - PPP
+- DEFCON
 
 hai giải đầu của Trung Quốc, các hacker Trung Quốc thì khét tiếng khỏi nói rồi.
-PPP top 1 ctftime.org nhiều năm.
+PPP top 1 ctftime.org nhiều năm. DEFCON lừng danh blackhat.
 
 Các giải này chỉ vào đọc đề rồi hì hục cả 2 ngày vẫn không ra gì. Sợ.
 ### Mục tiêu kế tiếp
@@ -286,15 +287,17 @@ Sang năm phấn đấu theo web và pwn cho nó thực chiến.
 - Biển học vô biên, bị điên thì học. Cứ ngỡ mình Python ngon ăn lắm, mà nhiều bài Pyjail (phá ra khỏi chương trình Python đã bị giới hạn các tính năng để chạy lệnh thoải mái - RCE) vẫn không giải được. Bước sang web hay binary thì
 ôi thôi cả một chân trời mới. Lại newbie lại từ đầu.
 - Kiểu [byte](https://n.pymi.vn/byt351.html) ngày ngày đi code, 10 năm không bao giờ dùng thì đi chơi CTF giải nào cũng dùng.
-- Khi đi code, sử dụng các công cụ phát hiện lỗi bảo mật trong code như semgrep, bandit, snyk, ...
+- Khi đi code, hãy sử dụng các công cụ phát hiện lỗi bảo mật trong code như semgrep, bandit, snyk, ...
 - Các công ty hãy cho nghỉ làm 1 ngày để các dev tự tập hack website của chính mình, training hand-on hack các lỗ hổng
 bảo mật hay gặp nhất, lập team CTF chơi mục web hàng tuần.
+- Team PyMi chơi ít giải đi, mà chất hơn.
+
 ### Bắt đầu từ đâu?
-Tài liệu vô biên, search là ra cả đống tham khảo:
+Tài liệu vô biên, search là ra cả đống, tham khảo:
 
 - [python cho hack với byte](https://n.pymi.vn/byt351.html)
 - [PyMi SNYK 2021 writeup]({filename}/ctf.md)
-- [repo của team CTF PyMi](https://n.pymi.vn/byt351.html)
+- [repo của team CTF PyMi](https://github.com/pymivn/ctf)
 
 ### Kết luận
 Cám ơn các anh em team CTF PyMi đã cùng chiến đấu suốt 1 năm trời, nhiều anh em
