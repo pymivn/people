@@ -20,7 +20,7 @@ Bài viết chỉ nói tới phần kỹ thuật liên quan đến hacking, còn
 sợ không kém là "social hacking" là nguyên nhân của hàng rổ vụ hack có thể tham khảo [trên in-tơ-nét](https://www.theverge.com/2022/9/16/23356959/uber-hack-social-engineering-threats).
 
 ![Ghost In The Wires](https://www.mitnicksecurity.com/hs-fs/hubfs/buy-ghost.png?width=448&name=buy-ghost.png)
-<center>[Ghost In The Wires - cuốn sách về 1 hacker social-engineer số 1 thế giới](https://www.mitnicksecurity.com/ghost-in-the-wires)</center>
+<center>[Ghost In The Wires - cuốn sách về 1 hacker social-engineering số 1 thế giới](https://www.mitnicksecurity.com/ghost-in-the-wires)</center>
 
 Có một câu nói khá khó nghe nhưng nổi tiếng:
 
@@ -217,7 +217,7 @@ Có mục mới "OSINT", kỹ năng "tìm kiếm thông tin" cũng không cần 
 giống như giải đố, tìm vị trí, tìm ai đó trên các trang mạng xã hội.
 Tất nhiên để làm được nhiều bài khó hơn thì cần biết code if/for.
 
-#### Chơi pwn (binary exploitation) hay rev (reverse engineer) phải biết đọc assembly như đọc tiếng mẹ đẻ
+#### Chơi pwn (binary exploitation) hay rev (reverse engineering) phải biết đọc assembly như đọc tiếng mẹ đẻ
 Tool rất quan trọng, và có nhiều tool rất xịn.
 Các cầu thủ đá bóng đi toàn giày đinh loại cực xịn, các runner đi Nike airflow màu hồng phá kỷ lục thế giới,
 các game thủ dùng bàn phím độ trễ siêu thấp, chuột có dăm ba nút phụ để combat cho nhanh, chả nghề nào chân trần phi vào quái thú để thất bại rồi ra nghĩa địa cả (trở về là còn tốt).
