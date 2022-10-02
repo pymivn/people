@@ -248,7 +248,7 @@ dùng pickle khi get cookie, [issue mở từ 2016, vẫn chưa fix](https://git
 #### Lịch chơi dày đặc
 Bận rộn đi làm cả tuần, cuối tuần 2 ngày nghỉ lại chiến, tuần nào cũng thế, chưa
 kịp ngấm giải này, học các kỹ thuật mới, thì đã tới giải khác. Chơi CTF có lẽ
-là lý do blog này cả năm nay không có bài nào :p.
+là lý do blog này cả năm nay không có bài nào, không ai donate không phải là lý do =)
 
 #### writeup delay
 Các bài viết hướng dẫn (gọi là writeup) sau giải bị delay 1 tới vài tuần, do ban tổ chức thường
