@@ -222,7 +222,7 @@ Tool rất quan trọng, và có nhiều tool rất xịn.
 Các cầu thủ đá bóng đi toàn giày đinh loại cực xịn, các runner đi Nike airflow màu hồng phá kỷ lục thế giới,
 các game thủ dùng bàn phím độ trễ siêu thấp, chuột có dăm ba nút phụ để combat cho nhanh, chả nghề nào chân trần phi vào quái thú để thất bại rồi ra nghĩa địa cả (trở về là còn tốt).
 
-Các pon thủ, rev thủ toàn dùng [IDA Pro](https://hex-rays.com/ida-pro/) bản trả tiền, [Ninja](https://binary.ninja/) hàng xịn, chứ hàng free như Ghidra hay radare2 nhiều khi không xịn bằng.
+Các pwn thủ, rev thủ toàn dùng [IDA Pro](https://hex-rays.com/ida-pro/) bản trả tiền, [Ninja](https://binary.ninja/) hàng xịn, hàng free như Ghidra hay radare2 nhiều khi không xịn bằng, chứ đừng nói tới dumb code Assembly rồi đọc chay.
 
 #### Chơi crypto phải giỏi toán
 Giỏi toán (mà phải đúng loại toán) đúng là có lợi, có thể giải nhiều bài khó,
