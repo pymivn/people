@@ -116,7 +116,7 @@ render_template_string("<div>{{ name }}</div>", name=request.args.get("name"))
 XSS thực sự khó hơn 2 cái lỗi trên đối với lập trình viên Python, bởi nó dùng JavaScript.
 Nhưng ở mức khó bình thường, nên vẫn học được. Cơ chế cơ bản như sau:
 
-- Trang web cho người dùng nhập vào (ví dụ user), và sau đó sẽ hiển thị giá trị đó ở 1 trang khác
+- Trang web cho người dùng nhập vào (ví dụ username, info), và sau đó sẽ hiển thị giá trị đó ở 1 trang khác
 - Hacker nhập vào đoạn code javascript, phổ biến nhất là `<script>alert(1);</script>`
 - Khi người dùng khác, hay nguy hiểm hơn là admin đọc nội dung này, nó sẽ chạy đoạn code JavaScript hacker đưa vào
 trên máy họ. Đoạn code JavaScript thì có thể làm đủ trò, đơn giản nhất là gửi cookie của người dùng tới một trang khác để đánh cắp cookie này. Hacker sau đó lấy cookie này đăng nhập vào tài khoản người dùng, chiếm quyền.
