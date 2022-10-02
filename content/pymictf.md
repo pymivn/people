@@ -55,7 +55,7 @@ Lỗi này của ai để đi đổ lỗi? dù có hiểu đủ các lỗi bảo
 nhất, thì một cái bug "nhỏ" trong thư viện quá phổ biến này cũng đủ san bằng một
 công ty. (PS: các hacker thường không muốn "san bằng công ty" trừ khi quá ghét, mà muốn bí mật nằm vùng trong đó rồi hưởng lợi thì hơn).
 
-#### SQLi, XSS, SSTI, CSRF, JWT
+#### Các lỗi bảo mật phổ biến nhất: SQLi, XSS, SSTI, CSRF
 Điều đáng sợ đầu tiên là hầu hết các lỗi bảo mật này đều được viết tắt, với
 những chữ S, những chữ X, khiến cho chưa học thuộc từ khóa thì nhìn tên cũng đã sợ.
 
@@ -217,12 +217,13 @@ Có mục mới "OSINT", kỹ năng "tìm kiếm thông tin" cũng không cần 
 giống như giải đố, tìm vị trí, tìm ai đó trên các trang mạng xã hội.
 Tất nhiên để làm được nhiều bài khó hơn thì cần biết code if/for.
 
-#### Chơi pwn (binary exploitation) hay rev (reverse engineer) phải biết đọc assembly như tiếng Việt
+#### Chơi pwn (binary exploitation) hay rev (reverse engineer) phải biết đọc assembly như đọc tiếng mẹ đẻ
 Tool rất quan trọng, và có nhiều tool rất xịn.
 Các cầu thủ đá bóng đi toàn giày đinh loại cực xịn, các runner đi Nike airflow màu hồng phá kỷ lục thế giới,
 các game thủ dùng bàn phím độ trễ siêu thấp, chuột có dăm ba nút phụ để combat cho nhanh, chả nghề nào chân trần phi vào quái thú để thất bại rồi ra nghĩa địa cả (trở về là còn tốt).
 
 Các pon thủ, rev thủ toàn dùng [IDA Pro](https://hex-rays.com/ida-pro/) bản trả tiền, [Ninja](https://binary.ninja/) hàng xịn, chứ hàng free như Ghidra hay radare2 nhiều khi không xịn bằng.
+
 #### Chơi crypto phải giỏi toán
 Giỏi toán (mà phải đúng loại toán) đúng là có lợi, có thể giải nhiều bài khó,
 nhưng crypto cũng có nhiều tool sẵn như [RSACTFtool](https://github.com/RsaCtfTool/RsaCtfTool), nhét đề vào viết thêm tí code là giải được cả mớ. Nhớ luyện hết theo [CryptoHack](https://cryptohack.org/challenges/rsa/), đọc cả blog vì có mấy lần đề KHÓ ra trúng [bài blog trên cryptohack](https://blog.cryptohack.org/twitter-secrets).
