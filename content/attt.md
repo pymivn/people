@@ -5,9 +5,9 @@ Tags: security, 1337, attt, ctf, hacking
 Slug: attt
 Authors: minix
 
-Nhân ngày cuối tuần không đi hack do quên reg giải CTF nên ngồi tổng hợp lại góc nhìn 2 năm theo đuổi ngành "phá làng phá xóm để giúp cho làng xóm không bị đứa khác phá". Dù chưa có thành tựu gì nhiều nhưng chiến đấu cùng các anh em PymiCTF giúp mình có dịp tìm được nhiều thứ hay ho. Sau đây là tóm tắt một số skill kỹ thuật mà một người trong ngành an toàn thông tin nên có:
+Nhân ngày cuối tuần không đi hack do quên reg giải CTF nên ngồi tổng hợp lại góc nhìn 2 năm theo đuổi ngành "phá làng phá xóm để giúp cho làng xóm không bị đứa khác phá". Dù chưa có thành tựu gì nhiều nhưng chiến đấu cùng các anh em PymiCTF giúp mình có dịp tìm được nhiều thứ hay ho. Sau đây là tóm tắt một số skill kỹ thuật mà một người trong ngành an toàn thông tin nên có.
 
-## Tóm tắt các kỹ năng trong ngành an toàn thông tin
+## Các kỹ năng trong ngành an toàn thông tin
 
 Ngành an toàn thông tin được hiểu là ngành thực hiện các hình thức ngăn chặn, phát hiện, phòng ngừa việc truy cập, tiết lộ, chia sẻ, phát tán và sử dụng thông tin trái phép khi chưa được sự cho phép. Trong đó, an ninh mạng là một phần của ngành an toàn thông tin nhằm bảo vệ các thông tin trên hệ thống mạng khỏi sự xâm phạm, sử dụng trái phép, bảo vệ tính bí mật, toàn vẹn và khả dụng của thông tin.
 
@@ -19,6 +19,7 @@ Ngành an toàn thông tin là một ngành rộng với đa dạng các lĩnh v
 - Malware Analysis: Kỹ năng phân tích cách hoạt động của các loại phần mềm độc hại, tìm kiếm các tạo tác mà các phần mềm này tạo ra trên hệ thống từ đó hiểu mục đích, chiến thuật mà đối tượng tấn công sử dụng khi xâm nhập vào hệ thống thông tin.
 
 Ngoài các nhóm kỹ năng trên, sẽ có các nhóm kỹ năng chuyên sâu và nâng cao hơn để hỗ trợ như:
+
 - Binary Exploit: Khai thác lỗ hổng bảo mật trong các tập tin thực thi, thư viện, yêu cầu thực hiện phải có kiến thức chuyên sâu về hoạt động của phần cứng như CPU, thanh ghi, cách phân bổ bộ nhớ trong hệ điều hành, kiến trúc và cách hoạt động ở tầng nhân của từng hệ điều hành riêng biệt như Windows và Linux, biết về ngôn ngữ assembly
 - Web Exploit: Khai thác lỗ hổng bảo mật trong ứng dụng web, yêu cầu người thực hiện phải có kiến thức về các ngôn ngữ lập trình ứng dụng web như PHP, Java, .NET, Python... và tận dụng các kiến thức này để phát hiện và khai thác thành công các lỗ hổng bảo mật có thể dùng để xâm nhập, trích xuất thông tin hoặc làm gián đoạn hệ thống thông qua các ứng dụng web này
 - Reverse Engineering: Kỹ thuật dịch ngược sử dụng để phân tích hoạt động của các phần mềm, hiểu được nguyên lý hoạt động của chúng từ đó có thể thực hiện thay đổi nhằm chuyển đổi chức năng ban đầu của phần mềm.
