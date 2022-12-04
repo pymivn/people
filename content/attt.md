@@ -1,5 +1,5 @@
 Title: Làm an toàn thông tin cần học những kỹ năng gì?
-Date: 2022-04-12
+Date: 2022-12-04
 Category: Trang chủ
 Tags: security, 1337, attt, ctf, hacking
 Slug: attt
