@@ -1,4 +1,4 @@
-Title: Làm an toàn thông tin cần học những kỹ năng gì?
+Title: Làm an toàn thông tin cần học những gì?
 Date: 2022-12-04
 Category: Trang chủ
 Tags: security, 1337, attt, ctf, hacking
