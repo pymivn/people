@@ -28,6 +28,7 @@ Ngoài các nhóm kỹ năng trên, sẽ có các nhóm kỹ năng chuyên sâu 
 ## Học các kỹ năng này như thế nào?
 
 Đối với một người chưa có kỹ năng gì về công nghệ thông tin thì trước tiên cần trang bị 3 thứ trước khi bắt đầu:
+
 - Lập trình (Học Python ở Pymi giúp bạn tiết kiệm rất nhiều thời gian :v)
 - Mạng căn bản (Hiểu mạng hoạt động như thế nào, VD: hiểu tại sao mạng chậm? do cá mập cắn hay do cái khác...)
 - Kiến trúc máy tính và hệ điều hành (Thực ra cũng không cần biết nếu đi một số mảng như web security, nhưng biết thì sẽ biết cách tự tạo một mã khai thác sau này)
