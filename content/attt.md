@@ -1,13 +1,13 @@
 Title: Làm an toàn thông tin cần học những kỹ năng gì?
 Date: 2022-04-12
 Category: Trang chủ
-Tags: hack, 1337, attt
+Tags: security, 1337, attt, ctf, hacking
 Slug: attt
 Authors: minix
 
 Nhân ngày cuối tuần không đi hack do quên reg giải CTF nên ngồi tổng hợp lại góc nhìn 2 năm theo đuổi ngành "phá làng phá xóm để giúp cho làng xóm không bị đứa khác phá". Dù chưa có thành tựu gì nhiều nhưng chiến đấu cùng các anh em PymiCTF giúp mình có dịp tìm được nhiều thứ hay ho. Sau đây là tóm tắt một số skill kỹ thuật mà một người trong ngành an toàn thông tin nên có:
 
-#    Tóm tắt các kỹ năng trong ngành an toàn thông tin
+## Tóm tắt các kỹ năng trong ngành an toàn thông tin
 
 Ngành an toàn thông tin được hiểu là ngành thực hiện các hình thức ngăn chặn, phát hiện, phòng ngừa việc truy cập, tiết lộ, chia sẻ, phát tán và sử dụng thông tin trái phép khi chưa được sự cho phép. Trong đó, an ninh mạng là một phần của ngành an toàn thông tin nhằm bảo vệ các thông tin trên hệ thống mạng khỏi sự xâm phạm, sử dụng trái phép, bảo vệ tính bí mật, toàn vẹn và khả dụng của thông tin.
 
@@ -38,12 +38,10 @@ Sau khi đã có số kiến thức trên thì một số cách sau sẽ giúp n
 - Tái hiện security bug sau đó tự khai thác (tự lập trình lại ứng dụng có tồn tại lỗi để phân tích, có thể sử dụng nguồn sau: [Shiftleft](https://www.shiftleft.io/community-and-training/vulnerability-fix-database/home/))
 - Thi chứng chỉ bảo mật như OSCP (nếu được tài trợ chứ học phí rất đắt)
 
-# Kết luận
+## Kết luận
 
 Ngành an toàn thông tin rất rộng và phức tạp, một người có thể master một trong các kỹ năng trên là đã kinh khủng lắm rồi. Nhiều anh em hacker phải bỏ thời gian, công sức (không đi chơi với người yêu cuối tuần, thức xuyên đêm hacking) để có thể theo ngành. Ngoài ra nếu không vững ý chí thì còn có thể gia nhập Juventus nữa.
 
-Cuối cùng, hi vọng bài này được biên tập duyệt.
-
 H4CK F0r FUN 8U7 P3r51573NC3
 
-.Hết
+Hết.
