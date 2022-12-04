@@ -16,16 +16,18 @@
 - Open-source Intelligence: Tình báo nguồn mở là kỹ năng tìm kiếm thông tin trên mạng thông qua các công cụ mở như mạng xã hội, ứng dụng tìm kiếm để thu được thông tin về đối tượng dựa trên nhưng thông tin ban đầu được cung cấp.
 - Cryptography: Kỹ năng triển khai thực hiện các thuật toán và phương pháp được sử dụng để mã hóa thông tin. Qua đó có thể giữ tính bí mật, toàn vẹn của thông tin trong qua trình truyền tải hoặc dùng để giải mã những thông tin được che giấu.&lt;/p&gt;
 &lt;h2&gt;Học các kỹ năng này như thế nào?&lt;/h2&gt;
-&lt;p&gt;Đối với một người chưa có kỹ năng gì về công nghệ thông tin thì trước tiên cần trang bị 3 thứ trước khi bắt đầu:
-- Lập trình (Học Python ở Pymi giúp bạn tiết kiệm rất nhiều thời gian :v)
-- Mạng căn bản (Hiểu mạng hoạt động như thế nào, VD: hiểu tại sao mạng chậm? do cá mập cắn hay do cái khác...)
-- Kiến trúc máy tính và hệ điều hành (Thực ra cũng không cần biết nếu đi một số mảng như web security, nhưng biết thì sẽ biết cách tự tạo một mã khai thác sau này)
-Sau khi đã có số kiến thức trên thì một số cách sau sẽ giúp nhanh tiến bộ:
-- Chơi CTF (Có thể đọc bài sau &lt;a href="https://pp.pymi.vn/article/pymictf/"&gt;Ký sự một năm cướp giật (capture the flag)&lt;/a&gt; của anh hvnsweeting)
-- Youtube, Twitch (Một số idol chia sẻ kiến thức miễn phí cho cộng đồng như nahamsec, ippsec...)
-- Theo dõi các security researchers (các chuyên gia "thật sự" trong ngành như angelboy, kienman0war...)
-- Tái hiện security bug sau đó tự khai thác (tự lập trình lại ứng dụng có tồn tại lỗi để phân tích, có thể sử dụng nguồn sau: &lt;a href="https://www.shiftleft.io/community-and-training/vulnerability-fix-database/home/"&gt;Shiftleft&lt;/a&gt;)
-- Thi chứng chỉ bảo mật như OSCP (nếu được tài trợ chứ học phí rất đắt)&lt;/p&gt;
+&lt;p&gt;Đối với một người chưa có kỹ năng gì về công nghệ thông tin thì trước tiên cần trang bị 3 thứ trước khi bắt đầu:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Lập trình (Học Python ở Pymi giúp bạn tiết kiệm rất nhiều thời gian :v)&lt;/li&gt;
+&lt;li&gt;Mạng căn bản (Hiểu mạng hoạt động như thế nào, VD: hiểu tại sao mạng chậm? do cá mập cắn hay do cái khác...)&lt;/li&gt;
+&lt;li&gt;Kiến trúc máy tính và hệ điều hành (Thực ra cũng không cần biết nếu đi một số mảng như web security, nhưng biết thì sẽ biết cách tự tạo một mã khai thác sau này)
+Sau khi đã có số kiến thức trên thì một số cách sau sẽ giúp nhanh tiến bộ:&lt;/li&gt;
+&lt;li&gt;Chơi CTF (Có thể đọc bài sau &lt;a href="https://pp.pymi.vn/article/pymictf/"&gt;Ký sự một năm cướp giật (capture the flag)&lt;/a&gt; của anh hvnsweeting)&lt;/li&gt;
+&lt;li&gt;Youtube, Twitch (Một số idol chia sẻ kiến thức miễn phí cho cộng đồng như nahamsec, ippsec...)&lt;/li&gt;
+&lt;li&gt;Theo dõi các security researchers (các chuyên gia "thật sự" trong ngành như angelboy, kienman0war...)&lt;/li&gt;
+&lt;li&gt;Tái hiện security bug sau đó tự khai thác (tự lập trình lại ứng dụng có tồn tại lỗi để phân tích, có thể sử dụng nguồn sau: &lt;a href="https://www.shiftleft.io/community-and-training/vulnerability-fix-database/home/"&gt;Shiftleft&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Thi chứng chỉ bảo mật như OSCP (nếu được tài trợ chứ học phí rất đắt)&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2&gt;Kết luận&lt;/h2&gt;
 &lt;p&gt;Ngành an toàn thông tin rất rộng và phức tạp, một người có thể master một trong các kỹ năng trên là đã kinh khủng lắm rồi. Nhiều anh em hacker phải bỏ thời gian, công sức (không đi chơi với người yêu cuối tuần, thức xuyên đêm hacking) để có thể theo ngành. Ngoài ra nếu không vững ý chí thì còn có thể gia nhập Juventus nữa.&lt;/p&gt;
 &lt;p&gt;H4CK F0r FUN 8U7 P3r51573NC3&lt;/p&gt;
