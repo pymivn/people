@@ -95,7 +95,7 @@ muốn không bị hack, phải thực hiện nhiệm vụ training của mình,
 Lỗi này của ai để đi đổ lỗi? dù có hiểu đủ các lỗi bảo mật phổ biến
 nhất, thì một cái bug "nhỏ" trong thư viện quá phổ biến này cũng đủ san bằng một
 công ty. (PS: các hacker thường không muốn "san bằng công ty" trừ khi quá ghét, mà muốn bí mật nằm vùng trong đó rồi hưởng lợi thì hơn).</p>
-<h4>Các lỗi bảo mật phổ biến nhất: SQLi, XSS, SSTI, CSRF</h4>
+<h4>Các lỗi bảo mật phổ biến nhất: SQLi, XSS, SSTI, Path Traversal, CSRF</h4>
 <p>Điều đáng sợ đầu tiên là hầu hết các lỗi bảo mật này đều được viết tắt, với
 những chữ S, những chữ X, khiến cho chưa học thuộc từ khóa thì nhìn tên cũng đã sợ.</p>
 <h5>SQLi - SQL injection</h5>
@@ -207,14 +207,14 @@ lệnh vào để chạy</p>
 kết quả, chưa kịp dùng não.
 Nghề hack đã có từ ngày có máy tính, nên việc hack cũng có sẵn cả rổ tool để dùng,
 vậy nên nhiều bài không cần phải code.
-Có mục mới "OSINT", kỹ năng "tìm kiếm thông tin" cũng không cần dùng tới code,
+Có mục "OSINT", kỹ năng "tìm kiếm thông tin" cũng không cần dùng tới code,
 giống như giải đố, tìm vị trí, tìm ai đó trên các trang mạng xã hội.
 Tất nhiên để làm được nhiều bài khó hơn thì cần biết code if/for.</p>
 <h4>Chơi pwn (binary exploitation) hay rev (reverse engineering) phải biết đọc assembly như đọc tiếng mẹ đẻ</h4>
 <p>Tool rất quan trọng, và có nhiều tool rất xịn.
 Các cầu thủ đá bóng đi toàn giày đinh loại cực xịn, các runner đi Nike airflow màu hồng phá kỷ lục thế giới,
 các game thủ dùng bàn phím độ trễ siêu thấp, chuột có dăm ba nút phụ để combat cho nhanh, chả nghề nào chân trần phi vào quái thú để thất bại rồi ra nghĩa địa cả (trở về là còn tốt).</p>
-<p>Các pwn thủ, rev thủ toàn dùng <a href="https://hex-rays.com/ida-pro/">IDA Pro</a> bản trả tiền, <a href="https://binary.ninja/">Ninja</a> hàng xịn, bấm một nút là biến asm thành code C ngay (ahuhu vẫn phải đọc code C), hàng free như Ghidra hay radare2 nhiều khi không xịn bằng, chứ đừng nói tới dump code Assembly rồi đọc chay.</p>
+<p>Các pwn thủ, rev thủ toàn dùng <a href="https://hex-rays.com/ida-pro/">IDA Pro</a> bản trả tiền, <a href="https://binary.ninja/">Ninja</a> hàng xịn, bấm một nút là biến asm thành code C ngay (ahuhu vẫn phải đọc code C), hàng free như Ghidra hay radare2 nhiều khi không xịn bằng, chứ đừng nói tới dump code assembly rồi đọc chay.</p>
 <h4>Chơi crypto phải giỏi toán</h4>
 <p>Giỏi toán (mà phải đúng loại toán) đúng là có lợi, có thể giải nhiều bài khó,
 nhưng crypto cũng có nhiều tool sẵn như <a href="https://github.com/RsaCtfTool/RsaCtfTool">RSACTFtool</a>, nhét đề vào viết thêm tí code là giải được cả mớ. Nhớ luyện hết theo <a href="https://cryptohack.org/challenges/rsa/">CryptoHack</a>, đọc cả blog vì có mấy lần đề KHÓ ra trúng <a href="https://blog.cryptohack.org/twitter-secrets">bài blog trên cryptohack</a>.</p>
