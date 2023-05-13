@@ -1,4 +1,4 @@
-Title: refactor 10 dòng code thành 90 dòng
+Title: Refactor 10 dòng code thành 90 dòng
 Date: 2023-05-09
 Category: Trang chủ
 Tags: python, refactor, software engineering, test, rust
