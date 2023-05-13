@@ -45,8 +45,6 @@ Refactor để cải thiện, nâng cao
 - Tính dễ mở rộng/thay đổi: Extensibility.
 - Tốc độ chạy: Performance.
 
-Chú ý một số lĩnh vực đặc thù như out sourcing - chạy đua deadline, giao sản phẩm, thu tiền rồi thôi, thì cả 3 thứ trên có sự ưu tiên không hề cao, vậy nên cũng có thể không có refactor gì hết.
-
 ### Ví dụ refactor 10 dòng code
 Viết 1 chương trình giống như câu lệnh grep trên UNIX, tức nhận 2 đầu vào trên dòng lệnh là "từ khóa tìm kiếm" và tên file, in ra màn hình các dòng chứa từ khóa ấy.
 Ví dụ tìm từ `root` trong file `/etc/passwd` trên Ubuntu, MacOS,...
@@ -89,7 +87,7 @@ Tùy vào:
 - chạy 1s hay chạy 1 giờ mới xong
 - team 1 người hay 10 người code cùng
 
-Trong ví dụ cụ thể này, đoạn code trên hoàn toàn không cần refactor. Nhưng đây là bài viết về refactor, hãy xem tác giả sẽ biến đoạn code này thành 50 ra sao.
+Trong ví dụ cụ thể này, đoạn code trên hoàn toàn không cần refactor. Nhưng đây là bài viết về refactor, hãy xem tác giả sẽ biến đoạn code này thành 90 dòng ra sao.
 
 #### 4+1 vấn đề của đoạn code
 
