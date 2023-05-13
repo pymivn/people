@@ -1,5 +1,323 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2022-12-04T00:00:00+07:00</updated><entry><title>Làm an toàn thông tin cần học những gì?</title><link href="http://pp.pymi.vn/article/attt/" rel="alternate"></link><published>2022-12-04T00:00:00+07:00</published><updated>2022-12-04T00:00:00+07:00</updated><author><name>minix</name></author><id>tag:pp.pymi.vn,2022-12-04:/article/attt/</id><summary type="html">&lt;p&gt;Nhân ngày cuối tuần không đi hack do quên reg giải CTF nên ngồi tổng hợp lại góc nhìn 2 năm theo đuổi ngành "phá làng phá xóm để giúp cho làng xóm không bị đứa khác phá". Dù chưa có thành tựu gì nhiều nhưng chiến đấu cùng các …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Nhân ngày cuối tuần không đi hack do quên reg giải CTF nên ngồi tổng hợp lại góc nhìn 2 năm theo đuổi ngành "phá làng phá xóm để giúp cho làng xóm không bị đứa khác phá". Dù chưa có thành tựu gì nhiều nhưng chiến đấu cùng các anh em PymiCTF giúp mình có dịp tìm được nhiều thứ hay ho. Sau đây là tóm tắt một số skill kỹ thuật mà một người trong ngành an toàn thông tin nên có.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2023-05-09T00:00:00+07:00</updated><entry><title>Refactor 10 dòng code thành 90 dòng</title><link href="http://pp.pymi.vn/article/refactor/" rel="alternate"></link><published>2023-05-09T00:00:00+07:00</published><updated>2023-05-09T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2023-05-09:/article/refactor/</id><summary type="html">&lt;p&gt;refactor không phải để code ngắn đi&lt;/p&gt;</summary><content type="html">&lt;p&gt;Refactor là một phần công việc không thể thiếu của lập trình viên, sau khi code xong chạy được mà "chưa đẹp", lập trình viên sẽ chỉnh sửa đoạn code cho "đẹp" hơn, cũng có thể nhanh hơn, cũng có thể ngắn hơn, cũng có thể dễ hiểu hơn...&lt;/p&gt;
+&lt;p&gt;Vấn đề với refactor: là một khái niệm chung chung, không có ví dụ cụ thể, khó học/luyện tập để trở thành 1 kỹ năng. Best-practice của ngôn ngữ này lại có thể là điều không ai làm ở ngôn ngữ khác. Sách vở viết về refactor cũng chỉ có 1 quyển được cộng đồng mạng nhắc tới ?!!! &lt;a href="https://martinfowler.com/books/refactoring.html"&gt;Refactoring - Improving the Design of Existing Code by Martin Fowler, with Kent Beck, 2018&lt;/a&gt;.  PyMi cũng từng có 1 bài viết giới thiệu việc &lt;a href="http://pp.pymi.vn/article/repl/"&gt;refactoring code kèm với IPython&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Rust logo" src="https://www.rust-lang.org/static/images/rust-logo-blk.svg"&gt;&lt;/p&gt;
+&lt;p&gt;Bài viết này dựa trên chapter 12 trong cuốn &lt;a href="https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html"&gt;The Rust Programming Language&lt;/a&gt; (còn hay gọi là The book), kèm phóng tác, chuyển dịch sang Python, thêm "bình phẩm" và nhiều nhiều câu hỏi. Sử dụng ví dụ từ sách Rust khiến người đọc có thể tin cậy trình độ của tác giả... Steve Klabnik, Carol Nichols - những cái tên nổi tiếng bậc nhất trong thế giới Rust.&lt;/p&gt;
+&lt;h3&gt;Refactoring là gì&lt;/h3&gt;
+&lt;p&gt;Trong tiếng Anh, refactoring có nghĩa:&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://dictionary.cambridge.org/dictionary/english/refactoring"&gt;cambridge&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;refactoring isn’t in the Cambridge Dictionary yet. You can help!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://www.dictionary.com/misspelling?term=refactoring"&gt;dictionary.com&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;No results found for refactoring&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;theo từ điển tiếng Anh, từ &lt;strong&gt;refactoring&lt;/strong&gt; không tồn tại.&lt;/p&gt;
+&lt;p&gt;Theo &lt;a href="https://en.wikipedia.org/wiki/Code_refactoring"&gt;Wikipedia&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In computer programming and software design, code refactoring is the process of restructuring existing computer code—changing the factoring—without changing its external behavior&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;là việc chỉnh sửa lại code đã tồn tại mà không thay đổi tính năng của code.&lt;/p&gt;
+&lt;p&gt;Theo quảng cáo của cuốn sách về &lt;a href="https://martinfowler.com/books/refactoring.html"&gt;Refactoring&lt;/a&gt; nối tiếng nhất:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Refactoring is a controlled technique for improving the design of an existing code base. Its essence is applying a series of small behavior-preserving transformations, each of which "too small to be worth doing". However the cumulative effect of each of these transformations is quite significant. By doing them in small steps you reduce the risk of introducing errors. You also avoid having the system broken while you are carrying out the restructuring - which allows you to gradually refactor a system over an extended period of time.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Ở đây dùng &lt;strong&gt;refactoring&lt;/strong&gt; như 1 danh từ, &lt;strong&gt;refactor&lt;/strong&gt; như 1 động từ.&lt;/p&gt;
+&lt;h3&gt;Refactoring để làm gì&lt;/h3&gt;
+&lt;p&gt;Refactor để cải thiện, nâng cao&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Tính dễ bảo trì, fix bug: Maintainability.&lt;/li&gt;
+&lt;li&gt;Tính dễ mở rộng/thay đổi: Extensibility.&lt;/li&gt;
+&lt;li&gt;Tốc độ chạy: Performance.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Chú ý một số lĩnh vực đặc thù như out sourcing - chạy đua deadline, giao sản phẩm, thu tiền rồi thôi, thì cả 3 thứ trên có sự ưu tiên không hề cao, vậy nên cũng có thể không có refactor gì hết.&lt;/p&gt;
+&lt;h3&gt;Ví dụ refactor 10 dòng code&lt;/h3&gt;
+&lt;p&gt;Viết 1 chương trình giống như câu lệnh grep trên UNIX, tức nhận 2 đầu vào trên dòng lệnh là "từ khóa tìm kiếm" và tên file, in ra màn hình các dòng chứa từ khóa ấy.
+Ví dụ tìm từ &lt;code&gt;root&lt;/code&gt; trong file &lt;code&gt;/etc/passwd&lt;/code&gt; trên Ubuntu, MacOS,...&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ grep root /etc/passwd
+root:x:0:0::/root:/bin/bash
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Code Python 10 dòng, không tính ngoài function main, dịch trực tiếp từ &lt;a href="https://doc.rust-lang.org/book/ch12-00-an-io-project.html"&gt;ví dụ Rust&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# $ python3 grep.py root /etc/passwd&lt;/span&gt;
+&lt;span class="c1"&gt;# root:x:0:0::/root:/bin/bash&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;query&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="n"&gt;file_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file_path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;contents&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;IOError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Should have been able to read the file&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;contents&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;splitlines&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;query&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Code này hoàn toàn ổn: sạch đẹp, đúng chuẩn PEP8, và quan trọng nhất: chạy ra đúng kết quả.  Vậy có cần refactor không?  Tùy.
+Đó là chỗ khó khi nói về refactoring, không có gì rõ ràng, chính xác, mọi thứ đều "tùy".
+Tùy vào:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;chương trình nhỏ hay to, 10 dòng hay 10000 dòng&lt;/li&gt;
+&lt;li&gt;chạy 1s hay chạy 1 giờ mới xong&lt;/li&gt;
+&lt;li&gt;team 1 người hay 10 người code cùng&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Trong ví dụ cụ thể này, đoạn code trên hoàn toàn không cần refactor. Nhưng đây là bài viết về refactor, hãy xem tác giả sẽ biến đoạn code này thành 50 ra sao.&lt;/p&gt;
+&lt;h4&gt;4+1 vấn đề của đoạn code&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Function &lt;code&gt;main&lt;/code&gt; thực hiện 2 công việc khác nhau. Khi chương trình lớn lên, &lt;code&gt;main&lt;/code&gt; sẽ thực hiện thêm nhiều công việc nữa khiến cho nó khó hiểu, khó test, khó thay đổi 1 công việc mà không ảnh hưởng đến các công việc khác. Không test được: cách duy nhất để biết từng đoạn code trong main chạy đúng hay sai là chạy thử nó, với nhiều đầu vào khác nhau và dùng mắt kiểm tra kết quả.  Nên tốt nhất là tách ra thành mỗi function thực hiện duy nhất 1 công việc + có thể viết unittest.&lt;/li&gt;
+&lt;li&gt;Biến &lt;code&gt;query&lt;/code&gt; và &lt;code&gt;file_path&lt;/code&gt; là "configuration" của chương trình, biến &lt;code&gt;contents&lt;/code&gt; dùng để thực hiện logic. Khi &lt;code&gt;main&lt;/code&gt; dài hơn, sẽ cần nhiều biến hơn, khi có nhiều biến hơn, sẽ khó để nhớ/theo dõi mục đích của từng biến. Nên tốt nhất là gộp các biến configuration vào 1 struct (class) để khiến mục đích của chúng rõ ràng.&lt;/li&gt;
+&lt;li&gt;Dù code đã in ra thông báo khi có exception lúc đọc file, nhưng có hơn 1 lý do có xảy ra exception khi đọc file: file không tồn tại, không có quyền để đọc file... In ra nội dung "không mở được file" không hề có ích cho người dùng biết vấn đề thực sự là gì.&lt;/li&gt;
+&lt;li&gt;Khi người dùng không đưa vào đủ 2 đầu vào trên dòng lệnh, sẽ xảy ra IndexError, exception này không giải thích rõ ràng tới người dùng chuyện gì xảy ra. Tốt nhất là đặt &lt;strong&gt;tất cả&lt;/strong&gt; code xử lý exception vào chung 1 chỗ để sau này chỉ cần xem 1 chỗ nếu logic xử lý exception cần thay đổi, đồng thời giúp hiển thị nội dung lỗi rõ ràng dễ hiểu hơn tới người dùng.&lt;/li&gt;
+&lt;li&gt;Đoạn này không có trong bản Rust: việc đọc toàn bộ nội dung file vào RAM với &lt;code&gt;f.read()&lt;/code&gt; là một "code-smell", khiến đoạn code này không xử lý được file có kích thước lớn hơn RAM.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Thực hiện refactoring&lt;/h4&gt;
+&lt;p&gt;Function &lt;code&gt;main&lt;/code&gt; chỉ nên giới hạn tính năng:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;gọi function xử lý các đầu vào từ dòng lệnh&lt;/li&gt;
+&lt;li&gt;setup các configuration (cấu hình) khác&lt;/li&gt;
+&lt;li&gt;gọi &lt;code&gt;run&lt;/code&gt; function trong file khác, ví dụ lib.py&lt;/li&gt;
+&lt;li&gt;xử lý exception có thể xảy ra&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;Tách code xử lý đầu vào&lt;/h5&gt;
+&lt;p&gt;Viết function &lt;code&gt;parse_config&lt;/code&gt; nhận các argument, trả về:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;tuple các config: &lt;code&gt;(query, content)&lt;/code&gt;, nhưng function &lt;code&gt;main&lt;/code&gt; gọi &lt;code&gt;parse_config&lt;/code&gt; sẽ lại unpacking tuple này thành các biến khác nhau. Đây là dấu hiệu của việc sử dụng chưa đúng "abstraction". Việc trả về tuple cũng không "gắn" được &lt;code&gt;query&lt;/code&gt; và &lt;code&gt;file_path&lt;/code&gt; vào với config. Vậy nên&lt;/li&gt;
+&lt;li&gt;trả về 1 dictionary hoặc 1 Config object (Config class instance). Ở đây sẽ trả về 1 Config object cho giống ví dụ trong Rust.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Config&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;file_path&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;query&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;file_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;file_path&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;parse_config&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Config&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;query&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="n"&gt;file_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;Config&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;file_path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;config&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parse_config&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;file_path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;contents&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;IOError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Should have been able to read the file&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;contents&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;splitlines&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h5&gt;setup các configuration (cấu hình) khác&lt;/h5&gt;
+&lt;p&gt;Giả sử chương trình sẽ nhận thêm biến environment (môi trường) &lt;code&gt;IGNORE_CASE&lt;/code&gt;, nếu được set, chương trình sẽ không phân biệt chữ hoa chữ thường khi tìm kiếm. Đây là ví dụ về chương trình có thể nhận config từ nhiều nguồn khác nhau, ta chỉ cần thay đổi class &lt;code&gt;Config&lt;/code&gt; và &lt;code&gt;parse_config&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Config&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;file_path&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ignore_case&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;query&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;file_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;file_path&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ignore_case&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ignore_case&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;parse_config&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Config&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;query&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="n"&gt;file_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="n"&gt;ignore_case&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;IGNORE_CASE&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;Config&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;file_path&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ignore_case&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h5&gt;gọi run function trong file khác, ví dụ lib.py&lt;/h5&gt;
+&lt;p&gt;Tách toàn bộ logic của chương trình, ngoại trừ phần xử lý exception ra 1 file khác tên &lt;code&gt;lib.py&lt;/code&gt; và đặt tên function là &lt;code&gt;run&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# lib.py&lt;/span&gt;
+&lt;span class="c1"&gt;# Class Config...&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Config&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;file_path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;contents&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;contents&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;splitlines&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;lib&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;config&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;parse_config&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;IOError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Should have been able to read the file&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Giờ đây &lt;code&gt;run&lt;/code&gt; lại gặp vấn đề của &lt;code&gt;main&lt;/code&gt;: làm nhiều việc, nhưng ít ra nó cũng chia bớt 2 việc cho &lt;code&gt;main&lt;/code&gt; là parse config và xử lý exception. Khi một chương trình &lt;code&gt;run&lt;/code&gt;, nó có thể thực hiện nhiều việc khác nhau, ở đây tiếp tục tách mỗi việc thành 1 function riêng. Việc đọc file không phức tạp hơn 1 dòng nên để nguyên, việc tìm kiếm string tách ra thành function &lt;code&gt;search&lt;/code&gt;. Function &lt;code&gt;search&lt;/code&gt; thay vì print, sẽ trả về 1 list chứa các string chứa từ khóa tìm kiếm, để việc print lại cho &lt;code&gt;run&lt;/code&gt;. Như vậy có thể viết unittest kiểm tra logic của function quan trọng này thay vì kiểm tra bằng mắt.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;contents&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+    &lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;contents&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;splitlines&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;query&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Config&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;file_path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;contents&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;contents&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Test:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;unittest&lt;/span&gt;
+
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;lib&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;TestGrep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_search_found&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;res&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;us&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Among us&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;Some write Rust&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;Some write promt&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;All write Python&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;assertEqual&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;res&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Among us&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Some write Rust&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_search_not_found&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;res&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;HTML&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Among us&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;Some write Rust&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;Some write promt&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;All write Python&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;assertEqual&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;res&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Chạy test:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;$ python3 &lt;/span&gt;&lt;span class="nb"&gt;-&lt;/span&gt;&lt;span class="c"&gt;m unittest test_grep&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;py &lt;/span&gt;&lt;span class="nb"&gt;-&lt;/span&gt;&lt;span class="c"&gt;vvv&lt;/span&gt;
+&lt;span class="c"&gt;test_search_found (test_grep&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;TestGrep) &lt;/span&gt;&lt;span class="nt"&gt;...&lt;/span&gt;&lt;span class="c"&gt; ok&lt;/span&gt;
+&lt;span class="c"&gt;test_search_not_found (test_grep&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;TestGrep) &lt;/span&gt;&lt;span class="nt"&gt;...&lt;/span&gt;&lt;span class="c"&gt; ok&lt;/span&gt;
+
+&lt;span class="nb"&gt;----------------------------------------------------------------------&lt;/span&gt;&lt;span class="c"&gt;&lt;/span&gt;
+&lt;span class="c"&gt;Ran 2 tests in 0&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;000s&lt;/span&gt;
+
+&lt;span class="c"&gt;OK&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Khi mọi tính năng cơ bản đã ổn định, viết thêm code để xử lý khi người dùng set env &lt;code&gt;IGNORE_CASE&lt;/code&gt;. Có 2 cách xử lý:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;thêm 1 boolean argument cho function search, &lt;code&gt;search(query, contents, ignore_case=False)&lt;/code&gt;. Việc dùng boolean argument còn được gọi là &lt;a href="https://martinfowler.com/bliki/FlagArgument.html"&gt;flag argument&lt;/a&gt; thường được xem như &lt;a href="http://www.informit.com/articles/article.aspx?p=1392524"&gt;code smell&lt;/a&gt; vì nó ám chỉ function này làm nhiều hơn 1 việc. Trong trường hợp này, khi &lt;code&gt;ignore_case=True&lt;/code&gt; sẽ chỉ gọi thêm 1 method (&lt;code&gt;lower()&lt;/code&gt;) với mỗi dòng, chứ không "làm việc khác" nên argument này hoàn toàn OK. Một ví dụ tương tự, trong Python sort, có argument &lt;code&gt;reverse=True&lt;/code&gt; hoặc &lt;code&gt;False&lt;/code&gt; để thay đổi thứ tự sắp xếp.&lt;/li&gt;
+&lt;li&gt;viết 1 function riêng &lt;code&gt;search_case_insensitive(query, contents)&lt;/code&gt;, tác giả chọn phương án này mà không giải thích tại sao. Nhược điểm của phương án này là nếu phần code chung của 2 function là 30 bước, sẽ phải copy lại phần code chung, hay tách riêng ra 1 function nữa như &lt;code&gt;search_internal&lt;/code&gt; mà cả 2 &lt;code&gt;search&lt;/code&gt;, &lt;code&gt;search_case_insensitive&lt;/code&gt; cùng gọi.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ở đây ta sẽ làm giống như ví dụ trong phiên bản Rust:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;contents&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+    &lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;contents&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;splitlines&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;query&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;search_case_insensitive&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;contents&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+    &lt;span class="n"&gt;query&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;contents&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;splitlines&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;query&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+            &lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h5&gt;Xử lý exception&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;main&lt;/code&gt; cần xử lý exception từ 2 function &lt;code&gt;parse_config&lt;/code&gt; và &lt;code&gt;run&lt;/code&gt;, riêng biệt, để làm rõ hơn các exception đã xảy ra, ta tạo ra exception cho từng lỗi cụ thể.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;parse_config&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Config&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;query&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="n"&gt;file_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="n"&gt;ignore_case&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;IGNORE_CASE&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;Config&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;file_path&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ignore_case&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;function này có thể thiếu &lt;code&gt;query&lt;/code&gt;, thiếu &lt;code&gt;file_path&lt;/code&gt;, vậy viết:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;parse_config&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Config&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;query&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;IndexError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="ne"&gt;IndexError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Didn&amp;#39;t get a query string&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;file_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;IndexError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="ne"&gt;IndexError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Didn&amp;#39;t get a file path&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;các exception này chứa nội dung mà người dùng có thể hiểu được.&lt;/p&gt;
+&lt;p&gt;Chạy thử với 3 trường hợp lỗi:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ python3 grep.py
+Problem parsing arguments: Didn&lt;span class="s1"&gt;&amp;#39;t get a query string&lt;/span&gt;
+
+&lt;span class="s1"&gt;$ python3 grep.py root&lt;/span&gt;
+&lt;span class="s1"&gt;Problem parsing arguments: Didn&amp;#39;&lt;/span&gt;t get a file path
+
+$ python3 grep.py root /etc/passssss
+Application error: &lt;span class="o"&gt;[&lt;/span&gt;Errno &lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; No such file or directory: &lt;span class="s1"&gt;&amp;#39;/etc/passssss&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Tới đây, chương 12 của &lt;strong&gt;The book&lt;/strong&gt; kết thúc.&lt;/p&gt;
+&lt;h3&gt;Bonus: xử lý file kích thước lớn tùy ý&lt;/h3&gt;
+&lt;p&gt;thay&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;    &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;file_path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;contents&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;contents&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Thành&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;    &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;file_path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;sử dụng &lt;code&gt;f&lt;/code&gt; như 1 iterable, mỗi lần lấy 1 dòng ra, trong search, thay:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;contents&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;splitlines&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Thành:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rstrip&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\r\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Function &lt;code&gt;search&lt;/code&gt; thay vì trả về 1 list sẽ yield từng dòng (generator).&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;contents&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Iterable&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Generator&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;contents&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rstrip&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\r\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;query&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;yield&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;So sánh code Rust và Python&lt;/h4&gt;
+&lt;p&gt;Code Python ngắn hơn Rust một chút:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ wc -l grep.py test_grep.py lib.py
+  &lt;span class="m"&gt;18&lt;/span&gt; grep.py
+  &lt;span class="m"&gt;25&lt;/span&gt; test_grep.py
+  &lt;span class="m"&gt;52&lt;/span&gt; lib.py
+  &lt;span class="m"&gt;95&lt;/span&gt; total
+
+$ wc -l src/main.rs src/lib.rs
+  &lt;span class="m"&gt;16&lt;/span&gt; src/main.rs
+ &lt;span class="m"&gt;106&lt;/span&gt; src/lib.rs   &lt;span class="c1"&gt;# rust viết test vào luôn file code&lt;/span&gt;
+ &lt;span class="m"&gt;122&lt;/span&gt; total
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Xem code:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://pp.pymi.vn/refactor/grep.py"&gt;grep.py&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://pp.pymi.vn/refactor/lib.py"&gt;lib.py&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://pp.pymi.vn/refactor/main.rs"&gt;main.rs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{stataic}/refactor/lib.rs"&gt;lib.rs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Bài học&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;function &lt;code&gt;main&lt;/code&gt; chỉ nên parse config và xử lý exception&lt;/li&gt;
+&lt;li&gt;tách riêng logic chương trình ra thành (các) file riêng, chứa các function con cho dễ test&lt;/li&gt;
+&lt;li&gt;viết unittest&lt;/li&gt;
+&lt;li&gt;tạo abstraction khi cần thiết (class), giúp chia rõ vai trò của các biến khác nhau&lt;/li&gt;
+&lt;li&gt;exception cần chứa thông tin có ích cho người dùng (thay vì chỉ developer mới hiểu được)&lt;/li&gt;
+&lt;li&gt;mọi thứ đều là tương đối&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Kết luận&lt;/h3&gt;
+&lt;p&gt;Refactoring để nâng cao chất lượng (Maintainability, Extensibility) của code, không phải để làm ngắn.&lt;/p&gt;
+&lt;p&gt;Hết!&lt;/p&gt;
+&lt;p&gt;HVN at &lt;a href="http://pymi.vn"&gt;http://pymi.vn&lt;/a&gt; and &lt;a href="https://www.familug.org"&gt;https://www.familug.org&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.familug.org/p/ung-ho.html"&gt;Ủng hộ tác giả 🍺&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Trang chủ"></category><category term="python"></category><category term="refactor"></category><category term="software engineering"></category><category term="test"></category><category term="rust"></category></entry><entry><title>Làm an toàn thông tin cần học những gì?</title><link href="http://pp.pymi.vn/article/attt/" rel="alternate"></link><published>2022-12-04T00:00:00+07:00</published><updated>2022-12-04T00:00:00+07:00</updated><author><name>minix</name></author><id>tag:pp.pymi.vn,2022-12-04:/article/attt/</id><summary type="html">&lt;p&gt;Nhân ngày cuối tuần không đi hack do quên reg giải CTF nên ngồi tổng hợp lại góc nhìn 2 năm theo đuổi ngành "phá làng phá xóm để giúp cho làng xóm không bị đứa khác phá". Dù chưa có thành tựu gì nhiều nhưng chiến đấu cùng các …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Nhân ngày cuối tuần không đi hack do quên reg giải CTF nên ngồi tổng hợp lại góc nhìn 2 năm theo đuổi ngành "phá làng phá xóm để giúp cho làng xóm không bị đứa khác phá". Dù chưa có thành tựu gì nhiều nhưng chiến đấu cùng các anh em PymiCTF giúp mình có dịp tìm được nhiều thứ hay ho. Sau đây là tóm tắt một số skill kỹ thuật mà một người trong ngành an toàn thông tin nên có.&lt;/p&gt;
 &lt;h2&gt;Các kỹ năng trong ngành an toàn thông tin&lt;/h2&gt;
 &lt;p&gt;Ngành an toàn thông tin được hiểu là ngành thực hiện các hình thức ngăn chặn, phát hiện, phòng ngừa việc truy cập, tiết lộ, chia sẻ, phát tán và sử dụng thông tin trái phép khi chưa được sự cho phép. Trong đó, an ninh mạng là một phần của ngành an toàn thông tin nhằm bảo vệ các thông tin trên hệ thống mạng khỏi sự xâm phạm, sử dụng trái phép, bảo vệ tính bí mật, toàn vẹn và khả dụng của thông tin.&lt;/p&gt;
 &lt;p&gt;Ngành an toàn thông tin là một ngành rộng với đa dạng các lĩnh vực chuyên môn, mỗi chuyên ngành đều yêu cầu một bộ các kỹ năng chuyên sâu đa dạng và cần thời gian để có thể thực hiện thành thạo. Về khía cạnh kỹ thuật, ngành an toàn thông tin phân chia các kỹ năng như sau:&lt;/p&gt;
@@ -69,7 +387,7 @@ muốn không bị hack, phải thực hiện nhiệm vụ training của mình,
 Lỗi này của ai để đi đổ lỗi? dù có hiểu đủ các lỗi bảo mật phổ biến
 nhất, thì một cái bug "nhỏ" trong thư viện quá phổ biến này cũng đủ san bằng một
 công ty. (PS: các hacker thường không muốn "san bằng công ty" trừ khi quá ghét, mà muốn bí mật nằm vùng trong đó rồi hưởng lợi thì hơn).&lt;/p&gt;
-&lt;h4&gt;Các lỗi bảo mật phổ biến nhất: SQLi, XSS, SSTI, Path Traversal, CSRF&lt;/h4&gt;
+&lt;h4&gt;Các lỗi bảo mật phổ biến nhất: SQLi, XSS, SSTI, CSRF&lt;/h4&gt;
 &lt;p&gt;Điều đáng sợ đầu tiên là hầu hết các lỗi bảo mật này đều được viết tắt, với
 những chữ S, những chữ X, khiến cho chưa học thuộc từ khóa thì nhìn tên cũng đã sợ.&lt;/p&gt;
 &lt;h5&gt;SQLi - SQL injection&lt;/h5&gt;
@@ -181,14 +499,14 @@ lệnh vào để chạy&lt;/p&gt;
 kết quả, chưa kịp dùng não.
 Nghề hack đã có từ ngày có máy tính, nên việc hack cũng có sẵn cả rổ tool để dùng,
 vậy nên nhiều bài không cần phải code.
-Có mục "OSINT", kỹ năng "tìm kiếm thông tin" cũng không cần dùng tới code,
+Có mục mới "OSINT", kỹ năng "tìm kiếm thông tin" cũng không cần dùng tới code,
 giống như giải đố, tìm vị trí, tìm ai đó trên các trang mạng xã hội.
 Tất nhiên để làm được nhiều bài khó hơn thì cần biết code if/for.&lt;/p&gt;
 &lt;h4&gt;Chơi pwn (binary exploitation) hay rev (reverse engineering) phải biết đọc assembly như đọc tiếng mẹ đẻ&lt;/h4&gt;
 &lt;p&gt;Tool rất quan trọng, và có nhiều tool rất xịn.
 Các cầu thủ đá bóng đi toàn giày đinh loại cực xịn, các runner đi Nike airflow màu hồng phá kỷ lục thế giới,
 các game thủ dùng bàn phím độ trễ siêu thấp, chuột có dăm ba nút phụ để combat cho nhanh, chả nghề nào chân trần phi vào quái thú để thất bại rồi ra nghĩa địa cả (trở về là còn tốt).&lt;/p&gt;
-&lt;p&gt;Các pwn thủ, rev thủ toàn dùng &lt;a href="https://hex-rays.com/ida-pro/"&gt;IDA Pro&lt;/a&gt; bản trả tiền, &lt;a href="https://binary.ninja/"&gt;Ninja&lt;/a&gt; hàng xịn, bấm một nút là biến asm thành code C ngay (ahuhu vẫn phải đọc code C), hàng free như Ghidra hay radare2 nhiều khi không xịn bằng, chứ đừng nói tới dump code assembly rồi đọc chay.&lt;/p&gt;
+&lt;p&gt;Các pwn thủ, rev thủ toàn dùng &lt;a href="https://hex-rays.com/ida-pro/"&gt;IDA Pro&lt;/a&gt; bản trả tiền, &lt;a href="https://binary.ninja/"&gt;Ninja&lt;/a&gt; hàng xịn, bấm một nút là biến asm thành code C ngay (ahuhu vẫn phải đọc code C), hàng free như Ghidra hay radare2 nhiều khi không xịn bằng, chứ đừng nói tới dump code Assembly rồi đọc chay.&lt;/p&gt;
 &lt;h4&gt;Chơi crypto phải giỏi toán&lt;/h4&gt;
 &lt;p&gt;Giỏi toán (mà phải đúng loại toán) đúng là có lợi, có thể giải nhiều bài khó,
 nhưng crypto cũng có nhiều tool sẵn như &lt;a href="https://github.com/RsaCtfTool/RsaCtfTool"&gt;RSACTFtool&lt;/a&gt;, nhét đề vào viết thêm tí code là giải được cả mớ. Nhớ luyện hết theo &lt;a href="https://cryptohack.org/challenges/rsa/"&gt;CryptoHack&lt;/a&gt;, đọc cả blog vì có mấy lần đề KHÓ ra trúng &lt;a href="https://blog.cryptohack.org/twitter-secrets"&gt;bài blog trên cryptohack&lt;/a&gt;.&lt;/p&gt;

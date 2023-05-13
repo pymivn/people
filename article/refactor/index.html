@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+   <title> Refactor 10 dòng code thành 90 dòng  - The PyMiers</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="robots" content="" />
+  <link rel="stylesheet" type="text/css" href="/theme/css/app.css">
+<link rel="stylesheet" type="text/css" href="http://pp.pymi.vn/theme/css/pygment.css">
+  <!--
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+  -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    <meta name="author" content="Pymiers" />
+  <meta name="description" content="" />    <link href="http://pp.pymi.vn/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="The PyMiers Full Atom Feed" />         
+  <meta name="tags" content="python" />
+  <meta name="tags" content="refactor" />
+  <meta name="tags" content="software engineering" />
+  <meta name="tags" content="test" />
+  <meta name="tags" content="rust" />
+</head>
+
+<body>
+  <main class="wrapper">
+    <section class="container">
+      <header class='column'>
+        <h1 class='title'><a href="http://pp.pymi.vn/">The PyMiers</a></h1>
+      </header>
+
+      <div class="section">
+        <div class="row navbar">
+          <div class="column nav-item is-active"><a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a></div>
+           <div class="column nav-item "><a href="http://pp.pymi.vn/pages/about/">About</a></div>
+          <div class="column nav-item "><a href="http://pp.pymi.vn/pages/add/">Tạo bài viết</a></div>
+          <div class="column nav-item "><a href="http://pp.pymi.vn/pages/rss/">RSS</a></div>
+          <div class="column nav-item"><a href="/archives">Archives</a></div>
+        </div>
+      </div>
+    </section>
+
+<section class="container">
+  <header>
+    <h2 class="entry-title">
+      <a href="http://pp.pymi.vn/article/refactor/" rel="bookmark"
+         title="Permalink to Refactor 10 dòng code thành 90 dòng">Refactor 10 dòng code thành 90 dòng</a></h2>  
+  </header>
+  <footer class='center'>
+    <time class="published" datetime="2023-05-09T00:00:00+07:00"> 09/05/2023 </time>
+    <address class="vcard author">By
+                    <a class="url fn" href="http://pp.pymi.vn/author/hvnsweeting/">hvnsweeting</a>
+ in <a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a>
+                </address>     <em>Tags</em>:     <a href="http://pp.pymi.vn/tag/python/"><em>python</em></a>,     <a href="http://pp.pymi.vn/tag/refactor/"><em>refactor</em></a>,     <a href="http://pp.pymi.vn/tag/software-engineering/"><em>software engineering</em></a>,     <a href="http://pp.pymi.vn/tag/test/"><em>test</em></a>,     <a href="http://pp.pymi.vn/tag/rust/"><em>rust</em></a>    </footer>
+  <br>
+  <div class="entry-content">
+    <p>Refactor là một phần công việc không thể thiếu của lập trình viên, sau khi code xong chạy được mà "chưa đẹp", lập trình viên sẽ chỉnh sửa đoạn code cho "đẹp" hơn, cũng có thể nhanh hơn, cũng có thể ngắn hơn, cũng có thể dễ hiểu hơn...</p>
+<p>Vấn đề với refactor: là một khái niệm chung chung, không có ví dụ cụ thể, khó học/luyện tập để trở thành 1 kỹ năng. Best-practice của ngôn ngữ này lại có thể là điều không ai làm ở ngôn ngữ khác. Sách vở viết về refactor cũng chỉ có 1 quyển được cộng đồng mạng nhắc tới ?!!! <a href="https://martinfowler.com/books/refactoring.html">Refactoring - Improving the Design of Existing Code by Martin Fowler, with Kent Beck, 2018</a>.  PyMi cũng từng có 1 bài viết giới thiệu việc <a href="http://pp.pymi.vn/article/repl/">refactoring code kèm với IPython</a>.</p>
+<p><img alt="Rust logo" src="https://www.rust-lang.org/static/images/rust-logo-blk.svg"></p>
+<p>Bài viết này dựa trên chapter 12 trong cuốn <a href="https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html">The Rust Programming Language</a> (còn hay gọi là The book), kèm phóng tác, chuyển dịch sang Python, thêm "bình phẩm" và nhiều nhiều câu hỏi. Sử dụng ví dụ từ sách Rust khiến người đọc có thể tin cậy trình độ của tác giả... Steve Klabnik, Carol Nichols - những cái tên nổi tiếng bậc nhất trong thế giới Rust.</p>
+<h3>Refactoring là gì</h3>
+<p>Trong tiếng Anh, refactoring có nghĩa:</p>
+<p><a href="https://dictionary.cambridge.org/dictionary/english/refactoring">cambridge</a>:</p>
+<blockquote>
+<p>refactoring isn’t in the Cambridge Dictionary yet. You can help!</p>
+</blockquote>
+<p><a href="https://www.dictionary.com/misspelling?term=refactoring">dictionary.com</a>:</p>
+<blockquote>
+<p>No results found for refactoring</p>
+</blockquote>
+<p>theo từ điển tiếng Anh, từ <strong>refactoring</strong> không tồn tại.</p>
+<p>Theo <a href="https://en.wikipedia.org/wiki/Code_refactoring">Wikipedia</a>:</p>
+<blockquote>
+<p>In computer programming and software design, code refactoring is the process of restructuring existing computer code—changing the factoring—without changing its external behavior</p>
+</blockquote>
+<p>là việc chỉnh sửa lại code đã tồn tại mà không thay đổi tính năng của code.</p>
+<p>Theo quảng cáo của cuốn sách về <a href="https://martinfowler.com/books/refactoring.html">Refactoring</a> nối tiếng nhất:</p>
+<blockquote>
+<p>Refactoring is a controlled technique for improving the design of an existing code base. Its essence is applying a series of small behavior-preserving transformations, each of which "too small to be worth doing". However the cumulative effect of each of these transformations is quite significant. By doing them in small steps you reduce the risk of introducing errors. You also avoid having the system broken while you are carrying out the restructuring - which allows you to gradually refactor a system over an extended period of time.</p>
+</blockquote>
+<p>Ở đây dùng <strong>refactoring</strong> như 1 danh từ, <strong>refactor</strong> như 1 động từ.</p>
+<h3>Refactoring để làm gì</h3>
+<p>Refactor để cải thiện, nâng cao</p>
+<ul>
+<li>Tính dễ bảo trì, fix bug: Maintainability.</li>
+<li>Tính dễ mở rộng/thay đổi: Extensibility.</li>
+<li>Tốc độ chạy: Performance.</li>
+</ul>
+<p>Chú ý một số lĩnh vực đặc thù như out sourcing - chạy đua deadline, giao sản phẩm, thu tiền rồi thôi, thì cả 3 thứ trên có sự ưu tiên không hề cao, vậy nên cũng có thể không có refactor gì hết.</p>
+<h3>Ví dụ refactor 10 dòng code</h3>
+<p>Viết 1 chương trình giống như câu lệnh grep trên UNIX, tức nhận 2 đầu vào trên dòng lệnh là "từ khóa tìm kiếm" và tên file, in ra màn hình các dòng chứa từ khóa ấy.
+Ví dụ tìm từ <code>root</code> trong file <code>/etc/passwd</code> trên Ubuntu, MacOS,...</p>
+<div class="highlight"><pre><span></span><code>$ grep root /etc/passwd
+root:x:0:0::/root:/bin/bash
+</code></pre></div>
+
+<p>Code Python 10 dòng, không tính ngoài function main, dịch trực tiếp từ <a href="https://doc.rust-lang.org/book/ch12-00-an-io-project.html">ví dụ Rust</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># $ python3 grep.py root /etc/passwd</span>
+<span class="c1"># root:x:0:0::/root:/bin/bash</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">contents</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
+        <span class="n">exit</span><span class="p">(</span><span class="s2">&quot;Should have been able to read the file&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">contents</span><span class="o">.</span><span class="n">splitlines</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">query</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></div>
+
+<p>Code này hoàn toàn ổn: sạch đẹp, đúng chuẩn PEP8, và quan trọng nhất: chạy ra đúng kết quả.  Vậy có cần refactor không?  Tùy.
+Đó là chỗ khó khi nói về refactoring, không có gì rõ ràng, chính xác, mọi thứ đều "tùy".
+Tùy vào:</p>
+<ul>
+<li>chương trình nhỏ hay to, 10 dòng hay 10000 dòng</li>
+<li>chạy 1s hay chạy 1 giờ mới xong</li>
+<li>team 1 người hay 10 người code cùng</li>
+</ul>
+<p>Trong ví dụ cụ thể này, đoạn code trên hoàn toàn không cần refactor. Nhưng đây là bài viết về refactor, hãy xem tác giả sẽ biến đoạn code này thành 50 ra sao.</p>
+<h4>4+1 vấn đề của đoạn code</h4>
+<ul>
+<li>Function <code>main</code> thực hiện 2 công việc khác nhau. Khi chương trình lớn lên, <code>main</code> sẽ thực hiện thêm nhiều công việc nữa khiến cho nó khó hiểu, khó test, khó thay đổi 1 công việc mà không ảnh hưởng đến các công việc khác. Không test được: cách duy nhất để biết từng đoạn code trong main chạy đúng hay sai là chạy thử nó, với nhiều đầu vào khác nhau và dùng mắt kiểm tra kết quả.  Nên tốt nhất là tách ra thành mỗi function thực hiện duy nhất 1 công việc + có thể viết unittest.</li>
+<li>Biến <code>query</code> và <code>file_path</code> là "configuration" của chương trình, biến <code>contents</code> dùng để thực hiện logic. Khi <code>main</code> dài hơn, sẽ cần nhiều biến hơn, khi có nhiều biến hơn, sẽ khó để nhớ/theo dõi mục đích của từng biến. Nên tốt nhất là gộp các biến configuration vào 1 struct (class) để khiến mục đích của chúng rõ ràng.</li>
+<li>Dù code đã in ra thông báo khi có exception lúc đọc file, nhưng có hơn 1 lý do có xảy ra exception khi đọc file: file không tồn tại, không có quyền để đọc file... In ra nội dung "không mở được file" không hề có ích cho người dùng biết vấn đề thực sự là gì.</li>
+<li>Khi người dùng không đưa vào đủ 2 đầu vào trên dòng lệnh, sẽ xảy ra IndexError, exception này không giải thích rõ ràng tới người dùng chuyện gì xảy ra. Tốt nhất là đặt <strong>tất cả</strong> code xử lý exception vào chung 1 chỗ để sau này chỉ cần xem 1 chỗ nếu logic xử lý exception cần thay đổi, đồng thời giúp hiển thị nội dung lỗi rõ ràng dễ hiểu hơn tới người dùng.</li>
+<li>Đoạn này không có trong bản Rust: việc đọc toàn bộ nội dung file vào RAM với <code>f.read()</code> là một "code-smell", khiến đoạn code này không xử lý được file có kích thước lớn hơn RAM.</li>
+</ul>
+<h4>Thực hiện refactoring</h4>
+<p>Function <code>main</code> chỉ nên giới hạn tính năng:</p>
+<ul>
+<li>gọi function xử lý các đầu vào từ dòng lệnh</li>
+<li>setup các configuration (cấu hình) khác</li>
+<li>gọi <code>run</code> function trong file khác, ví dụ lib.py</li>
+<li>xử lý exception có thể xảy ra</li>
+</ul>
+<h5>Tách code xử lý đầu vào</h5>
+<p>Viết function <code>parse_config</code> nhận các argument, trả về:</p>
+<ul>
+<li>tuple các config: <code>(query, content)</code>, nhưng function <code>main</code> gọi <code>parse_config</code> sẽ lại unpacking tuple này thành các biến khác nhau. Đây là dấu hiệu của việc sử dụng chưa đúng "abstraction". Việc trả về tuple cũng không "gắn" được <code>query</code> và <code>file_path</code> vào với config. Vậy nên</li>
+<li>trả về 1 dictionary hoặc 1 Config object (Config class instance). Ở đây sẽ trả về 1 Config object cho giống ví dụ trong Rust.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">file_path</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">query</span> <span class="o">=</span> <span class="n">query</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span> <span class="o">=</span> <span class="n">file_path</span>
+
+<span class="k">def</span> <span class="nf">parse_config</span><span class="p">(</span><span class="n">argv</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Config</span><span class="p">:</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">Config</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">file_path</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">parse_config</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">contents</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
+        <span class="n">exit</span><span class="p">(</span><span class="s2">&quot;Should have been able to read the file&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">contents</span><span class="o">.</span><span class="n">splitlines</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">query</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</code></pre></div>
+
+<h5>setup các configuration (cấu hình) khác</h5>
+<p>Giả sử chương trình sẽ nhận thêm biến environment (môi trường) <code>IGNORE_CASE</code>, nếu được set, chương trình sẽ không phân biệt chữ hoa chữ thường khi tìm kiếm. Đây là ví dụ về chương trình có thể nhận config từ nhiều nguồn khác nhau, ta chỉ cần thay đổi class <code>Config</code> và <code>parse_config</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">ignore_case</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">query</span> <span class="o">=</span> <span class="n">query</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span> <span class="o">=</span> <span class="n">file_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ignore_case</span> <span class="o">=</span> <span class="n">ignore_case</span>
+
+<span class="k">def</span> <span class="nf">parse_config</span><span class="p">(</span><span class="n">argv</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Config</span><span class="p">:</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">ignore_case</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;IGNORE_CASE&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Config</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">ignore_case</span><span class="p">)</span>
+</code></pre></div>
+
+<h5>gọi run function trong file khác, ví dụ lib.py</h5>
+<p>Tách toàn bộ logic của chương trình, ngoại trừ phần xử lý exception ra 1 file khác tên <code>lib.py</code> và đặt tên function là <code>run</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># lib.py</span>
+<span class="c1"># Class Config...</span>
+<span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">contents</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">contents</span><span class="o">.</span><span class="n">splitlines</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">query</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">lib</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">parse_config</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">lib</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
+        <span class="n">exit</span><span class="p">(</span><span class="s2">&quot;Should have been able to read the file&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Giờ đây <code>run</code> lại gặp vấn đề của <code>main</code>: làm nhiều việc, nhưng ít ra nó cũng chia bớt 2 việc cho <code>main</code> là parse config và xử lý exception. Khi một chương trình <code>run</code>, nó có thể thực hiện nhiều việc khác nhau, ở đây tiếp tục tách mỗi việc thành 1 function riêng. Việc đọc file không phức tạp hơn 1 dòng nên để nguyên, việc tìm kiếm string tách ra thành function <code>search</code>. Function <code>search</code> thay vì print, sẽ trả về 1 list chứa các string chứa từ khóa tìm kiếm, để việc print lại cho <code>run</code>. Như vậy có thể viết unittest kiểm tra logic của function quan trọng này thay vì kiểm tra bằng mắt.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">contents</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">contents</span><span class="o">.</span><span class="n">splitlines</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">query</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+
+<span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">contents</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">search</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">query</span><span class="p">,</span> <span class="n">contents</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Test:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">unittest</span>
+
+<span class="kn">import</span> <span class="nn">lib</span>
+
+<span class="k">class</span> <span class="nc">TestGrep</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_search_found</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;us&quot;</span><span class="p">,</span> <span class="s2">&quot;Among us</span><span class="se">\n</span><span class="s2">Some write Rust</span><span class="se">\n</span><span class="s2">Some write promt</span><span class="se">\n</span><span class="s2">All write Python&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;Among us&quot;</span><span class="p">,</span> <span class="s2">&quot;Some write Rust&quot;</span><span class="p">])</span>
+    <span class="k">def</span> <span class="nf">test_search_not_found</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;HTML&quot;</span><span class="p">,</span> <span class="s2">&quot;Among us</span><span class="se">\n</span><span class="s2">Some write Rust</span><span class="se">\n</span><span class="s2">Some write promt</span><span class="se">\n</span><span class="s2">All write Python&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="p">[])</span>
+</code></pre></div>
+
+<p>Chạy test:</p>
+<div class="highlight"><pre><span></span><code><span class="c">$ python3 </span><span class="nb">-</span><span class="c">m unittest test_grep</span><span class="nt">.</span><span class="c">py </span><span class="nb">-</span><span class="c">vvv</span>
+<span class="c">test_search_found (test_grep</span><span class="nt">.</span><span class="c">TestGrep) </span><span class="nt">...</span><span class="c"> ok</span>
+<span class="c">test_search_not_found (test_grep</span><span class="nt">.</span><span class="c">TestGrep) </span><span class="nt">...</span><span class="c"> ok</span>
+
+<span class="nb">----------------------------------------------------------------------</span><span class="c"></span>
+<span class="c">Ran 2 tests in 0</span><span class="nt">.</span><span class="c">000s</span>
+
+<span class="c">OK</span>
+</code></pre></div>
+
+<p>Khi mọi tính năng cơ bản đã ổn định, viết thêm code để xử lý khi người dùng set env <code>IGNORE_CASE</code>. Có 2 cách xử lý:</p>
+<ul>
+<li>thêm 1 boolean argument cho function search, <code>search(query, contents, ignore_case=False)</code>. Việc dùng boolean argument còn được gọi là <a href="https://martinfowler.com/bliki/FlagArgument.html">flag argument</a> thường được xem như <a href="http://www.informit.com/articles/article.aspx?p=1392524">code smell</a> vì nó ám chỉ function này làm nhiều hơn 1 việc. Trong trường hợp này, khi <code>ignore_case=True</code> sẽ chỉ gọi thêm 1 method (<code>lower()</code>) với mỗi dòng, chứ không "làm việc khác" nên argument này hoàn toàn OK. Một ví dụ tương tự, trong Python sort, có argument <code>reverse=True</code> hoặc <code>False</code> để thay đổi thứ tự sắp xếp.</li>
+<li>viết 1 function riêng <code>search_case_insensitive(query, contents)</code>, tác giả chọn phương án này mà không giải thích tại sao. Nhược điểm của phương án này là nếu phần code chung của 2 function là 30 bước, sẽ phải copy lại phần code chung, hay tách riêng ra 1 function nữa như <code>search_internal</code> mà cả 2 <code>search</code>, <code>search_case_insensitive</code> cùng gọi.</li>
+</ul>
+<p>Ở đây ta sẽ làm giống như ví dụ trong phiên bản Rust:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">contents</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">contents</span><span class="o">.</span><span class="n">splitlines</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">query</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="k">def</span> <span class="nf">search_case_insensitive</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">contents</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">contents</span><span class="o">.</span><span class="n">splitlines</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">query</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+</code></pre></div>
+
+<h5>Xử lý exception</h5>
+<p><code>main</code> cần xử lý exception từ 2 function <code>parse_config</code> và <code>run</code>, riêng biệt, để làm rõ hơn các exception đã xảy ra, ta tạo ra exception cho từng lỗi cụ thể.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">parse_config</span><span class="p">(</span><span class="n">argv</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Config</span><span class="p">:</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">ignore_case</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;IGNORE_CASE&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Config</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">ignore_case</span><span class="p">)</span>
+</code></pre></div>
+
+<p>function này có thể thiếu <code>query</code>, thiếu <code>file_path</code>, vậy viết:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">parse_config</span><span class="p">(</span><span class="n">argv</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Config</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;Didn&#39;t get a query string&quot;</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">file_path</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;Didn&#39;t get a file path&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>các exception này chứa nội dung mà người dùng có thể hiểu được.</p>
+<p>Chạy thử với 3 trường hợp lỗi:</p>
+<div class="highlight"><pre><span></span><code>$ python3 grep.py
+Problem parsing arguments: Didn<span class="s1">&#39;t get a query string</span>
+
+<span class="s1">$ python3 grep.py root</span>
+<span class="s1">Problem parsing arguments: Didn&#39;</span>t get a file path
+
+$ python3 grep.py root /etc/passssss
+Application error: <span class="o">[</span>Errno <span class="m">2</span><span class="o">]</span> No such file or directory: <span class="s1">&#39;/etc/passssss&#39;</span>
+</code></pre></div>
+
+<p>Tới đây, chương 12 của <strong>The book</strong> kết thúc.</p>
+<h3>Bonus: xử lý file kích thước lớn tùy ý</h3>
+<p>thay</p>
+<div class="highlight"><pre><span></span><code>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">contents</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">search</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">query</span><span class="p">,</span> <span class="n">contents</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Thành</p>
+<div class="highlight"><pre><span></span><code>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">search</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">query</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</code></pre></div>
+
+<p>sử dụng <code>f</code> như 1 iterable, mỗi lần lấy 1 dòng ra, trong search, thay:</p>
+<div class="highlight"><pre><span></span><code>    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">contents</span><span class="o">.</span><span class="n">splitlines</span><span class="p">():</span>
+</code></pre></div>
+
+<p>Thành:</p>
+<div class="highlight"><pre><span></span><code>    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Function <code>search</code> thay vì trả về 1 list sẽ yield từng dòng (generator).</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">contents</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">contents</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">query</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">line</span>
+</code></pre></div>
+
+<h4>So sánh code Rust và Python</h4>
+<p>Code Python ngắn hơn Rust một chút:</p>
+<div class="highlight"><pre><span></span><code>$ wc -l grep.py test_grep.py lib.py
+  <span class="m">18</span> grep.py
+  <span class="m">25</span> test_grep.py
+  <span class="m">52</span> lib.py
+  <span class="m">95</span> total
+
+$ wc -l src/main.rs src/lib.rs
+  <span class="m">16</span> src/main.rs
+ <span class="m">106</span> src/lib.rs   <span class="c1"># rust viết test vào luôn file code</span>
+ <span class="m">122</span> total
+</code></pre></div>
+
+<p>Xem code:</p>
+<ul>
+<li><a href="http://pp.pymi.vn/refactor/grep.py">grep.py</a></li>
+<li><a href="http://pp.pymi.vn/refactor/lib.py">lib.py</a></li>
+<li><a href="http://pp.pymi.vn/refactor/main.rs">main.rs</a></li>
+<li><a href="{stataic}/refactor/lib.rs">lib.rs</a></li>
+</ul>
+<h4>Bài học</h4>
+<ul>
+<li>function <code>main</code> chỉ nên parse config và xử lý exception</li>
+<li>tách riêng logic chương trình ra thành (các) file riêng, chứa các function con cho dễ test</li>
+<li>viết unittest</li>
+<li>tạo abstraction khi cần thiết (class), giúp chia rõ vai trò của các biến khác nhau</li>
+<li>exception cần chứa thông tin có ích cho người dùng (thay vì chỉ developer mới hiểu được)</li>
+<li>mọi thứ đều là tương đối</li>
+</ul>
+<h3>Kết luận</h3>
+<p>Refactoring để nâng cao chất lượng (Maintainability, Extensibility) của code, không phải để làm ngắn.</p>
+<p>Hết!</p>
+<p>HVN at <a href="http://pymi.vn">http://pymi.vn</a> and <a href="https://www.familug.org">https://www.familug.org</a>.</p>
+<ul>
+<li><a href="https://www.familug.org/p/ung-ho.html">Ủng hộ tác giả 🍺</a></li>
+</ul>
+  </div>
+  <!-- /.entry-content -->
+</section>
+<section class="container">
+  <div class="comments">
+    <h3>Comments</h3>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'pymier';
+      var disqus_identifier = 'article/refactor/';
+      var disqus_url = 'http://pp.pymi.vn/article/refactor/';
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//pymier.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the comments.</noscript>
+  </div>
+</section>
+
+    <section class="container footer">
+      <footer>
+        <address>
+        Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+        which takes great advantage of <a href="http://python.org">Python</a>.
+        </address>
+        <address>
+          Học lập trình Python tại <a href="https://pymi.vn/">Pymi.vn</a>
+        </address>
+      </footer>
+    </section>
+  </main>
+
+<script type="text/javascript">
+var images = document.getElementsByTagName("img");
+var i;
+
+for(i = 0; i < images.length; i++) {
+  images[i].className += " centered";
+}
+</script>
+</body>
+
+</html>
