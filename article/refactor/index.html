@@ -56,8 +56,9 @@
   <div class="entry-content">
     <p>Refactor là một phần công việc không thể thiếu của lập trình viên, sau khi code xong chạy được mà "chưa đẹp", lập trình viên sẽ chỉnh sửa đoạn code cho "đẹp" hơn, cũng có thể nhanh hơn, cũng có thể ngắn hơn, cũng có thể dễ hiểu hơn...</p>
 <p>Vấn đề với refactor: là một khái niệm chung chung, không có ví dụ cụ thể, khó học/luyện tập để trở thành 1 kỹ năng. Best-practice của ngôn ngữ này lại có thể là điều không ai làm ở ngôn ngữ khác. Sách vở viết về refactor cũng chỉ có 1 quyển được cộng đồng mạng nhắc tới ?!!! <a href="https://martinfowler.com/books/refactoring.html">Refactoring - Improving the Design of Existing Code by Martin Fowler, with Kent Beck, 2018</a>.  PyMi cũng từng có 1 bài viết giới thiệu việc <a href="http://pp.pymi.vn/article/repl/">refactoring code kèm với IPython</a>.</p>
-<p><img alt="Refactor" src="https://images.unsplash.com/photo-1545697729-0ab8f5b1954c?ixlib=rb-4.0.3&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb&amp;dl=zoltan-tasi-CLJeQCr2F_A-unsplash.jpg&amp;w=640"></p>
-<p><center>Photo by <a href="https://unsplash.com/@zoltantasi?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Zoltan Tasi</a> on <a href="https://unsplash.com/photos/CLJeQCr2F_A?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></center></p>
+<p><center>
+<img alt="Refactor" src="https://images.unsplash.com/photo-1545697729-0ab8f5b1954c?ixlib=rb-4.0.3&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb&amp;dl=zoltan-tasi-CLJeQCr2F_A-unsplash.jpg&amp;w=640"></p>
+<p>Photo by <a href="https://unsplash.com/@zoltantasi?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Zoltan Tasi</a> on <a href="https://unsplash.com/photos/CLJeQCr2F_A?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></center></p>
 <p>Bài viết này dựa trên chapter 12 trong cuốn <a href="https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html">The Rust Programming Language</a> (còn hay gọi là <strong>The book</strong>), kèm phóng tác, chuyển dịch sang Python, thêm "bình phẩm" và nhiều nhiều câu hỏi. Sử dụng ví dụ từ sách Rust khiến người đọc có thể tin cậy trình độ của tác giả... Steve Klabnik, Carol Nichols - những cái tên nổi tiếng bậc nhất trong thế giới Rust.</p>
 <h3>Refactoring là gì</h3>
 <p>Trong tiếng Anh, refactoring có nghĩa:</p>
@@ -376,7 +377,7 @@ $ wc -l src/main.rs src/lib.rs
 <ul>
 <li><a href="http://pp.pymi.vn/refactor/grep.py">grep.py</a> - online <a href="https://glot.io/snippets/gky3ldwlxs">https://glot.io/snippets/gky3ldwlxs</a></li>
 <li><a href="http://pp.pymi.vn/refactor/lib.py">lib.py</a> - online <a href="https://glot.io/snippets/gky3ldwlxs">https://glot.io/snippets/gky3ldwlxs</a></li>
-<li><a href="http://pp.pymi.vn/refactor/main.rs">main.rs</a> - online <a href="https://play.rust-lang.org/?version=stable&amp;mode=debug&amp;edition=2021&amp;gist=d8398acb1d1c156af0c229ed7bdeac45">https://play.rust-lang.org/?version=stable&amp;mode=debug&amp;edition=2021&amp;gist=d8398acb1d1c156af0c229ed7bdeac45</a></li>
+<li><a href="http://pp.pymi.vn/refactor/main.rs">main.rs</a> - online <a href="https://gist.github.com/rust-play/5689af5322e9e26eb95458a159289f43">https://gist.github.com/rust-play/5689af5322e9e26eb95458a159289f43</a></li>
 <li><a href="{stataic}/refactor/lib.rs">lib.rs</a> - online <a href="https://play.rust-lang.org/?version=stable&amp;mode=debug&amp;edition=2021&amp;gist=0f6695e6359b96aae6ca976cc23b5c07">https://play.rust-lang.org/?version=stable&amp;mode=debug&amp;edition=2021&amp;gist=0f6695e6359b96aae6ca976cc23b5c07</a></li>
 </ul>
 <h4>Bài học</h4>
