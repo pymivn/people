@@ -95,7 +95,7 @@ Trong ví dụ cụ thể này, đoạn code trên hoàn toàn không cần refa
 - Biến `query` và `file_path` là "configuration" của chương trình, biến `contents` dùng để thực hiện logic. Khi `main` dài hơn, sẽ cần nhiều biến hơn, khi có nhiều biến hơn, sẽ khó để nhớ/theo dõi mục đích của từng biến. Nên tốt nhất là gộp các biến configuration vào 1 struct (class) để khiến mục đích của chúng rõ ràng.
 - Dù code đã in ra thông báo khi có exception lúc đọc file, nhưng có hơn 1 lý do có xảy ra exception khi đọc file: file không tồn tại, không có quyền để đọc file... In ra nội dung "không mở được file" không hề có ích cho người dùng biết vấn đề thực sự là gì.
 - Khi người dùng không đưa vào đủ 2 đầu vào trên dòng lệnh, sẽ xảy ra IndexError, exception này không giải thích rõ ràng tới người dùng chuyện gì xảy ra. Tốt nhất là đặt **tất cả** code xử lý exception vào chung 1 chỗ để sau này chỉ cần xem 1 chỗ nếu logic xử lý exception cần thay đổi, đồng thời giúp hiển thị nội dung lỗi rõ ràng dễ hiểu hơn tới người dùng.
-- Đoạn này không có trong bản Rust: việc đọc toàn bộ nội dung file vào RAM với `f.read()` là một "code-smell", khiến đoạn code này không xử lý được file có kích thước lớn hơn RAM.
+- Đoạn này không có trong bản Rust: việc đọc toàn bộ nội dung file vào RAM với `f.read()` là một "code smell", khiến đoạn code này không xử lý được file có kích thước lớn hơn RAM.
 
 #### Thực hiện refactoring
 Function `main` chỉ nên giới hạn tính năng:
@@ -223,10 +223,13 @@ Ran 2 tests in 0.000s
 OK
 ```
 
+##### Thêm tính năng dễ dàng nhờ refactor
+CHÚ Ý: thêm tính năng không nằm trong phạm vi refactor, ở đây minh họa tác dụng của việc refactor.
+
 Khi mọi tính năng cơ bản đã ổn định, viết thêm code để xử lý khi người dùng set env `IGNORE_CASE`. Có 2 cách xử lý:
 
 - thêm 1 boolean argument cho function search, `search(query, contents, ignore_case=False)`. Việc dùng boolean argument còn được gọi là [flag argument](https://martinfowler.com/bliki/FlagArgument.html) thường được xem như [code smell](http://www.informit.com/articles/article.aspx?p=1392524) vì nó ám chỉ function này làm nhiều hơn 1 việc. Trong trường hợp này, khi `ignore_case=True` sẽ chỉ gọi thêm 1 method (`lower()`) với mỗi dòng, chứ không "làm việc khác" nên argument này hoàn toàn OK. Một ví dụ tương tự, trong Python sort, có argument `reverse=True` hoặc `False` để thay đổi thứ tự sắp xếp.
-- viết 1 function riêng `search_case_insensitive(query, contents)`, tác giả chọn phương án này mà không giải thích tại sao. Nhược điểm của phương án này là nếu phần code chung của 2 function là 30 bước, sẽ phải copy lại phần code chung, hay tách riêng ra 1 function nữa như `search_internal` mà cả 2 `search`, `search_case_insensitive` cùng gọi.
+- viết 1 function riêng `search_case_insensitive(query, contents)`, tác giả chọn phương án này mà không giải thích tại sao. Nhược điểm của phương án này là nếu phần code chung của 2 function là 30 bước, sẽ phải copy lại phần code chung. Nhưng cũng có thể cải thiện bằng việc tách riêng ra 1 function nữa như `search_internal` mà cả 2 `search`, `search_case_insensitive` cùng gọi.
 
 Ở đây ta sẽ làm giống như ví dụ trong phiên bản Rust:
 
@@ -292,26 +295,26 @@ Tới đây, chương 12 của **The book** kết thúc.
 
 thay
 ```py
-    with open(config.file_path) as f:
-        contents = f.read()
-    for line in search(config.query, contents):
-        print(line)
+with open(config.file_path) as f:
+    contents = f.read()
+for line in search(config.query, contents):
+    print(line)
 ```
 
 Thành
 ```py
-    with open(config.file_path) as f:
-        for line in search(config.query, f):
-            print(line)
+with open(config.file_path) as f:
+    for line in search(config.query, f):
+        print(line)
 ```
 sử dụng `f` như 1 iterable, mỗi lần lấy 1 dòng ra, trong search, thay:
 ```py
-    for line in contents.splitlines():
+for line in contents.splitlines():
 ```
 Thành:
 ```py
-    for line in f:
-        line = line.rstrip("\r\n")
+for line in f:
+    line = line.rstrip("\r\n")
 ```
 
 Function `search` thay vì trả về 1 list sẽ yield từng dòng (generator).
@@ -324,6 +327,7 @@ def search(query: str, contents: Iterable) -> Generator[str, None, None]:
             yield line
 ```
 #### So sánh code Rust và Python
+Phiên bản code cuối cùng sẽ khác một chút so với nội dung viết trong bài, nhằm làm giống phiên bản Rust nhất cho dễ so sánh. Ví dụ phần unittest sẽ chỉ viết 2 unittest như Rust, phân unittest bên trên bị xóa đi để so sánh cho công bằng.
 
 Code Python ngắn hơn Rust một chút:
 ```
@@ -341,10 +345,10 @@ $ wc -l src/main.rs src/lib.rs
 
 Xem code:
 
-- [grep.py]({static}/refactor/grep.py)
-- [lib.py]({static}/refactor/lib.py)
-- [main.rs]({static}/refactor/main.rs)
-- [lib.rs]({stataic}/refactor/lib.rs)
+- [grep.py]({static}/refactor/grep.py) - online <https://glot.io/snippets/gky3ldwlxs>
+- [lib.py]({static}/refactor/lib.py) - online <https://glot.io/snippets/gky3ldwlxs>
+- [main.rs]({static}/refactor/main.rs) - online <https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=d8398acb1d1c156af0c229ed7bdeac45>
+- [lib.rs]({stataic}/refactor/lib.rs) - online <https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=0f6695e6359b96aae6ca976cc23b5c07>
 
 #### Bài học
 - function `main` chỉ nên parse config và xử lý exception
