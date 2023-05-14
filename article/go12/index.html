@@ -57,7 +57,7 @@ sự khác biệt về cách tổ chức package trong Go, declaration &amp; ini
 (khai báo và khởi tạo variable), cùng các standard library quan trọng nhất
 cho một SysAdmin/DevOps.</p>
 <p>Code trong loạt bài này lược bỏ phần package/import/declare function main, người đọc tự thêm vào để chạy.</p>
-<div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
 
@@ -65,34 +65,31 @@ cho một SysAdmin/DevOps.</p>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;pp.pymi.vn&quot;</span><span class="p">)</span>
     <span class="c1">// WRITE CODE HERE</span>
 <span class="p">}</span>
-</pre></div>
-
+</code></pre></div>
 
 <h2>Extended Backus-Naur Form (EBNF)</h2>
 <p>Cú pháp dùng để mô tả Go syntax có tên <a href="https://golang.org/ref/spec#Notation">EBNF</a>.</p>
 <p>Có vẻ không dễ đọc, nhưng không phải là không thể đọc nổi, bỏ qua nếu
 bạn không quan tâm. Một ví dụ:</p>
-<div class="highlight"><pre><span></span><span class="nx">Production</span>  <span class="p">=</span> <span class="nx">production_name</span> <span class="s">&quot;=&quot;</span> <span class="p">[</span> <span class="nx">Expression</span> <span class="p">]</span> <span class="s">&quot;.&quot;</span> <span class="p">.</span>
+<div class="highlight"><pre><span></span><code><span class="nx">Production</span>  <span class="p">=</span> <span class="nx">production_name</span> <span class="s">&quot;=&quot;</span> <span class="p">[</span> <span class="nx">Expression</span> <span class="p">]</span> <span class="s">&quot;.&quot;</span> <span class="p">.</span>
 <span class="nx">Expression</span>  <span class="p">=</span> <span class="nx">Alternative</span> <span class="p">{</span> <span class="s">&quot;|&quot;</span> <span class="nx">Alternative</span> <span class="p">}</span> <span class="p">.</span>
 <span class="nx">Alternative</span> <span class="p">=</span> <span class="nx">Term</span> <span class="p">{</span> <span class="nx">Term</span> <span class="p">}</span> <span class="p">.</span>
 <span class="nx">Term</span>        <span class="p">=</span> <span class="nx">production_name</span> <span class="p">|</span> <span class="nx">token</span> <span class="p">[</span> <span class="s">&quot;…&quot;</span> <span class="nx">token</span> <span class="p">]</span> <span class="p">|</span> <span class="nx">Group</span> <span class="p">|</span> <span class="nx">Option</span> <span class="p">|</span> <span class="nx">Repetition</span> <span class="p">.</span>
 <span class="nx">Group</span>       <span class="p">=</span> <span class="s">&quot;(&quot;</span> <span class="nx">Expression</span> <span class="s">&quot;)&quot;</span> <span class="p">.</span>
 <span class="nx">Option</span>      <span class="p">=</span> <span class="s">&quot;[&quot;</span> <span class="nx">Expression</span> <span class="s">&quot;]&quot;</span> <span class="p">.</span>
 <span class="nx">Repetition</span>  <span class="p">=</span> <span class="s">&quot;{&quot;</span> <span class="nx">Expression</span> <span class="s">&quot;}&quot;</span> <span class="p">.</span>
-</pre></div>
-
+</code></pre></div>
 
 <p><a href="https://docs.python.org/3.9/reference/grammar.html">Python 3.9 dùng EBNF kết hợp với PEG</a></p>
 <h2>Khai báo và khởi tạo</h2>
 <p>Declaration &amp; initialization</p>
-<div class="highlight"><pre><span></span><span class="nx">VarDecl</span>     <span class="p">=</span> <span class="s">&quot;var&quot;</span> <span class="p">(</span> <span class="nx">VarSpec</span> <span class="p">|</span> <span class="s">&quot;(&quot;</span> <span class="p">{</span> <span class="nx">VarSpec</span> <span class="s">&quot;;&quot;</span> <span class="p">}</span> <span class="s">&quot;)&quot;</span> <span class="p">)</span> <span class="p">.</span>
+<div class="highlight"><pre><span></span><code><span class="nx">VarDecl</span>     <span class="p">=</span> <span class="s">&quot;var&quot;</span> <span class="p">(</span> <span class="nx">VarSpec</span> <span class="p">|</span> <span class="s">&quot;(&quot;</span> <span class="p">{</span> <span class="nx">VarSpec</span> <span class="s">&quot;;&quot;</span> <span class="p">}</span> <span class="s">&quot;)&quot;</span> <span class="p">)</span> <span class="p">.</span>
 <span class="nx">VarSpec</span>     <span class="p">=</span> <span class="nx">IdentifierList</span> <span class="p">(</span> <span class="nx">Type</span> <span class="p">[</span> <span class="s">&quot;=&quot;</span> <span class="nx">ExpressionList</span> <span class="p">]</span> <span class="p">|</span> <span class="s">&quot;=&quot;</span> <span class="nx">ExpressionList</span> <span class="p">)</span> <span class="p">.</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Để sử dụng 1 biến (variable) trong Go, cần làm 2 bước declaration (khai báo) và
 initialization (khởi tạo giá trị).</p>
-<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">x</span> <span class="kt">int</span>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">x</span> <span class="kt">int</span>
 <span class="kd">var</span> <span class="p">(</span>
     <span class="nx">y</span> <span class="kt">bool</span>
     <span class="nx">z</span> <span class="kt">float64</span>
@@ -101,35 +98,31 @@ initialization (khởi tạo giá trị).</p>
 
 <span class="c1">// Output</span>
 <span class="c1">// 0 false +0.000000e+000</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Khai báo biến sử dụng từ khóa <code>var</code>, nếu không gán giá trị khởi tạo
 (initialization), các biến sẽ có <a href="https://golang.org/ref/spec#The_zero_value">zero
 value</a> tương ứng với kiểu
 của nó. Tức int sẽ = 0, bool = false, string = "", pointer = nil. Nếu có gán
 giá trị, biểu thức theo sau sẽ được tính toán và biến sẽ chứa giá trị này.</p>
-<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">y</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">1</span>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">y</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">1</span>
 <span class="kd">var</span> <span class="nx">x</span> <span class="kt">int</span> <span class="p">=</span> <span class="nx">y</span> <span class="o">+</span> <span class="mi">1</span>
 <span class="nb">print</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
 <span class="c1">// Output</span>
 <span class="c1">// 2</span>
-</pre></div>
-
+</code></pre></div>
 
 <p><em>Short variable declarations</em>, không cần ghi type, và dùng dấu <code>:</code></p>
-<div class="highlight"><pre><span></span>ShortVarDecl = IdentifierList &quot;:=&quot; ExpressionList .
-</pre></div>
+<div class="highlight"><pre><span></span><code>ShortVarDecl = IdentifierList &quot;:=&quot; ExpressionList .
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span><span class="nx">s</span> <span class="o">:=</span> <span class="s">&quot;Pymier&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nx">s</span> <span class="o">:=</span> <span class="s">&quot;Pymier&quot;</span>
 <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="o">:=</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span>
 <span class="nx">x</span><span class="p">,</span> <span class="nx">z</span> <span class="o">:=</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span>
 <span class="nb">print</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">z</span><span class="p">)</span>
 
 <span class="c1">// Pymier679</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>https://golang.org/ref/spec#Variable_declarations</p>
 <h2>Scope</h2>
@@ -137,7 +130,7 @@ giá trị, biểu thức theo sau sẽ được tính toán và biến sẽ ch�
 Mỗi tên biến chỉ có thể được định nghĩa duy nhất 1 lần trong mỗi block
 (đánh dấu bởi <code>{}</code>) như trong if/for/switch
 hay function, biến này không thoát ra ngoài block - hay có scope trong block đó.</p>
-<div class="highlight"><pre><span></span>    <span class="kd">var</span> <span class="nx">x</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">3</span>
+<div class="highlight"><pre><span></span><code>    <span class="kd">var</span> <span class="nx">x</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">3</span>
     <span class="p">{</span>
         <span class="kd">var</span> <span class="nx">x</span> <span class="kt">string</span> <span class="p">=</span> <span class="s">&quot;Python&quot;</span>
         <span class="nb">println</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
@@ -145,25 +138,23 @@ hay function, biến này không thoát ra ngoài block - hay có scope trong bl
     <span class="nb">println</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
     <span class="c1">//Python</span>
     <span class="c1">//3</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>điều này nghĩa là nếu khai báo 1 variable trong vòng <code>for</code> hay trong
 điều kiện <code>if</code>, thì chúng không thoát ra ngoài khỏi các khối ấy, sẽ
 không có hiện lượng <strong>leak</strong> variable như trong Python for:</p>
-<div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="s2">&quot;Mi&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="n">p</span> <span class="o">=</span> <span class="s2">&quot;Mi&quot;</span>
 <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
     <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">p</span>
-<span class="k">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 <span class="c1"># Kết quả hiện ra 2, không hiện ra Mi</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;{} is hoc sinh gioi&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
-</pre></div>
-
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> is hoc sinh gioi&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+</code></pre></div>
 
 <p><em>Tính năng</em> này dễ dẫn đến bug nếu ta chuyển code đi xung quanh, hay vô tình đặt tên giống nhau tại các nơi khác, trong cùng 1 function.</p>
 <p>Trong Go:</p>
-<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">p</span> <span class="kt">string</span> <span class="p">=</span> <span class="s">&quot;Mi&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">p</span> <span class="kt">string</span> <span class="p">=</span> <span class="s">&quot;Mi&quot;</span>
 <span class="nx">s</span> <span class="o">:=</span> <span class="mi">0</span>
 <span class="k">for</span> <span class="nx">p</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">p</span> <span class="p">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="nx">p</span><span class="o">++</span> <span class="p">{</span>
     <span class="nx">s</span> <span class="p">=</span> <span class="nx">s</span> <span class="o">+</span> <span class="nx">p</span>
@@ -171,26 +162,24 @@ không có hiện lượng <strong>leak</strong> variable như trong Python for:
 <span class="nb">println</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="nx">p</span><span class="p">)</span>
 <span class="c1">// Output</span>
 <span class="c1">// 3 Mi</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>https://golang.org/ref/spec#Declarations_and_scope</p>
 <h2>Struct</h2>
 <p>struct là khác biệt lớn đầu tiên với người code Python không dùng class (mà dùng dict).
 Do trong Go không thể tạo 1 map chứa các value khác kiểu, không
 có đoạn code tương tự với code Python sau đây nếu chỉ dùng map:</p>
-<div class="highlight"><pre><span></span><span class="n">boy</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Pika&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">18</span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="n">boy</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Pika&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">18</span><span class="p">}</span>
 <span class="n">students</span> <span class="o">=</span> <span class="p">{</span>
     <span class="mi">20088888</span><span class="p">:</span> <span class="n">boy</span><span class="p">,</span>
     <span class="mi">20089999</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Doraemon&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">},</span>
 <span class="p">}</span>
-<span class="k">print</span><span class="p">(</span><span class="n">students</span><span class="p">[</span><span class="mi">20088888</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">students</span><span class="p">[</span><span class="mi">20088888</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>
 <span class="c1"># Pika</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Vậy nên khi cần biểu diễn 1 object trong Go, cần tạo struct:</p>
-<div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Student</span> <span class="kd">struct</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">type</span> <span class="nx">Student</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">name</span> <span class="kt">string</span>
     <span class="nx">age</span>  <span class="kt">int</span>
 <span class="p">}</span>
@@ -203,8 +192,7 @@ có đoạn code tương tự với code Python sau đây nếu chỉ dùng map:
 <span class="p">}</span>
 <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">students</span><span class="p">[</span><span class="mi">20088888</span><span class="p">].</span><span class="nx">name</span><span class="p">)</span>
 <span class="c1">// Pika</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Và vì thế, map trong Go sẽ chỉ còn được dùng khi cần "ghép cặp" key-value, tối
 ưu cho việc tìm kiếm theo key. BIG NOTE: Go không có kiểu set built-in.</p>
@@ -220,14 +208,13 @@ SDK.</p>
 Go không khác nhiều với pointer trong C, nhưng sẽ là thứ rất khác biệt với
 người đến từ Python.</p>
 <p>Code trước, nói sau:</p>
-<div class="highlight"><pre><span></span><span class="nx">x</span> <span class="o">:=</span> <span class="mi">96</span>
+<div class="highlight"><pre><span></span><code><span class="nx">x</span> <span class="o">:=</span> <span class="mi">96</span>
 <span class="nx">p</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">x</span>
 <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Value of p: %v - Type of p: %T\n&quot;</span><span class="p">,</span> <span class="nx">p</span><span class="p">,</span> <span class="nx">p</span><span class="p">)</span>
 <span class="c1">// Value of p: 0xc000014110 - Type of p: *int</span>
 <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;0xff == 255: &quot;</span><span class="p">,</span> <span class="mh">0xff</span> <span class="o">==</span> <span class="mi">255</span><span class="p">)</span>
 <span class="c1">// 0xff == 255:  true</span>
-</pre></div>
-
+</code></pre></div>
 
 <p><code>p</code> có kiểu <code>*int</code>, và point to <code>x</code> (trỏ tới <code>x</code>), dấu <code>*</code> ở đây là
 ký hiệu của kiểu pointer, đứng trước kiểu mà nó trỏ tới.
@@ -235,10 +222,9 @@ ký hiệu của kiểu pointer, đứng trước kiểu mà nó trỏ tới.
 Còn giá trị của <code>p</code> là gì? <code>0xc000014110</code> là cách viết hệ hexadecimal (hệ 16),
 thường được dùng tới khi viết địa chỉ bộ nhớ máy tính.</p>
 <p>Trong Python cũng vậy, khi print 1 instance của class (object):</p>
-<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;print(object())&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="err">$</span> <span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;print(object())&#39;</span>
 <span class="o">&lt;</span><span class="nb">object</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f2025653c80</span><span class="o">&gt;</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Chú ý kết quả trên máy bạn sẽ khác, do mỗi lần chạy, Go sẽ cấp 1 memory address
 khác nhau.</p>
@@ -259,15 +245,14 @@ Nói <code>p</code> là một pointer point đến <code>x</code> là cách nói
 <p>Nếu 1 tấm biển có ghi địa chỉ của 1 quán ăn, thì tấm biển chính là pointer tới quán ăn đó.</p>
 <p>Để lấy giá trị mà <code>p</code> trỏ tới - tức là <code>x</code>, dùng ký hiệu: <code>*p</code>.
 Tránh nhầm lẫn dấu <code>*</code> ở đây với dấu <code>*</code> trong kiểu của pointer. Dấu <code>*</code> ở đây gọi là <code>pointer indirection</code>.</p>
-<div class="highlight"><pre><span></span><span class="nx">x</span> <span class="o">:=</span> <span class="mi">96</span>
+<div class="highlight"><pre><span></span><code><span class="nx">x</span> <span class="o">:=</span> <span class="mi">96</span>
 <span class="nx">p</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">x</span>
 <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Value of *p: %v\n&quot;</span><span class="p">,</span> <span class="o">*</span><span class="nx">p</span><span class="p">)</span>
 <span class="o">*</span><span class="nx">p</span> <span class="p">=</span> <span class="mi">99</span>
 <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Value of x: %v\n&quot;</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span>
 <span class="c1">// Value of *p: 96</span>
 <span class="c1">// Value of x: 99</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Thay đổi <code>*p</code> chính là thay đổi <code>x</code>.</p>
 <h3>Pointer dùng để làm gì?</h3>
@@ -277,13 +262,12 @@ Pointer thường được dùng để pass argument cho function hay return k�
 function.</p>
 <h4>Call by value là gì</h4>
 <p>Go function <a href="https://golang.org/ref/spec#Calls">call by value</a>, tức nếu gọi function với argument nào, thì function được gọi sẽ nhận được 1 bản <strong>copy</strong> của argument đó. Khi function return, giá trị return này được <strong>copy</strong> tới function gọi.</p>
-<div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">n</span> <span class="o">:=</span> <span class="s">&quot;meo Meo&quot;</span>
     <span class="nx">s</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">ToUpper</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span>
     <span class="o">...</span>
 <span class="p">}</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Ví dụ trên, <code>main</code> gọi <code>ToUpper</code>, <code>ToUpper</code> sẽ nhận được 1 bản copy của <code>n</code>, khi <code>ToUpper</code> xử lý xong, <code>main</code> sẽ nhận được 1 bản copy của kết quả mà <code>ToUpper</code> return.</p>
 <p>Copy không có vấn đề gì khi kích thước nhỏ, nhưng khi kích thước dữ liệu lớn, copy sẽ tốn RAM/CPU, vậy nên người ta dùng pointer để chia sẻ chung address, dùng chung 1 giá trị thay vì copy để tiết kiệm RAM.
@@ -296,7 +280,7 @@ Việc này thực hiện bằng cách gọi function với pointer argument và
 <p>Nhìn kỹ ra, lý do dùng pointer nói trên là 1 cách để "tối ưu" về bộ nhớ và tốc độ, nhưng việc này lại không tối ưu cho sự đơn giản, dễ hiểu của code - thứ luôn được đánh giá quan trọng hơn trong các chương trình thực tế.</p>
 <p>Không bao giờ bạn thấy function <code>sump</code> nào trông thế này cả, kể cả nó
 có vẻ như dùng ít tài nguyên hơn:</p>
-<div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">sump</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="o">*</span><span class="kt">int</span><span class="p">)</span> <span class="o">*</span><span class="kt">int</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nx">sump</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="o">*</span><span class="kt">int</span><span class="p">)</span> <span class="o">*</span><span class="kt">int</span> <span class="p">{</span>
     <span class="nx">r</span> <span class="o">:=</span> <span class="p">(</span><span class="o">*</span><span class="nx">a</span> <span class="o">+</span> <span class="o">*</span><span class="nx">b</span><span class="p">)</span>
     <span class="k">return</span> <span class="o">&amp;</span><span class="nx">r</span>
 <span class="p">}</span>
@@ -313,14 +297,13 @@ có vẻ như dùng ít tài nguyên hơn:</p>
 <span class="p">}</span>
 <span class="c1">// 3</span>
 <span class="c1">// 3</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Nếu tới đây vẫn chưa hiểu pointer là gì, hãy thử vận may với bài viết của <a href="https://dave.cheney.net/2017/04/26/understand-go-pointers-in-less-than-800-words-or-your-money-back">Dave Cheney</a></p>
 <h2>Method</h2>
 <p>method của struct là một cú pháp rất sáng tạo và khác biệt với các ngôn ngữ phổ biến (C, Python)... nhưng nó chỉ là 1 cách viết đơn giản (syntactic sugar) để pass struct argument cho method. Ví dụ sau đây, method addAge và
 function addAge là như nhau.</p>
-<div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">User</span> <span class="kd">struct</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">type</span> <span class="nx">User</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">name</span> <span class="kt">string</span>
     <span class="nx">age</span>  <span class="kt">int</span>
 <span class="p">}</span>
@@ -341,8 +324,7 @@ function addAge là như nhau.</p>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%v == %v\n&quot;</span><span class="p">,</span> <span class="nx">u</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
 <span class="p">}</span>
 <span class="c1">// Kết quả như nhau</span>
-</pre></div>
-
+</code></pre></div>
 
 <p><code>struct</code> argument được mặc định pass vào cho method gọi là <code>method receiver</code>,
 method receiver hầu hết đều là pointer, lý do xem lại phần pointer và link đính kèm.
@@ -354,12 +336,11 @@ typing giống như Python, nhưng đấy không phải lý do người ta tạo
 <blockquote>
 <p>An interface type specifies a method set called its interface. A variable of interface type can store a value of any type with a method set that is any superset of the interface. Such a type is said to implement the interface. The value of an uninitialized variable of interface type is nil.</p>
 </blockquote>
-<div class="highlight"><pre><span></span><span class="nx">InterfaceType</span>      <span class="p">=</span> <span class="s">&quot;interface&quot;</span> <span class="s">&quot;{&quot;</span> <span class="p">{</span> <span class="p">(</span> <span class="nx">MethodSpec</span> <span class="p">|</span> <span class="nx">InterfaceTypeName</span> <span class="p">)</span> <span class="s">&quot;;&quot;</span> <span class="p">}</span> <span class="s">&quot;}&quot;</span> <span class="p">.</span>
+<div class="highlight"><pre><span></span><code><span class="nx">InterfaceType</span>      <span class="p">=</span> <span class="s">&quot;interface&quot;</span> <span class="s">&quot;{&quot;</span> <span class="p">{</span> <span class="p">(</span> <span class="nx">MethodSpec</span> <span class="p">|</span> <span class="nx">InterfaceTypeName</span> <span class="p">)</span> <span class="s">&quot;;&quot;</span> <span class="p">}</span> <span class="s">&quot;}&quot;</span> <span class="p">.</span>
 <span class="nx">MethodSpec</span>         <span class="p">=</span> <span class="nx">MethodName</span> <span class="nx">Signature</span> <span class="p">.</span>
 <span class="nx">MethodName</span>         <span class="p">=</span> <span class="nx">identifier</span> <span class="p">.</span>
 <span class="nx">InterfaceTypeName</span>  <span class="p">=</span> <span class="nx">TypeName</span> <span class="p">.</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>kiểu <code>interface</code> dùng để định nghĩa 1 bộ các method. Thay vì cách dùng trong OOP phổ biến (Java, C#), một giá trị kiểu A là một giá trị kiểu A hoặc kế thừa kiểu A (inheritance), thì Go nói một giá trị kiểu A nếu nó có đủ các method trong interface A.
 Nhờ tính năng này, Go có thể viết 1 function nhận vào 1 interface, và khi gọi, có thể nhận vào bất kỳ kiểu nào đã implement interface này. Đây gọi là <code>polymorphism</code> - 1 trong <a href="https://www.freecodecamp.org/news/four-pillars-of-object-oriented-programming/">4 đặc tính quan trọng của OOP</a>.</p>
@@ -375,10 +356,9 @@ thread &amp; multiprocess &amp; async trong Python, hay các ngôn ngữ khác, 
 <p>Một triết lý trong thiết kế của Go là khiến lập trình viên nhìn thấy
 "cost" của code mình viết.
 Ví dụ trong Python viết:</p>
-<div class="highlight"><pre><span></span><span class="mi">1</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>  <span class="c1"># O(n)</span>
+<div class="highlight"><pre><span></span><code><span class="mi">1</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>  <span class="c1"># O(n)</span>
 <span class="mi">1</span> <span class="ow">in</span> <span class="p">{</span><span class="mi">5</span><span class="p">:</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span> <span class="s1">&#39;b&#39;</span><span class="p">}</span>  <span class="c1"># O(1)</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>chỉ thấy 1 chữ <code>in</code> và không thấy <strong>rõ</strong> là phải mất bao nhiêu phép tính, thì Go tối ưu thiết kế cho việc đó, dẫn tới việc muốn tìm 1 giá trị trong 1 slice/array, chỉ có cách là dùng 1 vòng for duyệt qua từng phần tử -&gt; O(n).</p>
 <h2>Stdlib for DevOps</h2>
@@ -393,7 +373,7 @@ Ví dụ trong Python viết:</p>
 <p>Cộng đồng Go <a href="https://go-proverbs.github.io/">ưa chuộng việc copy 1 chút thay vì cài thêm thư viện bên ngoài</a>, ưu chuộng dùng bộ stdlib có sẵn.</p>
 <h3>Example</h3>
 <p>Script liệt kê các GitHub repositories của 1 GitHub user (NOTE: no pagination)</p>
-<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<div class="highlight"><pre><span></span><code><span class="cm">/*</span>
 <span class="cm">Script lists GitHub repos of given username.</span>
 <span class="cm">*/</span>
 <span class="kn">package</span> <span class="nx">main</span>
@@ -440,8 +420,7 @@ Ví dụ trong Python viết:</p>
         <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%3d %s %s\n&quot;</span><span class="p">,</span> <span class="nx">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nx">i</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="nx">i</span><span class="p">.</span><span class="nx">HtmlUrl</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</pre></div>
-
+</code></pre></div>
 
 <h2>Go đơn giản, nhưng không dễ</h2>
 <p>Go đơn giản - đơn giản tức là ít khái niệm, ít cú pháp. Nhưng không dễ - dễ tức là không mất nhiều suy nghĩ, nhiều công sức làm một việc. Kiểm tra 1 phần tử trong slice, thêm 1 phần tử vào giữa array, ... các "bài toán nhỏ" mà Python chỉ mất 1 dòng code, thì trong Go là cả một vấn đề lớn mà người ta phải viết hẳn <a href="https://github.com/golang/go/wiki/SliceTricks">wiki rồi chia sẻ</a>.</p>

@@ -103,69 +103,62 @@ apt). <a href="https://docs.saltproject.io/en/latest/topics/installation/windows
 </ul>
 <h2>Trên máy master</h2>
 <p>Tạo SSH key nếu chưa có:</p>
-<div class="highlight"><pre><span></span>ls ~/.ssh/id_rsa <span class="o">||</span> ssh-keygen
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>ls ~/.ssh/id_rsa <span class="o">||</span> ssh-keygen
+</code></pre></div>
 
 <p>Copy ssh public key vào minion:</p>
-<div class="highlight"><pre><span></span>ssh-copy-id saltuser@192.168.0.110
+<div class="highlight"><pre><span></span><code>ssh-copy-id saltuser@192.168.0.110
 <span class="c1"># rồi gõ password saltuser vừa tạo</span>
-</pre></div>
-
+</code></pre></div>
 
 <h3>Cài đặt</h3>
 <p>Tạo 1 virtualenv:</p>
-<div class="highlight"><pre><span></span>python3 -m venv saltenv
+<div class="highlight"><pre><span></span><code>python3 -m venv saltenv
 . saltenv/bin/activate
 pip install <span class="nv">salt</span><span class="o">==</span><span class="m">3002</span>  <span class="c1"># do bản 3003 mới nhất đang có bug</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Cài xong kiểm tra</p>
-<div class="highlight"><pre><span></span>$ salt-ssh --version
+<div class="highlight"><pre><span></span><code>$ salt-ssh --version
 salt-ssh <span class="m">3002</span>
-</pre></div>
-
+</code></pre></div>
 
 <h3>Cấu hình master</h3>
 <p>Có 2 file cần tạo: <code>master</code> và <code>roster</code></p>
 <p>Tạo 1 thư mục tên saltlab:</p>
-<div class="highlight"><pre><span></span>mkdir -p ~/saltlab/states
+<div class="highlight"><pre><span></span><code>mkdir -p ~/saltlab/states
 <span class="nb">cd</span> ~/saltlab
 <span class="nb">pwd</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>File <code>master</code> chứa 2 dòng, <code>root_dir</code> giá trị là đường dẫn đầy đủ tới
 thư muc saltlab, <code>file_roots</code> có <code>states</code> với giá trị là đường dẫn đầy đủ
 tới thư mục <code>states</code>, thư mục states sẽ chứa các file "saltstate"</p>
-<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">root_dir</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/home/hvn/saltlab</span>
-<span class="l l-Scalar l-Scalar-Plain">file_roots</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">base</span><span class="p p-Indicator">:</span>
+<div class="highlight"><pre><span></span><code><span class="nt">root_dir</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/home/hvn/saltlab</span>
+<span class="nt">file_roots</span><span class="p">:</span>
+  <span class="nt">base</span><span class="p">:</span>
     <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/home/hvn/saltlab/states</span>
-<span class="l l-Scalar l-Scalar-Plain">pillar_roots</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">base</span><span class="p p-Indicator">:</span>
+<span class="nt">pillar_roots</span><span class="p">:</span>
+  <span class="nt">base</span><span class="p">:</span>
     <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/home/hvn/saltlab/pillars</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>File <code>roster</code> chứa thông tin về các máy minion:</p>
-<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">tv</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">host</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">192.168.0.110</span>
-  <span class="l l-Scalar l-Scalar-Plain">user</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">saltuser</span>
-  <span class="l l-Scalar l-Scalar-Plain">sudo</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
-<span class="l l-Scalar l-Scalar-Plain">trau</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">host</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">103.x.y.z</span>
-  <span class="l l-Scalar l-Scalar-Plain">user</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
-  <span class="l l-Scalar l-Scalar-Plain">port</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">22022</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="nt">tv</span><span class="p">:</span>
+  <span class="nt">host</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">192.168.0.110</span>
+  <span class="nt">user</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">saltuser</span>
+  <span class="nt">sudo</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+<span class="nt">trau</span><span class="p">:</span>
+  <span class="nt">host</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">103.x.y.z</span>
+  <span class="nt">user</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+  <span class="nt">port</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">22022</span>
+</code></pre></div>
 
 <p>ở đây định nghĩa 2 minion, 1 tên <code>tv</code> và 1 tên <code>trau</code>, minion <code>tv</code> sẽ là đối
 tượng của bài này.</p>
 <p>File này tương tự file inventory (hay có tên là <code>hosts</code>) của Ansible.</p>
 <p>Cấu trúc thư mục trông như sau</p>
-<div class="highlight"><pre><span></span>saltlab/
+<div class="highlight"><pre><span></span><code>saltlab/
 ├── master
 ├── roster
 ├── pillars
@@ -178,32 +171,28 @@ tượng của bài này.</p>
     ├── template.j2
     ├── uds.sls
     └── uds.systemd
-</pre></div>
-
+</code></pre></div>
 
 <h2>Chạy câu lệnh Salt</h2>
 <p>Từ master, trong venv saltenv, gõ lệnh <code>salt-ssh</code> với đối tượng <code>tv</code>, câu lệnh
 salt <code>cmd.run</code>, câu lệnh chạy trên <code>tv</code> là <code>uname -a</code>:</p>
-<div class="highlight"><pre><span></span><span class="o">(</span>saltenv<span class="o">)</span> $ salt-ssh --config ~/saltlab tv cmd.run <span class="s1">&#39;uname -a&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="o">(</span>saltenv<span class="o">)</span> $ salt-ssh --config ~/saltlab tv cmd.run <span class="s1">&#39;uname -a&#39;</span>
 tv:
     Linux MINIPC-PN50 <span class="m">5</span>.8.0-55-generic <span class="c1">#62~20.04.1-Ubuntu SMP Wed Jun 2 08:55:04 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux</span>
-</pre></div>
-
+</code></pre></div>
 
 <h2>Apply Salt state</h2>
 <p>Saltstate file là <a href="https://docs.saltproject.io/en/latest/topics/yaml/index.html">file YAML</a> có đuôi <code>.sls</code>, khai báo (declare)
 trạng thái của hệ thống mong muốn đạt được. File <code>htop.sls</code></p>
-<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">install htop</span><span class="p p-Indicator">:</span>   <span class="c1">#  ID của &quot;state&quot;</span>
-  <span class="l l-Scalar l-Scalar-Plain">pkg.installed</span><span class="p p-Indicator">:</span>  <span class="c1"># loại state - tương ứng với 1 python function</span>
-    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">htop</span>   <span class="c1"># các tham số - function argument</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="nt">install htop</span><span class="p">:</span>   <span class="c1">#  ID của &quot;state&quot;</span>
+  <span class="nt">pkg.installed</span><span class="p">:</span>  <span class="c1"># loại state - tương ứng với 1 python function</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">htop</span>   <span class="c1"># các tham số - function argument</span>
+</code></pre></div>
 
 <p>Cú pháp YAML trên tương ứng với Python dict sau:</p>
-<div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;install htop&#39;</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="s1">&#39;install htop&#39;</span><span class="p">:</span>
   <span class="p">{</span><span class="s1">&#39;pkg.installed&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;htop&#39;</span><span class="p">}]}}</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Sau khi được <code>apply</code>, state trên sẽ cài package <code>htop</code> lên máy, sử dụng package
 manager của máy minion, dù là apt trên Ubuntu hay yum/dnf trên Fedora.</p>
@@ -214,7 +203,7 @@ còn <a href="https://github.com/saltstack/salt/blob/v3003/salt/states/pkg.py#L1
 chạy đủ loại if/else kiểm tra hệ thống và chọn <code>apt</code> hay <code>yum</code> cho phù hợp.
 Salt gọi đây là <a href="https://docs.saltproject.io/en/latest/ref/states/all/index.html"><code>state module pkg</code></a>.</p>
 <p>Gõ trên master:</p>
-<div class="highlight"><pre><span></span>$ salt-ssh --config ~/saltlab tv state.apply htop
+<div class="highlight"><pre><span></span><code>$ salt-ssh --config ~/saltlab tv state.apply htop
 tv:
 ----------
           ID: install htop
@@ -238,24 +227,22 @@ Succeeded: <span class="m">1</span> <span class="o">(</span><span class="nv">cha
 Failed:    <span class="m">0</span>
 ------------
 Total states run:     <span class="m">1</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Xem đầy đủ các option, các function khác của <code>pkg state module</code> tại <a href="https://docs.saltproject.io/en/latest/ref/states/all/salt.states.pkg.html#module-salt.states.pkg">module-salt.states.pkg</a></p>
 <h3>Copy/render file và chạy câu lệnh</h3>
 <p>File <code>example.sls</code></p>
-<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">render a config file</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">file.managed</span><span class="p p-Indicator">:</span>
-    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">source</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">salt://template.j2</span>
-    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">template</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">jinja</span>
-    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">mode</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0400</span>
-    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/tmp/ahihi.yml</span>
+<div class="highlight"><pre><span></span><code><span class="nt">render a config file</span><span class="p">:</span>
+  <span class="nt">file.managed</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">source</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">salt://template.j2</span>
+    <span class="p p-Indicator">-</span> <span class="nt">template</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jinja</span>
+    <span class="p p-Indicator">-</span> <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0400</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/tmp/ahihi.yml</span>
 
-<span class="l l-Scalar l-Scalar-Plain">now run a command</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">cmd.run</span><span class="p p-Indicator">:</span>
-    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cat /tmp/ahihi.yml | head</span>
-</pre></div>
-
+<span class="nt">now run a command</span><span class="p">:</span>
+  <span class="nt">cmd.run</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cat /tmp/ahihi.yml | head</span>
+</code></pre></div>
 
 <p><code>cmd.run</code> dùng để chạy 1 câu lệnh trên minion, lệnh tùy ý. Với <code>cmd.run</code>,
 ta đã có thể làm được mọi thứ, đây là cách đơn giản nhất để thay thế các
@@ -271,7 +258,7 @@ ghi vào <code>/tmp/ahihi.yml</code> và chmod 0400.</p>
 <p><code>salt://</code> trong ví dụ này là <code>file_roots</code> trong file cấu hình master, tức thư
 mục <code>/home/hvn/saltlab/states</code> trên máy master.</p>
 <p>Nội dung file template.j2:</p>
-<div class="highlight"><pre><span></span><span class="cp">{%</span>- <span class="k">for</span> <span class="nv">i</span> <span class="k">in</span> <span class="o">[</span><span class="s1">&#39;meo&#39;</span><span class="o">,</span> <span class="s1">&#39;bo&#39;</span><span class="o">,</span> <span class="s1">&#39;ga&#39;</span><span class="o">]</span> <span class="cp">%}</span><span class="x"></span>
+<div class="highlight"><pre><span></span><code><span class="cp">{%</span>- <span class="k">for</span> <span class="nv">i</span> <span class="k">in</span> <span class="o">[</span><span class="s1">&#39;meo&#39;</span><span class="o">,</span> <span class="s1">&#39;bo&#39;</span><span class="o">,</span> <span class="s1">&#39;ga&#39;</span><span class="o">]</span> <span class="cp">%}</span><span class="x"></span>
 <span class="x">  - </span><span class="cp">{{</span> <span class="nv">i</span> <span class="cp">}}</span><span class="x"></span>
 <span class="cp">{%</span>- <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
 
@@ -280,8 +267,7 @@ mục <code>/home/hvn/saltlab/states</code> trên máy master.</p>
 
 <span class="x">os: </span><span class="cp">{{</span> <span class="nv">grains</span><span class="o">[</span><span class="s1">&#39;osfinger&#39;</span><span class="o">]</span> <span class="cp">}}</span><span class="x"></span>
 <span class="x">ips: </span><span class="cp">{{</span> <span class="nv">grains</span><span class="o">[</span><span class="s1">&#39;ipv4&#39;</span><span class="o">]</span> <span class="cp">}}</span><span class="x"></span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Jinja2 có for if/else như Python, xem
 <a href="https://docs.saltproject.io/en/getstarted/config/jinja.html">Jinja2 template</a>
@@ -299,13 +285,13 @@ mục <code>/home/hvn/saltlab/states</code> trên máy master.</p>
 <h4>salt  grains</h4>
 <p>Ví dụ trên có truy cập 2 thông tin từ grains là tên hệ điều hành và các IPv4 của
 máy minion. state.apply</p>
-<div class="highlight"><pre><span></span>          <span class="l l-Scalar l-Scalar-Plain">ID</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">render a config file</span>
-   <span class=" -Error"> </span><span class="l l-Scalar l-Scalar-Plain">Function</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">file.managed</span>
+<div class="highlight"><pre><span></span><code>          <span class="nt">ID</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">render a config file</span>
+   <span class=" -Error"> </span><span class="nt">Function</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">file.managed</span>
         <span class="l l-Scalar l-Scalar-Plain">Name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/tmp/ahihi.yml</span>
       <span class="l l-Scalar l-Scalar-Plain">Result</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
      <span class="l l-Scalar l-Scalar-Plain">Comment</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">File /tmp/ahihi.yml is in the correct state</span>
      <span class="l l-Scalar l-Scalar-Plain">Started</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">19:33:25.337228</span>
-    <span class="l l-Scalar l-Scalar-Plain">Duration</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">34.549 ms</span>
+    <span class="nt">Duration</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">34.549 ms</span>
      <span class="l l-Scalar l-Scalar-Plain">Changes</span><span class="p p-Indicator">:</span>
 <span class="l l-Scalar l-Scalar-Plain">----------</span>
           <span class="l l-Scalar l-Scalar-Plain">ID</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">now run a command</span>
@@ -319,25 +305,24 @@ máy minion. state.apply</p>
               <span class="l l-Scalar l-Scalar-Plain">----------</span>
               <span class="l l-Scalar l-Scalar-Plain">pid</span><span class="p p-Indicator">:</span>
                   <span class="l l-Scalar l-Scalar-Plain">42905</span>
-              <span class="l l-Scalar l-Scalar-Plain">retcode</span><span class="p p-Indicator">:</span>
+              <span class="nt">retcode</span><span class="p">:</span>
                   <span class="l l-Scalar l-Scalar-Plain">0</span>
-              <span class="l l-Scalar l-Scalar-Plain">stderr</span><span class="p p-Indicator">:</span>
-              <span class="l l-Scalar l-Scalar-Plain">stdout</span><span class="p p-Indicator">:</span>
+              <span class="nt">stderr</span><span class="p">:</span>
+              <span class="nt">stdout</span><span class="p">:</span>
 
                     <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">meo</span>
                     <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bo</span>
                     <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ga</span>
 
-              <span class=" -Error">    </span><span class="l l-Scalar l-Scalar-Plain">myuser</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">user</span>
-                  <span class="l l-Scalar l-Scalar-Plain">mypassword</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">passwd</span>
+              <span class=" -Error">    </span><span class="nt">myuser</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">user</span>
+                  <span class="nt">mypassword</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">passwd</span>
 
-                  <span class="l l-Scalar l-Scalar-Plain">os</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Ubuntu-20.04</span>
-                  <span class="l l-Scalar l-Scalar-Plain">ips</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="s">&#39;127.0.0.1&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;192.168.0.110&#39;</span><span class="p p-Indicator">]</span>
-</pre></div>
-
+                  <span class="nt">os</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Ubuntu-20.04</span>
+                  <span class="nt">ips</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="s">&#39;127.0.0.1&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;192.168.0.110&#39;</span><span class="p p-Indicator">]</span>
+</code></pre></div>
 
 <p>Để liệt kê tất cả grains của minion, dùng Salt command <code>grains.items</code></p>
-<div class="highlight"><pre><span></span>$ salt-ssh -c ~/saltlab tv grains.items
+<div class="highlight"><pre><span></span><code>$ salt-ssh -c ~/saltlab tv grains.items
 tv:
     ----------
     biosreleasedate:
@@ -346,34 +331,31 @@ tv:
         <span class="m">0416</span>
     cpu_flags:
     ...
-</pre></div>
-
+</code></pre></div>
 
 <h4>salt pillar</h4>
 <p>Pillar chỉ nằm trên master, nó map file nào dành cho minion nào. File <code>top.sls</code></p>
-<div class="highlight"><pre><span></span>base:
+<div class="highlight"><pre><span></span><code>base:
   &#39;*&#39;:
     - common
   &#39;trau&#39;:
     - uds
-</pre></div>
-
+</code></pre></div>
 
 <p><code>*</code> tức mọi minion đều có thể truy cập các pillar item trong file <code>common.sls</code>,
 chỉ <code>trau</code> mới truy cập được nội dung trong file <code>uds.sls</code>.</p>
 <p>Các file pillar là các file <code>.sls</code> theo syntax YAML, biểu diễn các dictionary
 của Python. Ví dụ: <code>uds.sls</code>:</p>
-<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">telegram_token</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">this_is_token</span>
+<div class="highlight"><pre><span></span><code><span class="nt">telegram_token</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">this_is_token</span>
 
-<span class="l l-Scalar l-Scalar-Plain">database</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">username</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
-  <span class="l l-Scalar l-Scalar-Plain">password</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">toor</span>
-</pre></div>
-
+<span class="nt">database</span><span class="p">:</span>
+  <span class="nt">username</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+  <span class="nt">password</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">toor</span>
+</code></pre></div>
 
 <p>Để liệt kê tất cả pillar item dành cho minion, dùng Salt command <code>pillar.items</code>
 (chú ý grains có s, pillar không có).</p>
-<div class="highlight"><pre><span></span>$ salt-ssh -c ~/saltlab trau pillar.items
+<div class="highlight"><pre><span></span><code>$ salt-ssh -c ~/saltlab trau pillar.items
 trau:
     ----------
     database:
@@ -384,19 +366,17 @@ trau:
             root
     telegram_token:
         this_is_token
-</pre></div>
-
+</code></pre></div>
 
 <p>Ví dụ 1 file dùng pillar:</p>
-<div class="highlight"><pre><span></span><span class="c1"># /lib/systemd/system/uds.service</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># /lib/systemd/system/uds.service</span>
 <span class="p p-Indicator">[</span><span class="nv">Unit</span><span class="p p-Indicator">]</span>
 <span class="l l-Scalar l-Scalar-Plain">Description=UDS telegram bot</span>
 
 <span class="l l-Scalar l-Scalar-Plain">[Service]</span>
 <span class="l l-Scalar l-Scalar-Plain">User=uds</span>
 <span class="l l-Scalar l-Scalar-Plain">Environment=BOT_TOKEN={{ pillar[&#39;telegram_token&#39;] }}</span>
-</pre></div>
-
+</code></pre></div>
 
 <h3>Deploy 1 Python project</h3>
 <p>Link này viết 1 salt formula (tên của 1 "bộ cài bằng Salt") để cài
@@ -423,9 +403,8 @@ state, dùng chúng như các viên gạch để tự động quá trình cài �
 phần mềm trên hệ thống.
 Cách thực hành đơn giản nhất là dùng Salt cài các phần mềm trên chính máy tính
 của mình đang dùng, thay vì gọi <code>salt-ssh</code>, dùng</p>
-<div class="highlight"><pre><span></span>sudo salt-call --local state.apply FORMULA_NAME -linfo
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>sudo salt-call --local state.apply FORMULA_NAME -linfo
+</code></pre></div>
 
 <h2>Hành động của chúng ta</h2>
 <p>Tạo 1 salt formula để deploy app Flask hello world chạy bằng gunicorn

@@ -108,7 +108,7 @@ vực khác nhau.</p>
 <h2>Coding</h2>
 <h3>CALC-UL8R</h3>
 <p>Đề cho 1 địa chỉ để nc vào</p>
-<div class="highlight"><pre><span></span>$ nc <span class="m">35</span>.211.207.36 <span class="m">8000</span>
+<div class="highlight"><pre><span></span><code>$ nc <span class="m">35</span>.211.207.36 <span class="m">8000</span>
   ____    _    _     ____      _   _ _     ___  ____
  / ___<span class="p">|</span>  / <span class="se">\ </span> <span class="p">|</span> <span class="p">|</span>   / ___<span class="p">|</span>    <span class="p">|</span> <span class="p">|</span> <span class="p">|</span> <span class="p">|</span> <span class="p">|</span>   <span class="o">(</span> _ <span class="o">)</span><span class="p">|</span>  _ <span class="se">\</span>
 <span class="p">|</span> <span class="p">|</span>     / _ <span class="se">\ </span><span class="p">|</span> <span class="p">|</span>  <span class="p">|</span> <span class="p">|</span>   _____<span class="p">|</span> <span class="p">|</span> <span class="p">|</span> <span class="p">|</span> <span class="p">|</span>   / _ <span class="se">\|</span> <span class="p">|</span>_<span class="o">)</span> <span class="p">|</span>
@@ -118,8 +118,7 @@ vực khác nhau.</p>
 
 <span class="m">31521</span> * <span class="m">2455</span> - <span class="m">29590</span> - o - <span class="m">40881</span> + <span class="nv">34681</span> <span class="o">=</span> <span class="m">77331423</span>
 <span class="nv">o</span> <span class="o">=</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>cần tính giá trị của biến, trong ví dụ này là <code>o</code>, rồi nhập vào.
 Cứ nhập xong, enter, phía server sẽ trả về 1 phép tính khác.</p>
@@ -140,13 +139,12 @@ thay vì dùng string.</p>
 <li><a href="https://stackoverflow.com/a/30776918/807703">https://stackoverflow.com/a/30776918/807703</a></li>
 </ul>
 <p>sửa lại để nhận mọi biến, PS: ở đây mình ko chăm chỉ viết tay từ a đến z mà gõ 1 dòng Python là xong</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">string</span><span class="p">;</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">string</span><span class="p">;</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="p">)</span>
 <span class="s1">&#39;a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z&#39;</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Code giải phương trình</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">solve</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">solve</span>
 <span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="kn">import</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">o</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span>
 <span class="kn">from</span> <span class="nn">sympy.parsing.sympy_parser</span> <span class="kn">import</span> <span class="n">parse_expr</span>
 
@@ -157,26 +155,24 @@ thay vì dùng string.</p>
         <span class="n">solution</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">lhs</span><span class="o">-</span><span class="n">rhs</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">solution</span>
     <span class="k">except</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;invalid equation&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;invalid equation&quot;</span><span class="p">)</span>
 
 
 <span class="n">equation</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">valid_text</span> <span class="o">=</span> <span class="n">equation</span>
 
 <span class="p">[</span><span class="n">result</span><span class="p">]</span> <span class="o">=</span> <span class="n">solve_meThis</span><span class="p">(</span><span class="n">valid_text</span><span class="p">)</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Thực hiện gửi nhận liên tục các phép tính cho đến khi server trả về kết quả:</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">SNYK{37d779963c037715c02624b6963008f55e92d12e8714a15b7a905c1c997d1afc}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">SNYK</span><span class="si">{37d779963c037715c02624b6963008f55e92d12e8714a15b7a905c1c997d1afc}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div>
 
 <p>File Jupyter Notebook dùng giải bài này
 <a href="https://gist.github.com/hvnsweeting/7e00e139912b9d65a1ec7c1913fdb513">https://gist.github.com/hvnsweeting/7e00e139912b9d65a1ec7c1913fdb513</a></p>
 <h3>Random flag generator - python</h3>
 <p>Một bài được tag thẻ <code>python</code>, cho 1 file code python và 1 file log:</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">random</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">hashlib</span>
 
@@ -184,49 +180,47 @@ thay vì dùng string.</p>
 
 <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
-<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
     <span class="n">rnd</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
 
     <span class="nb">hash</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">rnd</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
-    <span class="n">flag</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;SNYK{{{hash}}}&quot;</span>
+    <span class="n">flag</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;SNYK</span><span class="se">{{</span><span class="si">{</span><span class="nb">hash</span><span class="si">}</span><span class="se">}}</span><span class="s2">&quot;</span>
 
     <span class="k">if</span> <span class="s2">&quot;5bc&quot;</span> <span class="ow">in</span> <span class="nb">hash</span><span class="p">:</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;./flag&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
         <span class="k">break</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Bad random value: {rnd}&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bad random value: </span><span class="si">{</span><span class="n">rnd</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Flag created 🎉&quot;</span><span class="p">)</span>
-</pre></div>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Flag created 🎉&quot;</span><span class="p">)</span>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span>Bad random value: 0.3719072557403058
-Bad random value: 0.3702330745519661
-Bad random value: 0.0634360689087381
-Bad random value: 0.2952684217196877
-Bad random value: 0.49843979869018884
-Bad random value: 0.7895773927381043
-Bad random value: 0.2917373566923527
-Bad random value: 0.9030776618431813
-Bad random value: 0.7181809628413409
-Bad random value: 0.28050872595896736
-Bad random value: 0.17458286936713008
-Bad random value: 0.2767390568969583
-Bad random value: 0.5492478684168797
-Bad random value: 0.2641653670084557
-Bad random value: 0.5156703392963877
-Bad random value: 0.32839693347899057
-Bad random value: 0.6998299885658202
-Bad random value: 0.5811672985185747
-Bad random value: 0.4644468325648108
-Bad random value: 0.49982517906634727
-Bad random value: 0.9333988943747559
-Bad random value: 0.7513893164652713
-Bad random value: 0.18638831058360805
-Flag created 🎉
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">3719072557403058</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">3702330745519661</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">0634360689087381</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">2952684217196877</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">49843979869018884</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">7895773927381043</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">2917373566923527</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">9030776618431813</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">7181809628413409</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">28050872595896736</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">17458286936713008</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">2767390568969583</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">5492478684168797</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">2641653670084557</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">5156703392963877</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">32839693347899057</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">6998299885658202</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">5811672985185747</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">4644468325648108</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">49982517906634727</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">9333988943747559</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">7513893164652713</span>
+<span class="nv">Bad</span> <span class="k">random</span> <span class="nv">value</span>: <span class="mi">0</span>.<span class="mi">18638831058360805</span>
+<span class="nv">Flag</span> <span class="nv">created</span> 🎉
+</code></pre></div>
 
 <p>Đọc code thấy để tìm được flag, cần tìm ra
 giá trị <code>seed</code> mà người ra đề đã dùng.
@@ -268,7 +262,7 @@ Trong khi bài này key là 4 ký tự.</p>
 <p>một cái lib khá oái oăm khi cài thì ok mà dùng thì lại đòi cffi, và hầu hết mọi người dừng lại ở đó.</p>
 <p>Vậy phải làm sao? kết quả khi search cũng trả về nhiều thư viện cho ngôn ngữ khác như C, C++, Golang... mà ngồi viết C sau 10 năm không viết thì rất căng.
 Nhưng cuối cùng, Golang lại là giải pháp, nhờ vài năm code Go ăn tiền, sau 5 phút, ten ten có luôn kết quả:</p>
-<div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;encoding/base64&quot;</span>
@@ -301,8 +295,7 @@ Nhưng cuối cùng, Golang lại là giải pháp, nhờ vài năm code Go ăn 
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</pre></div>
-
+</code></pre></div>
 
 <p><a href="https://gist.github.com/hvnsweeting/b8d518fdd67b85e9bf9f6a16af6221af">Code</a></p>
 <p>kết luận ở đây là thành thạo thêm một ngôn ngữ backup phổ biến như
@@ -312,7 +305,7 @@ ai cũng có thời gian/tiền của đầu tư, giải pháp khác có vẻ d�
 member với tool set khác nhau.</p>
 <p>PS: lib <code>xxtea-py</code> sau khi cài <code>sudo apt install -y build-essential python3-dev</code>
 và <code>pip install cffi xxtea-py</code> trên Ubuntu 20.04, chạy được ra kết quả</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">base64</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">base64</span>
 <span class="kn">import</span> <span class="nn">xxtea</span>
 
 <span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;SDZcVdXvZHhKkxopTPYbTvmxTHwFZyyvnutAwsjijXwDqeOg&#39;</span>
@@ -321,35 +314,31 @@ và <code>pip install cffi xxtea-py</code> trên Ubuntu 20.04, chạy được r
     <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-                <span class="n">r</span> <span class="o">=</span> <span class="n">xxtea</span><span class="o">.</span><span class="n">decrypt</span><span class="p">(</span><span class="n">secret</span><span class="p">,</span> <span class="s2">&quot;{}{}{}{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">))</span>
-                <span class="k">if</span> <span class="sa">b</span><span class="s2">&quot;SNYK&quot;</span> <span class="ow">in</span> <span class="n">r</span><span class="p">:</span> <span class="nb">exit</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
-</pre></div>
-
+                <span class="n">r</span> <span class="o">=</span> <span class="n">xxtea</span><span class="o">.</span><span class="n">decrypt</span><span class="p">(</span><span class="n">secret</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{}{}{}{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">))</span>
+                <span class="k">if</span> <span class="sa">b</span><span class="s2">&quot;SNYK&quot;</span> <span class="ow">in</span> <span class="n">r</span><span class="p">:</span> <span class="n">exit</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</code></pre></div>
 
 <h2>Linux/system</h2>
 <h3>All your flags are belong to root - Linux CLI</h3>
 <p>Bài cho 1 user <code>u</code>, password và 1 địa chỉ để SSH vào.
 Sau khi login, thấy như sau:</p>
-<div class="highlight"><pre><span></span>all-your-flags-are-belong-to-root-p4j0:~$
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>all-your-flags-are-belong-to-root-p4j0:~$
+</code></pre></div>
 
 <p>gõ <code>ls</code> không thấy file gì. <code>cd</code> lung tung, tới <code>/</code>, <code>ls</code> thấy file <code>/flag</code> nhưng file này chỉ <code>root</code> mới đọc được.</p>
 <p>Gõ thử <code>sudo</code> không có, gõ <code>su -l</code> để
 trở thành root nhận được 1 message:</p>
-<div class="highlight"><pre><span></span>all-your-flags-are-belong-to-root-p4j0:/$ su -l
+<div class="highlight"><pre><span></span><code>all-your-flags-are-belong-to-root-p4j0:/$ su -l
 su: must be suid to work properly
 
 $ ls -la <span class="sb">`</span>which su<span class="sb">`</span>
 lrwxrwxrwx    <span class="m">1</span> root     root            <span class="m">12</span> Jun <span class="m">15</span> <span class="m">14</span>:34 /bin/su -&gt; /bin/busybox
-</pre></div>
-
+</code></pre></div>
 
 <p>File su này khá khác thường so với máy bình thường:</p>
-<div class="highlight"><pre><span></span>~$ ls -la `which su`
+<div class="highlight"><pre><span></span><code>~$ ls -la `which su`
 -rwsr-xr-x 1 root root 67816 Jul 21  2020 /usr/bin/su
-</pre></div>
-
+</code></pre></div>
 
 <p>Để từ user thường chiếm được quyền root đọc file /flag, cần "làm cách nào đó", và lời gợi ý là <strong>suid</strong>.</p>
 <p><code>SUID</code> là khái niệm ít phổ biến với người dùng CLI thông thường, họ học hết chmod 755 777 400 là khá đủ rồi.
@@ -359,15 +348,13 @@ Khi chmod, set SUID sử dụng số <code>4</code> trước số chmod thông t
 Lệnh <code>su</code> ở trên là 1 ví dụ có SUID.
 Lý do mình biết tới SUID, do công việc trước đây có viết một chương trình thực hiện gửi ICMP (ping), mà lại yêu cầu quyền root. Trong khi bình thường gõ lệnh ping thì không phải sudo/su bao giờ. Hóa ra <a href="https://security.stackexchange.com/a/222800/11544">lệnh ping (ngày xưa) set SUID</a> (giờ ko set nữa).</p>
 <p>Dùng <code>find</code> tìm trên máy các file có set SUID:</p>
-<div class="highlight"><pre><span></span>$ find / -perm -4000
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>$ find / -perm -4000
+</code></pre></div>
 
 <p>Tìm thấy file lệnh <code>curl</code>. <code>curl</code> là chương trình thường dùng để gửi HTTP request, nó cũng đọc được file khi thay <code>http://</code> bằng <code>file://</code></p>
-<div class="highlight"><pre><span></span>all-your-flags-are-belong-to-root-p4j0:/$ curl file:///flag
+<div class="highlight"><pre><span></span><code>all-your-flags-are-belong-to-root-p4j0:/$ curl file:///flag
 SNYK{06b0e0ae4995af71335eda2882fecbc5008b01d95990982b439f3f8365fc07f7}
-</pre></div>
-
+</code></pre></div>
 
 <p>PS: Nhìn lại, nếu hiểu ý của đề thì đó là lời gợi ý file flag nằm ở <code>/</code> (root).</p>
 <p>Ref</p>
@@ -382,14 +369,13 @@ SNYK{06b0e0ae4995af71335eda2882fecbc5008b01d95990982b439f3f8365fc07f7}
 không nhớ chính xác là tên gì, tạm gọi là <code>file.tar</code>.
 Bản chất các file "chương trình"/"data" trên máy tính thường là một dạng file archive/nén như zip/tar.
 Docker image cũng vậy:</p>
-<div class="highlight"><pre><span></span># tar xf ../file.tar
+<div class="highlight"><pre><span></span><code># tar xf ../file.tar
 # grep -Rin SNYK .
 Binary file ./b3b0b5528b213a9d35315784c9907fdeb5d8bf89a0bb012ee63546b3a1c2e10b/layer.tar matches
 # tar xf .././b3b0b5528b213a9d35315784c9907fdeb5d8bf89a0bb012ee63546b3a1c2e10b/layer.tar
 # grep -Rin SNYK
 ak/pp/tv/bc/22/flag:1:SNYK{23acc4111e1905ba1832cab7f1660284e3d1b91d3c2ead7bcec41ee8a4bd5ce9}
-</pre></div>
-
+</code></pre></div>
 
 <p>Ref:</p>
 <ul>
@@ -433,13 +419,12 @@ nếu <code>true</code> sẽ response giá trị của flag
 biến output hiện tại đang là:
 <code>output = {}</code> nên sẽ không trả về kết quả chúng ta cần
 Trong source code có sử dụng Unsafe Object recursive merge</p>
-<div class="highlight"><pre><span></span>merge (target, source)
-    foreach property of source
-    if property exists and is an object on both the target and the source
-        merge(target[property], source[property])
-    else target[property] = source[property]
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="k">merge</span><span class="w"> </span><span class="p">(</span><span class="n">target</span><span class="p">,</span><span class="w"> </span><span class="n">source</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">foreach</span><span class="w"> </span><span class="n">property</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">source</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">property</span><span class="w"> </span><span class="ow">exists</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="k">object</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="k">both</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">target</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">source</span><span class="w"></span>
+<span class="w">        </span><span class="k">merge</span><span class="p">(</span><span class="n">target</span><span class="o">[</span><span class="n">property</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">source</span><span class="o">[</span><span class="n">property</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="n">target</span><span class="o">[</span><span class="n">property</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">source</span><span class="o">[</span><span class="n">property</span><span class="o">]</span><span class="w"></span>
+</code></pre></div>
 
 <p>trong đó target là output còn source là request nên chỉ cần thay request bình thường từ:
 <code>{"message": "ping"}</code>
@@ -474,9 +459,8 @@ chơi nhiều là khác quen, và làm quen với chuyện "không phải bài n
 <h4>Task Magician</h4>
 <p>Đây là một task old-school về <code>PHP Type Juggling Vulnerabilities</code>
 dạng như:</p>
-<div class="highlight"><pre><span></span>var_dump(md5(&#39;240610708&#39;) == md5(&#39;QNKCDZO&#39;));
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="n">var_dump</span><span class="p">(</span><span class="n">md5</span><span class="p">(</span><span class="s1">&#39;240610708&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="n">md5</span><span class="p">(</span><span class="s1">&#39;QNKCDZO&#39;</span><span class="p">));</span>
+</code></pre></div>
 
 <p>Do không sử dụng toán tử <code>===</code> (giống nhau về cả value và type) mà sử dụng <code>==</code>  (chỉ cần giống nhau về value), ta hoàn toàn có thể tìm được strings có md5 thỏa mãn điều kiện bài toán.</p>
 <p>Tham chiếu thêm tại:
@@ -485,15 +469,14 @@ dạng như:</p>
 <p>Task cung cấp cho mình bộ ba <code>n,e,c</code> ta có thể biết ngay đây là một bài attack RSA, với c là bản mã, sau khi giải mã ra sẽ thu được FLAG.</p>
 <p>Do khi implement RSA họ sử dụng e lớn, nên sẽ bị ảnh hưởng bởi  Wiener attack (đây cũng là dạng old-school RSA trong các giải CTF)
 Sử dụng công cụ tại: https://github.com/orisano/owiener để thu được flag.</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">owiener</span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">owiener</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">e</span> <span class="o">=</span> <span class="mi">387825392787200906676631198961098070912332865442137539919413714790310139653713077586557654409565459752133439009280843965856789151962860193830258244424149230046832475959852771134503754778007132465468717789936602755336332984790622132641288576440161244396963980583318569320681953570111708877198371377792396775817</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">609983533322177402468580314139090006939877955334245068261469677806169434040069069770928535701086364941983428090933795745853896746458472620457491993499511798536747668197186857850887990812746855062415626715645223089415186093589721763366994454776521466115355580659841153428179997121984448771910872629371808169183</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">d</span> <span class="o">=</span> <span class="n">owiener</span><span class="o">.</span><span class="n">attack</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
 
-<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span> <span class="p">(</span><span class="n">d</span><span class="p">)</span>
 <span class="mi">40127490441880177477224469176371044914847896019034308382923938039797354608313</span>
-</pre></div>
-
+</code></pre></div>
 
 <h4>Task Browser preview</h4>
 <p><img alt="done" src="http://pp.pymi.vn/images/browser_preview.png"></p>
@@ -501,26 +484,24 @@ Sử dụng công cụ tại: https://github.com/orisano/owiener để thu đư�
 SSRF như tên gọi thì attacker sẽ khiến cho server thực hiện những request tùy ý (tùy vào từng trường hợp mà các protocol sẽ là http/dns/ftp/smpt/gopher...) như vậy khi có bug SSRF chúng ta sẽ bypass được các bộ filter về source IP  - do request đến từ chính server (localhost)</p>
 <p>Chức năng của web là nhập vào một URL, ta sẽ preview được nội dung trang web đó.
 URL phải validate dạng như sau:</p>
-<div class="highlight"><pre><span></span>    <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isUrlValid</span><span class="o">(</span><span class="n">String</span> <span class="n">url</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">Pattern</span> <span class="n">domainPattern</span> <span class="o">=</span> <span class="n">Pattern</span><span class="o">.</span><span class="na">compile</span><span class="o">(</span><span class="s">&quot;^https?://[a-z-0-9]+[.][a-z]+.*$&quot;</span><span class="o">,</span> <span class="n">Pattern</span><span class="o">.</span><span class="na">CASE_INSENSITIVE</span><span class="o">);</span>
-        <span class="n">Matcher</span> <span class="n">matcher</span> <span class="o">=</span> <span class="n">domainPattern</span><span class="o">.</span><span class="na">matcher</span><span class="o">(</span><span class="n">url</span><span class="o">);</span>
+<div class="highlight"><pre><span></span><code>    <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isUrlValid</span><span class="p">(</span><span class="n">String</span> <span class="n">url</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Pattern</span> <span class="n">domainPattern</span> <span class="o">=</span> <span class="n">Pattern</span><span class="p">.</span><span class="na">compile</span><span class="p">(</span><span class="s">&quot;^https?://[a-z-0-9]+[.][a-z]+.*$&quot;</span><span class="p">,</span> <span class="n">Pattern</span><span class="p">.</span><span class="na">CASE_INSENSITIVE</span><span class="p">);</span>
+        <span class="n">Matcher</span> <span class="n">matcher</span> <span class="o">=</span> <span class="n">domainPattern</span><span class="p">.</span><span class="na">matcher</span><span class="p">(</span><span class="n">url</span><span class="p">);</span>
 
-        <span class="k">return</span> <span class="n">matcher</span><span class="o">.</span><span class="na">find</span><span class="o">();</span>
-    <span class="o">}</span>
-</pre></div>
-
+        <span class="k">return</span> <span class="n">matcher</span><span class="p">.</span><span class="na">find</span><span class="p">();</span>
+    <span class="p">}</span>
+</code></pre></div>
 
 <p>Đọc source thì thấy tiếp  server có handler ở port 7654, có thể read flag thông qua phương thức này.</p>
-<div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">DebugServer</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
-        <span class="n">HttpServer</span> <span class="n">server</span> <span class="o">=</span> <span class="n">HttpServer</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="k">new</span> <span class="n">InetSocketAddress</span><span class="o">(</span><span class="mi">7654</span><span class="o">),</span> <span class="mi">0</span><span class="o">);</span>
-        <span class="n">server</span><span class="o">.</span><span class="na">createContext</span><span class="o">(</span><span class="s">&quot;/flag&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">FlagHandler</span><span class="o">());</span>
-        <span class="n">server</span><span class="o">.</span><span class="na">setExecutor</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
-        <span class="n">server</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">DebugServer</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="p">()</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">HttpServer</span> <span class="n">server</span> <span class="o">=</span> <span class="n">HttpServer</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="k">new</span> <span class="n">InetSocketAddress</span><span class="p">(</span><span class="mi">7654</span><span class="p">),</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="n">server</span><span class="p">.</span><span class="na">createContext</span><span class="p">(</span><span class="s">&quot;/flag&quot;</span><span class="p">,</span> <span class="k">new</span> <span class="n">FlagHandler</span><span class="p">());</span>
+        <span class="n">server</span><span class="p">.</span><span class="na">setExecutor</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+        <span class="n">server</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 
 <p>Như vậy ý đồ là quá rõ  ràng, mình sẽ nhập vào một URL dạng localhost:7654/flag để get flag, URL làm sao thỏa mãn được bộ filter trên là OK.
 Mình sử dụng URL dạng: http://domain.localhost:7654/flag

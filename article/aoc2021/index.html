@@ -115,9 +115,8 @@ benchmark [<a href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/
 50 bài toán đố của AoC 2021.</p>
 <h3>Cài đặt</h3>
 <p>Chạy lệnh ghi trên trang <a href="https://rustup.rs/">rustup.rs</a> để cài:</p>
-<div class="highlight"><pre><span></span>curl --proto &#39;=https&#39; --tlsv1.2 -sSf https://sh.rustup.rs | sh
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>curl --proto &#39;=https&#39; --tlsv1.2 -sSf https://sh.rustup.rs | sh
+</code></pre></div>
 
 <p>Mặc dù các hệ điều hành đều có package manager để cài Rust như Ubuntu <code>apt</code>, Fedora <code>yum</code>, hay MacOS <code>homebrew</code>,
 <code>rustup</code> là công cụ được khuyên dùng chính thức vì nó có khả năng cài thêm các phần liên quan
@@ -143,58 +142,50 @@ Rust compiler có câu lệnh <code>rustc</code>, gõ <code>rustc file.rs</code>
 Nhưng Rust có kèm "cargo", package manager của Rust, như pip của Python, như
 npm của nodejs... cargo hỗ trợ mọi tác vụ cần để code 1 Rust project.</p>
 <p>Để tạo 1 Rust project, gõ:</p>
-<div class="highlight"><pre><span></span>$ cargo new project-name
+<div class="highlight"><pre><span></span><code>$ cargo new project-name
      Created binary <span class="o">(</span>application<span class="o">)</span> <span class="sb">`</span>project-name<span class="sb">`</span> package
 $ <span class="nb">cd</span> project-name/
-</pre></div>
-
+</code></pre></div>
 
 <p>lệnh này sinh ra file config cho cargo <code>Cargo.toml</code> và code 1 chương trình hello world
 nằm trong src/main.rs</p>
-<div class="highlight"><pre><span></span>./Cargo.toml
+<div class="highlight"><pre><span></span><code>./Cargo.toml
 ./src
 ./src/main.rs
-</pre></div>
-
+</code></pre></div>
 
 <p>rồi chạy:</p>
-<div class="highlight"><pre><span></span>$ cargo run
+<div class="highlight"><pre><span></span><code>$ cargo run
    Compiling project-name v0.1.0 <span class="o">(</span>/tmp/project-name<span class="o">)</span>
-    Finished dev <span class="o">[</span>unoptimized + debuginfo<span class="o">]</span> target<span class="o">(</span>s<span class="o">)</span> in <span class="m">0</span>.60s
+    Finished dev <span class="o">[</span>unoptimized + debuginfo<span class="o">]</span> target<span class="o">(</span>s<span class="o">)</span> <span class="k">in</span> <span class="m">0</span>.60s
      Running <span class="sb">`</span>target/debug/project-name<span class="sb">`</span>
 Hello, world!
-</pre></div>
-
+</code></pre></div>
 
 <p>Để chạy test, gõ</p>
-<div class="highlight"><pre><span></span>$ cargo <span class="nb">test</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>$ cargo <span class="nb">test</span>
+</code></pre></div>
 
 <p>Để format code, gõ</p>
-<div class="highlight"><pre><span></span>$ cargo fmt
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>$ cargo fmt
+</code></pre></div>
 
 <h3>Hello, World!</h3>
 <p>Gõ lệnh <code>cargo new</code> đã tự tạo ra code hello world, trong file src/main.rs:</p>
-<div class="highlight"><pre><span></span>fn main() {
-    println!(&quot;Hello, world!&quot;);
-}
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 
 <p>Code của chương trình Rust nằm trong file <code>main.rs</code> và chạy từ function <code>main</code>.
 <code>fn main() {...}</code> định nghĩa 1 function tên <code>main</code>, sử dụng từ khóa <code>fn</code>, thân
 function nằm trong cặp <code>{}</code>.</p>
-<div class="highlight"><pre><span></span>    println!(&quot;Hello, world!&quot;);
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
 
 <p>không khác Python là mấy:</p>
-<div class="highlight"><pre><span></span>print(&quot;Hello, world!&quot;)
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>print(&quot;Hello, world!&quot;)
+</code></pre></div>
 
 <p><code>println!()</code> trông như 1 function, nhưng trong Rust, khi thấy dấu <code>!</code> thì đó là
 biểu diễn của 1 macro.</p>
@@ -208,26 +199,24 @@ biểu diễn của 1 macro.</p>
 <p>Tính tổng các số tự nhiên nhỏ hơn 1000 chia hết cho 3 hoặc 5.</p>
 </blockquote>
 <p>Để tạo 1 biến, gõ <code>let tên = giá trị;</code></p>
-<div class="highlight"><pre><span></span><span class="nt">fn</span> <span class="nt">main</span><span class="o">()</span> <span class="p">{</span>
-    <span class="err">let</span> <span class="err">mut</span> <span class="err">result</span> <span class="err">=</span> <span class="err">0</span><span class="p">;</span>
-    <span class="err">for</span> <span class="err">i</span> <span class="err">in</span> <span class="err">0..1000</span> <span class="err">{</span>
-        <span class="err">if</span> <span class="err">i</span> <span class="err">%</span> <span class="err">3</span> <span class="err">==</span> <span class="err">0</span> <span class="err">||</span> <span class="err">i</span> <span class="err">%</span> <span class="err">5</span> <span class="err">==</span> <span class="err">0</span> <span class="err">{</span>
-            <span class="err">result</span> <span class="err">+=</span> <span class="err">i</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="err">}</span>
-    <span class="nt">println</span><span class="o">!(</span><span class="s2">&quot;Kết quả: {}&quot;</span><span class="o">,</span> <span class="nt">result</span><span class="o">);</span>
-<span class="err">}</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">0</span><span class="o">..</span><span class="mi">1000</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">result</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;Kết quả: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 
 <p>Cũng không quá khác code Python:</p>
-<div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
+<div class="highlight"><pre><span></span><code><span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">result</span> <span class="o">+=</span> <span class="n">i</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Kết quả {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
-</pre></div>
-
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Kết quả </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+</code></pre></div>
 
 <p>Rust giống C/C++/Java, dùng <code>{}</code>làm khối lệnh nhóm các câu lệnh trong if/for/function,
 khác với Python dùng indentation (thụt vào 4 dấu space).
@@ -235,18 +224,17 @@ Biến trong Rust mặc định không
 thay đổi được sau khi tạo, phải thêm từ khóa <code>mut</code> (viết tắt của mutable): <code>let mut result = 0;</code> để thay đổi <code>result</code>.
 <code>println!</code> nhận 1 string, với <code>{}</code> để format, rồi tới các giá trị theo sau.</p>
 <p>Rust có kiểu vector <code>Vec</code>, tương tự như Python <code>list</code>:</p>
-<div class="highlight"><pre><span></span><span class="nt">fn</span> <span class="nt">main</span><span class="o">()</span> <span class="p">{</span>
-    <span class="err">let</span> <span class="err">mut</span> <span class="err">vec</span> <span class="err">=</span> <span class="err">vec!</span><span class="cp">[]</span><span class="p">;</span>
-    <span class="err">for</span> <span class="err">i</span> <span class="err">in</span> <span class="err">0..1000</span> <span class="err">{</span>
-        <span class="err">if</span> <span class="err">i</span> <span class="err">%</span> <span class="err">3</span> <span class="err">==</span> <span class="err">0</span> <span class="err">||</span> <span class="err">i</span> <span class="err">%</span> <span class="err">5</span> <span class="err">==</span> <span class="err">0</span> <span class="err">{</span>
-            <span class="err">vec.push(i)</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="err">}</span>
-    <span class="nt">let</span> <span class="nt">result</span><span class="o">:</span> <span class="nt">i32</span> <span class="o">=</span> <span class="nt">vec</span><span class="p">.</span><span class="nc">iter</span><span class="o">()</span><span class="p">.</span><span class="nc">sum</span><span class="o">();</span>
-    <span class="nt">println</span><span class="o">!(</span><span class="s2">&quot;{}&quot;</span><span class="o">,</span> <span class="nt">result</span><span class="o">);</span>
-<span class="err">}</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[];</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">0</span><span class="o">..</span><span class="mi">1000</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">vec</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">i</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">result</span>: <span class="kt">i32</span> <span class="o">=</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">iter</span><span class="p">().</span><span class="n">sum</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 
 <p>nhưng...</p>
 <p>mặc dù có không ít khái niệm tương tự Python, hay syntax rút gọn trông cũng gần
@@ -316,36 +304,33 @@ là giống.</p>
 </tbody>
 </table>
 <h5>Tuple</h5>
-<div class="highlight"><pre><span></span>let (name, age) = (&quot;PYMI&quot;, 6);
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;PYMI&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
 
 <h5>Vector</h5>
 <p>Vector tương tự như Python list. Lặp qua các phần tử của 1 vector:</p>
-<div class="highlight"><pre><span></span>let vec = vec![1, 2, 3, 5];
-for n in vec {
-    println!(&quot;{}&quot;, n);
-}
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="n">vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">];</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">vec</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 
 <h5>HashSet</h5>
-<div class="highlight"><pre><span></span><span class="nt">use</span> <span class="nt">std</span><span class="p">::</span><span class="nd">collections</span><span class="p">::</span><span class="nd">HashSet</span><span class="o">;</span>
-<span class="nt">fn</span> <span class="nt">main</span><span class="o">()</span> <span class="p">{</span>
-    <span class="err">let</span> <span class="err">mut</span> <span class="n">set</span><span class="p">:</span> <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">i32</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">HashSet</span><span class="o">::</span><span class="nf">from</span><span class="p">(</span><span class="cp">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="cp">]</span><span class="p">);</span>
-    <span class="err">set.extend(</span><span class="cp">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="cp">]</span><span class="err">)</span><span class="p">;</span>
-    <span class="err">dbg!(&amp;set)</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="k">use</span><span class="w"> </span><span class="n">std</span>::<span class="n">collections</span>::<span class="n">HashSet</span><span class="p">;</span><span class="w"></span>
+<span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">set</span>: <span class="nc">HashSet</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HashSet</span>::<span class="n">from</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">]);</span><span class="w"></span>
+<span class="w">    </span><span class="n">set</span><span class="p">.</span><span class="n">extend</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">]);</span><span class="w"></span>
+<span class="w">    </span><span class="fm">dbg!</span><span class="p">(</span><span class="o">&amp;</span><span class="n">set</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="cp">[</span><span class="nx">src</span><span class="p">/</span><span class="nx">main.rs</span><span class="p">:</span><span class="mi">5</span><span class="cp">]</span> <span class="o">&amp;</span><span class="nt">set</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="err">5,</span>
-    <span class="err">4,</span>
-    <span class="err">1,</span>
-    <span class="err">3,</span>
-    <span class="err">2,</span>
-<span class="p">}</span>
-</pre></div>
-
+<span class="p">[</span><span class="n">src</span><span class="o">/</span><span class="n">main</span><span class="p">.</span><span class="n">rs</span>:<span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">&amp;</span><span class="n">set</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="mi">5</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="mi">4</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="mi">3</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 
 <ul>
 <li><code>dbg!</code> để <strong>print debug</strong> trong Rust.</li>
@@ -354,35 +339,33 @@ for n in vec {
 <p>HashMap key không có thứ tự, tương tự với Python dict trước 3.6,
 cú pháp import <code>use std::collections::HashMap;</code>
 như Python <code>from collections import Counter</code>:</p>
-<div class="highlight"><pre><span></span><span class="nt">use</span> <span class="nt">std</span><span class="p">::</span><span class="nd">collections</span><span class="p">::</span><span class="nd">HashMap</span><span class="o">;</span>
-<span class="nt">fn</span> <span class="nt">double</span><span class="o">(</span><span class="nt">x</span><span class="o">:</span> <span class="nt">i32</span><span class="o">)</span> <span class="nt">-</span><span class="o">&gt;</span> <span class="nt">i32</span> <span class="p">{</span>
-    <span class="err">return</span> <span class="err">x</span> <span class="err">*</span> <span class="err">2</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nt">fn</span> <span class="nt">main</span><span class="o">()</span> <span class="p">{</span>
-    <span class="err">let</span> <span class="err">mut</span> <span class="n">d</span><span class="p">:</span> <span class="n">HashMap</span><span class="o">&lt;&amp;</span><span class="n">str</span><span class="p">,</span> <span class="n">i32</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">HashMap</span><span class="o">::</span><span class="nf">from</span><span class="p">(</span><span class="cp">[</span><span class="p">(</span><span class="s2">&quot;Hà Nội&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="nx">_612</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;Cà Mau&quot;</span><span class="p">,</span> <span class="mi">967</span><span class="p">)</span><span class="cp">]</span><span class="p">);</span>
-    <span class="err">d.insert(&quot;TP</span> <span class="err">HCM&quot;,</span> <span class="err">687)</span><span class="p">;</span>
-    <span class="err">for</span> <span class="err">(k,</span> <span class="err">v)</span> <span class="err">in</span> <span class="err">d</span> <span class="err">{</span>
-        <span class="err">println!(&quot;{</span><span class="p">}</span><span class="o">:</span> <span class="p">{}</span><span class="err">&quot;</span><span class="o">,</span> <span class="nt">k</span><span class="o">,</span> <span class="nt">double</span><span class="o">(</span><span class="nt">v</span><span class="o">));</span>
-    <span class="err">}</span>
-<span class="err">}</span>
-<span class="o">//</span><span class="nt">Hà</span> <span class="nt">Nội</span><span class="o">:</span> <span class="nt">1612</span>
-<span class="o">//</span><span class="nt">TP</span> <span class="nt">HCM</span><span class="o">:</span> <span class="nt">687</span>
-<span class="o">//</span><span class="nt">Cà</span> <span class="nt">Mau</span><span class="o">:</span> <span class="nt">967</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="k">use</span><span class="w"> </span><span class="n">std</span>::<span class="n">collections</span>::<span class="n">HashMap</span><span class="p">;</span><span class="w"></span>
+<span class="k">fn</span> <span class="nf">double</span><span class="p">(</span><span class="n">x</span>: <span class="kt">i32</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">i32</span> <span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">d</span>: <span class="nc">HashMap</span><span class="o">&lt;&amp;</span><span class="kt">str</span><span class="p">,</span><span class="w"> </span><span class="kt">i32</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HashMap</span>::<span class="n">from</span><span class="p">([(</span><span class="s">&quot;Hà Nội&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1_612</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Cà Mau&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">967</span><span class="p">)]);</span><span class="w"></span>
+<span class="w">    </span><span class="n">d</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="s">&quot;TP HCM&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">687</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{}: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">double</span><span class="p">(</span><span class="n">v</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="c1">//Hà Nội: 1612</span>
+<span class="c1">//TP HCM: 687</span>
+<span class="c1">//Cà Mau: 967</span>
+</code></pre></div>
 
 <p>Cú pháp type của function tương tự Python:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">double</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">double</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">d</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="s2">&quot;Hà Nội&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="n">_612</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;Cà Mau&quot;</span><span class="p">,</span> <span class="mi">967</span><span class="p">)])</span>
+    <span class="n">d</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="s2">&quot;Hà Nội&quot;</span><span class="p">,</span> <span class="mi">1_612</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;Cà Mau&quot;</span><span class="p">,</span> <span class="mi">967</span><span class="p">)])</span>
     <span class="n">d</span><span class="p">[</span><span class="s2">&quot;TP HCM&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">687</span>
     <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;{}: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">double</span><span class="p">(</span><span class="n">v</span><span class="p">)))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">double</span><span class="p">(</span><span class="n">v</span><span class="p">)))</span>
 <span class="n">main</span><span class="p">()</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Khác với đoạn code giải Project Euler 1, code trên có khai báo type
 cho các biến. Rust không bắt buộc phải khai báo type khi nó có thể tự
@@ -396,18 +379,17 @@ vì vậy đa số code không cần ghi type, khi nào cần, Rust compiler s�
 </blockquote>
 <p>Cho một dãy số tự nhiên (độ sâu của tàu ngầm) tăng giảm tùy ý.
 Có bao nhiêu lần độ sâu tăng so với lần trước. Ví dụ:</p>
-<div class="highlight"><pre><span></span>199 (N/A - no previous measurement)
-200 (increased)
-208 (increased)
-210 (increased)
-200 (decreased)
-207 (increased)
-240 (increased)
-269 (increased)
-260 (decreased)
-263 (increased)
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="mf">199</span> <span class="p">(</span><span class="n">N</span><span class="o">/</span><span class="n">A</span> <span class="o">-</span> <span class="n">no</span> <span class="n">previous</span> <span class="n">measurement</span><span class="p">)</span>
+<span class="mf">200</span> <span class="p">(</span><span class="n">increased</span><span class="p">)</span>
+<span class="mf">208</span> <span class="p">(</span><span class="n">increased</span><span class="p">)</span>
+<span class="mf">210</span> <span class="p">(</span><span class="n">increased</span><span class="p">)</span>
+<span class="mf">200</span> <span class="p">(</span><span class="n">decreased</span><span class="p">)</span>
+<span class="mf">207</span> <span class="p">(</span><span class="n">increased</span><span class="p">)</span>
+<span class="mf">240</span> <span class="p">(</span><span class="n">increased</span><span class="p">)</span>
+<span class="mf">269</span> <span class="p">(</span><span class="n">increased</span><span class="p">)</span>
+<span class="mf">260</span> <span class="p">(</span><span class="n">decreased</span><span class="p">)</span>
+<span class="mf">263</span> <span class="p">(</span><span class="n">increased</span><span class="p">)</span>
+</code></pre></div>
 
 <p>Phần chú thích trong <code>()</code> là hướng dẫn, đề chỉ cho 1 file chứa các số, mỗi số 1 dòng.
 Ví dụ trên có 7 lần tăng.</p>
@@ -418,32 +400,31 @@ Ví dụ trên có 7 lần tăng.</p>
 <li>lặp qua các giá trị, đếm số lần giá trị sau lớn hơn giá trị trước.</li>
 </ul>
 <p>Bài giải, theo kiểu dùng vòng lặp:</p>
-<div class="highlight"><pre><span></span><span class="nt">fn</span> <span class="nt">main</span><span class="o">()</span> <span class="p">{</span>
-    <span class="err">let</span> <span class="err">s</span> <span class="err">=</span> <span class="err">&quot;199</span>
-<span class="err">200</span>
-<span class="err">208</span>
-<span class="err">210</span>
-<span class="err">200</span>
-<span class="err">207</span>
-<span class="err">240</span>
-<span class="err">269</span>
-<span class="err">260</span>
-<span class="err">263&quot;</span><span class="p">;</span>
-    <span class="err">let</span> <span class="n">lines</span><span class="p">:</span> <span class="n">Vec</span><span class="o">&lt;&amp;</span><span class="n">str</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="nf">lines</span><span class="p">()</span><span class="o">.</span><span class="nf">collect</span><span class="p">();</span>
-    <span class="err">let</span> <span class="err">mut</span> <span class="err">increases_count</span> <span class="err">=</span> <span class="err">0</span><span class="p">;</span>
-    <span class="err">let</span> <span class="err">mut</span> <span class="n">prev</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">str</span> <span class="o">=</span> <span class="n">lines</span><span class="cp">[</span><span class="mi">0</span><span class="cp">]</span><span class="p">;</span>
-    <span class="err">for</span> <span class="err">line</span> <span class="err">in</span> <span class="err">&amp;lines</span><span class="cp">[</span><span class="mi">1</span><span class="nx">..</span><span class="cp">]</span> <span class="err">{</span>
-        <span class="err">let</span> <span class="n">n</span><span class="p">:</span> <span class="n">i32</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="nf">parse</span><span class="p">()</span><span class="o">.</span><span class="nf">unwrap</span><span class="p">();</span>
-        <span class="err">let</span> <span class="n">p</span><span class="p">:</span> <span class="n">i32</span> <span class="o">=</span> <span class="n">prev</span><span class="o">.</span><span class="nf">parse</span><span class="p">()</span><span class="o">.</span><span class="nf">unwrap</span><span class="p">();</span>
-        <span class="err">if</span> <span class="err">n</span> <span class="err">&gt;</span> <span class="err">p</span> <span class="err">{</span>
-            <span class="err">increases_count</span> <span class="err">+=</span> <span class="err">1</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="nt">prev</span> <span class="o">=</span> <span class="nt">line</span><span class="o">;</span>
-    <span class="err">}</span>
-    <span class="nt">println</span><span class="o">!(</span><span class="s2">&quot;{}&quot;</span><span class="o">,</span> <span class="nt">increases_count</span><span class="o">);</span>
-<span class="err">}</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;199</span>
+<span class="s">200</span>
+<span class="s">208</span>
+<span class="s">210</span>
+<span class="s">200</span>
+<span class="s">207</span>
+<span class="s">240</span>
+<span class="s">269</span>
+<span class="s">260</span>
+<span class="s">263&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">lines</span>: <span class="nb">Vec</span><span class="o">&lt;&amp;</span><span class="kt">str</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">lines</span><span class="p">().</span><span class="n">collect</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">increases_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">prev</span>: <span class="kp">&amp;</span><span class="kt">str</span> <span class="o">=</span><span class="w"> </span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">&amp;</span><span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="p">]</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">n</span>: <span class="kt">i32</span> <span class="o">=</span><span class="w"> </span><span class="n">line</span><span class="p">.</span><span class="n">parse</span><span class="p">().</span><span class="n">unwrap</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">p</span>: <span class="kt">i32</span> <span class="o">=</span><span class="w"> </span><span class="n">prev</span><span class="p">.</span><span class="n">parse</span><span class="p">().</span><span class="n">unwrap</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">increases_count</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">prev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">line</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">increases_count</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 
 <p>Người chơi có thể dùng <code>std::fs::read_to_string</code> để đọc từ file, nhưng ngày đầu
 tiên dùng Rust, với một bài khởi động đơn giản thế này thì phần cản trở tốc độ giải cũng chính là
@@ -471,18 +452,17 @@ không có index âm (như -1).</li>
 <p>Cách trên không được coi là code theo kiểu Rust, mà giống viết code C/Python dịch sang
 Rust hơn. Một phiên bản khác sử dụng <code>iterator</code> mang phong cách functional programming,
 phải đến ngày thứ 10 trở đi, hay đọc xong <a href="https://doc.rust-lang.org/stable/book/ch13-00-functional-features.html">chương 13 trong "The Rust Book"</a> mới quen được kiểu này:</p>
-<div class="highlight"><pre><span></span><span class="nt">fn</span> <span class="nt">main</span><span class="o">()</span> <span class="p">{</span>
-    <span class="err">let</span> <span class="err">s</span> <span class="err">=</span> <span class="n">std</span><span class="p">:</span><span class="o">:</span><span class="n">fs</span><span class="o">::</span><span class="nf">read_to_string</span><span class="p">(</span><span class="s2">&quot;input01&quot;</span><span class="p">)</span><span class="o">.</span><span class="nf">unwrap</span><span class="p">();</span>
-    <span class="err">let</span> <span class="n">lines</span><span class="p">:</span> <span class="n">Vec</span><span class="o">&lt;</span><span class="n">i32</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="nf">lines</span><span class="p">()</span><span class="o">.</span><span class="nf">map</span><span class="p">(</span><span class="err">|</span><span class="n">i</span><span class="err">|</span> <span class="n">i</span><span class="err">.</span><span class="nf">parse</span><span class="p">()</span><span class="err">.</span><span class="nf">unwrap</span><span class="p">())</span><span class="o">.</span><span class="nf">collect</span><span class="p">();</span>
-    <span class="err">let</span> <span class="err">increases_count</span> <span class="err">=</span> <span class="err">lines</span>
-        <span class="err">.iter()</span>
-        <span class="err">.zip(&amp;lines</span><span class="cp">[</span><span class="mi">1</span><span class="nx">..</span><span class="cp">]</span><span class="err">)</span>
-        <span class="err">.filter(|(prev,</span> <span class="err">next)|</span> <span class="err">next</span> <span class="err">&gt;</span> <span class="err">prev)</span>
-        <span class="err">.count()</span><span class="p">;</span>
-    <span class="err">println!(&quot;{</span><span class="p">}</span><span class="err">&quot;</span><span class="o">,</span> <span class="nt">increases_count</span><span class="o">);</span>
-<span class="err">}</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span>::<span class="n">fs</span>::<span class="n">read_to_string</span><span class="p">(</span><span class="s">&quot;input01&quot;</span><span class="p">).</span><span class="n">unwrap</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">lines</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">lines</span><span class="p">().</span><span class="n">map</span><span class="p">(</span><span class="o">|</span><span class="n">i</span><span class="o">|</span><span class="w"> </span><span class="n">i</span><span class="p">.</span><span class="n">parse</span><span class="p">().</span><span class="n">unwrap</span><span class="p">()).</span><span class="n">collect</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">increases_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lines</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="n">iter</span><span class="p">()</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="n">zip</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="p">])</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="n">filter</span><span class="p">(</span><span class="o">|</span><span class="p">(</span><span class="n">prev</span><span class="p">,</span><span class="w"> </span><span class="n">next</span><span class="p">)</span><span class="o">|</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">prev</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="n">count</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">increases_count</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 
 <p>Ý tưởng khác một chút, thay vì duyệt qua dãy số, ta duyệt qua 2 dãy cùng 1 lúc
 với <code>zip</code>, dãy thứ 2 bắt đầu từ phần tử index 1, và filter (lọc)
@@ -491,42 +471,39 @@ ra các cặp mà có giá trị sau lớn hơn giá trị trước, rồi đế
 bao nhiêu dòng cũng được. Code này tương tự Python <code>lambda t: t[1] &gt; t[0]</code>.</p>
 <p>Sau khi nhập kết quả giải xong phần 1, đề phần 2 hiện ra yêu cầu thay vì đếm số
 sau lớn hơn số trước thì đếm tổng 3 số sau lớn hơn tổng 3 số trước.</p>
-<div class="highlight"><pre><span></span>1
-2
-3
-4
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="mf">1</span>
+<span class="mf">2</span>
+<span class="mf">3</span>
+<span class="mf">4</span>
+</code></pre></div>
 
 <p>thì có 2+3+4 &gt; 1+2+3.</p>
 <p>Tạo 1 list mới chứa tổng của 3 số liên tiếp, sau đó dùng list
 đó làm đầu vào cho code của phần 1.</p>
-<div class="highlight"><pre><span></span>let lines: Vec&lt;i32&gt; = lines
-    .iter()
-    .zip(&amp;lines[1..])
-    .zip(&amp;lines[2..])
-    .map(|((x1, x2), x3)| x1 + x2 + x3)
-    .collect();
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="n">lines</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lines</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">iter</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">zip</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="p">])</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">zip</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lines</span><span class="p">[</span><span class="mi">2</span><span class="o">..</span><span class="p">])</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">map</span><span class="p">(</span><span class="o">|</span><span class="p">((</span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">x2</span><span class="p">),</span><span class="w"> </span><span class="n">x3</span><span class="p">)</span><span class="o">|</span><span class="w"> </span><span class="n">x1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x3</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">collect</span><span class="p">();</span><span class="w"></span>
+</code></pre></div>
 
 <p>ở đây một lần nữa dùng zip để duyệt qua 3 dãy số cùng lúc.</p>
 <h3>Giải <a href="https://adventofcode.com/2021/day/3">ngày 3</a></h3>
 <p>Tính năng lượng tiêu thụ của tàu dựa trên báo cáo</p>
-<div class="highlight"><pre><span></span>00100
-11110
-10110
-10111
-10101
-01111
-00111
-11100
-10000
-11001
-00010
-01010
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="mf">00100</span>
+<span class="mf">11110</span>
+<span class="mf">10110</span>
+<span class="mf">10111</span>
+<span class="mf">10101</span>
+<span class="mf">01111</span>
+<span class="mf">00111</span>
+<span class="mf">11100</span>
+<span class="mf">10000</span>
+<span class="mf">11001</span>
+<span class="mf">00010</span>
+<span class="mf">01010</span>
+</code></pre></div>
 
 <p>Cách tính: <code>power = epsilon rate * gamma rate</code>.
 Với gamma rate là các bit xuất hiện nhiều nhất ở mỗi cột trong tất cả các số.
@@ -536,41 +513,40 @@ sau 5 cột ta có <code>10110</code>, đổi ra hệ cơ số 10 được giá 
 <p>Giải phần này, chỉ cần làm đúng như các bước mà đề bài mô tả, lấy các giá trị
 theo từng cột, đếm giá trị nào nhiều nhất rồi cho vào 1 list, cuối cùng biến
 thành số.</p>
-<div class="highlight"><pre><span></span><span class="nt">fn</span> <span class="nt">day02</span><span class="o">()</span> <span class="nt">-</span><span class="o">&gt;</span> <span class="nt">i32</span> <span class="p">{</span>
-    <span class="err">let</span> <span class="err">s</span> <span class="err">=</span> <span class="n">std</span><span class="p">:</span><span class="o">:</span><span class="n">fs</span><span class="o">::</span><span class="nf">read_to_string</span><span class="p">(</span><span class="s2">&quot;input02&quot;</span><span class="p">)</span><span class="o">.</span><span class="nf">unwrap</span><span class="p">();</span>
-    <span class="err">let</span> <span class="err">mut</span> <span class="n">gamma_bits</span><span class="p">:</span> <span class="n">Vec</span><span class="o">&lt;</span><span class="n">_</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">vec</span><span class="o">!</span><span class="cp">[]</span><span class="p">;</span>
-    <span class="err">let</span> <span class="err">mut</span> <span class="n">epsilon_bits</span><span class="p">:</span> <span class="n">Vec</span><span class="o">&lt;</span><span class="n">_</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">vec</span><span class="o">!</span><span class="cp">[]</span><span class="p">;</span>
-    <span class="err">let</span> <span class="n">lines</span><span class="p">:</span> <span class="n">Vec</span><span class="o">&lt;&amp;</span><span class="n">str</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="nf">lines</span><span class="p">()</span><span class="o">.</span><span class="nf">collect</span><span class="p">();</span>
-    <span class="err">for</span> <span class="err">idx</span> <span class="err">in</span> <span class="err">0..lines</span><span class="cp">[</span><span class="mi">0</span><span class="cp">]</span><span class="err">.len()</span> <span class="err">{</span>
-        <span class="err">let</span> <span class="err">mut</span> <span class="err">one</span> <span class="err">=</span> <span class="err">0</span><span class="p">;</span>
-        <span class="err">let</span> <span class="err">mut</span> <span class="err">zero</span> <span class="err">=</span> <span class="err">0</span><span class="p">;</span>
-        <span class="err">for</span> <span class="err">line</span> <span class="err">in</span> <span class="err">lines.iter()</span> <span class="err">{</span>
-            <span class="err">let</span> <span class="n">chars</span><span class="p">:</span> <span class="n">Vec</span><span class="o">&lt;</span><span class="n">char</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="nf">chars</span><span class="p">()</span><span class="o">.</span><span class="nf">collect</span><span class="p">();</span>
-            <span class="err">if</span> <span class="err">chars</span><span class="cp">[</span><span class="nx">idx</span><span class="cp">]</span> <span class="err">==</span> <span class="err">&#39;0&#39;</span> <span class="err">{</span>
-                <span class="err">zero</span> <span class="err">+=</span> <span class="err">1</span><span class="p">;</span>
-            <span class="p">}</span> <span class="nt">else</span> <span class="p">{</span>
-                <span class="err">one</span> <span class="err">+=</span> <span class="err">1</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="err">}</span>
-        <span class="nt">if</span> <span class="nt">one</span> <span class="o">&gt;</span> <span class="nt">zero</span> <span class="p">{</span>
-            <span class="err">gamma_bits.push(1)</span><span class="p">;</span>
-            <span class="err">epsilon_bits.push(0)</span><span class="p">;</span>
-        <span class="p">}</span> <span class="nt">else</span> <span class="p">{</span>
-            <span class="err">gamma_bits.push(0)</span><span class="p">;</span>
-            <span class="err">epsilon_bits.push(1)</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="err">}</span>
-    <span class="nt">to_i32</span><span class="o">(</span><span class="nt">gamma_bits</span><span class="o">)</span> <span class="o">*</span> <span class="nt">to_i32</span><span class="o">(</span><span class="nt">epsilon_bits</span><span class="o">)</span>
-<span class="err">}</span>
-<span class="nt">fn</span> <span class="nt">to_i32</span><span class="o">(</span><span class="nt">bits</span><span class="o">:</span> <span class="nt">Vec</span><span class="o">&lt;</span><span class="nt">i32</span><span class="o">&gt;)</span> <span class="nt">-</span><span class="o">&gt;</span> <span class="nt">i32</span> <span class="p">{</span>
-    <span class="err">let</span> <span class="err">mut</span> <span class="err">r</span> <span class="err">=</span> <span class="err">0</span><span class="p">;</span>
-    <span class="err">for</span> <span class="err">(idx,</span> <span class="err">b)</span> <span class="err">in</span> <span class="err">bits.iter().enumerate()</span> <span class="err">{</span>
-        <span class="err">r</span> <span class="err">+=</span> <span class="err">b</span> <span class="err">*</span> <span class="err">2i32.pow((bits.len()</span> <span class="err">-</span> <span class="err">idx</span> <span class="err">-</span> <span class="err">1)</span> <span class="err">as</span> <span class="err">u32)</span>
-    <span class="p">}</span>
-    <span class="nt">r</span>
-<span class="err">}</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="k">fn</span> <span class="nf">day02</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="kt">i32</span> <span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span>::<span class="n">fs</span>::<span class="n">read_to_string</span><span class="p">(</span><span class="s">&quot;input02&quot;</span><span class="p">).</span><span class="n">unwrap</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">gamma_bits</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="n">_</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[];</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">epsilon_bits</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="n">_</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[];</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">lines</span>: <span class="nb">Vec</span><span class="o">&lt;&amp;</span><span class="kt">str</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">lines</span><span class="p">().</span><span class="n">collect</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">idx</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">0</span><span class="o">..</span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">len</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">one</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">zero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">lines</span><span class="p">.</span><span class="n">iter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="n">chars</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">line</span><span class="p">.</span><span class="n">chars</span><span class="p">().</span><span class="n">collect</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">chars</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;0&#39;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">zero</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">one</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">one</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">zero</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">gamma_bits</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">epsilon_bits</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">gamma_bits</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">epsilon_bits</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">to_i32</span><span class="p">(</span><span class="n">gamma_bits</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">to_i32</span><span class="p">(</span><span class="n">epsilon_bits</span><span class="p">)</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="k">fn</span> <span class="nf">to_i32</span><span class="p">(</span><span class="n">bits</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">i32</span> <span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">idx</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">bits</span><span class="p">.</span><span class="n">iter</span><span class="p">().</span><span class="n">enumerate</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">r</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="k">i32</span><span class="p">.</span><span class="n">pow</span><span class="p">((</span><span class="n">bits</span><span class="p">.</span><span class="n">len</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">idx</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">u32</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">r</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 
 <p>Các điểm chú ý:</p>
 <ul>
@@ -626,36 +602,34 @@ của 1 giá trị, giúp quản lý bộ nhớ mà không cần tới GC.</p>
 <p>Chương trình sau, dựa vào các kiến thức từ ví dụ đã đưa ra, kết hợp kinh nghiệm
 lập trình các ngôn ngữ khác thì thấy hoàn toàn hợp lý, Rust
 compile báo lỗi:</p>
-<div class="highlight"><pre><span></span><span class="nt">fn</span> <span class="nt">sum</span><span class="o">(</span><span class="nt">v</span><span class="o">:</span> <span class="nt">Vec</span><span class="o">&lt;</span><span class="nt">i32</span><span class="o">&gt;)</span> <span class="nt">-</span><span class="o">&gt;</span> <span class="nt">i32</span> <span class="p">{</span>
-    <span class="err">let</span> <span class="err">mut</span> <span class="err">s</span> <span class="err">=</span> <span class="err">1</span><span class="p">;</span>
-    <span class="err">for</span> <span class="err">x</span> <span class="err">in</span> <span class="err">v</span> <span class="err">{</span>
-        <span class="err">s</span> <span class="err">=</span> <span class="err">s</span> <span class="err">+</span> <span class="err">x</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="nt">return</span> <span class="nt">s</span><span class="o">;</span>
-<span class="err">}</span>
-<span class="nt">fn</span> <span class="nt">product</span><span class="o">(</span><span class="nt">v</span><span class="o">:</span> <span class="nt">Vec</span><span class="o">&lt;</span><span class="nt">i32</span><span class="o">&gt;)</span> <span class="nt">-</span><span class="o">&gt;</span> <span class="nt">i32</span> <span class="p">{</span>
-    <span class="err">return</span> <span class="err">1</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nt">fn</span> <span class="nt">main</span><span class="o">()</span> <span class="p">{</span>
-    <span class="err">let</span> <span class="n">v</span><span class="p">:</span> <span class="n">Vec</span><span class="o">&lt;</span><span class="n">_</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">vec</span><span class="o">!</span><span class="cp">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="cp">]</span><span class="p">;</span>
-    <span class="err">let</span> <span class="err">_s</span> <span class="err">=</span> <span class="err">sum(v)</span><span class="p">;</span>
-    <span class="err">let</span> <span class="err">_p</span> <span class="err">=</span> <span class="err">product(v)</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="k">fn</span> <span class="nf">sum</span><span class="p">(</span><span class="n">v</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">i32</span> <span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">s</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="k">fn</span> <span class="nf">product</span><span class="p">(</span><span class="n">v</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">i32</span> <span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">v</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="n">_</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">_s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">_p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">product</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 
 <p>Compile lỗi:</p>
-<div class="highlight"><pre><span></span><span class="nt">error</span><span class="cp">[</span><span class="nx">E0382</span><span class="cp">]</span><span class="o">:</span> <span class="nt">use</span> <span class="nt">of</span> <span class="nt">moved</span> <span class="nt">value</span><span class="o">:</span> <span class="err">`</span><span class="nt">v</span><span class="err">`</span>
-  <span class="nt">--</span><span class="o">&gt;</span> <span class="nt">main</span><span class="p">.</span><span class="nc">rs</span><span class="p">:</span><span class="nd">14</span><span class="p">:</span><span class="nd">22</span>
+<div class="highlight"><pre><span></span><code><span class="k">error</span><span class="err">[</span><span class="n">E0382</span><span class="err">]</span><span class="o">:</span> <span class="k">use</span> <span class="k">of</span> <span class="n">moved</span> <span class="k">value</span><span class="o">:</span> <span class="n n-Quoted">`v`</span>
+  <span class="o">--&gt;</span> <span class="n">main</span><span class="p">.</span><span class="n">rs</span><span class="o">:</span><span class="mi">14</span><span class="o">:</span><span class="mi">22</span>
    <span class="o">|</span>
-<span class="nt">12</span> <span class="o">|</span>     <span class="nt">let</span> <span class="nt">v</span><span class="o">:</span> <span class="nt">Vec</span><span class="o">&lt;</span><span class="nt">_</span><span class="o">&gt;</span> <span class="o">=</span> <span class="nt">vec</span><span class="o">!</span><span class="cp">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="cp">]</span><span class="o">;</span>
-   <span class="o">|</span>         <span class="nt">-</span> <span class="nt">move</span> <span class="nt">occurs</span> <span class="nt">because</span> <span class="err">`</span><span class="nt">v</span><span class="err">`</span> <span class="nt">has</span> <span class="nt">type</span> <span class="err">`</span><span class="nt">Vec</span><span class="o">&lt;</span><span class="nt">i32</span><span class="o">&gt;</span><span class="err">`</span><span class="o">,</span> <span class="nt">which</span> <span class="nt">does</span> <span class="nt">not</span> <span class="nt">implement</span> <span class="nt">the</span> <span class="err">`</span><span class="nt">Copy</span><span class="err">`</span> <span class="nt">trait</span>
-<span class="nt">13</span> <span class="o">|</span>     <span class="nt">let</span> <span class="nt">_s</span> <span class="o">=</span> <span class="nt">sum</span><span class="o">(</span><span class="nt">v</span><span class="o">);</span>
-   <span class="o">|</span>                  <span class="nt">-</span> <span class="nt">value</span> <span class="nt">moved</span> <span class="nt">here</span>
-<span class="nt">14</span> <span class="o">|</span>     <span class="nt">let</span> <span class="nt">_p</span> <span class="o">=</span> <span class="nt">product</span><span class="o">(</span><span class="nt">v</span><span class="o">);</span>
-   <span class="o">|</span>                      <span class="o">^</span> <span class="nt">value</span> <span class="nt">used</span> <span class="nt">here</span> <span class="nt">after</span> <span class="nt">move</span>
-</pre></div>
-
+<span class="mi">12</span> <span class="o">|</span>     <span class="n">let</span> <span class="n">v</span><span class="o">:</span> <span class="n">Vec</span><span class="o">&lt;</span><span class="n">_</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">vec</span><span class="o">!</span><span class="err">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="err">]</span><span class="p">;</span>
+   <span class="o">|</span>         <span class="o">-</span> <span class="n">move</span> <span class="n">occurs</span> <span class="n">because</span> <span class="n n-Quoted">`v`</span> <span class="n">has</span> <span class="k">type</span> <span class="n n-Quoted">`Vec&lt;i32&gt;`</span><span class="p">,</span> <span class="n">which</span> <span class="n">does</span> <span class="k">not</span> <span class="n">implement</span> <span class="n">the</span> <span class="n n-Quoted">`Copy`</span> <span class="n">trait</span>
+<span class="mi">13</span> <span class="o">|</span>     <span class="n">let</span> <span class="n">_s</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+   <span class="o">|</span>                  <span class="o">-</span> <span class="k">value</span> <span class="n">moved</span> <span class="n">here</span>
+<span class="mi">14</span> <span class="o">|</span>     <span class="n">let</span> <span class="n">_p</span> <span class="o">=</span> <span class="n">product</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+   <span class="o">|</span>                      <span class="o">^</span> <span class="k">value</span> <span class="n">used</span> <span class="n">here</span> <span class="k">after</span> <span class="n">move</span>
+</code></pre></div>
 
 <p>Rust compiler hướng dẫn chi tiết về vấn đề xảy ra, thậm chí đôi khi
 đưa ra cả hướng dẫn sửa code. Lỗi xảy ra <code>use of moved value: v</code> với chỉ dẫn:</p>
@@ -667,11 +641,10 @@ compile báo lỗi:</p>
 hoàn toàn bình thường và không có gì phải suy nghĩ, Rust thì khác.</p>
 <h4>owner và move</h4>
 <p>Khi gán biến,</p>
-<div class="highlight"><pre><span></span>let x = vec![1,2,3];
+<div class="highlight"><pre><span></span><code>let x = vec![1,2,3];
 let y = x;
 let z = x; // not work, compile error:  value used here after move
-</pre></div>
-
+</code></pre></div>
 
 <p>Ban đầu, <code>x = vec![1,2,3]</code>, x là owner (chủ sở hữu) của giá trị <code>vec![1,2,3]</code>.
 Khi viết <code>y = x</code>, quyền sở hữu được chuyển
@@ -687,19 +660,18 @@ mình muốn own (sở hữu), hay muốn borrow (mượn).</p>
 <p>và khi gọi function: <code>sum(&amp;vec)</code>.</p>
 <p>Ký hiệu <code>&amp;</code> gọi là reference. <code>&amp;v</code> tạo một reference <strong>refer</strong> (chỉ) đến giá trị của
 vec nhưng không own nó.</p>
-<div class="highlight"><pre><span></span><span class="nt">fn</span> <span class="nt">sum</span><span class="o">(</span><span class="nt">v</span><span class="o">:</span> <span class="o">&amp;</span><span class="nt">Vec</span><span class="o">&lt;</span><span class="nt">i32</span><span class="o">&gt;)</span> <span class="nt">-</span><span class="o">&gt;</span> <span class="nt">i32</span> <span class="p">{</span>
-<span class="err">//...không</span> <span class="err">đổi...</span>
-<span class="p">}</span>
-<span class="nt">fn</span> <span class="nt">product</span><span class="o">(</span><span class="nt">v</span><span class="o">:</span> <span class="nt">Vec</span><span class="o">&lt;</span><span class="nt">i32</span><span class="o">&gt;)</span> <span class="nt">-</span><span class="o">&gt;</span> <span class="nt">i32</span> <span class="p">{</span>
-    <span class="err">return</span> <span class="err">1</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nt">fn</span> <span class="nt">main</span><span class="o">()</span> <span class="p">{</span>
-    <span class="err">let</span> <span class="n">v</span><span class="p">:</span> <span class="n">Vec</span><span class="o">&lt;</span><span class="n">_</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">vec</span><span class="o">!</span><span class="cp">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="cp">]</span><span class="p">;</span>
-    <span class="err">let</span> <span class="err">_s</span> <span class="err">=</span> <span class="err">sum(&amp;v)</span><span class="p">;</span>
-    <span class="err">let</span> <span class="err">_p</span> <span class="err">=</span> <span class="err">product(v)</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="k">fn</span> <span class="nf">sum</span><span class="p">(</span><span class="n">v</span>: <span class="kp">&amp;</span><span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">i32</span> <span class="p">{</span><span class="w"></span>
+<span class="c1">//...không đổi...</span>
+<span class="p">}</span><span class="w"></span>
+<span class="k">fn</span> <span class="nf">product</span><span class="p">(</span><span class="n">v</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">i32</span> <span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">v</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="n">_</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">_s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum</span><span class="p">(</span><span class="o">&amp;</span><span class="n">v</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">_p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">product</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 
 <p>Code mới sẽ chạy được, do sum chỉ borrow giá trị của v, chứ không own,
 v vẫn là chủ của vector để sau đó, move cho product trở thành owner.</p>

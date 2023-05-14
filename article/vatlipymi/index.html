@@ -98,12 +98,11 @@ còn môn Lý chắc là tự bật cái công tắc bóng đèn nhà mình.</p>
 <li>cắm điện cổng USB cho ESP8266.</li>
 <li>bật terminal, kết nối vào ESP8266 qua câu lệnh picocom:</li>
 </ul>
-<div class="highlight"><pre><span></span>sudo picocom /dev/ttyUSB0 --baud 115200
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>sudo picocom /dev/ttyUSB0 --baud 115200
+</code></pre></div>
 
 <p>Gõ code Python</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">machine</span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">machine</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">machine</span><span class="o">.</span><span class="n">freq</span><span class="p">()</span>
 <span class="mi">80000000</span>
 
@@ -111,8 +110,7 @@ còn môn Lý chắc là tự bật cái công tắc bóng đèn nhà mình.</p>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">led</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">led</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">led</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Sẽ thấy đèn LED sáng sau khi <code>led.on()</code> rồi tắt sau <code>led.off()</code>.</p>
 <p><img src="http://pp.pymi.vn/images/circuit_on.webp" width=300></p>
@@ -124,43 +122,42 @@ bật tắt bóng đèn, đọc thông tin từ các sensor (cảm biến) như 
 <p>Mỗi Pin có chức năng riêng, để biết mỗi mạch có pin nào làm gì, cần tìm tài liệu
 của mạch đó (thường ở trang chủ) hoặc trong tài liệu kèm khi bán.
 Theo <a href="https://www.wemos.cc/en/latest/d1/d1_mini.html">wemos.cc</a></p>
-<div class="highlight"><pre><span></span>+------+------------------------------+--------------+
-| Pin  | Function                     | ESP-8266 Pin |
-+======+==============================+==============+
-| TX   | TXD                          | TXD          |
-+------+------------------------------+--------------+
-| RX   | RXD                          | RXD          |
-+------+------------------------------+--------------+
-| A0   | Analog input, max 3.2V       | A0           |
-+------+------------------------------+--------------+
-| D0   | IO                           | GPIO16       |
-+------+------------------------------+--------------+
-| D1   | IO, SCL                      | GPIO5        |
-+------+------------------------------+--------------+
-| D2   | IO, SDA                      | GPIO4        |
-+------+------------------------------+--------------+
-| D3   | IO, 10k Pull-up              | GPIO0        |
-+------+------------------------------+--------------+
-| D4   | IO, 10k Pull-up, BUILTIN_LED | GPIO2        |
-+------+------------------------------+--------------+
-| D5   | IO, SCK                      | GPIO14       |
-+------+------------------------------+--------------+
-| D6   | IO, MISO                     | GPIO12       |
-+------+------------------------------+--------------+
-| D7   | IO, MOSI                     | GPIO13       |
-+------+------------------------------+--------------+
-| D8   | IO, 10k Pull-down, SS        | GPIO15       |
-+------+------------------------------+--------------+
-| G    | Ground                       | GND          |
-+------+------------------------------+--------------+
-| 5V   | 5V                           | \-           |
-+------+------------------------------+--------------+
-| 3V3  | 3.3V                         | 3.3V         |
-+------+------------------------------+--------------+
-| RST  | Reset                        | RST          |
-+------+------------------------------+--------------+
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="nb">+------+------------------------------+--------------+</span><span class="c"></span>
+<span class="c">| Pin  | Function                     | ESP</span><span class="nb">-</span><span class="c">8266 Pin |</span>
+<span class="nb">+</span><span class="c">======</span><span class="nb">+</span><span class="c">==============================</span><span class="nb">+</span><span class="c">==============</span><span class="nb">+</span><span class="c"></span>
+<span class="c">| TX   | TXD                          | TXD          |</span>
+<span class="nb">+------+------------------------------+--------------+</span><span class="c"></span>
+<span class="c">| RX   | RXD                          | RXD          |</span>
+<span class="nb">+------+------------------------------+--------------+</span><span class="c"></span>
+<span class="c">| A0   | Analog input</span><span class="nt">,</span><span class="c"> max 3</span><span class="nt">.</span><span class="c">2V       | A0           |</span>
+<span class="nb">+------+------------------------------+--------------+</span><span class="c"></span>
+<span class="c">| D0   | IO                           | GPIO16       |</span>
+<span class="nb">+------+------------------------------+--------------+</span><span class="c"></span>
+<span class="c">| D1   | IO</span><span class="nt">,</span><span class="c"> SCL                      | GPIO5        |</span>
+<span class="nb">+------+------------------------------+--------------+</span><span class="c"></span>
+<span class="c">| D2   | IO</span><span class="nt">,</span><span class="c"> SDA                      | GPIO4        |</span>
+<span class="nb">+------+------------------------------+--------------+</span><span class="c"></span>
+<span class="c">| D3   | IO</span><span class="nt">,</span><span class="c"> 10k Pull</span><span class="nb">-</span><span class="c">up              | GPIO0        |</span>
+<span class="nb">+------+------------------------------+--------------+</span><span class="c"></span>
+<span class="c">| D4   | IO</span><span class="nt">,</span><span class="c"> 10k Pull</span><span class="nb">-</span><span class="c">up</span><span class="nt">,</span><span class="c"> BUILTIN_LED | GPIO2        |</span>
+<span class="nb">+------+------------------------------+--------------+</span><span class="c"></span>
+<span class="c">| D5   | IO</span><span class="nt">,</span><span class="c"> SCK                      | GPIO14       |</span>
+<span class="nb">+------+------------------------------+--------------+</span><span class="c"></span>
+<span class="c">| D6   | IO</span><span class="nt">,</span><span class="c"> MISO                     | GPIO12       |</span>
+<span class="nb">+------+------------------------------+--------------+</span><span class="c"></span>
+<span class="c">| D7   | IO</span><span class="nt">,</span><span class="c"> MOSI                     | GPIO13       |</span>
+<span class="nb">+------+------------------------------+--------------+</span><span class="c"></span>
+<span class="c">| D8   | IO</span><span class="nt">,</span><span class="c"> 10k Pull</span><span class="nb">-</span><span class="c">down</span><span class="nt">,</span><span class="c"> SS        | GPIO15       |</span>
+<span class="nb">+------+------------------------------+--------------+</span><span class="c"></span>
+<span class="c">| G    | Ground                       | GND          |</span>
+<span class="nb">+------+------------------------------+--------------+</span><span class="c"></span>
+<span class="c">| 5V   | 5V                           | \</span><span class="nb">-</span><span class="c">           |</span>
+<span class="nb">+------+------------------------------+--------------+</span><span class="c"></span>
+<span class="c">| 3V3  | 3</span><span class="nt">.</span><span class="c">3V                         | 3</span><span class="nt">.</span><span class="c">3V         |</span>
+<span class="nb">+------+------------------------------+--------------+</span><span class="c"></span>
+<span class="c">| RST  | Reset                        | RST          |</span>
+<span class="nb">+------+------------------------------+--------------+</span><span class="c"></span>
+</code></pre></div>
 
 <h2>GPIO là gì</h2>
 <p>General-Purpose Input/Output (GPIO) là khái niệm về mặt logic chứ không phải vật
@@ -258,26 +255,22 @@ Có thể tưởng tượng hiệu điện thế giống như 1 loại áp lực
 <p>Cường độ là độ mạnh của dòng điện.</p>
 <h3>Ohm's law - định luật Ohm</h3>
 <p>Khi qua vật dẫn điện, hiệu điện thế và cường độ dòng điện tỷ lệ thuận với nhau.</p>
-<div class="highlight"><pre><span></span>I = V/R
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>I = V/R
+</code></pre></div>
 
 <p>hay</p>
-<div class="highlight"><pre><span></span>R = V/I
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>R = V/I
+</code></pre></div>
 
 <p>tỷ lệ này gọi là "resistance" (điện trở) của vật dẫn điện, ký hiệu chữ R
 là từ đây ra.</p>
-<div class="highlight"><pre><span></span>1 Ohm = 1 Volt / 1 Ampere.
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="mf">1</span> <span class="n">Ohm</span> <span class="o">=</span> <span class="mf">1</span> <span class="n">Volt</span> <span class="o">/</span> <span class="mf">1</span> <span class="n">Ampere</span><span class="mf">.</span>
+</code></pre></div>
 
 <p>Thứ khái niệm kiểu tỷ lệ như này khá phổ biến trong Vật Lý, như</p>
-<div class="highlight"><pre><span></span>vận tốc = quãng đường / thời gian
+<div class="highlight"><pre><span></span><code>vận tốc = quãng đường / thời gian
 1 m/s = 1m / 1s
-</pre></div>
-
+</code></pre></div>
 
 <p>Ba khái niệm này có thể hình dung như một thác nước chảy từ trên cao xuống (U),
 va vào đá giữa dòng (R) mà giảm tốc độ (I).</p>
@@ -285,16 +278,14 @@ va vào đá giữa dòng (R) mà giảm tốc độ (I).</p>
 nên khi U lớn thì I cũng sẽ lớn theo (tỷ lệ thuận).</p>
 <h3>Công thức</h3>
 <p>Trong mạch mắc nối tiếp, I không đổi tại mọi điểm.</p>
-<div class="highlight"><pre><span></span>V = I*R + I*R_led
+<div class="highlight"><pre><span></span><code>V = I*R + I*R_led
 V = V1 + I*R_led
-</pre></div>
-
+</code></pre></div>
 
 <p>Như vậy việc cho điện trở 220 Ohm vào nhằm giảm hiệu điện thế cho LED.
 Cụ thể:</p>
-<div class="highlight"><pre><span></span>3.3V = I*220 + I*R_led
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="mf">3.3</span><span class="n">V</span> <span class="o">=</span> <span class="n">I</span><span class="o">*</span><span class="mf">220</span> <span class="o">+</span> <span class="n">I</span><span class="o">*</span><span class="n">R_led</span>
+</code></pre></div>
 
 <h3>Không dùng điện trở có sao không?</h3>
 <p>Cháy LED.</p>
