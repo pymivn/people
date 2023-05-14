@@ -72,11 +72,12 @@ các hành động tương ứng của chương trình (các function) được 
 <p>Các bộ phận giao diện như nút bấm, chữ, ô nhập ký tự ... được gọi là các <strong>widget</strong>.</p>
 <h2>Lập trình GUI với Tkinter</h2>
 <p>Code gõ trực tiếp trên IPython:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># on Ubuntu, requires install: `sudo apt-get install -y python3-tk`</span>
-<span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+<div class="highlight"><pre><span></span><span class="c1"># on Ubuntu, requires install: `sudo apt-get install -y python3-tk`</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">tkinter</span> <span class="kn">as</span> <span class="nn">tk</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">())</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>Nếu Tk hoat động trên máy bạn, ngay lập tức một cửa sổ trắng tinh sẽ hiện ra.</p>
 <p><img alt="emptygui" src="http://pp.pymi.vn/images/gui.png"></p>
@@ -86,13 +87,13 @@ các hành động tương ứng của chương trình (các function) được 
 <p><code>Button</code> <code>Canvas</code> <code>Checkbutton</code> <code>Entry</code> <code>Frame</code> <code>Label</code> <code>Listbox</code> <code>Menu</code> <code>Menubutton</code> <code>Message</code> <code>Radiobutton</code> <code>Scale</code> <code>Scrollbar</code> <code>Text</code> <code>Spinbox</code> <code>LabelFrame</code> <code>PanedWindow</code></p>
 <p>Xem ví dụ hello-world tại <a href="https://docs.python.org/3/library/tkinter.html#a-simple-hello-world-program">đây</a>.</p>
 <p>Sau đây ta viết một GUI app có hiển thị tiêu đề (Label), có một ô nhập địa chỉ trang web (Entry), có một nút bấm để kiểm tra status của trang web (Button).</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># on Ubuntu, requires install: `sudo apt-get install -y python3-tk`</span>
-<span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+<div class="highlight"><pre><span></span><span class="c1"># on Ubuntu, requires install: `sudo apt-get install -y python3-tk`</span>
+<span class="kn">import</span> <span class="nn">tkinter</span> <span class="kn">as</span> <span class="nn">tk</span>
 <span class="kn">import</span> <span class="nn">urllib.request</span>
 
 
 <span class="k">class</span> <span class="nc">Application</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">master</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">create_widgets</span><span class="p">()</span>
@@ -118,10 +119,10 @@ các hành động tương ứng của chương trình (các function) được 
         <span class="bp">self</span><span class="o">.</span><span class="n">quit</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;QUIT&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">root</span><span class="o">.</span><span class="n">destroy</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">quit</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">check_site</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">check_site</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="ow">or</span> <span class="s2">&quot;https://pymi.vn&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">url</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;http&quot;</span><span class="p">):</span>
-            <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 
         <span class="c1"># fake useragent as cloudflare block python agent</span>
         <span class="n">r</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span>
@@ -130,7 +131,7 @@ các hành động tương ứng của chương trình (các function) được 
             <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;User-Agent&quot;</span><span class="p">:</span> <span class="s2">&quot;python-requests/2.23.0&quot;</span><span class="p">},</span>
         <span class="p">)</span>
         <span class="n">resp</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;response: </span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">resp</span><span class="o">.</span><span class="n">url</span><span class="p">))</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;response: {} {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">resp</span><span class="o">.</span><span class="n">url</span><span class="p">))</span>
 
 
 <span class="n">root</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">()</span>
@@ -138,7 +139,8 @@ các hành động tương ứng của chương trình (các function) được 
 <span class="n">app</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;My checker app&quot;</span><span class="p">)</span>
 <span class="n">app</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">minsize</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
 <span class="n">app</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>Code trên:</p>
 <ul>
@@ -153,10 +155,11 @@ các hành động tương ứng của chương trình (các function) được 
 <p><img alt="checker" src="http://pp.pymi.vn/images/checker.png"></p>
 <p>Danh sách đầy đủ các widget xem tại <a href="https://github.com/python/cpython/blob/3.6/Lib/tkinter/__init__.py">https://github.com/python/cpython/blob/3.6/Lib/tkinter/<strong>init</strong>.py</a>  - search <code>(Widget</code> (các subclass của class Widget).</p>
 <p>Thử các ví dụ có sẵn đi kèm với Python:</p>
-<div class="highlight"><pre><span></span><code># on Ubuntu, requires install: sudo apt-get install -y python3-examples
+<div class="highlight"><pre><span></span># on Ubuntu, requires install: sudo apt-get install -y python3-examples
 python3 -m turtledemo.minimal_hanoi
 python3 -m turtledemo.sorting_animate
-</code></pre></div>
+</pre></div>
+
 
 <p>hay xem code 1 IDE viết bằng tk: <a href="https://github.com/thonny/thonny/tree/v3.3.4">thonny</a></p>
 <h2>Kết luận</h2>

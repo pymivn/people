@@ -89,12 +89,13 @@
 <h3>Ví dụ refactor 10 dòng code</h3>
 <p>Viết 1 chương trình giống như câu lệnh grep trên UNIX, tức nhận 2 đầu vào trên dòng lệnh là "từ khóa tìm kiếm" và tên file, in ra màn hình các dòng chứa từ khóa ấy.
 Ví dụ tìm từ <code>root</code> trong file <code>/etc/passwd</code> trên Ubuntu, MacOS,...</p>
-<div class="highlight"><pre><span></span><code>$ grep root /etc/passwd
+<div class="highlight"><pre><span></span>$ grep root /etc/passwd
 root:x:0:0::/root:/bin/bash
-</code></pre></div>
+</pre></div>
+
 
 <p>Code Python 10 dòng, không tính ngoài function main, dịch trực tiếp từ <a href="https://doc.rust-lang.org/book/ch12-00-an-io-project.html">ví dụ Rust</a>:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># $ python3 grep.py root /etc/passwd</span>
+<div class="highlight"><pre><span></span><span class="c1"># $ python3 grep.py root /etc/passwd</span>
 <span class="c1"># root:x:0:0::/root:/bin/bash</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 
@@ -106,15 +107,16 @@ root:x:0:0::/root:/bin/bash
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="n">contents</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
     <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
-        <span class="n">exit</span><span class="p">(</span><span class="s2">&quot;Should have been able to read the file&quot;</span><span class="p">)</span>
+        <span class="nb">exit</span><span class="p">(</span><span class="s2">&quot;Should have been able to read the file&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">contents</span><span class="o">.</span><span class="n">splitlines</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">query</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>Code này hoàn toàn ổn: sạch đẹp, đúng chuẩn PEP8, và quan trọng nhất: chạy ra đúng kết quả.  Vậy có cần refactor không?  Tùy.
 Đó là chỗ khó khi nói về refactoring, không có gì rõ ràng, chính xác, mọi thứ đều "tùy".
@@ -131,7 +133,7 @@ Tùy vào:</p>
 <li>Biến <code>query</code> và <code>file_path</code> là "configuration" của chương trình, biến <code>contents</code> dùng để thực hiện logic. Khi <code>main</code> dài hơn, sẽ cần nhiều biến hơn, khi có nhiều biến hơn, sẽ khó để nhớ/theo dõi mục đích của từng biến. Nên tốt nhất là gộp các biến configuration vào 1 struct (class) để khiến mục đích của chúng rõ ràng.</li>
 <li>Dù code đã in ra thông báo khi có exception lúc đọc file, nhưng có hơn 1 lý do có xảy ra exception khi đọc file: file không tồn tại, không có quyền để đọc file... In ra nội dung "không mở được file" không hề có ích cho người dùng biết vấn đề thực sự là gì.</li>
 <li>Khi người dùng không đưa vào đủ 2 đầu vào trên dòng lệnh, sẽ xảy ra IndexError, exception này không giải thích rõ ràng tới người dùng chuyện gì xảy ra. Tốt nhất là đặt <strong>tất cả</strong> code xử lý exception vào chung 1 chỗ để sau này chỉ cần xem 1 chỗ nếu logic xử lý exception cần thay đổi, đồng thời giúp hiển thị nội dung lỗi rõ ràng dễ hiểu hơn tới người dùng.</li>
-<li>Đoạn này không có trong bản Rust: việc đọc toàn bộ nội dung file vào RAM với <code>f.read()</code> là một "code-smell", khiến đoạn code này không xử lý được file có kích thước lớn hơn RAM.</li>
+<li>Đoạn này không có trong bản Rust: việc đọc toàn bộ nội dung file vào RAM với <code>f.read()</code> là một "code smell", khiến đoạn code này không xử lý được file có kích thước lớn hơn RAM.</li>
 </ul>
 <h4>Thực hiện refactoring</h4>
 <p>Function <code>main</code> chỉ nên giới hạn tính năng:</p>
@@ -147,7 +149,7 @@ Tùy vào:</p>
 <li>tuple các config: <code>(query, content)</code>, nhưng function <code>main</code> gọi <code>parse_config</code> sẽ lại unpacking tuple này thành các biến khác nhau. Đây là dấu hiệu của việc sử dụng chưa đúng "abstraction". Việc trả về tuple cũng không "gắn" được <code>query</code> và <code>file_path</code> vào với config. Vậy nên</li>
 <li>trả về 1 dictionary hoặc 1 Config object (Config class instance). Ở đây sẽ trả về 1 Config object cho giống ví dụ trong Rust.</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">file_path</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">query</span> <span class="o">=</span> <span class="n">query</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span> <span class="o">=</span> <span class="n">file_path</span>
@@ -157,21 +159,22 @@ Tùy vào:</p>
     <span class="n">file_path</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">Config</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">file_path</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
     <span class="n">config</span> <span class="o">=</span> <span class="n">parse_config</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="n">contents</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
     <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
-        <span class="n">exit</span><span class="p">(</span><span class="s2">&quot;Should have been able to read the file&quot;</span><span class="p">)</span>
+        <span class="nb">exit</span><span class="p">(</span><span class="s2">&quot;Should have been able to read the file&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">contents</span><span class="o">.</span><span class="n">splitlines</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">query</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-</code></pre></div>
+            <span class="k">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+
 
 <h5>setup các configuration (cấu hình) khác</h5>
 <p>Giả sử chương trình sẽ nhận thêm biến environment (môi trường) <code>IGNORE_CASE</code>, nếu được set, chương trình sẽ không phân biệt chữ hoa chữ thường khi tìm kiếm. Đây là ví dụ về chương trình có thể nhận config từ nhiều nguồn khác nhau, ta chỉ cần thay đổi class <code>Config</code> và <code>parse_config</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">ignore_case</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">query</span> <span class="o">=</span> <span class="n">query</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span> <span class="o">=</span> <span class="n">file_path</span>
@@ -182,11 +185,12 @@ Tùy vào:</p>
     <span class="n">file_path</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
     <span class="n">ignore_case</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;IGNORE_CASE&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">Config</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">ignore_case</span><span class="p">)</span>
-</code></pre></div>
+</pre></div>
+
 
 <h5>gọi run function trong file khác, ví dụ lib.py</h5>
 <p>Tách toàn bộ logic của chương trình, ngoại trừ phần xử lý exception ra 1 file khác tên <code>lib.py</code> và đặt tên function là <code>run</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># lib.py</span>
+<div class="highlight"><pre><span></span><span class="c1"># lib.py</span>
 <span class="c1"># Class Config...</span>
 <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">):</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -194,20 +198,22 @@ Tùy vào:</p>
 
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">contents</span><span class="o">.</span><span class="n">splitlines</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">query</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-</code></pre></div>
+            <span class="k">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
 
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">lib</span>
+
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">lib</span>
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="n">config</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">parse_config</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">lib</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
-        <span class="n">exit</span><span class="p">(</span><span class="s2">&quot;Should have been able to read the file&quot;</span><span class="p">)</span>
-</code></pre></div>
+        <span class="nb">exit</span><span class="p">(</span><span class="s2">&quot;Should have been able to read the file&quot;</span><span class="p">)</span>
+</pre></div>
+
 
 <p>Giờ đây <code>run</code> lại gặp vấn đề của <code>main</code>: làm nhiều việc, nhưng ít ra nó cũng chia bớt 2 việc cho <code>main</code> là parse config và xử lý exception. Khi một chương trình <code>run</code>, nó có thể thực hiện nhiều việc khác nhau, ở đây tiếp tục tách mỗi việc thành 1 function riêng. Việc đọc file không phức tạp hơn 1 dòng nên để nguyên, việc tìm kiếm string tách ra thành function <code>search</code>. Function <code>search</code> thay vì print, sẽ trả về 1 list chứa các string chứa từ khóa tìm kiếm, để việc print lại cho <code>run</code>. Như vậy có thể viết unittest kiểm tra logic của function quan trọng này thay vì kiểm tra bằng mắt.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">contents</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">contents</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
     <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">contents</span><span class="o">.</span><span class="n">splitlines</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">query</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
@@ -219,11 +225,12 @@ Tùy vào:</p>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">contents</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">search</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">query</span><span class="p">,</span> <span class="n">contents</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-</code></pre></div>
+        <span class="k">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+
 
 <p>Test:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">unittest</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
 
 <span class="kn">import</span> <span class="nn">lib</span>
 
@@ -234,26 +241,30 @@ Tùy vào:</p>
     <span class="k">def</span> <span class="nf">test_search_not_found</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">res</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;HTML&quot;</span><span class="p">,</span> <span class="s2">&quot;Among us</span><span class="se">\n</span><span class="s2">Some write Rust</span><span class="se">\n</span><span class="s2">Some write promt</span><span class="se">\n</span><span class="s2">All write Python&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="p">[])</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>Chạy test:</p>
-<div class="highlight"><pre><span></span><code><span class="c">$ python3 </span><span class="nb">-</span><span class="c">m unittest test_grep</span><span class="nt">.</span><span class="c">py </span><span class="nb">-</span><span class="c">vvv</span>
-<span class="c">test_search_found (test_grep</span><span class="nt">.</span><span class="c">TestGrep) </span><span class="nt">...</span><span class="c"> ok</span>
-<span class="c">test_search_not_found (test_grep</span><span class="nt">.</span><span class="c">TestGrep) </span><span class="nt">...</span><span class="c"> ok</span>
+<div class="highlight"><pre><span></span>$ python3 -m unittest test_grep.py -vvv
+test_search_found <span class="o">(</span>test_grep.TestGrep<span class="o">)</span> ... ok
+test_search_not_found <span class="o">(</span>test_grep.TestGrep<span class="o">)</span> ... ok
 
-<span class="nb">----------------------------------------------------------------------</span><span class="c"></span>
-<span class="c">Ran 2 tests in 0</span><span class="nt">.</span><span class="c">000s</span>
+----------------------------------------------------------------------
+Ran <span class="m">2</span> tests in <span class="m">0</span>.000s
 
-<span class="c">OK</span>
-</code></pre></div>
+OK
+</pre></div>
 
+
+<h5>Thêm tính năng dễ dàng nhờ refactor</h5>
+<p>CHÚ Ý: thêm tính năng không nằm trong phạm vi refactor, ở đây minh họa tác dụng của việc refactor.</p>
 <p>Khi mọi tính năng cơ bản đã ổn định, viết thêm code để xử lý khi người dùng set env <code>IGNORE_CASE</code>. Có 2 cách xử lý:</p>
 <ul>
 <li>thêm 1 boolean argument cho function search, <code>search(query, contents, ignore_case=False)</code>. Việc dùng boolean argument còn được gọi là <a href="https://martinfowler.com/bliki/FlagArgument.html">flag argument</a> thường được xem như <a href="http://www.informit.com/articles/article.aspx?p=1392524">code smell</a> vì nó ám chỉ function này làm nhiều hơn 1 việc. Trong trường hợp này, khi <code>ignore_case=True</code> sẽ chỉ gọi thêm 1 method (<code>lower()</code>) với mỗi dòng, chứ không "làm việc khác" nên argument này hoàn toàn OK. Một ví dụ tương tự, trong Python sort, có argument <code>reverse=True</code> hoặc <code>False</code> để thay đổi thứ tự sắp xếp.</li>
-<li>viết 1 function riêng <code>search_case_insensitive(query, contents)</code>, tác giả chọn phương án này mà không giải thích tại sao. Nhược điểm của phương án này là nếu phần code chung của 2 function là 30 bước, sẽ phải copy lại phần code chung, hay tách riêng ra 1 function nữa như <code>search_internal</code> mà cả 2 <code>search</code>, <code>search_case_insensitive</code> cùng gọi.</li>
+<li>viết 1 function riêng <code>search_case_insensitive(query, contents)</code>, tác giả chọn phương án này mà không giải thích tại sao. Nhược điểm của phương án này là nếu phần code chung của 2 function là 30 bước, sẽ phải copy lại phần code chung. Nhưng cũng có thể cải thiện bằng việc tách riêng ra 1 function nữa như <code>search_internal</code> mà cả 2 <code>search</code>, <code>search_case_insensitive</code> cùng gọi.</li>
 </ul>
 <p>Ở đây ta sẽ làm giống như ví dụ trong phiên bản Rust:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">contents</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">contents</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
     <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">contents</span><span class="o">.</span><span class="n">splitlines</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">query</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
@@ -267,19 +278,21 @@ Tùy vào:</p>
         <span class="k">if</span> <span class="n">query</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
             <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">result</span>
-</code></pre></div>
+</pre></div>
+
 
 <h5>Xử lý exception</h5>
 <p><code>main</code> cần xử lý exception từ 2 function <code>parse_config</code> và <code>run</code>, riêng biệt, để làm rõ hơn các exception đã xảy ra, ta tạo ra exception cho từng lỗi cụ thể.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">parse_config</span><span class="p">(</span><span class="n">argv</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Config</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">parse_config</span><span class="p">(</span><span class="n">argv</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Config</span><span class="p">:</span>
     <span class="n">query</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">file_path</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
     <span class="n">ignore_case</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;IGNORE_CASE&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">Config</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">ignore_case</span><span class="p">)</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>function này có thể thiếu <code>query</code>, thiếu <code>file_path</code>, vậy viết:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">parse_config</span><span class="p">(</span><span class="n">argv</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Config</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">parse_config</span><span class="p">(</span><span class="n">argv</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Config</span><span class="p">:</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">query</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
@@ -289,11 +302,12 @@ Tùy vào:</p>
         <span class="n">file_path</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
     <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;Didn&#39;t get a file path&quot;</span><span class="p">)</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>các exception này chứa nội dung mà người dùng có thể hiểu được.</p>
 <p>Chạy thử với 3 trường hợp lỗi:</p>
-<div class="highlight"><pre><span></span><code>$ python3 grep.py
+<div class="highlight"><pre><span></span>$ python3 grep.py
 Problem parsing arguments: Didn<span class="s1">&#39;t get a query string</span>
 
 <span class="s1">$ python3 grep.py root</span>
@@ -301,43 +315,50 @@ Problem parsing arguments: Didn<span class="s1">&#39;t get a query string</span>
 
 $ python3 grep.py root /etc/passssss
 Application error: <span class="o">[</span>Errno <span class="m">2</span><span class="o">]</span> No such file or directory: <span class="s1">&#39;/etc/passssss&#39;</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>Tới đây, chương 12 của <strong>The book</strong> kết thúc.</p>
 <h3>Bonus: xử lý file kích thước lớn tùy ý</h3>
 <p>thay</p>
-<div class="highlight"><pre><span></span><code>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">contents</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">search</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">query</span><span class="p">,</span> <span class="n">contents</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">contents</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">search</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">query</span><span class="p">,</span> <span class="n">contents</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+
 
 <p>Thành</p>
-<div class="highlight"><pre><span></span><code>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">search</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">query</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">search</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">query</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+
 
 <p>sử dụng <code>f</code> như 1 iterable, mỗi lần lấy 1 dòng ra, trong search, thay:</p>
-<div class="highlight"><pre><span></span><code>    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">contents</span><span class="o">.</span><span class="n">splitlines</span><span class="p">():</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">contents</span><span class="o">.</span><span class="n">splitlines</span><span class="p">():</span>
+</pre></div>
+
 
 <p>Thành:</p>
-<div class="highlight"><pre><span></span><code>    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+
 
 <p>Function <code>search</code> thay vì trả về 1 list sẽ yield từng dòng (generator).</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">contents</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">contents</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">]:</span>
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">contents</span><span class="p">:</span>
         <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">query</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
             <span class="k">yield</span> <span class="n">line</span>
-</code></pre></div>
+</pre></div>
+
 
 <h4>So sánh code Rust và Python</h4>
+<p>Phiên bản code cuối cùng sẽ khác một chút so với nội dung viết trong bài, nhằm làm giống phiên bản Rust nhất cho dễ so sánh. Ví dụ phần unittest sẽ chỉ viết 2 unittest như Rust, phân unittest bên trên bị xóa đi để so sánh cho công bằng.</p>
 <p>Code Python ngắn hơn Rust một chút:</p>
-<div class="highlight"><pre><span></span><code>$ wc -l grep.py test_grep.py lib.py
+<div class="highlight"><pre><span></span>$ wc -l grep.py test_grep.py lib.py
   <span class="m">18</span> grep.py
   <span class="m">25</span> test_grep.py
   <span class="m">52</span> lib.py
@@ -347,14 +368,15 @@ $ wc -l src/main.rs src/lib.rs
   <span class="m">16</span> src/main.rs
  <span class="m">106</span> src/lib.rs   <span class="c1"># rust viết test vào luôn file code</span>
  <span class="m">122</span> total
-</code></pre></div>
+</pre></div>
+
 
 <p>Xem code:</p>
 <ul>
-<li><a href="http://pp.pymi.vn/refactor/grep.py">grep.py</a></li>
-<li><a href="http://pp.pymi.vn/refactor/lib.py">lib.py</a></li>
-<li><a href="http://pp.pymi.vn/refactor/main.rs">main.rs</a></li>
-<li><a href="{stataic}/refactor/lib.rs">lib.rs</a></li>
+<li><a href="http://pp.pymi.vn/refactor/grep.py">grep.py</a> - online <a href="https://glot.io/snippets/gky3ldwlxs">https://glot.io/snippets/gky3ldwlxs</a></li>
+<li><a href="http://pp.pymi.vn/refactor/lib.py">lib.py</a> - online <a href="https://glot.io/snippets/gky3ldwlxs">https://glot.io/snippets/gky3ldwlxs</a></li>
+<li><a href="http://pp.pymi.vn/refactor/main.rs">main.rs</a> - online <a href="https://play.rust-lang.org/?version=stable&amp;mode=debug&amp;edition=2021&amp;gist=d8398acb1d1c156af0c229ed7bdeac45">https://play.rust-lang.org/?version=stable&amp;mode=debug&amp;edition=2021&amp;gist=d8398acb1d1c156af0c229ed7bdeac45</a></li>
+<li><a href="{stataic}/refactor/lib.rs">lib.rs</a> - online <a href="https://play.rust-lang.org/?version=stable&amp;mode=debug&amp;edition=2021&amp;gist=0f6695e6359b96aae6ca976cc23b5c07">https://play.rust-lang.org/?version=stable&amp;mode=debug&amp;edition=2021&amp;gist=0f6695e6359b96aae6ca976cc23b5c07</a></li>
 </ul>
 <h4>Bài học</h4>
 <ul>

@@ -78,40 +78,42 @@ ví dụ requests có: requests.get, requests.post.)</p>
 <p>Sau gần chục năm phát triển, <code>requests</code> giờ đã nằm dưới mái nhà <a href="https://github.com/psf/requests/">Python Software
 Foundation</a>.</p>
 <p>Với các tính năng được quảng cáo ở bản <a href="https://github.com/psf/requests/tree/v1.0.0">v1.0.0, cuối năm 2012</a></p>
-<div class="highlight"><pre><span></span><code>    <span class="n">International</span> <span class="n">Domains</span> <span class="ow">and</span> <span class="n">URLs</span>
-    <span class="n">Keep</span><span class="o">-</span><span class="n">Alive</span> <span class="o">&amp;</span> <span class="n">Connection</span> <span class="n">Pooling</span>
-    <span class="n">Sessions</span> <span class="n">with</span> <span class="n">Cookie</span> <span class="n">Persistence</span>
-    <span class="n">Browser</span><span class="o">-</span><span class="n">style</span> <span class="n">SSL</span> <span class="n">Verification</span>
-    <span class="n">Basic</span><span class="o">/</span><span class="n">Digest</span> <span class="n">Authentication</span>
-    <span class="n">Elegant</span> <span class="n">Key</span><span class="o">/</span><span class="n">Value</span> <span class="n">Cookies</span>
-    <span class="n">Automatic</span> <span class="n">Decompression</span>
-    <span class="n">Unicode</span> <span class="n">Response</span> <span class="n">Bodies</span>
-    <span class="n">Multipart</span> <span class="n">File</span> <span class="n">Uploads</span>
-    <span class="n">Connection</span> <span class="n">Timeouts</span>
-    <span class="n">Thread</span><span class="o">-</span><span class="n">safety</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span>    International Domains and URLs
+    Keep-Alive &amp; Connection Pooling
+    Sessions with Cookie Persistence
+    Browser-style SSL Verification
+    Basic/Digest Authentication
+    Elegant Key/Value Cookies
+    Automatic Decompression
+    Unicode Response Bodies
+    Multipart File Uploads
+    Connection Timeouts
+    Thread-safety
+</pre></div>
+
 
 <p>Có thể dễ đoán rằng những tính năng được quảng cáo trên chính là những gì
 <code>urllib</code> Python thời đó chưa hỗ trợ (trong Python còn có cả thư viện tên
 <code>urllib2</code>... để thêm phần phức tạp). Nhưng với Python 3.5 trở đi, rất nhiều
 trong số trên đã được hỗ trợ trong <code>urllib</code>.</p>
 <p>Còn đây là các tính năng được quảng cáo ở <a href="https://github.com/psf/requests/blob/v2.23.0/README.md#supported-features--bestpractices">phiên bản mới nhất</a>:</p>
-<div class="highlight"><pre><span></span><code>    <span class="n">Keep</span><span class="o">-</span><span class="n">Alive</span> <span class="o">&amp;</span> <span class="n">Connection</span> <span class="n">Pooling</span>
-    <span class="n">International</span> <span class="n">Domains</span> <span class="ow">and</span> <span class="n">URLs</span>
-    <span class="n">Sessions</span> <span class="n">with</span> <span class="n">Cookie</span> <span class="n">Persistence</span>
-    <span class="n">Browser</span><span class="o">-</span><span class="n">style</span> <span class="n">SSL</span> <span class="n">Verification</span>
-    <span class="n">Automatic</span> <span class="n">Content</span> <span class="n">Decoding</span>
-    <span class="n">Basic</span><span class="o">/</span><span class="n">Digest</span> <span class="n">Authentication</span>
-    <span class="n">Elegant</span> <span class="n">Key</span><span class="o">/</span><span class="n">Value</span> <span class="n">Cookies</span>
-    <span class="n">Automatic</span> <span class="n">Decompression</span>
-    <span class="n">Unicode</span> <span class="n">Response</span> <span class="n">Bodies</span>
-    <span class="n">HTTP</span><span class="p">(</span><span class="n">S</span><span class="p">)</span> <span class="n">Proxy</span> <span class="n">Support</span>
-    <span class="n">Multipart</span> <span class="n">File</span> <span class="n">Uploads</span>
-    <span class="n">Streaming</span> <span class="n">Downloads</span>
-    <span class="n">Connection</span> <span class="n">Timeouts</span>
-    <span class="n">Chunked</span> <span class="n">Requests</span>
-    <span class="o">.</span><span class="n">netrc</span> <span class="n">Support</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span>    Keep-Alive &amp; Connection Pooling
+    International Domains and URLs
+    Sessions with Cookie Persistence
+    Browser-style SSL Verification
+    Automatic Content Decoding
+    Basic/Digest Authentication
+    Elegant Key/Value Cookies
+    Automatic Decompression
+    Unicode Response Bodies
+    HTTP(S) Proxy Support
+    Multipart File Uploads
+    Streaming Downloads
+    Connection Timeouts
+    Chunked Requests
+    .netrc Support
+</pre></div>
+
 
 <p>Nếu bạn đọc các tính năng này mà không hiểu gì, thì nó chỉ chứng minh một điều
 là HTTP là một giao thức rất lằng nhằng và phức tạp.
@@ -146,7 +148,7 @@ website nếu như các yêu cầu sau đó cùng website, khác page. Xem code 
 Nó tận dụng các thư viện ngoài khác thay vì tự làm
 tất cả: <code>urllib3</code> để thực hiện connection pooling, thực hiện HTTP requests,
 dùng <code>certifi</code> để cung cấp các SSL certificate mới nhất như các trình duyệt.</p>
-<div class="highlight"><pre><span></span><code>$ wc -l *<span class="p">|</span> sort -nr
+<div class="highlight"><pre><span></span>$ wc -l *<span class="p">|</span> sort -nr
 wc: __pycache__: Is a directory
    <span class="m">5049</span> total
     <span class="m">982</span> utils.py
@@ -167,10 +169,11 @@ wc: __pycache__: Is a directory
      <span class="m">18</span> certs.py
      <span class="m">14</span> __version__.py
      <span class="m">14</span> packages.py
-</code></pre></div>
+</pre></div>
+
 
 <p>Phần API đơn giản lừng danh nằm trong file <code>api.py</code>, trích bỏ comment:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">sessions</span>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">sessions</span>
 
 <span class="k">def</span> <span class="nf">request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="c1"># By using the &#39;with&#39; statement we are sure the session is closed, thus we</span>
@@ -179,30 +182,31 @@ wc: __pycache__: Is a directory
     <span class="k">with</span> <span class="n">sessions</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;allow_redirects&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;allow_redirects&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">request</span><span class="p">(</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">options</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;allow_redirects&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;allow_redirects&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">request</span><span class="p">(</span><span class="s1">&#39;options&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">head</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;allow_redirects&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;allow_redirects&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">request</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">request</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">request</span><span class="p">(</span><span class="s1">&#39;put&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">patch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">patch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">request</span><span class="p">(</span><span class="s1">&#39;patch&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">request</span><span class="p">(</span><span class="s1">&#39;delete&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-</code></pre></div>
+</pre></div>
+
 
 <h3>urllib3</h3>
 <p><a href="https://urllib3.readthedocs.io/en/latest/"><code>urllib3</code></a> là dependency quan trọng
@@ -211,38 +215,40 @@ của <code>requests</code>, nó đảm nhận những công việc nặng nề:
 <p>urllib3 brings many critical features that are missing from the Python
 standard libraries:</p>
 </blockquote>
-<div class="highlight"><pre><span></span><code><span class="n">Thread</span> <span class="n">safety</span><span class="o">.</span>
-<span class="n">Connection</span> <span class="n">pooling</span><span class="o">.</span>
-<span class="n">Client</span><span class="o">-</span><span class="n">side</span> <span class="n">SSL</span><span class="o">/</span><span class="n">TLS</span> <span class="n">verification</span><span class="o">.</span>
-<span class="n">File</span> <span class="n">uploads</span> <span class="n">with</span> <span class="n">multipart</span> <span class="n">encoding</span><span class="o">.</span>
-<span class="n">Helpers</span> <span class="k">for</span> <span class="n">retrying</span> <span class="n">requests</span> <span class="ow">and</span> <span class="n">dealing</span> <span class="n">with</span> <span class="n">HTTP</span> <span class="n">redirects</span><span class="o">.</span>
-<span class="n">Support</span> <span class="k">for</span> <span class="n">gzip</span> <span class="ow">and</span> <span class="n">deflate</span> <span class="n">encoding</span><span class="o">.</span>
-<span class="n">Proxy</span> <span class="n">support</span> <span class="k">for</span> <span class="n">HTTP</span> <span class="ow">and</span> <span class="n">SOCKS</span><span class="o">.</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span>Thread safety.
+Connection pooling.
+Client-side SSL/TLS verification.
+File uploads with multipart encoding.
+Helpers for retrying requests and dealing with HTTP redirects.
+Support for gzip and deflate encoding.
+Proxy support for HTTP and SOCKS.
+</pre></div>
+
 
 <p>Code mẫu:</p>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">urllib3</span>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">urllib3</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">http</span> <span class="o">=</span> <span class="n">urllib3</span><span class="o">.</span><span class="n">PoolManager</span><span class="p">()</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;http://httpbin.org/robots.txt&#39;</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">r</span><span class="o">.</span><span class="n">status</span>
 <span class="mi">200</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">r</span><span class="o">.</span><span class="n">data</span>
 <span class="s1">&#39;User-agent: *</span><span class="se">\n</span><span class="s1">Disallow: /deny</span><span class="se">\n</span><span class="s1">&#39;</span>
-</code></pre></div>
+</pre></div>
+
 
 <h2>urllib</h2>
 <p>urllib và urllib2 thời Python2.7 là những em gái dính lời nguyền mà ai cũng
 muốn tha thứ. Nhưng ở Python 3.6+, việc dùng urllib không còn quá phức tạp,
 hãy coi nó như 1 file, nhớ đóng file, hoặc dùng <code>with</code>.</p>
 <h3>urllib đã kiểm tra SSL certificate</h3>
-<div class="highlight"><pre><span></span><code><span class="n">Python</span> <span class="mf">3.6.9</span> <span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="n">Nov</span>  <span class="mi">7</span> <span class="mi">2019</span><span class="p">,</span> <span class="mi">10</span><span class="p">:</span><span class="mi">44</span><span class="p">:</span><span class="mi">02</span><span class="p">)</span>
-<span class="p">[</span><span class="n">GCC</span> <span class="mf">8.3.0</span><span class="p">]</span> <span class="n">on</span> <span class="n">linux</span>
+<div class="highlight"><pre><span></span><span class="n">Python</span> <span class="mf">3.6</span><span class="o">.</span><span class="mi">9</span> <span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="n">Nov</span>  <span class="mi">7</span> <span class="mi">2019</span><span class="p">,</span> <span class="mi">10</span><span class="p">:</span><span class="mi">44</span><span class="p">:</span><span class="mo">02</span><span class="p">)</span>
+<span class="p">[</span><span class="n">GCC</span> <span class="mf">8.3</span><span class="o">.</span><span class="mi">0</span><span class="p">]</span> <span class="n">on</span> <span class="n">linux</span>
 <span class="n">Type</span> <span class="s2">&quot;help&quot;</span><span class="p">,</span> <span class="s2">&quot;copyright&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span> <span class="ow">or</span> <span class="s2">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">urllib.request</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="k">with</span> <span class="n">urlopen</span><span class="p">(</span><span class="s2">&quot;https://dantri.com&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
 <span class="o">...</span>     <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="o">...</span>     <span class="nb">print</span><span class="p">(</span><span class="n">content</span><span class="p">[:</span><span class="mi">100</span><span class="p">])</span>
+<span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="n">content</span><span class="p">[:</span><span class="mi">100</span><span class="p">])</span>
 <span class="o">...</span>
 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
   <span class="n">File</span> <span class="s2">&quot;/usr/lib/python3.6/urllib/request.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1318</span><span class="p">,</span> <span class="ow">in</span> <span class="n">do_open</span>
@@ -252,11 +258,12 @@ hãy coi nó như 1 file, nhớ đóng file, hoặc dùng <code>with</code>.</p>
 <span class="o">...</span>
     <span class="k">raise</span> <span class="n">URLError</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
 <span class="n">urllib</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">URLError</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">urlopen</span> <span class="n">error</span> <span class="p">[</span><span class="n">SSL</span><span class="p">:</span> <span class="n">CERTIFICATE_VERIFY_FAILED</span><span class="p">]</span> <span class="n">certificate</span> <span class="n">verify</span> <span class="n">failed</span> <span class="p">(</span><span class="n">_ssl</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">852</span><span class="p">)</span><span class="o">&gt;</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>Kết quả tương tự khi dùng <code>requests</code> do URL <code>https://dantri.com</code> SSL certificate
 đẫ hết hạn <code>Expire: January 19, 2020</code></p>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">requests</span>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">requests</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://dantri.com&quot;</span><span class="p">)</span>
 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
   <span class="n">File</span> <span class="s2">&quot;/home/hvn/py3/lib/python3.6/site-packages/urllib3/connectionpool.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">672</span><span class="p">,</span> <span class="ow">in</span> <span class="n">urlopen</span>
@@ -264,10 +271,11 @@ hãy coi nó như 1 file, nhớ đóng file, hoặc dùng <code>with</code>.</p>
   <span class="n">File</span> <span class="s2">&quot;/usr/lib/python3.6/ssl.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">689</span><span class="p">,</span> <span class="ow">in</span> <span class="n">do_handshake</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_sslobj</span><span class="o">.</span><span class="n">do_handshake</span><span class="p">()</span>
 <span class="n">ssl</span><span class="o">.</span><span class="n">SSLError</span><span class="p">:</span> <span class="p">[</span><span class="n">SSL</span><span class="p">:</span> <span class="n">CERTIFICATE_VERIFY_FAILED</span><span class="p">]</span> <span class="n">certificate</span> <span class="n">verify</span> <span class="n">failed</span> <span class="p">(</span><span class="n">_ssl</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">852</span><span class="p">)</span>
-</code></pre></div>
+</pre></div>
+
 
 <h3>urllib redirect ngon lành</h3>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://gmail.com&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://gmail.com&quot;</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">r</span><span class="o">.</span><span class="n">url</span>
 <span class="s1">&#39;https://accounts.google.com/ServiceLogin?service=mail&amp;passive=true&amp;rm=false&amp;continue=https://mail.google.com/mail/&amp;ss=1&amp;scc=1&amp;ltmpl=default&amp;ltmplcache=2&amp;emr=1&amp;osid=1&#39;</span>
 
@@ -275,14 +283,15 @@ hãy coi nó như 1 file, nhớ đóng file, hoặc dùng <code>with</code>.</p>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="s2">&quot;https://gmail.com&quot;</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">r</span><span class="o">.</span><span class="n">url</span>
 <span class="s1">&#39;https://accounts.google.com/ServiceLogin?service=mail&amp;passive=true&amp;rm=false&amp;continue=https://mail.google.com/mail/&amp;ss=1&amp;scc=1&amp;ltmpl=default&amp;ltmplcache=2&amp;emr=1&amp;osid=1&#39;</span>
-</code></pre></div>
+</pre></div>
+
 
 <h3>urllib với JSON API</h3>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">json</span>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">json</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="k">with</span> <span class="n">urlopen</span><span class="p">(</span><span class="s2">&quot;https://httpbin.org/ip&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
 <span class="o">...</span>     <span class="n">content</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-<span class="o">...</span>     <span class="nb">print</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+<span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
 <span class="o">...</span>
 <span class="p">{</span><span class="s1">&#39;origin&#39;</span><span class="p">:</span> <span class="s1">&#39;171.247.169.69&#39;</span><span class="p">}</span>
 
@@ -293,19 +302,20 @@ hãy coi nó như 1 file, nhớ đóng file, hoặc dùng <code>with</code>.</p>
 <span class="o">...</span>           <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Pymi&quot;</span><span class="p">,</span> <span class="s2">&quot;since&quot;</span><span class="p">:</span> <span class="mi">2015</span><span class="p">})</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span>
 <span class="o">...</span>           <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">})</span>
 <span class="o">...</span>           <span class="p">)</span> <span class="k">as</span> <span class="n">resp</span><span class="p">:</span>
-<span class="o">...</span>     <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">resp</span><span class="p">)[</span><span class="s1">&#39;json&#39;</span><span class="p">])</span>
+<span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">resp</span><span class="p">)[</span><span class="s1">&#39;json&#39;</span><span class="p">])</span>
 <span class="o">...</span>
 <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Pymi&#39;</span><span class="p">,</span> <span class="s1">&#39;since&#39;</span><span class="p">:</span> <span class="mi">2015</span><span class="p">}</span>
-</code></pre></div>
+</pre></div>
+
 
 <h3>Tra cứu thông tin COVID-19</h3>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="k">with</span> <span class="n">urlopen</span><span class="p">(</span><span class="s2">&quot;https://corona-stats.online/IT&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<span class="o">...</span>     <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="k">with</span> <span class="n">urlopen</span><span class="p">(</span><span class="s2">&quot;https://corona-stats.online/IT&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
 <span class="o">...</span>
 <span class="err">╔═══════╤═══════╤═══════════╤═══════════╤════════╤════════╤═════════════╤═════════════╤═════════╤══════════╗</span>
 <span class="err">║</span>       <span class="err">│</span> <span class="n">State</span> <span class="err">│</span> <span class="n">Confirmed</span> <span class="err">│</span> <span class="n">Recovered</span> <span class="err">│</span> <span class="n">Deaths</span> <span class="err">│</span> <span class="n">Active</span> <span class="err">│</span> <span class="n">Mortality</span> <span class="o">%</span> <span class="err">│</span> <span class="n">Recovered</span> <span class="o">%</span> <span class="err">│</span> <span class="mi">1</span> <span class="n">Day</span> <span class="err">▲</span> <span class="err">│</span> <span class="mi">1</span> <span class="n">Week</span> <span class="err">▲</span> <span class="err">║</span>
 <span class="err">╟───────┼───────┼───────────┼───────────┼────────┼────────┼─────────────┼─────────────┼─────────┼──────────╢</span>
-<span class="err">║</span> <span class="n">Italy</span> <span class="err">│</span> <span class="n">Total</span> <span class="err">│</span>    <span class="mi">31</span><span class="p">,</span><span class="mi">506</span> <span class="err">│</span>     <span class="mi">2</span><span class="p">,</span><span class="mi">941</span> <span class="err">│</span>  <span class="mi">2</span><span class="p">,</span><span class="mi">503</span> <span class="err">│</span> <span class="mi">26</span><span class="p">,</span><span class="mi">062</span> <span class="err">│</span>        <span class="mf">7.94</span> <span class="err">│</span>        <span class="mf">9.33</span> <span class="err">│</span> <span class="mi">3</span><span class="p">,</span><span class="mi">526</span> <span class="err">▲</span> <span class="err">│</span> <span class="mi">21</span><span class="p">,</span><span class="mi">357</span> <span class="err">▲</span> <span class="err">║</span>
+<span class="err">║</span> <span class="n">Italy</span> <span class="err">│</span> <span class="n">Total</span> <span class="err">│</span>    <span class="mi">31</span><span class="p">,</span><span class="mi">506</span> <span class="err">│</span>     <span class="mi">2</span><span class="p">,</span><span class="mi">941</span> <span class="err">│</span>  <span class="mi">2</span><span class="p">,</span><span class="mi">503</span> <span class="err">│</span> <span class="mi">26</span><span class="p">,</span><span class="mo">062</span> <span class="err">│</span>        <span class="mf">7.94</span> <span class="err">│</span>        <span class="mf">9.33</span> <span class="err">│</span> <span class="mi">3</span><span class="p">,</span><span class="mi">526</span> <span class="err">▲</span> <span class="err">│</span> <span class="mi">21</span><span class="p">,</span><span class="mi">357</span> <span class="err">▲</span> <span class="err">║</span>
 <span class="err">╚═══════╧═══════╧═══════════╧═══════════╧════════╧════════╧═════════════╧═════════════╧═════════╧══════════╝</span>
 
 <span class="n">Stay</span> <span class="n">safe</span><span class="o">.</span> <span class="n">Stay</span> <span class="n">inside</span><span class="o">.</span>
@@ -313,8 +323,9 @@ hãy coi nó như 1 file, nhớ đóng file, hoặc dùng <code>with</code>.</p>
 <span class="n">Code</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">sagarkarira</span><span class="o">/</span><span class="n">coronavirus</span><span class="o">-</span><span class="n">tracker</span><span class="o">-</span><span class="n">cli</span>
 <span class="n">Twitter</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">twitter</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ekrysis</span>
 
-<span class="n">Last</span> <span class="n">Updated</span> <span class="n">on</span><span class="p">:</span> <span class="mi">18</span><span class="o">-</span><span class="n">Mar</span><span class="o">-</span><span class="mi">2020</span> <span class="mi">16</span><span class="p">:</span><span class="mi">03</span> <span class="n">UTC</span>
-</code></pre></div>
+<span class="n">Last</span> <span class="n">Updated</span> <span class="n">on</span><span class="p">:</span> <span class="mi">18</span><span class="o">-</span><span class="n">Mar</span><span class="o">-</span><span class="mi">2020</span> <span class="mi">16</span><span class="p">:</span><span class="mo">03</span> <span class="n">UTC</span>
+</pre></div>
+
 
 <h2>Hành động của chúng ta</h2>
 <p>Có thể dùng <code>urllib</code> khi script/chương trình chỉ truy cập mỗi website

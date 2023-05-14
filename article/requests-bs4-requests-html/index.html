@@ -70,46 +70,49 @@
 <p>Cách cài đặt và sử dụng cơ bản của requests-html đã được tác giả nói rất rõ ở trang chủ do đó mính sẽ không nói lại nữa.</p>
 <h3>Render</h3>
 <p>Nhặt một đoạn văn bản mà đã được render bởi JavaScript:</p>
-<div class="highlight"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">r</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://www.familug.org/&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">r</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://www.familug.org/&#39;</span><span class="p">)</span>
 <span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="n">r</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
 <span class="p">[</span><span class="n">W</span><span class="p">:</span><span class="n">pyppeteer</span><span class="o">.</span><span class="n">chromium_downloader</span><span class="p">]</span> <span class="n">start</span> <span class="n">chromium</span> <span class="n">download</span><span class="o">.</span>
 <span class="n">Download</span> <span class="n">may</span> <span class="n">take</span> <span class="n">a</span> <span class="n">few</span> <span class="n">minutes</span><span class="o">.</span>
 <span class="p">[</span><span class="n">W</span><span class="p">:</span><span class="n">pyppeteer</span><span class="o">.</span><span class="n">chromium_downloader</span><span class="p">]</span> <span class="n">chromium</span> <span class="n">download</span> <span class="n">done</span><span class="o">.</span>
 <span class="p">[</span><span class="n">W</span><span class="p">:</span><span class="n">pyppeteer</span><span class="o">.</span><span class="n">chromium_downloader</span><span class="p">]</span> <span class="n">chromium</span> <span class="n">extracted</span> <span class="n">to</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">dosontung007</span><span class="o">/.</span><span class="n">pyppeteer</span><span class="o">/</span><span class="n">local</span><span class="o">-</span><span class="n">chromium</span><span class="o">/</span><span class="mi">543305</span>
-<span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="n">r</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;UEFI vs BIOS - tạo USB boot cài Windows </span><span class="si">{something}</span><span class="s1"> từ Ubuntu&#39;</span><span class="p">)[</span><span class="s1">&#39;something&#39;</span><span class="p">]</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="n">r</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;UEFI vs BIOS - tạo USB boot cài Windows {something} từ Ubuntu&#39;</span><span class="p">)[</span><span class="s1">&#39;something&#39;</span><span class="p">]</span>
 <span class="n">Out</span><span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="s1">&#39;10&#39;</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>Khi bạn chạy render() lần đầu, method sẽ tải về <code>Chromium headless</code> về thư mục <code>$HOME</code>.</p>
 <h3>XPath Selector</h3>
 <p>Requests-html hỗ trợ Xpath query như Scrapy</p>
-<div class="highlight"><pre><span></span><code><span class="ow">In</span><span class="w"> </span><span class="o">[</span><span class="n">25</span><span class="o">]</span><span class="err">:</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">html</span><span class="p">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//h3//a&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="k">Out</span><span class="o">[</span><span class="n">25</span><span class="o">]</span><span class="err">:</span><span class="w"></span>
-<span class="o">[</span><span class="n">&lt;Element &#39;a&#39; href=&#39;http://www.familug.org/2018/04/uefi-vs-bios-tao-usb-boot-cai-windows.html&#39;&gt;,</span>
-<span class="n"> &lt;Element &#39;a&#39; href=&#39;http://www.familug.org/2018/04/alsa-pulseaudio-jack-ubuntu.html&#39;&gt;,</span>
-<span class="n"> &lt;Element &#39;a&#39; href=&#39;http://www.familug.org/2018/02/hello-2018.html&#39;&gt;,</span>
-<span class="n"> &lt;Element &#39;a&#39; href=&#39;http://www.familug.org/2017/12/dung-git-diff-voi-patch.html&#39;&gt;,</span>
-<span class="n"> &lt;Element &#39;a&#39; href=&#39;http://www.familug.org/2017/11/pgrep-e-grep-process.html&#39;&gt;,</span>
-<span class="n"> &lt;Element &#39;a&#39; href=&#39;http://www.familug.org/2017/11/vuot-qua-gioi-han-1-deploy-key-cua.html&#39;&gt;</span><span class="o">]</span><span class="w"></span>
-<span class="ow">In</span><span class="w"> </span><span class="o">[</span><span class="n">26</span><span class="o">]</span><span class="err">:</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">html</span><span class="p">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//h3//a/@href&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="k">Out</span><span class="o">[</span><span class="n">26</span><span class="o">]</span><span class="err">:</span><span class="w"></span>
-<span class="o">[</span><span class="n">&#39;http://www.familug.org/2018/04/uefi-vs-bios-tao-usb-boot-cai-windows.html&#39;,</span>
-<span class="n">&#39;http://www.familug.org/2018/04/alsa-pulseaudio-jack-ubuntu.html&#39;,</span>
-<span class="n">&#39;http://www.familug.org/2018/02/hello-2018.html&#39;,</span>
-<span class="n">&#39;http://www.familug.org/2017/12/dung-git-diff-voi-patch.html&#39;,</span>
-<span class="n">&#39;http://www.familug.org/2017/11/pgrep-e-grep-process.html&#39;,</span>
-<span class="n">&#39;http://www.familug.org/2017/11/vuot-qua-gioi-han-1-deploy-key-cua.html&#39;</span><span class="o">]</span><span class="w"></span>
-</code></pre></div>
+<div class="highlight"><pre><span></span>In [25]: r.html.xpath(&#39;//h3//a&#39;)
+Out[25]:
+[&lt;Element &#39;a&#39; href=&#39;http://www.familug.org/2018/04/uefi-vs-bios-tao-usb-boot-cai-windows.html&#39;&gt;,
+ &lt;Element &#39;a&#39; href=&#39;http://www.familug.org/2018/04/alsa-pulseaudio-jack-ubuntu.html&#39;&gt;,
+ &lt;Element &#39;a&#39; href=&#39;http://www.familug.org/2018/02/hello-2018.html&#39;&gt;,
+ &lt;Element &#39;a&#39; href=&#39;http://www.familug.org/2017/12/dung-git-diff-voi-patch.html&#39;&gt;,
+ &lt;Element &#39;a&#39; href=&#39;http://www.familug.org/2017/11/pgrep-e-grep-process.html&#39;&gt;,
+ &lt;Element &#39;a&#39; href=&#39;http://www.familug.org/2017/11/vuot-qua-gioi-han-1-deploy-key-cua.html&#39;&gt;]
+In [26]: r.html.xpath(&#39;//h3//a/@href&#39;)
+Out[26]:
+[&#39;http://www.familug.org/2018/04/uefi-vs-bios-tao-usb-boot-cai-windows.html&#39;,
+&#39;http://www.familug.org/2018/04/alsa-pulseaudio-jack-ubuntu.html&#39;,
+&#39;http://www.familug.org/2018/02/hello-2018.html&#39;,
+&#39;http://www.familug.org/2017/12/dung-git-diff-voi-patch.html&#39;,
+&#39;http://www.familug.org/2017/11/pgrep-e-grep-process.html&#39;,
+&#39;http://www.familug.org/2017/11/vuot-qua-gioi-han-1-deploy-key-cua.html&#39;]
+</pre></div>
+
 
 <h3>CSS Selector</h3>
-<div class="highlight"><pre><span></span><code>In [26]: sel = &#39;#Blog1 &gt; div.blog-posts.hfeed &gt; div:nth-child(1) &gt; div &gt; div &gt; div &gt; h3&#39;
+<div class="highlight"><pre><span></span>In [26]: sel = &#39;#Blog1 &gt; div.blog-posts.hfeed &gt; div:nth-child(1) &gt; div &gt; div &gt; div &gt; h3&#39;
 
 In [27]: r.html.find(sel, first=True)
 Out[27]: &lt;Element &#39;h3&#39; class=(&#39;post-title&#39;, &#39;entry-title&#39;) itemprop=&#39;name&#39;&gt;
 
 In [28]: r.html.find(sel, first=True).text
 Out[28]: &#39;UEFI vs BIOS - tạo USB boot cài Windows 10 từ Ubuntu&#39;
-</code></pre></div>
+</pre></div>
+
 
 <p>CSS selector này có thể copy từ developer tool của trình duyệt web.</p>
 <h2>Tổng kết</h2>

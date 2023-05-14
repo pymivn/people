@@ -258,33 +258,36 @@ Công cụ để benchmark web site:</p>
 <li><a href="https://locust.io/">Python Locust.io + webUI + distributed + graph report</a></li>
 </ul>
 <p>Thử benchmark code Flask+Gunicorn hello world, 1000 CCU:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
 
 <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
-<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/fast&quot;</span><span class="p">)</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s2">&quot;/fast&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">fast</span><span class="p">():</span>
     <span class="k">return</span> <span class="s2">&quot;yes&quot;</span>
-</code></pre></div>
+</pre></div>
 
-<div class="highlight"><pre><span></span><code>$ gunicorn app:app -w <span class="m">9</span> -k gthread
-</code></pre></div>
+
+<div class="highlight"><pre><span></span>$ gunicorn app:app -w <span class="m">9</span> -k gthread
+</pre></div>
+
 
 <p>Rồi chạy <code>wrk</code>:</p>
-<div class="highlight"><pre><span></span><code>$ ./wrk -c <span class="m">1000</span> -d 10s http://localhost:8000/fast
+<div class="highlight"><pre><span></span>$ ./wrk -c <span class="m">1000</span> -d 10s http://localhost:8000/fast
 Running 10s <span class="nb">test</span> @ http://localhost:8000/fast
   <span class="m">2</span> threads and <span class="m">1000</span> connections
   Thread Stats   Avg      Stdev     Max   +/- Stdev
     Latency   <span class="m">233</span>.14ms   <span class="m">61</span>.78ms <span class="m">371</span>.49ms   <span class="m">68</span>.27%
     Req/Sec     <span class="m">2</span>.13k   <span class="m">222</span>.09     <span class="m">2</span>.75k    <span class="m">67</span>.50%
-  <span class="m">42372</span> requests <span class="k">in</span> <span class="m">10</span>.08s, <span class="m">6</span>.47MB <span class="nb">read</span>
+  <span class="m">42372</span> requests in <span class="m">10</span>.08s, <span class="m">6</span>.47MB <span class="nb">read</span>
 Requests/sec:   <span class="m">4202</span>.64
 Transfer/sec:    <span class="m">656</span>.75KB
-</code></pre></div>
+</pre></div>
+
 
 <p>4200rps với latency avg 200ms, max cũng chỉ là 371ms.</p>
 <p>hay <code>ab</code>:</p>
-<div class="highlight"><pre><span></span><code>$  ab -n <span class="m">10000</span> -c <span class="m">1000</span> http://localhost:8000/fast
+<div class="highlight"><pre><span></span>$  ab -n <span class="m">10000</span> -c <span class="m">1000</span> http://localhost:8000/fast
 
 Concurrency Level:      <span class="m">1000</span>
 Requests per second:    <span class="m">3706</span>.73 <span class="o">[</span><span class="c1">#/sec] (mean)</span>
@@ -299,10 +302,11 @@ Percentage of the requests served within a certain <span class="nb">time</span> 
   <span class="m">98</span>%    <span class="m">426</span>
   <span class="m">99</span>%    <span class="m">448</span>
  <span class="m">100</span>%    <span class="m">476</span> <span class="o">(</span>longest request<span class="o">)</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>Test trên</p>
-<div class="highlight"><pre><span></span><code>AMD Ryzen <span class="m">3</span> 4300U - <span class="m">4</span> cores - 8GB RAM
+<div class="highlight"><pre><span></span>AMD Ryzen <span class="m">3</span> 4300U - <span class="m">4</span> cores - 8GB RAM
 
 $ lsb_release -d<span class="p">;</span> python3 --version
 Description:    Ubuntu <span class="m">20</span>.04.3 LTS
@@ -314,7 +318,8 @@ gunicorn            <span class="m">20</span>.1.0
 
 $ ./wrk --version
 wrk a211dd5 <span class="o">[</span>epoll<span class="o">]</span> Copyright <span class="o">(</span>C<span class="o">)</span> <span class="m">2012</span> Will Glozer
-</code></pre></div>
+</pre></div>
+
 
 <h2>Python trong hệ thống</h2>
 <p>Vài trường hợp minh họa code Python viết rất nhanh và chạy đủ nhanh:</p>

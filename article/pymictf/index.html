@@ -102,15 +102,17 @@ những chữ S, những chữ X, khiến cho chưa học thuộc từ khóa th�
 <p>Lỗi bảo mật phổ biến nhất thế giới từ 2005-2018 (số liệu chém gió mà chắc sẽ đúng), nguyên nhân
 là do nối/format string mà không dùng ? hay %s đã ghi chú trong các thư viện xử lý SQL.</p>
 <p>Never do this -- insecure! (format SQL string)</p>
-<div class="highlight"><pre><span></span><code><span class="n">t</span> <span class="o">=</span> <span class="s1">&#39;RHAT&#39;</span>
-<span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SELECT * FROM stocks WHERE symbol = &#39;</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="s1">&#39;RHAT&#39;</span>
+<span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;SELECT * FROM stocks WHERE symbol = &#39;{t}&#39;&quot;</span><span class="p">)</span>
+</pre></div>
+
 
 <p>Do this instead</p>
-<div class="highlight"><pre><span></span><code><span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;RHAT&#39;</span><span class="p">,)</span>
+<div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;RHAT&#39;</span><span class="p">,)</span>
 <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;SELECT * FROM stocks WHERE symbol=?&#39;</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">cur</span><span class="o">.</span><span class="n">fetchone</span><span class="p">())</span>
-</code></pre></div>
+<span class="k">print</span><span class="p">(</span><span class="n">cur</span><span class="o">.</span><span class="n">fetchone</span><span class="p">())</span>
+</pre></div>
+
 
 <p>(trích tài liệu <a href="https://docs.python.org/3.10/library/sqlite3.html#sqlite3-placeholders">python sqlite3</a> - <a href="https://www.psycopg.org/docs/usage.html#the-problem-with-the-query-parameters">postgres</a> cũng có tài liệu tương tự, 2022 DB nào cũng có hết).</p>
 <p>Lỗ hổng này phổ biến tới mức công ty bảo mật hàng đầu cũng dính, tây cũng dính, tàu cũng dính,
@@ -129,12 +131,14 @@ sẽ chạy đoạn code này trên server. Về cơ bản khi dùng các templa
 các giá trị lọt vào không qua đường template render mà xử lý ngay như string trên python.</p>
 <p>Ví dụ với fstring đầy uy lực theo <a href="https://semgrep.dev/docs/cheat-sheets/flask-xss/">semgrep</a>:</p>
 <p>Bug:</p>
-<div class="highlight"><pre><span></span><code><span class="n">render_template_string</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;div&gt;</span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span><span class="si">}</span><span class="s2">&lt;/div&gt;&quot;</span><span class="p">)</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="n">render_template_string</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;&lt;div&gt;{request.args.get(&quot;</span><span class="n">name</span><span class="s2">&quot;)}&lt;/div&gt;&quot;</span><span class="p">)</span>
+</pre></div>
+
 
 <p>Fix:</p>
-<div class="highlight"><pre><span></span><code><span class="n">render_template_string</span><span class="p">(</span><span class="s2">&quot;&lt;div&gt;{{ name }}&lt;/div&gt;&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">))</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="n">render_template_string</span><span class="p">(</span><span class="s2">&quot;&lt;div&gt;{{ name }}&lt;/div&gt;&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">))</span>
+</pre></div>
+
 
 <h5>XSS - Cross Site Scripting</h5>
 <p>XSS thực sự khó hơn 2 cái lỗi trên đối với lập trình viên Python, bởi nó dùng JavaScript.
@@ -148,10 +152,11 @@ Nguy hiểm nhất khi người bị hack là admin -&gt; xong, hết bài.</li>
 </ul>
 <p>Dùng framework cũng không miễn nhiễm với XSS. Ví dụ trang chủ của Flask:</p>
 <p>Bug:</p>
-<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/index/&lt;msg&gt;&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="nd">@app.route</span><span class="p">(</span><span class="s2">&quot;/index/&lt;msg&gt;&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
   <span class="k">return</span> <span class="s2">&quot;Hello! &quot;</span> <span class="o">+</span> <span class="n">msg</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>yes, sorry!!! nhưng nếu trang web lưu giá trị này lại và hiển thị ở 1 chỗ khác,
 và người khác xem, thì nó đã đủ cơ chế để hacker thực hiện XSS bằng cách nhập
@@ -160,20 +165,23 @@ code JavaScript vào msg.</p>
 <p>chỉ return render_template() hay jsonify(), không return string trực tiếp.</p>
 <p><a href="https://docs.djangoproject.com/en/4.1/topics/security/#cross-site-scripting-xss-protection">Django doc</a> có ví dụ khi trong template ghi</p>
 <p>Bug:</p>
-<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">style</span> <span class="na">class</span><span class="o">=</span><span class="s">{{</span> <span class="na">var</span> <span class="err">}}</span><span class="p">&gt;</span><span class="o">...</span><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">style</span> <span class="na">class</span><span class="o">=</span><span class="s">{{</span> <span class="na">var</span> <span class="err">}}</span><span class="p">&gt;</span><span class="o">...</span><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</pre></div>
+
 
 <p>Nếu hacker đưa được var với giá trị là <code>class1 onmouseover=javascript:func()</code>
 thì code javascript này vẫn được chạy.</p>
 <p>Fix: phải quote double quote -&gt; <code>"{{ var }}"</code>.</p>
 <p>Hay với link - tham khảo thêm tại <a href="https://flask.palletsprojects.com/en/2.2.x/security/#cross-site-scripting-xss">doc Flask</a>:</p>
 <p>Bug:</p>
-<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ value }}&quot;</span><span class="p">&gt;</span>click here<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ value }}&quot;</span><span class="p">&gt;</span>click here<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</pre></div>
+
 
 <p>Hacker nhập vào render thành:</p>
-<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;javascript:alert(&#39;unsafe&#39;);&quot;</span><span class="p">&gt;</span>click here<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;javascript:alert(&#39;unsafe&#39;);&quot;</span><span class="p">&gt;</span>click here<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</pre></div>
+
 
 <p>Fix: phải set <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy">CSP</a>.</p>
 <h5>CSRF - Cross Site Request Forgery</h5>
@@ -187,18 +195,21 @@ dụng phổ biến của công nghệ này trong authen.</p>
 <p>Các tool bash/python của sysadmin thường dính lỗi "command injection" khi cho phép người dùng nhập 1 phần câu
 lệnh vào để chạy</p>
 <p>Bug trên shell script:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;Hello </span><span class="nv">$1</span><span class="s2">&quot;</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="s2">&quot;Hello </span><span class="nv">$1</span><span class="s2">&quot;</span>
+</pre></div>
+
 
 <p>Hacker nhập vào "hi; echo hello &gt; hacked" là xong.</p>
 <p>Hay dùng Python <a href="https://docs.python.org/3.10/library/subprocess.html#security-considerations">subprocess</a>:</p>
 <p>Bug:</p>
-<div class="highlight"><pre><span></span><code><span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;echo hello </span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;echo hello {username}&quot;</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+
 
 <p>Fix:</p>
-<div class="highlight"><pre><span></span><code><span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;echo hello </span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">(),</span> <span class="n">shell</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;echo hello {username}&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">(),</span> <span class="n">shell</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</pre></div>
+
 
 <p>Dùng os.system tương đương trường hợp bug trên.</p>
 <h3>"Bóc phốt" những hiểu nhầm về CTF</h3>
