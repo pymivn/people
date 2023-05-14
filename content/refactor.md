@@ -10,9 +10,11 @@ Refactor là một phần công việc không thể thiếu của lập trình v
 
 Vấn đề với refactor: là một khái niệm chung chung, không có ví dụ cụ thể, khó học/luyện tập để trở thành 1 kỹ năng. Best-practice của ngôn ngữ này lại có thể là điều không ai làm ở ngôn ngữ khác. Sách vở viết về refactor cũng chỉ có 1 quyển được cộng đồng mạng nhắc tới ?!!! [Refactoring - Improving the Design of Existing Code by Martin Fowler, with Kent Beck, 2018](https://martinfowler.com/books/refactoring.html).  PyMi cũng từng có 1 bài viết giới thiệu việc [refactoring code kèm với IPython]({filename}/repl.md).
 
-![Rust logo](https://www.rust-lang.org/static/images/rust-logo-blk.svg)
+![Refactor](https://images.unsplash.com/photo-1545697729-0ab8f5b1954c?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=zoltan-tasi-CLJeQCr2F_A-unsplash.jpg&w=640)
 
-Bài viết này dựa trên chapter 12 trong cuốn [The Rust Programming Language](https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html) (còn hay gọi là The book), kèm phóng tác, chuyển dịch sang Python, thêm "bình phẩm" và nhiều nhiều câu hỏi. Sử dụng ví dụ từ sách Rust khiến người đọc có thể tin cậy trình độ của tác giả... Steve Klabnik, Carol Nichols - những cái tên nổi tiếng bậc nhất trong thế giới Rust.
+<center>Photo by <a href="https://unsplash.com/@zoltantasi?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Zoltan Tasi</a> on <a href="https://unsplash.com/photos/CLJeQCr2F_A?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></center>
+
+Bài viết này dựa trên chapter 12 trong cuốn [The Rust Programming Language](https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html) (còn hay gọi là **The book**), kèm phóng tác, chuyển dịch sang Python, thêm "bình phẩm" và nhiều nhiều câu hỏi. Sử dụng ví dụ từ sách Rust khiến người đọc có thể tin cậy trình độ của tác giả... Steve Klabnik, Carol Nichols - những cái tên nổi tiếng bậc nhất trong thế giới Rust.
 
 ### Refactoring là gì
 Trong tiếng Anh, refactoring có nghĩa:
@@ -327,7 +329,7 @@ def search(query: str, contents: Iterable) -> Generator[str, None, None]:
             yield line
 ```
 #### So sánh code Rust và Python
-Phiên bản code cuối cùng sẽ khác một chút so với nội dung viết trong bài, nhằm làm giống phiên bản Rust nhất cho dễ so sánh. Ví dụ phần unittest sẽ chỉ viết 2 unittest như Rust, phân unittest bên trên bị xóa đi để so sánh cho công bằng.
+Phiên bản code cuối cùng sẽ khác một chút so với nội dung viết trong bài, nhằm làm giống phiên bản Rust nhất: ví dụ phần unittest sẽ chỉ viết 2 unittest như bản Rust, unittest bên trên bị xóa đi để so sánh cho công bằng.
 
 Code Python ngắn hơn Rust một chút:
 ```
@@ -360,6 +362,14 @@ Xem code:
 
 ### Kết luận
 Refactoring để nâng cao chất lượng (Maintainability, Extensibility) của code, không phải để làm ngắn.
+
+### Tham khảo
+
+- <https://martinfowler.com/books/refactoring.html>
+- <https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html>
+- <https://martinfowler.com/books/refactoring.html>
+- <https://martinfowler.com/bliki/FlagArgument.html>
+- <http://www.informit.com/articles/article.aspx?p=1392524>
 
 Hết!
 
