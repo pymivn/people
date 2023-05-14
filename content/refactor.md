@@ -87,7 +87,8 @@ Code này hoàn toàn ổn: sạch đẹp, đúng chuẩn PEP8, và quan trọng
 Tùy vào:
 
 - chương trình nhỏ hay to, 10 dòng hay 10000 dòng
-- chạy 1s hay chạy 1 giờ mới xong
+- chương trình dùng 1 lần hay trong dự án 1 năm ++
+- chạy 1 giây hay chạy 1 giờ mới xong
 - team 1 người hay 10 người code cùng
 
 Trong ví dụ cụ thể này, đoạn code trên hoàn toàn không cần refactor. Nhưng đây là bài viết về refactor, hãy xem tác giả sẽ biến đoạn code này thành 90 dòng ra sao.
@@ -362,7 +363,7 @@ Xem code:
 - mọi thứ đều là tương đối
 
 ### Kết luận
-Refactoring để nâng cao chất lượng (Maintainability, Extensibility) của code, không phải để làm ngắn.
+Refactoring để nâng cao chất lượng (Maintainability, Extensibility, Performance) của code, không phải để làm ngắn.
 
 ### Tham khảo
 
