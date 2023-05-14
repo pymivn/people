@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>The PyMiers</title><link href="http://pp.pymi.vn/" rel="alternate"></link><link href="http://pp.pymi.vn/feeds/all.atom.xml" rel="self"></link><id>http://pp.pymi.vn/</id><updated>2023-05-09T00:00:00+07:00</updated><entry><title>Refactor 10 dòng code thành 90 dòng</title><link href="http://pp.pymi.vn/article/refactor/" rel="alternate"></link><published>2023-05-09T00:00:00+07:00</published><updated>2023-05-09T00:00:00+07:00</updated><author><name>hvnsweeting</name></author><id>tag:pp.pymi.vn,2023-05-09:/article/refactor/</id><summary type="html">&lt;p&gt;refactor không phải để code ngắn đi&lt;/p&gt;</summary><content type="html">&lt;p&gt;Refactor là một phần công việc không thể thiếu của lập trình viên, sau khi code xong chạy được mà "chưa đẹp", lập trình viên sẽ chỉnh sửa đoạn code cho "đẹp" hơn, cũng có thể nhanh hơn, cũng có thể ngắn hơn, cũng có thể dễ hiểu hơn...&lt;/p&gt;
 &lt;p&gt;Vấn đề với refactor: là một khái niệm chung chung, không có ví dụ cụ thể, khó học/luyện tập để trở thành 1 kỹ năng. Best-practice của ngôn ngữ này lại có thể là điều không ai làm ở ngôn ngữ khác. Sách vở viết về refactor cũng chỉ có 1 quyển được cộng đồng mạng nhắc tới ?!!! &lt;a href="https://martinfowler.com/books/refactoring.html"&gt;Refactoring - Improving the Design of Existing Code by Martin Fowler, with Kent Beck, 2018&lt;/a&gt;.  PyMi cũng từng có 1 bài viết giới thiệu việc &lt;a href="http://pp.pymi.vn/article/repl/"&gt;refactoring code kèm với IPython&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Rust logo" src="https://www.rust-lang.org/static/images/rust-logo-blk.svg"&gt;&lt;/p&gt;
-&lt;p&gt;Bài viết này dựa trên chapter 12 trong cuốn &lt;a href="https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html"&gt;The Rust Programming Language&lt;/a&gt; (còn hay gọi là The book), kèm phóng tác, chuyển dịch sang Python, thêm "bình phẩm" và nhiều nhiều câu hỏi. Sử dụng ví dụ từ sách Rust khiến người đọc có thể tin cậy trình độ của tác giả... Steve Klabnik, Carol Nichols - những cái tên nổi tiếng bậc nhất trong thế giới Rust.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Refactor" src="https://images.unsplash.com/photo-1545697729-0ab8f5b1954c?ixlib=rb-4.0.3&amp;amp;q=85&amp;amp;fm=jpg&amp;amp;crop=entropy&amp;amp;cs=srgb&amp;amp;dl=zoltan-tasi-CLJeQCr2F_A-unsplash.jpg&amp;amp;w=640"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;Photo by &lt;a href="https://unsplash.com/@zoltantasi?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;Zoltan Tasi&lt;/a&gt; on &lt;a href="https://unsplash.com/photos/CLJeQCr2F_A?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;Unsplash&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;Bài viết này dựa trên chapter 12 trong cuốn &lt;a href="https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html"&gt;The Rust Programming Language&lt;/a&gt; (còn hay gọi là &lt;strong&gt;The book&lt;/strong&gt;), kèm phóng tác, chuyển dịch sang Python, thêm "bình phẩm" và nhiều nhiều câu hỏi. Sử dụng ví dụ từ sách Rust khiến người đọc có thể tin cậy trình độ của tác giả... Steve Klabnik, Carol Nichols - những cái tên nổi tiếng bậc nhất trong thế giới Rust.&lt;/p&gt;
 &lt;h3&gt;Refactoring là gì&lt;/h3&gt;
 &lt;p&gt;Trong tiếng Anh, refactoring có nghĩa:&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://dictionary.cambridge.org/dictionary/english/refactoring"&gt;cambridge&lt;/a&gt;:&lt;/p&gt;
@@ -301,7 +302,7 @@ Application error: &lt;span class="o"&gt;[&lt;/span&gt;Errno &lt;span class="m"&
 
 
 &lt;h4&gt;So sánh code Rust và Python&lt;/h4&gt;
-&lt;p&gt;Phiên bản code cuối cùng sẽ khác một chút so với nội dung viết trong bài, nhằm làm giống phiên bản Rust nhất cho dễ so sánh. Ví dụ phần unittest sẽ chỉ viết 2 unittest như Rust, phân unittest bên trên bị xóa đi để so sánh cho công bằng.&lt;/p&gt;
+&lt;p&gt;Phiên bản code cuối cùng sẽ khác một chút so với nội dung viết trong bài, nhằm làm giống phiên bản Rust nhất: ví dụ phần unittest sẽ chỉ viết 2 unittest như bản Rust, unittest bên trên bị xóa đi để so sánh cho công bằng.&lt;/p&gt;
 &lt;p&gt;Code Python ngắn hơn Rust một chút:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ wc -l grep.py test_grep.py lib.py
   &lt;span class="m"&gt;18&lt;/span&gt; grep.py
@@ -334,6 +335,14 @@ $ wc -l src/main.rs src/lib.rs
 &lt;/ul&gt;
 &lt;h3&gt;Kết luận&lt;/h3&gt;
 &lt;p&gt;Refactoring để nâng cao chất lượng (Maintainability, Extensibility) của code, không phải để làm ngắn.&lt;/p&gt;
+&lt;h3&gt;Tham khảo&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://martinfowler.com/books/refactoring.html"&gt;https://martinfowler.com/books/refactoring.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html"&gt;https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://martinfowler.com/books/refactoring.html"&gt;https://martinfowler.com/books/refactoring.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://martinfowler.com/bliki/FlagArgument.html"&gt;https://martinfowler.com/bliki/FlagArgument.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.informit.com/articles/article.aspx?p=1392524"&gt;http://www.informit.com/articles/article.aspx?p=1392524&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;Hết!&lt;/p&gt;
 &lt;p&gt;HVN at &lt;a href="http://pymi.vn"&gt;http://pymi.vn&lt;/a&gt; and &lt;a href="https://www.familug.org"&gt;https://www.familug.org&lt;/a&gt;.&lt;/p&gt;
 &lt;ul&gt;

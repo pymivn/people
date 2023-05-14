@@ -56,8 +56,9 @@
   <div class="entry-content">
     <p>Refactor là một phần công việc không thể thiếu của lập trình viên, sau khi code xong chạy được mà "chưa đẹp", lập trình viên sẽ chỉnh sửa đoạn code cho "đẹp" hơn, cũng có thể nhanh hơn, cũng có thể ngắn hơn, cũng có thể dễ hiểu hơn...</p>
 <p>Vấn đề với refactor: là một khái niệm chung chung, không có ví dụ cụ thể, khó học/luyện tập để trở thành 1 kỹ năng. Best-practice của ngôn ngữ này lại có thể là điều không ai làm ở ngôn ngữ khác. Sách vở viết về refactor cũng chỉ có 1 quyển được cộng đồng mạng nhắc tới ?!!! <a href="https://martinfowler.com/books/refactoring.html">Refactoring - Improving the Design of Existing Code by Martin Fowler, with Kent Beck, 2018</a>.  PyMi cũng từng có 1 bài viết giới thiệu việc <a href="http://pp.pymi.vn/article/repl/">refactoring code kèm với IPython</a>.</p>
-<p><img alt="Rust logo" src="https://www.rust-lang.org/static/images/rust-logo-blk.svg"></p>
-<p>Bài viết này dựa trên chapter 12 trong cuốn <a href="https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html">The Rust Programming Language</a> (còn hay gọi là The book), kèm phóng tác, chuyển dịch sang Python, thêm "bình phẩm" và nhiều nhiều câu hỏi. Sử dụng ví dụ từ sách Rust khiến người đọc có thể tin cậy trình độ của tác giả... Steve Klabnik, Carol Nichols - những cái tên nổi tiếng bậc nhất trong thế giới Rust.</p>
+<p><img alt="Refactor" src="https://images.unsplash.com/photo-1545697729-0ab8f5b1954c?ixlib=rb-4.0.3&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb&amp;dl=zoltan-tasi-CLJeQCr2F_A-unsplash.jpg&amp;w=640"></p>
+<p><center>Photo by <a href="https://unsplash.com/@zoltantasi?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Zoltan Tasi</a> on <a href="https://unsplash.com/photos/CLJeQCr2F_A?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></center></p>
+<p>Bài viết này dựa trên chapter 12 trong cuốn <a href="https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html">The Rust Programming Language</a> (còn hay gọi là <strong>The book</strong>), kèm phóng tác, chuyển dịch sang Python, thêm "bình phẩm" và nhiều nhiều câu hỏi. Sử dụng ví dụ từ sách Rust khiến người đọc có thể tin cậy trình độ của tác giả... Steve Klabnik, Carol Nichols - những cái tên nổi tiếng bậc nhất trong thế giới Rust.</p>
 <h3>Refactoring là gì</h3>
 <p>Trong tiếng Anh, refactoring có nghĩa:</p>
 <p><a href="https://dictionary.cambridge.org/dictionary/english/refactoring">cambridge</a>:</p>
@@ -356,7 +357,7 @@ Application error: <span class="o">[</span>Errno <span class="m">2</span><span c
 
 
 <h4>So sánh code Rust và Python</h4>
-<p>Phiên bản code cuối cùng sẽ khác một chút so với nội dung viết trong bài, nhằm làm giống phiên bản Rust nhất cho dễ so sánh. Ví dụ phần unittest sẽ chỉ viết 2 unittest như Rust, phân unittest bên trên bị xóa đi để so sánh cho công bằng.</p>
+<p>Phiên bản code cuối cùng sẽ khác một chút so với nội dung viết trong bài, nhằm làm giống phiên bản Rust nhất: ví dụ phần unittest sẽ chỉ viết 2 unittest như bản Rust, unittest bên trên bị xóa đi để so sánh cho công bằng.</p>
 <p>Code Python ngắn hơn Rust một chút:</p>
 <div class="highlight"><pre><span></span>$ wc -l grep.py test_grep.py lib.py
   <span class="m">18</span> grep.py
@@ -389,6 +390,14 @@ $ wc -l src/main.rs src/lib.rs
 </ul>
 <h3>Kết luận</h3>
 <p>Refactoring để nâng cao chất lượng (Maintainability, Extensibility) của code, không phải để làm ngắn.</p>
+<h3>Tham khảo</h3>
+<ul>
+<li><a href="https://martinfowler.com/books/refactoring.html">https://martinfowler.com/books/refactoring.html</a></li>
+<li><a href="https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html">https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html</a></li>
+<li><a href="https://martinfowler.com/books/refactoring.html">https://martinfowler.com/books/refactoring.html</a></li>
+<li><a href="https://martinfowler.com/bliki/FlagArgument.html">https://martinfowler.com/bliki/FlagArgument.html</a></li>
+<li><a href="http://www.informit.com/articles/article.aspx?p=1392524">http://www.informit.com/articles/article.aspx?p=1392524</a></li>
+</ul>
 <p>Hết!</p>
 <p>HVN at <a href="http://pymi.vn">http://pymi.vn</a> and <a href="https://www.familug.org">https://www.familug.org</a>.</p>
 <ul>
