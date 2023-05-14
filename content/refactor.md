@@ -10,9 +10,10 @@ Refactor là một phần công việc không thể thiếu của lập trình v
 
 Vấn đề với refactor: là một khái niệm chung chung, không có ví dụ cụ thể, khó học/luyện tập để trở thành 1 kỹ năng. Best-practice của ngôn ngữ này lại có thể là điều không ai làm ở ngôn ngữ khác. Sách vở viết về refactor cũng chỉ có 1 quyển được cộng đồng mạng nhắc tới ?!!! [Refactoring - Improving the Design of Existing Code by Martin Fowler, with Kent Beck, 2018](https://martinfowler.com/books/refactoring.html).  PyMi cũng từng có 1 bài viết giới thiệu việc [refactoring code kèm với IPython]({filename}/repl.md).
 
+<center>
 ![Refactor](https://images.unsplash.com/photo-1545697729-0ab8f5b1954c?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=zoltan-tasi-CLJeQCr2F_A-unsplash.jpg&w=640)
 
-<center>Photo by <a href="https://unsplash.com/@zoltantasi?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Zoltan Tasi</a> on <a href="https://unsplash.com/photos/CLJeQCr2F_A?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></center>
+Photo by <a href="https://unsplash.com/@zoltantasi?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Zoltan Tasi</a> on <a href="https://unsplash.com/photos/CLJeQCr2F_A?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></center>
 
 Bài viết này dựa trên chapter 12 trong cuốn [The Rust Programming Language](https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html) (còn hay gọi là **The book**), kèm phóng tác, chuyển dịch sang Python, thêm "bình phẩm" và nhiều nhiều câu hỏi. Sử dụng ví dụ từ sách Rust khiến người đọc có thể tin cậy trình độ của tác giả... Steve Klabnik, Carol Nichols - những cái tên nổi tiếng bậc nhất trong thế giới Rust.
 
@@ -349,7 +350,7 @@ Xem code:
 
 - [grep.py]({static}/refactor/grep.py) - online <https://glot.io/snippets/gky3ldwlxs>
 - [lib.py]({static}/refactor/lib.py) - online <https://glot.io/snippets/gky3ldwlxs>
-- [main.rs]({static}/refactor/main.rs) - online <https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=d8398acb1d1c156af0c229ed7bdeac45>
+- [main.rs]({static}/refactor/main.rs) - online <https://gist.github.com/rust-play/5689af5322e9e26eb95458a159289f43>
 - [lib.rs]({stataic}/refactor/lib.rs) - online <https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=0f6695e6359b96aae6ca976cc23b5c07>
 
 #### Bài học
