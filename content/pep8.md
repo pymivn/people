@@ -645,7 +645,7 @@ def tabs_obsolete(physical_line):
 ```
 
 #### Xem traceback
-Thêm dòng break vào function `tabs_obsolete` rồi chạy lại:
+Thêm dòng `raise` vào function `tabs_obsolete` rồi chạy lại:
 
 ```py
 $ python pycodestyle.py pycodestyle.py # edited output
