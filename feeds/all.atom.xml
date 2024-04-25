@@ -176,7 +176,7 @@ Bỏ qua các function nhận input &lt;code&gt;_line&lt;/code&gt; (các check),
 Method &lt;code&gt;check_all&lt;/code&gt; sẽ được xem lại sau.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;self.options&lt;/code&gt; chứa mọi option của chương trình.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;reporter&lt;/code&gt; mặc định dùng class &lt;code&gt;StandardReport&lt;/code&gt;.&lt;/p&gt;
-&lt;h4&gt;method &lt;code&gt;check_files&lt;/code&gt;&lt;/h4&gt;
+&lt;h4&gt;method &lt;code&gt;StyleGuide.check_files&lt;/code&gt;&lt;/h4&gt;
 &lt;p&gt;method &lt;code&gt;check_files&lt;/code&gt; thực hiện chạy check cho &lt;strong&gt;các&lt;/strong&gt; file cần kiểm tra PEP8, trả về &lt;code&gt;report&lt;/code&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;check_files&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;paths&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Run all checks on the paths.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
@@ -349,7 +349,7 @@ tree &lt;span class="m"&gt;0&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Việc kiểm tra độ dài của dòng rõ ràng thuộc về physical check.&lt;/p&gt;
-&lt;h4&gt;&lt;code&gt;check_all&lt;/code&gt;&lt;/h4&gt;
+&lt;h4&gt;&lt;code&gt;Checker.check_all&lt;/code&gt;&lt;/h4&gt;
 &lt;p&gt;Method &lt;strong&gt;"core"&lt;/strong&gt; của chương trình là &lt;code&gt;check_all&lt;/code&gt;, nơi &lt;strong&gt;thực sự&lt;/strong&gt; chạy các check và thu thập kết quả vào &lt;code&gt;Report&lt;/code&gt;.
 45 dòng:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;check_all&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;expected&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;line_offset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
@@ -551,6 +551,36 @@ Chú ý rằng file &lt;code&gt;foo.py&lt;/code&gt; có 4 dòng vật lý, thì 
     &lt;span class="n"&gt;indent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;INDENT_REGEX&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;match&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;physical_line&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;group&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\t&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;indent&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;indent&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\t&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;W191 indentation contains tabs&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;Xem traceback&lt;/h4&gt;
+&lt;p&gt;Thêm dòng break vào function &lt;code&gt;tabs_obsolete&lt;/code&gt; rồi chạy lại:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="n"&gt;pycodestyle&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="n"&gt;pycodestyle&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="c1"&gt;# edited output&lt;/span&gt;
+&lt;span class="n"&gt;Traceback&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;most&lt;/span&gt; &lt;span class="n"&gt;recent&lt;/span&gt; &lt;span class="n"&gt;call&lt;/span&gt; &lt;span class="n"&gt;last&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;_main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+  &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;_main&lt;/span&gt;
+    &lt;span class="n"&gt;report&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;style_guide&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;check_files&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+             &lt;span class="o"&gt;^^^^^^^^^^^^^^^^^^^^^^^^^&lt;/span&gt;
+  &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;check_files&lt;/span&gt;
+    &lt;span class="n"&gt;runner&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;input_file&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;fchecker&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;check_all&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;expected&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;expected&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;line_offset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;line_offset&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+           &lt;span class="o"&gt;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^&lt;/span&gt;
+  &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;check_all&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;token&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;generate_tokens&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+  &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;generate_tokens&lt;/span&gt;
+    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;maybe_check_physical&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;token&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;prev_physical&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;maybe_check_physical&lt;/span&gt;
+    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;check_physical&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;token&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;check_physical&lt;/span&gt;
+    &lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run_check&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;check&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;argument_names&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+             &lt;span class="o"&gt;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^&lt;/span&gt;
+  &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;run_check&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;check&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;arguments&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+           &lt;span class="o"&gt;^^^^^^^^^^^^^^^^^&lt;/span&gt;
+  &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;tabs_obsolete&lt;/span&gt;
+    &lt;span class="k"&gt;raise&lt;/span&gt;
+&lt;span class="ne"&gt;RuntimeError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;No&lt;/span&gt; &lt;span class="n"&gt;active&lt;/span&gt; &lt;span class="n"&gt;exception&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;reraise&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h3&gt;coding style&lt;/h3&gt;

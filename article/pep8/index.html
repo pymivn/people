@@ -229,7 +229,7 @@ Bỏ qua các function nhận input <code>_line</code> (các check), ta có các
 Method <code>check_all</code> sẽ được xem lại sau.</p>
 <p><code>self.options</code> chứa mọi option của chương trình.</p>
 <p><code>reporter</code> mặc định dùng class <code>StandardReport</code>.</p>
-<h4>method <code>check_files</code></h4>
+<h4>method <code>StyleGuide.check_files</code></h4>
 <p>method <code>check_files</code> thực hiện chạy check cho <strong>các</strong> file cần kiểm tra PEP8, trả về <code>report</code></p>
 <div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">check_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">paths</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Run all checks on the paths.&quot;&quot;&quot;</span>
@@ -402,7 +402,7 @@ tree <span class="m">0</span>
 </code></pre></div>
 
 <p>Việc kiểm tra độ dài của dòng rõ ràng thuộc về physical check.</p>
-<h4><code>check_all</code></h4>
+<h4><code>Checker.check_all</code></h4>
 <p>Method <strong>"core"</strong> của chương trình là <code>check_all</code>, nơi <strong>thực sự</strong> chạy các check và thu thập kết quả vào <code>Report</code>.
 45 dòng:</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">check_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expected</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">line_offset</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
@@ -604,6 +604,36 @@ Chú ý rằng file <code>foo.py</code> có 4 dòng vật lý, thì token cuối
     <span class="n">indent</span> <span class="o">=</span> <span class="n">INDENT_REGEX</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">physical_line</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">if</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span> <span class="ow">in</span> <span class="n">indent</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">indent</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">),</span> <span class="s2">&quot;W191 indentation contains tabs&quot;</span>
+</code></pre></div>
+
+<h4>Xem traceback</h4>
+<p>Thêm dòng break vào function <code>tabs_obsolete</code> rồi chạy lại:</p>
+<div class="highlight"><pre><span></span><code><span class="err">$</span> <span class="n">python</span> <span class="n">pycodestyle</span><span class="o">.</span><span class="n">py</span> <span class="n">pycodestyle</span><span class="o">.</span><span class="n">py</span> <span class="c1"># edited output</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+    <span class="n">_main</span><span class="p">()</span>
+  <span class="ow">in</span> <span class="n">_main</span>
+    <span class="n">report</span> <span class="o">=</span> <span class="n">style_guide</span><span class="o">.</span><span class="n">check_files</span><span class="p">()</span>
+             <span class="o">^^^^^^^^^^^^^^^^^^^^^^^^^</span>
+  <span class="ow">in</span> <span class="n">check_files</span>
+    <span class="n">runner</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+  <span class="ow">in</span> <span class="n">input_file</span>
+    <span class="k">return</span> <span class="n">fchecker</span><span class="o">.</span><span class="n">check_all</span><span class="p">(</span><span class="n">expected</span><span class="o">=</span><span class="n">expected</span><span class="p">,</span> <span class="n">line_offset</span><span class="o">=</span><span class="n">line_offset</span><span class="p">)</span>
+           <span class="o">^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
+  <span class="ow">in</span> <span class="n">check_all</span>
+    <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_tokens</span><span class="p">():</span>
+  <span class="ow">in</span> <span class="n">generate_tokens</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">maybe_check_physical</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">prev_physical</span><span class="p">)</span>
+  <span class="ow">in</span> <span class="n">maybe_check_physical</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">check_physical</span><span class="p">(</span><span class="n">token</span><span class="o">.</span><span class="n">line</span><span class="p">)</span>
+  <span class="ow">in</span> <span class="n">check_physical</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_check</span><span class="p">(</span><span class="n">check</span><span class="p">,</span> <span class="n">argument_names</span><span class="p">)</span>
+             <span class="o">^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
+  <span class="ow">in</span> <span class="n">run_check</span>
+    <span class="k">return</span> <span class="n">check</span><span class="p">(</span><span class="o">*</span><span class="n">arguments</span><span class="p">)</span>
+           <span class="o">^^^^^^^^^^^^^^^^^</span>
+  <span class="ow">in</span> <span class="n">tabs_obsolete</span>
+    <span class="k">raise</span>
+<span class="ne">RuntimeError</span><span class="p">:</span> <span class="n">No</span> <span class="n">active</span> <span class="n">exception</span> <span class="n">to</span> <span class="n">reraise</span>
 </code></pre></div>
 
 <h3>coding style</h3>
