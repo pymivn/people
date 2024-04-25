@@ -604,7 +604,7 @@ Ngoài ra pycodestyle cũng chỉ chạy mội vài giây (phút) rồi kết th
 &lt;a href="https://github.com/PyCQA/pycodestyle/pull/455#issuecomment-151712140"&gt;https://github.com/PyCQA/pycodestyle/pull/455#issuecomment-151712140&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Kết luận&lt;/h3&gt;
 &lt;p&gt;pycodestyle hay pep8 là chương trình thuộc top phổ biến của python&lt;/p&gt;
-&lt;p&gt;requests: 450 triệu download/tháng, pycodestyle: 40 triệu download/tháng.&lt;/p&gt;
+&lt;p&gt;requests: 450 triệu download/tháng, &lt;a href="https://pypistats.org/packages/pycodestyle"&gt;pycodestyle: 40 triệu download/tháng&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;có code nằm trong 1 file duy nhất với 2600 dòng, với tính năng ổn định, code đơn giản, sử dụng tính dynamic linh hoạt của Python để tạo các check. Code dễ dàng thêm các check mới bằng việc tạo function rồi chạy register.
 Dùng global var, hàm main ít code, dùng class khi cần.&lt;/p&gt;
 &lt;p&gt;Hết!&lt;/p&gt;
