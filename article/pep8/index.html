@@ -231,23 +231,23 @@ Method <code>check_all</code> sẽ được xem lại sau.</p>
 <p><code>reporter</code> mặc định dùng class <code>StandardReport</code>.</p>
 <h4>method <code>StyleGuide.check_files</code></h4>
 <p>method <code>check_files</code> thực hiện chạy check cho <strong>các</strong> file cần kiểm tra PEP8, trả về <code>report</code></p>
-<div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">check_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">paths</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Run all checks on the paths.&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">paths</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">paths</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">paths</span>
-        <span class="n">report</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">report</span>
-        <span class="n">runner</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">runner</span>
-        <span class="n">report</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">input_dir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-                <span class="k">elif</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">excluded</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
-                    <span class="n">runner</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;... stopped&#39;</span><span class="p">)</span>
-        <span class="n">report</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">report</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">check_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">paths</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Run all checks on the paths.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">paths</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">paths</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">paths</span>
+    <span class="n">report</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">report</span>
+    <span class="n">runner</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">runner</span>
+    <span class="n">report</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">input_dir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">excluded</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+                <span class="n">runner</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;... stopped&#39;</span><span class="p">)</span>
+    <span class="n">report</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">report</span>
 </code></pre></div>
 
 <p><code>path</code> là đường dẫn, có thể tới 1 file hay 1 thư mục, với file, chương trình sẽ check luôn nhờ gọi <code>runner</code> (method <code>input_file</code>), với thư mục, gọi method <code>input_dir(path)</code> để xử lý logic tìm các file trong thư mục rồi chạy <code>runner</code> với từng file.</p>
@@ -329,7 +329,7 @@ Method <code>check_all</code> sẽ được xem lại sau.</p>
 </code></pre></div>
 
 <p>Đoạn code này là một <strong>magic</strong>, sử dụng tính dynamic linh hoạt của Python, dùng <code>inspect</code> để đọc từ các function object: tên, parameters, rồi <code>_add_check</code> vào từng nhóm <code>kind</code> dựa trên tên của parameter đầu tiên.</p>
-<div class="highlight"><pre><span></span><code>    <span class="n">_add_check</span><span class="p">(</span><span class="n">check</span><span class="p">,</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">codes</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">_add_check</span><span class="p">(</span><span class="n">check</span><span class="p">,</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">codes</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
 </code></pre></div>
 
 <p>Thử viết 1 function với 2 parameter, rồi dùng code <code>inspect</code> tìm xem parameter đầu tiên tên gì:</p>
@@ -351,7 +351,7 @@ Method <code>check_all</code> sẽ được xem lại sau.</p>
 <span class="s1">&#39;x&#39;</span>
 </code></pre></div>
 
-<div class="highlight"><pre><span></span><code>    <span class="n">_add_check</span><span class="p">(</span><span class="n">check</span><span class="p">,</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">codes</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">_add_check</span><span class="p">(</span><span class="n">check</span><span class="p">,</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">codes</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
 </code></pre></div>
 
 <p><code>codes</code> ở đây là mã error như W101 E201, lọc ra từ docstring của mỗi check function qua <code>check.__doc__</code>.</p>
@@ -366,10 +366,10 @@ E101 E111 E112 E113 E114 E115 E116 E121 E122 E123 E124 E125 E126 E127 E128 E129 
 </code></pre></div>
 
 <p>Sửa code trong <code>_main</code> rồi chạy:</p>
-<div class="highlight"><pre><span></span><code>    <span class="n">style_guide</span> <span class="o">=</span> <span class="n">StyleGuide</span><span class="p">(</span><span class="n">parse_argv</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="c1"># them 2 dong nay</span>
-    <span class="k">for</span> <span class="n">kind</span><span class="p">,</span> <span class="n">checks</span> <span class="ow">in</span> <span class="n">_checks</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">kind</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">checks</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><code><span class="n">style_guide</span> <span class="o">=</span> <span class="n">StyleGuide</span><span class="p">(</span><span class="n">parse_argv</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># them 2 dong nay</span>
+<span class="k">for</span> <span class="n">kind</span><span class="p">,</span> <span class="n">checks</span> <span class="ow">in</span> <span class="n">_checks</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">kind</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">checks</span><span class="p">))</span>
 </code></pre></div>
 
 <p>Output:</p>
@@ -542,29 +542,29 @@ Chú ý rằng file <code>foo.py</code> có 4 dòng vật lý, thì token cuối
 <p>mỗi object Checker biểu diễn việc kiểm tra 1 file, có attribute <code>.lines</code> chứa các dòng của file đó. Các check sẽ lấy dòng số mấy dựa theo token start/stop rồi truy cập dòng bằng <code>self.lines[n]</code>.</p>
 <h3>run physical check</h3>
 <p>Vậy mỗi physical check được gọi như thế nào?</p>
-<div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">run_check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">check</span><span class="p">,</span> <span class="n">argument_names</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Run a check plugin.&quot;&quot;&quot;</span>
-        <span class="n">arguments</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">argument_names</span><span class="p">:</span>
-            <span class="n">arguments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">check</span><span class="p">(</span><span class="o">*</span><span class="n">arguments</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">run_check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">check</span><span class="p">,</span> <span class="n">argument_names</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Run a check plugin.&quot;&quot;&quot;</span>
+    <span class="n">arguments</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">argument_names</span><span class="p">:</span>
+        <span class="n">arguments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">check</span><span class="p">(</span><span class="o">*</span><span class="n">arguments</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">init_checker_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">argument_names</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Prepare custom state for the specific checker plugin.&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="s1">&#39;checker_state&#39;</span> <span class="ow">in</span> <span class="n">argument_names</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">checker_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_checker_states</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="p">{})</span>
+<span class="k">def</span> <span class="nf">init_checker_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">argument_names</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Prepare custom state for the specific checker plugin.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="s1">&#39;checker_state&#39;</span> <span class="ow">in</span> <span class="n">argument_names</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">checker_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_checker_states</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="p">{})</span>
 
-    <span class="k">def</span> <span class="nf">check_physical</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Run all physical checks on a raw input line.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">physical_line</span> <span class="o">=</span> <span class="n">line</span>
-        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">check</span><span class="p">,</span> <span class="n">argument_names</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_physical_checks</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">init_checker_state</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">argument_names</span><span class="p">)</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_check</span><span class="p">(</span><span class="n">check</span><span class="p">,</span> <span class="n">argument_names</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="p">(</span><span class="n">offset</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="o">=</span> <span class="n">result</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">report_error</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">line_number</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">check</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">text</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;E101&#39;</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">indent_char</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">def</span> <span class="nf">check_physical</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Run all physical checks on a raw input line.&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">physical_line</span> <span class="o">=</span> <span class="n">line</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">check</span><span class="p">,</span> <span class="n">argument_names</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_physical_checks</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_checker_state</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">argument_names</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_check</span><span class="p">(</span><span class="n">check</span><span class="p">,</span> <span class="n">argument_names</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="p">(</span><span class="n">offset</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="o">=</span> <span class="n">result</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">report_error</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">line_number</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">check</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">text</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;E101&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">indent_char</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </code></pre></div>
 
 <p>Với mỗi <code>name, check, argument_names</code> chứa trong <code>self._physical_checks</code>, gọi <code>run_check(check, argument_names)</code>, method này lấy tên của các argument, rồi lấy giá trị của chúng chưa trong attribute của Checker, sau đó gọi function <code>check(*arguments)</code>. Hãy xem thử với check độ dài của dòng:</p>
