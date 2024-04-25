@@ -78,17 +78,17 @@ ví dụ requests có: requests.get, requests.post.)</p>
 <p>Sau gần chục năm phát triển, <code>requests</code> giờ đã nằm dưới mái nhà <a href="https://github.com/psf/requests/">Python Software
 Foundation</a>.</p>
 <p>Với các tính năng được quảng cáo ở bản <a href="https://github.com/psf/requests/tree/v1.0.0">v1.0.0, cuối năm 2012</a></p>
-<div class="highlight"><pre><span></span><code>    <span class="n">International</span> <span class="n">Domains</span> <span class="ow">and</span> <span class="n">URLs</span>
-    <span class="n">Keep</span><span class="o">-</span><span class="n">Alive</span> <span class="o">&amp;</span> <span class="n">Connection</span> <span class="n">Pooling</span>
-    <span class="n">Sessions</span> <span class="n">with</span> <span class="n">Cookie</span> <span class="n">Persistence</span>
-    <span class="n">Browser</span><span class="o">-</span><span class="n">style</span> <span class="n">SSL</span> <span class="n">Verification</span>
-    <span class="n">Basic</span><span class="o">/</span><span class="n">Digest</span> <span class="n">Authentication</span>
-    <span class="n">Elegant</span> <span class="n">Key</span><span class="o">/</span><span class="n">Value</span> <span class="n">Cookies</span>
-    <span class="n">Automatic</span> <span class="n">Decompression</span>
-    <span class="n">Unicode</span> <span class="n">Response</span> <span class="n">Bodies</span>
-    <span class="n">Multipart</span> <span class="n">File</span> <span class="n">Uploads</span>
-    <span class="n">Connection</span> <span class="n">Timeouts</span>
-    <span class="n">Thread</span><span class="o">-</span><span class="n">safety</span>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="n">International</span><span class="w"> </span><span class="n">Domains</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">URLs</span><span class="w"></span>
+<span class="w">    </span><span class="n">Keep</span><span class="o">-</span><span class="n">Alive</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">Connection</span><span class="w"> </span><span class="n">Pooling</span><span class="w"></span>
+<span class="w">    </span><span class="n">Sessions</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">Cookie</span><span class="w"> </span><span class="n">Persistence</span><span class="w"></span>
+<span class="w">    </span><span class="n">Browser</span><span class="o">-</span><span class="n">style</span><span class="w"> </span><span class="n">SSL</span><span class="w"> </span><span class="n">Verification</span><span class="w"></span>
+<span class="w">    </span><span class="n">Basic</span><span class="o">/</span><span class="n">Digest</span><span class="w"> </span><span class="n">Authentication</span><span class="w"></span>
+<span class="w">    </span><span class="n">Elegant</span><span class="w"> </span><span class="n">Key</span><span class="o">/</span><span class="n">Value</span><span class="w"> </span><span class="n">Cookies</span><span class="w"></span>
+<span class="w">    </span><span class="n">Automatic</span><span class="w"> </span><span class="n">Decompression</span><span class="w"></span>
+<span class="w">    </span><span class="n">Unicode</span><span class="w"> </span><span class="n">Response</span><span class="w"> </span><span class="n">Bodies</span><span class="w"></span>
+<span class="w">    </span><span class="n">Multipart</span><span class="w"> </span><span class="n">File</span><span class="w"> </span><span class="n">Uploads</span><span class="w"></span>
+<span class="w">    </span><span class="n">Connection</span><span class="w"> </span><span class="n">Timeouts</span><span class="w"></span>
+<span class="w">    </span><span class="n">Thread</span><span class="o">-</span><span class="n">safety</span><span class="w"></span>
 </code></pre></div>
 
 <p>Có thể dễ đoán rằng những tính năng được quảng cáo trên chính là những gì
@@ -96,21 +96,21 @@ Foundation</a>.</p>
 <code>urllib2</code>... để thêm phần phức tạp). Nhưng với Python 3.5 trở đi, rất nhiều
 trong số trên đã được hỗ trợ trong <code>urllib</code>.</p>
 <p>Còn đây là các tính năng được quảng cáo ở <a href="https://github.com/psf/requests/blob/v2.23.0/README.md#supported-features--bestpractices">phiên bản mới nhất</a>:</p>
-<div class="highlight"><pre><span></span><code>    <span class="n">Keep</span><span class="o">-</span><span class="n">Alive</span> <span class="o">&amp;</span> <span class="n">Connection</span> <span class="n">Pooling</span>
-    <span class="n">International</span> <span class="n">Domains</span> <span class="ow">and</span> <span class="n">URLs</span>
-    <span class="n">Sessions</span> <span class="n">with</span> <span class="n">Cookie</span> <span class="n">Persistence</span>
-    <span class="n">Browser</span><span class="o">-</span><span class="n">style</span> <span class="n">SSL</span> <span class="n">Verification</span>
-    <span class="n">Automatic</span> <span class="n">Content</span> <span class="n">Decoding</span>
-    <span class="n">Basic</span><span class="o">/</span><span class="n">Digest</span> <span class="n">Authentication</span>
-    <span class="n">Elegant</span> <span class="n">Key</span><span class="o">/</span><span class="n">Value</span> <span class="n">Cookies</span>
-    <span class="n">Automatic</span> <span class="n">Decompression</span>
-    <span class="n">Unicode</span> <span class="n">Response</span> <span class="n">Bodies</span>
-    <span class="n">HTTP</span><span class="p">(</span><span class="n">S</span><span class="p">)</span> <span class="n">Proxy</span> <span class="n">Support</span>
-    <span class="n">Multipart</span> <span class="n">File</span> <span class="n">Uploads</span>
-    <span class="n">Streaming</span> <span class="n">Downloads</span>
-    <span class="n">Connection</span> <span class="n">Timeouts</span>
-    <span class="n">Chunked</span> <span class="n">Requests</span>
-    <span class="o">.</span><span class="n">netrc</span> <span class="n">Support</span>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="n">Keep</span><span class="o">-</span><span class="n">Alive</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">Connection</span><span class="w"> </span><span class="n">Pooling</span><span class="w"></span>
+<span class="w">    </span><span class="n">International</span><span class="w"> </span><span class="n">Domains</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">URLs</span><span class="w"></span>
+<span class="w">    </span><span class="n">Sessions</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">Cookie</span><span class="w"> </span><span class="n">Persistence</span><span class="w"></span>
+<span class="w">    </span><span class="n">Browser</span><span class="o">-</span><span class="n">style</span><span class="w"> </span><span class="n">SSL</span><span class="w"> </span><span class="n">Verification</span><span class="w"></span>
+<span class="w">    </span><span class="n">Automatic</span><span class="w"> </span><span class="n">Content</span><span class="w"> </span><span class="n">Decoding</span><span class="w"></span>
+<span class="w">    </span><span class="n">Basic</span><span class="o">/</span><span class="n">Digest</span><span class="w"> </span><span class="n">Authentication</span><span class="w"></span>
+<span class="w">    </span><span class="n">Elegant</span><span class="w"> </span><span class="n">Key</span><span class="o">/</span><span class="n">Value</span><span class="w"> </span><span class="n">Cookies</span><span class="w"></span>
+<span class="w">    </span><span class="n">Automatic</span><span class="w"> </span><span class="n">Decompression</span><span class="w"></span>
+<span class="w">    </span><span class="n">Unicode</span><span class="w"> </span><span class="n">Response</span><span class="w"> </span><span class="n">Bodies</span><span class="w"></span>
+<span class="w">    </span><span class="n">HTTP</span><span class="p">(</span><span class="n">S</span><span class="p">)</span><span class="w"> </span><span class="n">Proxy</span><span class="w"> </span><span class="n">Support</span><span class="w"></span>
+<span class="w">    </span><span class="n">Multipart</span><span class="w"> </span><span class="n">File</span><span class="w"> </span><span class="n">Uploads</span><span class="w"></span>
+<span class="w">    </span><span class="n">Streaming</span><span class="w"> </span><span class="n">Downloads</span><span class="w"></span>
+<span class="w">    </span><span class="n">Connection</span><span class="w"> </span><span class="n">Timeouts</span><span class="w"></span>
+<span class="w">    </span><span class="n">Chunked</span><span class="w"> </span><span class="n">Requests</span><span class="w"></span>
+<span class="w">    </span><span class="o">.</span><span class="n">netrc</span><span class="w"> </span><span class="n">Support</span><span class="w"></span>
 </code></pre></div>
 
 <p>Nếu bạn đọc các tính năng này mà không hiểu gì, thì nó chỉ chứng minh một điều
@@ -211,13 +211,13 @@ của <code>requests</code>, nó đảm nhận những công việc nặng nề:
 <p>urllib3 brings many critical features that are missing from the Python
 standard libraries:</p>
 </blockquote>
-<div class="highlight"><pre><span></span><code><span class="n">Thread</span> <span class="n">safety</span><span class="o">.</span>
-<span class="n">Connection</span> <span class="n">pooling</span><span class="o">.</span>
-<span class="n">Client</span><span class="o">-</span><span class="n">side</span> <span class="n">SSL</span><span class="o">/</span><span class="n">TLS</span> <span class="n">verification</span><span class="o">.</span>
-<span class="n">File</span> <span class="n">uploads</span> <span class="n">with</span> <span class="n">multipart</span> <span class="n">encoding</span><span class="o">.</span>
-<span class="n">Helpers</span> <span class="k">for</span> <span class="n">retrying</span> <span class="n">requests</span> <span class="ow">and</span> <span class="n">dealing</span> <span class="n">with</span> <span class="n">HTTP</span> <span class="n">redirects</span><span class="o">.</span>
-<span class="n">Support</span> <span class="k">for</span> <span class="n">gzip</span> <span class="ow">and</span> <span class="n">deflate</span> <span class="n">encoding</span><span class="o">.</span>
-<span class="n">Proxy</span> <span class="n">support</span> <span class="k">for</span> <span class="n">HTTP</span> <span class="ow">and</span> <span class="n">SOCKS</span><span class="o">.</span>
+<div class="highlight"><pre><span></span><code><span class="n">Thread</span><span class="w"> </span><span class="n">safety</span><span class="o">.</span><span class="w"></span>
+<span class="n">Connection</span><span class="w"> </span><span class="n">pooling</span><span class="o">.</span><span class="w"></span>
+<span class="n">Client</span><span class="o">-</span><span class="n">side</span><span class="w"> </span><span class="n">SSL</span><span class="o">/</span><span class="n">TLS</span><span class="w"> </span><span class="n">verification</span><span class="o">.</span><span class="w"></span>
+<span class="n">File</span><span class="w"> </span><span class="n">uploads</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">multipart</span><span class="w"> </span><span class="n">encoding</span><span class="o">.</span><span class="w"></span>
+<span class="n">Helpers</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">retrying</span><span class="w"> </span><span class="n">requests</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">dealing</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">HTTP</span><span class="w"> </span><span class="n">redirects</span><span class="o">.</span><span class="w"></span>
+<span class="n">Support</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">gzip</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">deflate</span><span class="w"> </span><span class="n">encoding</span><span class="o">.</span><span class="w"></span>
+<span class="n">Proxy</span><span class="w"> </span><span class="n">support</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">HTTP</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">SOCKS</span><span class="o">.</span><span class="w"></span>
 </code></pre></div>
 
 <p>Code mẫu:</p>

@@ -379,16 +379,16 @@ vì vậy đa số code không cần ghi type, khi nào cần, Rust compiler s�
 </blockquote>
 <p>Cho một dãy số tự nhiên (độ sâu của tàu ngầm) tăng giảm tùy ý.
 Có bao nhiêu lần độ sâu tăng so với lần trước. Ví dụ:</p>
-<div class="highlight"><pre><span></span><code><span class="mf">199</span> <span class="p">(</span><span class="n">N</span><span class="o">/</span><span class="n">A</span> <span class="o">-</span> <span class="n">no</span> <span class="n">previous</span> <span class="n">measurement</span><span class="p">)</span>
-<span class="mf">200</span> <span class="p">(</span><span class="n">increased</span><span class="p">)</span>
-<span class="mf">208</span> <span class="p">(</span><span class="n">increased</span><span class="p">)</span>
-<span class="mf">210</span> <span class="p">(</span><span class="n">increased</span><span class="p">)</span>
-<span class="mf">200</span> <span class="p">(</span><span class="n">decreased</span><span class="p">)</span>
-<span class="mf">207</span> <span class="p">(</span><span class="n">increased</span><span class="p">)</span>
-<span class="mf">240</span> <span class="p">(</span><span class="n">increased</span><span class="p">)</span>
-<span class="mf">269</span> <span class="p">(</span><span class="n">increased</span><span class="p">)</span>
-<span class="mf">260</span> <span class="p">(</span><span class="n">decreased</span><span class="p">)</span>
-<span class="mf">263</span> <span class="p">(</span><span class="n">increased</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="mf">199</span><span class="w"> </span><span class="p">(</span><span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">no</span><span class="w"> </span><span class="n">previous</span><span class="w"> </span><span class="n">measurement</span><span class="p">)</span><span class="w"></span>
+<span class="mf">200</span><span class="w"> </span><span class="p">(</span><span class="n">increased</span><span class="p">)</span><span class="w"></span>
+<span class="mf">208</span><span class="w"> </span><span class="p">(</span><span class="n">increased</span><span class="p">)</span><span class="w"></span>
+<span class="mf">210</span><span class="w"> </span><span class="p">(</span><span class="n">increased</span><span class="p">)</span><span class="w"></span>
+<span class="mf">200</span><span class="w"> </span><span class="p">(</span><span class="n">decreased</span><span class="p">)</span><span class="w"></span>
+<span class="mf">207</span><span class="w"> </span><span class="p">(</span><span class="n">increased</span><span class="p">)</span><span class="w"></span>
+<span class="mf">240</span><span class="w"> </span><span class="p">(</span><span class="n">increased</span><span class="p">)</span><span class="w"></span>
+<span class="mf">269</span><span class="w"> </span><span class="p">(</span><span class="n">increased</span><span class="p">)</span><span class="w"></span>
+<span class="mf">260</span><span class="w"> </span><span class="p">(</span><span class="n">decreased</span><span class="p">)</span><span class="w"></span>
+<span class="mf">263</span><span class="w"> </span><span class="p">(</span><span class="n">increased</span><span class="p">)</span><span class="w"></span>
 </code></pre></div>
 
 <p>Phần chú thích trong <code>()</code> là hướng dẫn, đề chỉ cho 1 file chứa các số, mỗi số 1 dòng.
@@ -471,10 +471,10 @@ ra các cặp mà có giá trị sau lớn hơn giá trị trước, rồi đế
 bao nhiêu dòng cũng được. Code này tương tự Python <code>lambda t: t[1] &gt; t[0]</code>.</p>
 <p>Sau khi nhập kết quả giải xong phần 1, đề phần 2 hiện ra yêu cầu thay vì đếm số
 sau lớn hơn số trước thì đếm tổng 3 số sau lớn hơn tổng 3 số trước.</p>
-<div class="highlight"><pre><span></span><code><span class="mf">1</span>
-<span class="mf">2</span>
-<span class="mf">3</span>
-<span class="mf">4</span>
+<div class="highlight"><pre><span></span><code><span class="mf">1</span><span class="w"></span>
+<span class="mf">2</span><span class="w"></span>
+<span class="mf">3</span><span class="w"></span>
+<span class="mf">4</span><span class="w"></span>
 </code></pre></div>
 
 <p>thì có 2+3+4 &gt; 1+2+3.</p>
@@ -491,18 +491,18 @@ sau lớn hơn số trước thì đếm tổng 3 số sau lớn hơn tổng 3 s
 <p>ở đây một lần nữa dùng zip để duyệt qua 3 dãy số cùng lúc.</p>
 <h3>Giải <a href="https://adventofcode.com/2021/day/3">ngày 3</a></h3>
 <p>Tính năng lượng tiêu thụ của tàu dựa trên báo cáo</p>
-<div class="highlight"><pre><span></span><code><span class="mf">00100</span>
-<span class="mf">11110</span>
-<span class="mf">10110</span>
-<span class="mf">10111</span>
-<span class="mf">10101</span>
-<span class="mf">01111</span>
-<span class="mf">00111</span>
-<span class="mf">11100</span>
-<span class="mf">10000</span>
-<span class="mf">11001</span>
-<span class="mf">00010</span>
-<span class="mf">01010</span>
+<div class="highlight"><pre><span></span><code><span class="mf">00100</span><span class="w"></span>
+<span class="mf">11110</span><span class="w"></span>
+<span class="mf">10110</span><span class="w"></span>
+<span class="mf">10111</span><span class="w"></span>
+<span class="mf">10101</span><span class="w"></span>
+<span class="mf">01111</span><span class="w"></span>
+<span class="mf">00111</span><span class="w"></span>
+<span class="mf">11100</span><span class="w"></span>
+<span class="mf">10000</span><span class="w"></span>
+<span class="mf">11001</span><span class="w"></span>
+<span class="mf">00010</span><span class="w"></span>
+<span class="mf">01010</span><span class="w"></span>
 </code></pre></div>
 
 <p>Cách tính: <code>power = epsilon rate * gamma rate</code>.
@@ -620,15 +620,15 @@ compile báo lỗi:</p>
 </code></pre></div>
 
 <p>Compile lỗi:</p>
-<div class="highlight"><pre><span></span><code><span class="k">error</span><span class="err">[</span><span class="n">E0382</span><span class="err">]</span><span class="o">:</span> <span class="k">use</span> <span class="k">of</span> <span class="n">moved</span> <span class="k">value</span><span class="o">:</span> <span class="n n-Quoted">`v`</span>
-  <span class="o">--&gt;</span> <span class="n">main</span><span class="p">.</span><span class="n">rs</span><span class="o">:</span><span class="mi">14</span><span class="o">:</span><span class="mi">22</span>
-   <span class="o">|</span>
-<span class="mi">12</span> <span class="o">|</span>     <span class="n">let</span> <span class="n">v</span><span class="o">:</span> <span class="n">Vec</span><span class="o">&lt;</span><span class="n">_</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">vec</span><span class="o">!</span><span class="err">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="err">]</span><span class="p">;</span>
-   <span class="o">|</span>         <span class="o">-</span> <span class="n">move</span> <span class="n">occurs</span> <span class="n">because</span> <span class="n n-Quoted">`v`</span> <span class="n">has</span> <span class="k">type</span> <span class="n n-Quoted">`Vec&lt;i32&gt;`</span><span class="p">,</span> <span class="n">which</span> <span class="n">does</span> <span class="k">not</span> <span class="n">implement</span> <span class="n">the</span> <span class="n n-Quoted">`Copy`</span> <span class="n">trait</span>
-<span class="mi">13</span> <span class="o">|</span>     <span class="n">let</span> <span class="n">_s</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
-   <span class="o">|</span>                  <span class="o">-</span> <span class="k">value</span> <span class="n">moved</span> <span class="n">here</span>
-<span class="mi">14</span> <span class="o">|</span>     <span class="n">let</span> <span class="n">_p</span> <span class="o">=</span> <span class="n">product</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
-   <span class="o">|</span>                      <span class="o">^</span> <span class="k">value</span> <span class="n">used</span> <span class="n">here</span> <span class="k">after</span> <span class="n">move</span>
+<div class="highlight"><pre><span></span><code><span class="k">error</span><span class="err">[</span><span class="n">E0382</span><span class="err">]</span><span class="o">:</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">moved</span><span class="w"> </span><span class="k">value</span><span class="o">:</span><span class="w"> </span><span class="n n-Quoted">`v`</span><span class="w"></span>
+<span class="w">  </span><span class="o">--&gt;</span><span class="w"> </span><span class="n">main</span><span class="p">.</span><span class="n">rs</span><span class="o">:</span><span class="mi">14</span><span class="o">:</span><span class="mi">22</span><span class="w"></span>
+<span class="w">   </span><span class="o">|</span><span class="w"></span>
+<span class="mi">12</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="n">let</span><span class="w"> </span><span class="n">v</span><span class="o">:</span><span class="w"> </span><span class="n">Vec</span><span class="o">&lt;</span><span class="n">_</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vec</span><span class="o">!</span><span class="err">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="err">]</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="o">|</span><span class="w">         </span><span class="o">-</span><span class="w"> </span><span class="n">move</span><span class="w"> </span><span class="n">occurs</span><span class="w"> </span><span class="n">because</span><span class="w"> </span><span class="n n-Quoted">`v`</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="k">type</span><span class="w"> </span><span class="n n-Quoted">`Vec&lt;i32&gt;`</span><span class="p">,</span><span class="w"> </span><span class="n">which</span><span class="w"> </span><span class="n">does</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="n">implement</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n n-Quoted">`Copy`</span><span class="w"> </span><span class="n">trait</span><span class="w"></span>
+<span class="mi">13</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="n">let</span><span class="w"> </span><span class="n">_s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w"></span>
+<span class="w">   </span><span class="o">|</span><span class="w">                  </span><span class="o">-</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="n">moved</span><span class="w"> </span><span class="n">here</span><span class="w"></span>
+<span class="mi">14</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="n">let</span><span class="w"> </span><span class="n">_p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">product</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w"></span>
+<span class="w">   </span><span class="o">|</span><span class="w">                      </span><span class="o">^</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="n">here</span><span class="w"> </span><span class="k">after</span><span class="w"> </span><span class="n">move</span><span class="w"></span>
 </code></pre></div>
 
 <p>Rust compiler hướng dẫn chi tiết về vấn đề xảy ra, thậm chí đôi khi

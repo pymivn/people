@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+   <title> Đọc code chương trình pycodestyle, pep8  - The PyMiers</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="robots" content="" />
+  <link rel="stylesheet" type="text/css" href="/theme/css/app.css">
+<link rel="stylesheet" type="text/css" href="http://pp.pymi.vn/theme/css/pygment.css">
+  <!--
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+  -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    <meta name="author" content="Pymiers" />
+  <meta name="description" content="" />    <link href="http://pp.pymi.vn/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="The PyMiers Full Atom Feed" />         
+  <meta name="tags" content="python" />
+  <meta name="tags" content="architecture" />
+  <meta name="tags" content="codewalk" />
+</head>
+
+<body>
+  <main class="wrapper">
+    <section class="container">
+      <header class='column'>
+        <h1 class='title'><a href="http://pp.pymi.vn/">The PyMiers</a></h1>
+      </header>
+
+      <div class="section">
+        <div class="row navbar">
+          <div class="column nav-item is-active"><a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a></div>
+           <div class="column nav-item "><a href="http://pp.pymi.vn/pages/about/">About</a></div>
+          <div class="column nav-item "><a href="http://pp.pymi.vn/pages/add/">Tạo bài viết</a></div>
+          <div class="column nav-item "><a href="http://pp.pymi.vn/pages/rss/">RSS</a></div>
+          <div class="column nav-item"><a href="/archives">Archives</a></div>
+        </div>
+      </div>
+    </section>
+
+<section class="container">
+  <header>
+    <h2 class="entry-title">
+      <a href="http://pp.pymi.vn/article/pep8/" rel="bookmark"
+         title="Permalink to Đọc code chương trình pycodestyle, pep8">Đọc code chương trình pycodestyle, pep8</a></h2>  
+  </header>
+  <footer class='center'>
+    <time class="published" datetime="2024-04-25T00:00:00+07:00"> 25/04/2024 </time>
+    <address class="vcard author">By
+                    <a class="url fn" href="http://pp.pymi.vn/author/hvnsweeting/">hvnsweeting</a>
+ in <a href="http://pp.pymi.vn/category/trang-chu/">Trang chủ</a>
+                </address>     <em>Tags</em>:     <a href="http://pp.pymi.vn/tag/python/"><em>python</em></a>,     <a href="http://pp.pymi.vn/tag/architecture/"><em>architecture</em></a>,     <a href="http://pp.pymi.vn/tag/codewalk/"><em>codewalk</em></a>    </footer>
+  <br>
+  <div class="entry-content">
+    <p><a href="https://peps.python.org/pep-0008/">PEP8</a> là tài liệu hướng dẫn style coding cho code Python, viết bởi tác giả của Python Guido van Rossum từ năm 2001 (23 năm trước!).</p>
+<p>Code Python từ đó đều luôn tuân theo chuẩn PEP8, được gọi là "PEP8 compliant".
+Nhưng tài liệu PEP8 rất dài, có hàng chục mục khác nhau, vì vậy <a href="https://github.com/PyCQA/pycodestyle/blob/2.11.1/LICENSE#L1">năm 2006, Johann C. Rocholl</a> đã viết ra chương trình tên là <code>pep8</code> để kiểm tra PEP8 tự động.
+Chương trình này, hiển nhiên, trở nên vô cùng phổ biến và được chạy trong hầu hết các hệ thống CI kiểm tra code Python.</p>
+<p>Để cài đặt, gõ <code>pip install pep8</code>.</p>
+<p>Năm <a href="https://github.com/PyCQA/pycodestyle/issues/466">2016, Guido đề nghị đổi tên chương trình <code>pep8</code></a>, từ đó nó có tên mới là <code>pycodestyle</code>.</p>
+<p>Bài viết này tham khảo kiến trúc, thiết kế của chương trình pycodestyle, sau hàng chục năm dùng mà chưa 1 lần đọc code.</p>
+<h3>Tải code về máy</h3>
+<p>Dùng <code>git clone</code> tải bản mới nhất hiện tại (<code>2.11.1</code>) về máy.</p>
+<div class="highlight"><pre><span></span><code>$ git clone https://github.com/PyCQA/pycodestyle/ --branch <span class="m">2</span>.11.1 --single-branch
+Cloning into <span class="s1">&#39;pycodestyle&#39;</span>...
+remote: Enumerating objects: <span class="m">5413</span>, <span class="k">done</span>.
+remote: Counting objects: <span class="m">100</span>% <span class="o">(</span><span class="m">794</span>/794<span class="o">)</span>, <span class="k">done</span>.
+remote: Compressing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">375</span>/375<span class="o">)</span>, <span class="k">done</span>.
+remote: Total <span class="m">5413</span> <span class="o">(</span>delta <span class="m">453</span><span class="o">)</span>, reused <span class="m">689</span> <span class="o">(</span>delta <span class="m">393</span><span class="o">)</span>, pack-reused <span class="m">4619</span>
+Receiving objects: <span class="m">100</span>% <span class="o">(</span><span class="m">5413</span>/5413<span class="o">)</span>, <span class="m">1</span>.72 MiB <span class="p">|</span> <span class="m">3</span>.11 MiB/s, <span class="k">done</span>.
+Resolving deltas: <span class="m">100</span>% <span class="o">(</span><span class="m">3369</span>/3369<span class="o">)</span>, <span class="k">done</span>.
+Note: switching to <span class="s1">&#39;cefd59cf8e8a199a978da491e75a37fe4d37de82&#39;</span>.
+...
+</code></pre></div>
+
+<h3>Cấu trúc chương trình</h3>
+<p>File <code>setup.py</code> để hỗ trợ việc cài đặt qua pip</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span>
+<span class="n">setup</span><span class="p">()</span>
+</code></pre></div>
+
+<p>chương trình <code>pycodestyle</code> nằm gọn trong 1 file <code>pycodestyle.py</code>, dài 2655 dòng.</p>
+<div class="highlight"><pre><span></span><code>$ <span class="nb">cd</span> pycodestyle
+$ wc -l *.py
+ <span class="m">2655</span> pycodestyle.py
+    <span class="m">2</span> setup.py
+ <span class="m">2657</span> total
+</code></pre></div>
+
+<p>Một chương trình hơn 1000 dòng nằm gọn trong 1 file không phải chuyện <strong>thường thấy</strong>, các project thường sẽ chia nhỏ ra các file chứa code làm nhiệm vụ khác nhau.</p>
+<p><code>pycodestyle</code> không phải chương trình <strong>bình thường</strong>. Nó có tính năng ổn định, ít thay đổi (chỉ khi Python ra bản mới giới thiệu các cú pháp mới như <code>async/await</code>, <code>:=</code> hay <code>switch</code>, ...), cần dễ dàng distribute, thậm chí không cần dùng tới pip, chỉ cần copy file <code>pycodestyle.py</code> là chạy được, nó không có dependencies nào khác ngoài các standard library.</p>
+<h3>Kiến trúc phần mềm</h3>
+<p>Mô tả ngắn gọn, <code>pycodestyle</code> làm những việc sau:</p>
+<ol>
+<li>đọc config file, options từ dòng lệnh</li>
+<li>chạy các check với các file đầu vào</li>
+<li>in ra màn hình kết quả</li>
+</ol>
+<h4>Kiến trúc class, function</h4>
+<p>Để thực hiện bước 2, các chương trình sẽ thường cần chứa danh sách các check (có đầu vào khác nhau), rồi chạy lần lượt từng check cho từng file.</p>
+<p>Các ngôn ngữ lập trình hướng đối tượng OOP sẽ thường tạo class và dùng inheritance (kế thừa):</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">BaseCheck</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">Check1</span><span class="p">(</span><span class="n">BaseCheck</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+        <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">Check2</span><span class="p">(</span><span class="n">BaseCheck</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+        <span class="k">pass</span>
+</code></pre></div>
+
+<p><code>pycodestyle</code> không dùng class để làm việc này mà dùng các function.
+Bỏ qua các function nhận input <code>_line</code> (các check), ta có các function và class của chương trình:</p>
+<div class="highlight"><pre><span></span><code><span class="err">$</span> <span class="n">grep</span> <span class="o">-</span><span class="n">E</span> <span class="s1">&#39;^def |^class &#39;</span> <span class="n">pycodestyle</span><span class="o">.</span><span class="n">py</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">v</span> <span class="n">_line</span>
+<span class="k">def</span> <span class="nf">_get_parameters</span><span class="p">(</span><span class="n">function</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">register_check</span><span class="p">(</span><span class="n">check</span><span class="p">,</span> <span class="n">codes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">module_imports_on_top_of_file</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">_is_binary_operator</span><span class="p">(</span><span class="n">token_type</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_break_around_binary_operators</span><span class="p">(</span><span class="n">tokens</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">readlines</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">stdin_get_value</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">expand_indent</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">mute_string</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">parse_udiff</span><span class="p">(</span><span class="n">diff</span><span class="p">,</span> <span class="n">patterns</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">normalize_paths</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">curdir</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">filename_match</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">patterns</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">update_counts</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">counts</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_is_eol_token</span><span class="p">(</span><span class="n">token</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Checker</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">BaseReport</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">FileReport</span><span class="p">(</span><span class="n">BaseReport</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">StandardReport</span><span class="p">(</span><span class="n">BaseReport</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">DiffReport</span><span class="p">(</span><span class="n">StandardReport</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">StyleGuide</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">get_parser</span><span class="p">(</span><span class="n">prog</span><span class="o">=</span><span class="s1">&#39;pycodestyle&#39;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="n">__version__</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">read_config</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">arglist</span><span class="p">,</span> <span class="n">parser</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">process_options</span><span class="p">(</span><span class="n">arglist</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">parse_argv</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">config_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="k">def</span> <span class="nf">_parse_multi_options</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">split_token</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_main</span><span class="p">():</span>
+</code></pre></div>
+
+<p>Chương trình chạy bằng cách gọi function <code>_main()</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="err">$</span> <span class="n">tail</span> <span class="o">-</span><span class="n">n2</span> <span class="n">pycodestyle</span><span class="o">.</span><span class="n">py</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">_main</span><span class="p">()</span>
+</code></pre></div>
+
+<h4>Các thành phần chính của chương trình</h4>
+<p>function <code>_main</code> code ngắn gọn:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">_main</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Parse options and run checks on Python source.&quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">signal</span>
+
+    <span class="c1"># Handle &quot;Broken pipe&quot; gracefully</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">signal</span><span class="o">.</span><span class="n">signal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGPIPE</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">signum</span><span class="p">,</span> <span class="n">frame</span><span class="p">:</span> <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+        <span class="k">pass</span>    <span class="c1"># not supported on Windows</span>
+
+    <span class="n">style_guide</span> <span class="o">=</span> <span class="n">StyleGuide</span><span class="p">(</span><span class="n">parse_argv</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="n">style_guide</span><span class="o">.</span><span class="n">options</span>
+
+    <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">doctest</span> <span class="ow">or</span> <span class="n">options</span><span class="o">.</span><span class="n">testsuite</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">testsuite.support</span> <span class="kn">import</span> <span class="n">run_tests</span>
+        <span class="n">report</span> <span class="o">=</span> <span class="n">run_tests</span><span class="p">(</span><span class="n">style_guide</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">report</span> <span class="o">=</span> <span class="n">style_guide</span><span class="o">.</span><span class="n">check_files</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">statistics</span><span class="p">:</span>
+        <span class="n">report</span><span class="o">.</span><span class="n">print_statistics</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">benchmark</span><span class="p">:</span>
+        <span class="n">report</span><span class="o">.</span><span class="n">print_benchmark</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">testsuite</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">options</span><span class="o">.</span><span class="n">quiet</span><span class="p">:</span>
+        <span class="n">report</span><span class="o">.</span><span class="n">print_results</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">report</span><span class="o">.</span><span class="n">total_errors</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">count</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">report</span><span class="o">.</span><span class="n">total_errors</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+
+<p>function <code>_main</code> làm 2 việc chính:</p>
+<ul>
+<li>tạo objects <code>StyleGuide</code></li>
+<li>chạy function <code>style_guide.check_files()</code></li>
+<li>thực hiện report dựa trên các option tương ứng rồi kết thúc.</li>
+</ul>
+<h4>class StyleGuide</h4>
+<p>Khi gọi StyleGuide(), method <code>__init__</code> thực hiện đọc các options rồi setup checker, runner, options, report:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">StyleGuide</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">checker_class</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;checker_class&#39;</span><span class="p">,</span> <span class="n">Checker</span><span class="p">)</span>
+        <span class="o">...</span>
+        <span class="n">options</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">paths</span> <span class="o">=</span> <span class="n">process_options</span><span class="p">(</span>
+            <span class="n">arglist</span><span class="p">,</span> <span class="n">parse_argv</span><span class="p">,</span> <span class="n">config_file</span><span class="p">,</span> <span class="n">parser</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span>
+        <span class="o">...</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">runner</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_file</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">options</span> <span class="o">=</span> <span class="n">options</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">options</span><span class="o">.</span><span class="n">reporter</span><span class="p">:</span>
+            <span class="n">options</span><span class="o">.</span><span class="n">reporter</span> <span class="o">=</span> <span class="n">BaseReport</span> <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">quiet</span> <span class="k">else</span> <span class="n">StandardReport</span>
+        <span class="o">...</span>
+        <span class="n">options</span><span class="o">.</span><span class="n">physical_checks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_checks</span><span class="p">(</span><span class="s1">&#39;physical_line&#39;</span><span class="p">)</span>
+        <span class="n">options</span><span class="o">.</span><span class="n">logical_checks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_checks</span><span class="p">(</span><span class="s1">&#39;logical_line&#39;</span><span class="p">)</span>
+        <span class="n">options</span><span class="o">.</span><span class="n">ast_checks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_checks</span><span class="p">(</span><span class="s1">&#39;tree&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_report</span><span class="p">()</span>
+</code></pre></div>
+
+<p>class Checker thực hiện load file cần check, tokenize rồi chạy các check để check coding style:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="n">Checker:</span>
+    <span class="s">&quot;&quot;&quot;Load a Python source file, tokenize it, check coding style.&quot;&quot;&quot;</span>
+</code></pre></div>
+
+<p><code>self.runner</code> được gán giá trị <code>self.input_file</code>, là 1 method của <code>StyleGuide</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">input_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">lines</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">expected</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">line_offset</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Run all checks on a Python source file.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;checking </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">filename</span><span class="p">)</span>
+    <span class="n">fchecker</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">checker_class</span><span class="p">(</span>
+        <span class="n">filename</span><span class="p">,</span> <span class="n">lines</span><span class="o">=</span><span class="n">lines</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fchecker</span><span class="o">.</span><span class="n">check_all</span><span class="p">(</span><span class="n">expected</span><span class="o">=</span><span class="n">expected</span><span class="p">,</span> <span class="n">line_offset</span><span class="o">=</span><span class="n">line_offset</span><span class="p">)</span>
+</code></pre></div>
+
+<p>method <code>input_file</code> khởi tạo instance của class Checker rồi chạy method <code>check_all</code> để chạy các check với 1 Python source file.
+Method <code>check_all</code> sẽ được xem lại sau.</p>
+<p><code>self.options</code> chứa mọi option của chương trình.</p>
+<p><code>reporter</code> mặc định dùng class <code>StandardReport</code>.</p>
+<h4>method <code>check_files</code></h4>
+<p>method <code>check_files</code> thực hiện chạy check cho <strong>các</strong> file cần kiểm tra PEP8, trả về <code>report</code></p>
+<div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">check_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">paths</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Run all checks on the paths.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">paths</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">paths</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">paths</span>
+        <span class="n">report</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">report</span>
+        <span class="n">runner</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">runner</span>
+        <span class="n">report</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">input_dir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">excluded</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+                    <span class="n">runner</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;... stopped&#39;</span><span class="p">)</span>
+        <span class="n">report</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">report</span>
+</code></pre></div>
+
+<p><code>path</code> là đường dẫn, có thể tới 1 file hay 1 thư mục, với file, chương trình sẽ check luôn nhờ gọi <code>runner</code> (method <code>input_file</code>), với thư mục, gọi method <code>input_dir(path)</code> để xử lý logic tìm các file trong thư mục rồi chạy <code>runner</code> với từng file.</p>
+<h4>class Checker</h4>
+<p>Logic của từng check nằm ở mỗi check funtion, nhưng việc load các check này vào, chạy khi nào, với option nào được gọi bởi Checker object.</p>
+<h5>register checks</h5>
+<p>Có 30 function check, mỗi function có số lượng argument khác nhau:</p>
+<div class="highlight"><pre><span></span><code><span class="err">$</span> <span class="n">grep</span> <span class="o">-</span><span class="n">E</span> <span class="s1">&#39;^def &#39;</span> <span class="n">pycodestyle</span><span class="o">.</span><span class="n">py</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">_line</span>
+<span class="k">def</span> <span class="nf">tabs_or_spaces</span><span class="p">(</span><span class="n">physical_line</span><span class="p">,</span> <span class="n">indent_char</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">tabs_obsolete</span><span class="p">(</span><span class="n">physical_line</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">trailing_whitespace</span><span class="p">(</span><span class="n">physical_line</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">trailing_blank_lines</span><span class="p">(</span><span class="n">physical_line</span><span class="p">,</span> <span class="n">lines</span><span class="p">,</span> <span class="n">line_number</span><span class="p">,</span> <span class="n">total_lines</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">maximum_line_length</span><span class="p">(</span><span class="n">physical_line</span><span class="p">,</span> <span class="n">max_line_length</span><span class="p">,</span> <span class="n">multiline</span><span class="p">,</span>
+<span class="k">def</span> <span class="nf">_is_one_liner</span><span class="p">(</span><span class="n">logical_line</span><span class="p">,</span> <span class="n">indent_level</span><span class="p">,</span> <span class="n">lines</span><span class="p">,</span> <span class="n">line_number</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">blank_lines</span><span class="p">(</span><span class="n">logical_line</span><span class="p">,</span> <span class="n">blank_lines</span><span class="p">,</span> <span class="n">indent_level</span><span class="p">,</span> <span class="n">line_number</span><span class="p">,</span>
+<span class="k">def</span> <span class="nf">extraneous_whitespace</span><span class="p">(</span><span class="n">logical_line</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">whitespace_around_keywords</span><span class="p">(</span><span class="n">logical_line</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">missing_whitespace_after_keyword</span><span class="p">(</span><span class="n">logical_line</span><span class="p">,</span> <span class="n">tokens</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">indentation</span><span class="p">(</span><span class="n">logical_line</span><span class="p">,</span> <span class="n">previous_logical</span><span class="p">,</span> <span class="n">indent_char</span><span class="p">,</span>
+<span class="k">def</span> <span class="nf">continued_indentation</span><span class="p">(</span><span class="n">logical_line</span><span class="p">,</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">indent_level</span><span class="p">,</span> <span class="n">hang_closing</span><span class="p">,</span>
+<span class="k">def</span> <span class="nf">whitespace_before_parameters</span><span class="p">(</span><span class="n">logical_line</span><span class="p">,</span> <span class="n">tokens</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">whitespace_around_operator</span><span class="p">(</span><span class="n">logical_line</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">missing_whitespace</span><span class="p">(</span><span class="n">logical_line</span><span class="p">,</span> <span class="n">tokens</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">whitespace_around_comma</span><span class="p">(</span><span class="n">logical_line</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">whitespace_around_named_parameter_equals</span><span class="p">(</span><span class="n">logical_line</span><span class="p">,</span> <span class="n">tokens</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">whitespace_before_comment</span><span class="p">(</span><span class="n">logical_line</span><span class="p">,</span> <span class="n">tokens</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">imports_on_separate_lines</span><span class="p">(</span><span class="n">logical_line</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">compound_statements</span><span class="p">(</span><span class="n">logical_line</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">explicit_line_join</span><span class="p">(</span><span class="n">logical_line</span><span class="p">,</span> <span class="n">tokens</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">break_before_binary_operator</span><span class="p">(</span><span class="n">logical_line</span><span class="p">,</span> <span class="n">tokens</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">break_after_binary_operator</span><span class="p">(</span><span class="n">logical_line</span><span class="p">,</span> <span class="n">tokens</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">comparison_to_singleton</span><span class="p">(</span><span class="n">logical_line</span><span class="p">,</span> <span class="n">noqa</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">comparison_negative</span><span class="p">(</span><span class="n">logical_line</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">comparison_type</span><span class="p">(</span><span class="n">logical_line</span><span class="p">,</span> <span class="n">noqa</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">bare_except</span><span class="p">(</span><span class="n">logical_line</span><span class="p">,</span> <span class="n">noqa</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">ambiguous_identifier</span><span class="p">(</span><span class="n">logical_line</span><span class="p">,</span> <span class="n">tokens</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">python_3000_invalid_escape_sequence</span><span class="p">(</span><span class="n">logical_line</span><span class="p">,</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">noqa</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">maximum_doc_length</span><span class="p">(</span><span class="n">logical_line</span><span class="p">,</span> <span class="n">max_doc_length</span><span class="p">,</span> <span class="n">noqa</span><span class="p">,</span> <span class="n">tokens</span><span class="p">):</span>
+</code></pre></div>
+
+<p>parameter đầu tiên của các check đều được chuẩn hóa, với tên:</p>
+<ul>
+<li><code>physical_line</code></li>
+<li><code>logical_line</code></li>
+</ul>
+<p>Đây cũng là 2 <strong>kind</strong> (loại) check trong tổng 3 loại mà <code>pycodestyle</code> hỗ trợ:</p>
+<div class="highlight"><pre><span></span><code><span class="n">_checks</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;physical_line&#39;</span><span class="p">:</span> <span class="p">{},</span> <span class="s1">&#39;logical_line&#39;</span><span class="p">:</span> <span class="p">{},</span> <span class="s1">&#39;tree&#39;</span><span class="p">:</span> <span class="p">{}}</span>
+
+<span class="k">class</span> <span class="nc">StyleGuide</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="o">...</span><span class="p">):</span>
+        <span class="o">...</span>
+        <span class="n">options</span><span class="o">.</span><span class="n">physical_checks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_checks</span><span class="p">(</span><span class="s1">&#39;physical_line&#39;</span><span class="p">)</span>
+        <span class="n">options</span><span class="o">.</span><span class="n">logical_checks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_checks</span><span class="p">(</span><span class="s1">&#39;logical_line&#39;</span><span class="p">)</span>
+        <span class="n">options</span><span class="o">.</span><span class="n">ast_checks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_checks</span><span class="p">(</span><span class="s1">&#39;tree&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Các check được lưu vào 1 global dict tên <code>_checks</code> sau khi define các check function, nhờ sử dụng decorator <code>register_check</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">register_check</span><span class="p">(</span><span class="n">check</span><span class="p">,</span> <span class="n">codes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Register a new check object.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">_add_check</span><span class="p">(</span><span class="n">check</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="n">codes</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">check</span> <span class="ow">in</span> <span class="n">_checks</span><span class="p">[</span><span class="n">kind</span><span class="p">]:</span>
+            <span class="n">_checks</span><span class="p">[</span><span class="n">kind</span><span class="p">][</span><span class="n">check</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">codes</span> <span class="ow">or</span> <span class="p">[])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">_checks</span><span class="p">[</span><span class="n">kind</span><span class="p">][</span><span class="n">check</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">codes</span> <span class="ow">or</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">],</span> <span class="n">args</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isfunction</span><span class="p">(</span><span class="n">check</span><span class="p">):</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="n">_get_parameters</span><span class="p">(</span><span class="n">check</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">args</span> <span class="ow">and</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;physical_line&#39;</span><span class="p">,</span> <span class="s1">&#39;logical_line&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">codes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">codes</span> <span class="o">=</span> <span class="n">ERRORCODE_REGEX</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">check</span><span class="o">.</span><span class="vm">__doc__</span> <span class="ow">or</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+            <span class="n">_add_check</span><span class="p">(</span><span class="n">check</span><span class="p">,</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">codes</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isclass</span><span class="p">(</span><span class="n">check</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">_get_parameters</span><span class="p">(</span><span class="n">check</span><span class="o">.</span><span class="fm">__init__</span><span class="p">)[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="s1">&#39;self&#39;</span><span class="p">,</span> <span class="s1">&#39;tree&#39;</span><span class="p">]:</span>
+            <span class="n">_add_check</span><span class="p">(</span><span class="n">check</span><span class="p">,</span> <span class="s1">&#39;tree&#39;</span><span class="p">,</span> <span class="n">codes</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">check</span>
+
+<span class="nd">@register_check</span>
+<span class="k">def</span> <span class="nf">tabs_or_spaces</span><span class="p">(</span><span class="n">physical_line</span><span class="p">,</span> <span class="n">indent_char</span><span class="p">):</span>
+    <span class="k">pass</span>
+</code></pre></div>
+
+<p>Đoạn code này là một <strong>magic</strong>, sử dụng tính dynamic linh hoạt của Python, dùng <code>inspect</code> để đọc từ các function object: tên, parameters, rồi <code>_add_check</code> vào từng nhóm <code>kind</code> dựa trên tên của parameter đầu tiên.</p>
+<div class="highlight"><pre><span></span><code>    <span class="n">_add_check</span><span class="p">(</span><span class="n">check</span><span class="p">,</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">codes</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Thử viết 1 function với 2 parameter, rồi dùng code <code>inspect</code> tìm xem parameter đầu tiên tên gì:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">sum_two</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="o">...</span>     <span class="k">pass</span>
+<span class="o">...</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">inspect</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">sum_two</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">Signature</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">S</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">sum_two</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">S</span><span class="o">.</span>
+<span class="n">S</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>              <span class="n">S</span><span class="o">.</span><span class="n">empty</span><span class="p">()</span>            <span class="n">S</span><span class="o">.</span><span class="n">parameters</span>         <span class="n">S</span><span class="o">.</span><span class="n">return_annotation</span>
+<span class="n">S</span><span class="o">.</span><span class="n">bind_partial</span><span class="p">(</span>      <span class="n">S</span><span class="o">.</span><span class="n">from_callable</span><span class="p">(</span>     <span class="n">S</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">S</span><span class="o">.</span><span class="n">parameters</span>
+<span class="n">mappingproxy</span><span class="p">(</span><span class="n">OrderedDict</span><span class="p">([(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">Parameter</span> <span class="s2">&quot;x&quot;</span><span class="o">&gt;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">Parameter</span> <span class="s2">&quot;y&quot;</span><span class="o">&gt;</span><span class="p">)]))</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">S</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+<span class="n">odict_values</span><span class="p">([</span><span class="o">&lt;</span><span class="n">Parameter</span> <span class="s2">&quot;x&quot;</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">Parameter</span> <span class="s2">&quot;y&quot;</span><span class="o">&gt;</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
+<span class="s1">&#39;x&#39;</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>    <span class="n">_add_check</span><span class="p">(</span><span class="n">check</span><span class="p">,</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">codes</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+</code></pre></div>
+
+<p><code>codes</code> ở đây là mã error như W101 E201, lọc ra từ docstring của mỗi check function qua <code>check.__doc__</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">ERRORCODE_REGEX</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\b[A-Z]\d</span><span class="si">{3}</span><span class="s1">\b&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">codes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">codes</span> <span class="o">=</span> <span class="n">ERRORCODE_REGEX</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">check</span><span class="o">.</span><span class="vm">__doc__</span> <span class="ow">or</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Dùng grep để liệt kê tất cả các mã error:</p>
+<div class="highlight"><pre><span></span><code>$ grep -Eo <span class="s1">&#39;\b[A-Z][0-9]{3}\b&#39;</span> pycodestyle.py <span class="p">|</span> sort <span class="p">|</span> uniq <span class="p">|</span> xargs <span class="nb">printf</span> <span class="s1">&#39;%s &#39;</span>
+E101 E111 E112 E113 E114 E115 E116 E121 E122 E123 E124 E125 E126 E127 E128 E129 E131 E133 E201 E202 E203 E211 E221 E222 E223 E224 E225 E226 E227 E228 E231 E241 E242 E251 E252 E261 E262 E265 E266 E271 E272 E273 E274 E275 E301 E302 E303 E304 E305 E306 E401 E402 E501 E502 E701 E702 E703 E704 E711 E712 E713 E714 E721 E722 E731 E741 E742 E743 E901 E902 W191 W291 W292 W293 W391 W503 W504 W505 W605
+</code></pre></div>
+
+<p>Sửa code trong <code>_main</code> rồi chạy:</p>
+<div class="highlight"><pre><span></span><code>    <span class="n">style_guide</span> <span class="o">=</span> <span class="n">StyleGuide</span><span class="p">(</span><span class="n">parse_argv</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># them 2 dong nay</span>
+    <span class="k">for</span> <span class="n">kind</span><span class="p">,</span> <span class="n">checks</span> <span class="ow">in</span> <span class="n">_checks</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">kind</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">checks</span><span class="p">))</span>
+</code></pre></div>
+
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code>$ python pycodestyle.py pycodestyle.py
+physical_line <span class="m">5</span>
+logical_line <span class="m">25</span>
+tree <span class="m">0</span>
+</code></pre></div>
+
+<p><code>pycodestyle</code> mặc định có 5 physical checks và 25 logical checks, không có ast (tree) check nào.</p>
+<p>Việc thêm check mới đơn giản là viết 1 function, chọn 1 trong 3 type nói trên rồi decorate với <code>@register_check</code>.</p>
+<h4>physical check và logical check</h4>
+<p>physical check kiểm tra từng dòng code mà người dùng nhìn thấy trước khi Python load vào, giống như đọc từng dòng trong file.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">tabs_or_spaces</span><span class="p">(</span><span class="n">physical_line</span><span class="p">,</span> <span class="n">indent_char</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">tabs_obsolete</span><span class="p">(</span><span class="n">physical_line</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">trailing_whitespace</span><span class="p">(</span><span class="n">physical_line</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">trailing_blank_lines</span><span class="p">(</span><span class="n">physical_line</span><span class="p">,</span> <span class="n">lines</span><span class="p">,</span> <span class="n">line_number</span><span class="p">,</span> <span class="n">total_lines</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">maximum_line_length</span><span class="p">(</span><span class="n">physical_line</span><span class="p">,</span> <span class="n">max_line_length</span><span class="p">,</span> <span class="n">multiline</span><span class="p">,</span><span class="o">...</span><span class="p">)</span>
+</code></pre></div>
+
+<p>5 physical check trên kiểm tra dòng chứa tab hay space, cuối dòng có whitespace không, blank line có whitespace không và độ dài mỗi dòng, đều có thể dựa trên nội dung text của từng dòng.</p>
+<p>logical check kiểm tra các thành phần trong 1 dòng code mà Python hiểu. Ví dụ</p>
+<p>Đây là 1 dòng physical</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="mi">2</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">length</span> <span class="o">&gt;</span> <span class="mi">80</span><span class="p">:</span>
+</code></pre></div>
+
+<p>Đây là 2 dòng physical nhưng là 1 dòng logical:</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="mi">2</span> <span class="o">&gt;</span> <span class="mi">1</span>
+    <span class="ow">and</span> <span class="n">length</span> <span class="o">&gt;</span> <span class="mi">80</span><span class="p">):</span>
+</code></pre></div>
+
+<p>Việc kiểm tra độ dài của dòng rõ ràng thuộc về physical check.</p>
+<h4><code>check_all</code></h4>
+<p>Method <strong>"core"</strong> của chương trình là <code>check_all</code>, nơi <strong>thực sự</strong> chạy các check và thu thập kết quả vào <code>Report</code>.
+45 dòng:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">check_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expected</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">line_offset</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Run all checks on the input file.&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="o">.</span><span class="n">init_file</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lines</span><span class="p">,</span> <span class="n">expected</span><span class="p">,</span> <span class="n">line_offset</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">total_lines</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lines</span><span class="p">)</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ast_checks</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_ast</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">line_number</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">indent_char</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">indent_level</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">previous_indent_level</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">previous_logical</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">previous_unindented_logical_line</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">tokens</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">blank_lines</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">blank_before</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">parens</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_tokens</span><span class="p">():</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+        <span class="n">token_type</span><span class="p">,</span> <span class="n">text</span> <span class="o">=</span> <span class="n">token</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">token</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">token</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="n">pos</span> <span class="o">=</span> <span class="s1">&#39;[</span><span class="si">{}</span><span class="s1">:</span><span class="si">{}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">token</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="ow">or</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">token</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">pos</span> <span class="o">=</span> <span class="s1">&#39;l.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">token</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;l.</span><span class="si">%s</span><span class="se">\t</span><span class="si">%s</span><span class="se">\t</span><span class="si">%s</span><span class="se">\t</span><span class="si">%r</span><span class="s1">&#39;</span> <span class="o">%</span>
+                  <span class="p">(</span><span class="n">token</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">pos</span><span class="p">,</span> <span class="n">tokenize</span><span class="o">.</span><span class="n">tok_name</span><span class="p">[</span><span class="n">token</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">text</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">token_type</span> <span class="o">==</span> <span class="n">tokenize</span><span class="o">.</span><span class="n">OP</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">text</span> <span class="ow">in</span> <span class="s1">&#39;([{&#39;</span><span class="p">:</span>
+                <span class="n">parens</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">elif</span> <span class="n">text</span> <span class="ow">in</span> <span class="s1">&#39;}])&#39;</span><span class="p">:</span>
+                <span class="n">parens</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">parens</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">token_type</span> <span class="ow">in</span> <span class="n">NEWLINE</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">token_type</span> <span class="o">==</span> <span class="n">tokenize</span><span class="o">.</span><span class="n">NEWLINE</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">check_logical</span><span class="p">()</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">blank_before</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tokens</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="c1"># The physical line contains only this token.</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">blank_lines</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokens</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">check_logical</span><span class="p">()</span>
+    <span class="c1"># HVN note: only for last line of file</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokens</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_physical</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lines</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_logical</span><span class="p">()</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="o">.</span><span class="n">get_file_results</span><span class="p">()</span>
+</code></pre></div>
+
+<p>thực hiện:</p>
+<ul>
+<li>khởi tạo report</li>
+<li>chạy các <code>ast_checks</code> nếu có (mặc định là không)</li>
+<li>duyệt qua từng token, chạy <code>check_logical</code></li>
+<li>kết thúc, gọi report lấy kết quả cuối cùng để print ra màn hình.</li>
+</ul>
+<p>Không thấy <code>check_physical</code> ở đâu? bởi <code>check_physical</code> được gọi khi <code>generate_tokens</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">generate_tokens</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Tokenize file, run physical line checks and yield tokens.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_io_error</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">report_error</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;E902 </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_io_error</span><span class="p">,</span> <span class="n">readlines</span><span class="p">)</span>
+    <span class="n">tokengen</span> <span class="o">=</span> <span class="n">tokenize</span><span class="o">.</span><span class="n">generate_tokens</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">readline</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">prev_physical</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokengen</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">token</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_lines</span><span class="p">:</span>
+                <span class="k">return</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">noqa</span> <span class="o">=</span> <span class="n">token</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="ow">and</span> <span class="n">noqa</span><span class="p">(</span><span class="n">token</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">maybe_check_physical</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">prev_physical</span><span class="p">)</span>
+            <span class="k">yield</span> <span class="n">token</span>
+            <span class="n">prev_physical</span> <span class="o">=</span> <span class="n">token</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">SyntaxError</span><span class="p">,</span> <span class="n">tokenize</span><span class="o">.</span><span class="n">TokenError</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">report_invalid_syntax</span><span class="p">()</span>
+</code></pre></div>
+
+<p>method này gọi <code>tokenize.generate_tokens</code> để thực hiện tokenize code, rồi <code>maybe_check_physical</code> để có thể gọi <code>check_physical</code> nếu cần thiết.</p>
+<p>Tokenize là việc chia 1 dòng code thành các thành phần nhỏ nhất: token. Ví dụ dòng <code>def sum_two(a, b):</code> có 9 token: <code>def</code>, <code>sum_two</code>, <code>(</code>, <code>a</code>, <code>,</code>, <code>b</code>, <code>)</code>, <code>:</code>, <code>\n</code> xuống dòng.</p>
+<p>Thừ xem <code>tokenize.tokenize</code> xử lý file code sau:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># foo.py</span>
+<span class="mi">1</span> <span class="k">def</span> <span class="nf">sum_two</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="mi">2</span>     <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+<span class="mi">3</span>
+<span class="mi">4</span>     <span class="k">return</span> <span class="n">c</span>
+</code></pre></div>
+
+<p>Chạy tokenize:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">tokenize</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="n">tokenize</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;foo.py&quot;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tokenize</span><span class="o">.</span><span class="n">generate_tokens</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">):</span>
+<span class="o">...</span>     <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="n">TokenInfo</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="mi">1</span> <span class="p">(</span><span class="n">NAME</span><span class="p">),</span> <span class="n">string</span><span class="o">=</span><span class="s1">&#39;def&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;def sum_two(a, b):</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">TokenInfo</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="mi">1</span> <span class="p">(</span><span class="n">NAME</span><span class="p">),</span> <span class="n">string</span><span class="o">=</span><span class="s1">&#39;sum_two&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;def sum_two(a, b):</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">TokenInfo</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="mi">54</span> <span class="p">(</span><span class="n">OP</span><span class="p">),</span> <span class="n">string</span><span class="o">=</span><span class="s1">&#39;(&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;def sum_two(a, b):</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">TokenInfo</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="mi">1</span> <span class="p">(</span><span class="n">NAME</span><span class="p">),</span> <span class="n">string</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;def sum_two(a, b):</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">TokenInfo</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="mi">54</span> <span class="p">(</span><span class="n">OP</span><span class="p">),</span> <span class="n">string</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;def sum_two(a, b):</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">TokenInfo</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="mi">1</span> <span class="p">(</span><span class="n">NAME</span><span class="p">),</span> <span class="n">string</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;def sum_two(a, b):</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">TokenInfo</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="mi">54</span> <span class="p">(</span><span class="n">OP</span><span class="p">),</span> <span class="n">string</span><span class="o">=</span><span class="s1">&#39;)&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">17</span><span class="p">),</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;def sum_two(a, b):</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">TokenInfo</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="mi">54</span> <span class="p">(</span><span class="n">OP</span><span class="p">),</span> <span class="n">string</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">17</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">18</span><span class="p">),</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;def sum_two(a, b):</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">TokenInfo</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="mi">4</span> <span class="p">(</span><span class="n">NEWLINE</span><span class="p">),</span> <span class="n">string</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">18</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">19</span><span class="p">),</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;def sum_two(a, b):</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">TokenInfo</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="mi">5</span> <span class="p">(</span><span class="n">INDENT</span><span class="p">),</span> <span class="n">string</span><span class="o">=</span><span class="s1">&#39;    &#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;    c = a + b</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">TokenInfo</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="mi">1</span> <span class="p">(</span><span class="n">NAME</span><span class="p">),</span> <span class="n">string</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;    c = a + b</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">TokenInfo</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="mi">54</span> <span class="p">(</span><span class="n">OP</span><span class="p">),</span> <span class="n">string</span><span class="o">=</span><span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;    c = a + b</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">TokenInfo</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="mi">1</span> <span class="p">(</span><span class="n">NAME</span><span class="p">),</span> <span class="n">string</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;    c = a + b</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">TokenInfo</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="mi">54</span> <span class="p">(</span><span class="n">OP</span><span class="p">),</span> <span class="n">string</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;    c = a + b</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">TokenInfo</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="mi">1</span> <span class="p">(</span><span class="n">NAME</span><span class="p">),</span> <span class="n">string</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;    c = a + b</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">TokenInfo</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="mi">4</span> <span class="p">(</span><span class="n">NEWLINE</span><span class="p">),</span> <span class="n">string</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;    c = a + b</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">TokenInfo</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="mi">62</span> <span class="p">(</span><span class="n">NL</span><span class="p">),</span> <span class="n">string</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">TokenInfo</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="mi">1</span> <span class="p">(</span><span class="n">NAME</span><span class="p">),</span> <span class="n">string</span><span class="o">=</span><span class="s1">&#39;return&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;    return c</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">TokenInfo</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="mi">1</span> <span class="p">(</span><span class="n">NAME</span><span class="p">),</span> <span class="n">string</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;    return c</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">TokenInfo</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="mi">4</span> <span class="p">(</span><span class="n">NEWLINE</span><span class="p">),</span> <span class="n">string</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;    return c</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">TokenInfo</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="mi">6</span> <span class="p">(</span><span class="n">DEDENT</span><span class="p">),</span> <span class="n">string</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">TokenInfo</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="mi">0</span> <span class="p">(</span><span class="n">ENDMARKER</span><span class="p">),</span> <span class="n">string</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>
+</code></pre></div>
+
+<p><code>tokenize</code> trả về các <code>TokenInfo</code> object, chứa 5 thông tin về token:</p>
+<ul>
+<li>type của token</li>
+<li>string biểu diễn token</li>
+<li>vị trí start (dòng, cột), chú ý dòng bắt đầu từ 1, cột bắt đầu từ 0.</li>
+<li>vị trí end kết thúc token</li>
+<li>line: nội dung dòng vật lý</li>
+</ul>
+<p>các attribute này có thể truy cập bằng cú pháp attribute như <code>t.start</code> hay dùng index như <code>t[2]</code>.
+Chú ý rằng file <code>foo.py</code> có 4 dòng vật lý, thì token cuối cùng lại có start là dòng 5, nên mới có điều kiện dừng generator:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">generate_tokens</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokengen</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">token</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_lines</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="o">...</span>
+        <span class="k">yield</span> <span class="n">token</span>
+</code></pre></div>
+
+<p>mỗi object Checker biểu diễn việc kiểm tra 1 file, có attribute <code>.lines</code> chứa các dòng của file đó. Các check sẽ lấy dòng số mấy dựa theo token start/stop rồi truy cập dòng bằng <code>self.lines[n]</code>.</p>
+<h3>run physical check</h3>
+<p>Vậy mỗi physical check được gọi như thế nào?</p>
+<div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">run_check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">check</span><span class="p">,</span> <span class="n">argument_names</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Run a check plugin.&quot;&quot;&quot;</span>
+        <span class="n">arguments</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">argument_names</span><span class="p">:</span>
+            <span class="n">arguments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">check</span><span class="p">(</span><span class="o">*</span><span class="n">arguments</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">init_checker_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">argument_names</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Prepare custom state for the specific checker plugin.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="s1">&#39;checker_state&#39;</span> <span class="ow">in</span> <span class="n">argument_names</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">checker_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_checker_states</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="p">{})</span>
+
+    <span class="k">def</span> <span class="nf">check_physical</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Run all physical checks on a raw input line.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">physical_line</span> <span class="o">=</span> <span class="n">line</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">check</span><span class="p">,</span> <span class="n">argument_names</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_physical_checks</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">init_checker_state</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">argument_names</span><span class="p">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_check</span><span class="p">(</span><span class="n">check</span><span class="p">,</span> <span class="n">argument_names</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="p">(</span><span class="n">offset</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="o">=</span> <span class="n">result</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">report_error</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">line_number</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">check</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">text</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;E101&#39;</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">indent_char</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</code></pre></div>
+
+<p>Với mỗi <code>name, check, argument_names</code> chứa trong <code>self._physical_checks</code>, gọi <code>run_check(check, argument_names)</code>, method này lấy tên của các argument, rồi lấy giá trị của chúng chưa trong attribute của Checker, sau đó gọi function <code>check(*arguments)</code>. Hãy xem thử với check độ dài của dòng:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">maximum_line_length</span><span class="p">(</span><span class="n">physical_line</span><span class="p">,</span> <span class="n">max_line_length</span><span class="p">,</span> <span class="n">multiline</span><span class="p">,</span> <span class="n">line_number</span><span class="p">,</span> <span class="n">noqa</span><span class="p">):</span>
+</code></pre></div>
+
+<p>ở phần register_check, argument đầu tiên <code>physical_line</code> đã bị tách ra để làm kind của check, còn lại
+<code>arguments = [max_line_length, multiline, line_number, noqa]</code>, các argument này đều có attribute tương ứng trong Checker</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Checker</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lines</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">report</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_line_length</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">max_line_length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">multiline</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># in a multiline string?</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">noqa</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="o">...</span>
+</code></pre></div>
+
+<p><code>line_number</code> được set khi chạy <code>check_all</code> và được update mỗi khi đọc 1 dòng</p>
+<div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">check_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expected</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">line_offset</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="o">...</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">line_number</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="o">...</span>
+        <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_tokens</span><span class="p">():</span>
+            <span class="o">...</span>
+</code></pre></div>
+
+<p>Như vậy các parameter của function checker đều có attribute tương ứng trong Checker class chứ không phải tùy ý.</p>
+<h4>xem 1 check đơn giản nhất: dòng chứa Tab</h4>
+<p>Dùng regex tìm trong dòng có chứa ký tự <code>\t</code> khi indent không, nếu có, trả về tuple 2 phần tử (index của ký tự tab và nội dung error "W191")</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@register_check</span>
+<span class="k">def</span> <span class="nf">tabs_obsolete</span><span class="p">(</span><span class="n">physical_line</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;On new projects, spaces-only are strongly recommended over tabs.</span>
+
+<span class="sd">    Okay: if True:\n    return</span>
+<span class="sd">    W191: if True:\n\treturn</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">indent</span> <span class="o">=</span> <span class="n">INDENT_REGEX</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">physical_line</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span> <span class="ow">in</span> <span class="n">indent</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">indent</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">),</span> <span class="s2">&quot;W191 indentation contains tabs&quot;</span>
+</code></pre></div>
+
+<h3>coding style</h3>
+<h4>global var is okay</h4>
+<p>pycodestyle sử dụng nhiều biến global như <code>_checks</code>, việc sử dụng biến global thường bị xem như "code smell", nhưng biến global này chỉ để đọc (sau khi đã set giá trị) mà không update, nên các nhược điểm do sử dụng global không ảnh hưởng ở đây.
+Ngoài ra pycodestyle cũng chỉ chạy mội vài giây (phút) rồi kết thúc chứ không chạy cả ngày như 1 web app nên việc sử dụng global var hoàn toàn OK.</p>
+<h4>main làm ít việc</h4>
+<p>function main (<code>_main</code>) của pycodestyle đơn giản, chủ yếu gọi các function khác, đúng như những gì ta thấy trong <a href="http://pp.pymi.vn/article/refactor/">refactor</a></p>
+<h4>dùng class khi cần class, còn đa số là function</h4>
+<p>class Checker giúp tạo ra các object checker để quản lý state và thực hiện chạy check cho mỗi file.</p>
+<p>Các class Report thực hiện kế thừa BaseReport vì có nhiều điểm giống nhau.</p>
+<p>class StyleGuide chứa mọi thứ cần có về chương trình pycodestyle.</p>
+<p>các check là các function.</p>
+<h3>Kết luận</h3>
+<p>pycodestyle hay pep8 là chương trình thuộc top phổ biến của python</p>
+<p>requests: 450 triệu download/tháng, pycodestyle: 40 triệu download/tháng.</p>
+<p>có code nằm trong 1 file duy nhất với 2600 dòng, với tính năng ổn định, code đơn giản, sử dụng tính dynamic linh hoạt của Python để tạo các check. Code dễ dàng thêm các check mới bằng việc tạo function rồi chạy register.
+Dùng global var, hàm main ít code, dùng class khi cần.</p>
+<p>Hết!</p>
+<p>HVN at <a href="http://pymi.vn">http://pymi.vn</a> and <a href="https://www.familug.org">https://www.familug.org</a>.</p>
+<ul>
+<li><a href="https://www.familug.org/p/ung-ho.html">Ủng hộ tác giả 🍺</a></li>
+</ul>
+  </div>
+  <!-- /.entry-content -->
+</section>
+<section class="container">
+  <div class="comments">
+    <h3>Comments</h3>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'pymier';
+      var disqus_identifier = 'article/pep8/';
+      var disqus_url = 'http://pp.pymi.vn/article/pep8/';
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//pymier.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the comments.</noscript>
+  </div>
+</section>
+
+    <section class="container footer">
+      <footer>
+        <address>
+        Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+        which takes great advantage of <a href="http://python.org">Python</a>.
+        </address>
+        <address>
+          Học lập trình Python tại <a href="https://pymi.vn/">Pymi.vn</a>
+        </address>
+      </footer>
+    </section>
+  </main>
+
+<script type="text/javascript">
+var images = document.getElementsByTagName("img");
+var i;
+
+for(i = 0; i < images.length; i++) {
+  images[i].className += " centered";
+}
+</script>
+</body>
+
+</html>

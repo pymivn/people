@@ -104,11 +104,11 @@ như f-string, type annotation, asyncio...
 (vì thế nên yêu cầu Python3.6+ để chạy, mặc dù vẫn có thể format code 2.7)</p>
 <h2>Dùng black để format code Python</h2>
 <p>Ví dụ có 1 file foo.py</p>
-<div class="highlight"><pre><span></span><code><span class="nv">def</span> <span class="nv">sum_two</span><span class="ss">(</span><span class="nv">a</span>,<span class="nv">b</span><span class="ss">)</span>:
-    <span class="nv">c</span><span class="o">=</span> <span class="nv">a</span>  <span class="o">+</span> <span class="nv">b</span>
+<div class="highlight"><pre><span></span><code><span class="nv">def</span><span class="w"> </span><span class="nv">sum_two</span><span class="ss">(</span><span class="nv">a</span>,<span class="nv">b</span><span class="ss">)</span>:<span class="w"></span>
+<span class="w">    </span><span class="nv">c</span><span class="o">=</span><span class="w"> </span><span class="nv">a</span><span class="w">  </span><span class="o">+</span><span class="w"> </span><span class="nv">b</span><span class="w"></span>
 
 
-    <span class="k">return</span> <span class="nv">c</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nv">c</span><span class="w"></span>
 </code></pre></div>
 
 <p>Nếu thành thạo PEP8, thấy ngay có 4 chỗ phải sửa ở đây:
@@ -144,8 +144,8 @@ thì black mặc định là 88:</p>
 của PEP8, format code hãy để cho đen (black) không vâu lo - việc này để
 đen không vâu lo.
 Thêm dòng này vào <code>Makefile</code> của bạn:</p>
-<div class="highlight"><pre><span></span><code><span class="n">fmt</span><span class="o">:</span>
-    <span class="n">black</span> <span class="o">-</span><span class="n">l79</span> <span class="o">.</span>
+<div class="highlight"><pre><span></span><code><span class="n">fmt</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">black</span><span class="w"> </span><span class="o">-</span><span class="n">l79</span><span class="w"> </span><span class="o">.</span><span class="w"></span>
 </code></pre></div>
 
 <p>hay cài đặt text editor/IDE tự động chạy <code>black</code> sau mỗi lần save code.</p>

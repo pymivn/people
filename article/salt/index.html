@@ -134,24 +134,24 @@ salt-ssh <span class="m">3002</span>
 <p>File <code>master</code> chứa 2 dòng, <code>root_dir</code> giá trị là đường dẫn đầy đủ tới
 thư muc saltlab, <code>file_roots</code> có <code>states</code> với giá trị là đường dẫn đầy đủ
 tới thư mục <code>states</code>, thư mục states sẽ chứa các file "saltstate"</p>
-<div class="highlight"><pre><span></span><code><span class="nt">root_dir</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/home/hvn/saltlab</span>
-<span class="nt">file_roots</span><span class="p">:</span>
-  <span class="nt">base</span><span class="p">:</span>
-    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/home/hvn/saltlab/states</span>
-<span class="nt">pillar_roots</span><span class="p">:</span>
-  <span class="nt">base</span><span class="p">:</span>
-    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/home/hvn/saltlab/pillars</span>
+<div class="highlight"><pre><span></span><code><span class="nt">root_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/hvn/saltlab</span><span class="w"></span>
+<span class="nt">file_roots</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">base</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/hvn/saltlab/states</span><span class="w"></span>
+<span class="nt">pillar_roots</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">base</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/hvn/saltlab/pillars</span><span class="w"></span>
 </code></pre></div>
 
 <p>File <code>roster</code> chứa thông tin về các máy minion:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">tv</span><span class="p">:</span>
-  <span class="nt">host</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">192.168.0.110</span>
-  <span class="nt">user</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">saltuser</span>
-  <span class="nt">sudo</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
-<span class="nt">trau</span><span class="p">:</span>
-  <span class="nt">host</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">103.x.y.z</span>
-  <span class="nt">user</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
-  <span class="nt">port</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">22022</span>
+<div class="highlight"><pre><span></span><code><span class="nt">tv</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.0.110</span><span class="w"></span>
+<span class="w">  </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">saltuser</span><span class="w"></span>
+<span class="w">  </span><span class="nt">sudo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span><span class="w"></span>
+<span class="nt">trau</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">103.x.y.z</span><span class="w"></span>
+<span class="w">  </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span><span class="w"></span>
+<span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">22022</span><span class="w"></span>
 </code></pre></div>
 
 <p>ở đây định nghĩa 2 minion, 1 tên <code>tv</code> và 1 tên <code>trau</code>, minion <code>tv</code> sẽ là đối
@@ -184,9 +184,9 @@ tv:
 <h2>Apply Salt state</h2>
 <p>Saltstate file là <a href="https://docs.saltproject.io/en/latest/topics/yaml/index.html">file YAML</a> có đuôi <code>.sls</code>, khai báo (declare)
 trạng thái của hệ thống mong muốn đạt được. File <code>htop.sls</code></p>
-<div class="highlight"><pre><span></span><code><span class="nt">install htop</span><span class="p">:</span>   <span class="c1">#  ID của &quot;state&quot;</span>
-  <span class="nt">pkg.installed</span><span class="p">:</span>  <span class="c1"># loại state - tương ứng với 1 python function</span>
-    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">htop</span>   <span class="c1"># các tham số - function argument</span>
+<div class="highlight"><pre><span></span><code><span class="nt">install htop</span><span class="p">:</span><span class="w">   </span><span class="c1">#  ID của &quot;state&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">pkg.installed</span><span class="p">:</span><span class="w">  </span><span class="c1"># loại state - tương ứng với 1 python function</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">htop</span><span class="w">   </span><span class="c1"># các tham số - function argument</span><span class="w"></span>
 </code></pre></div>
 
 <p>Cú pháp YAML trên tương ứng với Python dict sau:</p>
@@ -232,16 +232,16 @@ Total states run:     <span class="m">1</span>
 <p>Xem đầy đủ các option, các function khác của <code>pkg state module</code> tại <a href="https://docs.saltproject.io/en/latest/ref/states/all/salt.states.pkg.html#module-salt.states.pkg">module-salt.states.pkg</a></p>
 <h3>Copy/render file và chạy câu lệnh</h3>
 <p>File <code>example.sls</code></p>
-<div class="highlight"><pre><span></span><code><span class="nt">render a config file</span><span class="p">:</span>
-  <span class="nt">file.managed</span><span class="p">:</span>
-    <span class="p p-Indicator">-</span> <span class="nt">source</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">salt://template.j2</span>
-    <span class="p p-Indicator">-</span> <span class="nt">template</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jinja</span>
-    <span class="p p-Indicator">-</span> <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0400</span>
-    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/tmp/ahihi.yml</span>
+<div class="highlight"><pre><span></span><code><span class="nt">render a config file</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">file.managed</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">salt://template.j2</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">template</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">jinja</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0400</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/tmp/ahihi.yml</span><span class="w"></span>
 
-<span class="nt">now run a command</span><span class="p">:</span>
-  <span class="nt">cmd.run</span><span class="p">:</span>
-    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cat /tmp/ahihi.yml | head</span>
+<span class="nt">now run a command</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">cmd.run</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cat /tmp/ahihi.yml | head</span><span class="w"></span>
 </code></pre></div>
 
 <p><code>cmd.run</code> dùng để chạy 1 câu lệnh trên minion, lệnh tùy ý. Với <code>cmd.run</code>,
@@ -285,40 +285,40 @@ mục <code>/home/hvn/saltlab/states</code> trên máy master.</p>
 <h4>salt  grains</h4>
 <p>Ví dụ trên có truy cập 2 thông tin từ grains là tên hệ điều hành và các IPv4 của
 máy minion. state.apply</p>
-<div class="highlight"><pre><span></span><code>          <span class="nt">ID</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">render a config file</span>
-   <span class=" -Error"> </span><span class="nt">Function</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">file.managed</span>
-        <span class="l l-Scalar l-Scalar-Plain">Name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/tmp/ahihi.yml</span>
-      <span class="l l-Scalar l-Scalar-Plain">Result</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
-     <span class="l l-Scalar l-Scalar-Plain">Comment</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">File /tmp/ahihi.yml is in the correct state</span>
-     <span class="l l-Scalar l-Scalar-Plain">Started</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">19:33:25.337228</span>
-    <span class="nt">Duration</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">34.549 ms</span>
-     <span class="l l-Scalar l-Scalar-Plain">Changes</span><span class="p p-Indicator">:</span>
-<span class="l l-Scalar l-Scalar-Plain">----------</span>
-          <span class="l l-Scalar l-Scalar-Plain">ID</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">now run a command</span>
-    <span class="l l-Scalar l-Scalar-Plain">Function</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cmd.run</span>
-        <span class="l l-Scalar l-Scalar-Plain">Name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cat /tmp/ahihi.yml | head</span>
-      <span class="l l-Scalar l-Scalar-Plain">Result</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
-     <span class="l l-Scalar l-Scalar-Plain">Comment</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Command &quot;cat /tmp/ahihi.yml | head&quot; run</span>
-     <span class="l l-Scalar l-Scalar-Plain">Started</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">19:33:25.372408</span>
-    <span class="l l-Scalar l-Scalar-Plain">Duration</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">7.672 ms</span>
-     <span class="l l-Scalar l-Scalar-Plain">Changes</span><span class="p p-Indicator">:</span>
-              <span class="l l-Scalar l-Scalar-Plain">----------</span>
-              <span class="l l-Scalar l-Scalar-Plain">pid</span><span class="p p-Indicator">:</span>
-                  <span class="l l-Scalar l-Scalar-Plain">42905</span>
-              <span class="nt">retcode</span><span class="p">:</span>
-                  <span class="l l-Scalar l-Scalar-Plain">0</span>
-              <span class="nt">stderr</span><span class="p">:</span>
-              <span class="nt">stdout</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="w">          </span><span class="nt">ID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">render a config file</span><span class="w"></span>
+<span class="w">   </span><span class="w w-Error"> </span><span class="nt">Function</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file.managed</span><span class="w"></span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">Name</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/tmp/ahihi.yml</span><span class="w"></span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">Result</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span><span class="w"></span>
+<span class="w">     </span><span class="l l-Scalar l-Scalar-Plain">Comment</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">File /tmp/ahihi.yml is in the correct state</span><span class="w"></span>
+<span class="w">     </span><span class="l l-Scalar l-Scalar-Plain">Started</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">19:33:25.337228</span><span class="w"></span>
+<span class="w">    </span><span class="nt">Duration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">34.549 ms</span><span class="w"></span>
+<span class="w">     </span><span class="l l-Scalar l-Scalar-Plain">Changes</span><span class="p p-Indicator">:</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">----------</span><span class="w"></span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">ID</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">now run a command</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Function</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cmd.run</span><span class="w"></span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">Name</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cat /tmp/ahihi.yml | head</span><span class="w"></span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">Result</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span><span class="w"></span>
+<span class="w">     </span><span class="l l-Scalar l-Scalar-Plain">Comment</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Command &quot;cat /tmp/ahihi.yml | head&quot; run</span><span class="w"></span>
+<span class="w">     </span><span class="l l-Scalar l-Scalar-Plain">Started</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">19:33:25.372408</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Duration</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7.672 ms</span><span class="w"></span>
+<span class="w">     </span><span class="l l-Scalar l-Scalar-Plain">Changes</span><span class="p p-Indicator">:</span><span class="w"></span>
+<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">----------</span><span class="w"></span>
+<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">pid</span><span class="p p-Indicator">:</span><span class="w"></span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">42905</span><span class="w"></span>
+<span class="w">              </span><span class="nt">retcode</span><span class="p">:</span><span class="w"></span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">0</span><span class="w"></span>
+<span class="w">              </span><span class="nt">stderr</span><span class="p">:</span><span class="w"></span>
+<span class="w">              </span><span class="nt">stdout</span><span class="p">:</span><span class="w"></span>
 
-                    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">meo</span>
-                    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bo</span>
-                    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ga</span>
+<span class="w">                    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">meo</span><span class="w"></span>
+<span class="w">                    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bo</span><span class="w"></span>
+<span class="w">                    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ga</span><span class="w"></span>
 
-              <span class=" -Error">    </span><span class="nt">myuser</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">user</span>
-                  <span class="nt">mypassword</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">passwd</span>
+<span class="w">              </span><span class="w w-Error">    </span><span class="nt">myuser</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">user</span><span class="w"></span>
+<span class="w">                  </span><span class="nt">mypassword</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">passwd</span><span class="w"></span>
 
-                  <span class="nt">os</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Ubuntu-20.04</span>
-                  <span class="nt">ips</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="s">&#39;127.0.0.1&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;192.168.0.110&#39;</span><span class="p p-Indicator">]</span>
+<span class="w">                  </span><span class="nt">os</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ubuntu-20.04</span><span class="w"></span>
+<span class="w">                  </span><span class="nt">ips</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;127.0.0.1&#39;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;192.168.0.110&#39;</span><span class="p p-Indicator">]</span><span class="w"></span>
 </code></pre></div>
 
 <p>Để liệt kê tất cả grains của minion, dùng Salt command <code>grains.items</code></p>
@@ -346,11 +346,11 @@ tv:
 chỉ <code>trau</code> mới truy cập được nội dung trong file <code>uds.sls</code>.</p>
 <p>Các file pillar là các file <code>.sls</code> theo syntax YAML, biểu diễn các dictionary
 của Python. Ví dụ: <code>uds.sls</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">telegram_token</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">this_is_token</span>
+<div class="highlight"><pre><span></span><code><span class="nt">telegram_token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">this_is_token</span><span class="w"></span>
 
-<span class="nt">database</span><span class="p">:</span>
-  <span class="nt">username</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
-  <span class="nt">password</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">toor</span>
+<span class="nt">database</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span><span class="w"></span>
+<span class="w">  </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">toor</span><span class="w"></span>
 </code></pre></div>
 
 <p>Để liệt kê tất cả pillar item dành cho minion, dùng Salt command <code>pillar.items</code>
@@ -369,13 +369,13 @@ trau:
 </code></pre></div>
 
 <p>Ví dụ 1 file dùng pillar:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># /lib/systemd/system/uds.service</span>
-<span class="p p-Indicator">[</span><span class="nv">Unit</span><span class="p p-Indicator">]</span>
-<span class="l l-Scalar l-Scalar-Plain">Description=UDS telegram bot</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># /lib/systemd/system/uds.service</span><span class="w"></span>
+<span class="p p-Indicator">[</span><span class="nv">Unit</span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">Description=UDS telegram bot</span><span class="w"></span>
 
-<span class="l l-Scalar l-Scalar-Plain">[Service]</span>
-<span class="l l-Scalar l-Scalar-Plain">User=uds</span>
-<span class="l l-Scalar l-Scalar-Plain">Environment=BOT_TOKEN={{ pillar[&#39;telegram_token&#39;] }}</span>
+<span class="l l-Scalar l-Scalar-Plain">[Service]</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">User=uds</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">Environment=BOT_TOKEN={{ pillar[&#39;telegram_token&#39;] }}</span><span class="w"></span>
 </code></pre></div>
 
 <h3>Deploy 1 Python project</h3>

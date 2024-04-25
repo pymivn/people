@@ -120,47 +120,47 @@ Successfully installed ecdsa-0.13 esptool-2.5.1 pyaes-1.6.1 pyserial-3.4
 </code></pre></div>
 
 <p>Xóa nội dung hiện tại trong flash memory</p>
-<div class="highlight"><pre><span></span><code><span class="o">$</span> <span class="n">sudo</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">hvn</span><span class="o">/</span><span class="n">py36</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">esptool</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">port</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB0</span> <span class="n">erase_flash</span>
-<span class="n">esptool</span><span class="o">.</span><span class="n">py</span> <span class="n">v2</span><span class="o">.</span><span class="mf">5.1</span>
-<span class="n">Serial</span> <span class="n">port</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB0</span>
-<span class="n">Connecting</span><span class="o">....</span>
-<span class="n">Detecting</span> <span class="n">chip</span> <span class="n">type</span><span class="o">...</span> <span class="n">ESP8266</span>
-<span class="n">Chip</span> <span class="k">is</span> <span class="n">ESP8266EX</span>
-<span class="n">Features</span><span class="p">:</span> <span class="n">WiFi</span>
-<span class="n">MAC</span><span class="p">:</span> <span class="n">b4</span><span class="p">:</span><span class="n">e6</span><span class="p">:</span><span class="mi">2</span><span class="n">d</span><span class="p">:</span><span class="mi">3</span><span class="n">b</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span><span class="mi">1</span><span class="n">b</span>
-<span class="n">Uploading</span> <span class="n">stub</span><span class="o">...</span>
-<span class="n">Running</span> <span class="n">stub</span><span class="o">...</span>
-<span class="n">Stub</span> <span class="n">running</span><span class="o">...</span>
-<span class="n">Erasing</span> <span class="n">flash</span> <span class="p">(</span><span class="n">this</span> <span class="n">may</span> <span class="n">take</span> <span class="n">a</span> <span class="k">while</span><span class="p">)</span><span class="o">...</span>
-<span class="n">Chip</span> <span class="n">erase</span> <span class="n">completed</span> <span class="n">successfully</span> <span class="ow">in</span> <span class="mf">1.6</span><span class="n">s</span>
-<span class="n">Hard</span> <span class="n">resetting</span> <span class="n">via</span> <span class="n">RTS</span> <span class="n">pin</span><span class="o">...</span>
+<div class="highlight"><pre><span></span><code><span class="o">$</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">hvn</span><span class="o">/</span><span class="n">py36</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">esptool</span><span class="o">.</span><span class="n">py</span><span class="w"> </span><span class="o">--</span><span class="n">port</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB0</span><span class="w"> </span><span class="n">erase_flash</span><span class="w"></span>
+<span class="n">esptool</span><span class="o">.</span><span class="n">py</span><span class="w"> </span><span class="n">v2</span><span class="o">.</span><span class="mf">5.1</span><span class="w"></span>
+<span class="n">Serial</span><span class="w"> </span><span class="n">port</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB0</span><span class="w"></span>
+<span class="n">Connecting</span><span class="o">....</span><span class="w"></span>
+<span class="n">Detecting</span><span class="w"> </span><span class="n">chip</span><span class="w"> </span><span class="n">type</span><span class="o">...</span><span class="w"> </span><span class="n">ESP8266</span><span class="w"></span>
+<span class="n">Chip</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">ESP8266EX</span><span class="w"></span>
+<span class="n">Features</span><span class="p">:</span><span class="w"> </span><span class="n">WiFi</span><span class="w"></span>
+<span class="n">MAC</span><span class="p">:</span><span class="w"> </span><span class="n">b4</span><span class="p">:</span><span class="n">e6</span><span class="p">:</span><span class="mi">2</span><span class="n">d</span><span class="p">:</span><span class="mi">3</span><span class="n">b</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span><span class="mi">1</span><span class="n">b</span><span class="w"></span>
+<span class="n">Uploading</span><span class="w"> </span><span class="n">stub</span><span class="o">...</span><span class="w"></span>
+<span class="n">Running</span><span class="w"> </span><span class="n">stub</span><span class="o">...</span><span class="w"></span>
+<span class="n">Stub</span><span class="w"> </span><span class="n">running</span><span class="o">...</span><span class="w"></span>
+<span class="n">Erasing</span><span class="w"> </span><span class="n">flash</span><span class="w"> </span><span class="p">(</span><span class="n">this</span><span class="w"> </span><span class="n">may</span><span class="w"> </span><span class="n">take</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">while</span><span class="p">)</span><span class="o">...</span><span class="w"></span>
+<span class="n">Chip</span><span class="w"> </span><span class="n">erase</span><span class="w"> </span><span class="n">completed</span><span class="w"> </span><span class="n">successfully</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="mf">1.6</span><span class="n">s</span><span class="w"></span>
+<span class="n">Hard</span><span class="w"> </span><span class="n">resetting</span><span class="w"> </span><span class="n">via</span><span class="w"> </span><span class="n">RTS</span><span class="w"> </span><span class="n">pin</span><span class="o">...</span><span class="w"></span>
 </code></pre></div>
 
 <p>Tải MicroPython bản dành cho ESP8266: bản mới nhất tại thời điểm viết bài
 http://micropython.org/resources/firmware/esp8266-20180511-v1.9.4.bin</p>
 <p>Ghi micropython lên flash memory:</p>
-<div class="highlight"><pre><span></span><code><span class="o">$</span> <span class="n">sudo</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">hvn</span><span class="o">/</span><span class="n">py36</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">esptool</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">port</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB0</span> <span class="o">--</span><span class="n">baud</span> <span class="mi">460800</span> <span class="n">write_flash</span> <span class="o">--</span><span class="n">flash_size</span><span class="o">=</span><span class="n">detect</span> <span class="o">-</span><span class="n">fm</span> <span class="n">dio</span> <span class="mi">0</span> <span class="o">~/</span><span class="n">esp8266</span><span class="o">-</span><span class="mi">20180511</span><span class="o">-</span><span class="n">v1</span><span class="o">.</span><span class="mf">9.4</span><span class="o">.</span><span class="n">bin</span>
-<span class="n">esptool</span><span class="o">.</span><span class="n">py</span> <span class="n">v2</span><span class="o">.</span><span class="mf">5.1</span>
-<span class="n">Serial</span> <span class="n">port</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB0</span>
-<span class="n">Connecting</span><span class="o">....</span>
-<span class="n">Detecting</span> <span class="n">chip</span> <span class="n">type</span><span class="o">...</span> <span class="n">ESP8266</span>
-<span class="n">Chip</span> <span class="k">is</span> <span class="n">ESP8266EX</span>
-<span class="n">Features</span><span class="p">:</span> <span class="n">WiFi</span>
-<span class="n">MAC</span><span class="p">:</span> <span class="n">b4</span><span class="p">:</span><span class="n">e6</span><span class="p">:</span><span class="mi">2</span><span class="n">d</span><span class="p">:</span><span class="mi">3</span><span class="n">b</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span><span class="mi">1</span><span class="n">b</span>
-<span class="n">Uploading</span> <span class="n">stub</span><span class="o">...</span>
-<span class="n">Running</span> <span class="n">stub</span><span class="o">...</span>
-<span class="n">Stub</span> <span class="n">running</span><span class="o">...</span>
-<span class="n">Changing</span> <span class="n">baud</span> <span class="n">rate</span> <span class="n">to</span> <span class="mi">460800</span>
-<span class="n">Changed</span><span class="o">.</span>
-<span class="n">Configuring</span> <span class="n">flash</span> <span class="n">size</span><span class="o">...</span>
-<span class="n">Auto</span><span class="o">-</span><span class="n">detected</span> <span class="n">Flash</span> <span class="n">size</span><span class="p">:</span> <span class="mi">4</span><span class="n">MB</span>
-<span class="n">Flash</span> <span class="n">params</span> <span class="n">set</span> <span class="n">to</span> <span class="mh">0x0240</span>
-<span class="n">Compressed</span> <span class="mi">604872</span> <span class="n">bytes</span> <span class="n">to</span> <span class="mf">394893.</span><span class="o">..</span>
-<span class="n">Wrote</span> <span class="mi">604872</span> <span class="n">bytes</span> <span class="p">(</span><span class="mi">394893</span> <span class="n">compressed</span><span class="p">)</span> <span class="n">at</span> <span class="mh">0x00000000</span> <span class="ow">in</span> <span class="mf">9.0</span> <span class="n">seconds</span> <span class="p">(</span><span class="n">effective</span> <span class="mf">536.4</span> <span class="n">kbit</span><span class="o">/</span><span class="n">s</span><span class="p">)</span><span class="o">...</span>
-<span class="n">Hash</span> <span class="n">of</span> <span class="n">data</span> <span class="n">verified</span><span class="o">.</span>
+<div class="highlight"><pre><span></span><code><span class="o">$</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">hvn</span><span class="o">/</span><span class="n">py36</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">esptool</span><span class="o">.</span><span class="n">py</span><span class="w"> </span><span class="o">--</span><span class="n">port</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB0</span><span class="w"> </span><span class="o">--</span><span class="n">baud</span><span class="w"> </span><span class="mi">460800</span><span class="w"> </span><span class="n">write_flash</span><span class="w"> </span><span class="o">--</span><span class="n">flash_size</span><span class="o">=</span><span class="n">detect</span><span class="w"> </span><span class="o">-</span><span class="n">fm</span><span class="w"> </span><span class="n">dio</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">~/</span><span class="n">esp8266</span><span class="o">-</span><span class="mi">20180511</span><span class="o">-</span><span class="n">v1</span><span class="o">.</span><span class="mf">9.4</span><span class="o">.</span><span class="n">bin</span><span class="w"></span>
+<span class="n">esptool</span><span class="o">.</span><span class="n">py</span><span class="w"> </span><span class="n">v2</span><span class="o">.</span><span class="mf">5.1</span><span class="w"></span>
+<span class="n">Serial</span><span class="w"> </span><span class="n">port</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB0</span><span class="w"></span>
+<span class="n">Connecting</span><span class="o">....</span><span class="w"></span>
+<span class="n">Detecting</span><span class="w"> </span><span class="n">chip</span><span class="w"> </span><span class="n">type</span><span class="o">...</span><span class="w"> </span><span class="n">ESP8266</span><span class="w"></span>
+<span class="n">Chip</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">ESP8266EX</span><span class="w"></span>
+<span class="n">Features</span><span class="p">:</span><span class="w"> </span><span class="n">WiFi</span><span class="w"></span>
+<span class="n">MAC</span><span class="p">:</span><span class="w"> </span><span class="n">b4</span><span class="p">:</span><span class="n">e6</span><span class="p">:</span><span class="mi">2</span><span class="n">d</span><span class="p">:</span><span class="mi">3</span><span class="n">b</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span><span class="mi">1</span><span class="n">b</span><span class="w"></span>
+<span class="n">Uploading</span><span class="w"> </span><span class="n">stub</span><span class="o">...</span><span class="w"></span>
+<span class="n">Running</span><span class="w"> </span><span class="n">stub</span><span class="o">...</span><span class="w"></span>
+<span class="n">Stub</span><span class="w"> </span><span class="n">running</span><span class="o">...</span><span class="w"></span>
+<span class="n">Changing</span><span class="w"> </span><span class="n">baud</span><span class="w"> </span><span class="n">rate</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="mi">460800</span><span class="w"></span>
+<span class="n">Changed</span><span class="o">.</span><span class="w"></span>
+<span class="n">Configuring</span><span class="w"> </span><span class="n">flash</span><span class="w"> </span><span class="n">size</span><span class="o">...</span><span class="w"></span>
+<span class="n">Auto</span><span class="o">-</span><span class="n">detected</span><span class="w"> </span><span class="n">Flash</span><span class="w"> </span><span class="n">size</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="n">MB</span><span class="w"></span>
+<span class="n">Flash</span><span class="w"> </span><span class="n">params</span><span class="w"> </span><span class="n">set</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="mh">0x0240</span><span class="w"></span>
+<span class="n">Compressed</span><span class="w"> </span><span class="mi">604872</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="mf">394893.</span><span class="o">..</span><span class="w"></span>
+<span class="n">Wrote</span><span class="w"> </span><span class="mi">604872</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="p">(</span><span class="mi">394893</span><span class="w"> </span><span class="n">compressed</span><span class="p">)</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="mh">0x00000000</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="mf">9.0</span><span class="w"> </span><span class="n">seconds</span><span class="w"> </span><span class="p">(</span><span class="n">effective</span><span class="w"> </span><span class="mf">536.4</span><span class="w"> </span><span class="n">kbit</span><span class="o">/</span><span class="n">s</span><span class="p">)</span><span class="o">...</span><span class="w"></span>
+<span class="n">Hash</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="n">verified</span><span class="o">.</span><span class="w"></span>
 
-<span class="n">Leaving</span><span class="o">...</span>
-<span class="n">Hard</span> <span class="n">resetting</span> <span class="n">via</span> <span class="n">RTS</span> <span class="n">pin</span><span class="o">...</span>
+<span class="n">Leaving</span><span class="o">...</span><span class="w"></span>
+<span class="n">Hard</span><span class="w"> </span><span class="n">resetting</span><span class="w"> </span><span class="n">via</span><span class="w"> </span><span class="n">RTS</span><span class="w"> </span><span class="n">pin</span><span class="o">...</span><span class="w"></span>
 </code></pre></div>
 
 <p>Sau khi cài đặt xong, bấm nút "reset" trên thiết bị để khởi động lại, ngay sau
@@ -227,13 +227,13 @@ Mọi tương tác với thiết bị (đọc/ghi file) đều thực hiện qua
 </code></pre></div>
 
 <p>Bấm nút reset sẽ thấy:</p>
-<div class="highlight"><pre><span></span><code>...
-<span class="nv">ets_task</span><span class="ss">(</span><span class="mi">40100130</span>, <span class="mi">3</span>, <span class="mi">3</span><span class="nv">fff83ec</span>, <span class="mi">4</span><span class="ss">)</span>
-<span class="nv">Hello</span> <span class="nv">Pymi</span>.<span class="nv">vn</span>
+<div class="highlight"><pre><span></span><code>...<span class="w"></span>
+<span class="nv">ets_task</span><span class="ss">(</span><span class="mi">40100130</span>,<span class="w"> </span><span class="mi">3</span>,<span class="w"> </span><span class="mi">3</span><span class="nv">fff83ec</span>,<span class="w"> </span><span class="mi">4</span><span class="ss">)</span><span class="w"></span>
+<span class="nv">Hello</span><span class="w"> </span><span class="nv">Pymi</span>.<span class="nv">vn</span><span class="w"></span>
 
-<span class="nv">MicroPython</span> <span class="nv">v1</span>.<span class="mi">9</span>.<span class="mi">4</span><span class="o">-</span><span class="mi">8</span><span class="o">-</span><span class="nv">ga9a3caad0</span> <span class="nv">on</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">11</span><span class="c1">; ESP module with ESP8266</span>
-<span class="nv">Type</span> <span class="s2">&quot;</span><span class="s">help()</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="nv">more</span> <span class="nv">information</span>.
-<span class="o">&gt;&gt;&gt;</span>
+<span class="nv">MicroPython</span><span class="w"> </span><span class="nv">v1</span>.<span class="mi">9</span>.<span class="mi">4</span><span class="o">-</span><span class="mi">8</span><span class="o">-</span><span class="nv">ga9a3caad0</span><span class="w"> </span><span class="nv">on</span><span class="w"> </span><span class="mi">2018</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">11</span><span class="c1">; ESP module with ESP8266</span><span class="w"></span>
+<span class="nv">Type</span><span class="w"> </span><span class="s2">&quot;help()&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">more</span><span class="w"> </span><span class="nv">information</span>.<span class="w"></span>
+<span class="o">&gt;&gt;&gt;</span><span class="w"></span>
 </code></pre></div>
 
 <p>Thao tác với các chân Pin</p>
