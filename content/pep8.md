@@ -220,23 +220,23 @@ Method `check_all` sẽ được xem lại sau.
 method `check_files` thực hiện chạy check cho **các** file cần kiểm tra PEP8, trả về `report`
 
 ```py
-    def check_files(self, paths=None):
-        """Run all checks on the paths."""
-        if paths is None:
-            paths = self.paths
-        report = self.options.report
-        runner = self.runner
-        report.start()
-        try:
-            for path in paths:
-                if os.path.isdir(path):
-                    self.input_dir(path)
-                elif not self.excluded(path):
-                    runner(path)
-        except KeyboardInterrupt:
-            print('... stopped')
-        report.stop()
-        return report
+def check_files(self, paths=None):
+    """Run all checks on the paths."""
+    if paths is None:
+        paths = self.paths
+    report = self.options.report
+    runner = self.runner
+    report.start()
+    try:
+        for path in paths:
+            if os.path.isdir(path):
+                self.input_dir(path)
+            elif not self.excluded(path):
+                runner(path)
+    except KeyboardInterrupt:
+        print('... stopped')
+    report.stop()
+    return report
 ```
 
 `path` là đường dẫn, có thể tới 1 file hay 1 thư mục, với file, chương trình sẽ check luôn nhờ gọi `runner` (method `input_file`), với thư mục, gọi method `input_dir(path)` để xử lý logic tìm các file trong thư mục rồi chạy `runner` với từng file.
@@ -328,7 +328,7 @@ def tabs_or_spaces(physical_line, indent_char):
 Đoạn code này là một **magic**, sử dụng tính dynamic linh hoạt của Python, dùng `inspect` để đọc từ các function object: tên, parameters, rồi `_add_check` vào từng nhóm `kind` dựa trên tên của parameter đầu tiên.
 
 ```py
-    _add_check(check, args[0], codes, args)
+_add_check(check, args[0], codes, args)
 ```
 
 Thử viết 1 function với 2 parameter, rồi dùng code `inspect` tìm xem parameter đầu tiên tên gì:
@@ -352,7 +352,7 @@ odict_values([<Parameter "x">, <Parameter "y">])
 ```
 
 ```py
-    _add_check(check, args[0], codes, args)
+_add_check(check, args[0], codes, args)
 ```
 
 `codes` ở đây là mã error như W101 E201, lọc ra từ docstring của mỗi check function qua `check.__doc__`.
@@ -373,10 +373,10 @@ E101 E111 E112 E113 E114 E115 E116 E121 E122 E123 E124 E125 E126 E127 E128 E129 
 Sửa code trong `_main` rồi chạy:
 
 ```py
-    style_guide = StyleGuide(parse_argv=True)
-    # them 2 dong nay
-    for kind, checks in _checks.items():
-        print(kind, len(checks))
+style_guide = StyleGuide(parse_argv=True)
+# them 2 dong nay
+for kind, checks in _checks.items():
+    print(kind, len(checks))
 ```
 
 Output:
@@ -574,29 +574,29 @@ mỗi object Checker biểu diễn việc kiểm tra 1 file, có attribute `.lin
 Vậy mỗi physical check được gọi như thế nào?
 
 ```py
-    def run_check(self, check, argument_names):
-        """Run a check plugin."""
-        arguments = []
-        for name in argument_names:
-            arguments.append(getattr(self, name))
-        return check(*arguments)
+def run_check(self, check, argument_names):
+    """Run a check plugin."""
+    arguments = []
+    for name in argument_names:
+        arguments.append(getattr(self, name))
+    return check(*arguments)
 
-    def init_checker_state(self, name, argument_names):
-        """Prepare custom state for the specific checker plugin."""
-        if 'checker_state' in argument_names:
-            self.checker_state = self._checker_states.setdefault(name, {})
+def init_checker_state(self, name, argument_names):
+    """Prepare custom state for the specific checker plugin."""
+    if 'checker_state' in argument_names:
+        self.checker_state = self._checker_states.setdefault(name, {})
 
-    def check_physical(self, line):
-        """Run all physical checks on a raw input line."""
-        self.physical_line = line
-        for name, check, argument_names in self._physical_checks:
-            self.init_checker_state(name, argument_names)
-            result = self.run_check(check, argument_names)
-            if result is not None:
-                (offset, text) = result
-                self.report_error(self.line_number, offset, text, check)
-                if text[:4] == 'E101':
-                    self.indent_char = line[0]
+def check_physical(self, line):
+    """Run all physical checks on a raw input line."""
+    self.physical_line = line
+    for name, check, argument_names in self._physical_checks:
+        self.init_checker_state(name, argument_names)
+        result = self.run_check(check, argument_names)
+        if result is not None:
+            (offset, text) = result
+            self.report_error(self.line_number, offset, text, check)
+            if text[:4] == 'E101':
+                self.indent_char = line[0]
 ```
 
 Với mỗi `name, check, argument_names` chứa trong `self._physical_checks`, gọi `run_check(check, argument_names)`, method này lấy tên của các argument, rồi lấy giá trị của chúng chưa trong attribute của Checker, sau đó gọi function `check(*arguments)`. Hãy xem thử với check độ dài của dòng:
