@@ -690,6 +690,15 @@ class StyleGuide chứa mọi thứ cần có về chương trình pycodestyle.
 
 các check là các function.
 
+#### không có type annotation
+code base đã cũ và không hỗ trợ type annotation có từ Python 3.6
+
+#### dùng optparse thay vì argparse
+> Deprecated since version 3.2: The optparse module is deprecated and will not be developed further; development will continue with the argparse module.
+
+Code pycodestyle đã cũ, từ thời cần hỗ trợ Python2.6, khi chưa có argparse, nên vẫn dùng optparse.
+[https://github.com/PyCQA/pycodestyle/pull/455#issuecomment-151712140](https://github.com/PyCQA/pycodestyle/pull/455#issuecomment-151712140)
+
 ### Kết luận
 pycodestyle hay pep8 là chương trình thuộc top phổ biến của python
 
