@@ -647,6 +647,14 @@ Ngoài ra pycodestyle cũng chỉ chạy mội vài giây (phút) rồi kết th
 <p>Các class Report thực hiện kế thừa BaseReport vì có nhiều điểm giống nhau.</p>
 <p>class StyleGuide chứa mọi thứ cần có về chương trình pycodestyle.</p>
 <p>các check là các function.</p>
+<h4>không có type annotation</h4>
+<p>code base đã cũ và không hỗ trợ type annotation có từ Python 3.6</p>
+<h4>dùng optparse thay vì argparse</h4>
+<blockquote>
+<p>Deprecated since version 3.2: The optparse module is deprecated and will not be developed further; development will continue with the argparse module.</p>
+</blockquote>
+<p>Code pycodestyle đã cũ, từ thời cần hỗ trợ Python2.6, khi chưa có argparse, nên vẫn dùng optparse.
+<a href="https://github.com/PyCQA/pycodestyle/pull/455#issuecomment-151712140">https://github.com/PyCQA/pycodestyle/pull/455#issuecomment-151712140</a></p>
 <h3>Kết luận</h3>
 <p>pycodestyle hay pep8 là chương trình thuộc top phổ biến của python</p>
 <p>requests: 450 triệu download/tháng, pycodestyle: 40 triệu download/tháng.</p>
