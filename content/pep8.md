@@ -215,7 +215,7 @@ Method `check_all` sẽ được xem lại sau.
 `self.options` chứa mọi option của chương trình.
 
 `reporter` mặc định dùng class `StandardReport`.
-#### method `check_files`
+#### method `StyleGuide.check_files`
 
 method `check_files` thực hiện chạy check cho **các** file cần kiểm tra PEP8, trả về `report`
 
@@ -422,7 +422,7 @@ if (2 > 1
 
 Việc kiểm tra độ dài của dòng rõ ràng thuộc về physical check.
 
-#### `check_all`
+#### `Checker.check_all`
 Method **"core"** của chương trình là `check_all`, nơi **thực sự** chạy các check và thu thập kết quả vào `Report`.
 45 dòng:
 
@@ -642,6 +642,38 @@ def tabs_obsolete(physical_line):
     indent = INDENT_REGEX.match(physical_line).group(1)
     if '\t' in indent:
         return indent.index('\t'), "W191 indentation contains tabs"
+```
+
+#### Xem traceback
+Thêm dòng break vào function `tabs_obsolete` rồi chạy lại:
+
+```py
+$ python pycodestyle.py pycodestyle.py # edited output
+Traceback (most recent call last):
+    _main()
+  in _main
+    report = style_guide.check_files()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  in check_files
+    runner(path)
+  in input_file
+    return fchecker.check_all(expected=expected, line_offset=line_offset)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  in check_all
+    for token in self.generate_tokens():
+  in generate_tokens
+    self.maybe_check_physical(token, prev_physical)
+  in maybe_check_physical
+    self.check_physical(token.line)
+  in check_physical
+    result = self.run_check(check, argument_names)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  in run_check
+    return check(*arguments)
+           ^^^^^^^^^^^^^^^^^
+  in tabs_obsolete
+    raise
+RuntimeError: No active exception to reraise
 ```
 ### coding style
 #### global var is okay
