@@ -702,7 +702,7 @@ Code pycodestyle đã cũ, từ thời cần hỗ trợ Python2.6, khi chưa có
 ### Kết luận
 pycodestyle hay pep8 là chương trình thuộc top phổ biến của python
 
-requests: 450 triệu download/tháng, pycodestyle: 40 triệu download/tháng.
+requests: 450 triệu download/tháng, [pycodestyle: 40 triệu download/tháng](https://pypistats.org/packages/pycodestyle).
 
 có code nằm trong 1 file duy nhất với 2600 dòng, với tính năng ổn định, code đơn giản, sử dụng tính dynamic linh hoạt của Python để tạo các check. Code dễ dàng thêm các check mới bằng việc tạo function rồi chạy register.
 Dùng global var, hàm main ít code, dùng class khi cần.
