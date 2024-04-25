@@ -607,7 +607,7 @@ Chú ý rằng file <code>foo.py</code> có 4 dòng vật lý, thì token cuối
 </code></pre></div>
 
 <h4>Xem traceback</h4>
-<p>Thêm dòng break vào function <code>tabs_obsolete</code> rồi chạy lại:</p>
+<p>Thêm dòng <code>raise</code> vào function <code>tabs_obsolete</code> rồi chạy lại:</p>
 <div class="highlight"><pre><span></span><code><span class="err">$</span> <span class="n">python</span> <span class="n">pycodestyle</span><span class="o">.</span><span class="n">py</span> <span class="n">pycodestyle</span><span class="o">.</span><span class="n">py</span> <span class="c1"># edited output</span>
 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
     <span class="n">_main</span><span class="p">()</span>

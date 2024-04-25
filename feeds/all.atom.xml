@@ -554,7 +554,7 @@ Chú ý rằng file &lt;code&gt;foo.py&lt;/code&gt; có 4 dòng vật lý, thì 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h4&gt;Xem traceback&lt;/h4&gt;
-&lt;p&gt;Thêm dòng break vào function &lt;code&gt;tabs_obsolete&lt;/code&gt; rồi chạy lại:&lt;/p&gt;
+&lt;p&gt;Thêm dòng &lt;code&gt;raise&lt;/code&gt; vào function &lt;code&gt;tabs_obsolete&lt;/code&gt; rồi chạy lại:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="n"&gt;pycodestyle&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="n"&gt;pycodestyle&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="c1"&gt;# edited output&lt;/span&gt;
 &lt;span class="n"&gt;Traceback&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;most&lt;/span&gt; &lt;span class="n"&gt;recent&lt;/span&gt; &lt;span class="n"&gt;call&lt;/span&gt; &lt;span class="n"&gt;last&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;_main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
